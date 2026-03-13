@@ -1,0 +1,9 @@
+langgraph>=0.0.21
+langchain-groq>=0.0.1
+langchain-google-genai>=0.0.10
+pytest>=8.0.0
+pytest-cov>=4.1.0
+mutmut>=2.4.4
+python-dotenv>=1.0.1
+pandas>=2.2.0
+matplotlib>=3.8.2
