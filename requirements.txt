@@ -1,9 +1,24 @@
-langgraph>=0.0.21
-langchain-groq>=0.0.1
-langchain-google-genai>=0.0.10
-pytest>=8.0.0
-pytest-cov>=4.1.0
-mutmut>=2.4.4
-python-dotenv>=1.0.1
-pandas>=2.2.0
-matplotlib>=3.8.2
+# LLM / LangChain
+langchain>=0.2.0
+langchain-core>=0.2.0
+langchain-groq>=0.1.0
+langchain-google-genai>=1.0.0
+langchain-openai>=0.1.0
+langgraph>=0.1.0
+
+# LLM Providers
+groq
+google-generativeai
+openai
+
+# EvalPlus dataset
+evalplus
+
+# Execution & Testing
+pytest
+pytest-cov
+radon
+
+# Data & Utilities
+python-dotenv
+pandas

@@ -4,17 +4,17 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def main():
-    print("🚀 Progetto A1 EvalPlus - Inizializzazione Completata!")
+    print("Project A1 EvalPlus - Initialization Complete")
     
     if "GROQ_API_KEY" in os.environ:
-        print("✅ GROQ API Key trovata!")
+        print("[OK] GROQ API Key found")
     else:
-        print("❌ GROQ API Key mancante nel fle .env!")
+        print("[ERROR] GROQ API Key missing in .env file")
         
     if "GEMINI_API_KEY" in os.environ:
-        print("✅ GEMINI API Key trovata!")
+        print("[OK] GEMINI API Key found")
     else:
-        print("❌ GEMINI API Key mancante nel fle .env!")
+        print("[ERROR] GEMINI API Key missing in .env file")
 
 if __name__ == "__main__":
     main()

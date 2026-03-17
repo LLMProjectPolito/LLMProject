@@ -41,3 +41,12 @@ venv.bak/
 logs/
 results/
 data/evalplus_subset/
+api_debug_tools/
+*.csv
+*.png
+results_synergy.txt
+analyze_*.py
+test_*.py
+list_*.py
+google_models_list.txt
+temp/
