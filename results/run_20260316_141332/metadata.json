@@ -1,0 +1,12 @@
+{
+  "start_ts": "2026-03-16T14:13:32.113205",
+  "end_ts": "2026-03-16T14:22:19.121992",
+  "agents": [
+    "baseline:llama3-70b",
+    "baseline:cot:gemma-27b",
+    "actor_critic:cot:gemma-27b/llama3-70b",
+    "swarm:cot:gemma-27b/llama3-70b"
+  ],
+  "n_problems": 5,
+  "total_runs": 20
+}

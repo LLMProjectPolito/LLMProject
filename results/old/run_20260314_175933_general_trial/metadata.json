@@ -1,0 +1,15 @@
+{
+  "run_start": "2026-03-14T17:59:33.387019",
+  "run_end": "2026-03-14T18:46:22.314918",
+  "agents": [
+    "baseline:3b",
+    "self_healing:3b",
+    "atomic_swarm:3b",
+    "consensus:3b",
+    "swarm:3b",
+    "hybrid:3b"
+  ],
+  "n_problems": 3,
+  "total_calls": 18,
+  "summary": {}
+}

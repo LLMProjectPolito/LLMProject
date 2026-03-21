@@ -1,0 +1,13 @@
+{
+  "run_start": "2026-03-14T17:42:47.938268",
+  "run_end": "2026-03-14T17:50:51.693269",
+  "agents": [
+    "baseline:llama3_3b",
+    "atomic_swarm:llama3_3b",
+    "baseline:qwen_1_5b",
+    "atomic_swarm:qwen_1_5b"
+  ],
+  "n_problems": 2,
+  "total_calls": 8,
+  "summary": {}
+}

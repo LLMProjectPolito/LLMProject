@@ -79,31 +79,31 @@ def run_agent(args):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="A1 Multi-Agent Test Generation CLI")
-    parser.add_argument("--agent",  type=str, help="Agent to run", choices=[
+    parser = argparse.ArgumentParser(description="EvalPlus Multi-Agent framework")
+    parser.add_argument("--agent",  type=str, choices=[
         "baseline", "actor_critic", "adversarial", "competitive",
         "hybrid", "coa", "soa", "swarm", "consensus"
     ])
-    parser.add_argument("--problem", type=str, help="Problem description or source code to test")
-    parser.add_argument("--list-models", action="store_true", help="List all available models")
+    parser.add_argument("--problem", type=str)
+    parser.add_argument("--list-models", action="store_true")
 
-    # Generic model flags
+    # Models
     parser.add_argument("--model",             default="llama3-70b")
     parser.add_argument("--driver-model",      default="llama3-70b")
-    parser.add_argument("--navigator-model",   default="gemini-pro")
-    parser.add_argument("--hacker-model",      default="mixtral")
+    parser.add_argument("--navigator-model",   default="gemma-27b")
+    parser.add_argument("--hacker-model",      default="llama3-8b")
     parser.add_argument("--tester-model",      default="llama3-70b")
     parser.add_argument("--models",            nargs="+", default=None)
     parser.add_argument("--generate-model",    default="llama3-70b")
-    parser.add_argument("--evolve-model",      default="gemini-pro")
-    parser.add_argument("--manager-model",     default="gemini-pro")
+    parser.add_argument("--evolve-model",      default="gemma-27b")
+    parser.add_argument("--manager-model",     default="gemma-27b")
     parser.add_argument("--worker-model",      default="llama3-70b")
-    parser.add_argument("--orchestrator-model",default="gemini-pro")
+    parser.add_argument("--orchestrator-model",default="gemma-27b")
     parser.add_argument("--specialist-model",  default="llama3-70b")
     parser.add_argument("--aggregator-model",  default="llama3-70b")
     parser.add_argument("--generation-model",  default="llama3-70b")
-    parser.add_argument("--debate-model",      default="gemini-pro")
-    parser.add_argument("--n", type=int, default=3, help="Number of swarm agents")
+    parser.add_argument("--debate-model",      default="gemma-27b")
+    parser.add_argument("--n", type=int, default=3)
 
     args = parser.parse_args()
 

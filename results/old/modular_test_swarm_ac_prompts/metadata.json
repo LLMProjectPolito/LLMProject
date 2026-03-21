@@ -1,0 +1,11 @@
+{
+  "start_ts": "2026-03-15T11:47:57.284343",
+  "end_ts": "2026-03-15T11:52:43.040979",
+  "agents": [
+    "swarm:llama3-3b",
+    "swarm:gemma-2b",
+    "swarm:qwen-1.5b"
+  ],
+  "n_problems": 5,
+  "total_runs": 15
+}

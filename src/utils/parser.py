@@ -10,13 +10,11 @@ def extract_code(text: str) -> str:
     
     It also removes common conversational prefixes/suffixes.
     """
-    # 1. Try to find content between triple backticks
     # Use NON-GREEDY match for the first block
     match = re.search(r"```(?:python)?\n?(.*?)```", text, re.DOTALL | re.IGNORECASE)
     if match:
         code = match.group(1).strip()
     else:
-        # 2. Fallback: if no backticks, assume the whole text is code but clean common prefixes
         code = text.strip()
         
     # Remove common conversational lines if they were accidentally captured or were the only thing

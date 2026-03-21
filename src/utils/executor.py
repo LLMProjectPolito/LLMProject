@@ -24,7 +24,6 @@ def run_tests(source_code: str, test_code: str) -> dict:
         test_code_final = f"from solution import *\n\n{clean_code}"
         test_file.write_text(test_code_final, encoding="utf-8")
 
-        # 1. Dynamic Execution (added branch coverage)
         try:
             result = subprocess.run(
                 ["python", "-m", "pytest", str(test_file), "--tb=no", "-q", "--color=no", 
@@ -41,7 +40,6 @@ def run_tests(source_code: str, test_code: str) -> dict:
                 "bloat_ratio": 0, "similarity_score": 0, "raw_output": "TIMEOUT: Pytest took > 60s"
             }
 
-        # 2. Static Analysis (Radon)
         try:
             cc_blocks = cc_visit(clean_code)
             avg_cc = sum(b.complexity for b in cc_blocks) / len(cc_blocks) if cc_blocks else 0

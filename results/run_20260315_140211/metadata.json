@@ -1,0 +1,15 @@
+{
+  "start_ts": "2026-03-15T14:02:11.956910",
+  "end_ts": "2026-03-15T15:03:25.293242",
+  "agents": [
+    "baseline:zs:gemma-27b",
+    "baseline:cot:gemma-27b",
+    "baseline:scot:gemma-27b",
+    "swarm:cot:gemma-12b",
+    "actor_critic:scot:gemma-12b",
+    "hybrid:cot:llama3-8b",
+    "baseline:llama3-70b"
+  ],
+  "n_problems": 20,
+  "total_runs": 140
+}

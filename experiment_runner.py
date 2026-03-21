@@ -22,7 +22,6 @@ from src.agents.swarm        import setup_swarm_graph
 from src.agents.consensus    import setup_consensus_graph
 from src.agents.self_healing import setup_self_healing_graph
 from src.agents.atomic_swarm import setup_atomic_swarm_graph
-from src.agents.reasoning_agents import setup_reasoning_graph
 from src.utils.executor      import run_tests
 
 DATA_DIR    = Path("data/evalplus_subset")
@@ -69,30 +68,49 @@ def safe_invoke(agent_fn, prompt, overrides, timeout=180, max_retries=3):
             return f"# ERROR: {e}", usage_stats
     return "", usage_stats
 
-# ── Agent runners ──
-def run_baseline(p, o={}): return setup_baseline_graph(model=o.get("model"), reasoning_style=o.get("reasoning_style", "zero_shot")).invoke({"problem": p})["test_code"]
-def run_actor_critic(p, o={}): return setup_actor_critic_graph(driver_model=o.get("model"), navigator_model=o.get("model2", o.get("model")), reasoning_style=o.get("reasoning_style", "zero_shot")).invoke({"problem": p, "test_code": "", "feedback": "", "iterations": 0})["test_code"]
-def run_adversarial(p, o={}): return setup_adversarial_graph(tester_model=o.get("model"), hacker_model=o.get("model2", o.get("model")), reasoning_style=o.get("reasoning_style", "zero_shot")).invoke({"problem": p, "source_code": p, "test_code": "", "mutated_code": "", "mutation_caught": False})["test_code"]
-def run_competitive(p, o={}): return setup_competitive_graph(model_a=o.get("model"), model_b=o.get("model2", o.get("model")), judge_model=o.get("model2", o.get("model"))).invoke({"problem": p, "test_a": "", "test_b": "", "best_test": ""})["best_test"]
-def run_hybrid(p, o={}): return setup_hybrid_graph(generate_model=o.get("model"), evolve_model=o.get("model2", o.get("model")), reasoning_style=o.get("reasoning_style", "zero_shot")).invoke({"problem": p, "population": [], "best_test": ""})["best_test"]
-def run_coa(p, o={}): return setup_coa_graph(manager_model=o.get("model"), worker_model=o.get("model2", o.get("model"))).invoke({"problem": p, "segments": [], "test_code": ""})["test_code"]
-def run_soa(p, o={}): return setup_soa_graph(orchestrator_model=o.get("model"), specialist_model=o.get("model2", o.get("model"))).invoke({"problem": p, "expertise": "", "test_code": ""})["test_code"]
-def run_swarm(p, o={}): return setup_swarm_graph(n=o.get("n", 3), worker_model=o.get("model"), aggregator_model=o.get("model2", o.get("model")), reasoning_style=o.get("reasoning_style", "zero_shot")).invoke({"problem": p, "results": [], "final_suite": ""})["final_suite"]
-def run_consensus(p, o={}): return setup_consensus_graph(generation_model=o.get("model"), debate_model=o.get("model2", o.get("model"))).invoke({"problem": p, "proposals": [], "final_test": ""})["final_test"]
-def run_self_healing(p, o={}): return setup_self_healing_graph(model=o.get("model")).invoke({"problem": p, "test_code": "", "error_message": "", "iteration": 0}).get("test_code", "")
-def run_atomic_swarm(p, o={}): return setup_atomic_swarm_graph(model=o.get("model")).invoke({"problem": p, "test_cases": [], "final_suite": ""}).get("final_suite", "")
-def run_few_shot(p, o={}): return setup_reasoning_graph("few_shot", model=o.get("model")).invoke({"problem": p}).get("test_code", "")
-def run_cot(p, o={}): return setup_reasoning_graph("cot", model=o.get("model")).invoke({"problem": p}).get("test_code", "")
-def run_scot(p, o={}): return setup_reasoning_graph("scot", model=o.get("model")).invoke({"problem": p}).get("test_code", "")
-def run_consistency(p, o={}): return setup_reasoning_graph("consistency", model=o.get("model")).invoke({"problem": p}).get("test_code", "")
-def run_tot(p, o={}): return setup_reasoning_graph("tot", model=o.get("model")).invoke({"problem": p}).get("test_code", "")
+# Agent runners
+def run_baseline(p, o={}): 
+    return setup_baseline_graph(model=o.get("model"), reasoning_style=o.get("reasoning_style", "zero_shot")).invoke({"problem": p})["test_code"]
+
+def run_actor_critic(p, o={}): 
+    return setup_actor_critic_graph(driver_model=o.get("model"), navigator_model=o.get("model2", o.get("model")), reasoning_style=o.get("reasoning_style", "zero_shot")).invoke({"problem": p, "test_code": "", "feedback": "", "iterations": 0})["test_code"]
+
+def run_adversarial(p, o={}): 
+    return setup_adversarial_graph(tester_model=o.get("model"), hacker_model=o.get("model2", o.get("model")), reasoning_style=o.get("reasoning_style", "zero_shot")).invoke({"problem": p, "source_code": p, "test_code": "", "mutated_code": "", "mutation_caught": False})["test_code"]
+
+def run_competitive(p, o={}): 
+    return setup_competitive_graph(model_a=o.get("model"), model_b=o.get("model2", o.get("model")), judge_model=o.get("model2", o.get("model"))).invoke({"problem": p, "test_a": "", "test_b": "", "best_test": ""})["best_test"]
+
+def run_hybrid(p, o={}): 
+    return setup_hybrid_graph(generate_model=o.get("model"), evolve_model=o.get("model2", o.get("model")), reasoning_style=o.get("reasoning_style", "zero_shot")).invoke({"problem": p, "population": [], "best_test": ""})["best_test"]
+
+def run_coa(p, o={}): 
+    return setup_coa_graph(manager_model=o.get("model"), worker_model=o.get("model2", o.get("model"))).invoke({"problem": p, "segments": [], "test_code": ""})["test_code"]
+
+def run_soa(p, o={}): 
+    return setup_soa_graph(orchestrator_model=o.get("model"), specialist_model=o.get("model2", o.get("model"))).invoke({"problem": p, "expertise": "", "test_code": ""})["test_code"]
+
+def run_swarm(p, o={}): 
+    return setup_swarm_graph(n=o.get("n", 3), worker_model=o.get("model"), aggregator_model=o.get("model2", o.get("model")), reasoning_style=o.get("reasoning_style", "zero_shot")).invoke({"problem": p, "results": [], "final_suite": ""})["final_suite"]
+
+def run_consensus(p, o={}): 
+    return setup_consensus_graph(generation_model=o.get("model"), debate_model=o.get("model2", o.get("model"))).invoke({"problem": p, "proposals": [], "final_test": ""})["final_test"]
+
+def run_self_healing(p, o={}): 
+    return setup_self_healing_graph(model=o.get("model")).invoke({"problem": p, "test_code": "", "error_message": "", "iteration": 0}).get("test_code", "")
+
+def run_atomic_swarm(p, o={}): 
+    return setup_atomic_swarm_graph(model=o.get("model")).invoke({"problem": p, "test_cases": [], "final_suite": ""}).get("final_suite", "")
+
+def run_few_shot(p, o={}): return run_baseline(p, {**o, "reasoning_style": "few_shot"})
+def run_cot(p, o={}):      return run_baseline(p, {**o, "reasoning_style": "cot"})
+def run_scot(p, o={}):     return run_baseline(p, {**o, "reasoning_style": "scot"})
 
 AGENT_FNS = {
     "baseline": run_baseline, "actor_critic": run_actor_critic, "adversarial": run_adversarial,
     "competitive": run_competitive, "hybrid": run_hybrid, "coa": run_coa, "soa": run_soa,
     "swarm": run_swarm, "consensus": run_consensus, "self_healing": run_self_healing,
-    "atomic_swarm": run_atomic_swarm, "few_shot": run_few_shot, "cot": run_cot,
-    "scot": run_scot, "consistency": run_consistency, "tot": run_tot
+    "atomic_swarm": run_atomic_swarm, "few_shot": run_few_shot, "cot": run_cot, "scot": run_scot
 }
 
 def make_run_dir():

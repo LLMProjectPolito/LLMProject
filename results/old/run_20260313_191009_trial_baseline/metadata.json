@@ -1,0 +1,73 @@
+{
+  "run_start": "2026-03-13T19:10:09.018652",
+  "run_end": "2026-03-13T20:11:23.246216",
+  "agents": [
+    "baseline",
+    "actor_critic",
+    "adversarial",
+    "competitive",
+    "hybrid",
+    "coa",
+    "soa",
+    "swarm",
+    "consensus"
+  ],
+  "n_problems": 5,
+  "total_calls": 45,
+  "summary": {
+    "baseline": {
+      "avg_functional_correctness": 0.7292,
+      "avg_line_coverage": 100.0,
+      "avg_elapsed_s": 1.73,
+      "n_problems": 5
+    },
+    "actor_critic": {
+      "avg_functional_correctness": 0.725,
+      "avg_line_coverage": 98.2,
+      "avg_elapsed_s": 13.29,
+      "n_problems": 5
+    },
+    "adversarial": {
+      "avg_functional_correctness": 0.7892,
+      "avg_line_coverage": 97.4,
+      "avg_elapsed_s": 12.37,
+      "n_problems": 5
+    },
+    "competitive": {
+      "avg_functional_correctness": 0.7986,
+      "avg_line_coverage": 100.0,
+      "avg_elapsed_s": 529.09,
+      "n_problems": 5
+    },
+    "hybrid": {
+      "avg_functional_correctness": 0.7822,
+      "avg_line_coverage": 100.0,
+      "avg_elapsed_s": 3.17,
+      "n_problems": 5
+    },
+    "coa": {
+      "avg_functional_correctness": 0.7872,
+      "avg_line_coverage": 95.0,
+      "avg_elapsed_s": 3.65,
+      "n_problems": 5
+    },
+    "soa": {
+      "avg_functional_correctness": 0.4,
+      "avg_line_coverage": 87.2,
+      "avg_elapsed_s": 2.09,
+      "n_problems": 5
+    },
+    "swarm": {
+      "avg_functional_correctness": 0.6266,
+      "avg_line_coverage": 95.8,
+      "avg_elapsed_s": 3.84,
+      "n_problems": 5
+    },
+    "consensus": {
+      "avg_functional_correctness": 0.808,
+      "avg_line_coverage": 100.0,
+      "avg_elapsed_s": 4.92,
+      "n_problems": 5
+    }
+  }
+}

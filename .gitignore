@@ -39,7 +39,6 @@ venv.bak/
 
 # Project specific
 logs/
-results/
 data/evalplus_subset/
 api_debug_tools/
 *.csv

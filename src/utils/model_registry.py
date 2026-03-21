@@ -5,7 +5,6 @@ from langchain_openai import ChatOpenAI
 from langchain_core.language_models.chat_models import BaseChatModel
 
 AVAILABLE_MODELS = {
-    # ── Fallback Enabled Models (Groq -> Cerebras -> OpenRouter)
     "llama3-8b": {
         "primary":   {"provider": "cerebras",   "id": "llama3.1-8b"},
         "fallbacks": [
@@ -28,7 +27,6 @@ AVAILABLE_MODELS = {
         ]
     },
     
-    # ── Micro Models (Gemma 3 available via Google)
     "llama3-3b": {"provider": "openrouter", "id": "meta-llama/llama-3.2-3b-instruct:free"},
     "gemma-2b":  {"provider": "gemini",     "id": "gemma-3-4b-it"},
     "gemma-4b":  {"provider": "gemini",     "id": "gemma-3-4b-it"},
@@ -36,13 +34,13 @@ AVAILABLE_MODELS = {
     "qwen-1.5b": {"provider": "openrouter", "id": "qwen/qwen-2.5-1.5b-instruct:free"},
     "liquid-1.2b":{"provider": "openrouter", "id": "liquid/lfm-2.5-1.2b-instruct:free"},
 
-    # ── Legacy/Single Provider Models
     "scout":         {"provider": "groq",   "id": "meta-llama/llama-4-scout-17b-16e-instruct"},
     "kimi":          {"provider": "groq",   "id": "moonshotai/kimi-k2-instruct"},
     "gemini-flash":  {"provider": "gemini", "id": "models/gemini-1.5-flash"},
     "gemini-lite":   {"provider": "gemini", "id": "models/gemini-1.5-flash-8b"},
     "gemma-12b":     {"provider": "gemini", "id": "gemma-3-12b-it"},
     "gemma-27b":     {"provider": "gemini", "id": "gemma-3-27b-it"},
+    "chatgpt-oss":   {"provider": "openrouter", "id": "openai/gpt-oss-120b"},
 }
 
 def _init_provider(provider: str, model_id: str, temperature: float) -> BaseChatModel:

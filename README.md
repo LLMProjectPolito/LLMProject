@@ -67,5 +67,8 @@ Per ogni run, il sistema genera automaticamente un report con:
 *   **Radon Metrics**: Complessità Ciclomatica e Manutenibilità del codice generato.
 *   **Token Usage**: Analisi dei costi e dell'efficienza.
 
+*   `model_registry.py`: Gestisce i provider (Google Gemini, Groq, Cerebras, etc.) con supporto nativo per **Gemma 3 (1B/4B/12B/27B)**.
+
 ---
-*Ultimo aggiornamento: 15/03/2026*
+
+*Ultimo aggiornamento: 17/03/2026*
