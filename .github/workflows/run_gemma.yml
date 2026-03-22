@@ -1,17 +1,16 @@
 name: Gemma Agentic Evaluation
 
 on:
-  workflow_dispatch: # Permette di lanciarlo a mano da GitHub
+  workflow_dispatch:
     inputs:
       target:
-        description: 'Target Run (small/large/tsunami)'
+        description: 'Target Run'
         required: true
-        default: 'tsunami'
+        default: 'fix'
         type: choice
         options:
-          - small
-          - large
           - tsunami
+          - fix
 
 jobs:
   run-experiment:
@@ -42,6 +41,11 @@ jobs:
       if: github.event.inputs.target == 'tsunami'
       run: |
         python -u experiment_runner.py --start 0 --n 25 --workers 10 --resume results/THESIS_PURE_DATABASE.csv --agents gemma_matrix
+
+    - name: Fix Broken Agents (competitive + actor_critic 27b)
+      if: github.event.inputs.target == 'fix'
+      run: |
+        python -u experiment_runner.py --start 0 --n 25 --workers 10 --agents competitive:gemma-1b:zero_shot competitive:gemma-1b:cot competitive:gemma-1b:scot competitive:gemma-1b:few_shot competitive:gemma-4b:zero_shot competitive:gemma-4b:cot competitive:gemma-4b:scot competitive:gemma-4b:few_shot competitive:gemma-12b:zero_shot competitive:gemma-12b:cot competitive:gemma-12b:scot competitive:gemma-12b:few_shot competitive:gemma-27b:zero_shot competitive:gemma-27b:cot competitive:gemma-27b:scot competitive:gemma-27b:few_shot actor_critic:gemma-27b:zero_shot actor_critic:gemma-27b:few_shot actor_critic:gemma-27b:scot
 
     - name: Commit Results to Repo
       if: always()

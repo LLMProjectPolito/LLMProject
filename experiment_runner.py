@@ -65,7 +65,10 @@ def run_adversarial(p, o={}):
 
 def run_competitive(p, o={}): 
     from src.agents.competitive import setup_competitive_graph
-    return setup_competitive_graph(model_a=o.get("model"), model_b=o.get("model2", o.get("model")), judge_model=o.get("model2", o.get("model"))).invoke({"problem": p, "test_a": "", "test_b": "", "best_test": ""})["best_test"]
+    model = o.get("model", "gemma-12b")
+    result = setup_competitive_graph(models=[model]).invoke({"problem": p, "generated_tests": {}, "winner": ""})
+    winner = result["winner"]
+    return result["generated_tests"].get(winner, "")
 
 def run_hybrid(p, o={}): 
     from src.agents.hybrid import setup_hybrid_graph

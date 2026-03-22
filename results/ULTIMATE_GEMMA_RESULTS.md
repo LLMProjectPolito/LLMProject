@@ -1,11 +1,10 @@
-# 🎯 THE ABSOLUTE GEMMA-ONLY MATRIX (4,400 TASKS)
+# Final Gemma Performance Matrix
 
-This table contains only the 4 Gemma model sizes and their unique configurations.
-Total processed tasks: 4232
+Total tasks: 4400 | Configs: 176
 
 | config_label | agent | functional_correctness | line_coverage | branch_coverage | mutation_score | total_tokens |
 | --- | --- | --- | --- | --- | --- | --- |
-| gemma-12b:cot | actor_critic | 0.5000 | 83.0000 | 0.0000 | 1.0000 | 17407.0000 |
+| gemma-12b:cot | actor_critic | 0.4843 | 64.6957 | 0.0000 | 0.9200 | 2829.2800 |
 | gemma-12b:cot | adversarial | 0.6078 | 80.2727 | 0.0000 | 0.8880 | 1282.5600 |
 | gemma-12b:cot | atomic_swarm | 0.6127 | 84.9167 | 0.0000 | 0.9400 | 1047.5200 |
 | gemma-12b:cot | baseline | 0.6357 | 80.8000 | 0.0000 | 0.9067 | 1197.1600 |
@@ -15,7 +14,8 @@ Total processed tasks: 4232
 | gemma-12b:cot | hybrid | 0.5648 | 81.4545 | 0.0000 | 1.0000 | 3135.5200 |
 | gemma-12b:cot | self_healing | 0.5976 | 81.8333 | 0.0000 | 0.8980 | 2084.7200 |
 | gemma-12b:cot | soa | 0.6542 | 88.2500 | 0.0000 | 0.8040 | 820.4400 |
-| gemma-12b:cot | swarm | 0.6662 | 77.0444 | 0.0000 | 0.5163 | 1888.8444 |
+| gemma-12b:cot | swarm | 0.6147 | 73.9200 | 0.0000 | 0.5633 | 1634.3600 |
+| gemma-12b:few_shot | actor_critic | 0.4575 | 61.0800 | 0.0000 | 0.9280 | 2725.7200 |
 | gemma-12b:few_shot | adversarial | 0.2394 | 40.3200 | 0.0000 | 0.8900 | 1101.0400 |
 | gemma-12b:few_shot | atomic_swarm | 0.7000 | 94.0800 | 0.0000 | 0.7647 | 1909.2400 |
 | gemma-12b:few_shot | baseline | 0.6805 | 86.5600 | 0.0000 | 0.8340 | 1241.8000 |
@@ -26,7 +26,7 @@ Total processed tasks: 4232
 | gemma-12b:few_shot | self_healing | 0.1293 | 28.2000 | 0.0000 | 0.9700 | 1679.1600 |
 | gemma-12b:few_shot | soa | 0.6770 | 93.8750 | 0.0000 | 0.9600 | 923.2000 |
 | gemma-12b:few_shot | swarm | 0.7467 | 90.8000 | 0.0000 | 0.4160 | 1567.2800 |
-| gemma-12b:scot | actor_critic | 0.0000 | 0.0000 | 0.0000 | 1.0000 | 16523.0000 |
+| gemma-12b:scot | actor_critic | 0.3032 | 59.0556 | 0.0000 | 0.9200 | 2551.4800 |
 | gemma-12b:scot | adversarial | 0.5558 | 80.2500 | 0.0000 | 0.8800 | 1309.6800 |
 | gemma-12b:scot | atomic_swarm | 0.7191 | 88.2800 | 0.0000 | 0.8020 | 1412.4400 |
 | gemma-12b:scot | baseline | 0.6405 | 78.7826 | 0.0000 | 0.8247 | 1280.1200 |
@@ -37,7 +37,7 @@ Total processed tasks: 4232
 | gemma-12b:scot | self_healing | 0.6621 | 85.4783 | 0.0000 | 0.8007 | 1339.5600 |
 | gemma-12b:scot | soa | 0.6316 | 88.7391 | 0.0000 | 0.8327 | 750.1200 |
 | gemma-12b:scot | swarm | 0.6972 | 78.6000 | 0.0000 | 0.4140 | 2095.2800 |
-| gemma-12b:zero_shot | actor_critic | 0.0000 | 0.0000 | 0.0000 | 1.0000 | 20379.0000 |
+| gemma-12b:zero_shot | actor_critic | 0.1306 | 52.1000 | 0.0000 | 1.0000 | 3767.4400 |
 | gemma-12b:zero_shot | adversarial | 0.3388 | 84.0909 | 0.0000 | 0.8900 | 1134.2400 |
 | gemma-12b:zero_shot | atomic_swarm | 0.7534 | 91.1600 | 0.0000 | 0.7533 | 1189.0000 |
 | gemma-12b:zero_shot | baseline | 0.4670 | 79.9524 | 0.0000 | 0.9280 | 1406.8400 |
@@ -51,18 +51,20 @@ Total processed tasks: 4232
 | gemma-1b:cot | actor_critic | 0.0000 | 14.6400 | 0.0000 | 1.0000 | 2395.3600 |
 | gemma-1b:cot | adversarial | 0.0000 | 12.2000 | 0.0000 | 0.8000 | 2248.7200 |
 | gemma-1b:cot | atomic_swarm | 0.0000 | 18.2941 | 0.0000 | 1.0000 | 5123.4000 |
-| gemma-1b:cot | baseline | 0.0000 | 13.3143 | 0.0000 | 0.8571 | 2622.4286 |
+| gemma-1b:cot | baseline | 0.0000 | 12.9200 | 0.0000 | 0.8400 | 3151.3600 |
 | gemma-1b:cot | coa | 0.0000 | 16.2400 | 0.0000 | 1.0000 | 3520.8400 |
+| gemma-1b:cot | competitive | 0.0000 | 26.3200 | 0.0000 | 1.0000 | 0.0000 |
 | gemma-1b:cot | consensus | 0.0000 | 19.7826 | 0.0000 | 1.0000 | 3744.2800 |
 | gemma-1b:cot | hybrid | 0.0000 | 16.2500 | 0.0000 | 1.0000 | 3905.3200 |
 | gemma-1b:cot | self_healing | 0.0000 | 8.8182 | 0.0000 | 0.6400 | 3204.2000 |
 | gemma-1b:cot | soa | 0.0133 | 13.0800 | 0.0000 | 0.7200 | 1784.5600 |
-| gemma-1b:cot | swarm | 0.0707 | 43.1250 | 0.0000 | 0.9714 | 5657.4000 |
+| gemma-1b:cot | swarm | 0.0524 | 47.4000 | 0.0000 | 1.0000 | 6829.2800 |
 | gemma-1b:few_shot | actor_critic | 0.5250 | 63.6250 | 0.0000 | 0.6500 | 2477.4000 |
 | gemma-1b:few_shot | adversarial | 0.3457 | 46.4783 | 0.0000 | 0.5860 | 1572.3200 |
 | gemma-1b:few_shot | atomic_swarm | 0.0400 | 17.6500 | 0.0000 | 0.9700 | 3562.2400 |
 | gemma-1b:few_shot | baseline | 0.1033 | 26.4583 | 0.0000 | 0.6880 | 4188.7200 |
 | gemma-1b:few_shot | coa | 0.0333 | 20.1250 | 0.0000 | 1.0000 | 3048.0000 |
+| gemma-1b:few_shot | competitive | 0.0000 | 26.3200 | 0.0000 | 1.0000 | 0.0000 |
 | gemma-1b:few_shot | consensus | 0.1200 | 24.5455 | 0.0000 | 0.9253 | 4361.2800 |
 | gemma-1b:few_shot | hybrid | 0.3860 | 64.1739 | 0.0000 | 0.7300 | 4626.0800 |
 | gemma-1b:few_shot | self_healing | 0.0000 | 12.0000 | 0.0000 | 0.8000 | 2767.1600 |
@@ -73,6 +75,7 @@ Total processed tasks: 4232
 | gemma-1b:scot | atomic_swarm | 0.0254 | 18.5600 | 0.0000 | 1.0000 | 7069.5200 |
 | gemma-1b:scot | baseline | 0.0508 | 19.2800 | 0.0000 | 0.7200 | 3740.2000 |
 | gemma-1b:scot | coa | 0.0325 | 21.8800 | 0.0000 | 1.0000 | 4623.7200 |
+| gemma-1b:scot | competitive | 0.0000 | 26.3200 | 0.0000 | 1.0000 | 0.0000 |
 | gemma-1b:scot | consensus | 0.0000 | 18.2727 | 0.0000 | 1.0000 | 4337.2000 |
 | gemma-1b:scot | hybrid | 0.2650 | 54.6400 | 0.0000 | 1.0000 | 6184.5600 |
 | gemma-1b:scot | self_healing | 0.0280 | 15.4400 | 0.0000 | 0.6800 | 2882.8000 |
@@ -83,22 +86,23 @@ Total processed tasks: 4232
 | gemma-1b:zero_shot | atomic_swarm | 0.0000 | 14.6800 | 0.0000 | 1.0000 | 4275.5600 |
 | gemma-1b:zero_shot | baseline | 0.1175 | 27.2400 | 0.0000 | 0.8400 | 3800.0000 |
 | gemma-1b:zero_shot | coa | 0.0000 | 17.0800 | 0.0000 | 1.0000 | 3150.4000 |
+| gemma-1b:zero_shot | competitive | 0.0000 | 26.3200 | 0.0000 | 1.0000 | 0.0000 |
 | gemma-1b:zero_shot | consensus | 0.1214 | 39.5417 | 0.0000 | 1.0000 | 4891.2800 |
 | gemma-1b:zero_shot | hybrid | 0.2582 | 63.3810 | 0.0000 | 1.0000 | 6079.0000 |
 | gemma-1b:zero_shot | self_healing | 0.0000 | 11.1200 | 0.0000 | 0.6400 | 3592.5200 |
 | gemma-1b:zero_shot | soa | 0.0694 | 25.4286 | 0.0000 | 0.7200 | 1923.8400 |
 | gemma-1b:zero_shot | swarm | 0.1080 | 33.7727 | 0.0000 | 0.9200 | 3610.4000 |
-| gemma-27b:cot | actor_critic | 0.4035 | 74.7000 | 0.0000 | 1.0000 | 4009.3000 |
-| gemma-27b:cot | adversarial | 0.7012 | 95.1304 | 0.0000 | 0.9146 | 1057.8750 |
+| gemma-27b:cot | actor_critic | 0.1614 | 74.7000 | 0.0000 | 1.0000 | 1603.7200 |
+| gemma-27b:cot | adversarial | 0.6732 | 95.1304 | 0.0000 | 0.9180 | 1015.5600 |
 | gemma-27b:cot | atomic_swarm | 0.7726 | 66.7200 | 0.0000 | 0.6287 | 1394.3600 |
-| gemma-27b:cot | baseline | 0.7060 | 83.8837 | 0.0000 | 0.7782 | 747.2000 |
+| gemma-27b:cot | baseline | 0.7487 | 81.8400 | 0.0000 | 0.7527 | 1137.2400 |
 | gemma-27b:cot | coa | 0.7793 | 80.7600 | 0.0000 | 0.8127 | 2096.7600 |
 | gemma-27b:cot | competitive | 0.0000 | 17.5200 | 0.0000 | 0.7200 | 0.0000 |
 | gemma-27b:cot | consensus | 0.7179 | 84.2400 | 0.0000 | 0.8760 | 3792.9600 |
-| gemma-27b:cot | hybrid | 0.5765 | 88.5625 | 0.0000 | 0.9786 | 2649.2571 |
+| gemma-27b:cot | hybrid | 0.5370 | 87.0000 | 0.0000 | 0.9700 | 2204.9600 |
 | gemma-27b:cot | self_healing | 0.6924 | 77.9583 | 0.0000 | 0.6140 | 1696.2400 |
 | gemma-27b:cot | soa | 0.6851 | 86.3333 | 0.0000 | 0.8747 | 841.4800 |
-| gemma-27b:cot | swarm | 0.8785 | 82.0727 | 0.0000 | 0.3018 | 1575.0000 |
+| gemma-27b:cot | swarm | 0.7783 | 80.2000 | 0.0000 | 0.4593 | 1742.4000 |
 | gemma-27b:few_shot | actor_critic | 0.0000 | 0.0000 | 0.0000 | 0.8400 | 0.0000 |
 | gemma-27b:few_shot | adversarial | 0.7237 | 84.0435 | 0.0000 | 0.6867 | 1154.8000 |
 | gemma-27b:few_shot | atomic_swarm | 0.8068 | 96.0000 | 0.0000 | 0.6774 | 1097.3200 |
@@ -113,7 +117,7 @@ Total processed tasks: 4232
 | gemma-27b:scot | actor_critic | 0.0000 | 0.0000 | 0.0000 | 0.8800 | 0.0000 |
 | gemma-27b:scot | adversarial | 0.7336 | 80.3333 | 0.0000 | 0.7447 | 810.0000 |
 | gemma-27b:scot | atomic_swarm | 0.6654 | 50.2917 | 0.0000 | 0.5300 | 1174.2400 |
-| gemma-27b:scot | baseline | 0.6911 | 73.0233 | 0.0000 | 0.6896 | 758.6222 |
+| gemma-27b:scot | baseline | 0.7654 | 75.6800 | 0.0000 | 0.5847 | 1139.4000 |
 | gemma-27b:scot | coa | 0.6326 | 58.9583 | 0.0000 | 0.7667 | 2222.4400 |
 | gemma-27b:scot | competitive | 0.0000 | 14.4000 | 0.0000 | 0.6400 | 0.0000 |
 | gemma-27b:scot | consensus | 0.8110 | 77.7600 | 0.0000 | 0.7047 | 4527.6000 |
@@ -121,9 +125,10 @@ Total processed tasks: 4232
 | gemma-27b:scot | self_healing | 0.6809 | 75.6250 | 0.0000 | 0.6260 | 1232.7600 |
 | gemma-27b:scot | soa | 0.7450 | 81.9583 | 0.0000 | 0.6967 | 645.4400 |
 | gemma-27b:scot | swarm | 0.6800 | 74.5833 | 0.0000 | 0.5687 | 2188.2800 |
+| gemma-27b:zero_shot | actor_critic | 0.0000 | 0.0000 | 0.0000 | 1.0000 | 0.0000 |
 | gemma-27b:zero_shot | adversarial | 0.6882 | 77.4400 | 0.0000 | 0.7767 | 953.6400 |
 | gemma-27b:zero_shot | atomic_swarm | 0.8234 | 75.3600 | 0.0000 | 0.4987 | 1069.1600 |
-| gemma-27b:zero_shot | baseline | 0.6982 | 81.0682 | 0.0000 | 0.8185 | 811.3778 |
+| gemma-27b:zero_shot | baseline | 0.7101 | 79.5200 | 0.0000 | 0.7767 | 1299.1600 |
 | gemma-27b:zero_shot | coa | 0.7568 | 77.4400 | 0.0000 | 0.7114 | 2462.2000 |
 | gemma-27b:zero_shot | competitive | 0.0000 | 17.0800 | 0.0000 | 0.6800 | 0.0000 |
 | gemma-27b:zero_shot | consensus | 0.7462 | 84.6000 | 0.0000 | 0.8813 | 3489.8800 |
@@ -134,18 +139,20 @@ Total processed tasks: 4232
 | gemma-4b:cot | actor_critic | 0.5765 | 80.4800 | 0.0000 | 0.8800 | 2659.1200 |
 | gemma-4b:cot | adversarial | 0.4275 | 55.6400 | 0.0000 | 0.5700 | 2267.5600 |
 | gemma-4b:cot | atomic_swarm | 0.7740 | 56.6400 | 0.0000 | 0.5367 | 2906.8400 |
-| gemma-4b:cot | baseline | 0.4363 | 60.0294 | 0.0000 | 0.6571 | 3862.2857 |
+| gemma-4b:cot | baseline | 0.3686 | 57.3333 | 0.0000 | 0.7200 | 5118.8400 |
 | gemma-4b:cot | coa | 0.7104 | 59.3600 | 0.0000 | 0.7480 | 1432.0800 |
+| gemma-4b:cot | competitive | 0.0000 | 26.3200 | 0.0000 | 1.0000 | 0.0000 |
 | gemma-4b:cot | consensus | 0.5705 | 79.6800 | 0.0000 | 0.9600 | 5684.1200 |
-| gemma-4b:cot | hybrid | 0.4851 | 79.3226 | 0.0000 | 0.9191 | 2878.9429 |
+| gemma-4b:cot | hybrid | 0.5079 | 78.3478 | 0.0000 | 0.8867 | 3361.1600 |
 | gemma-4b:cot | self_healing | 0.3726 | 58.5833 | 0.0000 | 0.6800 | 1988.2400 |
 | gemma-4b:cot | soa | 0.4500 | 62.7200 | 0.0000 | 0.7600 | 1005.6800 |
-| gemma-4b:cot | swarm | 0.6364 | 77.1765 | 0.0000 | 0.7500 | 4237.1714 |
+| gemma-4b:cot | swarm | 0.6309 | 77.5833 | 0.0000 | 0.7700 | 5343.5600 |
 | gemma-4b:few_shot | actor_critic | 0.7098 | 82.9583 | 0.0000 | 0.8880 | 4422.6800 |
 | gemma-4b:few_shot | adversarial | 0.4382 | 48.8000 | 0.0000 | 0.5600 | 2939.0400 |
 | gemma-4b:few_shot | atomic_swarm | 0.9334 | 87.0000 | 0.0000 | 0.4487 | 2952.8000 |
 | gemma-4b:few_shot | baseline | 0.5548 | 58.7200 | 0.0000 | 0.5680 | 6014.7600 |
 | gemma-4b:few_shot | coa | 0.8334 | 78.7600 | 0.0000 | 0.6693 | 2396.4400 |
+| gemma-4b:few_shot | competitive | 0.0000 | 26.3200 | 0.0000 | 1.0000 | 0.0000 |
 | gemma-4b:few_shot | consensus | 0.6344 | 78.2400 | 0.0000 | 0.9360 | 2696.3600 |
 | gemma-4b:few_shot | hybrid | 0.7414 | 85.5200 | 0.0000 | 1.0000 | 5498.1600 |
 | gemma-4b:few_shot | self_healing | 0.1720 | 28.7200 | 0.0000 | 0.7200 | 1203.0000 |
@@ -156,6 +163,7 @@ Total processed tasks: 4232
 | gemma-4b:scot | atomic_swarm | 0.7326 | 52.7500 | 0.0000 | 0.5700 | 1605.0800 |
 | gemma-4b:scot | baseline | 0.4574 | 54.4400 | 0.0000 | 0.5780 | 6069.2000 |
 | gemma-4b:scot | coa | 0.6536 | 62.0800 | 0.0000 | 0.8900 | 2131.3200 |
+| gemma-4b:scot | competitive | 0.0000 | 26.3200 | 0.0000 | 1.0000 | 0.0000 |
 | gemma-4b:scot | consensus | 0.6051 | 76.2400 | 0.0000 | 0.8900 | 5221.3600 |
 | gemma-4b:scot | hybrid | 0.5452 | 74.1200 | 0.0000 | 0.8500 | 3366.8800 |
 | gemma-4b:scot | self_healing | 0.4739 | 59.9583 | 0.0000 | 0.6800 | 919.8000 |
@@ -166,6 +174,7 @@ Total processed tasks: 4232
 | gemma-4b:zero_shot | atomic_swarm | 0.7967 | 70.8800 | 0.0000 | 0.5420 | 2679.3600 |
 | gemma-4b:zero_shot | baseline | 0.5005 | 60.3600 | 0.0000 | 0.5600 | 5603.1200 |
 | gemma-4b:zero_shot | coa | 0.7600 | 86.8333 | 0.0000 | 0.7560 | 1794.4400 |
+| gemma-4b:zero_shot | competitive | 0.0000 | 26.3200 | 0.0000 | 1.0000 | 0.0000 |
 | gemma-4b:zero_shot | consensus | 0.5966 | 82.4000 | 0.0000 | 0.9200 | 4283.6800 |
 | gemma-4b:zero_shot | hybrid | 0.5566 | 83.1600 | 0.0000 | 0.8900 | 3273.9600 |
 | gemma-4b:zero_shot | self_healing | 0.4152 | 52.9600 | 0.0000 | 0.5600 | 1479.0400 |
