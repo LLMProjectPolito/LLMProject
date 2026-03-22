@@ -1,0 +1,54 @@
+import pytest
+
+def order_by_points(nums):
+    """
+    Write a function which sorts the given list of integers
+    in ascending order according to the sum of their digits.
+    Note: if there are several items with similar sum of their digits,
+    order them based on their index in original list.
+
+    For example:
+    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+    >>> order_by_points([]) == []
+    """
+    def digit_sum(n):
+        s = 0
+        for digit in str(abs(n)):
+            s += int(digit)
+        return s
+
+    return sorted(nums, key=lambda x: (digit_sum(x), nums.index(x)))
+
+
+def test_empty_list():
+    assert order_by_points([]) == []
+
+def test_single_element():
+    assert order_by_points([5]) == [5]
+
+def test_same_digit_sum():
+    assert order_by_points([10, 1, 19, 28]) == [1, 10, 19, 28]
+
+def test_zero():
+    assert order_by_points([0, 1, -1]) == [0, 1, -1]
+
+def test_large_numbers():
+    assert order_by_points([1234, 567, 89, 10]) == [10, 89, 567, 1234]
+
+def test_example_case():
+    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+
+def test_negative_zero():
+    assert order_by_points([-0, 0]) == [-0, 0]
+
+def test_duplicate_numbers():
+    assert order_by_points([1, 1, 11, 11]) == [1, 1, 11, 11]
+
+def test_negative_numbers_same_digit_sum():
+    assert order_by_points([-11, -2, -1, -10]) == [-11, -2, -1, -10]
+
+def test_large_digit_sums():
+    assert order_by_points([999, 1, 2]) == [1, 2, 999]
+
+def test_very_large_numbers():
+    assert order_by_points([1234567890, 987654321, 1111111111]) == [1111111111, 987654321, 1234567890]

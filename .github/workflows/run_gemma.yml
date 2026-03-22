@@ -4,13 +4,20 @@ on:
   workflow_dispatch: # Permette di lanciarlo a mano da GitHub
     inputs:
       target:
-        description: 'Target Run (small/large)'
+        description: 'Target Run (small/large/tsunami)'
         required: true
-        default: 'small'
+        default: 'tsunami'
+        type: choice
+        options:
+          - small
+          - large
+          - tsunami
 
 jobs:
   run-experiment:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     
     steps:
     - name: Checkout Code
@@ -31,19 +38,16 @@ jobs:
         echo "GOOGLE_API_KEYS=${{ secrets.G2 }}" >> .env
         echo "OPENROUTER_API_KEY=${{ secrets.OR }}" >> .env
 
-    - name: Run Small Gemma Matrix
-      if: github.event.inputs.target == 'small'
+    - name: Run Tsunami Matrix
+      if: github.event.inputs.target == 'tsunami'
       run: |
-        python -u experiment_runner.py --start 0 --n 25 --workers 10 --resume results/MASTER_TURBO_RESULTS.csv --agents baseline:gemma-1b:zero_shot baseline:gemma-1b:cot baseline:gemma-1b:scot baseline:gemma-1b:few_shot adversarial:gemma-1b:zero_shot adversarial:gemma-1b:cot adversarial:gemma-1b:scot adversarial:gemma-1b:few_shot self_healing:gemma-1b:zero_shot self_healing:gemma-1b:cot self_healing:gemma-1b:scot self_healing:gemma-1b:few_shot actor_critic:gemma-1b:zero_shot actor_critic:gemma-1b:cot actor_critic:gemma-1b:scot actor_critic:gemma-1b:few_shot swarm:gemma-1b:zero_shot swarm:gemma-1b:cot swarm:gemma-1b:scot swarm:gemma-1b:few_shot atomic_swarm:gemma-1b:zero_shot atomic_swarm:gemma-1b:cot atomic_swarm:gemma-1b:scot atomic_swarm:gemma-1b:few_shot consensus:gemma-1b:zero_shot consensus:gemma-1b:cot consensus:gemma-1b:scot consensus:gemma-1b:few_shot coa:gemma-1b:zero_shot coa:gemma-1b:cot coa:gemma-1b:scot coa:gemma-1b:few_shot soa:gemma-1b:zero_shot soa:gemma-1b:cot soa:gemma-1b:scot soa:gemma-1b:few_shot hybrid:gemma-1b:zero_shot hybrid:gemma-1b:cot hybrid:gemma-1b:scot hybrid:gemma-1b:few_shot baseline:gemma-4b:zero_shot baseline:gemma-4b:cot baseline:gemma-4b:scot baseline:gemma-4b:few_shot adversarial:gemma-4b:zero_shot adversarial:gemma-4b:cot adversarial:gemma-4b:scot adversarial:gemma-4b:few_shot self_healing:gemma-4b:zero_shot self_healing:gemma-4b:cot self_healing:gemma-4b:scot self_healing:gemma-4b:few_shot actor_critic:gemma-4b:zero_shot actor_critic:gemma-4b:cot actor_critic:gemma-4b:scot actor_critic:gemma-4b:few_shot swarm:gemma-4b:zero_shot swarm:gemma-4b:cot swarm:gemma-4b:scot swarm:gemma-4b:few_shot atomic_swarm:gemma-4b:zero_shot atomic_swarm:gemma-4b:cot atomic_swarm:gemma-4b:scot atomic_swarm:gemma-4b:few_shot consensus:gemma-4b:zero_shot consensus:gemma-4b:cot consensus:gemma-4b:scot consensus:gemma-4b:few_shot coa:gemma-4b:zero_shot coa:gemma-4b:cot coa:gemma-4b:scot coa:gemma-4b:few_shot soa:gemma-4b:zero_shot soa:gemma-4b:cot soa:gemma-4b:scot soa:gemma-4b:few_shot hybrid:gemma-4b:zero_shot hybrid:gemma-4b:cot hybrid:gemma-4b:scot hybrid:gemma-4b:few_shot
+        python -u experiment_runner.py --start 0 --n 25 --workers 10 --resume results/THESIS_PURE_DATABASE.csv --agents gemma_matrix
 
-    - name: Run Large Gemma Matrix
-      if: github.event.inputs.target == 'large'
-      run: |
-        python -u experiment_runner.py --start 0 --n 25 --workers 10 --resume results/MASTER_DATABASE_ULTRA.csv --agents swarm:gemma-12b:zero_shot swarm:gemma-12b:cot swarm:gemma-12b:scot swarm:gemma-12b:few_shot atomic_swarm:gemma-12b:zero_shot atomic_swarm:gemma-12b:cot atomic_swarm:gemma-12b:scot atomic_swarm:gemma-12b:few_shot consensus:gemma-12b:zero_shot consensus:gemma-12b:cot consensus:gemma-12b:scot consensus:gemma-12b:few_shot coa:gemma-12b:zero_shot coa:gemma-12b:cot coa:gemma-12b:scot coa:gemma-12b:few_shot soa:gemma-12b:zero_shot soa:gemma-12b:cot soa:gemma-12b:scot soa:gemma-12b:few_shot hybrid:gemma-12b:zero_shot hybrid:gemma-12b:cot hybrid:gemma-12b:scot hybrid:gemma-12b:few_shot swarm:gemma-27b:zero_shot swarm:gemma-27b:cot swarm:gemma-27b:scot swarm:gemma-27b:few_shot atomic_swarm:gemma-27b:zero_shot atomic_swarm:gemma-27b:cot atomic_swarm:gemma-27b:scot atomic_swarm:gemma-27b:few_shot consensus:gemma-27b:zero_shot consensus:gemma-27b:cot consensus:gemma-27b:scot consensus:gemma-27b:few_shot coa:gemma-27b:zero_shot coa:gemma-27b:cot coa:gemma-27b:scot coa:gemma-27b:few_shot soa:gemma-27b:zero_shot soa:gemma-27b:cot soa:gemma-27b:scot soa:gemma-27b:few_shot hybrid:gemma-27b:zero_shot hybrid:gemma-27b:cot hybrid:gemma-27b:scot hybrid:gemma-27b:few_shot
-
-    - name: Upload Results
+    - name: Commit Results to Repo
       if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: results-${{ github.event.inputs.target }}
-        path: results/
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add results/
+        git commit -m "auto: add experiment results from ${{ github.event.inputs.target }} run" || echo "Nothing to commit"
+        git push

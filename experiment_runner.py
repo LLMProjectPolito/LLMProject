@@ -179,12 +179,10 @@ def run_experiment(agents, n, overrides={}, start=0, workers=100, resume_csv=Non
     def run_task_for_agent(prob, agent_name):
         task_id = prob["task_id"]; source = prob["prompt"] + prob["canonical_solution"]
         base_agent = agent_name.split(":")[0]; agent_overrides = overrides.get(agent_name, {})
-        t0 = time.time()
         try:
             test_code, usage = safe_invoke(AGENT_FNS[base_agent], prob["prompt"], agent_overrides)
             save_test_file(run_dir, task_id, agent_name, test_code)
             metrics = run_tests(source, test_code)
-            elapsed = round(time.time() - t0, 2)
             res = {
                 "task_id": task_id, "agent": base_agent, "config_label": agent_overrides.get("_label", "default"),
                 "passed": metrics["passed"], "failed": metrics["failed"], "errors": metrics["errors"],
@@ -192,7 +190,7 @@ def run_experiment(agents, n, overrides={}, start=0, workers=100, resume_csv=Non
                 "line_coverage": metrics["line_coverage"], "branch_coverage": metrics["branch_coverage"],
                 "mutation_score": metrics.get("mutation_score", 0), "complexity_cc": metrics["complexity_cc"],
                 "maintainability_mi": metrics["maintainability_mi"], "bloat_ratio": metrics["bloat_ratio"],
-                "similarity_score": metrics["similarity_score"], "elapsed_s": elapsed,
+                "similarity_score": metrics["similarity_score"],
                 "prompt_tokens": usage["prompt_tokens"], "completion_tokens": usage["completion_tokens"], "total_tokens": usage["total_tokens"]
             }
             with _csv_lock:
@@ -237,7 +235,15 @@ def main():
     parser.add_argument("--resume", type=str, default=None, help="Path to existing results.csv to resume from")
     args = parser.parse_args()
     
-    requested = ALL_AGENTS if "all" in args.agents else args.agents
+    if "gemma_matrix" in args.agents:
+        models = ['1b', '4b', '12b', '27b']
+        prompts = ['zero_shot', 'cot', 'scot', 'few_shot']
+        agents = ['baseline', 'actor_critic', 'adversarial', 'competitive', 'hybrid', 'coa', 'soa', 'swarm', 'consensus', 'self_healing', 'atomic_swarm']
+        requested = [f"{a}:gemma-{m}:{p}" for m in models for p in prompts for a in agents]
+    elif "all" in args.agents:
+        requested = ALL_AGENTS
+    else:
+        requested = args.agents
     over_map = {}
     for part in args.overrides.split(","):
         if "=" in part and ":" in part:

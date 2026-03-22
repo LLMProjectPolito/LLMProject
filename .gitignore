@@ -39,17 +39,24 @@ venv.bak/
 
 # Project specific
 logs/
-#data/evalplus_subset/ # PERMESSO: Necessario per GitHub Actions
 api_debug_tools/
-#*.csv # PERMESSO: Necessario per i Master CSV
 
-# Ignoriamo esplicitamente le run temporanee lunghe
+# Run artifacts
 results/turbo_*/
 results/results.csv
+results/backup_runs/
 
+# Temp scripts
 results_synergy.txt
 analyze_*.py
 test_*.py
 list_*.py
 google_models_list.txt
 temp/
+FAST_UNZIP.py
+FINAL_ORGANIZER.py
+ULTIMATE_ORGANIZER.py
+PURIFY_DATABASE.py
+CHECK_COUNTS.py
+FIND_THE_10.py
+SUPER_MERGE_ULTRA.py

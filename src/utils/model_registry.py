@@ -4,7 +4,7 @@ AVAILABLE_MODELS = {
     "gemma-1b":      {"provider": "google", "id": "gemma-3-1b-it"},
     "gemma-4b":      {"provider": "google", "id": "gemma-3-4b-it"},
     "gemma-12b":     {"provider": "google", "id": "gemma-3-12b-it"},
-    "gemma-27b":     {"provider": "google", "id": "gemma-3-27b-it"},
+    "gemma-27b":     {"provider": "openrouter", "id": "google/gemma-3-27b-it"},
     "llama-70b":     {"provider": "openrouter", "id": "meta-llama/llama-3.3-70b-instruct"},
     "chatgpt-oss":   {"provider": "openrouter", "id": "openai/gpt-oss-120b"},
 }

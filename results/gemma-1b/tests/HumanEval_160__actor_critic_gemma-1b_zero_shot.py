@@ -1,0 +1,93 @@
+import pytest
+
+def do_algebra(operator, operand):
+    """
+    Given two lists operator, and operand. The first list has basic algebra operations, and 
+    the second list is a list of integers. Use the two given lists to build the algebric 
+    expression and return the evaluation of this expression.
+
+    The basic algebra operations:
+    Addition ( + ) 
+    Subtraction ( - ) 
+    Multiplication ( * ) 
+    Floor division ( // ) 
+    Exponentiation ( ** ) 
+
+    Example:
+    operator['+', '*', '-']
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4 - 5
+    => result = 9
+
+    Note:
+        The length of operator list is equal to the length of operand list minus one.
+        Operand is a list of of non-negative integers.
+        Operator list has at least one operator, and operand list has at least two operands.
+
+    """
+    try:
+        if len(operator) == 1 and len(operand) == 1:
+            return operator[0] * operand[0]
+        elif len(operator) == 1:
+            return operator[0]
+        elif len(operand) == 1:
+            return operand[0]
+        else:
+            return eval(str(operator[0]) + str(operand[0]) + operator[1] + str(operand[1]))
+    except (TypeError, ValueError):
+        return None
+
+def test_addition():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4 - 5
+    assert result == 9
+
+def test_subtraction():
+    array = [2, 3, 4, 5]
+    result = 2 - 3 * 4
+    assert result == -5
+
+def test_multiplication():
+    array = [2, 3, 4, 5]
+    result = 2 * 3 * 4
+    assert result == 24
+
+def test_floor_division():
+    array = [2, 3, 4, 5]
+    result = 2 // 4
+    assert result == 0.5
+
+def test_exponentiation():
+    array = [2, 3, 4, 5]
+    result = 2 ** 3
+    assert result == 8
+
+def test_empty_operand():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4
+    assert result == 9
+
+def test_empty_operator():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4
+    assert result == 9
+
+def test_invalid_input():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4
+    assert result == None
+
+def test_mixed_operators():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4 - 5
+    assert result == 9
+
+def test_negative_numbers():
+    array = [-2, -3, -4, -5]
+    result = -2 + -3 * -4
+    assert result == -2 + 12
+    
+def test_zero_values():
+    array = [0, 0, 0, 0]
+    result = 0 + 0 * 0
+    assert result == 0
