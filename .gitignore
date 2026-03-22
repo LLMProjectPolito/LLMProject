@@ -39,10 +39,14 @@ venv.bak/
 
 # Project specific
 logs/
-data/evalplus_subset/
+#data/evalplus_subset/ # PERMESSO: Necessario per GitHub Actions
 api_debug_tools/
-*.csv
-*.png
+#*.csv # PERMESSO: Necessario per i Master CSV
+
+# Ignoriamo esplicitamente le run temporanee lunghe
+results/turbo_*/
+results/results.csv
+
 results_synergy.txt
 analyze_*.py
 test_*.py

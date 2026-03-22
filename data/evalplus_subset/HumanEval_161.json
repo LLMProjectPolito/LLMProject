@@ -1,0 +1,6 @@
+{
+  "task_id": "HumanEval/161",
+  "entry_point": "solve",
+  "prompt": "\ndef solve(s):\n    \"\"\"You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vise versa, \n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function should return the resulted string.\n    Examples\n    solve(\"1234\") = \"4321\"\n    solve(\"ab\") = \"AB\"\n    solve(\"#a@C\") = \"#A@c\"\n    \"\"\"\n",
+  "canonical_solution": "\n    ans, has_letter = \"\", False\n    for ch in s:\n        if ch.isalpha():\n            has_letter = True\n            ans += ch.swapcase()\n        else:\n            ans += ch\n    return ans if has_letter else s[::-1]\n\n"
+}

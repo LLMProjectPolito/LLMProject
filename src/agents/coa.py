@@ -21,29 +21,25 @@ def manager_node(state: CoAState, model: str):
     segments = [s.strip() for s in res.content.split(";")]
     return {"segments": segments, "current_idx": 0, "test_code": "import pytest\nimport math\n"}
 
-def worker_node(state: CoAState, model: str):
+def worker_node(state: CoAState, model: str, reasoning_style: str = "zero_shot"):
     llm = get_model(model)
+    from src.utils.prompts import apply_reasoning_style
     focus = state["segments"][state["current_idx"]]
-    prompt = (
-        f"Generate 2-3 pytest functions focusing EXCLUSIVELY on the '{focus}' dimension of the function below.\n"
-        "RULES:\n"
-        "1. Output ONLY the test function code. No imports, no explanations.\n"
-        "2. DO NOT RE-DEFINE the function under test.\n"
-        "3. Assume the function is already in the local scope.\n\n"
-        f"Function:\n{state['problem']}\n\nTests:"
-    )
+    base_instr = f"Generate 2-3 accurate pytest functions focusing EXCLUSIVELY on the '{focus}' dimension. Output ONLY the test code. DO NOT re-define the function."
+    
+    prompt = apply_reasoning_style(state['problem'], base_instr, reasoning_style)
     res = llm.invoke(prompt)
     new_code = extract_code(res.content)
     return {"test_code": state["test_code"] + f"\n\n# Focus: {focus}\n" + new_code, 
             "current_idx": state["current_idx"] + 1}
 
-def setup_coa_graph(manager_model: str = None, worker_model: str = None):
+def setup_coa_graph(manager_model: str = None, worker_model: str = None, reasoning_style: str = "zero_shot"):
     cfg = DEFAULT_MODELS["coa"]
     manager_model = manager_model or cfg["manager_model"]
     worker_model  = worker_model  or cfg["worker_model"]
     workflow = StateGraph(CoAState)
     workflow.add_node("manager", lambda s: manager_node(s, manager_model))
-    workflow.add_node("worker",  lambda s: worker_node(s, worker_model))
+    workflow.add_node("worker",  lambda s: worker_node(s, worker_model, reasoning_style))
 
     workflow.set_entry_point("manager")
     workflow.add_edge("manager", "worker")

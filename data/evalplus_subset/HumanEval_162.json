@@ -1,0 +1,6 @@
+{
+  "task_id": "HumanEval/162",
+  "entry_point": "string_to_md5",
+  "prompt": "\ndef string_to_md5(text):\n    \"\"\"\n    Given a string 'text', return its md5 hash equivalent string.\n    If 'text' is an empty string, return None.\n\n    >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'\n    \"\"\"\n",
+  "canonical_solution": "\n    if text == \"\": return None\n    import hashlib\n    m = hashlib.md5()\n    m.update(text.encode(\"utf-8\"))\n    return m.hexdigest()\n\n"
+}

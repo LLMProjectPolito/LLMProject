@@ -13,17 +13,14 @@ class SelfHealingState(TypedDict):
     error_message: str
     iteration: int
 
-def generate_node(state: SelfHealingState, model: str):
+def generate_node(state: SelfHealingState, model: str, reasoning_style: str = "zero_shot"):
     llm = get_model(model, temperature=0.7)
-    prompt = (
-        "Write a pytest suite for the function below.\n"
-        "RULES:\n"
-        "1. Output ONLY python code in a block. No conversation.\n"
-        "2. DO NOT RE-DEFINE the function under test.\n\n"
-        f"Function:\n{state['problem']}"
-    )
+    from src.utils.prompts import apply_reasoning_style
+    base_instr = "Write a comprehensive pytest suite for the function below. Output ONLY python code. DO NOT re-define the function."
+    prompt = apply_reasoning_style(state['problem'], base_instr, reasoning_style)
+
     if state.get("iteration", 0) > 0: 
-        time.sleep(2) # Respetta i rate limit
+        time.sleep(2)
 
     res = llm.invoke(prompt)
     return {
@@ -32,31 +29,23 @@ def generate_node(state: SelfHealingState, model: str):
     }
 
 def execute_node(state: SelfHealingState):
-    # Esegue il test code per verificare se ci sono errori di sintassi o logica
     metrics = run_tests(state["problem"], state["test_code"])
-    
-    # Se il test non passa oppure non copre tutto, estraiamo l'errore
     if metrics["errors"] > 0 or metrics["failed"] > 0:
         err = metrics.get("raw_output", "Syntax Error or Test Failure")
-        # limitiamo la lunghezza dell'errore per non sprecare token
         err = err[-1500:] 
         return {"error_message": err}
     else:
-        return {"error_message": ""} # Nessun errore, test perfetti
+        return {"error_message": ""}
 
-def fix_node(state: SelfHealingState, model: str):
+def fix_node(state: SelfHealingState, model: str, reasoning_style: str = "zero_shot"):
     llm = get_model(model, temperature=0.2)
-    prompt = (
-        "The following pytest suite failed when executed. Fix the errors.\n"
-        "RULES:\n"
-        "1. Output ONLY the fixed Python code in a block.\n"
-        "2. DO NOT RE-DEFINE the function under test.\n\n"
-        f"Function:\n{state['problem']}\n\n"
-        f"Current Broken Test Code:\n{state['test_code']}\n\n"
-        f"Execution Error Output:\n{state['error_message']}\n\n"
-        "Fixed Test Code:"
-    )
-    time.sleep(2) # Respetta i rate limit
+    from src.utils.prompts import apply_reasoning_style
+    
+    context = f"Function:\n{state['problem']}\n\nBroken Test Code:\n{state['test_code']}\n\nError:\n{state['error_message']}"
+    base_instr = "The pytest suite above failed. Fix the errors and output ONLY the complete fixed Python code. DO NOT re-define the function."
+    
+    prompt = apply_reasoning_style(context, base_instr, reasoning_style)
+    time.sleep(2)
     res = llm.invoke(prompt)
     return {
         "test_code": extract_code(res.content),
@@ -64,24 +53,22 @@ def fix_node(state: SelfHealingState, model: str):
         "error_message": ""
     }
 
-def setup_self_healing_graph(model: str = None, max_iterations: int = 3):
+def setup_self_healing_graph(model: str = None, max_iterations: int = 3, reasoning_style: str = "zero_shot"):
     cfg = DEFAULT_MODELS.get("self_healing", {})
     model = model or cfg.get("model", "llama3-8b")
     
     workflow = StateGraph(SelfHealingState)
 
-    workflow.add_node("generate", lambda s: generate_node(s, model))
+    workflow.add_node("generate", lambda s: generate_node(s, model, reasoning_style))
     workflow.add_node("execute", execute_node)
-    workflow.add_node("fix", lambda s: fix_node(s, model))
+    workflow.add_node("fix",      lambda s: fix_node(s, model, reasoning_style))
 
     workflow.set_entry_point("generate")
     workflow.add_edge("generate", "execute")
 
     def router(state: SelfHealingState):
-        if not state.get("error_message"):
-            return END  # Test passati!
-        if state.get("iteration", 0) >= max_iterations:
-            return END  # Limite tentativi raggiunto
+        if not state.get("error_message"): return END
+        if state.get("iteration", 0) >= max_iterations: return END
         return "fix"
 
     workflow.add_conditional_edges("execute", router)

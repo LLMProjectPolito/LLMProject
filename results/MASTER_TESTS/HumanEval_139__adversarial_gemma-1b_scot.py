@@ -1,0 +1,1 @@
+# ERROR: Unknown model 'scot'. Available: ['gemma-1b', 'gemma-4b', 'gemma-12b', 'gemma-27b', 'llama-70b', 'chatgpt-oss']

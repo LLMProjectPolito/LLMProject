@@ -1,0 +1,6 @@
+{
+  "task_id": "HumanEval/158",
+  "entry_point": "find_max",
+  "prompt": "\ndef find_max(words):\n    \"\"\"Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n    find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"\"aaaaaaa\"\n    \"\"\"\n",
+  "canonical_solution": "\n\n    mx_ch_cnt, ans = 0, \"\"\n    for word in words:\n        ch_cnt = len(set(word)) \n        if ch_cnt > mx_ch_cnt or (ch_cnt == mx_ch_cnt and word < ans):\n            mx_ch_cnt, ans = ch_cnt, word\n    return ans\n\n"
+}

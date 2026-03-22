@@ -110,7 +110,8 @@ def main():
     if args.list_models:
         print("Available models:")
         for name, cfg in AVAILABLE_MODELS.items():
-            print(f"  {name:<20} ({cfg['provider']})")
+            provider = cfg["primary"]["provider"] if "primary" in cfg else cfg["provider"]
+            print(f"  {name:<20} ({provider})")
         return
 
     if not args.agent or not args.problem:
