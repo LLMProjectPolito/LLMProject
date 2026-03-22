@@ -1,0 +1,53 @@
+def fix_spaces(text):
+    """
+    Given a string text, replace all spaces in it with underscores, 
+    and if a string has more than 2 consecutive spaces, 
+    then replace all consecutive spaces with - 
+    
+    fix_spaces("Example") == "Example"
+    fix_spaces("Example 1") == "Example_1"
+    fix_spaces(" Example 2") == "_Example_2"
+    fix_spaces(" Example   3") == "_Example-3"
+    """
+    result = ""
+    spaces = 0
+    for char in text:
+        if char == ' ':
+            spaces += 1
+            if spaces > 2:
+                result += '-'
+            else:
+                result += '_'
+        else:
+            result += char
+            spaces = 0
+    return result
+
+import pytest
+
+def test_fix_spaces_basic():
+    assert fix_spaces("Example") == "Example"
+    assert fix_spaces("Example 1") == "Example_1"
+    assert fix_spaces(" Example 2") == "_Example_2"
+    assert fix_spaces(" Example   3") == "_Example-3"
+
+def test_fix_spaces_empty_string():
+    assert fix_spaces("") == ""
+
+def test_fix_spaces_consecutive_spaces_at_end():
+    assert fix_spaces("text   ") == "text---"
+
+def test_fix_spaces_mixed_spaces():
+    assert fix_spaces("a b  c   d") == "a_b--c---d"
+
+def test_fix_spaces_no_spaces():
+    assert fix_spaces("abc") == "abc"
+
+def test_fix_spaces_consecutive_underscores():
+    assert fix_spaces("  ") == "---"
+
+def test_fix_spaces_leading_spaces():
+    assert fix_spaces("   text") == "---text"
+
+def test_fix_spaces_more_than_three_spaces():
+    assert fix_spaces("  text   ") == "---text---"

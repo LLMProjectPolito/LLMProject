@@ -1,0 +1,91 @@
+import pytest
+
+def generate_integers(a, b):
+    """
+    Given two positive integers a and b, return the even digits between a
+    and b, in ascending order.
+
+    For example:
+    generate_integers(2, 8) => [2, 4, 6, 8]
+    generate_integers(8, 2) => [2, 4, 6, 8]
+    generate_integers(10, 14) => []
+    """
+    s = set()
+    for i in range(a, b + 1):
+        for digit in str(i):
+            digit = int(digit)
+            if digit % 2 == 0:
+                s.add(digit)
+    return sorted(list(s))
+
+def test_generate_integers_2_8():
+    assert generate_integers(2, 8) == [2, 4, 6, 8]
+
+def test_generate_integers_8_2():
+    assert generate_integers(8, 2) == [2, 4, 6, 8]
+
+def test_generate_integers_10_14():
+    assert generate_integers(10, 14) == []
+
+def test_generate_integers_1_2():
+    assert generate_integers(1, 2) == [2]
+
+def test_generate_integers_2_1():
+    assert generate_integers(2, 1) == [2]
+
+def test_generate_integers_1_2_2():
+    assert generate_integers(1, 2) == [2]
+
+def test_generate_integers_3_1():
+    assert generate_integers(3, 1) == [2]
+
+def test_generate_integers_3_2():
+    assert generate_integers(3, 2) == []
+
+def test_generate_integers_4_1():
+    assert generate_integers(4, 1) == [2]
+
+def test_generate_integers_4_2():
+    assert generate_integers(4, 2) == []
+
+def test_generate_integers_5_1():
+    assert generate_integers(5, 1) == [2]
+
+def test_generate_integers_5_2():
+    assert generate_integers(5, 2) == []
+
+def test_generate_integers_6_1():
+    assert generate_integers(6, 1) == [2]
+
+def test_generate_integers_6_2():
+    assert generate_integers(6, 2) == []
+
+def test_generate_integers_7_1():
+    assert generate_integers(7, 1) == [2]
+
+def test_generate_integers_7_2():
+    assert generate_integers(7, 2) == []
+
+def test_generate_integers_8_1():
+    assert generate_integers(8, 1) == [2]
+
+def test_generate_integers_8_2():
+    assert generate_integers(8, 2) == [2]
+
+def test_generate_integers_9_1():
+    assert generate_integers(9, 1) == []
+
+def test_generate_integers_9_2():
+    assert generate_integers(9, 2) == []
+
+def test_generate_integers_10_14():
+    assert generate_integers(10, 14) == []
+
+def test_generate_integers_1_2():
+    assert generate_integers(1, 2) == [2]
+
+def test_generate_integers_2_1():
+    assert generate_integers(2, 1) == [2]
+
+def test_generate_integers_1_2_2():
+    assert generate_integers(1, 2) == [2]

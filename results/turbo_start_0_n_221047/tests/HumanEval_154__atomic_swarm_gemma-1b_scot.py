@@ -1,0 +1,62 @@
+import pytest
+import math
+
+import pytest
+
+def cycpattern_check(a, b):
+    """You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word
+    cycpattern_check("abcd","abd") => False
+    cycpattern_check("hello","ell") => True
+    cycpattern_check("whassup","psus") => False
+    cycpattern_check("abab","baa") => True
+    cycpattern_check("efef","eeff") => False
+    cycpattern_check("himenss","simen") => True
+
+    """
+    s = a + a
+    b_rotated = b
+    for i in range(len(b)):
+        b_rotated = b_rotated[i:] + b_rotated[:i]
+        if b_rotated in s:
+            return True
+    return False
+
+import pytest
+
+def cycpattern_check(a, b):
+    """You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word
+    cycpattern_check("abcd","abd") => False
+    cycpattern_check("hello","ell") => True
+    cycpattern_check("whassup","psus") => False
+    cycpattern_check("abab","baa") => True
+    cycpattern_check("efef","eeff") => False
+    cycpattern_check("himenss","simen") => True
+
+    """
+    if not b:
+        return True
+    for i in range(1, len(b)):
+        rotated_b = b[i:] + b[:i]
+        if rotated_b in a:
+            return True
+    return False
+
+import pytest
+
+def cycpattern_check(a, b):
+    """You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word
+    cycpattern_check("abcd","abd") => False
+    cycpattern_check("hello","ell") => True
+    cycpattern_check("whassup","psus") => False
+    cycpattern_check("abab","baa") => True
+    cycpattern_check("efef","eeff") => False
+    cycpattern_check("himenss","simen") => True
+
+    """
+    if len(b) == 0:
+        return True
+    for i in range(1, len(b)):
+        rotated_b = b[i:] + b[:i]
+        if rotated_b in a:
+            return True
+    return False
