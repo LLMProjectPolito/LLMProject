@@ -6,8 +6,11 @@ def final_merge_and_analyze():
     results_dir = Path("results")
     gemma_models = ['1b', '4b', '12b', '27b']
     
-    # 1. RACCOLTA DI TUTTI I CSV
-    all_csvs = list(results_dir.glob("**/results.csv")) + list(results_dir.glob("MASTER_*.csv")) + list(results_dir.glob("THESIS_*.csv")) + list(results_dir.glob("PROJECT_*.csv"))
+    # 1. RACCOLTA DI TUTTI I CSV (Priorità a quelli nelle sottocartelle turbo_*)
+    main_files = list(results_dir.glob("THESIS_*.csv")) + list(results_dir.glob("MASTER_*.csv"))
+    run_files = sorted(list(results_dir.glob("**/results.csv"))) # Quelli recenti sono qui
+    
+    all_csvs = main_files + run_files # I run_files vengono "dopo" e sovrascrivono con keep='last'
     
     print(f"Found {len(all_csvs)} CSV files to merge.")
     
@@ -42,10 +45,12 @@ def final_merge_and_analyze():
     df['config_label'] = df['config_label'].apply(normalize_config)
     df = df[~df['config_label'].str.contains("unknown")].copy()
     
-    # 3. DROP DUPLICATES + KEEP ONLY 25 PER CONFIG
-    df = df.drop_duplicates(subset=['task_id', 'agent', 'config_label'], keep='last')
-    df = df.sort_values(['config_label', 'agent', 'task_id'])
-    df_pure = df.groupby(['config_label', 'agent']).head(25)
+    # 3. SMART MERGE: Per ogni task, teniamo il risultato MIGLIORE (FC più alto, poi più token)
+    df = df.sort_values(['config_label', 'agent', 'task_id', 'functional_correctness', 'total_tokens'], ascending=[True, True, True, False, False])
+    df_pure = df.drop_duplicates(subset=['task_id', 'agent', 'config_label'], keep='first')
+    
+    # Prendi solo i primi 25 per config (per sicurezza)
+    df_pure = df_pure.groupby(['config_label', 'agent']).head(25)
     
     # 4. DROP elapsed_s if present
     if 'elapsed_s' in df_pure.columns:

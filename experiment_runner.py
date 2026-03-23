@@ -117,9 +117,15 @@ def make_run_dir():
     d = RESULTS_DIR / f"turbo_{safe_name}_{ts}"
     d.mkdir(parents=True, exist_ok=True); (d/"tests").mkdir(exist_ok=True); return d
 
-def save_test_file(run_dir, task_id, agent, test_code):
-    safe_task = task_id.replace("/", "_"); safe_agent = agent.replace(":", "_").replace("/", "_")
-    (run_dir / "tests" / f"{safe_task}__{safe_agent}.py").write_text(test_code, encoding="utf-8")
+def save_test_file(run_dir, task_id, agent, test_code, original_prompt=""):
+    safe_task = task_id.replace("/", "_")
+    safe_agent = agent.replace(":", "_").replace("/", "_")
+    
+    # ASSICURIAMO L'INTEGRITÀ DEL CODICE: Prompt + Completamento
+    # Se il test_code non contiene già la firma, la aggiungiamo dal prompt
+    full_code = original_prompt + "\n" + test_code
+    
+    (run_dir / "tests" / f"{safe_task}__{safe_agent}.py").write_text(full_code, encoding="utf-8")
 
 def save_csv(run_dir, rows):
     path = run_dir / "results.csv"
@@ -184,7 +190,13 @@ def run_experiment(agents, n, overrides={}, start=0, workers=100, resume_csv=Non
         base_agent = agent_name.split(":")[0]; agent_overrides = overrides.get(agent_name, {})
         try:
             test_code, usage = safe_invoke(AGENT_FNS[base_agent], prob["prompt"], agent_overrides)
-            save_test_file(run_dir, task_id, agent_name, test_code)
+            # PERCORSO FISSO PER LA TESI: results/gemma-Xb/tests/
+            model_slug = agent_overrides.get("model", "default")
+            target_tests_dir = RESULTS_DIR / model_slug / "tests"
+            target_tests_dir.mkdir(parents=True, exist_ok=True)
+            target_csv = RESULTS_DIR / model_slug / "results.csv"
+
+            save_test_file(target_tests_dir.parent, task_id, agent_name, test_code, original_prompt=prob["prompt"])
             metrics = run_tests(source, test_code)
             res = {
                 "task_id": task_id, "agent": base_agent, "config_label": agent_overrides.get("_label", "default"),
@@ -197,7 +209,9 @@ def run_experiment(agents, n, overrides={}, start=0, workers=100, resume_csv=Non
                 "prompt_tokens": usage["prompt_tokens"], "completion_tokens": usage["completion_tokens"], "total_tokens": usage["total_tokens"]
             }
             with _csv_lock:
-                rows.append(res); save_csv(run_dir, rows)
+                # SALVATAGGIO INCREMENTALE NEL CSV DEL MODELLO
+                pd.DataFrame([res]).to_csv(target_csv, mode='a', index=False, header=not target_csv.exists())
+                rows.append(res)
                 print(f"   [DONE] {task_id} x {agent_name} ({len(rows)}/{len(problems)*len(agents)})", flush=True)
             return res
         except Exception as e:
@@ -238,11 +252,11 @@ def main():
     parser.add_argument("--resume", type=str, default=None, help="Path to existing results.csv to resume from")
     args = parser.parse_args()
     
-    if "gemma_matrix" in args.agents:
-        models = ['1b', '4b', '12b', '27b']
+    if "tsunami" in args.agents:
+        models = ['gemma-1b', 'gemma-4b', 'gemma-12b', 'gemma-27b']
         prompts = ['zero_shot', 'cot', 'scot', 'few_shot']
         agents = ['baseline', 'actor_critic', 'adversarial', 'competitive', 'hybrid', 'coa', 'soa', 'swarm', 'consensus', 'self_healing', 'atomic_swarm']
-        requested = [f"{a}:gemma-{m}:{p}" for m in models for p in prompts for a in agents]
+        requested = [f"{a}:{m}:{p}" for m in models for p in prompts for a in agents]
     elif "all" in args.agents:
         requested = ALL_AGENTS
     else:

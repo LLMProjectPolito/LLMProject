@@ -1,1 +1,0 @@
-task_id,agent,config_label,passed,failed,errors,total,functional_correctness,line_coverage,branch_coverage,mutation_score,complexity_cc,maintainability_mi,bloat_ratio,similarity_score,elapsed_s,prompt_tokens,completion_tokens,total_tokens
