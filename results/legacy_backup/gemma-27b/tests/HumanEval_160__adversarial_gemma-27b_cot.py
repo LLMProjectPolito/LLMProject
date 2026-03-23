@@ -1,0 +1,49 @@
+import pytest
+
+def test_do_algebra_addition():
+    assert do_algebra(['+'], [2, 3]) == 5
+
+def test_do_algebra_subtraction():
+    assert do_algebra(['-'], [5, 2]) == 3
+
+def test_do_algebra_multiplication():
+    assert do_algebra(['*'], [2, 3]) == 6
+
+def test_do_algebra_floor_division():
+    assert do_algebra(['//'], [10, 2]) == 5
+
+def test_do_algebra_exponentiation():
+    assert do_algebra(['**'], [2, 3]) == 8
+
+def test_do_algebra_complex_expression():
+    assert do_algebra(['+', '*', '-'], [2, 3, 4, 5]) == 9
+
+def test_do_algebra_complex_expression_2():
+    assert do_algebra(['*', '+', '//'], [2, 3, 4, 5]) == 10
+
+def test_do_algebra_complex_expression_3():
+    assert do_algebra(['**', '-', '+'], [2, 3, 4, 5]) == 13
+
+def test_do_algebra_long_expression():
+    assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 5, 2]) == -1
+
+def test_do_algebra_with_zero():
+    assert do_algebra(['+', '*', '-'], [0, 3, 4, 5]) == 7
+
+def test_do_algebra_division_by_one():
+    assert do_algebra(['//'], [5, 1]) == 5
+
+def test_do_algebra_exponentiation_with_zero():
+    assert do_algebra(['**'], [0, 2]) == 0
+
+def test_do_algebra_exponentiation_with_one():
+    assert do_algebra(['**'], [2, 0]) == 1
+
+def test_do_algebra_multiple_operations():
+    assert do_algebra(['+', '-', '*', '//', '**'], [2, 3, 2, 4, 2]) == -1
+
+def test_do_algebra_large_numbers():
+    assert do_algebra(['+'], [1000000, 2000000]) == 3000000
+
+def test_do_algebra_mixed_operations():
+    assert do_algebra(['+', '*', '-', '//'], [10, 2, 3, 6]) == 13

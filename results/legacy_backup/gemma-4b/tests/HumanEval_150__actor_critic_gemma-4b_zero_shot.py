@@ -1,0 +1,52 @@
+import pytest
+
+def x_or_y(n, x, y):
+    """A simple program which should return the value of x if n is 
+    a prime number and should return the value of y otherwise.
+
+    Examples:
+    for x_or_y(7, 34, 12) == 34
+    for x_or_y(15, 8, 5) == 5
+    
+    """
+    if n > 1:
+        for i in range(2, int(n**0.5) + 1):
+            if (n % i) == 0:
+                return y
+        return x
+    else:
+        return y
+
+def test_x_or_y_prime():
+    assert x_or_y(7, 34, 12) == 34
+    assert x_or_y(11, 2, 3) == 2
+    assert x_or_y(13, 10, 5) == 10
+    assert x_or_y(17, 1, 2) == 1
+    assert x_or_y(19, 42, 6) == 42
+
+def test_x_or_y_not_prime():
+    assert x_or_y(4, 34, 12) == 12
+    assert x_or_y(6, 8, 5) == 5
+    assert x_or_y(8, 34, 12) == 12
+    assert x_or_y(9, 7, 2) == 2
+    assert x_or_y(10, 1, 2) == 2
+
+def test_x_or_y_edge_cases():
+    assert x_or_y(1, 34, 12) == 12
+    assert x_or_y(2, 34, 12) == 34
+    assert x_or_y(3, 34, 12) == 34
+    assert x_or_y(5, 34, 12) == 34
+    assert x_or_y(100, 34, 12) == 12
+    assert x_or_y(101, 34, 12) == 34
+
+def test_x_or_y_large_prime():
+    assert x_or_y(997, 1000, 500) == 1000
+
+def test_x_or_y_large_non_prime():
+    assert x_or_y(1000, 1000, 500) == 500
+
+def test_x_or_y_negative():
+    assert x_or_y(-7, 34, 12) == 12
+
+def test_x_or_y_zero():
+    assert x_or_y(0, 34, 12) == 12

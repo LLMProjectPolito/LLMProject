@@ -49,7 +49,8 @@ class KeyRotator:
             self.idx = (self.idx + 1) % len(self.keys)
             return key
 
-_google_rotator = KeyRotator(os.getenv("GOOGLE_API_KEYS", ""))
+# Rotazione specifica tra G1 e G2 del tuo account
+_google_rotator = KeyRotator(",".join([os.getenv("G1", ""), os.getenv("G2", "")]).strip(","))
 
 class SimpleGoogleGenAI:
     def __init__(self, model_id, temperature):
@@ -87,7 +88,7 @@ def _init_provider(provider: str, model_id: str, temperature: float) -> typing.A
     elif provider == "openrouter":
         from langchain_openai import ChatOpenAI
         # Robust key retrieval: check multiple names and ensure it's not an empty string
-        api_key = os.getenv("OPENROUTER_API_KEY") or os.getenv("OR") or os.getenv("OPEN_ROUTER_KEY")
+        api_key = os.getenv("OR")
         if not api_key:
             api_key = None # Let it fail explicitly if missing
             

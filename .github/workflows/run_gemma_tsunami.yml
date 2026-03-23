@@ -29,15 +29,14 @@ jobs:
 
       - name: Execute Gemma Tsunami Matrix 🌊
         env:
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          OR: ${{ secrets.OPENROUTER_API_KEY }}
-          GOOGLE_API_KEYS: ${{ secrets.GOOGLE_API_KEYS }}
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          OR: ${{ secrets.OR }}
+          G1: ${{ secrets.G1 }}
+          G2: ${{ secrets.G2 }}
         run: |
           # Lanciamo i 4400 task (Modelli x Agenti x Prompts x Tasks)
           # --n 25: i 25 task necessari per la chiusura tesi
-          # --workers 50: massima parallelizzazione per queste API
-          python experiment_runner.py --agents tsunami --n 25 --workers 50
+          # --workers 25: parallelizzazione ridotta per stabilità API
+          python experiment_runner.py --agents tsunami --n 25 --workers 25
 
       - name: Organize & Commit Results 🏙️
         run: |
