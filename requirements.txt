@@ -9,6 +9,7 @@ langgraph>=0.1.0
 # LLM Providers
 groq
 google-generativeai
+google-genai
 openai
 
 # EvalPlus dataset
