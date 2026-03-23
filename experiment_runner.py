@@ -210,6 +210,7 @@ def run_experiment(agents, n, overrides={}, start=0, workers=100, resume_csv=Non
             }
             with _csv_lock:
                 # SALVATAGGIO INCREMENTALE NEL CSV DEL MODELLO
+                import pandas as pd
                 pd.DataFrame([res]).to_csv(target_csv, mode='a', index=False, header=not target_csv.exists())
                 rows.append(res)
                 print(f"   [DONE] {task_id} x {agent_name} ({len(rows)}/{len(problems)*len(agents)})", flush=True)
