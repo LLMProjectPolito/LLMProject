@@ -4,7 +4,7 @@ AVAILABLE_MODELS = {
     "gemma-1b":      {"provider": "google", "id": "gemma-3-1b-it"},
     "gemma-4b":      {"provider": "google", "id": "gemma-3-4b-it"},
     "gemma-12b":     {"provider": "google", "id": "gemma-3-12b-it"},
-    "gemma-27b":     {"provider": "openrouter", "id": "google/gemma-3-27b-it"},
+    "gemma-27b":     {"provider": "google", "id": "gemma-3-27b-it"},
     "llama-70b":     {"provider": "openrouter", "id": "meta-llama/llama-3.3-70b-instruct"},
     "chatgpt-oss":   {"provider": "openrouter", "id": "openai/gpt-oss-120b"},
 }
@@ -86,9 +86,15 @@ def _init_provider(provider: str, model_id: str, temperature: float) -> typing.A
         return ChatGroq(model=model_id, temperature=temperature, max_retries=1, callbacks=[_global_counter])
     elif provider == "openrouter":
         from langchain_openai import ChatOpenAI
+        # Robust key retrieval: check multiple names and ensure it's not an empty string
+        api_key = os.getenv("OPENROUTER_API_KEY") or os.getenv("OR") or os.getenv("OPEN_ROUTER_KEY")
+        if not api_key:
+            api_key = None # Let it fail explicitly if missing
+            
         return ChatOpenAI(
-            model=model_id, temperature=temperature, max_retries=1, callbacks=[_global_counter],
-            api_key=os.getenv("OPENROUTER_API_KEY"),
+            model=model_id, temperature=temperature, max_retries=1, 
+            callbacks=[_global_counter],
+            api_key=api_key,
             base_url="https://openrouter.ai/api/v1",
             default_headers={"HTTP-Referer": "http://localhost", "X-Title": "AgenticEval"}
         )
