@@ -9,12 +9,11 @@ AVAILABLE_MODELS = {
     "chatgpt-oss":   {"provider": "openrouter", "id": "openai/gpt-oss-120b"},
 }
 
-def _get_base_callback():
-    from langchain_core.callbacks import BaseCallbackHandler
-    return BaseCallbackHandler
+from langchain_core.callbacks import BaseCallbackHandler
 
-class TokenCounter:
+class TokenCounter(BaseCallbackHandler):
     def __init__(self): 
+        super().__init__()
         self.prompt=0; self.completion=0; self.total=0; self._lock=threading.Lock()
     def reset(self):
         with self._lock: self.prompt=self.completion=self.total=0
