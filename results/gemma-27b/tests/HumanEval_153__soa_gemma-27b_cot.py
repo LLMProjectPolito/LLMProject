@@ -1,0 +1,80 @@
+
+def Strongest_Extension(class_name, extensions):
+    """You will be given the name of a class (a string) and a list of extensions.
+    The extensions are to be used to load additional classes to the class. The
+    strength of the extension is as follows: Let CAP be the number of the uppercase
+    letters in the extension's name, and let SM be the number of lowercase letters 
+    in the extension's name, the strength is given by the fraction CAP - SM. 
+    You should find the strongest extension and return a string in this 
+    format: ClassName.StrongestExtensionName.
+    If there are two or more extensions with the same strength, you should
+    choose the one that comes first in the list.
+    For example, if you are given "Slices" as the class and a list of the
+    extensions: ['SErviNGSliCes', 'Cheese', 'StuFfed'] then you should
+    return 'Slices.SErviNGSliCes' since 'SErviNGSliCes' is the strongest extension 
+    (its strength is -1).
+    Example:
+    for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
+    """
+
+import pytest
+
+def Strongest_Extension(class_name, extensions):
+    """You will be given the name of a class (a string) and a list of extensions.
+    The extensions are to be used to load additional classes to the class. The
+    strength of the extension is as follows: Let CAP be the number of the uppercase
+    letters in the extension's name, and let SM be the number of lowercase letters 
+    in the extension's name, the strength is given by the fraction CAP - SM. 
+    You should find the strongest extension and return a string in this 
+    format: ClassName.StrongestExtensionName.
+    If there are two or more extensions with the same strength, you should
+    choose the one that comes first in the list.
+    For example, if you are given "Slices" as the class and a list of the
+    extensions: ['SErviNGSliCes', 'Cheese', 'StuFfed'] then you should
+    return 'Slices.SErviNGSliCes' since 'SErviNGSliCes' is the strongest extension 
+    (its strength is -1).
+    Example:
+    for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
+    """
+    strongest_extension = None
+    max_strength = float('-inf')
+
+    for extension in extensions:
+        cap_count = 0
+        sm_count = 0
+        for char in extension:
+            if 'A' <= char <= 'Z':
+                cap_count += 1
+            elif 'a' <= char <= 'z':
+                sm_count += 1
+
+        strength = cap_count - sm_count
+
+        if strength > max_strength:
+            max_strength = strength
+            strongest_extension = extension
+
+    return f"{class_name}.{strongest_extension}"
+
+@pytest.mark.parametrize(
+    "class_name, extensions, expected",
+    [
+        ("Slices", ['SErviNGSliCes', 'Cheese', 'StuFfed'], "Slices.SErviNGSliCes"),
+        ("my_class", ['AA', 'Be', 'CC'], "my_class.AA"),
+        ("TestClass", ['ExtensionA', 'extensionB', 'ExtensionC'], "TestClass.ExtensionA"),
+        ("Example", ['aBcDeF', 'AbCdEf', 'abcdef'], "Example.AbCdEf"),
+        ("Class1", ['UPPER', 'lower', 'MiXeD'], "Class1.UPPER"),
+        ("Class2", ['sameStrength1', 'sameStrength2'], "Class2.sameStrength1"),
+        ("Class3", [], "Class3.None"),
+        ("Class4", [''], "Class4."),
+        ("Class5", ['AAAA', 'bbbb'], "Class5.AAAA"),
+        ("Class6", ['aA', 'Aa'], "Class6.aA"),
+        ("Class7", ['123', 'abc'], "Class7.123"),
+        ("Class8", ['!@#', 'abc'], "Class8.!@#"),
+    ],
+)
+def test_Strongest_Extension(class_name, extensions, expected):
+    if not extensions:
+        assert Strongest_Extension(class_name, extensions) == f"{class_name}.None"
+    else:
+        assert Strongest_Extension(class_name, extensions) == expected
