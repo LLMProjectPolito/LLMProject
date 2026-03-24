@@ -35,10 +35,11 @@ jobs:
         run: |
           # Lanciamo i 4400 task (Modelli x Agenti x Prompts x Tasks)
           # --n 25: i 25 task necessari per la chiusura tesi
-          # --workers 25: parallelizzazione ridotta per stabilità API
-          python experiment_runner.py --agents tsunami --n 25 --workers 25
+          # --workers 50: massima velocità garantita con rotazione 5-chiavi
+          python experiment_runner.py --agents tsunami --n 25 --workers 50
 
       - name: Organize & Commit Results 🏙️
+        if: always()
         run: |
           git config --global user.name "Gemma Researcher (Antigravity)"
           git config --global user.email "research@reply.com"
