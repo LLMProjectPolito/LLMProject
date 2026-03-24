@@ -736,3 +736,14 @@ HumanEval/155,consensus,gemma-1b:scot,3,4,0,7,0.429,80.0,,1.0,2.11,73.24,3.0,0.3
 HumanEval/155,coa,gemma-1b:few_shot,0,0,0,0,0,14.0,,1.0,3.0,79.83,4.55,0.329,127,157,284
 HumanEval/155,soa,gemma-1b:few_shot,2,7,0,9,0.222,83.0,,1.0,2.1,71.61,3.18,0.319,256,617,873
 HumanEval/155,adversarial,gemma-1b:cot,0,0,0,0,0,14.0,,1.0,3.0,94.75,1.36,0.562,116,556,672
+HumanEval/155,atomic_swarm,gemma-1b:few_shot,0,0,0,0,0,15.0,,1.0,3.0,80.05,4.09,0.346,888,890,1778
+HumanEval/155,swarm,gemma-1b:few_shot,0,1,0,1,0.0,26.0,,1.0,12.0,65.71,3.55,0.284,645,733,1378
+HumanEval/155,consensus,gemma-1b:few_shot,3,3,0,6,0.5,79.0,,1.0,2.12,74.81,2.82,0.348,1352,395,1747
+HumanEval/155,self_healing,gemma-1b:scot,0,0,0,0,0,17.0,,1.0,3.0,92.54,1.55,0.539,0,0,0
+HumanEval/155,adversarial,gemma-1b:scot,1,5,0,6,0.167,79.0,,1.0,2.14,78.33,2.45,0.37,297,0,297
+HumanEval/155,hybrid,gemma-1b:few_shot,0,0,1,1,0.0,,,1.0,0,0,0,0.023,890,8192,9082
+HumanEval/155,adversarial,gemma-1b:few_shot,0,0,0,0,0,15.0,,1.0,2.67,78.94,2.64,0.382,0,0,0
+HumanEval/155,self_healing,gemma-1b:cot,0,0,0,0,0,17.0,,1.0,3.0,93.65,1.45,0.554,1880,0,1880
+HumanEval/155,self_healing,gemma-1b:zero_shot,2,4,0,6,0.333,81.0,,1.0,2.14,76.84,2.64,0.36,174,0,174
+HumanEval/155,self_healing,gemma-1b:few_shot,0,0,0,0,0,17.0,,1.0,3.0,93.65,1.45,0.554,0,0,0
+HumanEval/155,swarm,gemma-1b:cot,0,0,1,1,0.0,,,1.0,0,0,0,0.038,24660,8192,32852
