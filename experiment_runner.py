@@ -17,7 +17,7 @@ from src.agents.swarm        import setup_swarm_graph
 from src.agents.consensus    import setup_consensus_graph
 from src.agents.self_healing import setup_self_healing_graph
 from src.agents.atomic_swarm import setup_atomic_swarm_graph
-from src.agents.reasoning_agents import setup_reasoning_graph
+# Rimossa dipendenza non esistente: src.agents.reasoning_agents
 from src.utils.executor      import run_tests
 from src.utils.model_registry import get_model, get_token_usage, reset_token_usage
 
@@ -58,9 +58,9 @@ def run_swarm(p, o={}): return setup_swarm_graph(n=o.get("n", 3), worker_model=o
 def run_consensus(p, o={}): return setup_consensus_graph(generation_model=o.get("model"), debate_model=o.get("model2", o.get("model"))).invoke({"problem": p, "proposals": [], "final_test": ""})["final_test"]
 def run_self_healing(p, o={}): return setup_self_healing_graph(model=o.get("model")).invoke({"problem": p, "test_code": "", "error_message": "", "iteration": 0}).get("test_code", "")
 def run_atomic_swarm(p, o={}): return setup_atomic_swarm_graph(model=o.get("model")).invoke({"problem": p, "test_cases": [], "final_suite": ""}).get("final_suite", "")
-def run_few_shot(p, o={}): return setup_reasoning_graph("few_shot", model=o.get("model")).invoke({"problem": p}).get("test_code", "")
-def run_cot(p, o={}): return setup_reasoning_graph("cot", model=o.get("model")).invoke({"problem": p}).get("test_code", "")
-def run_scot(p, o={}): return setup_reasoning_graph("scot", model=o.get("model")).invoke({"problem": p}).get("test_code", "")
+def run_few_shot(p, o={}): return setup_baseline_graph(model=o.get("model"), reasoning_style="few_shot").invoke({"problem": p}).get("test_code", "")
+def run_cot(p, o={}):      return setup_baseline_graph(model=o.get("model"), reasoning_style="cot").invoke({"problem": p}).get("test_code", "")
+def run_scot(p, o={}):     return setup_baseline_graph(model=o.get("model"), reasoning_style="scot").invoke({"problem": p}).get("test_code", "")
 
 AGENT_FNS = {
     "baseline": run_baseline, "actor_critic": run_actor_critic, "adversarial": run_adversarial,
