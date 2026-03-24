@@ -1,0 +1,68 @@
+
+def sorted_list_sum(lst):
+    """Write a function that accepts a list of strings as a parameter,
+    deletes the strings that have odd lengths from it,
+    and returns the resulted list with a sorted order,
+    The list is always a list of strings and never an array of numbers,
+    and it may contain duplicates.
+    The order of the list should be ascending by length of each word, and you
+    should return the list sorted by that rule.
+    If two words have the same length, sort the list alphabetically.
+    The function should return a list of strings in sorted order.
+    You may assume that all words will have the same length.
+    For example:
+    assert list_sort(["aa", "a", "aaa"]) => ["aa"]
+    assert list_sort(["ab", "a", "aaa", "cd"]) => ["ab", "cd"]
+    """
+
+import pytest
+import math
+
+
+# Focus: Boundary Values
+import pytest
+
+def test_sorted_list_sum_empty():
+    assert sorted_list_sum([]) == []
+
+def test_sorted_list_sum_odd_lengths():
+    assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
+
+def test_sorted_list_sum_mixed_lengths():
+    assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
+
+def test_sorted_list_sum_duplicates():
+    assert sorted_list_sum(["aa", "a", "aa", "aaa"]) == ["aa", "aa"]
+
+def test_sorted_list_sum_same_length():
+    assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
+
+# Focus: Type Scenarios
+import pytest
+
+def test_empty_list():
+    assert sorted_list_sum([]) == []
+
+def test_all_odd_length():
+    assert sorted_list_sum(["a", "b", "c"]) == []
+
+def test_all_even_length():
+    assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
+
+# Focus: Logic Branches
+import pytest
+
+def test_sorted_list_sum_empty():
+    assert sorted_list_sum([]) == []
+
+def test_sorted_list_sum_odd_lengths():
+    assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
+
+def test_sorted_list_sum_mixed_lengths():
+    assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
+
+def test_sorted_list_sum_duplicates():
+    assert sorted_list_sum(["aa", "a", "aa", "aaa"]) == ["aa", "aa"]
+
+def test_sorted_list_sum_same_length():
+    assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
