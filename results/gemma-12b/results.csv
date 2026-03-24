@@ -121,3 +121,13 @@ HumanEval/141,hybrid,gemma-12b:scot,13,2,0,15,0.867,72.0,,1.0,2.41,66.1,2.77,0.4
 HumanEval/141,atomic_swarm,gemma-12b:few_shot,3,0,0,3,1.0,86.0,,0.25,2.0,69.94,0.36,0.026,605,0,605
 HumanEval/141,swarm,gemma-12b:few_shot,1,0,0,1,1.0,62.0,,0.0,2.0,81.86,0.18,0.105,180,0,180
 HumanEval/141,adversarial,gemma-12b:few_shot,7,1,0,8,0.875,71.0,,1.0,4.56,63.85,3.0,0.439,891,0,891
+HumanEval/141,consensus,gemma-12b:scot,0,0,1,1,0.0,,,1.0,4.0,48.8,2.09,0.015,3643,0,3643
+HumanEval/141,adversarial,gemma-12b:scot,12,2,0,14,0.857,72.0,,1.0,3.0,63.0,2.95,0.452,2301,0,2301
+HumanEval/141,actor_critic,gemma-12b:few_shot,0,0,0,0,0,9.0,,1.0,6.0,87.98,1.36,0.701,450,0,450
+HumanEval/141,consensus,gemma-12b:few_shot,0,0,1,1,0.0,,,1.0,4.09,48.26,2.14,0.009,2301,0,2301
+HumanEval/141,hybrid,gemma-12b:few_shot,7,3,0,10,0.7,61.0,,1.0,5.38,49.18,4.59,0.333,9580,0,9580
+HumanEval/141,self_healing,gemma-12b:zero_shot,0,0,1,1,0.0,,,1.0,4.0,50.82,1.91,0.011,0,0,0
+HumanEval/141,self_healing,gemma-12b:scot,0,0,1,1,0.0,,,1.0,4.0,50.82,1.91,0.011,4441,1023,5464
+HumanEval/141,self_healing,gemma-12b:few_shot,0,0,1,1,0.0,,,1.0,4.0,50.82,1.91,0.012,0,0,0
+HumanEval/141,self_healing,gemma-12b:cot,0,0,1,1,0.0,,,1.0,4.1,50.24,1.95,0.011,2632,269,2901
+HumanEval/141,actor_critic,gemma-12b:scot,0,0,1,1,0.0,,,1.0,2.07,44.11,2.91,0.021,1166,0,1166

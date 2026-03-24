@@ -1,0 +1,54 @@
+
+
+
+def sum_squares(lst):
+    """"
+    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a 
+    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not 
+    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries. 
+    
+    Examples:
+    For lst = [1,2,3] the output should be 6
+    For lst = []  the output should be 0
+    For lst = [-1,-5,2,-1,-5]  the output should be -126
+    """
+
+import pytest
+import math
+
+
+# Focus: Boundary Values
+def test_sum_squares_empty_list():
+    assert sum_squares([]) == 0
+
+def test_sum_squares_multiple_of_3():
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 4 + 9 + 16 + 25 + 36
+
+def test_sum_squares_multiple_of_4_not_3():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 1 + 8 + 16 + 25 + 36 + 49 + 64
+
+# Focus: Logic Branches
+def test_sum_squares_multiple_of_3():
+    lst = [1, 2, 3, 4, 5, 6]
+    expected = 1 + 2 + 9 + 4 + 5 + 36
+    assert sum_squares(lst) == expected
+
+def test_sum_squares_multiple_of_4_not_3():
+    lst = [1, 2, 3, 4, 5, 6, 7, 8]
+    expected = 1 + 2 + 3 + 64 + 5 + 6 + 7 + 512
+    assert sum_squares(lst) == expected
+
+def test_sum_squares_empty_list():
+    lst = []
+    expected = 0
+    assert sum_squares(lst) == expected
+
+# Focus: Type Scenarios
+def test_empty_list():
+    assert sum_squares([]) == 0
+
+def test_list_with_multiples_of_3():
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 2 + 27 + 4 + 5 + 216
+
+def test_list_with_multiples_of_4_and_3():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1 + 2 + 27 + 64 + 5 + 216 + 7 + 512 + 9 + 1000 + 11 + 1728
