@@ -1,0 +1,82 @@
+
+def find_max(words):
+    """Write a function that accepts a list of strings.
+    The list contains different words. Return the word with maximum number
+    of unique characters. If multiple strings have maximum number of unique
+    characters, return the one which comes first in lexicographical order.
+
+    find_max(["name", "of", "string"]) == "string"
+    find_max(["name", "enam", "game"]) == "enam"
+    find_max(["aaaaaaa", "bb" ,"cc"]) == ""aaaaaaa"
+    """
+
+import pytest
+
+def find_max(words):
+    """Write a function that accepts a list of strings.
+    The list contains different words. Return the word with maximum number
+    of unique characters. If multiple strings have maximum number of unique
+    characters, return the one which comes first in lexicographical order.
+
+    find_max(["name", "of", "string"]) == "string"
+    find_max(["name", "enam", "game"]) == "enam"
+    find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
+    """
+    if not words:
+        return ""
+
+    max_unique_count = -1
+    result = ""
+
+    for word in words:
+        unique_count = len(set(word))
+        if unique_count > max_unique_count:
+            max_unique_count = unique_count
+            result = word
+        elif unique_count == max_unique_count and word < result:
+            result = word
+
+    return result
+
+class TestFindMax:
+    def test_empty_list(self):
+        assert find_max([]) == ""
+
+    def test_single_word(self):
+        assert find_max(["hello"]) == "hello"
+
+    def test_multiple_words_different_unique_counts(self):
+        assert find_max(["name", "of", "string"]) == "string"
+
+    def test_multiple_words_same_unique_counts_lexicographical_order(self):
+        assert find_max(["name", "enam", "game"]) == "enam"
+
+    def test_words_with_repeated_characters(self):
+        assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
+
+    def test_words_with_mixed_cases(self):
+        assert find_max(["Name", "name", "STRING", "string"]) == "Name"
+
+    def test_words_with_special_characters(self):
+        assert find_max(["!@#", "abc", "def"]) == "!@#"
+
+    def test_words_with_numbers(self):
+        assert find_max(["123", "abc", "456"]) == "123"
+
+    def test_words_with_spaces(self):
+        assert find_max(["hello world", "hello", "world"]) == "hello world"
+
+    def test_words_with_unicode_characters(self):
+        assert find_max(["你好", "世界", "abc"]) == "你好"
+
+    def test_words_with_empty_string(self):
+        assert find_max(["", "abc", "def"]) == "abc"
+
+    def test_all_words_empty(self):
+        assert find_max(["", "", ""]) == ""
+
+    def test_same_unique_count_and_lexicographical_tie(self):
+        assert find_max(["abc", "cba", "bac"]) == "abc"
+
+    def test_all_words_same_unique_count(self):
+        assert find_max(["abc", "def", "ghi"]) == "abc"
