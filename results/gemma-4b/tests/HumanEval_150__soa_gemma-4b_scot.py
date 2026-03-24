@@ -1,0 +1,59 @@
+
+def x_or_y(n, x, y):
+    """A simple program which should return the value of x if n is 
+    a prime number and should return the value of y otherwise.
+
+    Examples:
+    for x_or_y(7, 34, 12) == 34
+    for x_or_y(15, 8, 5) == 5
+    
+    """
+
+import pytest
+
+def x_or_y(n, x, y):
+    """A simple program which should return the value of x if n is 
+    a prime number and should return the value of y otherwise.
+
+    Examples:
+    for x_or_y(7, 34, 12) == 34
+    for x_or_y(15, 8, 5) == 5
+    
+    """
+    def is_prime(n):
+        if n <= 1:
+            return False
+        for i in range(2, int(n**0.5) + 1):
+            if n % i == 0:
+                return False
+        return True
+
+    if is_prime(n):
+        return x
+    else:
+        return y
+
+def test_x_or_y_prime():
+    assert x_or_y(7, 34, 12) == 34
+    assert x_or_y(11, 22, 33) == 22
+    assert x_or_y(13, 42, 10) == 42
+    assert x_or_y(17, 55, 66) == 55
+    assert x_or_y(19, 77, 88) == 77
+
+def test_x_or_y_not_prime():
+    assert x_or_y(15, 8, 5) == 5
+    assert x_or_y(20, 1, 2) == 1
+    assert x_or_y(21, 99, 10) == 10
+    assert x_or_y(25, 100, 20) == 20
+    assert x_or_y(28, 10, 20) == 20
+
+def test_x_or_y_edge_cases():
+    assert x_or_y(1, 34, 12) == 12
+    assert x_or_y(2, 34, 12) == 34
+    assert x_or_y(3, 34, 12) == 34
+    assert x_or_y(4, 34, 12) == 12
+    assert x_or_y(5, 34, 12) == 34
+    assert x_or_y(6, 34, 12) == 12
+    assert x_or_y(8, 34, 12) == 12
+    assert x_or_y(9, 34, 12) == 12
+    assert x_or_y(10, 34, 12) == 12

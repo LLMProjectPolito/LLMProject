@@ -1,0 +1,42 @@
+
+def x_or_y(n, x, y):
+    """A simple program which should return the value of x if n is 
+    a prime number and should return the value of y otherwise.
+
+    Examples:
+    for x_or_y(7, 34, 12) == 34
+    for x_or_y(15, 8, 5) == 5
+    
+    """
+
+import pytest
+
+def x_or_y(n, x, y):
+    """A simple program which should return the value of x if n is 
+    a prime number and should return the value of y otherwise.
+
+    Examples:
+    for x_or_y(7, 34, 12) == 34
+    for x_or_y(15, 8, 5) == 5
+    
+    """
+    if n > 1:
+        for i in range(2, n):
+            if n % i == 0:
+                return i
+    return y
+
+def test_x_or_y_prime():
+    assert x_or_y(7, 34, 12) == 34
+
+def test_x_or_y_simple():
+    assert x_or_y(15, 8, 5) == 5
+
+def test_x_or_y_edge_case():
+    assert x_or_y(2, 1, 1) == 1
+
+def test_x_or_y_one():
+    assert x_or_y(1, 1, 1) == 1
+
+def test_x_or_y_zero():
+    assert x_or_y(0, 1, 1) == 1
