@@ -55,7 +55,4 @@ def test_single_element_multiple_of_4():
     assert sum_squares([4]) == 4**3
 
 def test_list_with_floats_converted_to_int():
-    assert sum_squares([1.0, 2.0, 3.0]) == 6
-
-def test_list_with_string_converted_to_int():
-    assert sum_squares(['1', '2', '3']) == 6
+    assert sum_squares([1.0, 2.0, 3.0, 4.0]) == 1 + 2 + 3**2 + 4**3

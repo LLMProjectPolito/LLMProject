@@ -41,23 +41,21 @@ def test_x_or_y_not_prime():
     assert x_or_y(4, 1, 2) == 2
     assert x_or_y(6, 10, 5) == 5
     assert x_or_y(8, 20, 10) == 10
-    assert x_or_y(9, 5, 1) == 1
+    assert x_or_y(9, 1, 0) == 0
     assert x_or_y(10, -1, -2) == -2
     assert x_or_y(12, 0, 1) == 1
     assert x_or_y(14, 10, -10) == -10
-    assert x_or_y(16, 5, 0) == 0
 
 def test_x_or_y_edge_cases():
     assert x_or_y(1, 10, 20) == 20  # 1 is not prime
     assert x_or_y(2, 10, 20) == 10
     assert x_or_y(0, 10, 20) == 20  # 0 is not prime
     assert x_or_y(-1, 10, 20) == 20 # Negative number is not prime
-    assert x_or_y(2, -10, 20) == 20
-    assert x_or_y(2, 10, -20) == 10
-    assert x_or_y(-5, -10, -20) == -20
+    assert x_or_y(2, 0, 0) == 0
+    assert x_or_y(1, 0, 0) == 0
 
 def test_x_or_y_large_numbers():
-    assert x_or_y(101, 1000, 2000) == 1000 # 101 is prime
-    assert x_or_y(100, 1000, 2000) == 2000 # 100 is not prime
-    assert x_or_y(97, 50, 25) == 50 # 97 is prime
-    assert x_or_y(99, 50, 25) == 25 # 99 is not prime
+    assert x_or_y(101, 1000, 1) == 1000 # 101 is prime
+    assert x_or_y(100, 1000, 1) == 1 # 100 is not prime
+    assert x_or_y(97, 5, 10) == 5 # 97 is prime
+    assert x_or_y(99, 5, 10) == 10 # 99 is not prime

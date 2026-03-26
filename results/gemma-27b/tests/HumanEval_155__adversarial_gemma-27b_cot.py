@@ -43,9 +43,11 @@ def test_number_with_only_even_digits():
 def test_number_with_only_odd_digits():
     assert even_odd_count(13579) == (0, 5)
 
-def test_negative_single_digit():
-    assert even_odd_count(-2) == (1, 0)
-    assert even_odd_count(-1) == (0, 1)
+def test_negative_number_with_only_even_digits():
+    assert even_odd_count(-2468) == (4, 0)
+
+def test_negative_number_with_only_odd_digits():
+    assert even_odd_count(-13579) == (0, 5)
 
 def test_edge_case_max_int():
     assert even_odd_count(2147483647) == (4, 6)

@@ -40,7 +40,7 @@ def test_invalid_planet_names():
 def test_case_sensitivity():
     assert bf("jupiter", "Neptune") == ()
     assert bf("Earth", "neptune") == ()
-    assert bf("Mercury", "uranus") == ()
+    assert bf("mercury", "venus") == ()
 
 def test_empty_input():
     assert bf("", "Venus") == ()
@@ -52,5 +52,4 @@ def test_same_planet():
 
 def test_edge_cases():
     assert bf("Mercury", "Venus") == ()
-    assert bf("Venus", "Mercury") == ()
-    assert bf("Neptune", "Uranus") == ("Saturn", "Jupiter", "Mars", "Earth", "Venus", "Mercury")
+    assert bf("Neptune", "Uranus") == ()

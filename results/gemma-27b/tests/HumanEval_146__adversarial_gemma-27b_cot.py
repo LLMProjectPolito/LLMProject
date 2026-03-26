@@ -40,29 +40,24 @@ def test_numbers_with_even_last_digit():
 def test_numbers_with_both_even_digits():
     assert specialFilter([24, 46, 68, 80]) == 0
 
-def test_numbers_close_to_10():
-    assert specialFilter([9, 11, 10, 101]) == 1
+def test_numbers_greater_than_10_but_not_special():
+    assert specialFilter([12, 14, 16, 18, 21, 23]) == 0
+
+def test_numbers_less_than_or_equal_to_10():
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 0
 
 def test_large_numbers():
-    assert specialFilter([111, 333, 555, 777, 999]) == 5
+    assert specialFilter([111, 131, 151, 171, 191]) == 5
 
 def test_large_numbers_mixed():
-    assert specialFilter([111, 222, 333, 444, 555]) == 3
+    assert specialFilter([111, 222, 131, 444, 151]) == 3
 
-def test_zero():
+def test_zero_as_input():
     assert specialFilter([0]) == 0
 
-def test_one():
-    assert specialFilter([1]) == 0
+def test_decimal_numbers():
+    assert specialFilter([15.5, 37.2, 59.8]) == 0
 
-def test_ten():
-    assert specialFilter([10]) == 0
-
-def test_hundred():
-    assert specialFilter([100]) == 0
-
-def test_edge_case_1():
-    assert specialFilter([11]) == 0
-
-def test_edge_case_2():
-    assert specialFilter([99]) == 0
+def test_string_input():
+    with pytest.raises(TypeError):
+        specialFilter(["15", "37"])

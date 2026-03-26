@@ -44,8 +44,8 @@ def test_mixed_spaces():
     assert fix_spaces("  Example  1 2   ") == "-Example-1_2-"
 
 def test_long_string_with_multiple_spaces():
-    long_string = "This is a very long string with   many   spaces."
-    assert fix_spaces(long_string) == "This_is_a_very_long_string_with-many-spaces."
+    long_string = "This is a very long string with   multiple   spaces."
+    assert fix_spaces(long_string) == "This_is_a_very_long_string_with-multiple-spaces."
 
 def test_string_with_tabs():
     assert fix_spaces("Example\t1") == "Example\t1"

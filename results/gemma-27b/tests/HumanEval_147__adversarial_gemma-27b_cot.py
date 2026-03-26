@@ -58,14 +58,5 @@ def test_get_max_triples_mod_values():
     assert isinstance(result, int)
     assert result >= 0
 
-def test_get_max_triples_negative_input():
-    with pytest.raises(TypeError):
-        get_max_triples(-1)
-
-def test_get_max_triples_float_input():
-    with pytest.raises(TypeError):
-        get_max_triples(1.5)
-
-def test_get_max_triples_string_input():
-    with pytest.raises(TypeError):
-        get_max_triples("5")
+def test_get_max_triples_edge_case():
+    assert get_max_triples(1001) == 1671706

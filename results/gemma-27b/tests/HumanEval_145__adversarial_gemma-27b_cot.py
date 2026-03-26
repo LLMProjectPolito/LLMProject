@@ -44,10 +44,10 @@ def test_duplicate_numbers():
     assert order_by_points([1, 1, 1, 1]) == [1, 1, 1, 1]
 
 def test_negative_numbers_with_large_digit_sum():
-    assert order_by_points([-123, -10, -1]) == [-1, -10, -123]
+    assert order_by_points([-19, -1, -10]) == [-1, -10, -19]
 
 def test_mixed_large_and_small():
-    assert order_by_points([1234, 1, -10, 0]) == [0, 1, -10, 1234]
+    assert order_by_points([100, 1, -10, -1]) == [-1, 1, -10, 100]
 
 def test_all_same_digit_sum():
     assert order_by_points([10, 1, 19, 28]) == [1, 10, 19, 28]

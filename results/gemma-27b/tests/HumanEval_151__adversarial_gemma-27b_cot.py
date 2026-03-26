@@ -45,7 +45,7 @@ def test_mixed_types():
     assert double_the_difference([1, 2.5, 3, "a"]) == 1 + 9
 
 def test_large_numbers():
-    assert double_the_difference([101, 103]) == 101**2 + 103**2
+    assert double_the_difference([99, 101]) == 9801 + 10201
 
 def test_example_1():
     assert double_the_difference([1, 3, 2, 0]) == 10

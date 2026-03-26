@@ -41,4 +41,4 @@ def test_special_factorial_type_error():
     with pytest.raises(TypeError):
         special_factorial("2")
     with pytest.raises(TypeError):
-        special_factorial([1,2])
+        special_factorial([2])
