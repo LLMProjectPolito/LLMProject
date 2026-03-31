@@ -21,8 +21,8 @@ from src.agents.atomic_swarm import setup_atomic_swarm_graph
 from src.utils.executor      import run_tests
 from src.utils.model_registry import get_model, get_token_usage, reset_token_usage
 
-DATA_DIR    = Path("data/evalplus_subset")
-RESULTS_DIR = Path("results")
+DATA_DIR = Path("data/evalplus_subset")
+DEFAULT_RESULTS_DIR = Path("results")
 
 _csv_lock = threading.Lock()
 
@@ -74,14 +74,14 @@ def save_test_file(target_dir, task_id, agent_name, test_code, prompt):
     full_content = f"{prompt}\n{test_code}"
     (target_dir / f"{safe_task}__{safe_agent}.py").write_text(full_content, encoding="utf-8")
 
-def run_experiment(agents, n, overrides={}, start=0, workers=50):
+def run_experiment(agents, n, overrides={}, start=0, workers=50, results_dir: Path = DEFAULT_RESULTS_DIR):
     problems = sorted(DATA_DIR.glob("*.json"), key=lambda x: int(re.search(r"(\d+)", x.name).group(1)) if re.search(r"(\d+)", x.name) else 0)[start:start+n]
     problems = [json.loads(p.read_text(encoding="utf-8")) for p in problems]
     
     def run_task(prob, agent_full):
         base_agent = agent_full.split(":")[0]; o = overrides.get(agent_full, {})
         model_slug = o.get("model", "default")
-        target_dir = RESULTS_DIR / model_slug
+        target_dir = results_dir / model_slug
         (target_dir / "tests").mkdir(parents=True, exist_ok=True)
         csv_path = target_dir / "results.csv"
 
@@ -96,6 +96,9 @@ def run_experiment(agents, n, overrides={}, start=0, workers=50):
             "branch_coverage": m["branch_coverage"], "mutation_score": m.get("mutation_score", 0),
             "complexity_cc": m["complexity_cc"], "maintainability_mi": m["maintainability_mi"],
             "bloat_ratio": m["bloat_ratio"], "similarity_score": m["similarity_score"],
+            "unique_inputs_count": m["unique_inputs_count"], "edge_case_count": m["edge_case_count"],
+            "test_type_count": m["test_type_count"], "duplication_ratio": m["duplication_ratio"],
+            "diversity_score": m["diversity_score"],
             "prompt_tokens": usage["prompt_tokens"], "completion_tokens": usage["completion_tokens"], "total_tokens": usage["total_tokens"]
         }
         with _csv_lock:
@@ -114,6 +117,7 @@ def main():
     parser.add_argument("--agents", nargs="+", default=["tsunami"])
     parser.add_argument("--n", type=int, default=25)
     parser.add_argument("--workers", type=int, default=50)
+    parser.add_argument("--output-root", type=str, default=str(DEFAULT_RESULTS_DIR))
     args = parser.parse_args()
 
     if "tsunami" in args.agents:
@@ -130,7 +134,13 @@ def main():
             mo = parts[1]; st = parts[2] if len(parts)==3 else "zero_shot"
             final_overs[entry] = {"reasoning_style": st, "model": mo, "_label": f"{mo}:{st}"}
     
-    run_experiment(requested, args.n, final_overs, workers=args.workers)
+    run_experiment(
+        requested,
+        args.n,
+        final_overs,
+        workers=args.workers,
+        results_dir=Path(args.output_root),
+    )
 
 if __name__ == "__main__":
     main()
