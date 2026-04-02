@@ -1,5 +1,4 @@
 import ast
-from typing import Any
 
 
 def analyze_test_diversity(test_code: str) -> dict:

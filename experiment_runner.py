@@ -19,6 +19,7 @@ from src.agents.self_healing import setup_self_healing_graph
 from src.agents.atomic_swarm import setup_atomic_swarm_graph
 # Rimossa dipendenza non esistente: src.agents.reasoning_agents
 from src.utils.executor      import run_tests
+from src.utils.generation_errors import classify_generation_error, compute_retry_delay
 from src.utils.model_registry import get_model, get_token_usage, reset_token_usage
 
 DATA_DIR = Path("data/evalplus_subset")
@@ -26,9 +27,9 @@ DEFAULT_RESULTS_DIR = Path("results")
 
 _csv_lock = threading.Lock()
 
-def safe_invoke(agent_fn, prompt, overrides, timeout=300, max_retries=3):
+def safe_invoke(agent_fn, prompt, overrides, timeout=300, max_retries=5):
     start_t = time.time()
-    for attempt in range(max_retries):
+    for attempt in range(1, max_retries + 1):
         try:
             reset_token_usage()
             test_code = agent_fn(prompt, overrides)
@@ -37,20 +38,62 @@ def safe_invoke(agent_fn, prompt, overrides, timeout=300, max_retries=3):
                 "prompt_tokens": usage["prompt_tokens"],
                 "completion_tokens": usage["completion_tokens"],
                 "total_tokens": usage["total_tokens"],
-                "execution_time": round(time.time() - start_t, 2)
+                "execution_time": round(time.time() - start_t, 2),
+                "generation_status": "ok",
+                "generation_error_type": "",
+                "generation_error_message": "",
+                "generation_attempts": attempt,
             }
         except Exception as e:
-            err_str = str(e).lower()
-            if ("429" in err_str or "rate limit" in err_str) and attempt < max_retries - 1:
-                time.sleep((attempt + 1) * 25); continue
-            return f"# ERROR: {e}", {"prompt_tokens":0, "completion_tokens":0, "total_tokens":0}
-    return "", {"prompt_tokens":0, "completion_tokens":0, "total_tokens":0}
+            usage = get_token_usage()
+            error_info = classify_generation_error(e)
+            if error_info["retryable"] and attempt < max_retries:
+                time.sleep(compute_retry_delay(attempt))
+                continue
+            return f"# ERROR: {e}", {
+                "prompt_tokens": usage["prompt_tokens"],
+                "completion_tokens": usage["completion_tokens"],
+                "total_tokens": usage["total_tokens"],
+                "execution_time": round(time.time() - start_t, 2),
+                "generation_status": "error",
+                "generation_error_type": error_info["type"],
+                "generation_error_message": error_info["message"],
+                "generation_attempts": attempt,
+            }
+    return "", {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "execution_time": round(time.time() - start_t, 2),
+        "generation_status": "error",
+        "generation_error_type": "unknown_error",
+        "generation_error_message": "Generation failed without a captured exception.",
+        "generation_attempts": max_retries,
+    }
+
+
+def generation_failure_metrics(message: str) -> dict:
+    return {
+        "passed": 0, "failed": 0, "errors": 1, "total": 1,
+        "functional_correctness": 0, "line_coverage": None, "branch_coverage": None,
+        "mutation_score": 0, "complexity_cc": 0, "maintainability_mi": 0,
+        "bloat_ratio": 0, "similarity_score": 0,
+        "unique_inputs_count": 0, "edge_case_count": 0, "test_type_count": 0,
+        "duplication_ratio": 1.0, "diversity_score": 0,
+        "raw_output": message,
+    }
 
 # ── Runners Coerenti con 0118ef1 ──
 def run_baseline(p, o={}): return setup_baseline_graph(model=o.get("model"), reasoning_style=o.get("reasoning_style", "zero_shot")).invoke({"problem": p})["test_code"]
 def run_actor_critic(p, o={}): return setup_actor_critic_graph(driver_model=o.get("model"), navigator_model=o.get("model2", o.get("model")), reasoning_style=o.get("reasoning_style", "zero_shot")).invoke({"problem": p, "test_code": "", "feedback": "", "iterations": 0})["test_code"]
 def run_adversarial(p, o={}): return setup_adversarial_graph(tester_model=o.get("model"), hacker_model=o.get("model2", o.get("model")), reasoning_style=o.get("reasoning_style", "zero_shot")).invoke({"problem": p, "source_code": p, "test_code": "", "mutated_code": "", "mutation_caught": False})["test_code"]
-def run_competitive(p, o={}): return setup_competitive_graph(model_a=o.get("model"), model_b=o.get("model2", o.get("model")), judge_model=o.get("model2", o.get("model"))).invoke({"problem": p, "test_a": "", "test_b": "", "best_test": ""})["best_test"]
+def run_competitive(p, o={}):
+    models = [o.get("model")]
+    alt_model = o.get("model2", o.get("model"))
+    if alt_model and alt_model != models[0]:
+        models.append(alt_model)
+    final_state = setup_competitive_graph(models=models).invoke({"problem": p, "generated_tests": {}, "winner": ""})
+    return final_state["generated_tests"][final_state["winner"]]
 def run_hybrid(p, o={}): return setup_hybrid_graph(generate_model=o.get("model"), evolve_model=o.get("model2", o.get("model")), reasoning_style=o.get("reasoning_style", "zero_shot")).invoke({"problem": p, "population": [], "best_test": ""})["best_test"]
 def run_coa(p, o={}): return setup_coa_graph(manager_model=o.get("model"), worker_model=o.get("model2", o.get("model"))).invoke({"problem": p, "segments": [], "test_code": ""})["test_code"]
 def run_soa(p, o={}): return setup_soa_graph(orchestrator_model=o.get("model"), specialist_model=o.get("model2", o.get("model"))).invoke({"problem": p, "expertise": "", "test_code": ""})["test_code"]
@@ -87,8 +130,11 @@ def run_experiment(agents, n, overrides={}, start=0, workers=50, results_dir: Pa
 
         test_code, usage = safe_invoke(AGENT_FNS[base_agent], prob["prompt"], o)
         save_test_file(target_dir / "tests", prob["task_id"], agent_full, test_code, prob["prompt"])
-        
-        m = run_tests(prob["prompt"] + prob["canonical_solution"], test_code)
+
+        if usage["generation_status"] == "error":
+            m = generation_failure_metrics(usage["generation_error_message"])
+        else:
+            m = run_tests(prob["prompt"] + prob["canonical_solution"], test_code)
         res = {
             "task_id": prob["task_id"], "agent": base_agent, "config_label": o.get("_label", "default"),
             "passed": m["passed"], "failed": m["failed"], "errors": m["errors"], "total": m["total"],
@@ -99,7 +145,10 @@ def run_experiment(agents, n, overrides={}, start=0, workers=50, results_dir: Pa
             "unique_inputs_count": m["unique_inputs_count"], "edge_case_count": m["edge_case_count"],
             "test_type_count": m["test_type_count"], "duplication_ratio": m["duplication_ratio"],
             "diversity_score": m["diversity_score"],
-            "prompt_tokens": usage["prompt_tokens"], "completion_tokens": usage["completion_tokens"], "total_tokens": usage["total_tokens"]
+            "prompt_tokens": usage["prompt_tokens"], "completion_tokens": usage["completion_tokens"], "total_tokens": usage["total_tokens"],
+            "execution_time": usage["execution_time"], "generation_status": usage["generation_status"],
+            "generation_error_type": usage["generation_error_type"], "generation_error_message": usage["generation_error_message"],
+            "generation_attempts": usage["generation_attempts"],
         }
         with _csv_lock:
             import pandas as pd

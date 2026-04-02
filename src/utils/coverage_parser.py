@@ -25,8 +25,9 @@ def parse_coverage(cov_json_file: Path, output: str) -> tuple[float | None, floa
 
 
 def _parse_json_coverage(coverage_data: dict) -> tuple[float | None, float | None]:
-    line_cov = _coverage_from_summary(coverage_data.get("totals", {}), kind="line")
-    branch_cov = _coverage_from_summary(coverage_data.get("totals", {}), kind="branch")
+    totals = coverage_data.get("totals", {})
+    line_cov = _coverage_from_summary(totals, kind="line")
+    branch_cov = _coverage_from_summary(totals, kind="branch")
 
     if line_cov is not None and branch_cov is not None:
         return line_cov, branch_cov

@@ -1,16 +1,4 @@
 #!/usr/bin/env python3
-"""
-Rescore existing experiment outputs without regenerating model tests.
-
-The script scans saved run folders under ``results/``, finds the matching
-saved test file for each CSV row, reruns the current evaluation pipeline, and
-rewrites the CSV in place.
-
-Usage:
-  python scripts/rescore_results.py
-  python scripts/rescore_results.py --results-root results --workers 4
-  python scripts/rescore_results.py --folders gemma-27b mixed
-"""
 
 from __future__ import annotations
 
@@ -65,52 +53,14 @@ class RowJob:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--results-root",
-        type=Path,
-        default=RESULTS_ROOT_DEFAULT,
-        help="Root directory that contains run folders with results.csv files.",
-    )
-    parser.add_argument(
-        "--data-root",
-        type=Path,
-        default=DATA_ROOT_DEFAULT,
-        help="Directory that contains the saved EvalPlus subset JSON files.",
-    )
-    parser.add_argument(
-        "--folders",
-        nargs="*",
-        default=None,
-        help="Optional subset of result folder names to rescore.",
-    )
-    parser.add_argument(
-        "--workers",
-        type=int,
-        default=1,
-        help="Number of worker threads to use per results folder.",
-    )
-    parser.add_argument(
-        "--dry-run",
-        action="store_true",
-        help="Show which files would be rescored without rewriting anything.",
-    )
-    parser.add_argument(
-        "--include-backup",
-        action="store_true",
-        help="Also process folders under results/legacy_backup.",
-    )
-    parser.add_argument(
-        "--limit",
-        type=int,
-        default=None,
-        help="Optional maximum number of CSV rows to rescore per folder.",
-    )
-    parser.add_argument(
-        "--backup-suffix",
-        type=str,
-        default=BACKUP_SUFFIX_DEFAULT,
-        help="Suffix for the backup copy created before overwriting a CSV.",
-    )
+    parser.add_argument("--results-root", type=Path, default=RESULTS_ROOT_DEFAULT)
+    parser.add_argument("--data-root", type=Path, default=DATA_ROOT_DEFAULT)
+    parser.add_argument("--folders", nargs="*", default=None)
+    parser.add_argument("--workers", type=int, default=1)
+    parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--include-backup", action="store_true")
+    parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument("--backup-suffix", type=str, default=BACKUP_SUFFIX_DEFAULT)
     args = parser.parse_args()
 
     problem_map = _load_problem_map(args.data_root)
@@ -132,11 +82,7 @@ def main() -> None:
             continue
 
         rows = all_rows[: args.limit] if args.limit is not None else all_rows
-
-        jobs = []
-        for idx, row in enumerate(rows):
-            test_file = _find_test_file(tests_dir, row)
-            jobs.append(RowJob(index=idx, row=row, test_file=test_file))
+        jobs = [RowJob(index=idx, row=row, test_file=_find_test_file(tests_dir, row)) for idx, row in enumerate(rows)]
 
         total_rows += len(jobs)
         missing = sum(1 for job in jobs if job.test_file is None)
@@ -177,11 +123,7 @@ def _load_problem_map(data_root: Path) -> dict[str, dict[str, str]]:
     return problem_map
 
 
-def _discover_result_dirs(
-    results_root: Path,
-    folders: list[str] | None,
-    include_backup: bool,
-) -> Iterable[tuple[Path, Path]]:
+def _discover_result_dirs(results_root: Path, folders: list[str] | None, include_backup: bool) -> Iterable[tuple[Path, Path]]:
     for csv_path in sorted(results_root.rglob("results.csv")):
         if not include_backup and "legacy_backup" in csv_path.parts:
             continue
@@ -215,20 +157,13 @@ def _write_rows(csv_path: Path, rows: list[dict[str, str]], backup_suffix: str) 
             writer.writerow({key: row.get(key, "") for key in fieldnames})
 
 
-def _rescore_rows(
-    jobs: list[RowJob],
-    problem_map: dict[str, dict[str, str]],
-    workers: int,
-) -> list[dict[str, str]]:
+def _rescore_rows(jobs: list[RowJob], problem_map: dict[str, dict[str, str]], workers: int) -> list[dict[str, str]]:
     if workers <= 1:
         return [_rescore_single(job, problem_map) for job in jobs]
 
     indexed_results: dict[int, dict[str, str]] = {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
-        future_map = {
-            executor.submit(_rescore_single, job, problem_map): job.index
-            for job in jobs
-        }
+        future_map = {executor.submit(_rescore_single, job, problem_map): job.index for job in jobs}
         for future in concurrent.futures.as_completed(future_map):
             indexed_results[future_map[future]] = future.result()
 
@@ -284,21 +219,18 @@ def _find_test_file(tests_dir: Path, row: dict[str, str]) -> Path | None:
         stem = candidate.stem.lower()
         after_prefix = stem[len(task_prefix):] if stem.startswith(task_prefix) else stem
         cand_tokens = set(_tokenize(stem))
-
         score = len(row_tokens & cand_tokens)
         if agent_lower and after_prefix.startswith(agent_lower):
             score += 10
-        if config_label and _tokenize(config_label):
+        if config_label:
             score += len(set(_tokenize(config_label)) & cand_tokens)
-        if norm_config and _tokenize(norm_config):
+        if norm_config:
             score += len(set(_tokenize(norm_config)) & cand_tokens)
-
         scored.append((-score, len(candidate.name), candidate.name, candidate))
 
     scored.sort()
     best = scored[0][3]
 
-    # If there is a tie, make sure the selected file is actually closer to the row.
     if len(scored) > 1 and scored[0][:3] == scored[1][:3]:
         tied = [item[3] for item in scored if item[:3] == scored[0][:3]]
         for candidate in tied:
@@ -316,11 +248,7 @@ def _load_run_tests():
     try:
         from src.utils.executor import run_tests
     except ModuleNotFoundError as exc:
-        raise SystemExit(
-            "Missing runtime dependencies for rescoring. Install the project requirements, "
-            "including radon/pytest-cov, before running without --dry-run."
-        ) from exc
-
+        raise SystemExit("Missing runtime dependencies for rescoring. Install requirements first.") from exc
     return run_tests
 
 

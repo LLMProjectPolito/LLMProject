@@ -52,6 +52,8 @@ def judge_node(state: CompetitiveState):
 
 def setup_competitive_graph(models: list = None):
     models = models or DEFAULT_MODELS["competitive"]["models"]
+    if len(models) < 1:
+        raise ValueError("competitive requires at least one model")
     workflow = StateGraph(CompetitiveState)
     for m in models:
         workflow.add_node(m, make_generation_node(m))
