@@ -42,35 +42,32 @@ def test_valid_right_triangle():
 def test_not_right_triangle():
     assert right_angle_triangle(1, 2, 3) == False
     assert right_angle_triangle(2, 3, 4) == False
-    assert right_angle_triangle(6, 8, 10) == False # Scaled right triangle, but not a perfect match
-    assert right_angle_triangle(10, 11, 12) == False
+    assert right_angle_triangle(6, 8, 10) == False
+    assert right_angle_triangle(1, 1, 1) == False
 
 def test_invalid_input_zero():
     assert right_angle_triangle(0, 4, 5) == False
     assert right_angle_triangle(3, 0, 5) == False
     assert right_angle_triangle(3, 4, 0) == False
-    assert right_angle_triangle(0, 0, 0) == False
 
 def test_invalid_input_negative():
     assert right_angle_triangle(-3, 4, 5) == False
     assert right_angle_triangle(3, -4, 5) == False
     assert right_angle_triangle(3, 4, -5) == False
-    assert right_angle_triangle(-3, -4, -5) == False
 
 def test_triangle_inequality_violation():
     assert right_angle_triangle(1, 2, 5) == False
-    assert right_angle_triangle(1, 3, 4) == False
+    assert right_angle_triangle(1, 5, 2) == False
     assert right_angle_triangle(5, 1, 2) == False
 
 def test_same_sides():
     assert right_angle_triangle(5, 5, 5) == False
-    assert right_angle_triangle(10, 10, 10) == False
 
 def test_isosceles_not_right():
-    assert right_angle_triangle(5, 5, 7) == False
-    assert right_angle_triangle(10, 10, 12) == False
+    assert right_angle_triangle(5, 5, 6) == False
+    assert right_angle_triangle(5, 6, 5) == False
+    assert right_angle_triangle(6, 5, 5) == False
 
 def test_large_numbers():
-    assert right_angle_triangle(3000, 4000, 5000) == True
-    assert right_angle_triangle(8000, 15000, 17000) == True
-    assert right_angle_triangle(10000, 10001, 10002) == False
+    assert right_angle_triangle(65, 72, 97) == True
+    assert right_angle_triangle(1000, 1000, 1414) == False #approx sqrt(2)

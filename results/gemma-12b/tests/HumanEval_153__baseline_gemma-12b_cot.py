@@ -70,20 +70,17 @@ def test_strongest_extension_numbers_and_symbols():
 def test_strongest_extension_with_spaces():
     assert Strongest_Extension("Class", ["Extension With Spaces"]) == "Class.Extension With Spaces"
 
-def test_strongest_extension_class_name_with_spaces():
-    assert Strongest_Extension("Class With Spaces", ["Extension1"]) == "Class With Spaces.Extension1"
+def test_strongest_extension_class_name_empty():
+    assert Strongest_Extension("", ["Extension"]) == ".Extension"
 
-def test_strongest_extension_extension_with_numbers():
-    assert Strongest_Extension("Class", ["Extension123"]) == "Class.Extension123"
-
-def test_strongest_extension_extension_with_symbols():
-    assert Strongest_Extension("Class", ["Extension!@#"]) == "Class.Extension!@#"
+def test_strongest_extension_extension_empty():
+    assert Strongest_Extension("Class", [""]) == "Class."
 
 def test_strongest_extension_multiple_extensions_same_strength_different_lengths():
     assert Strongest_Extension("Class", ["AA", "A"]) == "Class.AA"
 
 def test_strongest_extension_negative_strength():
-    assert Strongest_Extension("Class", ["aaaaA"]) == "Class.aaaaA"
+    assert Strongest_Extension("Class", ["bbb"]) == "Class.bbb"
 
 def test_strongest_extension_zero_strength():
-    assert Strongest_Extension("Class", ["Aa"]) == "Class.Aa"
+    assert Strongest_Extension("Class", ["ab"]) == "Class.ab"

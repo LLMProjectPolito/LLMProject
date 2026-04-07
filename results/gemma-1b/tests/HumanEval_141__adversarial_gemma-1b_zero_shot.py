@@ -30,27 +30,40 @@ def file_name_check(file_name):
     file_name_check("example.txt") # => 'Yes'
     file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
-    if not file_name.isdigit():
+    if not file_name:
         return 'No'
+
     if len(file_name) > 3:
         return 'No'
-    if not file_name.startswith('.'):
-        return 'No'
-    parts = file_name.split('.')
-    if len(parts) != 2:
-        return 'No'
-    
-    before_dot = parts[0]
-    after_dot = parts[1]
 
-    if not before_dot:
-        return 'No'
-    if not after_dot.isalpha():
+    if not file_name[0].isalpha():
         return 'No'
 
-    if after_dot not in ['txt', 'exe', 'dll']:
+    if not file_name[1:].isspace():
+        return 'No'
+
+    if len(file_name) == 1:
+        return 'No'
+
+    if file_name[1] not in ['txt', 'exe', 'dll']:
         return 'No'
 
     return 'Yes'
 
-import pytest
+def test_file_name_check():
+    assert file_name_check("example.txt") == "Yes"
+    assert file_name_check("1example.dll") == "No"
+    assert file_name_check("example.1") == "No"
+    assert file_name_check("example.txt.txt") == "No"
+    assert file_name_check("example.txt.exe") == "No"
+    assert file_name_check("example.txt.dll") == "No"
+    assert file_name_check("example.txt.txt.txt") == "No"
+    assert file_name_check("example.txt.exe.dll") == "No"
+    assert file_name_check("example.txt.exe.dll.txt") == "No"
+    assert file_name_check("example.txt") == "Yes"
+    assert file_name_check("example.txt.txt.txt.txt") == "No"
+    assert file_name_check("example.txt.exe.dll.txt.txt") == "No"
+    assert file_name_check("example.txt.exe.dll.txt.txt.txt") == "No"
+    assert file_name_check("example.txt.exe.dll.txt.txt.txt.txt") == "No"
+    assert file_name_check("example.txt.exe.dll.txt.txt.txt.txt.txt") == "No"
+    print("All tests passed")

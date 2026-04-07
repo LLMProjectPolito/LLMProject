@@ -59,7 +59,7 @@ def test_empty_sentence():
     assert words_in_sentence("") == ""
 
 def test_no_prime_length_words():
-    assert words_in_sentence("this is a long sentence") == ""
+    assert words_in_sentence("this is not a prime") == ""
 
 def test_single_prime_length_word():
     assert words_in_sentence("a") == "a"
@@ -70,23 +70,32 @@ def test_multiple_prime_length_words():
 def test_mixed_prime_and_non_prime_words():
     assert words_in_sentence("lets go for swimming") == "go for"
 
-def test_all_prime_length_words():
-    assert words_in_sentence("a is be do") == "a is be do"
+def test_all_words_prime_length():
+    assert words_in_sentence("I am here") == "I am"
 
 def test_sentence_with_leading_and_trailing_spaces():
-    assert words_in_sentence("  a is be do  ") == "a is be do"
+    assert words_in_sentence("  This is a test  ") == "is"
 
 def test_sentence_with_multiple_spaces():
-    assert words_in_sentence("a  is   be  do") == "a is be do"
+    assert words_in_sentence("This  is   a    test") == "is"
 
 def test_long_sentence():
-    assert words_in_sentence("This is a very long sentence with many words of varying lengths") == "is a very"
+    sentence = "This is a very long sentence with some words of prime lengths and some not"
+    expected = "is a very long with some and"
+    assert words_in_sentence(sentence) == expected
 
 def test_sentence_with_only_one_word():
-    assert words_in_sentence("prime") == "prime"
+    assert words_in_sentence("prime") == ""
 
-def test_sentence_with_same_length_words():
-    assert words_in_sentence("go no so to") == "go no so to"
+def test_sentence_with_prime_length_word_at_beginning():
+    assert words_in_sentence("I am a test") == "I am"
 
-def test_sentence_with_prime_and_non_prime_same_length():
-    assert words_in_sentence("go no so to be") == "go no so to"
+def test_sentence_with_prime_length_word_at_end():
+    assert words_in_sentence("This is a I") == "This is a"
+
+def test_sentence_with_repeated_prime_length_words():
+    assert words_in_sentence("a a a") == "a a a"
+
+def test_sentence_with_non_alphabetic_characters():
+    with pytest.raises(TypeError):
+        words_in_sentence("This is a test!")

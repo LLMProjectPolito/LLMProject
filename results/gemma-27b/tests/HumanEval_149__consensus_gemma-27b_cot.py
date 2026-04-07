@@ -57,14 +57,14 @@ def test_duplicate_even_lengths_same_word():
 def test_same_length_alphabetical():
     assert sorted_list_sum(["cb", "ab", "db"]) == ["ab", "cb", "db"]
 
-def test_mixed_lengths_and_duplicates():
-    assert sorted_list_sum(["ab", "a", "abc", "cd", "efg", "gh"]) == ["ab", "cd", "gh"]
+def test_mixed_lengths_and_alphabetical():
+    assert sorted_list_sum(["ab", "a", "cd", "c", "ef"]) == ["ab", "cd", "ef"]
 
 def test_long_strings():
     assert sorted_list_sum(["abcdef", "abc", "defghi", "abcd"]) == ["abcd", "abcdef"]
 
 def test_strings_with_spaces():
-    assert sorted_list_sum(["aa bb", "a", "ccc dd"]) == ["aa bb"]
+    assert sorted_list_sum(["aa bb", "a", "cc dd"]) == ["aa bb", "cc dd"]
 
 def test_strings_with_special_characters():
     assert sorted_list_sum(["a!a", "abc", "b@b"]) == ["a!a", "b@b"]
@@ -74,9 +74,3 @@ def test_example_1():
 
 def test_example_2():
     assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
-
-def test_numbers_as_strings():
-    assert sorted_list_sum(["12", "1", "123", "45"]) == ["12", "45"]
-
-def test_special_characters():
-    assert sorted_list_sum(["!!", "!", "!!!", "@@"]) == ["!!", "@@"]

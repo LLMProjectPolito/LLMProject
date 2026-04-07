@@ -84,4 +84,4 @@ def test_compare_negative_numbers():
 
 def test_compare_mixed_positive_negative():
     assert compare([1, -2, 3], [1, 2, 3]) == [0, 0, 0]
-    assert compare([1, -2, 3], [1, 2, -3]) == [0, 0, -6]
+    assert compare([1, -2, 3], [4, 2, 3]) == [3, 0, 0]

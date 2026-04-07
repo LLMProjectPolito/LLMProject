@@ -55,16 +55,22 @@ def test_list_multiple_of_4():
     assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 1 + 2 + 3 + 64 + 5 + 6 + 7 + 512
 
 def test_list_multiple_of_12():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1 + 2 + 9 + 64 + 5 + 36 + 7 + 512 + 81 + 10 + 11 + 144
+    lst = list(range(12))
+    expected_sum = sum(lst)
+    expected_sum += lst[0]**2
+    expected_sum += lst[3]**3
+    expected_sum += lst[6]**2
+    expected_sum += lst[9]**3
+    assert sum_squares(lst) == expected_sum
 
 def test_negative_numbers():
-    assert sum_squares([-1, -2, -3, -4]) == 1 + 2 + 9 + (-64)
+    assert sum_squares([-1, -2, -3, -4]) == (-1) + (-2) + (-3)**2 + (-4)**3
 
 def test_mixed_numbers():
-    assert sum_squares([-1, 2, -3, 4, -5]) == 1 + 2 + 9 + 64 + (-5)
+    assert sum_squares([-1, 2, -3, 4, -5]) == (-1) + 2 + (-3)**2 + 4 + (-5)
 
 def test_zeroes():
     assert sum_squares([0, 0, 0, 0]) == 0
 
-def test_single_element():
-    assert sum_squares([5]) == 5
+def test_large_numbers():
+    assert sum_squares([1000, 2000, 3000]) == 1000 + 2000 + 3000**2

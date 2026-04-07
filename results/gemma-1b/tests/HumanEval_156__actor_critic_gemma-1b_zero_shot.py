@@ -77,7 +77,10 @@ def test_int_to_mini_roman_10000():
     assert int_to_mini_roman(10000) == 'X'
 
 def test_int_to_mini_roman_10001():
-    assert int_to_mini_roman(10001) == 'M'
+    assert int_to_mini_roman(10001) == 'X'
 
 def test_int_to_mini_roman_100000():
     assert int_to_mini_roman(100000) == 'M'
+
+def test_int_to_mini_roman_1000000():
+    assert int_to_mini_roman(1000000) == 'M'

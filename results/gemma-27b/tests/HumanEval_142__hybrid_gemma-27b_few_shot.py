@@ -47,7 +47,6 @@ def get_max(arr: list[int]) -> int:
     return max(arr)
 
 
-# Sum Squares Tests
 def test_sum_squares_empty():
     assert sum_squares([]) == 0
 
@@ -70,7 +69,7 @@ def test_sum_squares_long_list():
     assert sum_squares([i for i in range(10)]) == 285
 
 def test_sum_squares_all_multiples_of_3():
-    assert sum_squares([3, 6, 9, 12]) == 150
+    assert sum_squares([3, 6, 9, 12]) == 288
 
 def test_sum_squares_all_multiples_of_4():
     assert sum_squares([4, 8, 12, 16]) == 1008
@@ -84,17 +83,25 @@ def test_sum_squares_large_numbers():
 def test_sum_squares_complex_case():
     assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1010
 
-def test_sum_squares_with_floats_converted_to_int():
-    assert sum_squares([1.0, 2.0, 3.0, 4.0]) == 18
+def test_sum_squares_basic2_suite2():
+    assert sum_squares([1, 2, 3, 4]) == 1 + 2 + 9 + 64
 
-def test_sum_squares_with_mixed_types():
-    with pytest.raises(TypeError):
-        sum_squares([1, "a", 3])
+def test_sum_squares_mixed_suite2():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1 + 2 + 9 + 64 + 5 + 36 + 7 + 512 + 81 + 100 + 11 + 144
 
-def test_sum_squares_multiple_of_3_and_4():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 644
+def test_sum_squares_zeros_suite2():
+    assert sum_squares([0, 0, 0, 0, 0]) == 0
 
-def test_sum_squares_long_list():
+def test_sum_squares_large_numbers_suite2():
+    assert sum_squares([100, 200, 300, 400]) == 10000 + 200 + 90000 + 64000000
+
+def test_sum_squares_single_element_suite2():
+    assert sum_squares([5]) == 5
+
+def test_sum_squares_multiple_of_3_and_4_suite2():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1 + 2 + 9 + 64 + 5 + 36 + 7 + 512 + 81 + 100 + 11 + 144
+
+def test_sum_squares_long_list_suite2():
     lst = list(range(20))
     expected_sum = 0
     for i, num in enumerate(lst):
@@ -106,7 +113,6 @@ def test_sum_squares_long_list():
             expected_sum += num
     assert sum_squares(lst) == expected_sum
 
-# Palindrome Tests
 def test_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
@@ -114,7 +120,6 @@ def test_palindrome_basic():
 def test_palindrome_empty():
     assert is_palindrome('') == True
 
-# Get Max Tests
 def test_max_positive():
     assert get_max([1, 2, 3]) == 3
 

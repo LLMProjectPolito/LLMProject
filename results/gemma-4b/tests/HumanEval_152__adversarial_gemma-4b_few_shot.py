@@ -52,57 +52,33 @@ def compare(game,guess):
 def test_is_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
+    assert is_palindrome('') == True
     assert is_palindrome('A man, a plan, a canal: Panama') == True
     assert is_palindrome('Race car') == True
-    assert is_palindrome('Was it a car or a cat I saw?') == True
-    assert is_palindrome('Madam, I\'m Adam') == True
-    assert is_palindrome('No lemon, no melon') == True
-
-def test_is_palindrome_empty():
-    assert is_palindrome('') == True
-    assert is_palindrome(' ') == True
-    assert is_palindrome('a') == True
 
 def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
     assert get_max([3, 2, 1]) == 3
-    assert get_max([1, 3, 2]) == 3
+    assert get_max([-1, -2, -3]) == -1
 
 def test_get_max_empty():
     assert get_max([]) == None
 
-def test_get_max_negative():
-    assert get_max([-1, -2, -3]) == -1
-    assert get_max([-1, -2, 3]) == 3
+def test_get_max_single_element():
+    assert get_max([5]) == 5
 
-def test_get_max_mixed():
-    assert get_max([-1, 2, -3, 4]) == 4
+def test_compare_correct_guesses():
+    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
+    assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
 
-def test_compare_basic():
-    assert compare([1,2,3,4,5,1],[1,2,3,4,2,-2]) == [0,0,0,0,3,3]
-    assert compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) == [4,4,1,0,0,6]
-
-def test_compare_exact():
-    assert compare([1, 2, 3], [1, 2, 3]) == [0, 0, 0]
-
-def test_compare_one_off():
-    assert compare([1, 2, 3], [1, 2, 4]) == [0, 0, 1]
-
-def test_compare_multiple_off():
-    assert compare([1, 2, 3], [1, 2, 5]) == [0, 0, 2]
+def test_compare_incorrect_guesses():
+    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 6, -2]) == [0, 0, 0, 0, 2, 3]
+    assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -1]) == [4, 4, 1, 0, 0, 5]
 
 def test_compare_different_lengths():
     with pytest.raises(IndexError):
         compare([1, 2, 3], [1, 2])
 
-def test_compare_empty_game():
-    assert compare([], [1, 2, 3]) == [0, 0, 0]
-
-def test_compare_empty_guess():
-    assert compare([1, 2, 3], []) == [0, 0, 0]
-
 def test_compare_negative_numbers():
     assert compare([-1, -2, -3], [-1, -2, -3]) == [0, 0, 0]
-
-def test_compare_mixed_numbers():
-    assert compare([-1, 2, -3], [-1, 2, -3]) == [0, 0, 0]
+    assert compare([-1, -2, -3], [-1, -1, -3]) == [0, 1, 0]

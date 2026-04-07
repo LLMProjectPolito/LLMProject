@@ -27,26 +27,56 @@ def x_or_y(n, x, y):
             return y
     return x
 
-def test_negative_input():
-    assert x_or_y(-5, 10, 20) == 20
+@pytest.mark.parametrize("n, x, y, expected", [
+    (7, 34, 12, 34),
+    (15, 8, 5, 5),
+    (2, 10, 20, 10),
+    (3, 5, 10, 5),
+    (5, 1, 2, 1),
+    (11, 100, 200, 100),
+    (13, 300, 400, 300),
+    (4, 1, 2, 2),
+    (6, 1, 2, 2),
+    (8, 1, 2, 2),
+    (9, 1, 2, 2),
+    (10, 1, 2, 2),
+])
+def test_prime_numbers(n, x, y, expected):
+    assert x_or_y(n, x, y) == expected
 
-def test_zero_input():
-    assert x_or_y(0, 10, 20) == 20
+@pytest.mark.parametrize("n, x, y, expected", [
+    (1, 10, 20, 20),
+    (0, 10, 20, 20),
+    (-1, 10, 20, 20),
+    (4, 1, 2, 2),
+    (6, 1, 2, 2),
+    (8, 1, 2, 2),
+    (9, 1, 2, 2),
+    (10, 1, 2, 2),
+    (12, 1, 2, 2),
+    (14, 1, 2, 2),
+    (15, 1, 2, 2),
+    (16, 1, 2, 2),
+])
+def test_non_prime_numbers(n, x, y, expected):
+    assert x_or_y(n, x, y) == expected
 
-def test_one_input():
-    assert x_or_y(1, 10, 20) == 20
+@pytest.mark.parametrize("n, x, y, expected", [
+    (1, 10, 20, 20),
+    (0, 10, 20, 20),
+    (-1, 10, 20, 20),
+    (2, 10, 20, 10),
+    (3, 10, 20, 10),
+    (4, 10, 20, 20),
+])
+def test_edge_cases(n, x, y, expected):
+    assert x_or_y(n, x, y) == expected
 
-def test_two_input():
-    assert x_or_y(2, 10, 20) == 10
-
-def test_small_prime():
-    assert x_or_y(7, 34, 12) == 34
-
-def test_small_composite():
-    assert x_or_y(4, 8, 5) == 5
-
-def test_larger_prime():
-    assert x_or_y(29, 100, 50) == 100
-
-def test_larger_composite():
-    assert x_or_y(30, 100, 50) == 50
+@pytest.mark.parametrize("n, x, y, expected", [
+    (97, 100, 200, 100),  # Large prime
+    (99, 100, 200, 200),  # Large non-prime
+    (101, 100, 200, 100), # Large prime
+    (100, 100, 200, 200), # Large non-prime
+])
+def test_large_numbers(n, x, y, expected):
+    assert x_or_y(n, x, y) == expected

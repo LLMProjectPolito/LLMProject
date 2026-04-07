@@ -57,7 +57,6 @@ def test_b_is_substring():
     assert cycpattern_check("whassup", "psus") == False
     assert cycpattern_check("abab", "baa") == True
     assert cycpattern_check("himenss", "simen") == True
-    assert cycpattern_check("hello", "lohel") == False
 
 def test_b_is_not_substring():
     assert cycpattern_check("abcd", "abc") == False
@@ -70,11 +69,11 @@ def test_b_is_rotation():
     assert cycpattern_check("abcd", "bcda") == True
     assert cycpattern_check("abcd", "dabc") == True
     assert cycpattern_check("abcd", "cdab") == True
-    assert cycpattern_check("abcd", "abdc") == True
+    assert cycpattern_check("abcd", "abdc") == False
 
 def test_b_longer_than_a():
     assert cycpattern_check("abc", "abcdef") == False
-    assert cycpattern_check("abc", "abcd") == False
+    assert cycpattern_check("abc", "abcde") == False
 
 def test_b_empty_string():
     assert cycpattern_check("abcd", "") == True
@@ -91,3 +90,6 @@ def test_b_is_prefix_of_a():
 
 def test_b_is_suffix_of_a():
     assert cycpattern_check("abcdef", "def") == True
+
+def test_b_not_equal_to_a():
+    assert cycpattern_check("abc", "abd") == False

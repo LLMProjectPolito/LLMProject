@@ -32,41 +32,47 @@ def generate_integers(a, b):
     result.sort()
     return result
 
-def test_generate_integers_normal():
+def test_generate_integers_2_8():
     assert generate_integers(2, 8) == [2, 4, 6, 8]
 
-def test_generate_integers_reverse():
+def test_generate_integers_8_2():
     assert generate_integers(8, 2) == [2, 4, 6, 8]
 
-def test_generate_integers_no_even():
+def test_generate_integers_10_14():
     assert generate_integers(10, 14) == []
 
-def test_generate_integers_single_number():
+def test_generate_integers_1_9():
+    assert generate_integers(1, 9) == []
+
+def test_generate_integers_2_2():
     assert generate_integers(2, 2) == [2]
 
-def test_generate_integers_a_greater_than_b():
-    assert generate_integers(5, 1) == [1]
+def test_generate_integers_4_4():
+    assert generate_integers(4, 4) == [4]
 
-def test_generate_integers_with_zeros():
-    assert generate_integers(20, 28) == [2, 4, 6, 8]
+def test_generate_integers_12_12():
+    assert generate_integers(12, 12) == [2, 4, 6, 8]
 
-def test_generate_integers_with_mixed_digits():
-    assert generate_integers(12, 18) == [2, 4, 6, 8]
+def test_generate_integers_1_10():
+    assert generate_integers(1, 10) == [2, 4, 6, 8]
 
-def test_generate_integers_large_numbers():
-    assert generate_integers(100, 108) == [0, 2, 4, 6, 8]
+def test_generate_integers_10_20():
+    assert generate_integers(10, 20) == [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
 
-def test_generate_integers_edge_case_1():
+def test_generate_integers_20_30():
+    assert generate_integers(20, 30) == [20, 22, 24, 26, 28, 30]
+
+def test_generate_integers_1_1():
     assert generate_integers(1, 1) == []
 
-def test_generate_integers_edge_case_2():
-    assert generate_integers(2, 3) == [2]
+def test_generate_integers_24_24():
+    assert generate_integers(24, 24) == [2, 4]
 
-def test_generate_integers_edge_case_3():
-    assert generate_integers(3, 2) == [2]
+def test_generate_integers_26_26():
+    assert generate_integers(26, 26) == [2, 6]
 
-def test_generate_integers_with_duplicates():
-    assert generate_integers(22, 28) == [2, 4, 6, 8]
+def test_generate_integers_100_102():
+    assert generate_integers(100, 102) == []
 
-def test_generate_integers_complex():
-    assert generate_integers(1234567890, 1234567899) == [2, 4, 6, 8]
+def test_generate_integers_200_204():
+    assert generate_integers(200, 204) == [2, 4]

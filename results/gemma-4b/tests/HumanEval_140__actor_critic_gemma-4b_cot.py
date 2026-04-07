@@ -66,7 +66,7 @@ def test_fix_spaces_mixed_spaces():
     assert fix_spaces("Hello   World") == "Hello__World"
 
 def test_fix_spaces_long_consecutive_spaces():
-    assert fix_spaces("This   has    many   spaces") == "This___has____many__spaces"
+    assert fix_spaces("This   has    many    spaces") == "This___has____many__spaces"
 
 def test_fix_spaces_spaces_at_start_and_end():
     assert fix_spaces("  Spaces at start and end  ") == "_Spaces_at_start_and_end_"

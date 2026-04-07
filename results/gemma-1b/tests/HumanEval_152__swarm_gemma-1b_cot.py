@@ -20,52 +20,52 @@ from math import sqrt
 
 def game():
     """
-    A simple game where the goal is to guess the correct score.
+    A simple game where the goal is to guess the correct number.
     """
     def game_function(guess, score):
         """
         The function to be tested.
         """
-        if guess == score:
-            return 0
-        else:
+        if guess != score:
             return abs(guess - score)
+        else:
+            return 0
 
     def get_results(game_function, guess, score):
         """
-        Generates a list of results based on the game function.
+        Helper function to collect results.
         """
         results = []
         for i in range(len(game_function(guess, score))):
             results.append(abs(game_function(guess, score) - score))
         return results
 
-    return get_results(game, 0, 0)
+    return get_results(game_function, 0, 0)
 
-def test_results_valid_guess():
+def test_basic_game():
     """
-    Test case where the guess matches the score.
+    Tests the basic game with a simple scoring system.
     """
-    results = get_results(game, 0, 0)
+    results = game()
     assert results == [0]
 
-def test_results_invalid_guess():
+def test_game_with_no_change():
     """
-    Test case where the guess is different from the score.
+    Tests the game where the guess and score are the same.
     """
-    results = get_results(game, 0, 0)
-    assert results == [abs(0 - 0)]
-
-def test_results_all_invalid_guesses():
-    """
-    Test case where all guesses are invalid.
-    """
-    results = get_results(game, 0, 0)
+    results = game()
     assert results == [0]
 
-def test_results_empty_game():
+def test_game_with_change():
     """
-    Test case with an empty game.
+    Tests the game where the guess and score are different.
     """
-    results = get_results(game, 0, 0)
-    assert results == []
+    results = game()
+    assert results == [abs(1 - 2)]
+
+def test_game_with_all_changes():
+    """
+    Tests the game where the guess and score are all different.
+    """
+    results = game()
+    assert results == [abs(1 - 3)]

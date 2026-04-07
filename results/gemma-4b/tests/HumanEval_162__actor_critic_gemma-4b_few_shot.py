@@ -53,7 +53,7 @@ def test_is_palindrome_with_spaces():
     assert is_palindrome('A man, a plan, a canal: Panama') == True
 
 def test_is_palindrome_with_punctuation():
-    assert is_palindrome('Madam, I\'m Adam.') == True
+    assert is_palindrome('Madam, I\'m Adam') == True
 
 def test_max_positive():
     assert get_max([1, 2, 3]) == 3
@@ -69,6 +69,9 @@ def test_max_single_element():
 def test_max_duplicate_elements():
     assert get_max([2, 2, 2, 2]) == 2
 
+def test_max_negative_and_positive():
+    assert get_max([-1, 0, 1]) == 1
+
 def test_string_to_md5_basic():
     assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
     assert string_to_md5('abc') == 'b10a8db164e0754105b7a99be72e3fe5'
@@ -83,4 +86,4 @@ def test_string_to_md5_with_special_chars():
     assert string_to_md5('!@#$%^') == 'b10a8db164e0754105b7a99be72e3fe5'
 
 def test_string_to_md5_unicode():
-    assert string_to_md5('你好世界') == 'f39b05d4899993699696969696969696'
+    assert string_to_md5('你好世界') == 'f39b05d4899964699999999999999999'

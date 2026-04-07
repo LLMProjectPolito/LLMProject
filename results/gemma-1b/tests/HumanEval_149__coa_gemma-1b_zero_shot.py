@@ -23,7 +23,7 @@ import math
 import pytest
 
 def list_sort(lst):
-    """Sorts a list of strings based on their lengths, removing strings with odd lengths."""
+    """Sorts a list of strings based on their length, removing strings with odd lengths."""
     return sorted(lst, key=lambda x: (len(x), x))
 
 # Focus: Type Scenarios
@@ -37,5 +37,5 @@ def list_sort(lst):
 import pytest
 
 def list_sort(lst):
-    """Sorts a list of strings based on their length, handling duplicates and ties."""
+    """Sorts a list of strings based on their length, handling duplicates and ensuring ascending order."""
     return sorted(lst, key=lambda x: (len(x), x))

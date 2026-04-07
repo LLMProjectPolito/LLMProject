@@ -31,23 +31,23 @@ def test_fix_spaces_trailing_space():
 def test_fix_spaces_leading_and_trailing_spaces():
     assert fix_spaces(" Example 5 ") == "_Example_5_"
 
-def test_fix_spaces_multiple_consecutive_spaces():
-    assert fix_spaces("Example    6") == "Example-6"
+def test_fix_spaces_multiple_spaces_at_beginning():
+    assert fix_spaces("   Example 6") == "-Example_6"
 
-def test_fix_spaces_multiple_consecutive_spaces_at_beginning():
-    assert fix_spaces("   Example 7") == "-Example_7"
+def test_fix_spaces_multiple_spaces_at_end():
+    assert fix_spaces("Example 7   ") == "Example_7-"
 
-def test_fix_spaces_multiple_consecutive_spaces_at_end():
-    assert fix_spaces("Example 8   ") == "Example_8-"
-
-def test_fix_spaces_empty_string():
-    assert fix_spaces("") == ""
+def test_fix_spaces_multiple_spaces_in_middle():
+    assert fix_spaces("Example   8   9") == "Example-8-9"
 
 def test_fix_spaces_only_spaces():
     assert fix_spaces("   ") == "-"
 
+def test_fix_spaces_empty_string():
+    assert fix_spaces("") == ""
+
 def test_fix_spaces_mixed_spaces():
-    assert fix_spaces("Example  1   2") == "Example-1-2"
+    assert fix_spaces("  Example 1  2   3  ") == "-Example_1-2-3-"
 
 def test_fix_spaces_with_tabs():
     assert fix_spaces("Example\t1") == "Example\t1"
@@ -55,6 +55,7 @@ def test_fix_spaces_with_tabs():
 def test_fix_spaces_with_newlines():
     assert fix_spaces("Example\n1") == "Example\n1"
 
-def test_fix_spaces_long_string_with_multiple_spaces():
-    long_string = "This is a very long string with   multiple   spaces."
-    assert fix_spaces(long_string) == "This_is_a_very_long_string_with-multiple-spaces."
+def test_fix_spaces_long_string_with_multiple_space_groups():
+    long_string = "This is a long string with   multiple   space   groups."
+    expected_string = "This_is_a_long_string_with-multiple-space-groups."
+    assert fix_spaces(long_string) == expected_string

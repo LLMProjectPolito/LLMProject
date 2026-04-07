@@ -22,45 +22,55 @@ from your_module import bf  # Replace your_module
 planets = ("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
 
 def test_bf_valid_planets():
-    """Tests with valid planet names where planet1 comes before planet2."""
     assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
     assert bf("Earth", "Mercury") == ("Venus",)
     assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
     assert bf("Venus", "Saturn") == ("Earth", "Mars", "Jupiter")
     assert bf("Mars", "Jupiter") == ("Earth", "Venus")
-    assert bf("Saturn", "Uranus") == ("Jupiter",)
+    assert bf("Saturn", "Uranus") == ("Jupiter")
+    assert bf("Uranus", "Neptune") == ("Saturn")
+    assert bf("Neptune", "Mercury") == ("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
 
-@pytest.mark.parametrize(
-    "planet1, planet2",
-    [
-        ("Pluto", "Neptune"),
-        ("Jupiter", "Pluto"),
-        ("Invalid", "Neptune"),
-        ("Jupiter", "Invalid"),
-        ("Invalid1", "Invalid2"),
-        ("Earth", "Earth"),
-    ],
-)
-def test_bf_invalid_planets(planet1, planet2):
-    """Tests with invalid planet names."""
-    assert bf(planet1, planet2) == ()
-
-def test_bf_planet1_after_planet2():
-    """Tests where planet1 comes after planet2 in the planets list."""
-    assert bf("Neptune", "Mercury") == ()
-    assert bf("Uranus", "Venus") == ("Earth", "Mars", "Jupiter", "Saturn")
-    assert bf("Saturn", "Earth") == ("Venus", "Mars", "Jupiter")
-    assert bf("Jupiter", "Mars") == ("Earth", "Venus")
-    assert bf("Mars", "Venus") == ("Earth",)
-    assert bf("Venus", "Mercury") == ("Earth", "Mars", "Jupiter", "Saturn", "Uranus")
-
-def test_bf_edge_cases():
-    """Tests edge cases where one planet is at the beginning or end of the list."""
-    assert bf("Mercury", "Neptune") == planets[1:]
-    assert bf("Neptune", "Mercury") == ()
+def test_bf_same_planet():
+    assert bf("Earth", "Earth") == ()
     assert bf("Mercury", "Mercury") == ()
-    assert bf("Neptune", "Neptune") == ()
 
-def test_bf_identical_planets():
-    """Tests where both planets are the same."""
-    assert bf("Mercury", "Mercury") == ()
+def test_bf_invalid_planet_names():
+    assert bf("Pluto", "Neptune") == ()
+    assert bf("Jupiter", "Xenon") == ()
+    assert bf("Invalid", "Valid") == ()
+    assert bf("Valid", "Invalid") == ()
+    assert bf("InvalidPlanet", "AnotherInvalid") == ()
+
+def test_bf_case_sensitivity():
+    assert bf("mercury", "Neptune") == ()
+    assert bf("Jupiter", "neptune") == ()
+    assert bf("EARTH", "mars") == ()
+    assert bf("Jupiter", "NEPTUNE") == ()
+    assert bf("jUpItEr", "uRaNuS") == ()
+    assert bf("earth", "Earth") == ()
+    assert bf("EARTH", "earth") == ()
+
+def test_bf_empty_string():
+    assert bf("", "Neptune") == ()
+    assert bf("Jupiter", "") == ()
+    assert bf("", "") == ()
+
+def test_bf_reversed_planet_order():
+    assert bf("Neptune", "Jupiter") == ("Uranus", "Saturn")
+    assert bf("Uranus", "Venus") == ("Saturn", "Jupiter", "Mars", "Earth")
+    assert bf("Saturn", "Mercury") == ("Jupiter", "Uranus", "Neptune")
+    assert bf("Venus", "Earth") == ("Mercury",)
+    assert bf("Mars", "Jupiter") == ("Earth", "Venus")
+
+def test_bf_one_valid_one_invalid():
+    assert bf("Earth", "Pluto") == ()
+    assert bf("Pluto", "Earth") == ()
+
+def test_bf_one_empty_one_valid():
+    assert bf("", "Earth") == ()
+    assert bf("Earth", "") == ()
+
+def test_bf_large_planet_set():
+    # Test with a larger set of planets to check for performance issues
+    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")

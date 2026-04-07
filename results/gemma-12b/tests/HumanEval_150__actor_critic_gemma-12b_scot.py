@@ -12,18 +12,14 @@ def x_or_y(n, x, y):
 import pytest
 
 def is_prime(n):
-    """Helper function to check if a number is prime."""
+    """Helper function to check if a number is prime.
+    Returns False for negative numbers.
+    """
     if n <= 1:
         return False
-    if n <= 3:
-        return True
-    if n % 2 == 0 or n % 3 == 0:
-        return False
-    i = 5
-    while i * i <= n:
-        if n % i == 0 or n % (i + 2) == 0:
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
             return False
-        i += 6
     return True
 
 def x_or_y(n, x, y):
@@ -45,37 +41,56 @@ class TestXorY:
         assert x_or_y(7, 34, 12) == 34
         assert x_or_y(2, 10, 5) == 10
         assert x_or_y(3, 100, 20) == 100
+        assert x_or_y(5, -5, 0) == -5
 
     def test_non_prime_returns_y(self):
         assert x_or_y(15, 8, 5) == 5
         assert x_or_y(4, 1, 2) == 2
         assert x_or_y(6, 10, 20) == 20
+        assert x_or_y(8, 100, 200) == 200
+        assert x_or_y(9, 5, 10) == 10
 
-    def test_negative_input(self):
-        assert x_or_y(-5, 10, 5) == 5  # Negative numbers are treated as non-prime by is_prime. Consider if this is the desired behavior.
+    def test_n_is_zero(self):
+        assert x_or_y(0, 1, 2) == 2
 
-    def test_is_prime_negative_zero_one(self):
-        assert not is_prime(1)
-        assert not is_prime(0)
-        assert not is_prime(-1)
+    def test_n_is_one(self):
+        assert x_or_y(1, 5, 10) == 10
+
+    def test_n_is_negative(self):
+        assert x_or_y(-5, 1, 2) == 2
+
+    def test_x_is_negative(self):
+        assert x_or_y(7, -34, 12) == -34
+
+    def test_y_is_negative(self):
+        assert x_or_y(15, 8, -5) == -5
+
+    def test_x_is_zero(self):
+        assert x_or_y(7, 0, 12) == 0
+
+    def test_y_is_zero(self):
+        assert x_or_y(15, 8, 0) == 0
+
+    def test_x_and_y_are_zero(self):
+        assert x_or_y(7, 0, 0) == 0
+        assert x_or_y(8, 0, 0) == 0
 
     def test_large_prime(self):
-        assert x_or_y(101, 1000, 500) == 1000
+        assert x_or_y(101, 1000, 2000) == 1000
 
     def test_large_non_prime(self):
-        assert x_or_y(100, 1000, 500) == 500
+        assert x_or_y(100, 1000, 2000) == 2000
 
-    def test_x_equals_y(self):
+    def test_identical_x_and_y(self):
         assert x_or_y(7, 5, 5) == 5
+        assert x_or_y(8, 5, 5) == 5
 
-    def test_zero_input(self):
-        assert x_or_y(0, 10, 5) == 5
+    def test_both_negative(self):
+        assert x_or_y(7, -5, -10) == -5
+        assert x_or_y(8, -5, -10) == -10
 
-    def test_one_input(self):
-        assert x_or_y(1, 10, 5) == 5
+    def test_max_int_prime(self):
+        assert x_or_y(2147483647, 1, 2) == 1
 
-    def test_non_integer_input(self):
-        # The function doesn't explicitly handle non-integer inputs.
-        # This test checks the behavior with float inputs.
-        assert x_or_y(2.0, 10, 5) == 10
-        assert x_or_y(2.5, 10, 5) == 5
+    def test_max_int_non_prime(self):
+        assert x_or_y(2147483646, 1, 2) == 2

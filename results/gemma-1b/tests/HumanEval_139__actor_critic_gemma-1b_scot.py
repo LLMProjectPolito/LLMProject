@@ -57,17 +57,9 @@ def test_special_factorial_edge_case_1():
 
 def test_special_factorial_edge_case_2():
     assert special_factorial(2) == 2
-    assert special_factorial(3) == 6
-    assert special_factorial(4) == 288
 
 def test_special_factorial_edge_case_3():
-    assert special_factorial(5) == 120
-    assert special_factorial(6) == 720
-    assert special_factorial(7) == 5040
+    assert special_factorial(3) == 6
 
 def test_special_factorial_edge_case_4():
-    assert special_factorial(8) == 40320
-    assert special_factorial(9) == 362880
-
-def test_special_factorial_edge_case_5():
-    assert special_factorial(10) == 3628800
+    assert special_factorial(4) == 288

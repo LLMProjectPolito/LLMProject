@@ -27,7 +27,7 @@ def test_boundary_incorrect_guess_small_difference():
     assert compare([1], [2]) == [1]
 
 def test_boundary_incorrect_guess_large_difference():
-    assert compare([1], [10]) == [9]
+    assert compare([1], [5]) == [4]
 
 # Focus: Logic Branches
 def test_compare_correct_guesses():

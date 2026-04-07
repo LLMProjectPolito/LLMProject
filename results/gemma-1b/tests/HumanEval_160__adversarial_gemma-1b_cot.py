@@ -60,9 +60,5 @@ def do_algebra(operator, operand):
         return operator[0] + operand[1]
     elif len(operand) == 2:
         return operand[0] * operand[1]
-    elif len(operator) == 3:
-        return operator[0] + operand[1] * operand[2]
-    elif len(operand) == 3:
-        return operand[0] * operand[1] * operand[2]
     else:
         return 0

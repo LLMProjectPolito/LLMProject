@@ -29,12 +29,18 @@ def simplify(x, n):
     
     try:
         num, den = map(int, x_val.split("/"))
-        num = int(num)
-        den = int(den)
+        num_str = str(num)
+        den_str = str(den)
         
-        if den == 0:
+        if den_str == "0":
             return False
         
-        return num * den == int(num * den)
+        num_val = int(num_str)
+        den_val = int(den_str)
+        
+        if num_val * den_val == 0:
+            return True
+        else:
+            return False
     except ValueError:
         return False

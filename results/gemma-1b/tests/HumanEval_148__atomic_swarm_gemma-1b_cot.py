@@ -91,18 +91,14 @@ def bf(planet1, planet2):
         return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
     if planet1 == "Venus" and planet2 == "Mercury":
         return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    if planet1 == "Earth" and planet2 == "Venus":
+    if planet1 == "Earth" and planet2 == "Jupiter":
         return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    if planet1 == "Mars" and planet2 == "Earth":
+    if planet1 == "Mars" and planet2 == "Jupiter":
         return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    if planet1 == "Jupiter" and planet2 == "Mars":
-        return ("Saturn", "Uranus")
-    if planet1 == "Saturn" and planet2 == "Jupiter":
-        return ("Saturn", "Uranus")
-    if planet1 == "Uranus" and planet2 == "Saturn":
-        return ("Saturn", "Uranus")
-    if planet1 == "Neptune" and planet2 == "Uranus":
-        return ("Neptune", "Uranus")
+    if planet1 == "Saturn" and planet2 == "Uranus":
+        return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+    if planet1 == "Uranus" and planet2 == "Neptune":
+        return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
     return ()
 
 def bf(planet1, planet2):

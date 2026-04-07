@@ -51,10 +51,10 @@ class TestCompare:
         assert compare([1, 2, 3], [4, 5, 6]) == [3, 3, 3]
 
     def test_mixed_correct_and_incorrect(self):
-        assert compare([1, 2, 3, 4, 5], [1, 2, 5, 4, 3]) == [0, 0, 2, 0, 2]
+        assert compare([1, 2, 3, 4, 5], [1, 2, 5, 4, 5]) == [0, 0, 2, 0, 0]
 
     def test_negative_numbers(self):
-        assert compare([-1, -2, -3], [-1, -2, -4]) == [0, 0, 1]
+        assert compare([-1, -2, -3], [-1, -2, -5]) == [0, 0, 2]
 
     def test_zero_values(self):
         assert compare([0, 0, 0], [1, 2, 3]) == [1, 2, 3]
@@ -72,7 +72,7 @@ class TestCompare:
         assert compare([5], [5]) == [0]
 
     def test_single_element_lists_incorrect(self):
-        assert compare([5], [6]) == [1]
+        assert compare([5], [10]) == [5]
 
     def test_long_lists(self):
         game = list(range(100))

@@ -60,4 +60,8 @@ def test_cycpattern_check_unicode_characters():
     assert cycpattern_check("你好世界", "界世你好") == True
     assert cycpattern_check("你好世界", "好世界你") == True
     assert cycpattern_check("你好世界", "世界你好") == True
-    assert cycpattern_check("你好世界", "你世界好") == False
+    assert cycpattern_check("你好世界", "你") == True
+    assert cycpattern_check("你好世界", "界") == True
+    assert cycpattern_check("你好世界", "你好世界") == True
+    assert cycpattern_check("你好世界", "你好世界啊") == False
+    assert cycpattern_check("你好世界啊", "你好世界") == True

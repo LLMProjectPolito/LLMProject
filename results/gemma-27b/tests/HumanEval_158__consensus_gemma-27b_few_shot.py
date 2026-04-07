@@ -77,8 +77,5 @@ def test_long_words():
 def test_same_word_multiple_times():
     assert find_max(["hello", "hello", "hello"]) == "hello"
 
-def test_duplicate_words():
-    assert find_max(["hello", "hello", "world"]) == "hello"
-
 def test_case_sensitivity():
     assert find_max(["Hello", "hello"]) == "Hello"

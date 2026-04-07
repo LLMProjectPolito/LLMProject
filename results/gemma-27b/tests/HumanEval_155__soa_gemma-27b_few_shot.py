@@ -16,7 +16,7 @@ def test_even_odd_count_positive_odd():
     assert even_odd_count(1357) == (0, 4)
 
 def test_even_odd_count_mixed():
-    assert even_odd_count(12345) == (2, 3)
+    assert even_odd_count(1234) == (2, 2)
 
 def test_even_odd_count_single_even():
     assert even_odd_count(2) == (1, 0)
@@ -34,19 +34,22 @@ def test_even_odd_count_negative_odd():
     assert even_odd_count(-13) == (0, 2)
 
 def test_even_odd_count_negative_mixed():
-    assert even_odd_count(-1234) == (2, 2)
+    assert even_odd_count(-123) == (1, 2)
+
+def test_even_odd_count_negative_zero():
+    assert even_odd_count(-0) == (1, 0)
 
 def test_even_odd_count_large_number():
     assert even_odd_count(1234567890) == (5, 5)
 
-def test_even_odd_count_negative_large_number():
+def test_even_odd_count_large_negative_number():
     assert even_odd_count(-9876543210) == (5, 5)
 
-def test_even_odd_count_with_leading_zeroes():
+def test_even_odd_count_with_leading_zeros():
     assert even_odd_count(102) == (2, 1)
 
-def test_even_odd_count_all_zeroes():
+def test_even_odd_count_all_zeros():
     assert even_odd_count(000) == (3, 0)
 
-def test_even_odd_count_negative_with_leading_zeroes():
-    assert even_odd_count(-102) == (2, 1)
+def test_even_odd_count_negative_with_leading_zeros():
+    assert even_odd_count(-001) == (0, 1)

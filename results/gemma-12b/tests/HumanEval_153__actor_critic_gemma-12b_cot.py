@@ -42,9 +42,9 @@ def Strongest_Extension(class_name, extensions):
         cap_count = 0
         sm_count = 0
         for char in extension:
-            if char.isupper():
+            if 'A' <= char <= 'Z':
                 cap_count += 1
-            elif char.islower():
+            elif 'a' <= char <= 'z':
                 sm_count += 1
         strength = cap_count - sm_count
         if strength > max_strength:
@@ -53,46 +53,58 @@ def Strongest_Extension(class_name, extensions):
     return class_name + "." + strongest_extension
 
 def test_strongest_extension_basic():
-    assert Strongest_Extension('Slices', ['SErviNGSliCes', 'Cheese', 'StuFfed']) == 'Slices.SErviNGSliCes'
+    assert Strongest_Extension("Slices", ['SErviNGSliCes', 'Cheese', 'StuFfed']) == "Slices.SErviNGSliCes"
 
 def test_strongest_extension_equal_strength():
-    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
+    assert Strongest_Extension("my_class", ['AA', 'Be', 'CC']) == "my_class.AA"
 
 def test_strongest_extension_empty_extensions():
-    assert Strongest_Extension('MyClass', []) == 'MyClass.'
+    assert Strongest_Extension("MyClass", []) == "MyClass."
 
 def test_strongest_extension_all_uppercase():
-    assert Strongest_Extension('Class', ['AAAA', 'BBB', 'CCCC']) == 'Class.AAAA'
+    assert Strongest_Extension("Class", ['AAAA', 'BBB', 'CCCC']) == "Class.AAAA"
 
 def test_strongest_extension_all_lowercase():
-    assert Strongest_Extension('Class', ['aaaa', 'bbbb', 'cccc']) == 'Class.aaaa'
+    assert Strongest_Extension("Class", ['aaaa', 'bbbb', 'cccc']) == "Class.aaaa"
 
 def test_strongest_extension_mixed_case():
-    assert Strongest_Extension('Class', ['aA', 'Bb', 'Cc']) == 'Class.aA'
+    assert Strongest_Extension("Class", ['aA', 'Bb', 'Cc']) == "Class.aA"
 
 def test_strongest_extension_numbers_and_symbols():
-    assert Strongest_Extension('Class', ['123', 'abc', '!@#']) == 'Class.123'
+    assert Strongest_Extension("Class", ['123', 'abc', '!@#']) == "Class.123"
 
 def test_strongest_extension_same_strength_first_wins():
-    assert Strongest_Extension('Class', ['AA', 'AA', 'BB']) == 'Class.AA'
+    assert Strongest_Extension("Class", ['AA', 'AA', 'BB']) == "Class.AA"
 
 def test_strongest_extension_class_name_with_underscore():
-    assert Strongest_Extension('my_class_name', ['AA', 'Be', 'CC']) == 'my_class_name.AA'
+    assert Strongest_Extension("my_class_name", ['AA', 'Be', 'CC']) == "my_class_name.AA"
 
 def test_strongest_extension_extension_with_numbers():
-    assert Strongest_Extension('Class', ['A123', 'b456', 'C789']) == 'Class.A123'
+    assert Strongest_Extension("Class", ['A123', 'b456', 'C789']) == "Class.A123"
 
 def test_strongest_extension_extension_with_symbols():
-    assert Strongest_Extension('Class', ['A!@#', 'b$%^', 'C&*()']) == 'Class.A!@#'
+    assert Strongest_Extension("Class", ['A!@#', 'b$%^', 'C&*()']) == "Class.A!@#"
 
 def test_strongest_extension_no_letters():
-    assert Strongest_Extension('Class', ['12345', '!!!', '####']) == 'Class.12345'
-
-def test_strongest_extension_empty_string():
-    assert Strongest_Extension('Class', ['', 'AA', 'BB']) == 'Class.AA'
+    assert Strongest_Extension("Class", ['12345', '!!!', '####']) == "Class.12345"
 
 def test_strongest_extension_negative_strength():
-    assert Strongest_Extension('Class', ['aaaa', 'bbbb', 'cccc']) == 'Class.aaaa'
+    assert Strongest_Extension("Class", ['AAAA', 'bBBB']) == "Class.bBBB"
 
-def test_strongest_extension_only_symbols():
-    assert Strongest_Extension('Class', ['!@#', 'abc', '123']) == 'Class.!@#'
+def test_strongest_extension_empty_class_name():
+    assert Strongest_Extension("", ['AA', 'Be', 'CC']) == ".AA"
+
+def test_strongest_extension_class_name_with_space():
+    assert Strongest_Extension("My Class", ['AA', 'Be', 'CC']) == "My Class.AA"
+
+def test_strongest_extension_class_name_with_hyphen():
+    assert Strongest_Extension("My-Class", ['AA', 'Be', 'CC']) == "My-Class.AA"
+
+def test_strongest_extension_unicode_extension():
+    assert Strongest_Extension("Class", ['你好', '世界']) == "Class.你好"
+
+def test_strongest_extension_strength_zero():
+    assert Strongest_Extension("Class", ['Aa', 'Bb', 'Cc']) == "Class.Aa"
+
+def test_strongest_extension_multiple_same_strength_later_wins():
+    assert Strongest_Extension("Class", ['BB', 'AA', 'AA']) == "Class.AA"

@@ -20,21 +20,5 @@ def Strongest_Extension(class_name, extensions):
 import pytest
 import math
 
-def Strongest_Extension(class_name, extensions):
-    """
-    This is a placeholder function.  It's assumed to be defined elsewhere.
-    It's purpose is to determine the "strongest" extension based on a given class name and list of extensions.
-    """
-    if class_name == 'Slices' and extensions == ['SErviNGSliCes', 'Cheese', 'StuFfed']:
-        return 'Slices.SErviNGSliCes'
-    elif class_name == 'my_class' and extensions == ['AA', 'Be', 'CC']:
-        return 'my_class.AA'
-    else:
-        return None  # Or some other default behavior
-
-
 def test_strongest_extension_tie():
     assert Strongest_Extension('Slices', ['SErviNGSliCes', 'Cheese', 'StuFfed']) == 'Slices.SErviNGSliCes'
-
-def test_strongest_extension_tie():
-    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'

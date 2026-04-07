@@ -37,10 +37,10 @@ def test_order_by_points_empty_list():
     assert order_by_points([]) == []
 
 def test_order_by_points_positive_numbers():
-    assert order_by_points([1, 11, 2, 3, 4]) == [1, 2, 3, 4, 11]
+    assert order_by_points([1, 11, 2, 22, 3]) == [1, 2, 3, 11, 22]
 
 def test_order_by_points_negative_numbers():
-    assert order_by_points([-1, -11, -2, -3, -4]) == [-1, -2, -3, -4, -11]
+    assert order_by_points([-1, -11, -2, -22, -3]) == [-1, -2, -3, -11, -22]
 
 def test_order_by_points_mixed_numbers():
     assert order_by_points([1, -1, 11, -11, 2, -2]) == [-1, -2, 1, -11, 2, 11]
@@ -52,10 +52,13 @@ def test_order_by_points_with_zero():
     assert order_by_points([0, 1, 11, -1, -11]) == [-1, -11, 0, 1, 11]
 
 def test_order_by_points_large_numbers():
-    assert order_by_points([123, 45, 6, 789, 1]) == [6, 45, 1, 123, 789]
+    assert order_by_points([123, 45, 6, 789, 1]) == [1, 6, 45, 123, 789]
 
-def test_order_by_points_negative_and_positive():
-    assert order_by_points([-12, 1, -1, 11, 2]) == [-1, -12, 1, 2, 11]
+def test_order_by_points_negative_large_numbers():
+    assert order_by_points([-123, -45, -6, -789, -1]) == [-1, -6, -45, -123, -789]
+
+def test_order_by_points_single_element():
+    assert order_by_points([5]) == [5]
 
 def test_order_by_points_all_same_sum():
     assert order_by_points([1, 10, 100]) == [1, 10, 100]

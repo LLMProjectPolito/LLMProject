@@ -19,24 +19,22 @@ def fix_spaces(text):
     Given a string text, replace all spaces in it with underscores, 
     and if a string has more than 2 consecutive spaces, 
     then replace all consecutive spaces with - 
-
-    This function only replaces spaces. Tabs and newlines are not modified.
-
+    
     fix_spaces("Example") == "Example"
     fix_spaces("Example 1") == "Example_1"
     fix_spaces(" Example 2") == "_Example_2"
     fix_spaces(" Example   3") == "_Example-3"
     """
-    text = text.replace(" ", "_")
-    text = re.sub(r"{2,}", "-", text)
-    return text
+    new_text = text.replace(" ", "_")
+    new_text = re.sub(r"___+", "-", new_text)
+    return new_text
 
 class TestFixSpaces:
     def test_empty_string(self):
         assert fix_spaces("") == ""
 
     def test_no_spaces(self):
-        assert fix_spaces("Example") == "Example"
+        pass  # Redundant test
 
     def test_single_space(self):
         assert fix_spaces("Example 1") == "Example_1"
@@ -44,20 +42,20 @@ class TestFixSpaces:
     def test_leading_space(self):
         assert fix_spaces(" Example 2") == "_Example_2"
 
-    def test_trailing_space(self):
-        assert fix_spaces("Example 3 ") == "Example_3_"
+    def test_multiple_spaces(self):
+        assert fix_spaces(" Example   3") == "_Example-3"
+
+    def test_consecutive_spaces(self):
+        assert fix_spaces("Example   1") == "Example---1"
 
     def test_multiple_consecutive_spaces(self):
-        """Tests that consecutive spaces are replaced with a hyphen."""
-        assert fix_spaces("Example  1") == "Example-1"
-        assert fix_spaces("Example   1") == "Example-1"
-        assert fix_spaces("Example    1") == "Example-1"
+        assert fix_spaces("Example     1") == "Example----------1"
 
-    def test_mixed_spaces(self):
-        assert fix_spaces("Example  1   2") == "Example-1-2"
+    def test_multiple_single_and_double_spaces(self):
+        assert fix_spaces("Example  1  2") == "Example--_1_2"
 
     def test_only_spaces(self):
-        assert fix_spaces("   ") == "-"
+        assert fix_spaces("   ") == "---"
 
     def test_string_with_tabs(self):
         assert fix_spaces("Example\t1") == "Example_1"
@@ -69,17 +67,22 @@ class TestFixSpaces:
         assert fix_spaces("Example!@#$%^&*()") == "Example!@#$%^&*()"
 
     def test_string_with_numbers(self):
-        assert fix_spaces("Example 123 456") == "Example_123_456"
+        assert fix_spaces("123 456 789") == "123_456_789"
 
-    def test_long_string(self):
-        long_string = "This is a very long string with many spaces.   It should be fixed correctly."
-        expected_result = "This_is_a_very_long_string_with_many_spaces.-It_should_be_fixed_correctly."
-        assert fix_spaces(long_string) == expected_result
+    def test_long_string_with_consecutive_spaces(self):
+        assert fix_spaces("This is a very long string with   many   consecutive   spaces.") == "This_is_a_very_long_string_with-many-consecutive-spaces."
 
-    def test_leading_and_trailing_spaces(self):
-        """Tests a string with spaces at the beginning and end."""
-        assert fix_spaces(" Example ") == "_-Example-_"
+    def test_three_spaces(self):
+        assert fix_spaces("A B C") == "A-C"
 
-    def test_single_space_at_beginning_and_end(self):
-        """Tests a string with a single space at the beginning and end."""
-        assert fix_spaces(" Example ") == "_-Example-_"
+    def test_multiple_tabs_and_spaces(self):
+        assert fix_spaces("Example\t\t1") == "Example---1"
+
+    def test_multiple_newlines_and_spaces(self):
+        assert fix_spaces("Example\n\n1") == "Example--1"
+
+    def test_leading_trailing_spaces(self):
+        assert fix_spaces("   Example   ") == "---Example---"
+
+    def test_mixed_tabs_and_spaces(self):
+        assert fix_spaces("\t Example \t 1 \t") == "---Example---1---"

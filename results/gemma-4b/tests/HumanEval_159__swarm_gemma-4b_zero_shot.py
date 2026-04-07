@@ -79,12 +79,3 @@ def test_example_3():
 
 def test_example_4():
     assert eat(2, 11, 5) == [7, 0]
-
-def test_all_resources_available():
-    assert eat(100, 500, 1000) == [600, 400]
-
-def test_no_need():
-    assert eat(5, 0, 10) == [5, 5]
-
-def test_no_remaining():
-    assert eat(0, 5, 0) == [5, 0]

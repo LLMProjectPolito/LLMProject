@@ -69,7 +69,7 @@ def eat(number, need, remaining):
     else:
         total_eaten += remaining
         remaining_carrots = 0
-        
+    
     return [total_eaten, remaining_carrots]
 
 class TestEat:
@@ -105,12 +105,3 @@ class TestEat:
 
     def test_edge_case_zero_all(self):
         assert eat(0, 0, 0) == [0, 0]
-
-    def test_number_at_max(self):
-        assert eat(1000, 5, 10) == [1005, 5]
-
-    def test_need_at_max(self):
-        assert eat(5, 1000, 10) == [1005, 0]
-
-    def test_remaining_at_max(self):
-        assert eat(5, 6, 1000) == [11, 994]

@@ -33,7 +33,7 @@ class TestStringtoMD5:
         assert string_to_md5("  ") == '9c6a94a9999999999999999999999999'
 
     def test_string_with_numbers(self):
-        assert string_to_md5("12345") == '5994471abb01112afec8279878dd78ac'
+        assert string_to_md5("12345") == '5994471abb01112afec8179848d3ed02'
 
     def test_string_with_special_characters(self):
         assert string_to_md5("!@#$%^&*()") == '94699999999999999999999999999999'
@@ -43,7 +43,7 @@ class TestStringtoMD5:
 
     def test_long_string(self):
         long_string = "This is a very long string to test the md5 hash function."
-        expected_md5 = 'd2a81399999999999999999999999999'
+        expected_md5 = 'd2a99a99999999999999999999999999'
         assert string_to_md5(long_string) == expected_md5
 
     def test_string_with_newlines(self):

@@ -117,7 +117,7 @@ class TestDoAlgebra:
 
     def test_invalid_operator(self):
         with pytest.raises(ValueError):
-            do_algebra(['%'], [5, 2])
+            do_algebra(['%'], [1, 2])
 
     def test_empty_operator_list(self):
         with pytest.raises(ValueError):
@@ -131,17 +131,15 @@ class TestDoAlgebra:
         with pytest.raises(ValueError):
             do_algebra(['+', '-'], [1, 2, 3])
 
+    def test_operand_length_mismatch(self):
+        with pytest.raises(ValueError):
+            do_algebra(['+'], [1])
+
     def test_large_numbers(self):
         assert do_algebra(['*'], [1000, 1000]) == 1000000
 
     def test_mixed_operations(self):
-        assert do_algebra(['+', '*', '-', '//'], [10, 2, 3, 6, 2]) == 11
-
-    def test_exponentiation_with_zero(self):
-        assert do_algebra(['**'], [0, 5]) == 0
-
-    def test_exponentiation_with_one(self):
-        assert do_algebra(['**'], [5, 0]) == 1
+        assert do_algebra(['+', '*', '-', '//'], [10, 2, 3, 4, 2]) == 11
 
     def test_do_algebra_basic(self):
         assert do_algebra(['+', '*', '-'], [2, 3, 4, 5]) == 9
@@ -183,10 +181,9 @@ class TestDoAlgebra:
     def test_do_algebra_large_numbers(self):
         assert do_algebra(['*'], [1000, 1000]) == 1000000
 
-    def test_do_algebra_with_zero(self):
-        assert do_algebra(['+', '*'], [0, 5, 2]) == 10
-        assert do_algebra(['-', '*'], [10, 0, 2]) == 10
-        assert do_algebra(['*'], [0, 5]) == 0
+    def test_do_algebra_mixed_operations(self):
+        assert do_algebra(['+', '*', '-', '//'], [1, 2, 3, 4, 2]) == 1
+        assert do_algebra(['**', '+', '*'], [2, 3, 4, 5]) == 89
 
 class TestPalindrome:
     def test_palindrome_basic(self):

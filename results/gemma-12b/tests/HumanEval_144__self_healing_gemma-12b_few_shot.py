@@ -39,15 +39,15 @@ class TestSimplify:
         assert simplify("1/1", "1/1") == True
         assert simplify("3/3", "2/2") == True
         assert simplify("4/4", "1/1") == True
-        assert simplify("1/2", "2/1") == True
         assert simplify("1/3", "3/1") == True
         assert simplify("1/4", "4/1") == True
-        assert simplify("1/5", "5/1") == True
         assert simplify("1/6", "6/1") == True
         assert simplify("1/7", "7/1") == True
         assert simplify("1/8", "8/1") == True
         assert simplify("1/9", "9/1") == True
         assert simplify("1/10", "10/1") == True
+        assert simplify("1/11", "11/1") == True
+        assert simplify("1/12", "12/1") == True
 
     def test_simplify_false(self):
         assert simplify("1/6", "2/1") == False
@@ -61,26 +61,16 @@ class TestSimplify:
         assert simplify("1/8", "3/1") == False
         assert simplify("1/9", "2/1") == False
         assert simplify("1/10", "3/1") == False
+        assert simplify("1/11", "2/1") == False
+        assert simplify("1/12", "3/1") == False
         assert simplify("2/3", "1/2") == False
-        assert simplify("3/4", "1/2") == False
-        assert simplify("4/5", "1/2") == False
-        assert simplify("5/6", "1/2") == False
-        assert simplify("6/7", "1/2") == False
-        assert simplify("7/8", "1/2") == False
-        assert simplify("8/9", "1/2") == False
-        assert simplify("9/10", "1/2") == False
-        assert simplify("1/2", "1/3") == False
-        assert simplify("1/3", "1/4") == False
-        assert simplify("1/4", "1/5") == False
-        assert simplify("1/5", "1/6") == False
-        assert simplify("1/6", "1/7") == False
-        assert simplify("1/7", "1/8") == False
-        assert simplify("1/8", "1/9") == False
-        assert simplify("1/9", "1/10") == False
+        assert simplify("3/4", "1/3") == False
+        assert simplify("5/6", "1/5") == False
 
-    def test_edge_cases(self):
+    def test_simplify_edge_cases(self):
         assert simplify("1/1", "2/2") == True
         assert simplify("2/2", "1/1") == True
+        assert simplify("1/1", "1/1") == True
         assert simplify("100/1", "1/100") == False
         assert simplify("100/1", "100/1") == True
         assert simplify("1/100", "100/1") == False

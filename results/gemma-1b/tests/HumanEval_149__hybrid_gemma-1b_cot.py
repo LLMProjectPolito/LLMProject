@@ -16,10 +16,5 @@ def sorted_list_sum(lst):
     """
 
 def list_sort(lst):
-    """Sorts a list of strings based on word length, ascending by length, and alphabetically for duplicates."""
+    """Sorts a list of strings based on length, then alphabetically."""
     return sorted(lst, key=lambda x: (len(x), x))
-
-def list_sort(lst):
-    """Sorts a list of strings based on length, with duplicates handled."""
-    unique_strings = sorted(list(set(lst)))
-    return unique_strings

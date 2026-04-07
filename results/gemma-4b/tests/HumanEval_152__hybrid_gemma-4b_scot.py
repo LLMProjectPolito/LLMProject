@@ -40,38 +40,48 @@ def compare(game,guess):
 ### SCoT Steps:
 
 # STEP 1: REASONING
-# The function `compare` takes two lists, `game` and `guess`, as input. It calculates the absolute difference between each corresponding element in the two lists and returns a new list containing these differences. If the guess is correct for a particular match, the difference should be 0.
-# We need to test various scenarios including:
-# 1. Correct guesses: All guesses are correct.
-# 2. Mixed correct and incorrect guesses: Some guesses are correct, some are incorrect.
-# 3. All incorrect guesses: All guesses are incorrect.
-# 4. Empty lists: Handle the case where either or both input lists are empty. (Although the problem description doesn't explicitly state this, it's good practice to consider edge cases).
-# 5. Lists of different lengths:  The problem description states that the lists are of equal length, but it's good to test this assumption.
+# The function `compare` takes two lists, `game` and `guess`, as input. It calculates the absolute difference between each element in `guess` and the corresponding element in `game`. It returns a new list containing these absolute differences.
+# The function should handle cases where the guess is correct (difference is 0) and where the guess is incorrect (difference is the absolute value of the difference).
+# Edge cases to consider: empty lists, lists of different lengths (although the problem states they are equal length, it's good to consider).
 
 # STEP 2: PLAN
-# Test functions:
-# - test_correct_guesses: Tests the case where all guesses are correct.
-# - test_mixed_guesses: Tests the case where some guesses are correct and some are incorrect.
-# - test_all_incorrect_guesses: Tests the case where all guesses are incorrect.
-# - test_empty_lists: Tests the case where both lists are empty.
-# - test_unequal_lengths: Tests the case where the lists have different lengths (should raise an error).
+# Test cases:
+# 1. Correct guesses: [1, 2, 3, 4, 5, 1] vs [1, 2, 3, 4, 2, -2]
+# 2. Mixed correct and incorrect guesses: [0, 5, 0, 0, 0, 4] vs [4, 1, 1, 0, 0, -2]
+# 3. All incorrect guesses: [1, 2, 3, 4, 5, 1] vs [5, 6, 7, 8, 9, 10]
+# 4. Empty lists: [] vs []
+# 5. Single element lists: [1] vs [1]
+# 6. Single element correct guess: [1] vs [1]
+# 7. Single element incorrect guess: [1] vs [2]
+
+# Test function names:
+# test_correct_guesses
+# test_mixed_guesses
+# test_all_incorrect_guesses
+# test_empty_lists
+# test_single_element_lists
+# test_single_element_correct_guess
+# test_single_element_incorrect_guess
+
 
 # STEP 3: CODE
-#
 def test_correct_guesses():
     assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
-    assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
 
 def test_mixed_guesses():
-    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
     assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
 
 def test_all_incorrect_guesses():
-    assert compare([1, 2, 3, 4, 5, 1], [5, 6, 7, 8, 9, 10]) == [4, 4, 4, 4, 4, 9]
+    assert compare([1, 2, 3, 4, 5, 1], [5, 6, 7, 8, 9, 10]) == [4, 4, 4, 4, 4, 4]
 
 def test_empty_lists():
     assert compare([], []) == []
 
-def test_unequal_lengths():
-    with pytest.raises(IndexError):
-        compare([1, 2, 3], [1, 2])
+def test_single_element_lists():
+    assert compare([1], [1]) == [0]
+
+def test_single_element_correct_guess():
+    assert compare([1], [1]) == [0]
+
+def test_single_element_incorrect_guess():
+    assert compare([1], [2]) == [1]

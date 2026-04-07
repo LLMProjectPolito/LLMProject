@@ -75,9 +75,11 @@ def is_prime(n):
 # 7. Sentence with a prime length word at the beginning: "7 abc"
 # 8. Sentence with a prime length word at the end: "abc 7"
 # 9. Sentence with multiple prime length words in a row: "abc def ghi"
-# 10. Sentence with a mix of prime and non-prime length words: "abc def ghi jkl"
+# 10. Sentence with a prime length word and a non-prime length word: "abc def"
 
 ### STEP 3: CODE
+import pytest
+
 def test_empty_sentence():
     assert words_in_sentence("") == ""
 
@@ -105,11 +107,8 @@ def test_prime_word_at_end():
 def test_multiple_prime_words_in_a_row():
     assert words_in_sentence("abc def ghi") == "abc def"
 
-def test_mix_prime_and_non_prime_words():
-    assert words_in_sentence("abc def ghi jkl") == "abc def ghi"
-
-def test_prime_length_word_with_spaces():
-    assert words_in_sentence("  abc  def  ") == "abc"
+def test_prime_and_non_prime_words():
+    assert words_in_sentence("abc def") == "abc"
 
 def test_is_prime_2():
     assert is_prime(2) == True
@@ -123,9 +122,6 @@ def test_is_prime_4():
 def test_is_prime_5():
     assert is_prime(5) == True
 
-def test_is_prime_6():
-    assert is_prime(6) == False
-
 def test_is_prime_7():
     assert is_prime(7) == True
 
@@ -134,3 +130,15 @@ def test_is_prime_11():
 
 def test_is_prime_13():
     assert is_prime(13) == True
+
+def test_is_prime_17():
+    assert is_prime(17) == True
+
+def test_is_prime_19():
+    assert is_prime(19) == True
+
+def test_is_prime_1():
+    assert is_prime(1) == False
+
+def test_is_prime_0():
+    assert is_prime(0) == False

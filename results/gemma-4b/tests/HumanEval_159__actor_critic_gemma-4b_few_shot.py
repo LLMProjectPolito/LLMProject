@@ -66,27 +66,28 @@ import pytest
 
 def test_eat_basic():
     assert eat(5, 6, 10) == [11, 4]
-
-def test_eat_not_enough():
     assert eat(4, 8, 9) == [12, 1]
-
-def test_eat_all_gone():
     assert eat(1, 10, 10) == [11, 0]
-
-def test_eat_last_few():
     assert eat(2, 11, 5) == [7, 0]
+
+def test_eat_enough_carrots():
+    assert eat(0, 5, 10) == [5, 5]
+    assert eat(10, 5, 10) == [15, 0]
+
+def test_eat_not_enough_carrots():
+    assert eat(5, 10, 5) == [15, 0]
+    assert eat(10, 10, 5) == [20, 0]
 
 def test_eat_zero_need():
     assert eat(5, 0, 10) == [5, 5]
+    assert eat(0, 0, 10) == [0, 10]
 
 def test_eat_zero_remaining():
-    assert eat(5, 6, 0) == [11, -11]
+    assert eat(5, 6, 0) == [11, 0]
+    assert eat(0, 6, 0) == [6, 0]
 
-def test_eat_zero_number():
-    assert eat(0, 6, 10) == [6, 4]
-
-def test_eat_large_numbers():
-    assert eat(999, 999, 999) == [1998, -999]
-
-def test_eat_negative_remaining():
-    assert eat(1, 1, -1) == [2, -3]
+def test_eat_edge_cases():
+    assert eat(0, 0, 0) == [0, 0]
+    assert eat(1000, 1000, 1000) == [2000, 0]
+    assert eat(1000, 0, 1000) == [1000, 0]
+    assert eat(0, 1000, 1000) == [1000, 0]

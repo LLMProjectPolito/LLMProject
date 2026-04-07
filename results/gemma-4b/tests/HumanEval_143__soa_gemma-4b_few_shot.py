@@ -42,14 +42,6 @@ def words_in_sentence(sentence):
         * 1 <= len(sentence) <= 100
         * sentence contains only letters
     """
-    def is_prime(n):
-        if n < 2:
-            return False
-        for i in range(2, int(n**0.5) + 1):
-            if n % i == 0:
-                return False
-        return True
-
     words = sentence.split()
     result = []
     for word in words:
@@ -57,6 +49,13 @@ def words_in_sentence(sentence):
             result.append(word)
     return " ".join(result)
 
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
 
 def test_empty_sentence():
     assert words_in_sentence("") == ""
@@ -82,26 +81,29 @@ def test_sentence_with_leading_and_trailing_spaces():
 def test_sentence_with_multiple_spaces_between_words():
     assert words_in_sentence("This   is  a    test") == "is"
 
-def test_sentence_with_only_prime_length_words():
-    assert words_in_sentence("a b c d") == "a b c"
+def test_sentence_with_only_prime_words():
+    assert words_in_sentence("abc def ghi") == "abc def"
 
-def test_sentence_with_only_non_prime_length_words():
-    assert words_in_sentence("abcde fghij klmno") == ""
+def test_sentence_with_only_non_prime_words():
+    assert words_in_sentence("abcd efgh ijkl") == ""
 
 def test_sentence_with_mixed_prime_and_non_prime_words():
-    assert words_in_sentence("This is a test sentence") == "is a"
+    assert words_in_sentence("This is a test abc def") == "is a"
 
 def test_sentence_with_long_words():
     assert words_in_sentence("This is a verylongword") == "is a"
 
 def test_sentence_with_short_words():
-    assert words_in_sentence("a b c d e f") == "a b c d e"
+    assert words_in_sentence("a b c d e") == "a b c"
 
 def test_sentence_with_prime_length_words_at_the_end():
-    assert words_in_sentence("This is a test sentence prime") == "is a"
+    assert words_in_sentence("This is a test abc") == "is a"
 
 def test_sentence_with_non_prime_length_words_at_the_end():
-    assert words_in_sentence("This is a test sentence nonprime") == "is a"
+    assert words_in_sentence("This is a test def") == "is a"
 
-def test_sentence_with_prime_length_words_and_non_prime_length_words():
-    assert words_in_sentence("This is a test sentence prime nonprime") == "is a"
+def test_sentence_with_prime_length_words_at_the_beginning():
+    assert words_in_sentence("abc This is a test") == "abc"
+
+def test_sentence_with_non_prime_length_words_at_the_beginning():
+    assert words_in_sentence("abcd This is a test") == "This is a"

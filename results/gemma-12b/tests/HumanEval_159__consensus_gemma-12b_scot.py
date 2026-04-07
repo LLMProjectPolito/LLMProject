@@ -67,8 +67,8 @@ def test_eat_edge_case_number_equal_need():
 def test_eat_edge_case_number_equal_remaining():
     assert eat(5, 6, 5) == [10, 0]
 
-def test_eat_all_remaining_carrots_2():
-    assert eat(10, 20, 5) == [15, 0]
+def test_eat_edge_case_need_equal_remaining():
+    assert eat(5, 5, 5) == [10, 0]
 
-def test_eat_zero_need_zero_remaining():
-    assert eat(5, 0, 0) == [5, 0]
+def test_eat_zero_values():
+    assert eat(0, 0, 0) == [0, 0]

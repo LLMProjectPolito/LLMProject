@@ -81,19 +81,22 @@ def test_eat_example_4():
     assert eat(2, 11, 5) == [7, 0]
 
 def test_eat_empty():
-    assert eat(5, 0, 10) == [11, 0]
+    assert eat(0, 5, 10) == [0, 0]
 
 def test_eat_large_number():
     assert eat(1000, 5, 5) == [105, 0]
 
-def test_eat_large_need():
-    assert eat(5, 1000, 5) == [105, 0]
+def test_eat_need_zero():
+    assert eat(5, 0, 10) == [11, 0]
 
-def test_eat_large_remaining():
-    assert eat(5, 1000, 1000) == [105, 0]
+def test_eat_remaining_zero():
+    assert eat(5, 6, 0) == [11, 0]
 
-def test_eat_sufficient_carrots():
-    assert eat(10, 5, 5) == [15, 0]
+def test_eat_large_number_2():
+    assert eat(1000, 5, 5) == [105, 0]
 
-def test_eat_not_sufficient_carrots():
-    assert eat(5, 10, 10) == [11, 0]
+def test_eat_need_large():
+    assert eat(5, 10, 5) == [11, 0]
+
+def test_eat_remaining_large():
+    assert eat(5, 10, 15) == [11, 0]

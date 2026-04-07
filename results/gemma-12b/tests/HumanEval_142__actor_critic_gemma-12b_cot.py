@@ -30,7 +30,7 @@ def sum_squares(lst):
     for i in range(len(lst)):
         if i % 3 == 0:
             sum += lst[i]**2
-        elif i % 4 == 0:
+        elif i % 4 == 0 and i % 3 != 0:
             sum += lst[i]**3
         else:
             sum += lst[i]
@@ -46,17 +46,26 @@ class TestSumSquares:
     def test_negative_numbers(self):
         assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
-    def test_mixed_numbers(self):
-        assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 175
+    def test_mixed_positive_negative(self):
+        assert sum_squares([1, -2, 3, -4, 5]) == 15
 
-    def test_multiples_of_3_and_4(self):
-        assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 12]) == 216
+    def test_multiples_of_3(self):
+        assert sum_squares([3, 6, 9, 1, 2]) == 129
+
+    def test_multiples_of_4(self):
+        assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 193
+
+    def test_multiples_of_both_3_and_4(self):
+        assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1982
 
     def test_large_numbers(self):
-        assert sum_squares([10, 20, 30, 40]) == 3000
+        assert sum_squares([100, 200, 300]) == 8090000
 
     def test_zeroes(self):
-        assert sum_squares([0, 0, 0, 0]) == 0
+        assert sum_squares([0, 0, 0, 0, 0]) == 0
+
+    def test_single_element(self):
+        assert sum_squares([5]) == 5
 
     def test_single_element_multiple_of_3(self):
         assert sum_squares([3]) == 9
@@ -64,20 +73,27 @@ class TestSumSquares:
     def test_single_element_multiple_of_4(self):
         assert sum_squares([4]) == 64
 
-    def test_single_element_neither_multiple(self):
-        assert sum_squares([5]) == 5
+    def test_non_integer_input(self):
+        with pytest.raises(TypeError) as excinfo:
+            sum_squares([1, 2, "a"])
+            assert "Input list must contain only integers." in str(excinfo.value)
 
-    def test_single_zero_multiple_of_3(self):
-        assert sum_squares([0]) == 0
+    def test_mixed_data_types(self):
+        with pytest.raises(TypeError) as excinfo:
+            sum_squares([1, 2, 3.14, "a"])
+            assert "Input list must contain only integers." in str(excinfo.value)
 
-    def test_single_zero_multiple_of_4(self):
-        assert sum_squares([0]) == 0
+    def test_negative_multiples(self):
+        assert sum_squares([-3, -4, 1]) == 1
 
-    def test_index_zero_multiple_of_3(self):
-        assert sum_squares([5, 2, 3]) == 16
-
-    def test_index_zero_multiple_of_4(self):
-        assert sum_squares([5, 2, 3, 4]) == 72
-
-    def test_length_3(self):
-        assert sum_squares([1, 2, 3]) == 6
+    def test_large_list(self):
+        large_list = list(range(1, 101))
+        expected_sum = 0
+        for i in range(len(large_list)):
+            if i % 3 == 0:
+                expected_sum += large_list[i]**2
+            elif i % 4 == 0 and i % 3 != 0:
+                expected_sum += large_list[i]**3
+            else:
+                expected_sum += large_list[i]
+        assert sum_squares(large_list) == expected_sum

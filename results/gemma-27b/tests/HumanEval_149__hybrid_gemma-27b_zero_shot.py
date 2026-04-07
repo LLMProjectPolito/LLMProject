@@ -41,7 +41,7 @@ class TestSortedListSum:
         assert sorted_list_sum([]) == []
 
     def test_all_odd_lengths(self):
-        assert sorted_list_sum(["a", "aaa", "abcde"]) == []
+        assert sorted_list_sum(["a", "aaa", "abc"]) == []
 
     def test_all_even_lengths(self):
         assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
@@ -56,48 +56,46 @@ class TestSortedListSum:
         assert sorted_list_sum(["ab", "ac", "aa"]) == ["aa", "ab", "ac"]
 
     def test_longer_strings(self):
-        assert sorted_list_sum(["abcdef", "abc", "abcd", "abcde"]) == ["abcd"]
+        assert sorted_list_sum(["abcd", "abc", "ab", "a"]) == ["ab", "abcd"]
+
+    def test_longer_strings_with_duplicates(self):
+        assert sorted_list_sum(["abcd", "abc", "ab", "a", "abcd"]) == ["ab", "abcd", "abcd"]
+
+    def test_edge_case_empty_string(self):
+        assert sorted_list_sum(["", "a", "aa"]) == ["aa"]
+
+    def test_edge_case_empty_string_and_even(self):
+        assert sorted_list_sum(["", "aa", "bb"]) == ["", "aa", "bb"]
 
     def test_complex_case(self):
         assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape"]) == ["kiwi", "grape"]
 
-    def test_case_sensitivity(self):
-        assert sorted_list_sum(["AA", "aa", "Bb", "bb"]) == ["AA", "aa", "Bb", "bb"]
+    def test_complex_case_with_duplicates(self):
+        assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape", "kiwi"]) == ["kiwi", "kiwi", "grape"]
+
+    def test_all_same_even_length_alphabetical(self):
+        assert sorted_list_sum(["cb", "ba", "ac"]) == ["ac", "ba", "cb"]
 
     def test_numbers_as_strings(self):
-        assert sorted_list_sum(["12", "1", "123", "1234"]) == ["12", "1234"]
+        assert sorted_list_sum(["12", "1", "123", "124"]) == ["12", "124"]
 
-    def test_special_characters(self):
-        assert sorted_list_sum(["!@#$", "abc", "!@"]) == ["!@#$"]
+    def test_example_1(self):
+        assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
 
-    def test_empty_string(self):
-        assert sorted_list_sum(["", "a", "aa"]) == ["aa"]
+    def test_example_2(self):
+        assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
-    def test_only_empty_string(self):
-        assert sorted_list_sum([""]) == []
-
-    def test_multiple_empty_strings(self):
-        assert sorted_list_sum(["", "", "aa", "bb"]) == ["aa", "bb"]
-
-    def test_long_list(self):
-        long_list = [str(i) for i in range(100)]
-        expected_result = [s for s in long_list if len(s) % 2 == 0]
-        expected_result.sort(key=lambda s: (len(s), s))
-        assert sorted_list_sum(long_list) == expected_result
+    def test_longer_strings(self):
+        assert sorted_list_sum(["abcdef", "abc", "defgh", "a"]) == ["abcdef", "defgh"]
 
     def test_strings_with_spaces(self):
-        assert sorted_list_sum(["aa bb", "a", "aaa", "bb cc"]) == ["aa bb", "bb cc"]
+        assert sorted_list_sum(["aa bb", "a", "ccc dd"]) == ["aa bb"]
 
     def test_strings_with_special_characters(self):
-        assert sorted_list_sum(["a!", "aa", "aaa", "bb@"]) == ["aa", "bb@"]
+        assert sorted_list_sum(["a!", "bb@", "c#d"]) == ["bb@"]
 
     def test_large_list(self):
-        large_list = ["a" * i for i in range(1, 21)]
-        expected_result = ["a" * i for i in range(2, 21, 2)]
+        large_list = [str(i) * (i % 2 + 1) for i in range(100)]
+        expected_result = [s for s in large_list if len(s) % 2 == 0]
+        expected_result.sort(key=lambda s: (len(s), s))
         assert sorted_list_sum(large_list) == expected_result
-
-    def test_list_with_empty_string(self):
-        assert sorted_list_sum(["", "a", "aa"]) == ["aa"]
-
-    def test_list_with_only_empty_string(self):
-        assert sorted_list_sum([""]) == []

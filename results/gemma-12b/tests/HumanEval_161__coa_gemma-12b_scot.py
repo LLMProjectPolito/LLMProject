@@ -39,8 +39,8 @@ def test_type_scenario_mixed_letters_and_symbols():
 def test_solve_with_no_letters():
     assert solve("1234") == "4321"
 
-def test_solve_with_all_letters_lower():
+def test_solve_with_all_letters():
     assert solve("ab") == "AB"
 
-def test_solve_with_mixed_letters_and_symbols():
+def test_solve_with_mixed_characters():
     assert solve("#a@C") == "#A@c"

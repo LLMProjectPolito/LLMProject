@@ -45,4 +45,3 @@ def test_words_in_sentence():
     assert words_in_sentence("") == ""
 
 Final Suite:
-    pass

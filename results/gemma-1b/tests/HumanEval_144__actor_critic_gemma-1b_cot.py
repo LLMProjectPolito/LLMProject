@@ -28,8 +28,8 @@ def simplify(x, n):
         x_val = str(x)
         n_val = str(n)
         
-        num_val = int(x_val.replace('/',''))
-        den_val = int(n_val.replace('/',''))
+        num_val = int(x_val.replace("/", ""))
+        den_val = int(n_val.replace("/", ""))
         
         if den_val == 0:
             return False

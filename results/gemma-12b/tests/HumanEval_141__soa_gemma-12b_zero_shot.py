@@ -59,8 +59,8 @@ def test_invalid_file_name_empty_string():
 
 def test_invalid_file_name_extension_case():
     assert file_name_check("example.tXt") == "No"
-    assert file_name_check("example.eXe") == "No"
-    assert file_name_check("example.dLl") == "No"
+    assert file_name_check("document.dLL") == "No"
+    assert file_name_check("image.ExE") == "No"
 
 def test_file_name_with_spaces():
     assert file_name_check("example .txt") == "No"
@@ -68,6 +68,6 @@ def test_file_name_with_spaces():
     assert file_name_check(" example.txt") == "No"
 
 def test_file_name_with_special_characters():
+    assert file_name_check("example!.txt") == "No"
     assert file_name_check("example@.txt") == "No"
     assert file_name_check("example#.txt") == "No"
-    assert file_name_check("example$.txt") == "No"

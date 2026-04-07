@@ -29,13 +29,13 @@ def test_mixed_case_letters():
     assert solve("aB") == "Ab"
 
 def test_mixed_letters_and_numbers():
-    assert solve("a1B2") == "A1b2"
+    assert solve("a1b2") == "A1B2"
 
 def test_special_characters_and_letters():
     assert solve("#a@C") == "#A@c"
 
 def test_string_with_spaces():
-    assert solve("a b C") == "A b c"
+    assert solve("a b c") == "A b C"
 
 def test_string_with_only_special_characters():
     assert solve("!@#$%^") == "!@#$%^"
@@ -50,7 +50,7 @@ def test_string_with_numbers_and_special_chars():
     assert solve("123!@#") == "!@#321"
 
 def test_string_with_letters_numbers_and_special_chars():
-    assert solve("a1B!c2@") == "A1b!C2@"
+    assert solve("a1b!2c@") == "A1B!2C@"
 
 def test_string_with_leading_and_trailing_spaces():
-    assert solve("  aB  ") == "  Ab  "
+    assert solve("  ab  ") == "  AB  "

@@ -22,8 +22,8 @@ def generate_integers(a, b):
     """
     if a > b:
         a, b = b, a
-    even_digits = []
+    result = []
     for i in range(a, b + 1):
         if i % 2 == 0 and i < 10:
-            even_digits.append(i)
-    return sorted(list(set(even_digits)))
+            result.append(i)
+    return result

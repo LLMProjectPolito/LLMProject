@@ -31,13 +31,13 @@ def test_mixed_lengths():
     assert sorted_list_sum(["aa", "a", "aaa", "bb", "b", "cc"]) == ["aa", "bb", "cc"]
 
 def test_mixed_lengths_with_duplicates():
-    assert sorted_list_sum(["aa", "a", "aaa", "bb", "b", "cc", "aa"]) == ["aa", "aa", "bb", "cc"]
+    assert sorted_list_sum(["aa", "a", "aaa", "bb", "a", "cc", "aa"]) == ["aa", "aa", "bb", "cc"]
 
 def test_same_length_different_alphabetical():
     assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
 
-def test_same_length_same_alphabetical():
-    assert sorted_list_sum(["ab", "ac", "ad"]) == ["ab", "ac", "ad"]
+def test_same_length_with_duplicates():
+    assert sorted_list_sum(["ab", "cd", "ab", "ef", "cd"]) == ["ab", "ab", "cd", "cd", "ef"]
 
 def test_complex_case():
     assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape"]) == ["kiwi", "grape"]
@@ -45,23 +45,23 @@ def test_complex_case():
 def test_case_with_empty_string():
     assert sorted_list_sum(["", "a", "aa"]) == ["", "aa"]
 
-def test_case_with_duplicates_and_same_length():
-    assert sorted_list_sum(["aa", "aa", "bb", "cc", "cc"]) == ["aa", "aa", "bb", "cc", "cc"]
+def test_case_with_only_empty_string():
+    assert sorted_list_sum(["", "", ""]) == ["", "", ""]
 
-def test_long_strings():
+def test_case_with_long_strings():
     assert sorted_list_sum(["abcdefgh", "abcdefg", "abcdef"]) == ["abcdef", "abcdefg"]
 
-def test_strings_with_spaces():
-    assert sorted_list_sum(["a b", "a", "aa"]) == ["a", "aa"]
+def test_case_with_special_characters():
+    assert sorted_list_sum(["a!", "a?", "aa"]) == ["aa"]
 
-def test_strings_with_special_characters():
-    assert sorted_list_sum(["!@#", "a", "!!"]) == ["!@#"]
+def test_case_with_numbers_as_strings():
+    assert sorted_list_sum(["12", "1", "123"]) == ["12", "123"]
 
-def test_all_same_length_and_same_value():
-    assert sorted_list_sum(["abc", "abc", "abc"]) == ["abc", "abc", "abc"]
+def test_case_with_mixed_characters():
+    assert sorted_list_sum(["a1", "a", "a2"]) == ["a1", "a2"]
 
-def test_large_list():
-    large_list = ["a" * i for i in range(1, 21)]
-    expected = [s for s in large_list if len(s) % 2 == 0]
-    expected.sort(key=lambda x: len(x))
-    assert sorted_list_sum(large_list) == expected
+def test_case_with_unicode_characters():
+    assert sorted_list_sum(["你好", "你", "你好世界"]) == ["你好"]
+
+def test_case_with_different_lengths_and_unicode():
+    assert sorted_list_sum(["你好", "你", "你好世界", "a", "aa"]) == ["aa", "你好"]

@@ -36,23 +36,15 @@ def special_factorial(n):
         result *= factorial
     return result
 
-def test_special_factorial_positive_small():
+def test_special_factorial():
     assert special_factorial(1) == 1
     assert special_factorial(2) == 2
     assert special_factorial(3) == 6
     assert special_factorial(4) == 288
-
-def test_special_factorial_positive_larger():
     assert special_factorial(5) == 34560
-    assert special_factorial(6) == 41739760
-    assert special_factorial(7) == 5760933600
-
-def test_special_factorial_zero():
+    assert special_factorial(6) == 4177926400
     assert special_factorial(0) == 1
-
-def test_special_factorial_negative():
     assert special_factorial(-1) == 1
     assert special_factorial(-5) == 1
-
-def test_special_factorial_large_input():
-    assert special_factorial(10) == 3628800 * 3628800 * 3628800 * 3628800 * 3628800 * 3628800 * 3628800 * 3628800 * 3628800 * 3628800
+    assert special_factorial(10) == 3628800
+    assert special_factorial(15) == 1307674368000

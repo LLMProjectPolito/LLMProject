@@ -16,21 +16,20 @@ import pytest
 from your_module import special_factorial  # Replace your_module
 
 def test_positive_integers():
-    """Tests for positive integer inputs."""
     assert special_factorial(1) == 1
     assert special_factorial(2) == 2
     assert special_factorial(3) == 12
     assert special_factorial(4) == 288
     assert special_factorial(5) == 34560
     assert special_factorial(6) == 46656000
+
+def test_large_integers():
     assert special_factorial(7) == 6810804032000
 
-def test_edge_cases():
-    """Tests for edge case inputs (e.g., 1)."""
+def test_edge_case_one():
     assert special_factorial(1) == 1
 
-def test_type_errors():
-    """Tests for invalid input types."""
+def test_type_error():
     with pytest.raises(TypeError):
         special_factorial("a")
     with pytest.raises(TypeError):
@@ -40,14 +39,24 @@ def test_type_errors():
     with pytest.raises(TypeError):
         special_factorial({"a": 1})
 
-def test_negative_integers():
-    """Tests for negative integer inputs."""
+def test_value_error():
+    with pytest.raises(ValueError):
+        special_factorial(0)
     with pytest.raises(ValueError):
         special_factorial(-1)
     with pytest.raises(ValueError):
         special_factorial(-5)
 
-def test_zero():
-    """Tests for zero input."""
-    with pytest.raises(ValueError):
-        special_factorial(0)
+def test_factorial_calculation():
+    # Test the factorial calculation logic directly
+    def factorial(n):
+        if n == 0:
+            return 1
+        else:
+            return n * factorial(n-1)
+
+    for n in range(1, 6):
+        expected_result = 1
+        for i in range(1, n + 1):
+            expected_result *= factorial(i)
+        assert special_factorial(n) == expected_result

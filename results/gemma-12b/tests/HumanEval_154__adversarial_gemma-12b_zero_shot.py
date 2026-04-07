@@ -29,87 +29,87 @@ def sample_strings():
         "himenss": "simen",
         "abcde": "cdea",
         "rotation": "tationr",
-        "longstring": "stringlo",
-        "short": "sh",
+        "teststring": "stringte",
+        "longstring123": "string123long",
         "identical": "identical",
         "empty": "",
-        "singlechar": "a",
-        "singlechar2": "b",
-        "aabaa": "abaa",
-        "aaaaa": "aaaa",
-        "test1": "est1",
-        "test2": "est2",
-        "test3": "est3"
+        "a": "a",
+        "aa": "aa",
+        "aaa": "aaa",
+        "aaaa": "aaaa",
+        "aaaaa": "aaaaa",
+        "aaaaaa": "aaaaaa",
+        "aaaaaaa": "aaaaaaa",
+        "aaaaaaab": "aaaaaaab",
+        "aaaaaab": "aaaaaab",
+        "abcabc": "bcabca",
+        "abcabcabc": "bcabcabca"
     }
 
-def test_cycpattern_check_positive(sample_strings):
-    """Tests positive cases where a rotation is a substring."""
-    for a, b in sample_strings.items():
-        if a == "abcd" and b == "abd":
-            assert not cycpattern_check(a, b)
-        elif a == "hello" and b == "ell":
-            assert cycpattern_check(a, b)
-        elif a == "whassup" and b == "psus":
-            assert not cycpattern_check(a, b)
-        elif a == "abab" and b == "baa":
-            assert cycpattern_check(a, b)
-        elif a == "efef" and b == "eeff":
-            assert not cycpattern_check(a, b)
-        elif a == "himenss" and b == "simen":
-            assert cycpattern_check(a, b)
-        elif a == "abcde" and b == "cdea":
-            assert cycpattern_check(a, b)
-        elif a == "rotation" and b == "tationr":
-            assert cycpattern_check(a, b)
-        elif a == "longstring" and b == "stringlo":
-            assert cycpattern_check(a, b)
-        elif a == "aabaa" and b == "abaa":
-            assert cycpattern_check(a, b)
-        elif a == "aaaaa" and b == "aaaa":
-            assert cycpattern_check(a, b)
-        elif a == "test1" and b == "est1":
-            assert cycpattern_check(a, b)
-        elif a == "test2" and b == "est2":
-            assert cycpattern_check(a, b)
-        elif a == "test3" and b == "est3":
-            assert cycpattern_check(a, b)
-        else:
-            assert cycpattern_check(a, b)
 
-def test_cycpattern_check_negative(sample_strings):
-    """Tests negative cases where no rotation is a substring."""
+def test_cycpattern_check_positive_cases(sample_strings):
+    """Tests positive cases where a rotation of b is a substring of a."""
     for a, b in sample_strings.items():
-        if a == "abcd" and b == "abd":
-            assert not cycpattern_check(a, b)
-        elif a == "whassup" and b == "psus":
-            assert not cycpattern_check(a, b)
-        elif a == "efef" and b == "eeff":
-            assert not cycpattern_check(a, b)
+        if a and b:
+            for _ in range(len(b)):
+                if b in a:
+                    assert cycpattern_check(a, b) == True
+                    break
+                b = rotate_string(b)
+            else:
+                assert cycpattern_check(a, b) == False
         else:
-            pass # No specific negative assertions needed beyond the positive tests
+            assert cycpattern_check(a, b) == False
+
+
+def test_cycpattern_check_negative_cases(sample_strings):
+    """Tests negative cases where no rotation of b is a substring of a."""
+    for a, b in sample_strings.items():
+        if a and b:
+            found = False
+            for _ in range(len(b)):
+                if b in a:
+                    found = True
+                    break
+                b = rotate_string(b)
+            assert cycpattern_check(a, b) == (not found)
+        else:
+            assert cycpattern_check(a, b) == False
+
 
 def test_cycpattern_check_empty_strings(sample_strings):
     """Tests cases with empty strings."""
-    assert not cycpattern_check("", "")
-    assert not cycpattern_check("abc", "")
-    assert not cycpattern_check("", "abc")
+    assert cycpattern_check("", "") == False
+    assert cycpattern_check("abc", "") == False
+    assert cycpattern_check("", "abc") == False
+
 
 def test_cycpattern_check_single_character(sample_strings):
     """Tests cases with single characters."""
-    assert not cycpattern_check("a", "b")
-    assert cycpattern_check("a", "a")
-    assert not cycpattern_check("a", "aa")
-    assert not cycpattern_check("aa", "a")
+    assert cycpattern_check("a", "a") == True
+    assert cycpattern_check("a", "b") == False
+    assert cycpattern_check("b", "a") == False
+    assert cycpattern_check("aa", "a") == True
+    assert cycpattern_check("a", "aa") == False
+    assert cycpattern_check("aa", "aa") == True
+    assert cycpattern_check("aaa", "aa") == True
+    assert cycpattern_check("aa", "aaa") == False
+    assert cycpattern_check("aaa", "aaa") == True
+
 
 def test_cycpattern_check_identical_strings(sample_strings):
     """Tests cases where the strings are identical."""
-    assert cycpattern_check("identical", "identical")
+    assert cycpattern_check("identical", "identical") == True
 
-def test_cycpattern_check_long_string_no_rotation(sample_strings):
-    """Tests a long string where no rotation is a substring."""
-    assert not cycpattern_check("thisisalongstring", "xyz")
 
-def test_cycpattern_check_short_string(sample_strings):
-    """Tests a short string."""
-    assert cycpattern_check("sh", "sh")
-    assert not cycpattern_check("sh", "hs")
+def test_cycpattern_check_long_strings(sample_strings):
+    """Tests cases with longer strings."""
+    assert cycpattern_check("longstring123", "string123long") == True
+    assert cycpattern_check("abcabcabc", "bcabcabca") == True
+    assert cycpattern_check("abcabc", "bcabca") == True
+    assert cycpattern_check("abcabc", "cabcab") == True
+    assert cycpattern_check("abcabc", "abcabc") == True
+    assert cycpattern_check("abcabc", "cababc") == True
+    assert cycpattern_check("abcabc", "bcabca") == True
+    assert cycpattern_check("abcabc", "abcab") == False
+    assert cycpattern_check("abcabc", "bcabcaa") == False

@@ -40,6 +40,7 @@ def int_to_mini_roman(number):
 
     return result
 
+
 def test_int_to_mini_roman_1():
     assert int_to_mini_roman(19) == 'xix'
 

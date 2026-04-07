@@ -32,17 +32,14 @@ def file_name_check(file_name):
     """
     if len(file_name) > 3:
         return 'No'
-
-    if not file_name[0].isalpha():
+    if file_name.count('.') == 0:
         return 'No'
-
-    if not file_name[1:].isspace():
+    if not file_name[:1].isalpha():
         return 'No'
-
-    if len(file_name) == 1:
+    if not file_name[1:].islower():
         return 'No'
-
-    if file_name[1] not in ['txt', 'exe', 'dll']:
-        return 'No'
-
-    return 'Yes'
+    if file_name[1:].startswith('a') and file_name[1:].endswith('z'):
+        return 'Yes'
+    if file_name[1:].startswith('A') and file_name[1:].endswith('Z'):
+        return 'Yes'
+    return 'No'

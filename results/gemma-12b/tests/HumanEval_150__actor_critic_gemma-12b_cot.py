@@ -34,26 +34,27 @@ def x_or_y(n, x, y):
     else:
         return y
 
-def test_x_or_y_prime():
-    assert x_or_y(7, 34, 12) == 34
-    assert x_or_y(2, 10, 20) == 10
-    assert x_or_y(5, 100, 200) == 100
-    assert x_or_y(11, 5, 10) == 5
-    assert x_or_y(101, "a", "b") == "a"  # Larger prime
-
-def test_x_or_y_not_prime():
-    assert x_or_y(15, 8, 5) == 5
-    assert x_or_y(4, 10, 20) == 20
-    assert x_or_y(6, 100, 200) == 200
-    assert x_or_y(9, 5, 10) == 10
+@pytest.mark.parametrize(
+    "n, x, y, expected",
+    [
+        (7, 34, 12, 34),
+        (2, 10, 20, 10),
+        (5, 100, 200, 100),
+        (11, 5, 10, 5),
+        (15, 8, 5, 5),
+        (4, 10, 20, 20),
+        (6, 100, 200, 200),
+        (9, 5, 10, 10),
+    ],
+)
+def test_x_or_y(n, x, y, expected):
+    assert x_or_y(n, x, y) == expected
 
 def test_x_or_y_edge_cases():
-    assert x_or_y(0, 10, 20) == 20
-    assert x_or_y(1, 10, 20) == 20
-    assert x_or_y(2, 10, 20) == 10  # 2 is prime
+    assert x_or_y(1, 10, 20) == 20  # 1 is not prime
+    assert x_or_y(0, 10, 20) == 20  # 0 is not prime
     assert x_or_y(-5, 10, 20) == 20 # Negative numbers are not prime
-    assert x_or_y(-2, 10, 20) == 20 # Negative numbers are not prime
-    assert x_or_y(5, 5, 10) == 5 # x and y are equal
+    assert x_or_y(2, 10, 10) == 10 # x and y are the same
 
 def test_x_or_y_type_checking():
     assert x_or_y(7, "hello", 12) == "hello"
@@ -62,7 +63,9 @@ def test_x_or_y_type_checking():
     assert x_or_y(15, 8, 5.5) == 5.5
     assert x_or_y(7, True, False) == True
     assert x_or_y(15, True, False) == False
-    with pytest.raises(TypeError):
-        x_or_y(7, [1, 2], 3)
-    with pytest.raises(TypeError):
-        x_or_y(7, 5, {"a": 1})
+    assert x_or_y(7, [1, 2], {1: 'a'}) == [1, 2]
+    assert x_or_y(15, {1: 'a'}, (1, 2)) == (1, 2)
+    assert x_or_y(7, "abc", 12) == "abc"
+    assert x_or_y(15, 8, "def") == "def"
+    assert x_or_y(7, 12, "ghi") == 12
+    assert x_or_y(15, "jkl", 8) == 8

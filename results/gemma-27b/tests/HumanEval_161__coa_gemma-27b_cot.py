@@ -15,7 +15,7 @@ import pytest
 import math
 
 
-# Focus: Character Type Handling
+# Focus: Character Type/Case Sensitivity
 import pytest
 
 def solve(s):
@@ -41,23 +41,17 @@ def solve(s):
         else:
             result += char
     if not has_letter:
-        result = result[::-1]
+        return result[::-1]
     return result
 
-def test_character_type_handling_letters():
+def test_case_sensitivity_1():
     assert solve("ab") == "AB"
-    assert solve("aB") == "Ab"
-    assert solve("HeLlO") == "hElLo"
 
-def test_character_type_handling_mixed():
+def test_case_sensitivity_2():
+    assert solve("aBc") == "AbC"
+
+def test_case_sensitivity_3():
     assert solve("#a@C") == "#A@c"
-    assert solve("1a2B3c") == "1A2b3C"
-    assert solve("!@#$a%^b&") == "!@#$A%^B&"
-
-def test_character_type_handling_no_letters():
-    assert solve("1234") == "4321"
-    assert solve("#$%^") == "^%$#"
-    assert solve("0000") == "0000"
 
 # Focus: Empty/All Non-Letter Strings
 import pytest
@@ -97,7 +91,7 @@ def test_all_non_letter_strings():
 def test_all_non_letter_strings_with_symbols():
     assert solve("#$%^") == "^%$#"
 
-# Focus: Mixed Case & Non-Letter Characters
+# Focus: Mixed Letter and Non-Letter Strings
 import pytest
 
 def solve(s):
@@ -126,11 +120,11 @@ def solve(s):
         return result[::-1]
     return result
 
-def test_mixed_case_non_letter_characters():
+def test_mixed_letter_and_non_letter_strings():
     assert solve("#a@C") == "#A@c"
 
-def test_only_non_letter_characters():
-    assert solve("1234") == "4321"
+def test_mixed_letter_and_non_letter_strings_2():
+    assert solve("1a2B3c") == "1A2b3C"
 
-def test_mixed_case_and_numbers():
-    assert solve("a1B2c") == "A1b2C"
+def test_mixed_letter_and_non_letter_strings_3():
+    assert solve("HeLlO 123") == "hElLo 123"

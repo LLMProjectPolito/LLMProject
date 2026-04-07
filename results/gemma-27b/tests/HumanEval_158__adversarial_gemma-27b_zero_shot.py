@@ -47,13 +47,13 @@ def test_single_word():
 def test_multiple_words_different_unique_chars():
     assert find_max(["name", "of", "string"]) == "string"
 
-def test_multiple_words_same_unique_chars_lexicographical():
+def test_multiple_words_same_unique_chars_lexicographical_order():
     assert find_max(["name", "enam", "game"]) == "enam"
 
 def test_all_words_same_unique_chars():
     assert find_max(["abc", "bca", "cab"]) == "abc"
 
-def test_words_with_repeated_chars():
+def test_words_with_repeated_characters():
     assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
 def test_mixed_case():
@@ -72,7 +72,7 @@ def test_words_with_empty_string():
     assert find_max(["", "abc"]) == "abc"
 
 def test_multiple_max_words():
-    assert find_max(["abc", "def", "ghi"]) == "abc"
+    assert find_max(["abc", "bac", "cba"]) == "abc"
 
-def test_words_with_same_length_and_unique_chars():
-    assert find_max(["abc", "bac"]) == "abc"
+def test_words_with_unicode():
+    assert find_max(["你好", "世界"]) == "世界"

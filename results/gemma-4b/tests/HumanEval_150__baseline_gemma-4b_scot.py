@@ -62,13 +62,13 @@ def test_n_is_one_y():
     assert x_or_y(1, 34, 12) == 12
 
 def test_x_equals_y_prime():
-    assert x_or_y(2, 5, 5) == 5
+    assert x_or_y(2, 34, 12) == 34
 
 def test_x_equals_y_non_prime():
-    assert x_or_y(4, 5, 5) == 5
+    assert x_or_y(4, 34, 12) == 12
 
 def test_large_prime():
-    assert x_or_y(997, 1000, 1001) == 1000
+    assert x_or_y(997, 1000, 500) == 1000
 
 def test_large_non_prime():
-    assert x_or_y(1000, 1000, 1001) == 1001
+    assert x_or_y(1000, 1000, 500) == 500

@@ -42,6 +42,9 @@ def file_name_check(file_name):
     if not file_name[1:].isspace():
         return 'No'
 
+    if not file_name[1].isalpha() or not file_name[1].islower():
+        return 'No'
+
     if file_name[1] not in ['txt', 'exe', 'dll']:
         return 'No'
 

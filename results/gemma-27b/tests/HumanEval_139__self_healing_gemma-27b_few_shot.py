@@ -29,14 +29,11 @@ def special_factorial(n):
     if n <= 0:
         raise ValueError("Input must be a positive integer.")
 
-    def factorial(num):
-        if num == 0:
+    def factorial(n):
+        if n == 0:
             return 1
         else:
-            result = 1
-            for i in range(1, num + 1):
-                result *= i
-            return result
+            return n * factorial(n-1)
 
     result = 1
     for i in range(1, n + 1):

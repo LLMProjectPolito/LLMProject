@@ -45,23 +45,35 @@ def words_in_sentence(sentence):
     def is_prime(n):
         if n <= 1:
             return False
-        for i in range(2, int(n**0.5) + 1):
-            if n % i == 0:
+        if n <= 3:
+            return True
+        if n % 2 == 0 or n % 3 == 0:
+            return False
+        i = 5
+        while i * i <= n:
+            if n % i == 0 or n % (i + 2) == 0:
                 return False
+            i += 6
         return True
 
     words = sentence.split()
     prime_words = [word for word in words if is_prime(len(word))]
     return " ".join(prime_words)
 
+def test_single_prime_length_word():
+    sentence = "two"
+    expected_output = "two"
+    assert words_in_sentence(sentence) == expected_output
+
 def test_empty_sentence():
     assert words_in_sentence("") == ""
 
-def test_single_prime_length_word():
-    assert words_in_sentence("two") == "two"
-
 def test_example_1():
-    assert words_in_sentence("This is a test") == "is"
+    sentence = "This is a test"
+    expected_output = "is"
+    assert words_in_sentence(sentence) == expected_output
 
 def test_example_2():
-    assert words_in_sentence("lets go for swimming") == "go for"
+    sentence = "lets go for swimming"
+    expected_output = "go for"
+    assert words_in_sentence(sentence) == expected_output

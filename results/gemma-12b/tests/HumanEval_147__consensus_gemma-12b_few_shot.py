@@ -61,3 +61,6 @@ def test_get_max_triples_another_large_n():
 
 def test_get_max_triples_edge_case_n_15():
     assert get_max_triples(15) == 20
+
+def test_get_max_triples_n_25():
+    assert get_max_triples(25) == 325

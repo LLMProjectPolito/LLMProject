@@ -59,16 +59,16 @@ class TestGetMaxTriples:
         assert get_max_triples(6) == 2
 
     def test_n_equals_7(self):
-        assert get_max_triples(7) == 3
+        assert get_max_triples(7) == 4
 
     def test_n_equals_8(self):
-        assert get_max_triples(8) == 4
+        assert get_max_triples(8) == 6
 
     def test_n_equals_9(self):
-        assert get_max_triples(9) == 6
+        assert get_max_triples(9) == 9
 
     def test_n_equals_10(self):
-        assert get_max_triples(10) == 8
+        assert get_max_triples(10) == 13
 
     def test_large_n(self):
-        assert get_max_triples(100) == 1617
+        assert get_max_triples(100) == 1683

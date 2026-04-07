@@ -58,48 +58,44 @@ def test_is_palindrome_mixed_case():
     assert is_palindrome('Racecar') == True
     assert is_palindrome('RaCeCaR') == True
 
-def test_is_palindrome_with_punctuation():
+def test_is_palindrome_punctuation():
     assert is_palindrome('A man, a plan, a canal: Panama') == True
     assert is_palindrome('Madam, I\'m Adam') == True
 
-def test_max_positive():
+def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
     assert get_max([3, 2, 1]) == 3
     assert get_max([1, 3, 2]) == 3
     assert get_max([-1, 0, 1]) == 1
     assert get_max([5, 5, 5]) == 5
 
-def test_max_empty():
+def test_get_max_empty():
     assert get_max([]) == None
 
-def test_max_single_element():
+def test_get_max_single_element():
     assert get_max([5]) == 5
 
-def test_max_negative_numbers():
+def test_get_max_negative_numbers():
     assert get_max([-1, -2, -3]) == -1
 
-def test_max_mixed_positive_negative():
+def test_get_max_mixed_numbers():
     assert get_max([-1, 0, 1]) == 1
-    assert get_max([-5, -2, 0, 3]) == 3
 
 def test_string_to_md5_basic():
     assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
-    assert string_to_md5('abc') == 'b10a8db164e0754105b7a99be72e3fe5'
-    assert string_to_md5('') == None
-
-def test_string_to_md5_empty():
+    assert string_to_md5('abc') == 'b10a8db16485b5222d19'
     assert string_to_md5('') == None
 
 def test_string_to_md5_unicode():
-    assert string_to_md5('你好世界') == 'b94d27b9934d3e08a52e52d442038e5a'
+    assert string_to_md5('你好世界') == 'b94d27b9934d3e08a52e52d442036896'
 
 def test_string_to_md5_special_characters():
-    assert string_to_md5('!@#$%^') == '689679639477331339636363636363'
+    assert string_to_md5('!@#$%^') == '68978d93a3a977c79377999999999999'
 
 def test_string_to_md5_mixed():
     assert string_to_md5('Hello World!') == '6e2d1a49989999999999999999999999'
 
 def test_string_to_md5_long_string():
     long_string = "This is a very long string to test the md5 function."
-    expected_md5 = '89669393969396939693969396939693'
+    expected_md5 = '89669399999999999999999999999999'
     assert string_to_md5(long_string) == expected_md5

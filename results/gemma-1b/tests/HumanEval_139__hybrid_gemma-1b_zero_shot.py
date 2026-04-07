@@ -54,6 +54,9 @@ def special_factorial(n):
         result *= i
     return result
 
+def test_special_factorial_small():
+    assert special_factorial(4) == 288
+
 def test_special_factorial_zero():
     assert special_factorial(0) == 1
 

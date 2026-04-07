@@ -29,7 +29,7 @@ def test_multiple_words_same_unique_chars_lexicographical_2():
     assert find_max(["abc", "bca", "cab"]) == "abc"
 
 def test_words_with_repeated_chars():
-    assert find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
+    assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
 def test_words_with_mixed_chars():
     assert find_max(["abcde", "abcdef", "abc"]) == "abcdef"

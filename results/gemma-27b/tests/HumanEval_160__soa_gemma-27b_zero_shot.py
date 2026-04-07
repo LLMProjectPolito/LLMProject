@@ -120,5 +120,5 @@ def test_exponentiation_with_one():
 def test_negative_result():
     assert do_algebra(['-', '+'], [1, 5, 2]) == -6
 
-def test_all_operations():
-    assert do_algebra(['+', '-', '*', '//', '**'], [2, 3, 2, 4, 2]) == 2
+def test_all_subtractions():
+    assert do_algebra(['-', '-', '-'], [10, 2, 3, 1]) == 4

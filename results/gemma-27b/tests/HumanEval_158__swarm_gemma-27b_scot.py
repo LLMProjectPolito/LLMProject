@@ -41,47 +41,41 @@ def find_max(words):
 def test_empty_list():
     assert find_max([]) == ""
 
-def test_all_words_same_unique_count_lexicographical():
+def test_all_empty_strings():
+    assert find_max(["", "", ""]) == ""
+
+def test_equal_unique_chars_lexicographical():
     assert find_max(["abc", "bac", "cab"]) == "abc"
 
-def test_empty_string_in_list():
-    assert find_max(["", "abc", "def"]) == "abc"
+def test_edge_case_long_string_with_few_unique():
+    assert find_max(["aaaaaaaaaa", "abcdefg"]) == "abcdefg"
 
-def test_list_with_duplicate_words():
+def test_edge_case_mix_long_and_short_with_same_unique():
+    assert find_max(["abcde", "bcdefa"]) == "abcde"
+
+def test_edge_case_duplicate_words():
     assert find_max(["abc", "abc", "def"]) == "abc"
 
-def test_edge_case_long_string_with_few_unique():
-    assert find_max(["aaaaaaaaaa", "abcdefgh"]) == "abcdefgh"
-
-def test_edge_case_mix_of_long_and_short_strings():
-    assert find_max(["a", "bb", "ccc", "dddd"]) == "ccc"
-
-def test_edge_case_strings_with_same_length_and_unique_chars():
-    assert find_max(["abcd", "efgh"]) == "abcd"
-
-def test_edge_case_strings_with_special_characters():
+def test_edge_case_special_characters():
     assert find_max(["!@#$", "abc"]) == "!@#$"
 
-def test_edge_case_strings_with_numbers():
-    assert find_max(["1234", "abc"]) == "1234"
-
-def test_edge_case_strings_with_mixed_characters():
-    assert find_max(["a1b2", "abc"]) == "a1b2"
+def test_edge_case_numbers_and_letters():
+    assert find_max(["12345", "abcde"]) == "12345"
 
 def test_edge_case_unicode_characters():
     assert find_max(["你好世界", "abc"]) == "你好世界"
 
+def test_edge_case_mixed_case():
+    assert find_max(["aBcDe", "abcde"]) == "aBcDe"
+
 def test_edge_case_long_string_with_many_duplicates():
-    assert find_max(["aaaaaaaaaabbbbbbbbbb", "abcdefg"]) == "abcdefg"
+    assert find_max(["aaaaaaaaaabbbbbbbbbbcccccccccc", "abcdefgh"]) == "abcdefgh"
 
-def test_edge_case_long_string_with_some_duplicates():
-    assert find_max(["aabbccddeeff", "abcdefg"]) == "abcdefg"
+def test_edge_case_long_string_with_all_same_char():
+    assert find_max(["aaaaaaaaaa", "bbbbbbbbbb", "ccccccccc"]) == "aaaaaaaaaa"
 
-def test_edge_case_all_same_character():
-    assert find_max(["aaaa", "bbbb", "cccc"]) == "aaaa"
+def test_edge_case_empty_string_and_others():
+    assert find_max(["", "abc", "def"]) == "abc"
 
-def test_edge_case_mix_of_all_same_and_unique():
-    assert find_max(["aaaa", "abc"]) == "abc"
-
-def test_all_empty_strings():
-    assert find_max(["", "", ""]) == ""
+def test_edge_case_only_one_word():
+    assert find_max(["abcdefg"]) == "abcdefg"

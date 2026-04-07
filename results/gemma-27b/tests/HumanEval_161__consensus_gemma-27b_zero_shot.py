@@ -61,16 +61,16 @@ def test_numbers_and_letters():
     assert solve("a1b2C") == "A1B2c"
 
 def test_special_characters_and_letters():
-    assert solve("!a?B") == "!A?b"
+    assert solve("!a@B#") == "!A@b#"
 
 def test_only_special_characters():
-    assert solve("!@#$%^") == "^%$#@!"
+    assert solve("!@#$") == "$#@!"
 
 def test_long_string():
     assert solve("ThisIsALongString") == "tHISiSaLONGsTRING"
 
 def test_string_with_spaces():
-    assert solve("a b C") == "A B c"
+    assert solve("a b C") == "A b c"
 
 def test_string_with_unicode():
     assert solve("你好世界") == "你好世界"

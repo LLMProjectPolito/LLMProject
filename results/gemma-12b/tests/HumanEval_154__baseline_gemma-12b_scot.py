@@ -11,30 +11,28 @@ def cycpattern_check(a , b):
     """
 
 # STEP 1: REASONING
-# The function `cycpattern_check(a, b)` checks if a rotation of string `b` is a substring of string `a`.
-# We need to test various scenarios to ensure the function behaves correctly.
-# These scenarios include:
+# The function `cycpattern_check(a, b)` checks if word `b` or any of its rotations is a substring of word `a`.
+# We need to test various scenarios including:
 # 1. `b` is a substring of `a` without rotation.
-# 2. `b` is a rotation of a substring of `a`.
-# 3. `b` is not a substring of `a` or any of its rotations.
-# 4. Empty strings for `a` and/or `b`.
-# 5. `a` and `b` are identical.
-# 6. `b` is longer than `a`.
-# 7. Overlapping patterns.
-# 8. Cases with repeated characters.
+# 2. `b` is a substring of `a` after rotation.
+# 3. `b` is not a substring of `a` even after rotation.
+# 4. Empty string cases for `a` and `b`.
+# 5. `a` is shorter than `b`.
+# 6. `a` and `b` are the same.
+# 7. Cases with overlapping patterns.
+# 8. Cases with special characters.
 
 # STEP 2: PLAN
 # Test functions:
-# - test_basic_substring: `b` is a substring of `a` without rotation.
-# - test_rotation_substring: `b` is a rotation of a substring of `a`.
-# - test_no_substring: `b` is not a substring of `a` or any of its rotations.
-# - test_empty_strings: Both `a` and `b` are empty.
-# - test_empty_a: `a` is empty, `b` is not.
-# - test_empty_b: `b` is empty, `a` is not.
-# - test_identical_strings: `a` and `b` are identical.
-# - test_b_longer_than_a: `b` is longer than `a`.
+# - test_substring_no_rotation: `b` is a substring of `a` without rotation.
+# - test_substring_with_rotation: `b` is a substring of `a` after rotation.
+# - test_not_substring: `b` is not a substring of `a` even after rotation.
+# - test_empty_a: `a` is an empty string.
+# - test_empty_b: `b` is an empty string.
+# - test_a_shorter_than_b: `a` is shorter than `b`.
+# - test_same_strings: `a` and `b` are the same.
 # - test_overlapping_patterns: Test cases with overlapping patterns.
-# - test_repeated_characters: Test cases with repeated characters.
+# - test_special_characters: Test cases with special characters.
 
 # STEP 3: CODE
 import pytest
@@ -60,19 +58,15 @@ def cycpattern_check(a , b):
             return True
     return False
 
-
 class TestCycpatternCheck:
-    def test_basic_substring(self):
+    def test_substring_no_rotation(self):
         assert cycpattern_check("hello", "ell") == True
 
-    def test_rotation_substring(self):
+    def test_substring_with_rotation(self):
         assert cycpattern_check("abab", "baa") == True
 
-    def test_no_substring(self):
+    def test_not_substring(self):
         assert cycpattern_check("whassup", "psus") == False
-
-    def test_empty_strings(self):
-        assert cycpattern_check("", "") == True
 
     def test_empty_a(self):
         assert cycpattern_check("", "abc") == False
@@ -80,23 +74,21 @@ class TestCycpatternCheck:
     def test_empty_b(self):
         assert cycpattern_check("abc", "") == True
 
-    def test_identical_strings(self):
-        assert cycpattern_check("abc", "abc") == True
+    def test_a_shorter_than_b(self):
+        assert cycpattern_check("ab", "abc") == False
 
-    def test_b_longer_than_a(self):
-        assert cycpattern_check("abc", "abcdef") == False
+    def test_same_strings(self):
+        assert cycpattern_check("abc", "abc") == True
 
     def test_overlapping_patterns(self):
         assert cycpattern_check("aaaa", "aa") == True
 
-    def test_repeated_characters(self):
+    def test_special_characters(self):
+        assert cycpattern_check("a!b@c", "b@c") == True
+        assert cycpattern_check("a!b@c", "c@b!") == True
+
+    def test_negative_case(self):
         assert cycpattern_check("efef", "eeff") == False
 
-    def test_another_rotation(self):
-        assert cycpattern_check("abcd", "dabc") == True
-
-    def test_complex_case(self):
+    def test_himenss_simen(self):
         assert cycpattern_check("himenss", "simen") == True
-
-    def test_case_sensitive(self):
-        assert cycpattern_check("Hello", "ell") == False

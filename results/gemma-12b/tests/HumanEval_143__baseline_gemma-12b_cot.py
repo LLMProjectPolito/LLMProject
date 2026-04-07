@@ -58,26 +58,20 @@ class TestWordsInSentence:
     def test_empty_sentence(self):
         assert words_in_sentence("") == ""
 
-    def test_no_prime_length_words(self):
-        assert words_in_sentence("this is a test") == "is"
-
-    def test_all_prime_length_words(self):
-        assert words_in_sentence("lets go for swimming") == "go for"
-
-    def test_mixed_prime_and_non_prime_words(self):
-        assert words_in_sentence("This is a very long test") == "is a"
-
-    def test_single_word_prime_length(self):
+    def test_single_word_prime(self):
         assert words_in_sentence("hello") == "hello"
 
-    def test_single_word_non_prime_length(self):
+    def test_single_word_not_prime(self):
         assert words_in_sentence("world") == ""
 
-    def test_multiple_prime_length_words_at_start(self):
-        assert words_in_sentence("is a test sentence") == "is a"
+    def test_multiple_words_some_prime(self):
+        assert words_in_sentence("This is a test") == "is"
 
-    def test_multiple_prime_length_words_at_end(self):
-        assert words_in_sentence("this is a very long is") == "is"
+    def test_multiple_words_all_prime(self):
+        assert words_in_sentence("lets go for swimming") == "go for"
+
+    def test_multiple_words_none_prime(self):
+        assert words_in_sentence("the quick brown fox") == ""
 
     def test_sentence_with_leading_and_trailing_spaces(self):
         assert words_in_sentence("  This is a test  ") == "is"
@@ -85,12 +79,15 @@ class TestWordsInSentence:
     def test_sentence_with_multiple_spaces_between_words(self):
         assert words_in_sentence("This  is   a    test") == "is"
 
-    def test_sentence_with_one_letter_prime_words(self):
-        assert words_in_sentence("a b c") == "a b c"
+    def test_sentence_with_one_letter_words(self):
+        assert words_in_sentence("a b c d e") == "a b c d e"
 
-    def test_sentence_with_one_letter_non_prime_words(self):
-        assert words_in_sentence("aa bb cc") == ""
+    def test_sentence_with_long_words(self):
+        assert words_in_sentence("abcdefghijklmnopqrstuvwxyz abcdefghijk abcdefghijklm") == "abcdefghijklm"
 
-    def test_long_sentence(self):
-        sentence = "This is a very very very long sentence with many words of different lengths"
-        assert words_in_sentence(sentence) == "is a very very"
+    def test_sentence_with_mixed_case(self):
+        assert words_in_sentence("This Is A Test") == "Is A"
+
+    def test_sentence_with_numbers_in_words(self):
+        with pytest.raises(TypeError):
+            words_in_sentence("word1 word2")

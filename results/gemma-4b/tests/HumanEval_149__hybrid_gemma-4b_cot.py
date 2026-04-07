@@ -32,24 +32,21 @@ def sorted_list_sum(lst):
     assert sorted_list_sum(["aa", "a", "aaa"]) => ["aa"]
     assert sorted_list_sum(["ab", "a", "aaa", "cd"]) => ["ab", "cd"]
     """
-    new_list = []
-    for s in lst:
-        if len(s) % 2 == 0:
-            new_list.append(s)
-    new_list.sort(key=lambda x: (len(x), x))
-    return new_list
+    filtered_list = [s for s in lst if len(s) % 2 == 0]
+    filtered_list.sort(key=lambda x: (len(x), x))
+    return filtered_list
 
 def test_empty_list():
     assert sorted_list_sum([]) == []
 
 def test_all_odd_length():
-    assert sorted_list_sum(["a", "b", "c"]) == []
+    assert sorted_list_sum(["aa", "a", "aaa"]) == []
 
 def test_all_even_length():
-    assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
+    assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
 
 def test_mixed_odd_even():
-    assert sorted_list_sum(["aa", "a", "aaa", "cd"]) == ["aa", "cd"]
+    assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
 def test_duplicates():
     assert sorted_list_sum(["aa", "aa", "a"]) == ["aa", "aa"]
@@ -58,10 +55,13 @@ def test_single_element():
     assert sorted_list_sum(["aa"]) == ["aa"]
 
 def test_longer_list():
-    assert sorted_list_sum(["ab", "a", "aaa", "cd", "ef", "gh", "ij"]) == ["ab", "cd", "ef", "gh", "ij"]
+    assert sorted_list_sum(["ab", "cd", "ef", "gh", "ij"]) == ["ab", "cd", "ef", "gh", "ij"]
 
 def test_same_length_different_chars():
     assert sorted_list_sum(["abc", "abd", "abe"]) == ["abc", "abd", "abe"]
 
-def test_complex_case():
-    assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape"]) == ["banana", "orange"]
+def test_same_length_same_chars():
+    assert sorted_list_sum(["aaa", "bbb", "ccc"]) == ["aaa", "bbb", "ccc"]
+
+def test_mixed_with_duplicates_and_same_length():
+    assert sorted_list_sum(["aa", "ab", "aa", "cd", "ab", "ef"]) == ["aa", "aa", "ab", "ab", "cd", "ef"]

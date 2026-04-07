@@ -57,50 +57,54 @@ def words_in_sentence(sentence):
         * sentence contains only letters
     """
     words = sentence.split()
-    prime_words = [word for word in words if is_prime(len(word))]
-    return " ".join(prime_words)
+    result = []
+    for word in words:
+        if is_prime(len(word)):
+            result.append(word)
+    return " ".join(result)
 
 class TestWordsInSentence:
     def test_empty_sentence(self):
         assert words_in_sentence("") == ""
 
-    def test_single_prime_word(self):
-        assert words_in_sentence("is") == "is"
+    def test_single_word_prime_length(self):
+        assert words_in_sentence("two") == "two"
 
-    def test_single_non_prime_word(self):
-        assert words_in_sentence("this") == ""
+    def test_single_word_non_prime_length(self):
+        assert words_in_sentence("three") == ""
 
-    def test_multiple_words_with_primes(self):
+    def test_multiple_words_mixed_lengths(self):
         assert words_in_sentence("This is a test") == "is"
 
-    def test_multiple_words_with_no_primes(self):
-        assert words_in_sentence("the quick brown fox") == ""
+    def test_multiple_words_all_prime(self):
+        assert words_in_sentence("two five seven") == "two five seven"
 
-    def test_mixed_words(self):
+    def test_multiple_words_all_non_prime(self):
+        assert words_in_sentence("four six eight") == ""
+
+    def test_example_1(self):
+        assert words_in_sentence("This is a test") == "is"
+
+    def test_example_2(self):
         assert words_in_sentence("lets go for swimming") == "go for"
 
+    def test_long_sentence(self):
+        assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the over dog"
+
     def test_sentence_with_leading_and_trailing_spaces(self):
-        assert words_in_sentence("  hello world  ") == ""
+        assert words_in_sentence("  hello world  ") == "hello world"
 
     def test_sentence_with_multiple_spaces(self):
-        assert words_in_sentence("hello   world") == ""
+        assert words_in_sentence("hello   world") == "hello world"
 
-    def test_long_sentence(self):
-        sentence = "a bb ccc dddd eeeee ffffff"
-        assert words_in_sentence(sentence) == "bb ccc eeeee"
+    def test_sentence_with_only_spaces(self):
+        assert words_in_sentence("   ") == ""
 
-    def test_all_prime_lengths(self):
-        sentence = "is it a go"
-        assert words_in_sentence(sentence) == "is it a go"
+    def test_sentence_with_prime_and_non_prime_adjacent(self):
+        assert words_in_sentence("two three five") == "two five"
 
-    def test_all_non_prime_lengths(self):
-        sentence = "this that those"
-        assert words_in_sentence(sentence) == ""
+    def test_sentence_with_same_word_multiple_times(self):
+        assert words_in_sentence("two two three") == "two two"
 
-    def test_sentence_with_numbers(self):
-        with pytest.raises(TypeError):
-            words_in_sentence("123 abc")
-
-    def test_sentence_with_special_characters(self):
-        with pytest.raises(TypeError):
-            words_in_sentence("hello! world?")
+    def test_sentence_with_long_prime_word(self):
+        assert words_in_sentence("programming is fun") == "programming"

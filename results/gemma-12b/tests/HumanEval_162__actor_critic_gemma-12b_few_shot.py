@@ -38,23 +38,27 @@ def test_string_to_md5_numbers():
     assert string_to_md5('12345') == '5d414c7b5fdc8661509d3fbe5a386a83'
 
 def test_string_to_md5_special_characters():
-    assert string_to_md5('!@#$%^&*()_+=-`~[]\{}|;\':",./<>?') == '99d8310496a939999999999999999999' # Combined special chars
+    assert string_to_md5('!@#$%^') == '99d8310496a939999999999999999999'
 
 def test_string_to_md5_mixed_case():
-    assert string_to_md5('HeLlO') == '15339413a99019999999999999999999'
+    assert string_to_md5('HeLlO') == '48835dfa99a311633999999999999999'
 
 def test_string_to_md5_unicode():
     assert string_to_md5('你好世界') == 'b10a8db164e0754105b7a99be72e3fe5'
 
 def test_string_to_md5_non_ascii():
-    assert string_to_md5('éàçüö') == '99999999999999999999999999999999' # Example non-ASCII characters
+    assert string_to_md5('😊👍🌍') == 'a9999999999999999999999999999999'
 
 def test_string_to_md5_long_string():
-    long_string = "a" * 1000  # Create a long string
-    assert len(string_to_md5(long_string)) == 32 # Check the length of the hash
+    long_string = "a" * 10000
+    assert len(string_to_md5(long_string)) == 32
+
+def test_string_to_md5_newlines():
+    assert string_to_md5("hello\nworld") == 'b10a8db164e0754105b7a99be72e3fe5'
+
+def test_string_to_md5_carriage_returns():
+    assert string_to_md5("hello\rworld") == 'b10a8db164e0754105b7a99be72e3fe5'
 
 def test_string_to_md5_non_string_input():
     with pytest.raises(TypeError):
-        string_to_md5(123)  # Pass an integer
-    with pytest.raises(TypeError):
-        string_to_md5([1, 2, 3]) # Pass a list
+        string_to_md5(123)

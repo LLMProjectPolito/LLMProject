@@ -30,23 +30,22 @@ class TestXorY:
 
     def test_non_prime_returns_y(self):
         assert x_or_y(15, 8, 5) == 5
-        assert x_or_y(4, 10, 20) == 20
-        assert x_or_y(6, 50, 100) == 100
-        assert x_or_y(9, 1, 2) == 2
-        assert x_or_y(10, 3, 4) == 4
+        assert x_or_y(4, 1, 2) == 2
+        assert x_or_y(6, 10, 20) == 20
+        assert x_or_y(9, 5, 10) == 10
+        assert x_or_y(10, 1, 2) == 2
 
     def test_edge_cases(self):
-        assert x_or_y(1, 10, 20) == 20  # 1 is not prime
+        assert x_or_y(1, 5, 10) == 10  # 1 is not prime
         assert x_or_y(0, 5, 10) == 10  # 0 is not prime
-        assert x_or_y(-5, 1, 2) == 2 # Negative numbers are not prime
-        assert x_or_y(2, 0, 0) == 0
-        assert x_or_y(3, 0, 0) == 0
+        assert x_or_y(-5, 5, 10) == 10 # Negative numbers are not prime
+        assert x_or_y(2, 5, 10) == 5 # 2 is prime
 
     def test_large_prime(self):
-        assert x_or_y(101, 1000, 2000) == 1000
+        assert x_or_y(101, 1000, 500) == 1000
 
     def test_large_non_prime(self):
-        assert x_or_y(100, 1000, 2000) == 2000
+        assert x_or_y(100, 1000, 500) == 500
 
     def test_x_and_y_equal(self):
         assert x_or_y(7, 5, 5) == 5

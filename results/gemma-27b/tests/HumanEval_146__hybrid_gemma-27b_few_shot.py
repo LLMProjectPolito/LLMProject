@@ -58,26 +58,28 @@ def test_special_filter_negative_numbers():
     assert specialFilter([-11, -13, -15, -17, -19]) == 5
 
 def test_special_filter_large_numbers():
-    assert specialFilter([1001, 12345, 98765, 11111]) == 2
+    assert specialFilter([121, 131, 151, 171, 191]) == 5
 
-def test_special_filter_single_digit_greater_than_10():
-    assert specialFilter([11]) == 1
-    assert specialFilter([12]) == 0
+def test_special_filter_single_digit_numbers():
+    assert specialFilter([1, 3, 5, 7, 9]) == 0
+
+def test_special_filter_numbers_close_to_10():
+    assert specialFilter([11, 9, 10, 12]) == 1
+
+def test_special_filter_with_zero():
+    assert specialFilter([11, 0, 13, 15]) == 2
+
+def test_special_filter_long_numbers():
+    assert specialFilter([12345, 13579, 10001, 98765]) == 2
 
 def test_special_filter_edge_case_111():
     assert specialFilter([111]) == 1
 
+def test_special_filter_edge_case_999():
+    assert specialFilter([999]) == 1
+
 def test_special_filter_edge_case_1001():
-    assert specialFilter([1001]) == 1
-
-def test_special_filter_edge_case_10():
-    assert specialFilter([10]) == 0
-
-def test_special_filter_with_zero():
-    assert specialFilter([15, 0, 33]) == 1
-
-def test_special_filter_with_floats():
-    assert specialFilter([15.0, 33.0]) == 0 #Floats are not handled, should be integers
+    assert specialFilter([1001]) == 0
 
 def test_palindrome_basic():
     assert is_palindrome('radar') == True

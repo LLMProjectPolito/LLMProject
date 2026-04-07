@@ -55,10 +55,19 @@ def do_algebra(operator, operand):
         Operator list has at least one operator, and operand list has at least two operands.
 
     """
-    expression = str(operand[0])
+    result = operand[0]
     for i in range(len(operator)):
-        expression += operator[i] + str(operand[i+1])
-    return eval(expression)
+        if operator[i] == '+':
+            result += operand[i+1]
+        elif operator[i] == '-':
+            result -= operand[i+1]
+        elif operator[i] == '*':
+            result *= operand[i+1]
+        elif operator[i] == '//':
+            result //= operand[i+1]
+        elif operator[i] == '**':
+            result **= operand[i+1]
+    return result
 
 def test_basic():
     operator = ['+', '*', '-']

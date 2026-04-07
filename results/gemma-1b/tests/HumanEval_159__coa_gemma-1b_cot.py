@@ -64,12 +64,7 @@ def eat(number, need, remaining):
     Have fun :)
     """
     total_eaten = number
-    remaining_after_meals = remaining
-    
-    if number < need:
-        remaining_after_meals = remaining - need
-        total_eaten = number
-    
+    remaining_after_meals = min(remaining, need)
     return [total_eaten, remaining_after_meals]
 
 # Focus: Type Scenarios
@@ -145,7 +140,7 @@ def eat(number, need, remaining):
     remaining_after_meals = remaining
     
     if number < need:
-        remaining_after_meals = remaining - need
-        total_eaten = number
-    
+        total_eaten += need - number
+        remaining_after_meals -= need
+        
     return [total_eaten, remaining_after_meals]

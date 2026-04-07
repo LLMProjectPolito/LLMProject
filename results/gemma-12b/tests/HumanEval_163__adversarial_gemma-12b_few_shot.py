@@ -57,7 +57,7 @@ class TestGenerateIntegers:
         assert generate_integers(5, 5) == []
 
     def test_large_range(self):
-        assert generate_integers(1, 10) == [2, 4, 6, 8, 10]
+        assert generate_integers(1, 20) == [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
 
     def test_negative_input(self):
         with pytest.raises(TypeError):

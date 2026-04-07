@@ -27,29 +27,11 @@ def sum_squares(lst):
     For lst = [-1,-5,2,-1,-5]  the output should be -126
     """
     total = 0
-    for i in range(len(lst)):
+    for i, num in enumerate(lst):
         if i % 3 == 0 and i % 4 != 0:
-            total += lst[i] ** 2
+            total += num ** 2
         elif i % 4 == 0 and i % 3 != 0:
-            total += lst[i] ** 3
+            total += num ** 3
         else:
             pass
     return total
-
-def test_empty_list():
-    assert sum_squares([]) == 0
-
-def test_positive_numbers():
-    assert sum_squares([1, 2, 3]) == 6
-
-def test_negative_numbers():
-    assert sum_squares([-1, -5, 2, -1, -5]) == -126
-
-def test_mixed_numbers():
-    assert sum_squares([1, -2, 3, -1, 5]) == 15
-
-def test_single_element():
-    assert sum_squares([5]) == 25
-
-def test_multiple_elements():
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == 56

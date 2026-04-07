@@ -17,13 +17,13 @@ import math
 
 # Focus: Boundary Values
 def test_fix_spaces_boundary_two_consecutive():
-    assert fix_spaces("a  b") == "a__b"
+    assert fix_spaces("Example  1") == "Example__1"
 
 def test_fix_spaces_boundary_three_consecutive():
-    assert fix_spaces("a   b") == "a-b"
+    assert fix_spaces("Example   1") == "Example-1"
 
 def test_fix_spaces_boundary_four_consecutive():
-    assert fix_spaces("a    b") == "a-b"
+    assert fix_spaces("Example    1") == "Example-1"
 
 # Focus: Logic Branches
 def test_fix_spaces_no_spaces():

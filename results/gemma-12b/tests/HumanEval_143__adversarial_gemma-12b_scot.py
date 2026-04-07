@@ -50,9 +50,6 @@ def words_in_sentence(sentence):
         * 1 <= len(sentence) <= 100
         * sentence contains only letters
     """
-    if not sentence:
-        return ""
-
     words = sentence.split()
     prime_words = [word for word in words if is_prime(len(word))]
     return " ".join(prime_words)
@@ -62,7 +59,7 @@ def test_empty_sentence():
     assert words_in_sentence("") == ""
 
 def test_no_prime_words():
-    assert words_in_sentence("This is a long sentence") == ""
+    assert words_in_sentence("This is not a prime sentence") == ""
 
 def test_all_prime_words():
     assert words_in_sentence("This is a test") == "is a"
@@ -77,15 +74,16 @@ def test_multiple_spaces():
     assert words_in_sentence("This  is   a    test") == "is a"
 
 def test_single_word_prime():
-    assert words_in_sentence("This") == "This"
+    assert words_in_sentence("test") == "test"
 
 def test_single_word_non_prime():
-    assert words_in_sentence("Testing") == ""
+    assert words_in_sentence("testing") == ""
 
-def test_sentence_length_constraint():
-    long_sentence = "a" * 101
-    assert words_in_sentence(long_sentence) == "" # or handle the exception if needed
+def test_prime_length_2():
+    assert words_in_sentence("go") == "go"
 
-def test_invalid_characters():
-    sentence_with_numbers = "This is a test1"
-    assert words_in_sentence(sentence_with_numbers) == ""
+def test_prime_length_3():
+    assert words_in_sentence("the") == "the"
+
+def test_non_prime_length_4():
+    assert words_in_sentence("this") == ""

@@ -43,7 +43,7 @@ def test_eat_max_number():
     assert eat(1000, 5, 10) == [1000, 0]
 
 def test_eat_need_zero():
-    assert eat(5, 0, 10) == [5, 10]
+    assert eat(5, 0, 10) == [5, 5]
 
 # Focus: Type Scenarios
 import pytest

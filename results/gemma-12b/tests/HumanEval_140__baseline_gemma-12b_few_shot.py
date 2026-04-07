@@ -31,8 +31,8 @@ def test_fix_spaces_multiple_consecutive_spaces():
 def test_fix_spaces_only_spaces():
     assert fix_spaces("   ") == "-"
 
-def test_fix_spaces_mixed_spaces():
-    assert fix_spaces("  hello   world  ") == "-hello-world-"
+def test_fix_spaces_mixed_spaces_and_text():
+    assert fix_spaces("a b  c   d") == "a_b-c-d"
 
 def test_fix_spaces_empty_string():
     assert fix_spaces("") == ""
@@ -42,3 +42,6 @@ def test_fix_spaces_string_with_tabs():
 
 def test_fix_spaces_string_with_newlines():
     assert fix_spaces("Example\n1") == "Example_1"
+
+def test_fix_spaces_string_with_mixed_whitespace():
+    assert fix_spaces("Example \t 1  \n 2") == "Example_ \t _1- \n _2"

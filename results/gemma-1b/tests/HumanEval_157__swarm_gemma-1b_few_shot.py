@@ -15,9 +15,10 @@ import math
 
 def right_angle_triangle(a, b, c):
     """
-    Checks if a triangle with sides a, b, and c is a right-angled triangle.
+    Determines if a triangle with sides a, b, and c is a right-angled triangle.
     """
-    assert math.isclose(a**2 + b**2, c**2)
+    sides = sorted([a, b, c])
+    return math.isclose(sides[0]**2 + sides[1]**2, sides[2]**2)
 
 def test_right_angle_triangle():
     assert right_angle_triangle(3, 4, 5) == True
@@ -30,3 +31,10 @@ def test_right_angle_triangle():
 def test_right_angle_triangle():
     assert right_angle_triangle(3, 4, 5) == True
     assert right_angle_triangle(1, 2, 3) == False
+
+def test_right_angle_triangle_invalid():
+    assert right_angle_triangle(1, 1, 1) == True
+    assert right_angle_triangle(1, 1, 2) == False
+    assert right_angle_triangle(2, 1, 1) == False
+    assert right_angle_triangle(1, 2, 1) == False
+    assert right_angle_triangle(1, 1, 2) == False

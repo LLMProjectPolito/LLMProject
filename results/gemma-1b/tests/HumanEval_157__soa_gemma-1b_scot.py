@@ -23,4 +23,5 @@ def right_angle_triangle(a, b, c):
     right_angle_triangle(1, 2, 3) == False
     '''
     sides = sorted([a, b, c])
-    return sides[0]**2 + sides[1]**2 == sides[2]**2
+    a, b, c = sides[0], sides[1], sides[2]
+    return a**2 + b**2 == c**2

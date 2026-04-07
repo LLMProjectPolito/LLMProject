@@ -49,7 +49,7 @@ def test_boundary_suffix_valid():
     assert file_name_check("example.txt") == "Yes"
 
 def test_boundary_suffix_invalid():
-    assert file_name_check("example.pdf") == "No"
+    assert file_name_check("example.doc") == "No"
 
 # Focus: Logic Branches
 import pytest
@@ -73,11 +73,12 @@ def test_file_name_check_invalid_dot_count():
 def test_file_name_check_invalid_extension():
     assert file_name_check("example.pdf") == "No"
     assert file_name_check("example.jpg") == "No"
+    assert file_name_check("example.py") == "No"
 
-def test_file_name_check_invalid_start_char():
+def test_file_name_check_invalid_start_character():
     assert file_name_check("1example.txt") == "No"
-    assert file_name_check("2AnotherExample.exe") == "No"
-    assert file_name_check("!file.dll") == "No"
+    assert file_name_check("!example.exe") == "No"
+    assert file_name_check("_example.dll") == "No"
 
 # Focus: Invalid Input Handling
 import pytest

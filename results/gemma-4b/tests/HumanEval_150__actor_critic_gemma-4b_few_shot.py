@@ -60,35 +60,40 @@ def test_is_palindrome_mixed_case():
     assert is_palindrome('Racecar') == True
     assert is_palindrome('Madam') == True
 
-def test_is_palindrome_with_spaces():
+def test_is_palindrome_with_punctuation():
     assert is_palindrome('A man, a plan, a canal: Panama') == True
+    assert is_palindrome('No ' + 'x in Nixon') == True
 
-def test_max_positive():
+def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
-    assert get_max([5, 2, 8, 1]) == 8
-    assert get_max([-1, -5, -2]) == -1
+    assert get_max([3, 2, 1]) == 3
+    assert get_max([1, 3, 2]) == 3
 
-def test_max_empty():
+def test_get_max_negative():
+    assert get_max([-1, -2, -3]) == -1
+
+def test_get_max_mixed():
+    assert get_max([-1, 2, -3, 4]) == 4
+
+def test_get_max_empty():
     assert get_max([]) == None
 
-def test_max_single_element():
-    assert get_max([7]) == 7
-
-def test_max_duplicate_elements():
-    assert get_max([2, 2, 2, 2]) == 2
+def test_get_max_single_element():
+    assert get_max([5]) == 5
 
 def test_x_or_y_prime():
     assert x_or_y(7, 34, 12) == 34
     assert x_or_y(11, 5, 10) == 5
-    assert x_or_y(13, 20, 1) == 20
+    assert x_or_y(13, 20, 30) == 20
 
 def test_x_or_y_not_prime():
     assert x_or_y(15, 8, 5) == 5
-    assert x_or_y(20, 1, 10) == 1
-    assert x_or_y(4, 100, 2) == 2
+    assert x_or_y(20, 1, 10) == 10
+    assert x_or_y(4, 7, 9) == 9
 
 def test_x_or_y_edge_cases():
-    assert x_or_y(1, 10, 20) == 10
-    assert x_or_y(2, 10, 20) == 20
-    assert x_or_y(0, 10, 20) == 20
-    assert x_or_y(-1, 10, 20) == 20
+    assert x_or_y(1, 1, 2) == 1
+    assert x_or_y(2, 1, 2) == 2
+    assert x_or_y(1, 2, 1) == 2
+    assert x_or_y(0, 1, 2) == 2
+    assert x_or_y(1, 1, 1) == 1

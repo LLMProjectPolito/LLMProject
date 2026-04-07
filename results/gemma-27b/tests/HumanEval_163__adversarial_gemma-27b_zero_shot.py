@@ -40,34 +40,33 @@ def test_generate_integers_no_even_digits():
     assert generate_integers(10, 14) == []
 
 def test_generate_integers_single_digit_range():
+    assert generate_integers(1, 1) == []
+    assert generate_integers(2, 2) == [2]
+
+def test_generate_integers_range_with_one_even():
     assert generate_integers(1, 3) == [2]
 
-def test_generate_integers_same_number():
-    assert generate_integers(4, 4) == [4]
+def test_generate_integers_range_with_multiple_even():
+    assert generate_integers(1, 6) == [2, 4, 6]
 
-def test_generate_integers_start_odd():
-    assert generate_integers(1, 5) == [2, 4]
+def test_generate_integers_larger_range():
+    assert generate_integers(1, 10) == [2, 4, 6, 8]
 
-def test_generate_integers_end_odd():
-    assert generate_integers(3, 7) == [4, 6]
+def test_generate_integers_start_at_even():
+    assert generate_integers(4, 7) == [4, 6]
 
-def test_generate_integers_large_range():
-    assert generate_integers(1, 9) == [2, 4, 6, 8]
-
-def test_generate_integers_zero_to_one():
-    assert generate_integers(0, 1) == []
-
-def test_generate_integers_zero_to_two():
-    assert generate_integers(0, 2) == [2]
+def test_generate_integers_end_at_even():
+    assert generate_integers(1, 6) == [2, 4, 6]
 
 def test_generate_integers_negative_inputs():
-    with pytest.raises(TypeError):
-        generate_integers(-2, 4)
+    assert generate_integers(-2, -1) == []
+    assert generate_integers(-5, 5) == [2, 4]
 
-def test_generate_integers_float_inputs():
-    with pytest.raises(TypeError):
-        generate_integers(2.5, 4)
+def test_generate_integers_zero_inputs():
+    assert generate_integers(0, 0) == []
+    assert generate_integers(0, 2) == [2]
+    assert generate_integers(2, 0) == [2]
 
-def test_generate_integers_string_inputs():
-    with pytest.raises(TypeError):
-        generate_integers("2", "4")
+def test_generate_integers_large_numbers():
+    assert generate_integers(100, 102) == []
+    assert generate_integers(101, 103) == []

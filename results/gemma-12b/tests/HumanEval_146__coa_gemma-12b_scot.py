@@ -40,4 +40,4 @@ def test_specialFilter_no_matching_numbers():
     assert specialFilter([1, 2, 3, 4, 5]) == 0
 
 def test_specialFilter_mixed_branches():
-    assert specialFilter([15, -73, 14, -15, 33, -2, -3, 45, 21, 109]) == 2
+    assert specialFilter([15, -73, 14, -15, 33, -2, -3, 45, 21, 109, 11, 22]) == 2

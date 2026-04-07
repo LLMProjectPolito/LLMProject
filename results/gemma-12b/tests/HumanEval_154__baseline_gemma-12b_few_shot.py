@@ -25,38 +25,28 @@ def test_cycpattern_check_rotation_false():
 def test_cycpattern_check_longer_rotation_true():
     assert cycpattern_check("himenss","simen") == True
 
-def test_cycpattern_check_same_word_true():
-    assert cycpattern_check("word","word") == True
+def test_cycpattern_check_same_string():
+    assert cycpattern_check("abc","abc") == True
 
-def test_cycpattern_check_empty_string_true():
-    assert cycpattern_check("","") == True
+def test_cycpattern_check_empty_string():
+    assert cycpattern_check("","a") == False
+    assert cycpattern_check("a","") == False
+    assert cycpattern_check("","") == False
 
-def test_cycpattern_check_empty_pattern_true():
-    assert cycpattern_check("word","") == True
+def test_cycpattern_check_single_char_true():
+    assert cycpattern_check("a","a") == True
 
-def test_cycpattern_check_pattern_longer_than_string_false():
-    assert cycpattern_check("abc","abcdef") == False
+def test_cycpattern_check_single_char_false():
+    assert cycpattern_check("a","b") == False
 
-def test_cycpattern_check_pattern_with_spaces_true():
-    assert cycpattern_check("hello world","world") == True
+def test_cycpattern_check_complex_true():
+    assert cycpattern_check("thisisateststring","test") == True
 
-def test_cycpattern_check_pattern_with_spaces_false():
-    assert cycpattern_check("hello world"," worl") == False
+def test_cycpattern_check_complex_false():
+    assert cycpattern_check("thisisateststring","testing") == False
 
-def test_cycpattern_check_case_sensitive_false():
-    assert cycpattern_check("Hello","hello") == False
+def test_cycpattern_check_overlapping_rotation_true():
+    assert cycpattern_check("aaaa","aaa") == True
 
-def test_cycpattern_check_case_sensitive_true():
-    assert cycpattern_check("Hello","Hello") == True
-
-def test_cycpattern_check_special_characters_true():
-    assert cycpattern_check("!@#$%^","@#$") == True
-
-def test_cycpattern_check_special_characters_false():
-    assert cycpattern_check("!@#$%^","%^$#@") == False
-
-def test_cycpattern_check_unicode_true():
-    assert cycpattern_check("你好世界","世界") == True
-
-def test_cycpattern_check_unicode_false():
-    assert cycpattern_check("你好世界","世界啊") == False
+def test_cycpattern_check_overlapping_rotation_false():
+    assert cycpattern_check("aaaa","aab") == False

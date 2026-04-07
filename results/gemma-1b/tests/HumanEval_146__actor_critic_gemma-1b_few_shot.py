@@ -42,28 +42,30 @@ def test_specialFilter_positive():
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
     assert specialFilter([1, 2, 3, 4, 5]) == 0
     assert specialFilter([11, 22, 33, 44, 55]) == 5
-    assert specialFilter([1, 2, 3, 4, 5, 6]) == 0
     assert specialFilter([]) == 0
 
 def test_specialFilter_negative():
     assert specialFilter([-15, -23, -35]) == 0
+    assert specialFilter([-11, -22, -33]) == 0
     assert specialFilter([-1, 2, 3]) == 1
-    assert specialFilter([10, -10, 10]) == 2
-    assert specialFilter([-10, -20, -30]) == 0
-    assert specialFilter([-1, 2, 3, 4, 5]) == 0
-
-def test_specialFilter_mixed():
-    assert specialFilter([15, -73, 14, -15, 21, 109]) == 2
-    assert specialFilter([11, 22, 33, 44, 55]) == 5
-    assert specialFilter([1, 2, 3, 4, 5, 6]) == 0
-    assert specialFilter([-15, -23, -35]) == 0
-    assert specialFilter([-1, 2, 3, 4, 5, 6]) == 0
-    assert specialFilter([-10, -20, -30]) == 0
-    assert specialFilter([-1, 2, 3, 4, 5, 6]) == 0
-    assert specialFilter([]) == 0
+    assert specialFilter([10, 20, 30]) == 0
 
 def test_specialFilter_single_element():
-    assert specialFilter([1]) == 1
-    assert specialFilter([-1]) == 0
-    assert specialFilter([10]) == 0
+    assert specialFilter([15]) == 1
+    assert specialFilter([-15]) == 0
+    assert specialFilter([1]) == 0
+    assert specialFilter([11]) == 1
+    assert specialFilter([22]) == 1
+    assert specialFilter([33]) == 1
+    assert specialFilter([44]) == 1
+    assert specialFilter([55]) == 1
     assert specialFilter([]) == 0
+
+def test_specialFilter_all_same():
+    assert specialFilter([11, 11, 11]) == 3
+    assert specialFilter([11, 11, 11, 11]) == 4
+    assert specialFilter([11, 11, 11, 11, 11]) == 5
+    assert specialFilter([11, 11, 11, 11, 11, 11]) == 6
+    assert specialFilter([11, 11, 11, 11, 11, 11, 11]) == 7
+    assert specialFilter([11, 11, 11, 11, 11, 11, 11, 11]) == 8
+    assert specialFilter([11, 11, 11, 11, 11, 11, 11, 11]) == 9

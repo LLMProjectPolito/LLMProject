@@ -64,7 +64,7 @@ def do_algebra(operator, operand):
             return operand[0]
         else:
             return eval(str(operator[0]) + str(operand[0]) + operator[1] + str(operand[1]))
-    except:
+    except Exception:
         return None
 
 # Focus: Type Scenarios
@@ -102,7 +102,7 @@ def do_algebra(operator, operand):
             return operand[0]
         else:
             return eval(str(operator[0]) + str(operand[0]) + operator[1] + str(operand[1]))
-    except:
+    except Exception:
         return None
 
 # Focus: Logic Branches

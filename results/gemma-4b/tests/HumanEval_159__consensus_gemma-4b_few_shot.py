@@ -77,20 +77,16 @@ def test_eat_not_enough_remaining():
     assert eat(2, 11, 5) == [7, 0]
 
 def test_eat_zero_need():
-    assert eat(0, 0, 10) == [0, 10]
+    assert eat(5, 0, 10) == [5, 5]
 
 def test_eat_zero_remaining():
     assert eat(5, 6, 0) == [11, 0]
 
 def test_eat_zero_number():
-    assert eat(0, 5, 10) == [5, 5]
+    assert eat(0, 6, 10) == [6, 4]
 
 def test_eat_large_numbers():
-    assert eat(999, 999, 999) == [1998, 0]
-
-def test_eat_edge_cases():
-    assert eat(0, 0, 0) == [0, 0]
-    assert eat(1000, 1000, 1000) == [2000, 0]
+    assert eat(999, 1, 1000) == [1000, 0]
 
 def test_eat_all_remaining():
     assert eat(0, 5, 5) == [5, 0]

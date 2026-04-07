@@ -33,7 +33,7 @@ def find_max(words):
     if not words:
         return ""
 
-    max_unique = -1
+    max_unique = 0
     result = ""
 
     for word in words:

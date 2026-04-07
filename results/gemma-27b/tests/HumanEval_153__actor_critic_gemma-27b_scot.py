@@ -17,8 +17,6 @@ def Strongest_Extension(class_name, extensions):
     for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
     """
 
-import pytest
-
 def Strongest_Extension(class_name, extensions):
     """You will be given the name of a class (a string) and a list of extensions.
     The extensions are to be used to load additional classes to the class. The
@@ -34,14 +32,11 @@ def Strongest_Extension(class_name, extensions):
     return 'Slices.SErviNGSliCes' since 'SErviNGSliCes' is the strongest extension 
     (its strength is -1).
     Example:
-    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
+    for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
     """
     if not extensions:
         return class_name
-
-    if not class_name:
-        raise ValueError("Class name cannot be empty.")
-
+    
     strongest_extension = extensions[0]
     max_strength = 0
     
@@ -53,33 +48,5 @@ def Strongest_Extension(class_name, extensions):
         if strength > max_strength:
             max_strength = strength
             strongest_extension = extension
-
+            
     return f"{class_name}.{strongest_extension}"
-
-def test_empty_extensions():
-    assert Strongest_Extension("MyClass", []) == "MyClass"
-
-def test_single_extension():
-    assert Strongest_Extension("MyClass", ["Extension"]) == "MyClass.Extension"
-
-def test_multiple_extensions_different_strengths():
-    assert Strongest_Extension("MyClass", ["AA", "Be", "CC"]) == "MyClass.AA"
-
-def test_multiple_extensions_same_strength():
-    assert Strongest_Extension("MyClass", ["AB", "Cd", "EF"]) == "MyClass.AB"
-
-def test_all_uppercase_extension():
-    assert Strongest_Extension("MyClass", ["EXTENSION"]) == "MyClass.EXTENSION"
-
-def test_all_lowercase_extension():
-    assert Strongest_Extension("MyClass", ["extension"]) == "MyClass.extension"
-
-def test_empty_class_name():
-    with pytest.raises(ValueError):
-        Strongest_Extension("", ["Extension"])
-
-def test_example_case():
-    assert Strongest_Extension("Slices", ['SErviNGSliCes', 'Cheese', 'StuFfed']) == "Slices.SErviNGSliCes"
-
-def test_alphanumeric_extension():
-    assert Strongest_Extension("MyClass", ["A1B2", "c3d4", "E5F6"]) == "MyClass.A1B2"

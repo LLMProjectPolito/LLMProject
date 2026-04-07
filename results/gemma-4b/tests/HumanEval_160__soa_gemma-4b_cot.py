@@ -68,22 +68,22 @@ def do_algebra(operator, operand):
 
 def test_addition():
     operator = ['+', '+']
-    operand = [1, 2, 3]
-    assert do_algebra(operator, operand) == 6
+    operand = [2, 3, 4]
+    assert do_algebra(operator, operand) == 9
 
 def test_subtraction():
     operator = ['-', '-', '+']
-    operand = [5, 2, 1, 3]
-    assert do_algebra(operator, operand) == 3
+    operand = [10, 5, 2, 3]
+    assert do_algebra(operator, operand) == 6
 
 def test_multiplication():
     operator = ['*', '*']
-    operand = [2, 3, 4]
-    assert do_algebra(operator, operand) == 24
+    operand = [2, 3, 4, 5]
+    assert do_algebra(operator, operand) == 60
 
 def test_floor_division():
     operator = ['//', '//']
-    operand = [10, 2, 5, 3]
+    operand = [10, 5, 2, 3]
     assert do_algebra(operator, operand) == 2
 
 def test_exponentiation():
@@ -92,14 +92,9 @@ def test_exponentiation():
     assert do_algebra(operator, operand) == 16
 
 def test_mixed_operations():
-    operator = ['+', '*', '-', '**']
-    operand = [2, 3, 4, 5, 2]
-    assert do_algebra(operator, operand) == 24
-
-def test_complex_expression():
-    operator = ['+', '*', '//', '-', '**']
-    operand = [10, 2, 3, 4, 5, 2]
-    assert do_algebra(operator, operand) == 16
+    operator = ['+', '*', '-', '**', '//']
+    operand = [2, 3, 4, 5, 6, 7]
+    assert do_algebra(operator, operand) == 14
 
 def test_single_operand():
     operator = ['+']
@@ -129,4 +124,9 @@ def test_zero_operand():
 def test_negative_result():
     operator = ['-', '**']
     operand = [5, -2, 2]
-    assert do_algebra(operator, operand) == -1
+    assert do_algebra(operator, operand) == -4
+
+def test_complex_expression():
+    operator = ['+', '*', '//', '**', '-']
+    operand = [10, 2, 3, 4, 5, 6]
+    assert do_algebra(operator, operand) == 18

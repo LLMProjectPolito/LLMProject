@@ -73,6 +73,9 @@ def test_int_to_mini_roman_88():
 def test_int_to_mini_roman_90():
     assert int_to_mini_roman(90) == 'xc'
 
+def test_int_to_mini_roman_99():
+    assert int_to_mini_roman(99) == 'xcix'
+
 def test_int_to_mini_roman_100():
     assert int_to_mini_roman(100) == 'c'
 

@@ -52,17 +52,17 @@ def test_cycpattern_check_longer_strings():
     assert cycpattern_check("thisisalongstring", "islo") == True
     assert cycpattern_check("thisisalongstring", "longstr") == True
     assert cycpattern_check("thisisalongstring", "string") == True
-    assert cycpattern_check("thisisalongstring", "stringt") == False
+    assert cycpattern_check("thisisalongstring", "ngstrin") == True
+    assert cycpattern_check("thisisalongstring", "ginstr") == False
 
 def test_cycpattern_check_overlapping():
     assert cycpattern_check("aaaaa", "aaa") == True
-    assert cycpattern_check("ababab", "aba") == True
+    assert cycpattern_check("aaaaa", "aa") == True
+    assert cycpattern_check("aaaaa", "a") == True
+    assert cycpattern_check("aaaaa", "aaaa") == True
 
-def test_cycpattern_check_edge_cases():
-    assert cycpattern_check("abcabc", "abc") == True
-    assert cycpattern_check("abcabc", "bca") == True
-    assert cycpattern_check("abcabc", "cab") == True
-    assert cycpattern_check("abcabc", "abcabc") == True
-    assert cycpattern_check("abcabc", "bcabc") == True
-    assert cycpattern_check("abcabc", "cabca") == True
-    assert cycpattern_check("abcabc", "abcab") == False
+def test_cycpattern_check_special_characters():
+    assert cycpattern_check("!@#$%^", "!@#") == True
+    assert cycpattern_check("!@#$%^", "$%^!") == True
+    assert cycpattern_check("!@#$%^", "^%$#!") == True
+    assert cycpattern_check("!@#$%^", "#$%^!") == False

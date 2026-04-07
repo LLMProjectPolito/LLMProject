@@ -40,3 +40,32 @@ def specialFilter(nums):
 
 def test_empty_array():
     assert specialFilter([]) == 0
+
+def test_no_special_numbers():
+    assert specialFilter([2, 4, 6, 8, 10]) == 0
+
+def test_mixed_numbers():
+    assert specialFilter([15, -73, 14, -15]) == 1
+
+def test_multiple_special_numbers():
+    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
+
+def test_negative_numbers():
+    assert specialFilter([-11, -13, -15, -17, -19]) == 0
+
+def test_large_numbers():
+    assert specialFilter([111, 123, 135, 147, 159]) == 5
+
+def test_single_digit_numbers():
+    assert specialFilter([1, 3, 5, 7, 9]) == 0
+
+def test_numbers_close_to_boundary():
+    assert specialFilter([9, 11, 13, 15, 17, 19]) == 5
+
+def test_string_input():
+    with pytest.raises(TypeError):
+        specialFilter(["15", "33"])
+
+def test_float_input():
+    with pytest.raises(TypeError):
+        specialFilter([15.5, 33.2])

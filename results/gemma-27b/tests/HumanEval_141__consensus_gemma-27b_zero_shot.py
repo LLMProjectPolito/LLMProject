@@ -66,62 +66,49 @@ class TestFileNameCheck:
         assert file_name_check("document1.dll") == 'Yes'
         assert file_name_check("A.txt") == 'Yes'
         assert file_name_check("file123.txt") == 'Yes'
-        assert file_name_check("EXAMPLE.txt") == 'Yes'
-        assert file_name_check("MyFILE.exe") == 'Yes'
-        assert file_name_check("AnotherFILE.dll") == 'Yes'
-        assert file_name_check("ExAmPlE.txt") == 'Yes'
-        assert file_name_check("MyFiLe.exe") == 'Yes'
-        assert file_name_check("AnOtHeRfIlE.dll") == 'Yes'
+        assert file_name_check("a.txt") == "Yes"
+        assert file_name_check("A.exe") == "Yes"
+        assert file_name_check("file1.txt") == "Yes"
+        assert file_name_check("file12.dll") == "Yes"
+        assert file_name_check("file123.exe") == "Yes"
 
     def test_invalid_file_name_too_many_digits(self):
         assert file_name_check("1234example.txt") == 'No'
         assert file_name_check("file1234.exe") == 'No'
-        assert file_name_check("1234.dll") == 'No'
+        assert file_name_check("1234.exe") == "No"
 
     def test_invalid_file_name_no_dot(self):
         assert file_name_check("exampletxt") == 'No'
         assert file_name_check("MyFileexe") == 'No'
-        assert file_name_check("AnotherFiledll") == 'No'
+        assert file_name_check("AnotherFiledll") == "No"
 
     def test_invalid_file_name_multiple_dots(self):
         assert file_name_check("example.txt.backup") == 'No'
         assert file_name_check("My.File.exe") == 'No'
-        assert file_name_check("example.txt.txt") == 'No'
-        assert file_name_check("MyFile.exe.dll") == 'No'
-        assert file_name_check("AnotherFile..dll") == 'No'
+        assert file_name_check("Another.File.dll") == "No"
 
     def test_invalid_file_name_empty_before_dot(self):
         assert file_name_check(".txt") == 'No'
         assert file_name_check(".exe") == 'No'
-        assert file_name_check(".dll") == 'No'
+        assert file_name_check(".dll") == "No"
 
     def test_invalid_file_name_starts_with_digit(self):
         assert file_name_check("1example.dll") == 'No'
         assert file_name_check("2MyFile.exe") == 'No'
-        assert file_name_check("3AnotherFile.dll") == 'No'
+        assert file_name_check("3AnotherFile.dll") == "No"
 
     def test_invalid_file_name_invalid_extension(self):
         assert file_name_check("example.jpg") == 'No'
         assert file_name_check("MyFile.pdf") == 'No'
-        assert file_name_check("example.pdf") == 'No'
-        assert file_name_check("MyFile.jpg") == 'No'
-        assert file_name_check("AnotherFile.png") == 'No'
-
-    def test_invalid_file_name_special_characters(self):
-        assert file_name_check("_example.txt") == 'No'
-        assert file_name_check("!MyFile.exe") == 'No'
-        assert file_name_check("@AnotherFile.dll") == 'No'
-        assert file_name_check("example!.txt") == 'Yes'
-        assert file_name_check("example@.exe") == 'Yes'
-        assert file_name_check("example#.dll") == 'Yes'
-
-    def test_edge_cases(self):
-        assert file_name_check("a.txt") == 'Yes'
-        assert file_name_check("A.exe") == 'Yes'
-        assert file_name_check("abc.dll") == 'Yes'
-        assert file_name_check("abc1.txt") == 'Yes'
-        assert file_name_check("abc12.exe") == 'Yes'
-        assert file_name_check("abc123.dll") == 'Yes'
+        assert file_name_check("AnotherFile.png") == "No"
 
     def test_invalid_file_name_empty_string(self):
-        assert file_name_check("") == "No"
+        assert file_name_check("") == 'No'
+
+    def test_valid_file_name_uppercase(self):
+        assert file_name_check("Example.txt") == 'Yes'
+        assert file_name_check("MYFILE.exe") == 'Yes'
+
+    def test_valid_file_name_mixed_case(self):
+        assert file_name_check("ExAmPlE.txt") == 'Yes'
+        assert file_name_check("mYfIlE.exe") == 'Yes'

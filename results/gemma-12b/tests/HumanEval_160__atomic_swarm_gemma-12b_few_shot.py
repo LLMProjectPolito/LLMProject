@@ -43,8 +43,8 @@ def test_edge_empty_operator():
 
 def test_do_algebra_invalid_operator():
     """Test with an invalid operator in the operator list."""
-    operator = ["+", "%"]
-    operand = [2, 3]
+    operator = ["%", 1, "+"]
+    operand = [2, 3, 4]
     try:
         from main import do_algebra
         do_algebra(operator, operand)

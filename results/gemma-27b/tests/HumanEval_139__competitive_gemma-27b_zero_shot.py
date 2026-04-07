@@ -12,4 +12,36 @@ def special_factorial(n):
     factorial of this integer.
     """
 
-# ERROR: setup_competitive_graph() got an unexpected keyword argument 'model_a'
+import pytest
+
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+def test_special_factorial_positive():
+    assert special_factorial(1) == 1
+    assert special_factorial(2) == 2
+    assert special_factorial(3) == 12
+    assert special_factorial(4) == 288
+    assert special_factorial(5) == 34560
+
+def test_special_factorial_large():
+    assert special_factorial(6) == 4976640
+    assert special_factorial(7) == 86400000
+
+def test_special_factorial_edge_case():
+    assert special_factorial(0) == 1
+
+def test_special_factorial_type_error():
+    with pytest.raises(TypeError):
+        special_factorial(1.5)
+    with pytest.raises(TypeError):
+        special_factorial("a")
+    with pytest.raises(TypeError):
+        special_factorial([1])
+
+def test_special_factorial_negative_value_error():
+    with pytest.raises(ValueError):
+        special_factorial(-1)

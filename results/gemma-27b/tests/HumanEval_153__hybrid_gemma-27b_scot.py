@@ -54,29 +54,20 @@ def Strongest_Extension(class_name, extensions):
 
     return f"{class_name}.{strongest_extension}"
 
+def test_basic():
+    assert Strongest_Extension('Slices', ['SErviNGSliCes', 'Cheese', 'StuFfed']) == 'Slices.SErviNGSliCes'
+
+def test_all_uppercase():
+    assert Strongest_Extension('MyClass', ['AA', 'BB', 'CC']) == 'MyClass.AA'
+
+def test_all_lowercase():
+    assert Strongest_Extension('MyClass', ['aa', 'bb', 'cc']) == 'MyClass.aa'
+
+def test_mixed_case():
+    assert Strongest_Extension('MyClass', ['aA', 'Bb', 'cC']) == 'MyClass.aA'
+
+def test_equal_strength():
+    assert Strongest_Extension('MyClass', ['AA', 'Be', 'CC']) == 'MyClass.AA'
+
 def test_empty_extensions():
-    assert Strongest_Extension("MyClass", []) == "MyClass.None"
-
-def test_single_extension():
-    assert Strongest_Extension("MyClass", ["Extension"]) == "MyClass.Extension"
-
-def test_multiple_extensions_different_strengths():
-    assert Strongest_Extension("MyClass", ["Extension1", "Extension2", "Extension3"]) == "MyClass.Extension1"
-
-def test_multiple_extensions_same_strength():
-    assert Strongest_Extension("MyClass", ["AA", "BB", "CC"]) == "MyClass.AA"
-
-def test_uppercase_only_extensions():
-    assert Strongest_Extension("MyClass", ["AAA", "BBB", "CCC"]) == "MyClass.AAA"
-
-def test_lowercase_only_extensions():
-    assert Strongest_Extension("MyClass", ["aaa", "bbb", "ccc"]) == "MyClass.aaa"
-
-def test_mixed_case_extensions():
-    assert Strongest_Extension("MyClass", ["aA", "Aa", "AA"]) == "MyClass.AA"
-
-def test_example_1():
-    assert Strongest_Extension("Slices", ['SErviNGSliCes', 'Cheese', 'StuFfed']) == 'Slices.SErviNGSliCes'
-
-def test_example_2():
-    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
+    assert Strongest_Extension('MyClass', []) == 'MyClass.None'

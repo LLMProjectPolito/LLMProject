@@ -29,4 +29,7 @@ def eat(number, need, remaining):
     Have fun :)
     """
 
-# ERROR: setup_competitive_graph() got an unexpected keyword argument 'model_a'
+def eat(number, need, remaining):
+    total_eaten = number
+    remaining_after_meals = remaining - need
+    return [total_eaten, remaining_after_meals]

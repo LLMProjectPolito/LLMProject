@@ -14,31 +14,7 @@ import pytest
 import math
 
 
-# Focus: Substring Search Variations
-import pytest
-
-def test_cycpattern_check_basic_true():
-    assert cycpattern_check("hello", "ell") == True
-
-def test_cycpattern_check_basic_false():
-    assert cycpattern_check("abcd", "abd") == False
-
-def test_cycpattern_check_rotation_true():
-    assert cycpattern_check("abab", "baa") == True
-
-def test_cycpattern_check_no_match():
-    assert cycpattern_check("efef", "eeff") == False
-
-def test_cycpattern_check_longer_string():
-    assert cycpattern_check("himenss", "simen") == True
-
-def test_cycpattern_check_empty_b():
-    assert cycpattern_check("abc", "") == True
-
-def test_cycpattern_check_empty_a():
-    assert cycpattern_check("", "abc") == False
-
-# Focus: Rotational Equivalence
+# Focus: Substring Presence
 import pytest
 
 def cycpattern_check(a , b):
@@ -58,16 +34,16 @@ def cycpattern_check(a , b):
             return True
     return False
 
-def test_rotational_equivalence_positive():
+def test_substring_presence_positive():
     assert cycpattern_check("hello", "ell") == True
 
-def test_rotational_equivalence_negative():
+def test_substring_presence_negative():
     assert cycpattern_check("abcd", "abd") == False
 
-def test_rotational_equivalence_complex():
+def test_substring_presence_rotation():
     assert cycpattern_check("abab", "baa") == True
 
-# Focus: Edge Cases - Empty/Null Strings
+# Focus: Rotation Handling
 import pytest
 
 def cycpattern_check(a , b):
@@ -80,20 +56,28 @@ def cycpattern_check(a , b):
     cycpattern_check("himenss","simen") => True
 
     """
-    if not a or not b:
-        return False
-
-    for i in range(len(b)):
+    n = len(b)
+    for i in range(n):
         rotated_b = b[i:] + b[:i]
         if rotated_b in a:
             return True
     return False
 
-def test_empty_a():
+def test_rotation_substring_present():
+    assert cycpattern_check("hello", "ell") == True
+
+def test_rotation_substring_not_present():
+    assert cycpattern_check("abcd", "abd") == False
+
+def test_rotation_substring_present_complex():
+    assert cycpattern_check("himenss", "simen") == True
+
+# Focus: Edge Cases - Empty/Null Strings
+def test_empty_strings():
+    assert cycpattern_check("", "") == True
+
+def test_empty_a_nonempty_b():
     assert cycpattern_check("", "abc") == False
 
-def test_empty_b():
-    assert cycpattern_check("abc", "") == False
-
-def test_both_empty():
-    assert cycpattern_check("", "") == False
+def test_nonempty_a_empty_b():
+    assert cycpattern_check("abc", "") == True

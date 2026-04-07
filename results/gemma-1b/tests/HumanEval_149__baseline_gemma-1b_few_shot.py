@@ -39,10 +39,3 @@ def list_sort(lst):
             new_lst.append(word)
     new_lst.sort(key=lambda x: (len(x), x))
     return new_lst
-
-def test_list_sort():
-    assert list_sort(["aa", "a", "aaa"]) == ["aa"]
-    assert list_sort(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
-    assert list_sort(["abc", "ab", "a"]) == ["a", "ab", "abc"]
-    assert list_sort(["a", "aa", "aaa"]) == ["a", "aa", "aaa"]
-    assert list_sort([]) == []

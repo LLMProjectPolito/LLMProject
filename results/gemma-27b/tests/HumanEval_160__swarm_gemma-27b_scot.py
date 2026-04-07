@@ -66,18 +66,21 @@ def do_algebra(operator, operand):
             result **= operand[i+1]
     return result
 
-def test_zero_first_operand():
-    operators = ['*']
-    operands = [0, 5]
-    assert do_algebra(operators, operands) == 0
-
-def test_zero_first_operand_multiple():
-    operators = ['*', '+', '-']
-    operands = [0, 5, 3, 2]
-    assert do_algebra(operators, operands) == -1
-
 def test_do_algebra_zero_division():
     operators = ["//"]
     operands = [10, 0]
     with pytest.raises(ZeroDivisionError):
         do_algebra(operators, operands)
+
+def test_zero_first_operand():
+    operators = ['*', '+', '-']
+    operands = [0, 5, 3, 2]
+    assert do_algebra(operators, operands) == -1
+
+    operators = ['*']
+    operands = [0, 5]
+    assert do_algebra(operators, operands) == 0
+
+    operators = ['**']
+    operands = [0, 2]
+    assert do_algebra(operators, operands) == 0

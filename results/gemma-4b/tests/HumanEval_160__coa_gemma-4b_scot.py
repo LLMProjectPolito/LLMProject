@@ -43,9 +43,9 @@ def test_do_algebra_subtraction():
     assert do_algebra(operator, operand) == 16
 
 def test_do_algebra_exponentiation():
-    operator = ['**', '/']
-    operand = [2, 3, 4, 5]
-    assert do_algebra(operator, operand) == 0.25
+    operator = ['**', '+']
+    operand = [2, 3, 4]
+    assert do_algebra(operator, operand) == 125
 
 # Focus: Type Scenarios
 import pytest
@@ -71,14 +71,14 @@ import pytest
 def test_addition():
     operator = ['+', '-']
     operand = [2, 3, 4]
-    assert do_algebra(operator, operand) == 3
+    assert do_algebra(operator, operand) == 2 + 3 - 4
 
 def test_multiplication():
     operator = ['*', '//']
-    operand = [2, 3, 4, 5]
-    assert do_algebra(operator, operand) == 10
+    operand = [10, 2, 5]
+    assert do_algebra(operator, operand) == 10 * 2 // 5
 
 def test_exponentiation():
     operator = ['**', '+']
     operand = [2, 3, 4]
-    assert do_algebra(operator, operand) == 14
+    assert do_algebra(operator, operand) == 2 ** 3 + 4

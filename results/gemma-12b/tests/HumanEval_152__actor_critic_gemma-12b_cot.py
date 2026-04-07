@@ -32,8 +32,6 @@ def compare(game,guess):
     compare([1,2,3,4,5,1],[1,2,3,4,2,-2]) -> [0,0,0,0,3,3]
     compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) -> [4,4,1,0,0,6]
     """
-    if len(game) != len(guess):
-        raise ValueError("Input lists must have the same length.")
     result = []
     for i in range(len(game)):
         if game[i] == guess[i]:
@@ -46,10 +44,10 @@ def test_compare_correct_guesses():
     assert compare([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]) == [0, 0, 0, 0, 0]
 
 def test_compare_incorrect_guesses():
-    assert compare([1, 2, 3, 4, 5], [6, 7, 8, 9, 10]) == [5, 5, 5, 5, 5]
+    assert compare([1, 2, 3, 4, 5], [5, 4, 3, 2, 1]) == [4, 2, 0, 2, 4]
 
 def test_compare_mixed_guesses():
-    assert compare([1, 2, 3, 4, 5], [1, 2, 8, 4, 2]) == [0, 0, 5, 0, 3]
+    assert compare([1, 2, 3, 4, 5], [1, 2, 4, 4, 2]) == [0, 0, 1, 0, 3]
 
 def test_compare_with_zeros():
     assert compare([0, 5, 0, 0, 0], [0, 5, 0, 0, 0]) == [0, 0, 0, 0, 0]
@@ -70,9 +68,12 @@ def test_compare_single_element_lists():
 def test_compare_large_numbers():
     assert compare([1000, 2000], [1000, 2001]) == [0, 1]
 
-def test_compare_different_lengths_raises_error():
-    with pytest.raises(ValueError):
-        compare([1, 2], [1])
+def test_compare_all_guesses_far_off():
+    assert compare([1, 2, 3], [10, 20, 30]) == [9, 18, 27]
+
+def test_compare_one_list_empty():
+    with pytest.raises(IndexError):
+        compare([1, 2, 3], [])
 
 def test_compare_floating_point_numbers():
-    assert compare([1.0, 2.5, 3.0], [1.0, 2.6, 3.0]) == [0, pytest.approx(0.1), 0]
+    assert compare([1.0, 2.5, 3.0], [1.0, 2.6, 3.0]) == [0, 0.1, 0]

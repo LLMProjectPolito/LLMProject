@@ -61,25 +61,23 @@ def eat(number, need, remaining):
     Have fun :)
     """
     if number == 0:
-        return [remaining, 0]
-    elif number == 1000:
-        return [remaining, 0]
-    elif need == 0:
-        return [remaining, 0]
+        return [remaining, remaining]
+    elif number < need:
+        return [remaining, remaining - number]
     else:
-        return [remaining, number - need]
+        return [remaining, remaining - number]
 
-def test_eat_positive():
+def test_eat_basic():
     assert eat(5, 6, 10) == [11, 4]
 
 def test_eat_empty():
-    assert eat(0, 0, 10) == [10, 0]
+    assert eat(0, 5, 10) == [10, 0]
 
-def test_eat_negative():
-    assert eat(10, 1, 5) == [11, 0]
+def test_eat_large_numbers():
+    assert eat(100, 200, 50) == [150, 50]
 
-def test_eat_large_number():
-    assert eat(100, 10, 1) == [11, 0]
+def test_eat_need_greater_than_available():
+    assert eat(5, 12, 3) == [11, 0]
 
-def test_eat_large_number_2():
-    assert eat(100, 20, 1) == [11, 0]
+def test_eat_need_equal_to_available():
+    assert eat(5, 6, 6) == [11, 0]

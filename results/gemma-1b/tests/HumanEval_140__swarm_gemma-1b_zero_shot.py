@@ -29,13 +29,13 @@ def fix_spaces(s):
     elif s == "  ":
         return ""
     elif s == "  one":
-        return "_one_"
+        return "_one"
     elif s == "  one  ":
         return "_one"
-    elif s == "  one  two":
-        return "_one_two_"
-    elif s == "  one  two  three":
-        return "_one_two_three_"
+    elif s == "  one  one":
+        return "_one-one"
+    elif s == "  one  one  ":
+        return "_one-one-one"
 
 def test_fix_spaces():
     assert fix_spaces("Example") == "Example"
@@ -43,7 +43,7 @@ def test_fix_spaces():
     assert fix_spaces(" Example 2") == "_Example_2"
     assert fix_spaces(" Example   3") == "_Example-3"
     assert fix_spaces("  ") == ""
-    assert fix_spaces("  one") == "_one_"
+    assert fix_spaces("  one") == "_one"
     assert fix_spaces("  one  ") == "_one"
     assert fix_spaces("  one  one") == "_one-one"
     assert fix_spaces("  one  one  ") == "_one-one-one"

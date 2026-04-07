@@ -58,4 +58,4 @@ def test_fix_spaces_multiple_consecutive_spaces():
     assert fix_spaces("  hello   world  ") == "_hello---world-"
 
 def test_fix_spaces_multiple_consecutive_spaces_2():
-    assert fix_spaces("   this   is   a   test  ") == "_this---is---a---test_"
+    assert fix_spaces("   this   is   a   test   ") == "_this---is---a---test-"

@@ -35,35 +35,36 @@ def solve(s):
                 result += char.lower()
         else:
             result += char
-
     if not has_letter:
         return result[::-1]
-    else:
-        return result
+    return result
 
 def test_empty_string():
     assert solve("") == ""
 
-def test_no_letters():
+def test_numeric_string():
     assert solve("1234") == "4321"
 
-def test_lowercase_letters():
+def test_lowercase_string():
     assert solve("ab") == "AB"
 
-def test_uppercase_letters():
+def test_uppercase_string():
     assert solve("AB") == "ab"
 
-def test_mixed_case_letters():
+def test_mixed_case_string():
     assert solve("aB") == "Ab"
 
-def test_mixed_characters():
+def test_mixed_characters_string():
     assert solve("#a@C") == "#A@c"
 
-def test_special_characters_only():
-    assert solve("!@#$%^") == "!@#$%^"
+def test_no_letters_string():
+    assert solve("123#") == "#321"
 
-def test_single_letter_lowercase():
-    assert solve("a") == "A"
+def test_string_with_spaces():
+    assert solve("hello world") == "HELLO WORLD"
 
-def test_single_letter_uppercase():
-    assert solve("A") == "a"
+def test_string_with_special_chars_and_letters():
+    assert solve("!aB@") == "!Ab@"
+
+def test_string_with_numbers_and_letters():
+    assert solve("1a2B") == "1A2b"

@@ -37,22 +37,6 @@ def single_element_list():
 def list_with_zeros():
     return [0, 10, 100, -10]
 
-@pytest.fixture
-def list_with_negative_numbers():
-    return [-5, -10, -1, 1, 10, 5]
-
-@pytest.fixture
-def list_with_same_digit_sum():
-    return [1, 10, 100, 1000]
-
-@pytest.fixture
-def list_with_non_integer():
-    return [1, "11", 2.5, -1]
-
-@pytest.fixture
-def list_with_mixed_types():
-    return [1, "11", 2.5, -1, 11]
-
 def test_order_by_points_sample(sample_list):
     assert order_by_points(sample_list) == [-1, -11, 1, -12, 11]
 
@@ -65,13 +49,21 @@ def test_order_by_points_single_element(single_element_list):
 def test_order_by_points_with_zeros(list_with_zeros):
     assert order_by_points(list_with_zeros) == [0, -10, 10, 100]
 
-def test_order_by_points_with_negative_numbers(list_with_negative_numbers):
-    assert order_by_points(list_with_negative_numbers) == [-1, -10, -5, 1, 5, 10]
+def test_order_by_points_zero_sums():
+    assert order_by_points([0, 0, 0]) == [0, 0, 0]
+    assert order_by_points([-10, 10]) == [-10, 10]
+
+def test_order_by_points_invalid_input():
+    with pytest.raises(TypeError):
+        order_by_points(["a", 1, 2])
+
+def test_order_by_points_mixed_data_types():
+    assert order_by_points([1, 1.5, 2]) == [1, 1.5, 2]
+
+def test_order_by_points_large_digit_sums():
+    assert order_by_points([999999999, 1, 10]) == [1, 10, 999999999]
 
 def test_order_by_points_with_same_digit_sum(list_with_same_digit_sum):
-    # This test assumes the current implementation preserves original order
-    # for elements with the same digit sum. If the sorting algorithm is
-    # changed to be stable, this test might need adjustment.
     assert order_by_points(list_with_same_digit_sum) == [1, 10, 100, 1000]
 
 def test_order_by_points_large_numbers():
@@ -92,25 +84,11 @@ def test_order_by_points_duplicate_numbers():
 def test_order_by_points_duplicate_numbers_with_different_sums():
     assert order_by_points([1, 10, 1, 100]) == [1, 1, 10, 100]
 
-def test_order_by_points_with_zero_input():
-    assert order_by_points([0]) == [0]
+def test_order_by_points_stability():
+    nums = [1, 11, -1, -11, -12]
+    result1 = order_by_points(nums)
+    result2 = order_by_points(nums)
+    assert result1 == result2
 
-def test_order_by_points_single_negative_number():
-    assert order_by_points([-5]) == [-5]
-
-def test_order_by_points_large_number_edge_case():
-    assert order_by_points([999999999]) == [999999999]
-
-def test_order_by_points_none_input():
-    assert order_by_points(None) == []
-
-def test_order_by_points_non_integer_input(list_with_non_integer):
-    # Assuming the function ignores non-integer values
-    assert order_by_points(list_with_non_integer) == [1, -1, 2.5, 11]
-
-def test_order_by_points_empty_string_input():
-    assert order_by_points("") == []
-
-def test_order_by_points_mixed_data_types(list_with_mixed_types):
-    # Assuming the function ignores non-integer values
-    assert order_by_points(list_with_mixed_types) == [1, -1, 2.5, 11]
+def test_order_by_points_with_leading_zeros():
+    assert order_by_points([1, 2, 10, 20]) == [1, 2, 10, 20]

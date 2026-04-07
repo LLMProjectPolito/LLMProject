@@ -91,9 +91,9 @@ def test_empty_operand_list():
     with pytest.raises(IndexError):
         do_algebra(['+'], [])
 
-def test_operator_list_too_short():
+def test_operand_list_with_one_element():
     with pytest.raises(IndexError):
-        do_algebra(['+'], [1, 2, 3])
+        do_algebra(['+'], [1])
 
 # Focus: Large Numbers/Overflow
 import pytest

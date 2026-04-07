@@ -37,7 +37,7 @@ def test_invalid_file_name_no_dot():
 
 def test_invalid_file_name_multiple_dots():
     assert file_name_check("example.txt.dll") == "No"
-    assert file_name_check("example..txt") == "No"
+    assert file_name_name("a.b.c") == "No"
 
 def test_invalid_file_name_empty_before_dot():
     assert file_name_check(".txt") == "No"

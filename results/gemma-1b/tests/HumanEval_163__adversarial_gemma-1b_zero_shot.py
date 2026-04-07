@@ -51,6 +51,3 @@ def test_generate_integers_with_zero():
 
 def test_generate_integers_negative_numbers():
     assert generate_integers(-2, 8) == [-2, 0, 2, 4, 6, 8]
-
-def test_generate_integers_mixed_numbers():
-    assert generate_integers(2, 10) == [2, 4, 6, 8]

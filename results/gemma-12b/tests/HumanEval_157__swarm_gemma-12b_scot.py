@@ -14,4 +14,8 @@ import pytest
 import math
 
 def test_floating_point_near_right_angle():
+    """Test with floating-point numbers very close to a right triangle."""
+    assert right_angle_triangle(3.0, 4.000000001, 5.0) == True
+
+def test_floating_point_near_right_angle_duplicate():
     assert right_angle_triangle(3.000001, 4.000001, 5.000002) == True

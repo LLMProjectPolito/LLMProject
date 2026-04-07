@@ -17,15 +17,6 @@ def get_max_triples(n):
 import pytest
 from your_module import get_max_triples  # Replace your_module
 
-@pytest.fixture
-def sample_array(n):
-    """Generates the array 'a' based on the input 'n' for testing."""
-    return [i * i - i + 1 for i in range(1, n + 1)]
-
-def check_multiple_of_3(sum_val):
-    """Helper function to check if a number is a multiple of 3."""
-    return sum_val % 3 == 0
-
 def test_get_max_triples_n_1():
     assert get_max_triples(1) == 0
 
@@ -66,12 +57,13 @@ def test_get_max_triples_large_n():
     assert get_max_triples(100) == 1668
 
 def test_get_max_triples_edge_case_n_0():
-    assert get_max_triples(0) == 0
+    with pytest.raises(ValueError):
+        get_max_triples(0)
 
 def test_get_max_triples_negative_n():
     with pytest.raises(ValueError):
         get_max_triples(-1)
 
-def test_get_max_triples_non_integer_n():
+def test_get_max_triples_n_float():
     with pytest.raises(TypeError):
-        get_max_triples(3.14)
+        get_max_triples(5.5)

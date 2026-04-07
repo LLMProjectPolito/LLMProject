@@ -35,7 +35,7 @@ def do_algebra(operator, operand):
             return operand[0]
         else:
             return eval(str(operator[0]) + str(operand[0]) + operator[1] + str(operand[1]))
-    except Exception:
+    except:
         return None
 
 def test_addition():
@@ -79,11 +79,6 @@ def test_invalid_input():
     assert result == None
 
 def test_invalid_operand_length():
-    array = [2, 3, 4, 5]
-    result = 2 + 3 * 4
-    assert result == None
-
-def test_invalid_operator_length():
     array = [2, 3, 4, 5]
     result = 2 + 3 * 4
     assert result == None

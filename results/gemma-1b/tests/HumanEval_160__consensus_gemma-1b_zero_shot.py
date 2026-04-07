@@ -36,4 +36,4 @@ def do_algebra(operator, operand):
         else:
             return eval(str(operator[0]) + str(operand[0]) + operator[1] + str(operand[1]))
     except:
-        return "Error: Invalid input"
+        return None

@@ -30,13 +30,13 @@ def file_name_check(file_name):
     """
     parts = file_name.split(".")
     if len(parts) > 3:
-        return 'No'
+        return "No"
     if len(parts) == 1:
-        return 'No'
+        return "No"
     if not parts[0]:
-        return 'No'
+        return "No"
     if not parts[1][0].isalpha():
-        return 'No'
+        return "No"
     if parts[1][-1] not in ['txt', 'exe', 'dll']:
-        return 'No'
-    return 'Yes'
+        return "No"
+    return "Yes"

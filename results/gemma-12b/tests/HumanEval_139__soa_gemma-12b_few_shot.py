@@ -25,21 +25,24 @@ def test_special_factorial_positive_integer():
 
 def test_special_factorial_large_integer():
     assert special_factorial(7) == 7257600000000
-    assert special_factorial(8) == 12740160000000000000000
+    # Add more tests for larger integers as needed, considering potential overflow
 
-def test_special_factorial_edge_case():
-    assert special_factorial(0) == 1 #Handles the case where n=0, although the problem states n>0.  Good to test for robustness.
+def test_special_factorial_edge_case_one():
+    assert special_factorial(1) == 1
+
+def test_special_factorial_edge_case_two():
+    assert special_factorial(2) == 2
 
 def test_special_factorial_type_error():
     with pytest.raises(TypeError):
         special_factorial("a")
 
-    with pytest.raises(TypeError):
-        special_factorial(1.5)
-
-def test_special_factorial_negative_integer():
+def test_special_factorial_value_error():
+    with pytest.raises(ValueError):
+        special_factorial(0)
     with pytest.raises(ValueError):
         special_factorial(-1)
 
-    with pytest.raises(ValueError):
-        special_factorial(-5)
+def test_special_factorial_float_input():
+    with pytest.raises(TypeError):
+        special_factorial(2.5)

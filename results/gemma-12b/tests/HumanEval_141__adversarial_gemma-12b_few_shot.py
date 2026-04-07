@@ -63,39 +63,34 @@ import pytest
 def test_valid_filename():
     assert file_name_check("example.txt") == "Yes"
     assert file_name_check("document.dll") == "Yes"
-    assert file_name_check("my_program.exe") == "Yes"
-    assert file_name_check("a.txt") == "Yes"
-    assert file_name_check("A.TXT") == "Yes"
-    assert file_name_check("long_file_name.exe") == "Yes"
+    assert file_name_check("my_file.exe") == "Yes"
+    assert file_name_check("A.txt") == "Yes"
+    assert file_name_check("long_name.txt") == "Yes"
     assert file_name_check("file123.txt") == "Yes"
-    assert file_name_check("file1234.txt") == "No"
-
+    assert file_name_check("file1234.txt") == "No" # More than 3 digits
 
 def test_invalid_filename_no_dot():
     assert file_name_check("example") == "No"
-    assert file_name_check("exampletxt") == "No"
 
 def test_invalid_filename_multiple_dots():
-    assert file_name_check("example.txt.dll") == "No"
-    assert file_name_check("example..txt") == "No"
+    assert file_name_check("example.txt.doc") == "No"
 
 def test_invalid_filename_empty_prefix():
     assert file_name_check(".txt") == "No"
-    assert file_name_check(".exe") == "No"
 
 def test_invalid_filename_prefix_not_letter():
     assert file_name_check("1example.txt") == "No"
     assert file_name_check("_example.txt") == "No"
-    assert file_name_check(" example.txt") == "No"
 
 def test_invalid_filename_invalid_suffix():
     assert file_name_check("example.pdf") == "No"
     assert file_name_check("example.jpg") == "No"
-    assert file_name_check("example.something") == "No"
 
-def test_invalid_filename_too_many_digits():
-    assert file_name_check("1234example.txt") == "No"
-    assert file_name_check("11111.txt") == "No"
+def test_invalid_filename_suffix_empty():
+    assert file_name_check("example.") == "No"
+
+def test_invalid_filename_suffix_is_number():
+    assert file_name_check("example.123") == "No"
 
 def test_invalid_filename_type():
     assert file_name_check(123) == "No"

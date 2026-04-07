@@ -45,8 +45,11 @@ def test_invalid_input_types():
     assert bf(123, 456) == ()
     assert bf([1,2], "Neptune") == ()
     assert bf("Jupiter", [1,2]) == ()
-    assert bf({"a":1}, "Neptune") == ()
-    assert bf("Jupiter", {"a":1}) == ()
+
+def test_empty_string_input():
+    assert bf("", "Neptune") == ()
+    assert bf("Jupiter", "") == ()
+    assert bf("", "") == ()
 
 # Focus: Logic Branches
 def test_bf_between_jupiter_and_neptune():

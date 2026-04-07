@@ -15,8 +15,9 @@ import pytest
 
 def is_palindrome(s: str) -> bool:
     """ Checks if a string is a palindrome """
+    s = s.replace(" ", "")
     s = s.lower()
-    s = ''.join(filter(str.isalnum, s))
+    s = "".join(c for c in s if c.isalnum())
     return s == s[::-1]
 
 def get_max(arr: list[int]) -> int:

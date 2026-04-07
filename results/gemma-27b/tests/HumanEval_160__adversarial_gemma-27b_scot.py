@@ -54,20 +54,22 @@ def do_algebra(operator, operand):
     """
     result = operand[0]
     for i in range(len(operator)):
-        if operator[i] == '+':
-            result += operand[i+1]
-        elif operator[i] == '-':
-            result -= operand[i+1]
-        elif operator[i] == '*':
-            result *= operand[i+1]
-        elif operator[i] == '//':
-            if operand[i+1] == 0:
+        op = operator[i]
+        num = operand[i+1]
+        if op == '+':
+            result += num
+        elif op == '-':
+            result -= num
+        elif op == '*':
+            result *= num
+        elif op == '//':
+            if num == 0:
                 raise ZeroDivisionError("Floor division by zero")
-            result //= operand[i+1]
-        elif operator[i] == '**':
-            result **= operand[i+1]
+            result //= num
+        elif op == '**':
+            result **= num
         else:
-            raise ValueError("Invalid operator")
+            raise ValueError(f"Invalid operator: {op}")
     return result
 
 def test_valid_expression():
@@ -91,17 +93,17 @@ def test_exponentiation():
     assert do_algebra(['**'], [2, 3]) == 8
 
 def test_mixed_operators():
-    assert do_algebra(['+', '-', '*', '//'], [10, 2, 3, 4, 2]) == 5
+    assert do_algebra(['+', '-', '*', '//'], [1, 2, 3, 4, 2]) == 1
 
 def test_invalid_operator():
     with pytest.raises(ValueError):
-        do_algebra(['$'], [1, 2])
+        do_algebra(['%'], [1, 2])
 
 def test_invalid_length():
     with pytest.raises(IndexError):
         do_algebra(['+'], [1])
     with pytest.raises(IndexError):
-        do_algebra(['+', '-'], [1, 2, 3])
+        do_algebra(['+', '+'], [1, 2, 3])
 
 def test_negative_operand():
     with pytest.raises(TypeError):
@@ -111,7 +113,7 @@ def test_empty_operator_operand():
     with pytest.raises(IndexError):
         do_algebra([], [1, 2])
     with pytest.raises(IndexError):
-        do_algebra(['+'], [])
+        do_algebra(['+'], [1])
 
 def test_large_numbers():
     assert do_algebra(['*'], [100000, 100000]) == 10000000000

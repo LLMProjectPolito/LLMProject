@@ -77,7 +77,7 @@ def test_solve_with_special_chars():
 def test_solve_empty_string():
     assert solve("") == ""
 
-def test_solve_single_char():
+def test_solve_single_letter():
     assert solve("a") == "A"
 
 def test_solve_mixed_string():

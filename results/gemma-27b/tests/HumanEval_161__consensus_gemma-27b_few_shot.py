@@ -61,7 +61,7 @@ def test_numbers_and_letters():
     assert solve("a1b2C") == "A1B2c"
 
 def test_special_characters_and_letters():
-    assert solve("!a@B#") == "!A@b#"
+    assert solve("!a?B") == "!A?b"
 
 def test_only_special_characters():
     assert solve("!@#$%^") == "^%$#@!"

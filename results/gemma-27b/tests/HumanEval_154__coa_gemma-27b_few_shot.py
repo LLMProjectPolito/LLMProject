@@ -85,19 +85,20 @@ def cycpattern_check(a , b):
     cycpattern_check("himenss","simen") => True
 
     """
-    if not b:
-        return True
+    if not a or not b:
+        return False
+
     for i in range(len(b)):
         rotated_b = b[i:] + b[:i]
         if rotated_b in a:
             return True
     return False
 
-def test_empty_b():
-    assert cycpattern_check("abcd", "") == True
-
 def test_empty_a():
     assert cycpattern_check("", "abc") == False
 
+def test_empty_b():
+    assert cycpattern_check("abc", "") == False
+
 def test_both_empty():
-    assert cycpattern_check("", "") == True
+    assert cycpattern_check("", "") == False

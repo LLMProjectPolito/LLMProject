@@ -24,11 +24,11 @@ def generate_integers(a, b):
     """
     if a > b:
         a, b = b, a
-    even_digits = []
+    result = []
     for i in range(a, b + 1):
         if i % 2 == 0:
-            even_digits.append(i)
-    return even_digits
+            result.append(i)
+    return result
 
 def test_generate_integers_basic():
     assert generate_integers(2, 8) == [2, 4, 6, 8]
@@ -51,8 +51,11 @@ def test_generate_integers_single_even():
 def test_generate_integers_large_range():
     assert generate_integers(1, 10) == [2, 4, 6, 8, 10]
 
-def test_generate_integers_range_with_leading_odd():
-    assert generate_integers(1, 6) == [2, 4, 6]
+def test_generate_integers_range_with_gap():
+    assert generate_integers(2, 6) == [2, 4, 6]
 
-def test_generate_integers_range_with_trailing_odd():
-    assert generate_integers(2, 7) == [2, 4, 6]
+def test_generate_integers_start_odd_end_even():
+    assert generate_integers(1, 4) == [2, 4]
+
+def test_generate_integers_start_even_end_odd():
+    assert generate_integers(2, 5) == [2, 4]

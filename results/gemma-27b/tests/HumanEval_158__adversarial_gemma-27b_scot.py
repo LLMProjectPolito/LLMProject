@@ -25,15 +25,15 @@ def find_max(words):
     if not words:
         return ""
 
-    max_unique_chars = -1
+    max_unique = -1
     result = ""
 
     for word in words:
-        unique_chars = len(set(word))
-        if unique_chars > max_unique_chars:
-            max_unique_chars = unique_chars
+        unique_count = len(set(word))
+        if unique_count > max_unique:
+            max_unique = unique_count
             result = word
-        elif unique_chars == max_unique_chars and word < result:
+        elif unique_count == max_unique and word < result:
             result = word
 
     return result
@@ -56,14 +56,14 @@ def test_tie_lexicographical():
 def test_all_same_characters():
     assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
-def test_multiple_words_same_max_unique_chars():
+def test_multiple_words_same_max_unique():
     assert find_max(["abc", "bca", "cab"]) == "abc"
 
-def test_words_with_different_lengths():
-    assert find_max(["a", "aa", "aaa", "aaaa"]) == "aaaa"
+def test_mixed_lengths():
+    assert find_max(["a", "aa", "aaa", "abcde"]) == "abcde"
+
+def test_case_sensitivity():
+    assert find_max(["Name", "name"]) == "Name"
 
 def test_words_with_special_characters():
-    assert find_max(["!@#", "$%^", "&*("]) == "!@#"
-
-def test_mixed_case():
-    assert find_max(["Name", "name", "NaMe"]) == "Name"
+    assert find_max(["abc!", "def@", "ghi#"]) == "abc!"

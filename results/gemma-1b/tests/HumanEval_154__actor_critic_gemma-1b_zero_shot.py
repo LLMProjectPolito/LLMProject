@@ -29,10 +29,10 @@ def cycpattern_check(a, b):
         return a.lower() in b.lower()
 
     if len(a) == 1:
-        return b.lower() in a.lower()
+        return a.lower() in b.lower()
 
     if len(b) == 1:
-        return a.lower() in b.lower()
+        return b.lower() in a.lower()
 
     for i in range(1, len(b)):
         rotated_b = b[i:] + b[:i]
@@ -58,29 +58,27 @@ def test_cycpattern_check_single_char():
     assert cycpattern_check("a", "a") == True
     assert cycpattern_check("a", "b") == False
     assert cycpattern_check("b", "a") == False
-    assert cycpattern_check("a", "a") == False
+    assert cycpattern_check("a", "a") == True
 
 def test_cycpattern_check_different_lengths():
     assert cycpattern_check("abcd", "abc") == True
     assert cycpattern_check("abcd", "ab") == False
     assert cycpattern_check("abcd", "c") == False
     assert cycpattern_check("abcd", "d") == False
+    assert cycpattern_check("abcd", "ab") == False
 
-def test_cycpattern_check_rotation():
+def test_cycpattern_check_case_insensitive():
+    assert cycpattern_check("ABCD", "abd") == False
     assert cycpattern_check("hello", "ell") == True
-    assert cycpattern_check("hello", "llo") == True
-    assert cycpattern_check("hello", "lo") == True
-    assert cycpattern_check("hello", "o") == True
-    assert cycpattern_check("hello", "el") == True
-    assert cycpattern_check("hello", "l") == True
-    assert cycpattern_check("hello", "h") == True
+    assert cycpattern_check("whassup", "psus") == False
+    assert cycpattern_check("abab", "baa") == True
+    assert cycpattern_check("efef", "eeff") == False
+    assert cycpattern_check("himenss", "simen") == True
 
-def test_cycpattern_check_complex():
-    assert cycpattern_check("abcdefg", "cdefg") == True
-    assert cycpattern_check("abcdefg", "defg") == True
-    assert cycpattern_check("abcdefg", "efg") == True
-    assert cycpattern_check("abcdefg", "fgh") == True
-    assert cycpattern_check("abcdefg", "gh") == True
-    assert cycpattern_check("abcdefg", "g") == True
-    assert cycpattern_check("abcdefg", "h") == False
-    assert cycpattern_check("abcdefg", "i") == False
+def test_cycpattern_check_with_duplicates():
+    assert cycpattern_check("abc", "abc") == True
+    assert cycpattern_check("abc", "abd") == False
+    assert cycpattern_check("abc", "cba") == True
+    assert cycpattern_check("abc", "bca") == True
+    assert cycpattern_check("abc", "cab") == True
+    assert cycpattern_check("abc", "acb") == False

@@ -13,7 +13,6 @@ def simplify(x, n):
     """
 
 import pytest
-from fractions import Fraction
 
 def simplify(x, n):
     """Your task is to implement a function that will simplify the expression
@@ -27,52 +26,47 @@ def simplify(x, n):
     simplify("1/6", "2/1") = False
     simplify("7/10", "10/2") = False
     """
-    x_frac = Fraction(x)
-    n_frac = Fraction(n)
-    product = x_frac * n_frac
-    return product.denominator == 1
+    num_x, den_x = map(int, x.split('/'))
+    num_n, den_n = map(int, n.split('/'))
 
-def test_simplify_true():
-    assert simplify("1/5", "5/1") == True
-    assert simplify("2/3", "3/2") == True
-    assert simplify("1/1", "1/1") == True
-    assert simplify("2/1", "1/2") == True
-    assert simplify("3/4", "4/3") == True
-    assert simplify("2/2", "4/4") == True
-    assert simplify("3/3", "4/4") == True
-    assert simplify("5/5", "1/1") == True
-    assert simplify("123456789/1", "1/123456789") == True
-    assert simplify("987654321/1", "1/987654321") == True
+    product_num = num_x * num_n
+    product_den = den_x * den_n
 
-def test_simplify_false():
-    assert simplify("1/6", "2/1") == False
-    assert simplify("7/10", "10/2") == False
-    assert simplify("1/2", "1/3") == False
-    assert simplify("2/5", "3/7") == False
-    assert simplify("1/4", "2/3") == False
-    assert simplify("2/1", "3/1") == False
-    assert simplify("1/1", "2/1") == False
+    return product_num % product_den == 0
 
-def test_simplify_zero_numerator():
-    assert simplify("0/1", "1/1") == True
-    assert simplify("1/1", "0/1") == True
-    assert simplify("0/1", "1/2") == True
-    assert simplify("1/2", "0/1") == True
-    assert simplify("0/1", "0/1") == True
 
-def test_simplify_fractions_with_denominator_one():
-    assert simplify("5/1", "1/5") == True
-    assert simplify("1/1", "5/1") == True
-    assert simplify("5/1", "1/1") == True
-    assert simplify("2/1", "3/1") == False
-    assert simplify("1/1", "2/1") == True
-    assert simplify("2/2", "1/1") == True
-    assert simplify("1/1", "2/2") == True
-    assert simplify("3/3", "4/4") == True
-    assert simplify("5/5", "1/1") == True
+class TestSimplify:
+    def test_whole_number_product(self):
+        assert simplify("1/5", "5/1") == True
+        assert simplify("2/3", "3/2") == True
+        assert simplify("4/7", "7/4") == True
 
-def test_simplify_large_numbers():
-    assert simplify("1000/2", "2/1000") == True
-    assert simplify("1000/3", "3/1000") == True
-    assert simplify("1000000/7", "7/1000000") == True
-    assert simplify("1000/5", "11/1000") == False
+    def test_non_whole_number_product(self):
+        assert simplify("1/6", "2/1") == False
+        assert simplify("7/10", "10/2") == False
+        assert simplify("1/3", "2/5") == False
+
+    def test_product_equals_one(self):
+        assert simplify("1/1", "1/1") == True
+        assert simplify("1/2", "2/1") == True
+        assert simplify("1/1", "5/5") == True
+        assert simplify("5/5", "1/1") == True
+        assert simplify("2/4", "4/2") == True
+
+    def test_zero_numerator_product(self):
+        assert simplify("0/1", "1/1") == True
+        assert simplify("1/1", "0/1") == True
+        assert simplify("0/5", "1/2") == True
+        assert simplify("1/2", "0/5") == True
+        assert simplify("0/1", "0/1") == True
+
+    def test_large_numbers(self):
+        assert simplify("1000/2", "2/1000") == True
+        assert simplify("1000/3", "3/1000") == True
+        assert simplify("1001/2", "2/1001") == True
+
+    def test_denominator_one(self):
+        assert simplify("1/1", "2/3") == True
+        assert simplify("2/3", "1/1") == True
+        assert simplify("5/1", "1/2") == True
+        assert simplify("1/2", "5/1") == True

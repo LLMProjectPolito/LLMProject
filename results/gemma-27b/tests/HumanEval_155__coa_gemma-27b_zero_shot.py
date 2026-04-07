@@ -46,9 +46,3 @@ def test_even_odd_count_negative():
 
 def test_even_odd_count_all_even():
     assert even_odd_count(246) == (3, 0)
-
-def test_even_odd_count_all_odd():
-    assert even_odd_count(135) == (0, 3)
-
-def test_even_odd_count_zero():
-    assert even_odd_count(0) == (1, 0)

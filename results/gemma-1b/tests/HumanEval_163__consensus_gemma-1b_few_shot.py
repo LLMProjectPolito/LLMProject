@@ -27,8 +27,8 @@ def generate_integers(a, b):
         s = str(num)
         for digit in s:
             if int(digit) % 2 == 0:
-                result.append(num)
-                break
+                result.append(int(digit))
+    result.sort()
     return result
 
 def test_generate_integers_2_8():
@@ -49,17 +49,11 @@ def test_generate_integers_2_1():
 def test_generate_integers_1_3():
     assert generate_integers(1, 3) == [2]
 
-def test_generate_integers_3_1():
-    assert generate_integers(3, 1) == [2]
-
-def test_generate_integers_1_4():
-    assert generate_integers(1, 4) == [2]
+def test_generate_integers_3_2():
+    assert generate_integers(3, 2) == [2]
 
 def test_generate_integers_4_1():
     assert generate_integers(4, 1) == [2]
-
-def test_generate_integers_1_5():
-    assert generate_integers(1, 5) == [2]
 
 def test_generate_integers_5_1():
     assert generate_integers(5, 1) == [2]

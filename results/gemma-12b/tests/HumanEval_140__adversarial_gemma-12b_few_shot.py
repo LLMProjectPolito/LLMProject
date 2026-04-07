@@ -70,8 +70,8 @@ class TestFixSpaces:
     def test_long_string_with_consecutive_spaces(self):
         assert fix_spaces("This is a  long   string with  multiple   spaces.") == "This_is_a-long-string_with_multiple-spaces."
 
-    def test_string_with_tabs_and_spaces(self):
-        assert fix_spaces("Example\t 1") == "Example_1"
+    def test_string_with_tabs(self):
+        assert fix_spaces("Example\t1") == "Example_1" # Tabs are not spaces
 
-    def test_string_with_newline_and_spaces(self):
-        assert fix_spaces("Example\n 1") == "Example_1"
+    def test_string_with_newline(self):
+        assert fix_spaces("Example\n1") == "Example_1" # Newlines are not spaces

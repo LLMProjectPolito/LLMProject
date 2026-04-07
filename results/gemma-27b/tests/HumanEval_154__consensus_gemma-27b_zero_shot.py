@@ -72,7 +72,7 @@ def test_cycpattern_check_14():
     assert cycpattern_check("aaaaa","aaaaa") == True
 
 def test_cycpattern_check_15():
-    assert cycpattern_check("aaaaa","aaaaaa") == False
+    assert cycpattern_check("aaaaa","aaaaab") == False
 
 def test_cycpattern_check_16():
     assert cycpattern_check("","") == True
@@ -84,7 +84,25 @@ def test_cycpattern_check_18():
     assert cycpattern_check("","abc") == False
 
 def test_cycpattern_check_19():
-    assert cycpattern_check("waterbottle","erbottlewat") == True
+    assert cycpattern_check("longstring","short") == False
 
 def test_cycpattern_check_20():
+    assert cycpattern_check("longstring","string") == True
+
+def test_cycpattern_check_18_alt():
+    assert cycpattern_check("waterbottle","erbottlewat") == True
+
+def test_cycpattern_check_19_alt():
     assert cycpattern_check("waterbottle","rbottlewat") == False
+
+def test_cycpattern_check_11_alt():
+    assert cycpattern_check("aaaa","aa") == True
+
+def test_cycpattern_check_12_alt():
+    assert cycpattern_check("aaaa","aaa") == True
+
+def test_cycpattern_check_13_alt():
+    assert cycpattern_check("aaaa","a") == True
+
+def test_cycpattern_check_14_alt():
+    assert cycpattern_check("a","aaaa") == False

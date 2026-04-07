@@ -53,55 +53,52 @@ def test_exponentiation_only():
     operand = [2, 3]
     assert do_algebra(operator, operand) == 8
 
-def test_mixed_operations():
+def test_mixed_operators():
     operator = ['+', '*', '-']
     operand = [2, 3, 4, 5]
     assert do_algebra(operator, operand) == 9
 
-def test_multiple_operands():
-    operator = ['+', '*', '//']
-    operand = [2, 3, 4, 5, 6]
-    assert do_algebra(operator, operand) == 11
+def test_exponentiation_with_multiplication():
+    operator = ['*', '**']
+    operand = [2, 3, 4]
+    assert do_algebra(operator, operand) == 72
 
 def test_zero_operand():
-    operator = ['+']
+    operator = ['/']
     operand = [5, 0]
-    assert do_algebra(operator, operand) == 5
-
-    operator = ['*']
-    operand = [5, 0]
-    assert do_algebra(operator, operand) == 0
-
-def test_large_numbers():
-    operator = ['+']
-    operand = [1000000, 2000000]
-    assert do_algebra(operator, operand) == 3000000
-
-def test_invalid_operator():
-    operator = ['%']
-    operand = [2, 3]
-    with pytest.raises(ValueError):
+    with pytest.raises(ZeroDivisionError):
         do_algebra(operator, operand)
 
-def test_incorrect_list_lengths():
-    operator = ['+']
+def test_large_numbers():
+    operator = ['*']
+    operand = [1000000, 1000000]
+    assert do_algebra(operator, operand) == 1000000000000
+
+def test_negative_numbers():
+    operator = ['-']
+    operand = [5, -2]
+    assert do_algebra(operator, operand) == 7
+
+def test_empty_lists():
+    operator = []
     operand = [2]
     with pytest.raises(ValueError):
         do_algebra(operator, operand)
 
-    operator = ['+', '*']
+def test_invalid_operator():
+    operator = ['@']
     operand = [2, 3]
-    with pytest.raises(ValueError):
-        do_algebra(operator, operand)
-
-def test_empty_operator_list():
-    operator = []
-    operand = [2, 3]
-    with pytest.raises(ValueError):
+    with pytest.raises(SyntaxError):
         do_algebra(operator, operand)
 
 def test_single_operand():
     operator = ['+']
     operand = [2]
     with pytest.raises(ValueError):
+        do_algebra(operator, operand)
+
+def test_different_data_types():
+    operator = ['+']
+    operand = [2, 'a']
+    with pytest.raises(TypeError):
         do_algebra(operator, operand)

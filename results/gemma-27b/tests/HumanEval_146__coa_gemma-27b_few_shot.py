@@ -49,7 +49,10 @@ def test_boundary_single_element_greater_than_10_invalid_last_digit():
 def test_boundary_single_element_negative_valid():
     assert specialFilter([-11]) == 1
 
-def test_boundary_single_element_negative_invalid():
+def test_boundary_single_element_negative_invalid_first_digit():
+    assert specialFilter([-21]) == 0
+
+def test_boundary_single_element_negative_invalid_last_digit():
     assert specialFilter([-12]) == 0
 
 # Focus: Equivalence Partitioning
@@ -72,16 +75,16 @@ def specialFilter(nums):
     return count
 
 def test_equivalence_partitioning_1():
-    """Test case: Array with numbers satisfying the condition."""
-    assert specialFilter([15, 33, 57, 79, 91]) == 5
+    """Test case: Numbers greater than 10 with odd first and last digits."""
+    assert specialFilter([15, 37, 59, 71, 93]) == 5
 
 def test_equivalence_partitioning_2():
-    """Test case: Array with numbers not satisfying the condition."""
-    assert specialFilter([2, 4, 6, 8, 10]) == 0
+    """Test case: Numbers less than or equal to 10, or with even first/last digits."""
+    assert specialFilter([2, 10, 12, 21, 30, 45, 52, 63, 74, 85, 96, 100]) == 1
 
 def test_equivalence_partitioning_3():
-    """Test case: Mixed array with some numbers satisfying and some not."""
-    assert specialFilter([15, 22, 33, 44, 55, 66, 77, 88, 99, 10]) == 3
+    """Test case: Mixed numbers, including negatives and boundary conditions."""
+    assert specialFilter([15, -73, 14, -15, 11, 99, 101, 10, 22, -33]) == 3
 
 # Focus: Logic Branches
 import pytest

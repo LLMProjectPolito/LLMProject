@@ -39,11 +39,8 @@ def get_max_triples(n):
                     count += 1
     return count
 
-def test_get_max_triples_n_equals_3():
-    assert get_max_triples(3) == 1
-
-def test_n_equals_3():
-    assert get_max_triples(3) == 1
-
 def test_edge_case_n_equals_3():
-    assert get_max_triples(3) == 1
+    assert get_max_triples(3) == 0
+
+def test_n_equals_5():
+    assert get_max_triples(5) == 1

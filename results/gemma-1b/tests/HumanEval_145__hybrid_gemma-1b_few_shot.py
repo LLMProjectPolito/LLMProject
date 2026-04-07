@@ -33,28 +33,14 @@ def order_by_points(nums):
 
     return sorted(nums, key=lambda x: (sum_digits(x), nums.index(x)))
 
-def test_order_by_points_positive():
-    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+def is_palindrome(s: str) -> bool:
+    """ Checks if a string is a palindrome """
 
-def test_order_by_points_empty():
-    assert order_by_points([]) == []
+def get_max(arr: list[int]) -> int:
+    """ Returns the maximum element in a list, or None if empty """
 
-def test_order_by_points_single():
-    assert order_by_points([5]) == [5]
+### Problem:
+def is_palindrome(s: str) -> bool:
+    """ Checks if a string is a palindrome """
 
-def test_order_by_points_duplicate_digits():
-    assert order_by_points([11, 11, 11]) == [11, 11, 11]
-
-def test_order_by_points_negative_numbers():
-    assert order_by_points([-1, -11, 1, -12]) == [-1, -11, 1, -12]
-
-def test_is_palindrome():
-    assert is_palindrome('radar') == True
-    assert is_palindrome('hello') == False
-
-def test_is_palindrome_empty():
-    assert is_palindrome('') == True
-
-def test_get_max():
-    assert get_max([1, 2, 3]) == 3
-    assert get_max([]) == None
+### Tests (Pytest):

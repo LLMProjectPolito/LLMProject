@@ -49,10 +49,13 @@ def test_get_max_triples_n3():
     assert get_max_triples(3) == 0
 
 def test_get_max_triples_n4():
-    assert get_max_triples(4) == 1
+    assert get_max_triples(4) == 0
 
 def test_get_max_triples_n5():
     assert get_max_triples(5) == 1
 
 def test_get_max_triples_n6():
-    assert get_max_triples(6) == 2
+    assert get_max_triples(6) == 1
+
+def test_get_max_triples_n7():
+    assert get_max_triples(7) == 2

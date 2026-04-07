@@ -32,35 +32,47 @@ def specialFilter(nums):
 def test_empty_list():
     assert specialFilter([]) == 0
 
-def test_no_matching_numbers():
+def test_no_matching_elements():
     assert specialFilter([1, 2, 3, 4, 5]) == 0
 
-def test_single_matching_number():
+def test_single_matching_element():
     assert specialFilter([15]) == 1
 
-def test_multiple_matching_numbers():
+def test_multiple_matching_elements():
     assert specialFilter([15, -73, 14, -15]) == 1
 
-def test_mixed_numbers():
+def test_mixed_elements():
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
 def test_negative_numbers():
     assert specialFilter([-15, -33, -45]) == 0
 
 def test_large_numbers():
-    assert specialFilter([111, 131, 151, 171, 191]) == 5
+    assert specialFilter([123, 456, 789]) == 0
 
 def test_numbers_with_zero():
-    assert specialFilter([101, 121, 141, 161, 181]) == 0
+    assert specialFilter([101, 202, 303]) == 0
 
-def test_numbers_with_decimal():
-    assert specialFilter([15.5, 25.5, 35.5]) == 0
-
-def test_single_digit_greater_than_10():
+def test_all_odd_numbers():
     assert specialFilter([11, 13, 15, 17, 19]) == 0
 
-def test_all_negative_greater_than_10():
-    assert specialFilter([-11, -13, -15]) == 0
+def test_all_even_numbers_greater_than_10():
+    assert specialFilter([12, 14, 16, 18, 20]) == 0
+
+def test_mixed_positive_and_negative():
+    assert specialFilter([-11, 15, -23, 33]) == 1
+
+def test_duplicate_numbers():
+    assert specialFilter([15, 15, 15]) == 1
+
+def test_edge_case_single_digit_greater_than_10():
+    assert specialFilter([11, 13, 15, 17, 19]) == 0
+
+def test_edge_case_single_digit_less_than_10():
+    assert specialFilter([1, 2, 3, 4, 5]) == 0
 
 def test_complex_case():
-    assert specialFilter([123, 135, 157, 179, 191, 213, 315, 337, 359, 371, 393]) == 6
+    assert specialFilter([115, 223, 335, 447, 559, 661, 773, 885, 997]) == 0
+
+def test_complex_case_with_negative():
+    assert specialFilter([-115, -223, -335, -447, -559, -661, -773, -885, -997]) == 0

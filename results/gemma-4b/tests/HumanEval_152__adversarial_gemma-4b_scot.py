@@ -45,14 +45,14 @@ def compare(game,guess):
 # 1. Correct guesses: All guesses are correct.
 # 2. Mixed correct and incorrect guesses: Some guesses are correct, some are incorrect.
 # 3. All incorrect guesses: All guesses are incorrect.
-# 4. Edge cases: Empty lists (although the problem description doesn't explicitly mention this, it's good to consider).
+# 4. Empty lists: Handle the case where either or both input lists are empty. (Although the problem description doesn't explicitly state this, it's good practice to consider edge cases).
 
 # STEP 2: PLAN
 # Test functions:
 # - test_correct_guesses: Tests the case where all guesses are correct.
 # - test_mixed_guesses: Tests the case where some guesses are correct and some are incorrect.
 # - test_all_incorrect_guesses: Tests the case where all guesses are incorrect.
-# - test_empty_lists: Tests the case where both input lists are empty (although not explicitly required, it's a good defensive test).
+# - test_empty_lists: Tests the case where the input lists are empty.
 
 # STEP 3: CODE
 #

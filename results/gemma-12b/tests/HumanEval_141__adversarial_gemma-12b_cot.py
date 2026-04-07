@@ -60,41 +60,35 @@ class TestFileNameCheck:
         assert file_name_check("my_program.exe") == "Yes"
         assert file_name_check("a.txt") == "Yes"
         assert file_name_check("A.TXT") == "Yes"
-        assert file_name_check("longname.txt") == "Yes"
+        assert file_name_check("longname.exe") == "Yes"
 
     def test_invalid_file_name_no_dot(self):
         assert file_name_check("example") == "No"
-        assert file_name_check("example.txt.bak") == "No"
+        assert file_name_check("example.txt.dll") == "No"
 
     def test_invalid_file_name_empty_before_dot(self):
         assert file_name_check(".txt") == "No"
+        assert file_name_check(".exe") == "No"
+        assert file_name_check(".dll") == "No"
 
     def test_invalid_file_name_not_letter_before_dot(self):
         assert file_name_check("1example.txt") == "No"
-        assert file_name_check("_example.txt") == "No"
+        assert file_name_check("!example.txt") == "No"
         assert file_name_check(" example.txt") == "No"
 
     def test_invalid_file_name_invalid_extension(self):
         assert file_name_check("example.pdf") == "No"
         assert file_name_check("example.jpg") == "No"
+        assert file_name_check("example.abc") == "No"
 
     def test_invalid_file_name_too_many_digits(self):
         assert file_name_check("1234example.txt") == "No"
         assert file_name_check("1111.txt") == "No"
+        assert file_name_check("1234567890.txt") == "No"
 
     def test_invalid_file_name_none_input(self):
         assert file_name_check(None) == "No"
 
     def test_invalid_file_name_wrong_type(self):
         assert file_name_check(123) == "No"
-        assert file_name_check(["test.txt"]) == "No"
-
-    def test_valid_file_name_with_digits(self):
-        assert file_name_check("ex1ample.txt") == "Yes"
-        assert file_name_check("ex2ample.exe") == "Yes"
-        assert file_name_check("ex3ample.dll") == "Yes"
-        assert file_name_check("ex4ample.txt") == "No"
-
-    def test_valid_file_name_with_special_chars(self):
-        assert file_name_check("example_1.txt") == "Yes"
-        assert file_name_check("example-2.exe") == "Yes"
+        assert file_name_check([1, 2, 3]) == "No"

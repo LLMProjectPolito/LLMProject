@@ -14,6 +14,7 @@ def special_factorial(n):
 
 import pytest
 from math import factorial
+import time
 
 def special_factorial(n):
     """The Brazilian factorial is defined as:
@@ -60,10 +61,6 @@ class TestSpecialFactorial:
             special_factorial("2")
         with pytest.raises(TypeError):
             special_factorial([1])
-        with pytest.raises(TypeError):
-            special_factorial("4")
-        with pytest.raises(TypeError):
-            special_factorial({"n": 4})
 
     def test_value_error(self):
         with pytest.raises(ValueError):
@@ -84,3 +81,10 @@ class TestSpecialFactorial:
     def test_zero_factorial_handling(self):
         # Ensure that factorial(0) is handled correctly (factorial(0) = 1)
         assert special_factorial(1) == 1
+
+    def test_performance(self):
+        # Basic performance check - ensure it doesn't take excessively long for moderate inputs
+        start_time = time.time()
+        special_factorial(10)
+        end_time = time.time()
+        assert end_time - start_time < 0.1  # Should complete in under 0.1 seconds

@@ -58,7 +58,7 @@ def file_name_check(file_name):
 # The function `file_name_check` needs to be thoroughly tested to ensure it adheres to the specified rules.
 # We need to cover various scenarios including valid and invalid file names, focusing on the digit count,
 # the presence of exactly one dot, the prefix's validity (starting with a letter), and the suffix's validity.
-# Edge cases like empty file names, multiple dots, and invalid prefixes/suffixes should also be tested.
+# Edge cases like empty file names, multiple dots, invalid prefixes, and invalid suffixes should be tested.
 
 ### STEP 2: PLAN
 # Test functions:
@@ -79,71 +79,70 @@ pytest.mark.parametrize(
     [
         ("example.txt", "Yes"),
         ("1example.dll", "No"),
-        ("example123.exe", "No"),
-        ("example.txt.bak", "No"),
-        ("example..txt", "No"),
-        ("123example.txt", "No"),
+        ("example123.txt", "No"),
+        ("example.exe", "No"),
         ("example.pdf", "No"),
+        ("example..txt", "No"),
         ("", "No"),
         ("example", "No"),
-        ("example. ", "No"),
+        ("1example.txt", "No"),
+        ("aexample.txt", "Yes"),
+        ("a1example.txt", "Yes"),
+        ("a12example.txt", "Yes"),
+        ("a123example.txt", "No"),
+        ("example.txt1", "No"),
+        ("example.txt2", "No"),
+        ("example.txt3", "No"),
+        ("example.txt4", "No"),
+        ("example.txt5", "No"),
+        ("example.txt6", "No"),
+        ("example.txt7", "No"),
+        ("example.txt8", "No"),
+        ("example.txt9", "No"),
         ("a.txt", "Yes"),
-        ("A.TXT", "Yes"),
-        ("1a.txt", "Yes"),
-        ("12a.txt", "Yes"),
-        ("123a.txt", "Yes"),
-        ("abc.exe", "Yes"),
-        ("abc.dll", "Yes"),
-        ("abc.txt", "Yes"),
-        ("1abc.txt", "No"),
-        ("12abc.txt", "No"),
-        ("123abc.txt", "No"),
-        ("a.b.txt", "No"),
-        ("a.1.txt", "No"),
-        ("a.2.txt", "No"),
-        ("a.3.txt", "No"),
-        ("a.4.txt", "No"),
+        ("a_example.txt", "No"),
+        ("a!example.txt", "No"),
+        ("a@example.txt", "No"),
+        ("a$example.txt", "No"),
+        ("a%example.txt", "No"),
+        ("a^example.txt", "No"),
+        ("a&example.txt", "No"),
+        ("a(example.txt", "No"),
+        ("a)example.txt", "No"),
+        ("a[example.txt", "No"),
+        ("a]example.txt", "No"),
+        ("a{example.txt", "No"),
+        ("a}example.txt", "No"),
+        ("a|example.txt", "No"),
+        ("a\\example.txt", "No"),
+        ("a>example.txt", "No"),
+        ("a<example.txt", "No"),
+        ("a=example.txt", "No"),
     ],
 )
 def test_valid_name(file_name, expected):
     assert file_name_check(file_name) == expected
 
 def test_too_many_digits():
-    assert file_name_check("1234example.txt") == "No"
     assert file_name_check("123example.txt") == "No"
-    assert file_name_check("12example.txt") == "No"
-    assert file_name_check("1example.txt") == "No"
-    assert file_name_check("example.123") == "No"
 
 def test_no_dot():
-    assert file_name_check("exampletxt") == "No"
-    assert file_name_check("example") == "No"
+    assert file_name_check("example.exe") == "No"
 
 def test_multiple_dots():
-    assert file_name_check("example.txt.bak") == "No"
     assert file_name_check("example..txt") == "No"
 
 def test_invalid_prefix():
     assert file_name_check("1example.txt") == "No"
-    assert file_name_check("123example.txt") == "No"
-    assert file_name_check("12example.txt") == "No"
-    assert file_name_check("1example.dll") == "No"
 
 def test_invalid_suffix():
     assert file_name_check("example.pdf") == "No"
-    assert file_name_check("example.jpg") == "No"
-    assert file_name_check("example.zip") == "No"
 
 def test_empty_prefix():
     assert file_name_check(".txt") == "No"
-    assert file_name_check("a.") == "No"
 
 def test_valid_name_with_numbers():
-    assert file_name_check("123a.txt") == "Yes"
-    assert file_name_check("12a.txt") == "Yes"
-    assert file_name_check("1a.txt") == "Yes"
-    assert file_name_check("a.1.txt") == "Yes"
+    assert file_name_check("a123example.txt") == "No"
 
 def test_valid_name_with_special_chars():
-    assert file_name_check("a!@#$txt") == "Yes"
-    assert file_name_check("a.txt") == "Yes"
+    assert file_name_check("a!example.txt") == "No"

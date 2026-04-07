@@ -55,11 +55,14 @@ def test_mixed_case():
 def test_mixed_case_with_numbers():
     assert solve("1a2B3c") == "1A2b3C"
 
-def test_all_symbols():
+def test_all_letters_lowercase():
+    assert solve("hello") == "HELLO"
+
+def test_all_letters_uppercase():
+    assert solve("WORLD") == "world"
+
+def test_special_characters():
     assert solve("!@#$%^") == "^%$#@!"
 
-def test_single_letter_lowercase():
-    assert solve("a") == "A"
-
-def test_single_letter_uppercase():
-    assert solve("A") == "a"
+def test_mixed_characters():
+    assert solve("a1b2c3d") == "A1B2C3D"

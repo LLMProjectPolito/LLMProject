@@ -32,53 +32,44 @@ def compare(game,guess):
     compare([1,2,3,4,5,1],[1,2,3,4,2,-2]) -> [0,0,0,0,3,3]
     compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) -> [4,4,1,0,0,6]
     """
-    if len(game) != len(guess):
-        raise ValueError("Game and guess lists must have the same length.")
-    
     result = []
     for i in range(len(game)):
-        if not isinstance(game[i], (int, float)) or not isinstance(guess[i], (int, float)):
-            raise TypeError("Game and guess lists must contain only numbers.")
         if game[i] == guess[i]:
             result.append(0)
         else:
             result.append(abs(game[i] - guess[i]))
     return result
 
-class TestCompare:
-    def test_correct_guesses(self):
-        assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 5, 1]) == [0, 0, 0, 0, 0, 0]
+def test_compare_correct_guesses():
+    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 5, 1]) == [0, 0, 0, 0, 0, 0]
 
-    def test_incorrect_guesses(self):
-        assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
+def test_compare_example_1():
+    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
 
-    def test_mixed_guesses(self):
-        assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
+def test_compare_example_2():
+    assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
 
-    def test_empty_lists(self):
-        assert compare([], []) == []
+def test_compare_empty_lists():
+    assert compare([], []) == []
 
-    def test_single_element_lists(self):
-        assert compare([5], [5]) == [0]
-        assert compare([5], [2]) == [3]
+def test_compare_single_element_correct():
+    assert compare([5], [5]) == [0]
 
-    def test_negative_numbers(self):
-        assert compare([-1, -2, -3], [-1, -2, -4]) == [0, 0, 1]
+def test_compare_single_element_incorrect():
+    assert compare([5], [6]) == [1]
 
-    def test_zero_scores(self):
-        assert compare([0, 0, 0], [1, 2, 3]) == [1, 2, 3]
+def test_compare_negative_numbers():
+    assert compare([-1, -2, -3], [-1, -2, -4]) == [0, 0, 1]
 
-    def test_large_numbers(self):
-        assert compare([1000, 2000, 3000], [1000, 2001, 3000]) == [0, 1, 0]
+def test_compare_mixed_positive_negative():
+    assert compare([1, -2, 3], [1, -3, 3]) == [0, 1, 0]
 
-    def test_different_lengths(self):
-        with pytest.raises(ValueError):
-            compare([1, 2], [1])
+def test_compare_large_numbers():
+    assert compare([1000, 2000], [1000, 2001]) == [0, 1]
 
-    def test_type_checking(self):
-        with pytest.raises(TypeError):
-            compare([1, 2], [1, "a"])
-        with pytest.raises(TypeError):
-            compare([1, 2], [1, 2.5])
-        with pytest.raises(TypeError):
-            compare([1, 2], [1, 2, 3])
+def test_compare_zero_values():
+    assert compare([0, 0, 0], [0, 1, 0]) == [0, 1, 0]
+
+def test_compare_different_lengths():
+    with pytest.raises(ValueError):
+        compare([1, 2], [1])

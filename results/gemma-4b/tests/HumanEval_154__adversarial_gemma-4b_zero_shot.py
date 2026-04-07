@@ -57,12 +57,14 @@ def test_cycpattern_check_overlapping_substrings():
     assert cycpattern_check("abcabc", "abc") == True
     assert cycpattern_check("abcabc", "bca") == True
 
-def test_cycpattern_check_rotations_with_duplicates():
-    assert cycpattern_check("aaaa", "aa") == True
-    assert cycpattern_check("aaaa", "aaa") == True
-    assert cycpattern_check("aaaa", "a") == True
+def test_cycpattern_check_rotations_as_substrings():
+    assert cycpattern_check("abcde", "cdeab") == True
+    assert cycpattern_check("abcde", "eabcd") == True
+    assert cycpattern_check("abcde", "bcdea") == True
 
 def test_cycpattern_check_edge_cases():
     assert cycpattern_check("a", "a") == True
     assert cycpattern_check("a", "b") == False
-    assert cycpattern_check("abc", "cba") == False
+    assert cycpattern_check("aa", "a") == True
+    assert cycpattern_check("aa", "aa") == True
+    assert cycpattern_check("aba", "baa") == True

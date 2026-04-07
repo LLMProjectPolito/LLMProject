@@ -46,20 +46,26 @@ def test_single_element_correct():
 def test_single_element_incorrect():
     assert compare([5], [2]) == [3]
 
-def test_positive_numbers_correct():
+def test_positive_numbers_all_correct():
     assert compare([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]) == [0, 0, 0, 0, 0]
 
-def test_positive_numbers_incorrect():
-    assert compare([1, 2, 3, 4, 5], [1, 2, 4, 3, 5]) == [0, 0, 1, 1, 0]
+def test_positive_numbers_some_incorrect():
+    assert compare([1, 2, 3, 4, 5], [1, 2, 3, 4, 2]) == [0, 0, 0, 0, 3]
 
-def test_negative_numbers():
-    assert compare([-1, -2, -3], [-1, -1, -4]) == [0, 1, 1]
+def test_negative_numbers_all_correct():
+    assert compare([-1, -2, -3, -4, -5], [-1, -2, -3, -4, -5]) == [0, 0, 0, 0, 0]
 
-def test_mixed_numbers():
-    assert compare([1, -2, 0, 3], [1, -2, 1, 2]) == [0, 0, 1, 1]
+def test_negative_numbers_some_incorrect():
+    assert compare([-1, -2, -3, -4, -5], [-1, -2, -3, -4, -2]) == [0, 0, 0, 0, 3]
+
+def test_mixed_numbers_all_correct():
+    assert compare([-1, 2, -3, 4, -5], [-1, 2, -3, 4, -5]) == [0, 0, 0, 0, 0]
+
+def test_mixed_numbers_some_incorrect():
+    assert compare([-1, 2, -3, 4, -5], [-1, 2, -3, 4, -2]) == [0, 0, 0, 0, 3]
 
 def test_large_differences():
-    assert compare([100, -50, 200], [1, -100, 10]) == [99, 50, 190]
+    assert compare([1, 2, 3], [100, 200, 300]) == [99, 198, 297]
 
 def test_example_1():
     assert compare([1,2,3,4,5,1],[1,2,3,4,2,-2]) == [0,0,0,0,3,3]

@@ -49,18 +49,30 @@ def find_max(words):
 
     return result
 
-def test_palindrome_basic():
+def test_is_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
 
-def test_palindrome_empty():
+def test_is_palindrome_empty():
     assert is_palindrome('') == True
 
-def test_max_positive():
+def test_is_palindrome_case_insensitive():
+    assert is_palindrome('Racecar') == True
+
+def test_is_palindrome_with_spaces():
+    assert is_palindrome('A man a plan a canal Panama') == False
+
+def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
 
-def test_max_empty():
+def test_get_max_empty():
     assert get_max([]) == None
+
+def test_get_max_negative():
+    assert get_max([-1, -2, -3]) == -1
+
+def test_get_max_mixed():
+    assert get_max([-1, 2, -3, 4]) == 4
 
 def test_find_max_basic():
     assert find_max(["name", "of", "string"]) == "string"
@@ -77,8 +89,8 @@ def test_find_max_empty_list():
 def test_find_max_single_word():
     assert find_max(["word"]) == "word"
 
-def test_find_max_mixed_case():
-    assert find_max(["Name", "enam", "GAME"]) == "enam"
+def test_find_max_multiple_same_unique():
+    assert find_max(["abc", "def", "ghi"]) == "abc"
 
-def test_find_max_duplicate_unique():
-    assert find_max(["abc", "abd", "abe"]) == "abc"
+def test_find_max_mixed_case():
+    assert find_max(["aBc", "def", "AbC"]) == "aBc"

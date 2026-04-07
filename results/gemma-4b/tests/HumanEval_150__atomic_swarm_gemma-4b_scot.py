@@ -20,7 +20,7 @@ def test_basic():
 import pytest
 
 def test_edge_zero():
-    assert x_or_y(0, 10, 20) == 20
+    assert x_or_y(0, 34, 12) == 12
 
 import pytest
 

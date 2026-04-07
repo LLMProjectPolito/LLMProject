@@ -44,10 +44,10 @@ def test_x_or_y_boundary_prime():
     assert x_or_y(2, 5, 10) == 5
 
 def test_x_or_y_boundary_non_prime():
-    assert x_or_y(1, 5, 10) == 10
+    assert x_or_y(1, 2, 7) == 7
 
 def test_x_or_y_boundary_edge_case():
-    assert x_or_y(0, 5, 10) == 10
+    assert x_or_y(0, 1, 0) == 0
 
 # Focus: Type Scenarios
 def test_prime_returns_x():

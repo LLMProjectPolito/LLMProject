@@ -43,3 +43,14 @@ def test_x_or_y_prime():
     assert x_or_y(13, 13, 14) == 14
     assert x_or_y(17, 17, 17) == 17
     print("All test cases passed")
+
+def test_x_or_y_non_prime():
+    assert x_or_y(15, 8, 5) == 5
+    assert x_or_y(20, 10, 10) == 10
+    assert x_or_y(25, 15, 15) == 15
+    assert x_or_y(30, 12, 12) == 12
+    assert x_or_y(35, 17, 17) == 17
+    assert x_or_y(40, 20, 20) == 20
+    assert x_or_y(45, 25, 25) == 25
+    assert x_or_y(50, 20, 20) == 20
+    print("All test cases passed")

@@ -50,15 +50,10 @@ def test_long_string():
 
 def test_string_with_unicode_characters():
     assert solve("你好a世界") == "你好A世界"
-    assert solve("a你好世界") == "A你好世界"
+    assert solve("你好A世界") == "你好a世界"
 
 def test_string_with_special_characters():
     assert solve("a\nb") == "A\nB"
     assert solve("a\tb") == "A\tB"
-    assert solve("a\\b") == "A\\B"
-
-def test_string_with_newline_and_carriage_return():
-    assert solve("a\r\nb") == "A\r\nB"
-
-def test_string_with_tab_and_newline():
-    assert solve("a\nb\tb") == "A\nB\tB"
+    assert solve("a\"b") == "A\"B"
+    assert solve("a'b") == "A'B"

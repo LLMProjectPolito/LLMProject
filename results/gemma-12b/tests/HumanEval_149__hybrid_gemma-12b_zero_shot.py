@@ -29,7 +29,7 @@ class TestSortedListSum:
 
     def test_all_odd_lengths(self):
         """Test when all strings have odd lengths."""
-        assert sorted_list_sum(["a", "bc", "def"]) == []
+        assert sorted_list_sum(["a", "bbb", "ccccc"]) == []
 
     def test_all_even_lengths(self):
         """Test when all strings have even lengths."""
@@ -47,49 +47,62 @@ class TestSortedListSum:
         """Test with strings of the same length, sorted alphabetically."""
         assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
 
-    def test_same_length_strings_with_duplicates(self):
-        """Test with strings of the same length, including duplicates, sorted alphabetically."""
-        assert sorted_list_sum(["ab", "ab", "cd", "ef"]) == ["ab", "ab", "cd", "ef"]
-
     def test_same_length_strings_mixed(self):
         """Test with strings of the same length, mixed with others."""
-        assert sorted_list_sum(["ab", "a", "cd", "ef", "gh"]) == ["ab", "cd", "ef"]
+        assert sorted_list_sum(["ab", "a", "cd", "ef", "bbb"]) == ["ab", "cd", "ef"]
+
+    def test_longer_strings(self):
+        """Test with longer strings."""
+        assert sorted_list_sum(["abcdef", "abc", "ab", "a"]) == ["ab", "abc", "abcdef"]
+
+    def test_complex_case(self):
+        """Test a more complex case with various lengths and duplicates."""
+        assert sorted_list_sum(["aa", "a", "aaa", "bb", "cc", "bbb", "dddd", "ee"]) == ["aa", "bb", "cc", "dddd"]
+
+    def test_single_element_even(self):
+        """Test with a single even length string."""
+        assert sorted_list_sum(["aa"]) == ["aa"]
+
+    def test_single_element_odd(self):
+        """Test with a single odd length string."""
+        assert sorted_list_sum(["a"]) == []
+
+    def test_unicode_strings(self):
+        """Test with unicode strings."""
+        assert sorted_list_sum(["你好", "你", "世界"]) == ["你好", "世界"]
+
+    def test_strings_with_spaces(self):
+        """Test with strings containing spaces."""
+        assert sorted_list_sum(["  aa", " a", "aaa "]) == ["  aa"]
 
     def test_complex_list(self):
         """Test with a more complex list of strings."""
         assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape"]) == ["kiwi", "grape"]
 
-    def test_list_with_one_element(self):
-        """Test with a list containing only one element."""
-        assert sorted_list_sum(["aa"]) == ["aa"]
-
-    def test_list_with_one_odd_element(self):
-        """Test with a list containing only one odd element."""
-        assert sorted_list_sum(["a"]) == []
-
     def test_list_with_empty_string(self):
         """Test with an empty string in the list."""
         assert sorted_list_sum(["", "a", "aa"]) == ["", "aa"]
 
-    def test_strings_with_special_characters(self):
+    def test_list_with_special_characters(self):
         """Test with strings containing special characters."""
-        assert sorted_list_sum(["!@#", "abc", "defg"]) == ["!@#", "abc"]
+        assert sorted_list_sum(["!@#", "abc", "1234"]) == ["!@#", "1234"]
 
     def test_long_strings(self):
-        """Test with longer strings."""
-        assert sorted_list_sum(["abcdefgh", "abcdef", "abcde", "abcd"]) == ["abcd", "abcde", "abcdef", "abcdefgh"]
+        """Test with long strings."""
+        assert sorted_list_sum(["abcdefgh", "abcdef", "abcde"]) == ["abcdef", "abcdefgh"]
 
-    def test_strings_with_spaces(self):
-        """Test with strings containing spaces."""
-        assert sorted_list_sum(["hello world", "hello", "hi"]) == ["hello", "hello world"]
+    def test_list_with_unicode_characters(self):
+        """Test with unicode characters."""
+        assert sorted_list_sum(["你好", "世界", "你好世界"]) == ["你好", "世界"]
 
-    def test_all_same_length_and_same_value(self):
-        """Test when all strings have the same length and value."""
-        assert sorted_list_sum(["aa", "aa", "aa"]) == ["aa", "aa", "aa"]
+    def test_list_with_mixed_case(self):
+        """Test with mixed case strings."""
+        assert sorted_list_sum(["Aa", "aA", "aa"]) == ["Aa", "aA", "aa"]
 
-    def test_large_list(self):
-        """Test with a large list to check performance."""
-        large_list = ["a" * i for i in range(1, 101)]
-        expected_result = [s for s in large_list if len(s) % 2 == 0]
-        expected_result.sort(key=lambda x: len(x))
-        assert sorted_list_sum(large_list) == expected_result
+    def test_list_with_numbers_as_strings(self):
+        """Test with numbers represented as strings."""
+        assert sorted_list_sum(["12", "1", "123"]) == ["12", "123"]
+
+    def test_list_with_leading_and_trailing_spaces(self):
+        """Test with strings containing leading and trailing spaces."""
+        assert sorted_list_sum(["  aa", "a", "aaa  "]) == ["  aa", "aaa  "]

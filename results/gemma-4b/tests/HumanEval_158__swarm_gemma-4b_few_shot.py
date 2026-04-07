@@ -15,14 +15,14 @@ import math
 
 def find_max(words):
     """
-    Finds the maximum word in a list of words.
+    Finds the longest word in a list of words.
     """
     if not words:
         return None
-    return max(words)
-
-def test_find_max_single_word():
-    assert find_max(["name"]) == "name"
+    return max(words, key=len)
 
 def test_find_max_single_word():
     assert find_max(["hello"]) == "hello"
+
+def test_find_max_single_word():
+    assert find_max(["name"]) == "name"

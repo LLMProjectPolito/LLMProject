@@ -55,21 +55,21 @@ def do_algebra(operator, operand):
     try:
         op1 = operator[0]
         op2 = operator[1]
-        op3 = operator[2]
-        operand = operand[2*len(op1):2*len(op1) + len(op2)]
-        
+        operand1 = operand[0]
+        operand2 = operand[1]
+
         if op1 == '+':
-            return op2 + op3
+            return operand1 + operand2
         elif op1 == '-':
-            return op2 - op3
+            return operand1 - operand2
         elif op1 == '*':
-            return op2 * op3
+            return operand1 * operand2
         elif op1 == '/':
-            if op3 == 0:
+            if operand2 == 0:
                 return "Error: Division by zero"
-            return op2 // op3
+            return operand1 // operand2
         elif op1 == '**':
-            return op2 ** op3
+            return operand1 ** operand2
         else:
             return "Error: Invalid operator"
     except:
@@ -77,8 +77,6 @@ def do_algebra(operator, operand):
 
     return "Error: Invalid input"
     
-import pytest
-
 def test_addition():
     array = [2, 3, 4, 5]
     result = 2 + 3 * 4 - 5
@@ -101,8 +99,8 @@ def test_floor_division():
     
 def test_exponentiation():
     array = [2, 3, 4, 5]
-    result = **2
-    assert result == 256
+    result = 2 ** 3
+    assert result == 8
     
 def test_invalid_operator():
     array = [2, 3, 4, 5]
@@ -114,12 +112,12 @@ def test_invalid_operand():
     result = 2 + 3 * 4
     assert "Error: Invalid input" == "Error: Invalid input"
     
-def test_empty_operand():
+def test_zero_operand():
     array = [2, 3, 4, 5]
     result = 2 + 3 * 4
     assert "Error: Invalid input" == "Error: Invalid input"
     
-def test_zero_operand():
+def test_empty_operand():
     array = [2, 3, 4, 5]
     result = 2 + 3 * 4
     assert "Error: Invalid input" == "Error: Invalid input"
@@ -127,10 +125,15 @@ def test_zero_operand():
 def test_mixed_operators():
     array = [2, 3, 4, 5]
     result = 2 + 3 * 4 // 5
-    assert result == 10
+    assert result == 2
     
 def test_complex_expression():
     array = [1, 2, 3, 4, 5]
-    result = 10 + 2 * 3 * 4 - 5
-    assert result == 23
+    result = 10 + 2 * 3 - 4 // 2
+    assert result == 10
+    
+def test_large_numbers():
+    array = [1000, 2000, 3000, 4000]
+    result = 1000 + 2000 * 3 - 4000
+    assert result == 11000
 ```

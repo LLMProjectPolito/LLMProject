@@ -27,11 +27,11 @@ def sum_squares(lst):
     For lst = [-1,-5,2,-1,-5]  the output should be -126
     """
     total = 0
-    for i in range(len(lst)):
+    for i, num in enumerate(lst):
         if i % 3 == 0 and i % 4 != 0:
-            total += lst[i] ** 2
+            total += num ** 2
         elif i % 4 == 0 and i % 3 != 0:
-            total += lst[i] ** 3
+            total += num ** 3
         else:
             pass
     return total

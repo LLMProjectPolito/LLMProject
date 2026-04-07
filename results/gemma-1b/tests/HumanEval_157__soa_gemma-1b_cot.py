@@ -33,7 +33,7 @@ def test_right_angle_triangle():
     assert right_angle_triangle(1, 1, 1) == True
     assert right_angle_triangle(1, 1, 2) == False
     assert right_angle_triangle(2, 2, 2) == True
-    assert right_angle_triangle(0, 0, 0) == False
+    assert right_angle_triangle(0, 0, 0) == True
     assert right_angle_triangle(0, 1, 1) == False
     assert right_angle_triangle(1, 0, 1) == False
     assert right_angle_triangle(1, 1, 0) == False

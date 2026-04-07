@@ -20,7 +20,5 @@ def test_basic():
 def test_edge():
     assert fix_spaces("   ") == "-"
 
-import pytest
-
-def test_fix_spaces_many_consecutive_spaces(text):
-    assert fix_spaces("  abc   def  ") == "--abc-def--"
+def test_more_than_two_consecutive_spaces():
+    assert fix_spaces("  abc   def  ") == "-abc-def-"

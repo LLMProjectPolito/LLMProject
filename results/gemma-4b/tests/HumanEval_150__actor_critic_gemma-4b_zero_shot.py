@@ -52,6 +52,7 @@ def test_x_or_y_edge_cases():
     assert x_or_y(0, 34, 12) == 12
     assert x_or_y(-1, 34, 12) == 12
     assert x_or_y(-7, 34, 12) == 12
-    assert x_or_y(20, 34, 12) == 12
-    assert x_or_y(1000, 34, 12) == 12
-    assert x_or_y(997, 34, 12) == 34
+    assert x_or_y(4, 34, 12) == 12 # Test a composite number
+    assert x_or_y(9, 7, 2) == 2 # Test a composite number close to prime
+    assert x_or_y(16, 34, 12) == 12 # Test a perfect square
+    assert x_or_y(1000000007, 34, 12) == 34 # Test a large prime

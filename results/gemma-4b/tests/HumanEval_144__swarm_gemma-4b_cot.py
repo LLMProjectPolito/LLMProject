@@ -46,17 +46,29 @@ def simplify(x, n):
     else:
         return False
 
-def test_simplify_basic():
-    assert simplify("1/5", "5/1") == True
-
-def test_simplify_false():
-    assert simplify("1/6", "2/1") == False
-
-def test_simplify_false_2():
-    assert simplify("7/10", "10/2") == False
-
-def test_simplify_large_numbers():
-    assert simplify("1000/1001", "1001/1") == True
+def test_simplify_edge_case_one():
+    assert simplify("1/2", "2/1") == True
 
 def test_simplify_edge_case_large_numbers():
     assert simplify("1000/1001", "1001/1") == True
+
+def test_simplify_basic_true():
+    assert simplify("1/5", "5/1") == True
+
+def test_simplify_basic_false():
+    assert simplify("1/6", "2/1") == False
+
+def test_simplify_basic_false2():
+    assert simplify("7/10", "10/2") == False
+
+def test_simplify_zero_numerator():
+    assert simplify("0/5", "5/1") == True
+
+def test_simplify_zero_denominator():
+    assert simplify("1/0", "5/1") == False
+
+def test_simplify_large_numerator_denominator():
+    assert simplify("12345/67890", "67890/1") == True
+
+def test_simplify_large_numerator_denominator_false():
+    assert simplify("12345/67891", "67890/1") == False

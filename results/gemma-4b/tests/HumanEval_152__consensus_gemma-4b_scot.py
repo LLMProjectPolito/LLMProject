@@ -68,3 +68,12 @@ def test_compare_different_lengths():
 def test_compare_different_lengths_2():
     with pytest.raises(IndexError):
         compare([1, 2], [1, 2, 3])
+
+def test_compare_longer_game():
+    assert compare([1, 2, 3, 4, 5, 6, 7], [1, 2, 3, 4, 5, 6, 7]) == [0, 0, 0, 0, 0, 0, 0]
+
+def test_compare_longer_guess():
+    assert compare([1, 2, 3], [1, 2, 3, 4, 5]) == [0, 0, 0, 0, 0]
+
+def test_compare_all_off():
+    assert compare([1, 2, 3], [5, 6, 7]) == [4, 4, 4]

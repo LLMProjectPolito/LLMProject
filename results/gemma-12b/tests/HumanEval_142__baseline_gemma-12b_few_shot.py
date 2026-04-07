@@ -29,13 +29,16 @@ def test_sum_squares_multiple_of_both():
     assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 12]) == 154
 
 def test_sum_squares_only_multiples_of_3():
-    assert sum_squares([3, 6, 9, 12]) == 3*3 + 6*6 + 9*9 + 12*12
+    assert sum_squares([3, 6, 9, 12]) == 234
 
 def test_sum_squares_only_multiples_of_4():
-    assert sum_squares([4, 8, 12, 16]) == 4*4 + 8*8 + 12*12 + 16*16
+    assert sum_squares([4, 8, 12, 16]) == 256
 
-def test_sum_squares_zero():
-    assert sum_squares([0, 0, 0, 0]) == 0
+def test_sum_squares_zeroes():
+    assert sum_squares([0, 0, 0, 0, 0]) == 0
 
 def test_sum_squares_large_numbers():
-    assert sum_squares([100, 200, 300, 400]) == 100*100 + 200*200 + 300*300 + 400*400
+    assert sum_squares([100, 200, 300, 400]) == 100 + 200**2 + 300 + 400**3
+
+def test_sum_squares_single_element():
+    assert sum_squares([5]) == 5

@@ -39,11 +39,8 @@ def test_fix_spaces_multiple_consecutive_spaces():
 def test_fix_spaces_exactly_two_consecutive_spaces():
     assert fix_spaces("Example  3") == "Example__3"
 
-def test_fix_spaces_many_spaces_at_beginning():
-    assert fix_spaces("   Example 4") == "-Example_4"
-
-def test_fix_spaces_many_spaces_at_end():
-    assert fix_spaces("Example 4   ") == "Example_4-"
+def test_fix_spaces_many_spaces():
+    assert fix_spaces("   Example     4   ") == "-Example-4-"
 
 # Focus: Consecutive Spaces
 import pytest

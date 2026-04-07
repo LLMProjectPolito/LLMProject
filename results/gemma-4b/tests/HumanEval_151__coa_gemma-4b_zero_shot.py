@@ -47,7 +47,16 @@ def test_double_the_difference_empty_list():
     assert double_the_difference([]) == 0
 
 def test_double_the_difference_all_positive_odd():
-    assert double_the_difference([1, 3, 5]) == 35
+    assert double_the_difference([1, 3, 5]) == 1 + 9 + 25
 
-def test_double_the_difference_mixed_positive_and_negative():
-    assert double_the_difference([1, -2, 3, -4, 5]) == 35
+def test_double_the_difference_mixed_positive_negative():
+    assert double_the_difference([1, -2, 3, -4, 5]) == 1 + 9 + 25
+
+def test_double_the_difference_all_negative_odd():
+    assert double_the_difference([-1, -3, -5]) == 1 + 9 + 25
+
+def test_double_the_difference_no_odd_numbers():
+    assert double_the_difference([2, 4, 6]) == 0
+
+def test_double_the_difference_zero_and_odd():
+    assert double_the_difference([0, 1, 3]) == 1 + 9

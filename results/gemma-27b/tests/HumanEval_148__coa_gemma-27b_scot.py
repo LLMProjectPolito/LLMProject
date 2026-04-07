@@ -23,22 +23,23 @@ import math
 # Focus: Valid/Invalid Planet Names
 import pytest
 
-def test_valid_planet_names():
+def test_valid_planet_names_1():
     assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
+
+def test_valid_planet_names_2():
     assert bf("Earth", "Mercury") == ("Venus",)
+
+def test_valid_planet_names_3():
     assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    assert bf("Venus", "Mars") == ("Earth",)
-    assert bf("Saturn", "Earth") == ("Jupiter",)
 
-def test_invalid_planet_names():
+def test_invalid_planet_name_1():
     assert bf("Pluto", "Neptune") == ()
-    assert bf("Earth", "Xyz") == ()
-    assert bf("Invalid", "Venus") == ()
-    assert bf("Mars", "Not a planet") == ()
-    assert bf("FakePlanet", "FakePlanet2") == ()
 
-def test_same_planet_name():
-    assert bf("Earth", "Earth") == ()
+def test_invalid_planet_name_2():
+    assert bf("Earth", "Xyz") == ()
+
+def test_invalid_planet_names_3():
+    assert bf("Invalid", "AnotherInvalid") == ()
 
 # Focus: Order of Planets (planet1 & planet2)
 import pytest

@@ -34,13 +34,13 @@ def special_factorial(n):
     if n <= 0:
         raise ValueError("Input must be a positive integer.")
     
-    result = 1
+    factorial_product = 1
     for i in range(1, n + 1):
         factorial = 1
         for j in range(1, i + 1):
             factorial *= j
-        result *= factorial
-    return result
+        factorial_product *= factorial
+    return factorial_product
 
 def factorial(n):
     if n == 0:
@@ -48,14 +48,16 @@ def factorial(n):
     else:
         return n * factorial(n-1)
 
-def test_special_factorial_boundary_1():
-    assert special_factorial(1) == 1
+@pytest.mark.parametrize("n", [1, 2])
+def test_special_factorial_boundary_low(n):
+    assert special_factorial(n) == factorial(n)
 
-def test_special_factorial_boundary_2():
-    assert special_factorial(2) == 2
-
-def test_special_factorial_boundary_3():
-    assert special_factorial(3) == 12
+@pytest.mark.parametrize("n", [3, 4, 5])
+def test_special_factorial_boundary_mid(n):
+    expected = 1
+    for i in range(1, n + 1):
+        expected *= factorial(i)
+    assert special_factorial(n) == expected
 
 # Focus: Equivalence Partitioning
 import pytest
@@ -89,29 +91,21 @@ def factorial(n):
     else:
         return n * factorial(n-1)
 
-@pytest.mark.parametrize("n", [1, 2, 3])
-def test_special_factorial_positive_small(n):
-    """Test with small positive integers (equivalence partition)."""
-    expected = 1
-    for i in range(1, n + 1):
-        expected *= factorial(i)
-    assert special_factorial(n) == expected
+@pytest.mark.parametrize("n", [1])
+def test_special_factorial_equivalence_partition_1(n):
+    assert special_factorial(n) == 1
 
-@pytest.mark.parametrize("n", [4, 5])
-def test_special_factorial_positive_medium(n):
-    """Test with medium positive integers (equivalence partition)."""
-    expected = 1
-    for i in range(1, n + 1):
-        expected *= factorial(i)
-    assert special_factorial(n) == expected
+@pytest.mark.parametrize("n", [2])
+def test_special_factorial_equivalence_partition_2(n):
+    assert special_factorial(n) == 2
 
-@pytest.mark.parametrize("n", [6])
-def test_special_factorial_positive_large(n):
-    """Test with a larger positive integer (equivalence partition)."""
-    expected = 1
-    for i in range(1, n + 1):
-        expected *= factorial(i)
-    assert special_factorial(n) == expected
+@pytest.mark.parametrize("n", [3])
+def test_special_factorial_equivalence_partition_3(n):
+    assert special_factorial(n) == 12
+
+@pytest.mark.parametrize("n", [4])
+def test_special_factorial_equivalence_partition_4(n):
+    assert special_factorial(n) == 288
 
 # Focus: Error Handling/Invalid Input
 import pytest

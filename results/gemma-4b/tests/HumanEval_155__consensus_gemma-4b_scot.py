@@ -30,7 +30,7 @@ def test_even_odd_count_negative():
     assert even_odd_count(-12) == (1, 1)
     assert even_odd_count(-12345) == (2, 3)
     assert even_odd_count(-1) == (0, 1)
-    assert even_odd_count(-2) == (1, 1)
+    assert even_odd_count(-2) == (1, 0)
 
 def test_even_odd_count_positive():
     assert even_odd_count(123) == (1, 2)

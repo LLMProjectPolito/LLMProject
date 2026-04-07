@@ -31,17 +31,19 @@ def test_string_to_md5_valid():
 def test_string_to_md5_empty():
     assert string_to_md5('') is None
 
-def test_string_to_md5_special_chars():
-    assert string_to_md5('!@#$%^') == '9469c999999999999999999999999999'
-    assert string_to_md5(' ') == 'da5103944a429895639369e999396454'
-
 def test_string_to_md5_unicode():
     assert string_to_md5('你好世界') == 'a94a8fe5ccb19ba61c4c0873d391e987'
 
-def test_string_to_md5_mixed_case():
-    assert string_to_md5('HeLlO wOrLd') == '3e25960a79dbc69b674cd4ec67a72c62' # Case should not matter
+def test_string_to_md5_with_spaces():
+    assert string_to_md5("  test  ") == '9d029999999999999999999999999999'
 
-def test_string_to_md5_long_string():
-    long_string = "This is a very long string to test the md5 hash function."
-    expected_hash = '99999999999999999999999999999999' # Replace with actual hash if needed
-    assert string_to_md5(long_string) == expected_hash
+def test_string_to_md5_same_string():
+    string1 = "test"
+    string2 = "test"
+    assert string_to_md5(string1) == string_to_md5(string2)
+
+def test_string_to_md5_different_case():
+    assert string_to_md5("Test") != string_to_md5("test")
+
+def test_string_to_md5_special_characters():
+    assert string_to_md5("!@#$%^&*()") == '99c69999999999999999999999999999'

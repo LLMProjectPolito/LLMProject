@@ -54,10 +54,9 @@ def generate_integers(a, b):
     for i in range(a, b + 1):
         s = str(i)
         for digit in s:
-            d = int(digit)
-            if d % 2 == 0:
-                if d not in result:
-                    result.append(d)
+            if int(digit) % 2 == 0:
+                if int(digit) not in result:
+                    result.append(int(digit))
     result.sort()
     return result
 

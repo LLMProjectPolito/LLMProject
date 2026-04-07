@@ -39,40 +39,35 @@ def get_max_triples(n):
                     count += 1
     return count
 
-def test_invalid_input():
+def test_n_base_case():
+    assert get_max_triples(3) == 0
+
+def test_n_large_input():
+    assert get_max_triples(500) == 20708333
+
+def test_n_five_example_case():
+    assert get_max_triples(5) == 1
+
+def test_n_six_example_case():
+    assert get_max_triples(6) == 7
+
+def test_n_modulo_equal_distribution():
+    # Test case where remainders are approximately equally distributed
+    assert get_max_triples(300) == 9139100
+
+def test_n_modulo_dominant_remainder():
+    # Test case where most elements have a remainder of 0 when divided by 3
+    # Create a list where most elements are divisible by 3
+    n = 300
+    assert get_max_triples(n) == 9139100
+
+def test_negative_input():
     with pytest.raises(TypeError):
-        get_max_triples(3.14)
-    with pytest.raises(ValueError):
         get_max_triples(-1)
 
-def test_n_less_than_three():
-    assert get_max_triples(0) == 0
-    assert get_max_triples(1) == 0
-    assert get_max_triples(2) == 0
+def test_non_integer_input():
+    with pytest.raises(TypeError):
+        get_max_triples(3.14)
 
-def test_n_equals_five():
-    assert get_max_triples(5) == 10
-
-def test_n_equals_six():
-    assert get_max_triples(6) == 20
-
-def test_n_equals_seven():
-    assert get_max_triples(7) == 35
-
-def test_n_equals_eight():
-    assert get_max_triples(8) == 56
-
-def test_n_equals_ten():
-    assert get_max_triples(10) == 120
-
-def test_n_equals_two_hundred():
-    assert get_max_triples(200) == 1313400
-
-def test_n_equals_nine():
-    assert get_max_triples(9) == 84
-
-def test_n_equals_one_thousand():
-    assert get_max_triples(1000) == 166167000
-
-def test_n_equals_two_thousand():
-    assert get_max_triples(2000) == 1331334000
+# Note: The function has O(n^3) complexity, which limits the practical size of n for testing.
+# Larger values of n will result in significantly longer test execution times.

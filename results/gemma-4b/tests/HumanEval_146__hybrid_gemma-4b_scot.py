@@ -25,7 +25,7 @@ def specialFilter(nums):
             if len(num_str) > 0:
                 first_digit = int(num_str[0])
                 last_digit = int(num_str[-1])
-                if (first_digit % 2 != 0 and last_digit % 2 != 0):
+                if first_digit % 2 != 0 and last_digit % 2 != 0:
                     count += 1
     return count
 
@@ -62,7 +62,7 @@ def test_negative_numbers():
     assert specialFilter([-15, -21, -33, -45, -23, -57]) == 4
 
 def test_mixed_numbers():
-    assert specialFilter([15, -21, 33, -45, 57, -23]) == 3
+    assert specialFilter([15, -21, 33, -45, 23, -57]) == 3
 
 def test_numbers_less_than_10():
     assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 0
@@ -80,7 +80,6 @@ def test_single_element_negative():
     assert specialFilter([-15]) == 1
 
 def test_edge_cases():
-    assert specialFilter([101, 103, 105, 107, 109]) == 5
-    assert specialFilter([-101, -103, -105, -107, -109]) == 5
-    assert specialFilter([110, 130, 150, 170, 190]) == 0
-    assert specialFilter([-110, -130, -150, -170, -190]) == 0
+    assert specialFilter([-111, 111]) == 0
+    assert specialFilter([-11, 11]) == 0
+    assert specialFilter([-1111, 1111]) == 0

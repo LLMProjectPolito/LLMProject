@@ -74,41 +74,36 @@ def test_do_algebra():
     assert do_algebra('- 2 3') == 1
     assert do_algebra('* 2 3') == 6
     assert do_algebra('/') 2 3 == 1
-    assert do_algebra('2 3 ** 2') == 4
-    assert do_algebra('2 3 + 4') == 6
-    assert do_algebra('2 3 - 4') == 1
-    assert do_algebra('2 3 * 4') == 12
-    assert do_algebra('2 3 / 4') == 0.5
-    assert do_algebra('2 3 ** 2') == 9
-    assert do_algebra('2 3 + 4 ** 2') == 25
-    assert do_algebra('2 3 - 4 ** 2') == 1
-    assert do_algebra('2 3 * 4') == 24
-    assert do_algebra('2 3 / 4') == 0.5
-    assert do_algebra('2 3 ** 2') == 9
-    assert do_algebra('2 3 + 4') == 6
-    assert do_algebra('2 3 - 4') == 1
-    assert do_algebra('2 3 * 4') == 24
-    assert do_algebra('2 3 / 4') == 0.5
-    assert do_algebra('2 3 ** 2') == 9
-    assert do_algebra('2 3 + 4') == 6
-    assert do_algebra('2 3 - 4') == 1
-    assert do_algebra('2 3 * 4') == 24
-    assert do_algebra('2 3 / 4') == 0.5
-    assert do_algebra('2 3 ** 2') == 9
-    assert do_algebra('2 3 + 4') == 6
-    assert do_algebra('2 3 - 4') == 1
-    assert do_algebra('2 3 * 4') == 24
-    assert do_algebra('2 3 / 4') == 0.5
-    assert do_algebra('2 3 ** 2') == 9
-    assert do_algebra('2 3 + 4') == 6
-    assert do_algebra('2 3 - 4') == 1
-    assert do_algebra('2 3 * 4') == 24
-    assert do_algebra('2 3 / 4') == 0.5
-    assert do_algebra('2 3 ** 2') == 9
-    assert do_algebra('2 3 + 4') == 6
-    assert do_algebra('2 3 - 4') == 1
-    assert do_algebra('2 3 * 4') == 24
-    assert do_algebra('2 3 / 4') == 0.5
-    assert do_algebra('2 3 ** 2') == 9
-    assert do_algebra('2 3 + 4') == 6
-    assert do_algebra('2 3 - 4') == 1
+    assert do_algebra('2 ** 3') == 8
+    assert do_algebra('2 + 3 * 4') == 9
+    assert do_algebra('2 - 3 * 4') == 1
+    assert do_algebra('2 * 3 ** 2') == 9
+    assert do_algebra('2 / 3') == 0.6666666666666666
+    assert do_algebra('2 ** 3') == 8
+    assert do_algebra('2 + 3 * 4') == 9
+    assert do_algebra('2 - 3 * 4') == 1
+    assert do_algebra('2 * 3 ** 2') == 9
+    assert do_algebra('2 / 3') == 0.6666666666666666
+    
+    # Edge cases
+    assert do_algebra('') == 0
+    assert do_algebra([1, 2]) == 3
+    assert do_algebra([1, 2, 3]) == 6
+    assert do_algebra([1, 2, 3, 4]) == 24
+    assert do_algebra([1, 2, 3, 4, 5]) == 120
+    
+    #Error handling
+    try:
+        do_algebra('1 2')
+    except ValueError:
+        pass
+    
+    try:
+        do_algebra('+ 2')
+    except ValueError:
+        pass
+    
+    try:
+        do_algebra('2 3')
+    except ValueError:
+        pass

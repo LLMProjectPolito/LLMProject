@@ -81,9 +81,14 @@ def test_special_characters():
 def test_numbers():
     assert fix_spaces("1 2   3") == "1_2-3"
 
-def test_long_consecutive_spaces():
-    assert fix_spaces("Example                1") == "Example-1"
+def test_consecutive_spaces_at_start():
+    assert fix_spaces("   Example") == "-Example"
 
-def test_type_handling():
-    with pytest.raises(TypeError):
-        fix_spaces(123)
+def test_consecutive_spaces_at_end():
+    assert fix_spaces("Example   ") == "Example-"
+
+def test_long_string_with_consecutive_spaces():
+    assert fix_spaces("A" + " " * 5 + "B") == "A-B"
+
+def test_string_with_only_spaces():
+    assert fix_spaces("   ") == "-"

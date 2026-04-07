@@ -42,7 +42,7 @@ def solve(s):
 class TestSolve:
     def test_no_letters(self):
         assert solve("1234") == "4321"
-        assert solve("!@#$%^") == "^%$#@!"
+        assert solve("!@#$%^") == "!@#$%^"
         assert solve("") == ""
 
     def test_all_letters_lower(self):
@@ -76,6 +76,10 @@ class TestSolve:
         assert solve("a!b@c#") == "A!b@C#"
 
     def test_long_string(self):
-        long_string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"
-        expected_result = "ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba0987654321()&*^%$#@!"
+        long_string = "This is a long string with some letters and numbers 1234567890"
+        expected_result = "sihT si a gnol gnirts htiw emos settral dna srebmun 0987654321"
         assert solve(long_string) == expected_result
+
+    def test_string_with_unicode_characters(self):
+        assert solve("你好a世界") == "你好A世界"
+        assert solve("a你好世界") == "A你好世界"

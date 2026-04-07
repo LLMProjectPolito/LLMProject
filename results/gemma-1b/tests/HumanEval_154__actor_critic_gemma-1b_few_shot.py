@@ -12,12 +12,6 @@ def cycpattern_check(a , b):
 
 import pytest
 
-def is_palindrome(s: str) -> bool:
-    """ Checks if a string is a palindrome """
-    s = s.lower()
-    s = ''.join(filter(str.isalnum, s))
-    return s == s[::-1]
-
 def get_max(arr: list[int]) -> int:
     """ Returns the maximum element in a list, or None if empty """
     if not arr:

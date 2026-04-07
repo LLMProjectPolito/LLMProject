@@ -89,6 +89,6 @@ def compare(game,guess):
     for i in range(len(game)):
         result.append(abs(guess[i] - game[i]))
     return result
-    
+
 def test_invalid_boundary_empty_arrays():
     assert compare([], []) == []

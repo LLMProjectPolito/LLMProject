@@ -35,6 +35,6 @@ def test_zero():
     with pytest.raises(ValueError):
         special_factorial(0)
 
-def test_negative():
+def test_negative_integer():
     with pytest.raises(ValueError):
         special_factorial(-1)

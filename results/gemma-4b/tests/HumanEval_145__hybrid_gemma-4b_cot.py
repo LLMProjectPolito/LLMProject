@@ -33,59 +33,18 @@ def order_by_points(nums):
     return sorted(nums, key=lambda x: (sum_digits(x), nums.index(x)))
 
 
-def test_order_by_points_empty_list():
-    assert order_by_points([]) == []
-
-def test_order_by_points_positive_numbers():
-    assert order_by_points([1, 11, 2, 3, 4]) == [1, 2, 3, 4, 11]
-
-def test_order_by_points_negative_numbers():
-    assert order_by_points([-1, -11, -2, -3, -4]) == [-1, -2, -3, -4, -11]
-
-def test_order_by_points_mixed_numbers():
-    assert order_by_points([1, -1, 11, -11, 2, -2]) == [-1, -2, 1, -11, 2, 11]
-
-def test_order_by_points_duplicate_sums():
+def test_order_by_points():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
-
-def test_order_by_points_single_element():
-    assert order_by_points([5]) == [5]
-
-def test_order_by_points_large_numbers():
-    assert order_by_points([123, 45, 6, 789]) == [6, 45, 123, 789]
-
-def test_order_by_points_zero_sum():
-    assert order_by_points([0, 0, 0]) == [0, 0, 0]
-
-def test_order_by_points_negative_zero_sum():
-    assert order_by_points([-1, 0, -2]) == [-1, -2, 0]
-
-def test_order_by_points_empty():
     assert order_by_points([]) == []
-
-def test_order_by_points_single():
-    assert order_by_points([5]) == [5]
-
-def test_order_by_points_positive():
-    assert order_by_points([1, 11, 2, 12, 3]) == [1, 2, 3, 11, 12]
-
-def test_order_by_points_negative():
-    assert order_by_points([-1, -11, -2, -12, -3]) == [-1, -2, -3, -11, -12]
-
-def test_order_by_points_mixed():
-    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
-
-def test_order_by_points_duplicate_sums():
-    assert order_by_points([1, 11, 2, 12, 3, 1]) == [1, 1, 2, 3, 11, 12]
-
-def test_order_by_points_large_numbers():
-    assert order_by_points([123, 45, 6, 789, 1]) == [1, 6, 45, 123, 789]
-
-def test_order_by_points_negative_large_numbers():
-    assert order_by_points([-123, -45, -6, -789, -1]) == [-1, -6, -45, -123, -789]
-
-def test_order_by_points_zero():
-    assert order_by_points([0, 1, -1, 0]) == [0, 0, 1, -1]
-
-def test_order_by_points_mixed_zero():
-    assert order_by_points([0, 1, -1, 11, -11]) == [0, 1, -1, -11, 11]
+    assert order_by_points([1, 2, 3, 4, 5]) == [1, 2, 3, 4, 5]
+    assert order_by_points([5, 4, 3, 2, 1]) == [1, 2, 3, 4, 5]
+    assert order_by_points([-1, -2, -3, -4, -5]) == [-1, -2, -3, -4, -5]
+    assert order_by_points([10, 1, 100, 101]) == [1, 10, 100, 101]
+    assert order_by_points([12, 21, 3, 4, 5]) == [3, 4, 5, 12, 21]
+    assert order_by_points([-12, 21, -3, 4, 5]) == [-3, 4, 5, -12, 21]
+    assert order_by_points([0, 0, 0, 0]) == [0, 0, 0, 0]
+    assert order_by_points([1, 1, 1, 1]) == [1, 1, 1, 1]
+    assert order_by_points([-1, -1, -1, -1]) == [-1, -1, -1, -1]
+    assert order_by_points([1, -1, 1, -1]) == [-1, 1, -1, 1]
+    assert order_by_points([10, 1, 100, 101, 11]) == [1, 10, 100, 101, 11]
+    assert order_by_points([11, 1, 10, 100, 101]) == [1, 10, 11, 100, 101]

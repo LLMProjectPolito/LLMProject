@@ -76,5 +76,5 @@ def test_empty_list():
 def test_negative_and_non_integer_values():
     assert double_the_difference([-1, -2, 0, 2.5]) == 0
 
-def test_mixed_odd_and_even():
+def test_mixed_odd_and_even_positive_integers():
     assert double_the_difference([1, 3, 2, 0]) == 10

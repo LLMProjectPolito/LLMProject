@@ -39,47 +39,32 @@ def get_max_triples(n):
                     count += 1
     return count
 
-def test_get_max_triples_1():
-    assert get_max_triples(1) == 0
-
-def test_get_max_triples_2():
-    assert get_max_triples(2) == 0
-
-def test_get_max_triples_3():
-    assert get_max_triples(3) == 0
-
-def test_get_max_triples_4():
-    assert get_max_triples(4) == 0
-
-def test_get_max_triples_5():
+def test_get_max_triples_example():
     assert get_max_triples(5) == 1
 
-def test_get_max_triples_6():
-    assert get_max_triples(6) == 3
+def test_get_max_triples_n_1():
+    assert get_max_triples(1) == 0
 
-def test_get_max_triples_7():
-    assert get_max_triples(7) == 6
+def test_get_max_triples_n_2():
+    assert get_max_triples(2) == 0
 
-def test_get_max_triples_8():
-    assert get_max_triples(8) == 10
+def test_get_max_triples_n_3():
+    assert get_max_triples(3) == 0
 
-def test_get_max_triples_9():
-    assert get_max_triples(9) == 16
+def test_get_max_triples_n_4():
+    assert get_max_triples(4) == 0
 
-def test_get_max_triples_10():
-    assert get_max_triples(10) == 22
+def test_get_max_triples_n_6():
+    assert get_max_triples(6) == 20
 
-def test_get_max_triples_11():
-    assert get_max_triples(11) == 30
+def test_get_max_triples_n_7():
+    assert get_max_triples(7) == 35
 
-def test_get_max_triples_12():
-    assert get_max_triples(12) == 39
+def test_get_max_triples_n_8():
+    assert get_max_triples(8) == 56
 
-def test_get_max_triples_13():
-    assert get_max_triples(13) == 50
+def test_get_max_triples_n_9():
+    assert get_max_triples(9) == 84
 
-def test_get_max_triples_14():
-    assert get_max_triples(14) == 63
-
-def test_get_max_triples_15():
-    assert get_max_triples(15) == 78
+def test_get_max_triples_n_10():
+    assert get_max_triples(10) == 120

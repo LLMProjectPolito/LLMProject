@@ -36,24 +36,21 @@ def Strongest_Extension(class_name, extensions):
     Example:
     for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
     """
-    strongest_extension = None
-    max_strength = float('-inf')
-
+    strongest_extension = ""
+    max_strength = -1
     for extension in extensions:
-        uppercase_count = 0
-        lowercase_count = 0
+        cap = 0
+        sm = 0
         for char in extension:
             if char.isupper():
-                uppercase_count += 1
-            else:
-                lowercase_count += 1
-
-        strength = uppercase_count - lowercase_count
+                cap += 1
+            elif char.islower():
+                sm += 1
+        strength = cap - sm
         if strength > max_strength:
             max_strength = strength
             strongest_extension = extension
-
-    return f"{class_name}.{strongest_extension}"
+    return strongest_extension
 
 import pytest
 
@@ -74,21 +71,18 @@ def Strongest_Extension(class_name, extensions):
     Example:
     for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
     """
-    strongest_extension = None
-    max_strength = float('-inf')
-
+    strongest_extension = ""
+    max_strength = -1
     for extension in extensions:
-        uppercase_count = 0
-        lowercase_count = 0
+        cap = 0
+        sm = 0
         for char in extension:
             if char.isupper():
-                uppercase_count += 1
-            else:
-                lowercase_count += 1
-
-        strength = uppercase_count - lowercase_count
+                cap += 1
+            elif char.islower():
+                sm += 1
+        strength = cap - sm
         if strength > max_strength:
             max_strength = strength
             strongest_extension = extension
-
-    return f"{class_name}.{strongest_extension}"
+    return strongest_extension

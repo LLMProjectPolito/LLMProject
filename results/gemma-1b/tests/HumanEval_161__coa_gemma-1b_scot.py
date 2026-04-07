@@ -38,7 +38,6 @@ def solve(s):
             result += char.lower()
         else:
             result += char
-
     return result
 
 # Focus: Type Scenarios

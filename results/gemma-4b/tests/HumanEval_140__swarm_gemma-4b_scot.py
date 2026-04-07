@@ -32,11 +32,9 @@ def fix_spaces(text):
             count += 1
             if count <= 2:
                 result += "_"
-            else:
-                result += "-"
         else:
-            result += char
             count = 0
+            result += char
     return result
 
 def test_multiple_consecutive_spaces():
@@ -53,6 +51,3 @@ def test_leading_spaces():
 
 def test_multiple_spaces():
     assert fix_spaces(" Example   3") == "_Example-3"
-
-def test_empty_string():
-    assert fix_spaces("") == ""

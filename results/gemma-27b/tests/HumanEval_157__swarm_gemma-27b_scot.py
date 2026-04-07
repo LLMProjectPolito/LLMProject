@@ -11,7 +11,6 @@ def right_angle_triangle(a, b, c):
     '''
 
 import pytest
-import math
 
 def right_angle_triangle(a, b, c):
     '''
@@ -24,15 +23,20 @@ def right_angle_triangle(a, b, c):
     right_angle_triangle(1, 2, 3) == False
     '''
     sides = sorted([a, b, c])
-    return abs(sides[0]**2 + sides[1]**2 - sides[2]**2) < 1e-6
+    return sides[0]**2 + sides[1]**2 == sides[2]**2
 
-def test_near_zero_sides():
-    assert right_angle_triangle(1e-8, 1e-8, 1.41421356237e-8) == True
+def test_zero_side():
+    assert right_angle_triangle(0, 3, 4) == False
+    assert right_angle_triangle(3, 0, 4) == False
+    assert right_angle_triangle(3, 4, 0) == False
 
-def test_zero_length_side():
-    assert right_angle_triangle(0, 4, 5) == False
+def test_right_triangle():
+    assert right_angle_triangle(3, 4, 5) == True
+    assert right_angle_triangle(5, 12, 13) == True
+    assert right_angle_triangle(8, 15, 17) == True
 
-def test_floating_point_precision():
-    assert right_angle_triangle(0.3, 0.4, 0.5) == True
-    assert right_angle_triangle(3.0000001, 4.0, 5.0) == True
-    assert right_angle_triangle(0.6, 0.8, 1.0) == True
+def test_not_right_triangle():
+    assert right_angle_triangle(1, 2, 3) == False
+    assert right_angle_triangle(2, 3, 4) == False
+    assert right_angle_triangle(6, 8, 10) == True
+    assert right_angle_triangle(7, 8, 9) == False

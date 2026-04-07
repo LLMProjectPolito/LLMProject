@@ -36,18 +36,15 @@ def bf(planet1, planet2):
     '''
     if not isinstance(planet1, str) or not isinstance(planet2, str):
         return ()
-    if planet1 == "Mercury" and planet2 == "Uranus":
-        return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    if planet1 == "Venus" and planet2 == "Mercury":
-        return ("Earth", "Mars", "Jupiter", "Saturn")
-    if planet1 == "Earth" and planet2 == "Venus":
-        return ("Mars", "Jupiter", "Saturn")
-    if planet1 == "Mars" and planet2 == "Earth":
-        return ("Jupiter", "Saturn")
-    if planet1 == "Jupiter" and planet2 == "Mars":
-        return ("Saturn", "Uranus")
-    if planet1 == "Saturn" and planet2 == "Jupiter":
-        return ("Uranus", "Neptune")
-    if planet1 == "Uranus" and planet2 == "Saturn":
-        return ("Neptune", "Earth")
-    return ()
+    if planet1 not in ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]:
+        return ()
+    
+    planet1_orbit = "Mercury"
+    planet2_orbit = "Neptune"
+    
+    if planet1 == planet1_orbit:
+        return (planet2, planet2_orbit)
+    elif planet2 == planet2_orbit:
+        return (planet1, planet1_orbit)
+    else:
+        return ()

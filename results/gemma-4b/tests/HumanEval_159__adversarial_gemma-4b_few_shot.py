@@ -79,14 +79,11 @@ def eat(number, need, remaining):
 def test_is_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
+    assert is_palindrome('A man, a plan, a canal: Panama') == False # Case sensitivity
     assert is_palindrome('') == True
-    assert is_palindrome('A man, a plan, a canal: Panama') == False # Case sensitivity matters
 
-def test_is_palindrome_case_insensitive():
-    assert is_palindrome('Racecar') == True
-
-def test_is_palindrome_with_spaces():
-    assert is_palindrome('madam') == False
+def test_is_palindrome_empty():
+    assert is_palindrome('') == True
 
 def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
@@ -112,14 +109,14 @@ def test_eat_basic3():
 def test_eat_basic4():
     assert eat(2, 11, 5) == [7, 0]
 
-def test_eat_not_enough_carrots():
+def test_eat_not_enough():
     assert eat(5, 10, 3) == [15, 0]
 
 def test_eat_zero_need():
     assert eat(5, 0, 10) == [5, 5]
 
 def test_eat_zero_remaining():
-    assert eat(0, 5, 0) == [5, 0]
+    assert eat(5, 6, 0) == [11, 0]
 
 def test_eat_zero_number():
-    assert eat(0, 5, 10) == [5, 5]
+    assert eat(0, 6, 10) == [6, 4]

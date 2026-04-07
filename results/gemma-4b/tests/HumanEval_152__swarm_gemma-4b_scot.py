@@ -49,4 +49,4 @@ def test_compare_empty_arrays():
 
 def test_compare_unequal_length_arrays():
     with pytest.raises(IndexError):
-        compare([1, 2], [1])
+        compare([1, 2], [1, 2, 3])

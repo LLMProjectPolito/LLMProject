@@ -14,17 +14,6 @@ def simplify(x, n):
 
 import pytest
 
-def is_palindrome(s: str) -> bool:
-    """ Checks if a string is a palindrome """
-    s = ''.join(filter(str.isalnum, s)).lower()
-    return s == s[::-1]
-
-def get_max(arr: list[int]) -> int:
-    """ Returns the maximum element in a list, or None if empty """
-    if not arr:
-        return None
-    return max(arr)
-
 def simplify(x, n):
     """Your task is to implement a function that will simplify the expression
     x * n. The function returns True if x * n evaluates to a whole number and False
@@ -43,48 +32,43 @@ def simplify(x, n):
     product_num = num_x * num_n
     product_den = den_x * den_n
 
-    return product_num % product_den == 0
+    if product_num % product_den == 0:
+        return True
+    else:
+        return False
 
 
-### Tests (Pytest):
-def test_is_palindrome_basic():
-    assert is_palindrome('radar') == True
-    assert is_palindrome('hello') == False
-    assert is_palindrome('A man, a plan, a canal: Panama') == True
-    assert is_palindrome('Racecar') == True
-    assert is_palindrome('Was it a car or a cat I saw?') == True
-
-def test_is_palindrome_empty():
-    assert is_palindrome('') == True
-    assert is_palindrome(' ') == True
-
-def test_is_palindrome_mixed_case():
-    assert is_palindrome('Racecar') == True
-    assert is_palindrome('Madam') == True
-
-def test_get_max_positive():
-    assert get_max([1, 2, 3]) == 3
-    assert get_max([3, 2, 1]) == 3
-    assert get_max([1, 3, 2]) == 3
-
-def test_get_max_empty():
-    assert get_max([]) == None
-
-def test_get_max_single_element():
-    assert get_max([5]) == 5
-
-def test_get_max_negative_numbers():
-    assert get_max([-1, -2, -3]) == -1
-
-def test_simplify_true():
+def test_simplify_basic_true():
     assert simplify("1/5", "5/1") == True
-    assert simplify("2/3", "6/1") == True
-    assert simplify("10/2", "2/1") == True
+
+def test_simplify_basic_false():
+    assert simplify("1/6", "2/1") == False
+
+def test_simplify_basic_false2():
+    assert simplify("7/10", "10/2") == False
+
+def test_simplify_same_fraction():
+    assert simplify("1/2", "1/2") == True
+
+def test_simplify_large_numbers():
+    assert simplify("100/10", "10/1") == True
+
+def test_simplify_small_numbers():
     assert simplify("1/1", "1/1") == True
 
-def test_simplify_false():
-    assert simplify("1/6", "2/1") == False
-    assert simplify("7/10", "10/2") == False
-    assert simplify("1/2", "3/4") == False
-    assert simplify("1/3", "2/5") == False
-    assert simplify("10/3", "5/1") == False
+def test_simplify_one_is_one():
+    assert simplify("1/5", "1/5") == True
+
+def test_simplify_one_is_zero():
+    assert simplify("1/5", "0/1") == False
+
+def test_simplify_zero_numerator():
+    assert simplify("0/5", "5/1") == True
+
+def test_simplify_zero_denominator():
+    assert simplify("1/0", "1/1") == False # Should handle invalid input gracefully, but this test checks for the expected behavior.
+
+def test_simplify_negative_numbers():
+    assert simplify("1/2", "2/1") == True
+    assert simplify("1/2", "2/1") == True
+    assert simplify("1/2", "2/1") == True

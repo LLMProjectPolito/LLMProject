@@ -26,18 +26,18 @@ def find_max(words):
     if not words:
         return ""
 
-    max_word = ""
     max_unique = 0
+    result = ""
 
     for word in words:
         unique_chars = len(set(word))
         if unique_chars > max_unique:
             max_unique = unique_chars
-            max_word = word
-        elif unique_chars == max_unique and word < max_word:
-            max_word = word
+            result = word
+        elif unique_chars == max_unique and word < result:
+            result = word
 
-    return max_word
+    return result
 
 def test_empty_list():
     assert find_max([]) == ""

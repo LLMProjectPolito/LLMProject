@@ -50,9 +50,16 @@ def test_simplify_invalid():
     assert simplify("1/2", "3/1") == False
     assert simplify("5/4", "2/1") == False
 
-def test_simplify_edge_cases():
-    assert simplify("1/1", "1/1") == True
-    assert simplify("1/1", "1/2") == False
-    assert simplify("1/2", "1/1") == False
-    assert simplify("100/1", "1/1") == True
-    assert simplify("1/100", "1/1") == False
+def test_simplify_large_numbers():
+    assert simplify("100/10", "10/1") == True
+    assert simplify("100/10", "11/1") == False
+
+def test_simplify_equal_fractions():
+    assert simplify("1/2", "1/2") == True
+    assert simplify("5/7", "5/7") == True
+
+def test_simplify_zero_denominator():
+    with pytest.raises(ZeroDivisionError):
+        simplify("1/0", "5/1")
+    with pytest.raises(ZeroDivisionError):
+        simplify("1/5", "0/1")

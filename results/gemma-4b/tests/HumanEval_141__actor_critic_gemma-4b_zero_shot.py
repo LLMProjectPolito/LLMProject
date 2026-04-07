@@ -46,57 +46,45 @@ def file_name_check(file_name):
     if not name[0].isalpha():
         return 'No'
 
-    if any(char.isdigit() for char in name):
-        if name.count(char.isdigit()) > 3:
-            return 'No'
+    if not ext in ['txt', 'exe', 'dll']:
+        return 'No'
 
-    if ext not in ['txt', 'exe', 'dll']:
+    if sum(c.isdigit() for c in name) > 3:
         return 'No'
 
     return 'Yes'
 
-
 def test_valid_file_name():
     assert file_name_check("example.txt") == 'Yes'
     assert file_name_check("my_file.dll") == 'Yes'
-    assert file_name_check("another.exe") == 'Yes'
     assert file_name_check("valid123.txt") == 'Yes'
-    assert file_name_check("valid_file.txt") == 'Yes'
-
+    assert file_name_check("another.exe") == 'Yes'
 
 def test_invalid_file_name_too_many_digits():
     assert file_name_check("123example.txt") == 'No'
     assert file_name_check("1234example.txt") == 'No'
-    assert file_name_check("123.123.123.123") == 'No'
-
+    assert file_name_check("12example.txt") == 'No'
 
 def test_invalid_file_name_no_dot():
     assert file_name_check("example") == 'No'
     assert file_name_check("1example") == 'No'
 
-
 def test_invalid_file_name_multiple_dots():
-    assert file_name_check("example.example.txt") == 'No'
+    assert file_name_check("example.extra.txt") == 'No'
     assert file_name_check("example..txt") == 'No'
-
 
 def test_invalid_file_name_empty_before_dot():
     assert file_name_check(".txt") == 'No'
     assert file_name_check("1.txt") == 'No'
 
-
 def test_invalid_file_name_starts_with_digit():
     assert file_name_check("1example.txt") == 'No'
-    assert file_name_check("123example.txt") == 'No'
-
+    assert file_name_check("12example.txt") == 'No'
 
 def test_invalid_file_name_invalid_extension():
     assert file_name_check("example.pdf") == 'No'
     assert file_name_check("example.jpg") == 'No'
     assert file_name_check("example.doc") == 'No'
-
-def test_consecutive_digits():
-    assert file_name_check("12example.txt") == 'No'
 
 def test_edge_case_empty_string():
     assert file_name_check("") == 'No'
@@ -104,15 +92,17 @@ def test_edge_case_empty_string():
 def test_edge_case_dot_only():
     assert file_name_check(".") == 'No'
 
-def test_edge_case_digit_dot_letter():
-    assert file_name_check("1.a") == 'No'
+def test_edge_case_digit_and_dot():
+    assert file_name_check("1.txt") == 'No'
 
-def test_edge_case_letter_digit_dot():
-    assert file_name_check("a.1") == 'No'
+def test_edge_case_multiple_digits_and_dot():
+    assert file_name_check("123.txt") == 'No'
 
-def test_edge_case_multiple_dots_and_digits():
-    assert file_name_check("a.b.c.d") == 'No'
-    assert file_name_check("1.2.3.4") == 'No'
+def test_edge_case_long_name_with_digits():
+    assert file_name_check("a12345.txt") == 'No'
 
-def test_single_digit_filename():
-    assert file_name_check("1.txt") == 'Yes'
+def test_edge_case_name_with_only_digits():
+    assert file_name_check("1234.txt") == 'No'
+
+def test_invalid_file_name_one_digit():
+    assert file_name_check("1example.txt") == 'No'

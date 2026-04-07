@@ -101,6 +101,11 @@ def test_edge_case_single_operand():
     operand = [1, 2]
     assert do_algebra(operator, operand) == 1
 
+def test_edge_case_single_operator():
+    operator = ['*']
+    operand = [1, 2, 3]
+    assert do_algebra(operator, operand) == 1
+
 def test_edge_case_empty_operator():
     operator = []
     operand = [1, 2, 3]
@@ -113,8 +118,8 @@ def test_edge_case_empty_operand():
 
 def test_large_numbers():
     operator = ['*', '**']
-    operand = [2, 3, 10]
-    assert do_algebra(operator, operand) == 1024
+    operand = [2, 10, 3]
+    assert do_algebra(operator, operand) == 8192
 
 def test_zero_operand():
     operator = ['+', '*']

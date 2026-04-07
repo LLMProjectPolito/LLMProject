@@ -78,7 +78,7 @@ def test_single_even_number():
     assert double_the_difference([4]) == 0
 
 def test_mixed_types_and_values():
-    assert double_the_difference([1, -2, 3.0, "a", 5, 0]) == 26
+    assert double_the_difference([1, -2, 3.0, "a", 5, 0]) == 35
 
 def test_zeroes():
     assert double_the_difference([0, 0, 0]) == 0

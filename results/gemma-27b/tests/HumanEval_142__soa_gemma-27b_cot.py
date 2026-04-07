@@ -34,7 +34,7 @@ def test_list_with_mixed_positive_and_negative():
     assert sum_squares([1, -2, 3, -4, 5, -6]) == 35
 
 def test_list_with_large_numbers():
-    assert sum_squares([100, 200, 300, 400, 500]) == 360000
+    assert sum_squares([100, 200, 300, 400, 500]) == 2600000
 
 def test_list_with_decimal_numbers():
     with pytest.raises(TypeError):
@@ -49,13 +49,13 @@ def test_list_with_mixed_types():
         sum_squares([1, '2', 3.5])
 
 def test_list_multiple_of_3_and_4():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 605
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 704
 
 def test_list_only_multiples_of_3():
-    assert sum_squares([3, 6, 9, 12]) == 306
+    assert sum_squares([3, 6, 9, 12]) == 1890
 
 def test_list_only_multiples_of_4():
-    assert sum_squares([4, 8, 12, 16]) == 1280
+    assert sum_squares([4, 8, 12, 16]) == 1600
 
 def test_list_with_long_sequence():
-    assert sum_squares(list(range(20))) == 3365
+    assert sum_squares(list(range(20))) == 44940

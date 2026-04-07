@@ -29,12 +29,10 @@ def cycpattern_check(a, b):
     """
     if len(a) < len(b):
         return False
-
     for i in range(len(b)):
         rotated_b = b[i:] + b[:i]
         if rotated_b in a:
             return True
-
     return False
 
 # Focus: Type Scenarios
@@ -70,8 +68,6 @@ def cycpattern_check(a, b):
     return False
 
 # Focus: Logic Branches
-import pytest
-
 def cycpattern_check(a, b):
     """You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word
     cycpattern_check("abcd","abd") => False

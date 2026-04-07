@@ -57,8 +57,11 @@ def test_generate_integers_large_range():
 def test_generate_integers_empty_range():
     assert generate_integers(10, 9) == []
 
-def test_generate_integers_zero_range():
+def test_generate_integers_zero_to_one():
     assert generate_integers(0, 1) == []
+
+def test_generate_integers_zero_to_two():
+    assert generate_integers(0, 2) == [2]
 
 def test_generate_integers_negative_numbers():
     assert generate_integers(-2, -1) == []

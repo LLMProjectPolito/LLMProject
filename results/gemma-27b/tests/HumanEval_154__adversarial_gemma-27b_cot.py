@@ -51,23 +51,23 @@ def test_cycpattern_check_b_rotation_of_a():
 def test_cycpattern_check_b_rotation_of_a_longer():
     assert cycpattern_check("abcabcabc", "cab") == True
 
-def test_cycpattern_check_b_rotation_of_a_not_substring():
-    assert cycpattern_check("abcabc", "cba") == False
+def test_cycpattern_check_repeated_chars():
+    assert cycpattern_check("aaaaa", "aa") == True
 
-def test_cycpattern_check_special_characters():
-    assert cycpattern_check("a!b@c#", "b@c#") == True
+def test_cycpattern_check_repeated_chars_no_match():
+    assert cycpattern_check("aaaaa", "bb") == False
 
-def test_cycpattern_check_special_characters_no_match():
-    assert cycpattern_check("a!b@c#", "c#b@") == False
+def test_cycpattern_check_special_chars():
+    assert cycpattern_check("!@#$%^", "@#$") == True
 
-def test_cycpattern_check_numbers():
-    assert cycpattern_check("12345", "234") == True
+def test_cycpattern_check_special_chars_no_match():
+    assert cycpattern_check("!@#$%^", "abc") == False
 
-def test_cycpattern_check_numbers_no_match():
-    assert cycpattern_check("12345", "351") == False
+def test_cycpattern_check_mixed_case():
+    assert cycpattern_check("Hello", "ell") == False
 
-def test_cycpattern_check_mixed_characters():
-    assert cycpattern_check("a1b2c3d", "b2c3") == True
+def test_cycpattern_check_long_strings():
+    assert cycpattern_check("abcdefghijklmnopqrstuvwxyz", "xyz") == True
 
-def test_cycpattern_check_mixed_characters_no_match():
-    assert cycpattern_check("a1b2c3d", "c3a1") == False
+def test_cycpattern_check_long_strings_no_match():
+    assert cycpattern_check("abcdefghijklmnopqrstuvwxyz", "zyx") == False

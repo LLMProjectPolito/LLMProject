@@ -70,19 +70,18 @@ def test_example_2():
     assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
 def test_numbers_as_strings():
-    assert sorted_list_sum(["12", "1", "123", "1234"]) == ["12", "1234"]
+    assert sorted_list_sum(["12", "1", "123", "45"]) == ["12", "45"]
 
 def test_special_characters():
     assert sorted_list_sum(["!!", "!", "!!!", "@@"]) == ["!!", "@@"]
 
-def test_mixed_lengths_and_duplicates():
-    assert sorted_list_sum(["ab", "a", "abc", "cd", "efg", "gh"]) == ["ab", "cd", "gh"]
-
-def test_long_strings():
-    assert sorted_list_sum(["abcdef", "abc", "defgh", "hi"]) == ["abcdef", "defgh"]
-
 def test_strings_with_spaces():
-    assert sorted_list_sum(["aa bb", "a", "cc dd"]) == ["aa bb", "cc dd"]
+    assert sorted_list_sum(["aa bb", "a", "aaa", "bb cc"]) == ["aa bb", "bb cc"]
 
-def test_strings_with_special_characters():
-    assert sorted_list_sum(["a!a", "b@b", "c#c"]) == ["a!a", "b@b", "c#c"]
+def test_longer_strings():
+    assert sorted_list_sum(["abcdef", "abc", "abcd", "abcde"]) == ["abcd"]
+
+def test_large_list():
+    large_list = ["a" * i for i in range(1, 21)]
+    expected_result = ["a" * i for i in range(2, 21, 2)]
+    assert sorted_list_sum(large_list) == expected_result

@@ -18,7 +18,7 @@ def even_odd_count(num):
     """
     even_count = 0
     odd_count = 0
-    for digit in str(abs(num)):
+    for digit in str(num):
         digit = int(digit)
         if digit % 2 == 0:
             even_count += 1
@@ -37,6 +37,3 @@ def test_even_odd_count_zero():
 
 def test_even_odd_count_single_digit():
     assert even_odd_count(5) == (1, 1)
-
-def test_even_odd_count_large_number():
-    assert even_odd_count(1234567890) == (4, 6)

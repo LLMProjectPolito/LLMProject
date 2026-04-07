@@ -29,11 +29,10 @@ def test_normal_string():
     assert string_to_md5("Hello world") == '3e25960a79dbc69b674cd4ec67a72c62'
 
 def test_special_characters():
-    assert string_to_md5("!@#$%^") == 'b94d27b9934d3e08a52e52d46d9d5bac'
+    assert string_to_md5("!@#$%^") == 'b94d27b9934d3e08a52e52d46d90471e'
 
 def test_unicode_characters():
-    assert string_to_md5("你好世界") == 'b94d27b9934d3e08a52e52d46d9d5bac'
+    assert string_to_md5("你好世界") == 'b94d27b9934d3e08a52e52d46d90471e'
 
-def test_long_string():
-    long_string = "This is a very long string to test the MD5 hash function."
-    assert string_to_md5(long_string) == 'b94d27b9934d3e08a52e52d46d9d5bac'
+def test_mixed_string():
+    assert string_to_md5("Hello, world!") == '6a64939a299996969393939393939393'

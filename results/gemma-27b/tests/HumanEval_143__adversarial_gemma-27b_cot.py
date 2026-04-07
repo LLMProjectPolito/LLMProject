@@ -71,8 +71,9 @@ def test_all_prime_words():
 def test_sentence_with_one_letter_words():
     assert words_in_sentence("a i") == "a i"
 
-def test_sentence_with_repeated_words():
-    assert words_in_sentence("is is is") == "is is is"
+def test_sentence_with_numbers_as_words():
+    assert words_in_sentence("one two three") == "two three"
 
-def test_sentence_with_capitalized_words():
-    assert words_in_sentence("Is Is") == "Is Is"
+def test_sentence_with_special_characters():
+    with pytest.raises(TypeError):
+        words_in_sentence("hello! world?")

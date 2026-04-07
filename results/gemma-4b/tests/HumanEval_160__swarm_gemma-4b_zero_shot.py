@@ -72,12 +72,6 @@ def test_empty_operator():
     operand = [1, 2, 3]
     assert do_algebra(operator, operand) == 1
 
-def test_empty_operand():
-    operator = ['+', '*']
-    operand = []
-    with pytest.raises(IndexError):
-        do_algebra(operator, operand)
-
 def test_addition():
     operator = ['+']
     operand = [2, 3]
@@ -103,12 +97,16 @@ def test_exponentiation():
     operand = [2, 3]
     assert do_algebra(operator, operand) == 8
 
-def test_combined_operations():
+def test_mixed_operations():
     operator = ['+', '*']
     operand = [2, 3, 4]
     assert do_algebra(operator, operand) == 10
 
-def test_combined_operations_2():
-    operator = ['-', '**']
-    operand = [10, 3, 2]
-    assert do_algebra(operator, operand) == 4
+def test_complex_operations():
+    operator = ['+', '*', '//', '**']
+    operand = [2, 3, 4, 5]
+    assert do_algebra(operator, operand) == 14
+
+def test_empty_operand():
+    with pytest.raises(IndexError):
+        do_algebra(['+', '*'], [])

@@ -52,5 +52,5 @@ def test_int_to_mini_roman_edge_cases():
     assert int_to_mini_roman(1000) == "m"
 
 def test_int_to_mini_roman_restrictions():
-    assert int_to_mini_roman(0) == None # Should ideally raise an exception, but the prompt doesn't specify
-    assert int_to_mini_roman(1001) == None # Should ideally raise an exception, but the prompt doesn't specify
+    assert int_to_mini_roman(0) == None # Or raise an exception, depending on desired behavior
+    assert int_to_mini_roman(1001) == None # Or raise an exception

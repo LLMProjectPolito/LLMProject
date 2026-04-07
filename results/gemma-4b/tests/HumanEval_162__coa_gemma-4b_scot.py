@@ -30,10 +30,10 @@ def test_empty_string():
     assert string_to_md5("") is None
 
 def test_short_string():
-    assert string_to_md5("a") == "2598cf249d032696d88dda9ef5a46c7a"
+    assert string_to_md5("a") == "2598cf249d032696d88dda92443b1e6a"
 
 def test_long_string():
-    assert string_to_md5("This is a longer string to test the function.") == 'b94d27b9934d0316a9f71913733968f0'
+    assert string_to_md5("This is a longer string to test the function.") == 'b94d27b9934d0316a9f719309878d8e5'
 
 # Focus: Type Scenarios
 import pytest
@@ -78,7 +78,7 @@ def test_empty_string():
     assert string_to_md5("") is None
 
 def test_simple_string():
-    assert string_to_md5("Hello world") == "3e25960a79dbc69b674cd4ec67a72c62"
+    assert string_to_md5("Hello world") == '3e25960a79dbc69b674cd4ec67a72c62'
 
 def test_string_with_spaces():
-    assert string_to_md5("  Test string  ") == "6b186c7a2933a9999999999999999999"
+    assert string_to_md5("  Test string  ") == '67d3969999999999999999999999999999999999'

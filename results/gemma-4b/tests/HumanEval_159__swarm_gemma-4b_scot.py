@@ -64,17 +64,17 @@ def eat(number, need, remaining):
     left = remaining - eaten
     return [eaten, left]
 
-def test_edge_case_zero_remaining():
-    assert eat(5, 6, 0) == [11, 0]
+def test_edge_case():
+    assert eat(5, 5, 5) == [10, 0]
 
-def test_sufficient_remaining():
+def test_enough_carrots():
     assert eat(5, 6, 10) == [11, 4]
 
-def test_insufficient_remaining():
+def test_not_enough_carrots():
     assert eat(4, 8, 9) == [12, 1]
 
-def test_all_eaten():
+def test_all_carrots_eaten():
     assert eat(1, 10, 10) == [11, 0]
 
-def test_all_consumed():
+def test_all_carrots_eaten_2():
     assert eat(2, 11, 5) == [7, 0]

@@ -34,19 +34,26 @@ def test_simplify_large_numbers_true():
 def test_simplify_large_numbers_false():
     assert simplify("100/201", "201/100") == False
 
-def test_simplify_decimal_result_false():
-    assert simplify("1/3", "2/1") == False
+def test_simplify_mixed_numbers_as_fractions_true():
+    assert simplify("3/2", "2/3") == False
+
+def test_simplify_mixed_numbers_as_fractions_false():
+    assert simplify("1/4", "3/4") == False
+
+def test_simplify_decimal_equivalent_true():
+    assert simplify("1/10", "10/100") == True
+
+def test_simplify_decimal_equivalent_false():
+    assert simplify("1/10", "11/100") == False
 
 def test_simplify_zero_numerator_true():
     assert simplify("0/1", "1/1") == True
-    assert simplify("1/1", "0/1") == True
 
 def test_simplify_zero_numerator_false():
     assert simplify("0/1", "1/2") == False
-    assert simplify("1/2", "0/1") == False
 
-def test_simplify_complex_fractions_true():
-    assert simplify("2/4", "4/2") == True
+def test_simplify_one_numerator_true():
+    assert simplify("1/1", "1/1") == True
 
-def test_simplify_complex_fractions_false():
-    assert simplify("2/5", "3/4") == False
+def test_simplify_one_numerator_false():
+    assert simplify("1/2", "1/3") == False

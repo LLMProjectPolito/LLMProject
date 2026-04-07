@@ -47,5 +47,5 @@ def test_max_negative():
 def test_max_mixed():
     assert get_max([-1, 2, -3, 4]) == 4
 
-def test_max_zero():
-    assert get_max([0, 1, 2, 0]) == 2
+def test_max_with_zeros():
+    assert get_max([0, 1, 0, 2, 0]) == 2

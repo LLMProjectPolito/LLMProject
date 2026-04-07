@@ -48,7 +48,7 @@ def test_normal_string():
     assert string_to_md5("Hello world") == "3e25960a79dbc69b674cd4ec67a72c62"
 
 def test_special_characters():
-    assert string_to_md5("This is a test!@#$%^&*()") == "6798969999999999999999999999999999999999999999999999999999999999"
+    assert string_to_md5("This is a test!@#$%^&*()") == "6749999999999999999999999999999999999999999999999999999999999999"
 
 def test_unicode_string():
     assert string_to_md5("你好世界") == "b9a8f99969999999999999999999999999999999999999999999999999999999"

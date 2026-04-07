@@ -35,8 +35,8 @@ def test_prime_x():
 
 def test_non_prime_y():
     assert x_or_y(15, 8, 5) == 5
-    assert x_or_y(9, 20, 10) == 10
-    assert x_or_y(12, 7, 3) == 3
+    assert x_or_y(20, 1, 9) == 9
+    assert x_or_y(10, 7, 3) == 3
 
 def test_n_equals_1():
     assert x_or_y(1, 34, 12) == 12
@@ -44,12 +44,18 @@ def test_n_equals_1():
 def test_n_equals_2():
     assert x_or_y(2, 34, 12) == 34
 
-def test_x_equals_y():
-    assert x_or_y(4, 10, 10) == 10
-    assert x_or_y(9, 5, 5) == 5
+def test_small_prime():
+    assert x_or_y(3, 10, 20) == 10
 
 def test_large_prime():
-    assert x_or_y(7919, 1000, 500) == 1000
+    assert x_or_y(97, 1000, 500) == 1000
+
+def test_small_non_prime():
+    assert x_or_y(4, 10, 20) == 20
 
 def test_large_non_prime():
-    assert x_or_y(7920, 1000, 500) == 500
+    assert x_or_y(100, 10, 20) == 20
+
+def test_x_equals_y():
+    assert x_or_y(7, 7, 7) == 7
+    assert x_or_y(15, 15, 15) == 15

@@ -46,8 +46,8 @@ def test_cycpattern_check_rotation_present():
 def test_cycpattern_check_substring_present():
     assert cycpattern_check("hello", "ell") == True
 
+def test_cycpattern_check_substring_not_present():
+    assert cycpattern_check("abcd", "abd") == False
+
 def test_cycpattern_check_rotation_present():
     assert cycpattern_check("abab", "baa") == True
-
-def test_cycpattern_check_no_match():
-    assert cycpattern_check("whassup", "psus") == False

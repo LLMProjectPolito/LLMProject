@@ -105,33 +105,17 @@ def bf(planet1, planet2):
     bf("Earth", "Mercury") ==> ("Venus")
     bf("Mercury", "Uranus") ==> ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
     '''
-    if not (planet1 in ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"] and
-            planet2 in ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]):
+    if not isinstance(planet1, str) or not isinstance(planet2, str):
         return ()
 
-    orbits1 = {
-        "Mercury": 0.39,
-        "Venus": 0.72,
-        "Earth": 1.0,
-        "Mars": 1.5,
-        "Jupiter": 5.2,
-        "Saturn": 9.4,
-        "Uranus": 19.0,
-        "Neptune": 30.0
-    }
-    orbits2 = {
-        "Mercury": 0.39,
-        "Venus": 0.72,
-        "Earth": 1.0,
-        "Mars": 1.5,
-        "Jupiter": 5.2,
-        "Saturn": 9.4,
-        "Uranus": 19.0,
-        "Neptune": 30.0
-    }
+    if planet1 not in ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]:
+        return ()
 
-    planet1_orbit = orbits1[planet1]
-    planet2_orbit = orbits2[planet2]
+    if planet2 not in ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]:
+        return ()
+
+    planet1_orbit = planet1
+    planet2_orbit = planet2
 
     if planet1_orbit < planet2_orbit:
         return (planet1, planet2)

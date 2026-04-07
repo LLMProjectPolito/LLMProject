@@ -17,7 +17,7 @@ def get_max_triples(n):
 import pytest
 import math
 
-def test_get_max_triples_positive():
+def test_get_max_triples():
     assert get_max_triples(5) == 1
 
 def test_edge_n_equals_1(n):

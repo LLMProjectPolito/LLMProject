@@ -45,6 +45,15 @@ def test_get_max_triples_example():
 def test_get_max_triples_small():
     assert get_max_triples(3) == 0
 
+def test_get_max_triples_n_1():
+    assert get_max_triples(1) == 0
+
+def test_get_max_triples_n_2():
+    assert get_max_triples(2) == 0
+
+def test_get_max_triples_n_4():
+    assert get_max_triples(4) == 0
+
 def test_get_max_triples_n_6():
     assert get_max_triples(6) == 20
 
@@ -59,9 +68,3 @@ def test_get_max_triples_n_9():
 
 def test_get_max_triples_n_10():
     assert get_max_triples(10) == 120
-
-def test_get_max_triples_n_1():
-    assert get_max_triples(1) == 0
-
-def test_get_max_triples_n_2():
-    assert get_max_triples(2) == 0

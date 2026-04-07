@@ -60,17 +60,23 @@ def test_edge_case():
 def test_valid_name():
     assert file_name_check("example.txt") == 'Yes'
 
-def test_invalid_digits():
-    assert file_name_check("123example.txt") == 'No'
+def test_valid_name_2():
+    assert file_name_check("another.exe") == 'Yes'
+
+def test_valid_name_3():
+    assert file_name_check("test.dll") == 'Yes'
+
+def test_too_many_digits():
+    assert file_name_check("1234.txt") == 'No'
+
+def test_no_dot():
+    assert file_name_check("exampletxt") == 'No'
+
+def test_multiple_dots():
+    assert file_name_check("example.txt.bak") == 'No'
+
+def test_starts_with_digit():
+    assert file_name_check("1example.txt") == 'No'
 
 def test_invalid_extension():
     assert file_name_check("example.pdf") == 'No'
-
-def test_multiple_dots():
-    assert file_name_check("example..txt") == 'No'
-
-def test_empty_prefix():
-    assert file_name_check(".txt") == 'No'
-
-def test_prefix_not_letter():
-    assert file_name_check("1example.txt") == 'No'

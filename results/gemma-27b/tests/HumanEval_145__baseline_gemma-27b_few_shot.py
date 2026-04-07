@@ -57,4 +57,4 @@ def test_order_by_points_larger_numbers():
     assert order_by_points([123, 45, 6, 789]) == [6, 45, 123, 789]
 
 def test_order_by_points_complex_case():
-    assert order_by_points([21, 12, 3, 1, 100, 2]) == [1, 2, 3, 12, 21, 100]
+    assert order_by_points([21, 12, 3, 1, 100, 2]) == [1, 2, 3, 21, 12, 100]

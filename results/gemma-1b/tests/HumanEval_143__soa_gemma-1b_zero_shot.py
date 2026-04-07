@@ -42,6 +42,7 @@ def words_in_sentence(sentence):
         * 1 <= len(sentence) <= 100
         * sentence contains only letters
     """
+    words = sentence.split()
     def is_prime(n):
         if n < 2:
             return False
@@ -50,7 +51,6 @@ def words_in_sentence(sentence):
                 return False
         return True
 
-    words = sentence.split()
     result = []
     for word in words:
         if is_prime(len(word)):
@@ -64,7 +64,7 @@ def test_single_word():
     assert words_in_sentence("hello") == "hello"
 
 def test_multiple_words():
-    assert words_in_sentence("this is a test") == "is"
+    assert words_in_sentence("this is a test") == "is a test"
 
 def test_example_1():
     assert words_in_sentence("This is a test") == "is"
@@ -73,7 +73,7 @@ def test_example_2():
     assert words_in_sentence("lets go for swimming") == "go for"
 
 def test_long_sentence():
-    assert words_in_sentence("This is a very long sentence with many words.") == "very long"
+    assert words_in_sentence("This is a very long sentence with many words.") == "very long sentence with many words"
 
 def test_sentence_with_repeated_words():
     assert words_in_sentence("hello hello") == "hello"

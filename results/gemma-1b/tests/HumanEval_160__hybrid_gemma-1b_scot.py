@@ -62,14 +62,12 @@ def do_algebra(operator, operand):
         elif len(operator) == 2:
             return operator[0] + operand[1]
         elif len(operand) == 2:
-            return operand[0] * operator[1]
+            return operand[0] * operand[1]
         elif len(operator) == 3:
-            return operator[0] + operand[1] * operator[2]
+            return operator[0] * operand[1] + operand[2]
         elif len(operand) == 3:
-            return operand[0] // operator[1]
-        elif len(operator) == 4:
-            return operator[0] + operand[1] * operator[2] * operator[3]
+            return operand[0] * operand[1] * operand[2]
         else:
-            return 0  # Handle cases with more than 4 operators
+            return 0  # Handle cases with more than 3 operators (or raise an exception)
     except:
         return 0  # Handle cases with invalid input

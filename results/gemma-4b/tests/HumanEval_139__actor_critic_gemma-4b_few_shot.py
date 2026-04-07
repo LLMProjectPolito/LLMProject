@@ -90,13 +90,9 @@ def test_special_factorial_basic():
     assert special_factorial(3) == 6
     assert special_factorial(4) == 288
     assert special_factorial(5) == 34560
+    
+def test_special_factorial_zero():
     assert special_factorial(0) == 1
 
-def test_special_factorial_edge_cases():
-    assert special_factorial(1) == 1
-    assert special_factorial(2) == 2
-    assert special_factorial(3) == 6
-    assert special_factorial(4) == 288
-    assert special_factorial(5) == 34560
-    assert special_factorial(6) == 45360000
-    assert special_factorial(7) == 57657600000
+def test_special_factorial_negative():
+    assert special_factorial(-1) == 1

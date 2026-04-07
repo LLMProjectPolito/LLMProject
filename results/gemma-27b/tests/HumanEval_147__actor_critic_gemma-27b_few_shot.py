@@ -39,48 +39,28 @@ def get_max_triples(n):
                     count += 1
     return count
 
-def test_get_max_triples_example():
-    assert get_max_triples(5) == 1
-
-def test_get_max_triples_base_case():
+# Base Cases
+def test_get_max_triples_base_cases():
     assert get_max_triples(0) == 0
     assert get_max_triples(1) == 0
     assert get_max_triples(2) == 0
     assert get_max_triples(3) == 0
 
-def test_get_max_triples_with_n_equals_6():
+# Small Values
+def test_get_max_triples_small_values():
+    assert get_max_triples(4) == 0
+    assert get_max_triples(5) == 1
     assert get_max_triples(6) == 20
-
-def test_get_max_triples_with_n_equals_7():
     assert get_max_triples(7) == 35
-
-def test_get_max_triples_with_n_equals_8():
     assert get_max_triples(8) == 56
-
-def test_get_max_triples_with_n_equals_9():
     assert get_max_triples(9) == 84
-
-def test_get_max_triples_with_n_equals_10():
     assert get_max_triples(10) == 120
 
-def test_get_max_triples_with_n_equals_11():
+# Larger Values
+def test_get_max_triples_larger_values():
     assert get_max_triples(11) == 165
-
-def test_get_max_triples_with_n_equals_12():
     assert get_max_triples(12) == 220
-
-def test_get_max_triples_with_n_equals_15():
     assert get_max_triples(15) == 455
-
-def test_get_max_triples_with_n_equals_20():
     assert get_max_triples(20) == 1140
-
-def test_get_max_triples_large_n():
-    assert get_max_triples(30) == 4060  # Check for performance issues with larger n
-
-def test_get_max_triples_remainder_distribution():
-    # Test case where many values have the same remainder when divided by 3
-    n = 10
-    a = [i * i - i + 1 for i in range(1, n + 1)]
-    # In this case, a[i] % 3 will be 1, 0, 1, 1, 0, 1, 1, 0, 1, 1
-    assert get_max_triples(n) == 120
+    assert get_max_triples(50) == 19600  # Added larger value
+    assert get_max_triples(100) == 161700 # Added larger value

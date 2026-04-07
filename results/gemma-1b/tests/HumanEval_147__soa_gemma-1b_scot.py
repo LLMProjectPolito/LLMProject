@@ -37,4 +37,3 @@ def get_max_triples(n):
                 if (i * i - i + 1) % 3 == 0 and (j * j - j + 1) % 3 == 0 and (k * k - k + 1) % 3 == 0:
                     count += 1
     return count
-```

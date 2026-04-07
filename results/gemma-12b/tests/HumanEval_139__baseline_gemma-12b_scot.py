@@ -71,7 +71,7 @@ class TestSpecialFactorial:
 
     def test_special_factorial_larger_values(self):
         assert special_factorial(5) == 34560
-        assert special_factorial(6) == 12960000
+        assert special_factorial(6) == 5184000
 
     def test_special_factorial_zero(self):
         with pytest.raises(ValueError):

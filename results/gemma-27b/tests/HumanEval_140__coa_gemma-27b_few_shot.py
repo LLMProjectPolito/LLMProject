@@ -39,8 +39,11 @@ def test_fix_spaces_multiple_consecutive_spaces():
 def test_fix_spaces_exactly_two_consecutive_spaces():
     assert fix_spaces("Example  3") == "Example__3"
 
-def test_fix_spaces_many_spaces():
-    assert fix_spaces("   Example     4   ") == "-Example-4-"
+def test_fix_spaces_many_spaces_at_beginning():
+    assert fix_spaces("   Example 4") == "-Example_4"
+
+def test_fix_spaces_many_spaces_at_end():
+    assert fix_spaces("Example 4   ") == "Example_4-"
 
 # Focus: Consecutive Spaces
 import pytest
@@ -48,20 +51,23 @@ import pytest
 def test_consecutive_spaces_none():
     assert fix_spaces("Example") == "Example"
 
-def test_consecutive_spaces_one():
+def test_consecutive_spaces_single():
     assert fix_spaces("Example 1") == "Example_1"
 
-def test_consecutive_spaces_two():
+def test_consecutive_spaces_multiple():
+    assert fix_spaces("Example   3") == "_Example-3"
+
+def test_consecutive_spaces_leading():
     assert fix_spaces(" Example 2") == "_Example_2"
 
-def test_consecutive_spaces_more_than_two():
-    assert fix_spaces(" Example   3") == "_Example-3"
+def test_consecutive_spaces_trailing():
+    assert fix_spaces("Example   ") == "Example-"
 
-def test_consecutive_spaces_start_and_end():
-    assert fix_spaces("  Example   ") == "-Example-"
+def test_consecutive_spaces_mixed():
+    assert fix_spaces("  Example   Test  ") == "-Example-Test-"
 
-def test_consecutive_spaces_multiple_occurrences():
-    assert fix_spaces("Example   Test  Another") == "Example-Test-Another"
+def test_consecutive_spaces_exactly_two():
+    assert fix_spaces("Example  1") == "Example_1"
 
 # Focus: Leading/Trailing Spaces
 import pytest
@@ -72,5 +78,5 @@ def test_leading_trailing_spaces():
 def test_leading_trailing_and_multiple_spaces():
     assert fix_spaces(" Example   3") == "_Example-3"
 
-def test_no_leading_trailing_spaces():
-    assert fix_spaces("Example 1") == "Example_1"
+def test_only_leading_spaces():
+    assert fix_spaces("   test") == "-test"

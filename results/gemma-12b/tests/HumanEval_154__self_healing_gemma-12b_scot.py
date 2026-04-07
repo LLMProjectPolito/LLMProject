@@ -11,69 +11,52 @@ def cycpattern_check(a , b):
     """
 
 import pytest
+from your_module import cycpattern_check  # Replace your_module
 
-def cycpattern_check(a , b):
-    """You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word
-    cycpattern_check("abcd","abd") => False
-    cycpattern_check("hello","ell") => True
-    cycpattern_check("whassup","psus") => False
-    cycpattern_check("abab","baa") => True
-    cycpattern_check("efef","eeff") => False
-    cycpattern_check("himenss","simen") => True
+def test_cycpattern_check_basic():
+    assert cycpattern_check("abcd", "abd") == False
+    assert cycpattern_check("hello", "ell") == True
+    assert cycpattern_check("whassup", "psus") == False
+    assert cycpattern_check("abab", "baa") == True
+    assert cycpattern_check("efef", "eeff") == False
+    assert cycpattern_check("himenss", "simen") == True
 
-    """
-    if len(b) > len(a):
-        return False
-    for i in range(len(b)):
-        rotated_b = b[i:] + b[:i]
-        if rotated_b in a:
-            return True
-    return False
+def test_cycpattern_check_empty_string():
+    assert cycpattern_check("abc", "") == False
+    assert cycpattern_check("", "abc") == False
+    assert cycpattern_check("", "") == False
 
-class TestCycPatternCheck:
-    def test_positive_cases(self):
-        assert cycpattern_check("hello", "ell") == True
-        assert cycpattern_check("abab", "baa") == True
-        assert cycpattern_check("himenss", "simen") == True
-        assert cycpattern_check("abcabc", "bca") == True
-        assert cycpattern_check("rotation", "tiona") == True
-        assert cycpattern_check("abcdefg", "def") == True
-        assert cycpattern_check("abcdefg", "efgabc") == True
-        assert cycpattern_check("abcdefg", "gabcde") == True
-        assert cycpattern_check("abcdefg", "cdefgab") == True
-        assert cycpattern_check("abcdefg", "bcdefga") == True
-        assert cycpattern_check("abcdefg", "cdefgab") == True
-        assert cycpattern_check("abcdefg", "defgabc") == True
+def test_cycpattern_check_same_string():
+    assert cycpattern_check("abc", "abc") == True
+    assert cycpattern_check("abc", "abcabc") == True
+    assert cycpattern_check("abcabc", "abc") == True
 
-    def test_negative_cases(self):
-        assert cycpattern_check("abcd", "abd") == False
-        assert cycpattern_check("whassup", "psus") == False
-        assert cycpattern_check("efef", "eeff") == False
-        assert cycpattern_check("abc", "abcd") == False
-        assert cycpattern_check("abc", "def") == False
-        assert cycpattern_check("abc", "abcde") == False
-        assert cycpattern_check("abc", "cbaabc") == False
-        assert cycpattern_check("abc", "bacd") == False
-        assert cycpattern_check("abc", "cabx") == False
-        assert cycpattern_check("abc", "xyz") == False
+def test_cycpattern_check_rotation_at_start():
+    assert cycpattern_check("abcdef", "defabc") == True
 
-    def test_empty_string_cases(self):
-        assert cycpattern_check("", "") == True
-        assert cycpattern_check("abc", "") == True
-        assert cycpattern_check("", "abc") == False
+def test_cycpattern_check_rotation_at_end():
+    assert cycpattern_check("abcdef", "bcdefa") == True
 
-    def test_same_string_cases(self):
-        assert cycpattern_check("abc", "abc") == True
-        assert cycpattern_check("abc", "abcabc") == True
-        assert cycpattern_check("abcabc", "abc") == True
+def test_cycpattern_check_longer_pattern():
+    assert cycpattern_check("thisisalongstring", "longstring") == True
+    assert cycpattern_check("thisisalongstring", "stringlong") == True
+    assert cycpattern_check("thisisalongstring", "gstringlon") == True
 
-    def test_edge_cases(self):
-        assert cycpattern_check("a", "a") == True
-        assert cycpattern_check("a", "b") == False
-        assert cycpattern_check("aa", "a") == True
-        assert cycpattern_check("aa", "aa") == True
-        assert cycpattern_check("aa", "ab") == False
-        assert cycpattern_check("aaaa", "aa") == True
-        assert cycpattern_check("aaaa", "aaa") == True
-        assert cycpattern_check("aaaa", "aaaa") == True
-        assert cycpattern_check("aaaa", "aaaaa") == False
+def test_cycpattern_check_overlapping_pattern():
+    assert cycpattern_check("ababab", "bababa") == True
+    assert cycpattern_check("ababab", "ababa") == True
+
+def test_cycpattern_check_no_rotation_match():
+    assert cycpattern_check("abcdefg", "xyz") == False
+
+def test_cycpattern_check_special_characters():
+    assert cycpattern_check("!@#$%^", "$%@!") == True
+    assert cycpattern_check("!@#$%^", "!@#$") == False
+
+def test_cycpattern_check_unicode_characters():
+    assert cycpattern_check("你好世界", "世界你好") == True
+    assert cycpattern_check("你好世界", "你好世") == False
+
+def test_cycpattern_check_mixed_case():
+    assert cycpattern_check("AbCdEf", "dEfAbC") == True
+    assert cycpattern_check("AbCdEf", "abcde") == False

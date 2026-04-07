@@ -53,7 +53,7 @@ def do_algebra(operator, operand):
 
     """
     if len(operand) != 2:
-        raise ValueError("Operand must be a list of two integers.")
+        raise ValueError("Operand must contain exactly two elements.")
     
     if operator == '+':
         return operand[0] + operand[1]
@@ -66,4 +66,20 @@ def do_algebra(operator, operand):
     elif operator == '**':
         return operand[0] ** operand[1]
     else:
-        return 0
+        return 0  # Default value for unknown operators
+
+def test_do_algebra():
+    assert do_algebra('+ 2 3') == 5
+    assert do_algebra('- 2 3') == 1
+    assert do_algebra('* 2 3') == 6
+    assert do_algebra('/') 2 3 == 1
+    assert do_algebra('2 ** 3') == 8
+    assert do_algebra('2 + 3 * 4') == 9
+    assert do_algebra('2 - 3 * 4') == 1
+    assert do_algebra('2 * 3 ** 2') == 9
+    assert do_algebra('2 / 3') == 0.6666666666666666
+    assert do_algebra('2 ** 3') == 8
+    assert do_algebra('2 + 3 * 4') == 14
+    assert do_algebra('2 - 3 * 4') == -14
+    assert do_algebra('2 * 3 ** 2') == 9
+    assert do_algebra('2 / 3') == 0.6666666666666666

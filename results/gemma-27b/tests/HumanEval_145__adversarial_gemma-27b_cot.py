@@ -28,26 +28,29 @@ def test_negative_numbers():
 def test_mixed_positive_negative():
     assert order_by_points([1, -1, 2, -2, 3, -3]) == [1, -1, 2, -2, 3, -3]
 
+def test_same_digit_sum_different_index():
+    assert order_by_points([11, 2, 1, 20]) == [1, 2, 11, 20]
+
 def test_example_case():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
 
-def test_same_digit_sum_different_index():
-    assert order_by_points([10, 1, 19, 28]) == [1, 10, 19, 28]
+def test_larger_numbers():
+    assert order_by_points([123, 45, 6, 789, 10]) == [6, 10, 45, 123, 789]
 
-def test_large_numbers():
-    assert order_by_points([1000, 1, 100, 10]) == [1, 10, 100, 1000]
+def test_negative_larger_numbers():
+    assert order_by_points([-123, -45, -6, -789, -10]) == [-6, -10, -45, -123, -789]
 
-def test_numbers_with_zero():
-    assert order_by_points([0, 10, 1, 100]) == [0, 1, 10, 100]
+def test_mixed_larger_numbers():
+    assert order_by_points([123, -45, 6, -789, 10]) == [6, 10, -45, 123, -789]
 
-def test_duplicate_numbers():
-    assert order_by_points([1, 1, 1, 1]) == [1, 1, 1, 1]
+def test_zero():
+    assert order_by_points([0, 1, 10]) == [0, 1, 10]
 
-def test_negative_numbers_with_large_digit_sum():
-    assert order_by_points([-19, -1, -10]) == [-1, -10, -19]
+def test_multiple_zeros():
+    assert order_by_points([0, 0, 0]) == [0, 0, 0]
 
-def test_mixed_large_and_small():
-    assert order_by_points([100, 1, -10, -1]) == [-1, 1, -10, 100]
+def test_negative_zero():
+    assert order_by_points([-0, 1, 10]) == [-0, 1, 10]
 
-def test_all_same_digit_sum():
-    assert order_by_points([10, 1, 19, 28]) == [1, 10, 19, 28]
+def test_large_numbers_same_sum():
+    assert order_by_points([99, 198, 288]) == [99, 198, 288]

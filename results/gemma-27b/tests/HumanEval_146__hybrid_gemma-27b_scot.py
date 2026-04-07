@@ -32,29 +32,31 @@ def specialFilter(nums):
 def test_empty_list():
     assert specialFilter([]) == 0
 
-def test_no_special_numbers():
-    assert specialFilter([2, 4, 6, 8, 10, 12, 14]) == 0
+def test_no_matching_numbers():
+    assert specialFilter([2, 4, 6, 8, 10, 12]) == 0
 
-def test_single_special_number():
-    assert specialFilter([15]) == 1
-
-def test_multiple_special_numbers():
-    assert specialFilter([15, 33, 55, 77, 99]) == 5
-
-def test_negative_numbers():
-    assert specialFilter([-15, -33, -55, -77, -99]) == 5
-
-def test_numbers_less_than_or_equal_to_10():
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 0
-
-def test_mixed_numbers():
-    assert specialFilter([15, -73, 14, -15, 22, 35, 101, 9]) == 3
-
-def test_single_digit_numbers():
-    assert specialFilter([1, 3, 5, 7, 9]) == 0
-
-def test_example_1():
+def test_some_matching_numbers():
     assert specialFilter([15, -73, 14, -15]) == 1
-
-def test_example_2():
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
+    assert specialFilter([11, 13, 15, 17, 19, 20]) == 5
+
+def test_positive_and_negative():
+    assert specialFilter([15, -73, 14, -15, 77, -31]) == 3
+
+def test_single_digit_greater_than_10():
+    assert specialFilter([11, 12, 13, 14, 15]) == 3
+
+def test_leading_zeros():
+    assert specialFilter([101, 103, 105]) == 3
+    assert specialFilter([011, 013, 015]) == 0 # leading zeros are removed when converting to int
+
+def test_edge_cases():
+    assert specialFilter([11]) == 1
+    assert specialFilter([13]) == 1
+    assert specialFilter([15]) == 1
+    assert specialFilter([19]) == 1
+
+def test_larger_numbers():
+    assert specialFilter([123, 135, 157, 179, 191]) == 5
+    assert specialFilter([122, 134, 156, 178, 190]) == 0
+    assert specialFilter([1111, 1333, 1555, 1777, 1999]) == 5

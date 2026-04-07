@@ -32,14 +32,8 @@ def generate_integers(a, b):
                 result.append(digit)
     return sorted(list(set(result)))
 
+def test_no_even_digits_in_range():
+    assert generate_integers(11, 33) == []
+
 def test_even_digits_in_even_numbers():
     assert generate_integers(22, 28) == [2, 8]
-
-def test_generate_integers_example_1():
-    assert generate_integers(2, 8) == [2, 4, 6, 8]
-
-def test_generate_integers_example_2():
-    assert generate_integers(8, 2) == [2, 4, 6, 8]
-
-def test_generate_integers_example_3():
-    assert generate_integers(10, 14) == []

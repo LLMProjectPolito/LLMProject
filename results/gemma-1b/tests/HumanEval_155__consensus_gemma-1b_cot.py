@@ -27,10 +27,10 @@ def even_odd_count(num):
             odd_count += 1
     return (even_count, odd_count)
 
-def test_even_odd_count_negative():
+def test_even_odd_count_positive():
     assert even_odd_count(-12) == (1, 1)
 
-def test_even_odd_count_positive():
+def test_even_odd_count_123():
     assert even_odd_count(123) == (1, 2)
 
 def test_even_odd_count_zero():
@@ -45,8 +45,5 @@ def test_even_odd_count_large_number():
 def test_even_odd_count_single_digit():
     assert even_odd_count(5) == (0, 1)
 
-def test_even_odd_count_multiple_digits():
-    assert even_odd_count(12345) == (2, 2)
-
-def test_even_odd_count_positive_large():
-    assert even_odd_count(1234567890) == (4, 2)
+def test_even_odd_count_two_digits():
+    assert even_odd_count(12) == (1, 2)

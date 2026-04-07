@@ -37,10 +37,9 @@ def simplify(x, n):
     num_x, den_x = map(int, x.split('/'))
     num_n, den_n = map(int, n.split('/'))
     
-    product = num_x * num_n
-    divisor = den_x * den_n
+    product = (num_x * num_n) / (den_x * den_n)
     
-    return product % divisor == 0
+    return product.is_integer()
 
 def test_edge_zero_numerator():
     assert simplify("0/5", "5/1") == True

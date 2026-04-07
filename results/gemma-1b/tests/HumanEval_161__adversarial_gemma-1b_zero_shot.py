@@ -24,34 +24,39 @@ def solve(s):
     solve("ab") = "AB"
     solve("#a@C") = "#A@c"
     """
-    s = s.lower()
-    if not s.isalpha():
-        s = s[::-1]
-    return s
+    res = ""
+    for char in s:
+        if 'a' <= char <= 'z':
+            res += char.upper()
+        elif 'A' <= char <= 'Z':
+            res += char.lower()
+        else:
+            res += char
+    return res
 
-def test_solve_empty():
+def test_solve_empty_string():
     assert solve("") == ""
 
 def test_solve_all_letters():
-    assert solve("a") == "a"
+    assert solve("abcdefghijklmnopqrstuvwxyz") == "zyxwvutsrqponmlkjihgfedcba"
+
+def test_solve_all_non_letters():
+    assert solve("#abc") == "#cba"
 
 def test_solve_mixed_case():
-    assert solve("ab") == "AB"
+    assert solve("aBcDeF") == "aBcDeF"
 
 def test_solve_numbers():
     assert solve("1234") == "4321"
 
 def test_solve_symbols():
-    assert solve("!@#") == "!@#"
+    assert solve("!@#$%^") == "!@#$%^"
 
 def test_solve_palindrome():
     assert solve("#a@C") == "#A@c"
 
-def test_solve_single_letter():
+def test_solve_single_char():
     assert solve("a") == "a"
 
-def test_solve_multiple_letters():
-    assert solve("abc") == "cba"
-
 def test_solve_complex_string():
-    assert solve("aBcDeF") == "FdCba"
+    assert solve("abC") == "ABC"

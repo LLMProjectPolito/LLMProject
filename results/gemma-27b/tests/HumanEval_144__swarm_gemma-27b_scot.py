@@ -14,8 +14,14 @@ def simplify(x, n):
 
 import pytest
 
-def test_simplify_large_common_factor():
-    assert simplify("2/4", "6/3") == True
+def test_simplify_large_numbers_with_common_factor():
+    assert simplify("1000/4", "8/2") == True
 
 def test_edge_case_large_prime_denominator():
-    assert simplify("1/2", "2/1000000007") == False
+    assert simplify("1/7", "14/1") == False
+    assert simplify("1/11", "22/1") == False
+    assert simplify("1/13", "26/1") == False
+    assert simplify("1/5", "10/1") == True
+
+def test_simplify_large_common_factor():
+    assert simplify("2/4", "6/3") == True

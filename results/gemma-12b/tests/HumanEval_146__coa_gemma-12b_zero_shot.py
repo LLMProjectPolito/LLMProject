@@ -33,7 +33,7 @@ def test_specialFilter_mixed_types():
     assert specialFilter([15, -73, 14, -15, "abc"]) == 1
 
 # Focus: Logic Branches
-def test_specialFilter_empty_array():
+def test_specialFilter_empty_list():
     assert specialFilter([]) == 0
 
 def test_specialFilter_no_matching_numbers():

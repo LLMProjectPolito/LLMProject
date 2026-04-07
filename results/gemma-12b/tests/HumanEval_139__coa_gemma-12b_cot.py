@@ -50,11 +50,8 @@ def test_special_factorial_non_integer_input():
 
 # Focus: Logic Branches
 def test_special_factorial_positive_n():
+    assert special_factorial(4) == 288
+    assert special_factorial(5) == 34560
     assert special_factorial(1) == 1
     assert special_factorial(2) == 2
     assert special_factorial(3) == 12
-    assert special_factorial(4) == 288
-
-def test_special_factorial_larger_n():
-    assert special_factorial(5) == 34560
-    assert special_factorial(6) == 4665600

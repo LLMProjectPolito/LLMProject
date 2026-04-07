@@ -25,7 +25,6 @@ def do_algebra(operator, operand):
 
     """
 
-```python
 import pytest
 
 def do_algebra(operator, operand):
@@ -60,409 +59,52 @@ def do_algebra(operator, operand):
             return operator[0]
         elif len(operand) == 1:
             return operand[0]
-        elif len(operator) == 2:
-            return operator[0] + operand[1]
-        elif len(operand) == 2:
-            return operand[0] * operator[1]
-        elif len(operator) == 3:
-            return operator[0] + operand[1] * operator[2]
-        elif len(operand) == 3:
-            return operand[0] // operator[1]
-        elif len(operator) == 4:
-            return operator[0] + operand[1] * operator[2] * operator[3]
         else:
-            return 0  # Handle cases with more than 4 operators
+            return operator[0] + operand[0]
     except:
-        return 0  # Handle cases with invalid input
+        return None
 
-def test_do_algebra():
-    assert do_algebra('+', 2) == 2
-    assert do_algebra('-', 3) == 3
-    assert do_algebra('*', 2) == 6
-    assert do_algebra('/', 4) == 1
-    assert do_algebra('+', 2, 3) == 5
-    assert do_algebra('-', 10) == -10
-    assert do_algebra('+', 2, 3, 4) == 14
-    assert do_algebra('-', 5) == -5
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 1) == -1
-    assert do_algebra('+', 2) == 2
-    assert do_algebra('-', 2) == -2
-    assert do_algebra('+', 2, 3) == 5
-    assert do_algebra('-', 2, 3) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-', 2, 3, 4) == -2
-    assert do_algebra('+', 2, 3, 4) == 10
-    assert do_algebra('-',
+def test_addition():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4 - 5
+    assert result == 9
+
+def test_subtraction():
+    array = [2, 3, 4, 5]
+    result = 2 - 3 * 4
+    assert result == -5
+
+def test_multiplication():
+    array = [2, 3, 4, 5]
+    result = 2 * 3 * 4 - 5
+    assert result == 24
+
+def test_floor_division():
+    array = [2, 3, 4, 5]
+    result = 2 // 4
+    assert result == 0.5
+
+def test_exponentiation():
+    array = [2, 3, 4, 5]
+    result = 2 ** 3
+    assert result == 8
+
+def test_empty_operand():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4
+    assert result == 14
+
+def test_empty_operator():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4
+    assert result == 14
+
+def test_invalid_input_length():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4
+    assert result == None
+
+def test_invalid_input_type():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4
+    assert result == None

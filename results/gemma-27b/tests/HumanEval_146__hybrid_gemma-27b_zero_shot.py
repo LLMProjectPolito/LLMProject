@@ -22,11 +22,8 @@ def specialFilter(nums):
     for num in nums:
         if num > 10:
             num_str = str(abs(num))
-            if len(num_str) > 0:
-                first_digit = int(num_str[0])
-                last_digit = int(num_str[-1])
-                if first_digit % 2 != 0 and last_digit % 2 != 0:
-                    count += 1
+            if num_str[0] in '13579' and num_str[-1] in '13579':
+                count += 1
     return count
 
 class TestSpecialFilter:
@@ -38,53 +35,45 @@ class TestSpecialFilter:
 
     def test_single_special_number(self):
         assert specialFilter([15]) == 1
-        assert specialFilter([-73]) == 1
-        assert specialFilter([109]) == 1
 
     def test_multiple_special_numbers(self):
-        assert specialFilter([15, -73, 14, -15]) == 1
-        assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
-        assert specialFilter([11, 33, 55, 77, 99]) == 5
+        assert specialFilter([15, 33, 55, 77, 99]) == 5
 
     def test_mixed_numbers(self):
-        assert specialFilter([12, 35, 57, 78, 91]) == 2
-        assert specialFilter([-13, 24, 35, -47, 59]) == 2
+        assert specialFilter([15, -73, 14, -15]) == 1
 
     def test_negative_numbers(self):
-        assert specialFilter([-15, -33, -57, -79, -91]) == 5
-        assert specialFilter([-12, -34, -56, -78, -90]) == 0
+        assert specialFilter([-11, -13, -15, -17, -19]) == 5
 
     def test_large_numbers(self):
-        assert specialFilter([100001, 123455, 987659]) == 2
-        assert specialFilter([200002, 456788, 876540]) == 0
+        assert specialFilter([1001, 12345, 98765, 11111]) == 2
 
     def test_numbers_close_to_10(self):
-        assert specialFilter([11, 13, 15, 17, 19]) == 5
-        assert specialFilter([9, 10, 11, 12, 13]) == 2
+        assert specialFilter([11, 13, 99, 10, 12]) == 2
 
-    def test_zero_and_negative_numbers(self):
-        assert specialFilter([0, -1, -5, 15, 33]) == 2
-        assert specialFilter([-10, -11, -13, 15, 33]) == 2
+    def test_zero_and_positive(self):
+        assert specialFilter([0, 11, 12, 13]) == 1
 
-    def test_edge_case_single_digit_greater_than_10(self):
-        assert specialFilter([11]) == 1
-        assert specialFilter([13]) == 1
-        assert specialFilter([15]) == 1
+    def test_all_numbers_less_than_10(self):
+        assert specialFilter([1, 3, 5, 7, 9]) == 0
 
-    def test_long_list(self):
-        nums = [i for i in range(11, 101)]
-        count = 0
-        for num in nums:
-            num_str = str(num)
-            if int(num_str[0]) % 2 != 0 and int(num_str[-1]) % 2 != 0:
-                count += 1
-        assert specialFilter(nums) == count
+    def test_example_1(self):
+        assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
-    def test_all_numbers_less_than_or_equal_to_10(self):
-        assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 0
+    def test_example_2(self):
+        assert specialFilter([15, -73, 14, -15]) == 1
 
     def test_numbers_with_leading_zeros(self):
-        assert specialFilter([015, 033]) == 0 # Leading zeros are ignored when converting to int
+        assert specialFilter([011, 013, 11, 13]) == 2
+
+    def test_numbers_with_trailing_zeros(self):
+        assert specialFilter([110, 130, 11, 13]) == 2
+
+    def test_large_negative_numbers(self):
+        assert specialFilter([-1001, -12345, -98765, -11111]) == 2
+
+    def test_mixed_positive_and_negative_large_numbers(self):
+        assert specialFilter([1001, -12345, 98765, -11111]) == 2
 
     def test_edge_case_11(self):
         assert specialFilter([11]) == 1
@@ -98,8 +87,17 @@ class TestSpecialFilter:
     def test_edge_case_100(self):
         assert specialFilter([100]) == 0
 
-    def test_large_negative_number(self):
-        assert specialFilter([-12345]) == 0
+    def test_numbers_less_than_10(self):
+        assert specialFilter([1, 3, 5, 7, 9]) == 0
 
-    def test_large_positive_number(self):
-        assert specialFilter([12345]) == 0
+    def test_numbers_with_even_digits(self):
+        assert specialFilter([12, 34, 56, 78, 90]) == 0
+
+    def test_long_numbers(self):
+        assert specialFilter([1111111111, 3333333333, 5555555555]) == 3
+
+    def test_edge_case_11_original(self):
+        assert specialFilter([11]) == 1
+
+    def test_edge_case_99_original(self):
+        assert specialFilter([99]) == 1

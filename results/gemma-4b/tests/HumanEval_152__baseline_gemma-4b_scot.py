@@ -38,6 +38,7 @@ def compare(game,guess):
     return result
 
 ### SCoT Steps:
+
 ### STEP 1: REASONING
 # The function `compare` takes two lists, `game` and `guess`, as input.
 # It calculates the absolute difference between each element in `guess` and the corresponding element in `game`.
@@ -57,10 +58,10 @@ def compare(game,guess):
 
 ### STEP 3: CODE
 def test_compare_correct_guesses():
-    assert compare([1,2,3,4,5,1],[1,2,3,4,2,-2]) == [0,0,0,0,3,3]
+    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
 
 def test_compare_incorrect_guesses():
-    assert compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) == [4,4,1,0,0,6]
+    assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
 
 def test_compare_empty_lists():
     assert compare([], []) == []
@@ -73,3 +74,7 @@ def test_compare_mixed_correct_incorrect():
 
 def test_compare_negative_values():
     assert compare([1, -2, 3, -4, 5, -1], [1, -2, 3, -4, 5, -1]) == [0, 0, 0, 0, 0, 0]
+
+def test_compare_different_lengths():
+    with pytest.raises(IndexError):
+        compare([1, 2, 3], [1, 2])

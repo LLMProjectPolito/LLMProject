@@ -70,6 +70,7 @@ def test_int_to_mini_roman_larger_numbers():
 
 def test_int_to_mini_roman_boundary_cases():
     assert int_to_mini_roman(1001) == 'ci' # Should not exceed 1000
+    assert int_to_mini_roman(999) == 'cxcviii'
     assert int_to_mini_roman(1000) == 'm'
 
 def test_int_to_mini_roman_edge_cases():
@@ -78,11 +79,7 @@ def test_int_to_mini_roman_edge_cases():
     assert int_to_mini_roman(60) == 'lx'
     assert int_to_mini_roman(70) == 'lxx'
     assert int_to_mini_roman(80) == 'lxxx'
-    assert int_to_mini_roman(120) == 'cxx'
-    assert int_to_mini_roman(130) == 'cxxx'
-    assert int_to_mini_roman(140) == 'cxc'
-    assert int_to_mini_roman(150) == 'cxci'
-    assert int_to_mini_roman(160) == 'cxcvi'
-    assert int_to_mini_roman(170) == 'cxcvii'
-    assert int_to_mini_roman(180) == 'cxcviii'
-    assert int_to_mini_roman(190) == 'cxcix'
+    assert int_to_mini_roman(100) == 'c'
+    assert int_to_mini_roman(400) == 'cd'
+    assert int_to_mini_roman(500) == 'd'
+    assert int_to_mini_roman(900) == 'cm'

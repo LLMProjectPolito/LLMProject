@@ -82,40 +82,42 @@ def do_algebra(operator, operand):
 
 ### STEP 3: CODE
 def test_addition():
-    assert do_algebra(['+', 2, 3, 4, 5], [2, 3, 4, 5]) == 14
+    assert do_algebra(['+', '+'], [2, 3]) == 5
 
 def test_subtraction():
-    assert do_algebra(['-', 5, 2, 3, 4], [5, 2, 3, 4]) == 14
+    assert do_algebra(['-', '-', ], [5, 2, 1]) == 2
 
 def test_multiplication():
-    assert do_algebra(['*', 2, 3, 4, 5], [2, 3, 4, 5]) == 120
+    assert do_algebra(['*', '*'], [2, 3, 4]) == 24
 
 def test_floor_division():
-    assert do_algebra(['//', 10, 2, 3, 4], [10, 2, 3, 4]) == 4
+    assert do_algebra(['//', '//'], [10, 2, 5]) == 1
 
 def test_exponentiation():
-    assert do_algebra(['**', 2, 3, 4, 5], [2, 3, 4, 5]) == 64
+    assert do_algebra(['**', '**'], [2, 3, 2]) == 4
 
 def test_mixed_operations():
-    assert do_algebra(['+', '*', 2, 3, 4, 5], [2, 3, 4, 5]) == 16
+    assert do_algebra(['+', '*', '-', '**'], [2, 3, 4, 5, 2]) == 14
+
+def test_large_numbers_exponentiation():
+    assert do_algebra(['**'], [2, 10]) == 1024
+
+def test_floor_division_zero():
+    assert do_algebra(['//'], [10, 0]) == 0
 
 def test_complex_expression():
-    assert do_algebra(['+', '*', 2, 3, 4, 5, '-', 10], [2, 3, 4, 5, 10]) == 26
-
-def test_large_numbers():
-    assert do_algebra(['*', 100, 2, 3, 4, 5], [100, 2, 3, 4, 5]) == 12000
-
-def test_exponentiation_large_base():
-    assert do_algebra(['**', 2, 10, 3, 4], [2, 10, 3, 4]) == 1024
-
-def test_floor_division_with_zero():
-    assert do_algebra(['//', 10, 0, 2, 3, 4], [10, 0, 2, 3, 4]) == 0
+    assert do_algebra(['+', '*', '-', '**'], [1, 2, 3, 4, 2]) == 14
 
 def test_empty_operator_list():
-    assert do_algebra([], [1, 2, 3]) == 1
+    with pytest.raises(IndexError):
+        do_algebra([], [1, 2, 3])
 
 def test_single_operand():
-    assert do_algebra(['+', 1, 2, 3], [1, 2, 3]) == 1
+    with pytest.raises(IndexError):
+        do_algebra(['+', '+'], [1])
 
 def test_multiple_operators():
-    assert do_algebra(['+', '*', 2, 3, 4, 5, '-', 10], [2, 3, 4, 5, 10]) == 16
+    assert do_algebra(['+', '*', '-', '**'], [1, 2, 3, 4, 2]) == 14
+
+def test_different_operands():
+    assert do_algebra(['+', '-', '*'], [1, 2, 3, 4]) == 10

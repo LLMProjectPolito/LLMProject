@@ -42,6 +42,9 @@ def test_file_name_check_invalid_4():
 def test_file_name_check_invalid_5():
     assert file_name_check("example.pdf") == "No"
 
+def test_file_name_check_invalid_6():
+    assert file_name_check("example") == "No"
+
 # Focus: Type Scenarios
 import pytest
 
@@ -52,19 +55,16 @@ def test_type_scenario_2():
     assert file_name_check("1example.dll") == "No"
 
 def test_type_scenario_3():
-    assert file_name_check("a.exe") == "Yes"
+    assert file_name_check("example.exe") == "Yes"
 
 def test_type_scenario_4():
-    assert file_name_check("abc.txt") == "Yes"
+    assert file_name_check("example..txt") == "No"
 
 def test_type_scenario_5():
-    assert file_name_check("123.dll") == "No"
+    assert file_name_check("example.abc") == "No"
 
 def test_type_scenario_6():
-    assert file_name_check("a.b") == "No"
-
-def test_type_scenario_7():
-    assert file_name_check("a.txt.txt") == "No"
+    assert file_name_check("example.txt.txt") == "No"
 
 # Focus: Logic Branches
 import pytest

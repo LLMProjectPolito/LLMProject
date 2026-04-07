@@ -64,9 +64,9 @@ def test_double_the_difference():
     assert double_the_difference([0]) == 0
     assert double_the_difference([]) == 0
     
-    # Additional tests for clarity
-    assert double_the_difference([1, 2, 3]) == 1
-    assert double_the_difference([2, 4, 6]) == 4
-    assert double_the_difference([1, 3, 5]) == 1
+    # Additional tests for clarity and edge cases
+    assert double_the_difference([2, 4]) == 22
+    assert double_the_difference([1, 3, 5]) == 14
+    assert double_the_difference([1, 2, 3]) == 14
     
     print("All tests passed!")

@@ -76,20 +76,17 @@ def test_eat_example3():
 def test_eat_example4():
     assert eat(2, 11, 5) == [7, 0]
 
-def test_eat_empty_need():
-    assert eat(5, 0, 10) == [11, 0]
+def test_eat_empty():
+    assert eat(0, 5, 10) == [0, 0]
 
-def test_eat_no_remaining():
-    assert eat(5, 5, 0) == [11, 0]
+def test_eat_negative():
+    assert eat(-1, 5, 10) == [0, 0]
 
-def test_eat_large_number():
+def test_eat_zero():
+    assert eat(0, 0, 10) == [0, 0]
+
+def test_eat_large_numbers():
     assert eat(1000, 500, 500) == [1500, 0]
 
-def test_eat_small_number():
+def test_eat_small_numbers():
     assert eat(1, 10, 10) == [11, 0]
-
-def test_eat_large_need():
-    assert eat(5, 15, 5) == [10, 0]
-
-def test_eat_small_need():
-    assert eat(5, 2, 3) == [10, 1]

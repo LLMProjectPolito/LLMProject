@@ -62,29 +62,32 @@ def test_strongest_extension_same_strength():
 def test_strongest_extension_empty_extensions():
     assert Strongest_Extension('my_class', []) == 'my_class'
 
-def test_strongest_extension_single_extension():
-    assert Strongest_Extension('my_class', ['AA']) == 'my_class.AA'
-
-def test_strongest_extension_all_uppercase():
-    assert Strongest_Extension('my_class', ['ABC', 'DEF']) == 'my_class.ABC'
-
-def test_strongest_extension_all_lowercase():
+def test_strongest_extension_no_uppercase():
     assert Strongest_Extension('my_class', ['abc', 'def']) == 'my_class.abc'
+
+def test_strongest_extension_no_lowercase():
+    assert Strongest_Extension('my_class', ['ABC', 'DEF']) == 'my_class.ABC'
 
 def test_strongest_extension_mixed_case():
     assert Strongest_Extension('my_class', ['aBc', 'DeF']) == 'my_class.aBc'
 
-def test_strongest_extension_empty_class_name():
-    assert Strongest_Extension('', ['AA']) == ''
+def test_strongest_extension_single_extension():
+    assert Strongest_Extension('my_class', ['XYZ']) == 'my_class.XYZ'
 
-def test_strongest_extension_empty_class_and_extensions():
-    assert Strongest_Extension('', []) == ''
+def test_strongest_extension_class_name_empty():
+    assert Strongest_Extension('', ['AA', 'BB']) == ''
 
-def test_strongest_extension_complex_extension():
-    assert Strongest_Extension('Data', ['VeryLongExtensionNameWithManyUppercaseAndLowercaseLetters']) == 'Data.VeryLongExtensionNameWithManyUppercaseAndLowercaseLetters'
+def test_strongest_extension_extension_name_empty():
+    assert Strongest_Extension('my_class', []) == 'my_class'
 
-def test_strongest_extension_negative_strength():
-    assert Strongest_Extension('Test', ['abc', 'DEF']) == 'Test.DEF'
+def test_strongest_extension_complex_case():
+    assert Strongest_Extension('Data', ['DataAnalysis', 'DataScience', 'DataMining']) == 'Data.DataAnalysis'
 
-def test_strongest_extension_zero_strength():
-    assert Strongest_Extension('Test', ['abc', 'DEF']) == 'Test.DEF'
+def test_strongest_extension_all_uppercase():
+    assert Strongest_Extension('Test', ['UPPER', 'ALL']) == 'Test.UPPER'
+
+def test_strongest_extension_all_lowercase():
+    assert Strongest_Extension('Test', ['lower', 'all']) == 'Test.lower'
+
+def test_strongest_extension_mixed_case_and_numbers():
+    assert Strongest_Extension('Test', ['123', 'ABC']) == 'Test.123'

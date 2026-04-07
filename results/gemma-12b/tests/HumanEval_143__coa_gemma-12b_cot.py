@@ -25,23 +25,39 @@ import math
 
 
 # Focus: Boundary Values
+import pytest
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
 def test_empty_sentence():
     assert words_in_sentence("") == ""
 
-def test_sentence_with_one_word_prime_length():
-    assert words_in_sentence("one") == "one"
+def test_single_word_prime_length():
+    assert words_in_sentence("go") == "go"
 
-def test_sentence_with_one_word_non_prime_length():
-    assert words_in_sentence("two") == ""
+def test_single_word_non_prime_length():
+    assert words_in_sentence("this") == ""
 
-def test_sentence_with_multiple_words_some_prime_some_not():
+def test_multiple_words_some_prime():
     assert words_in_sentence("This is a test") == "is"
 
-def test_sentence_with_all_words_prime_length():
-    assert words_in_sentence("one two three five") == "one two three five"
+def test_multiple_words_all_prime():
+    assert words_in_sentence("lets go for swimming") == "go for"
 
-def test_sentence_with_all_words_non_prime_length():
-    assert words_in_sentence("four six eight ten") == ""
+def test_multiple_words_none_prime():
+    assert words_in_sentence("this is a very long test") == ""
+
+def test_sentence_with_one_letter_prime():
+    assert words_in_sentence("a test") == "a"
+
+def test_sentence_with_one_letter_non_prime():
+    assert words_in_sentence("aa test") == ""
 
 # Focus: Type Scenarios
 def test_empty_sentence():

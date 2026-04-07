@@ -77,21 +77,23 @@ def sorted_list_sum(lst):
     assert list_sort(["aa", "a", "aaa"]) => ["aa"]
     assert list_sort(["ab", "a", "aaa", "cd"]) => ["ab", "cd"]
     """
-    new_lst = [s for s in lst if len(s) % 2 == 0]
-    new_lst.sort(key=lambda s: (len(s), s))
-    return new_lst
+    even_length_strings = [s for s in lst if len(s) % 2 == 0]
+    even_length_strings.sort(key=lambda s: (len(s), s))
+    return even_length_strings
 
-def test_equivalence_partitioning_even_lengths():
-    """Test case with only even length strings."""
-    assert sorted_list_sum(["aa", "bb", "cc", "dd"]) == ["aa", "bb", "cc", "dd"]
-
-def test_equivalence_partitioning_odd_lengths():
-    """Test case with only odd length strings."""
-    assert sorted_list_sum(["a", "b", "c", "d"]) == []
-
-def test_equivalence_partitioning_mixed_lengths():
-    """Test case with a mix of even and odd length strings."""
-    assert sorted_list_sum(["aa", "a", "aaa", "bb", "b"]) == ["aa", "bb"]
+@pytest.mark.parametrize("lst, expected", [
+    (["aa", "a", "aaa"], ["aa"]),
+    (["ab", "a", "aaa", "cd"], ["ab", "cd"]),
+    (["abc", "def", "ghi"], []),
+    (["abcd", "efgh", "ijkl"], ["abcd", "efgh", "ijkl"]),
+    (["ab", "cd", "ab"], ["ab", "ab", "cd"]),
+    ([], []),
+    (["", "a", ""], [""]),
+    (["aa", "bb", "cc"], ["aa", "bb", "cc"]),
+    (["ba", "ac", "cb"], ["ac", "ba", "cb"])
+])
+def test_equivalence_partitioning(lst, expected):
+    assert sorted_list_sum(lst) == expected
 
 # Focus: Logic Branches
 import pytest

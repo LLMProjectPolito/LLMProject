@@ -64,16 +64,15 @@ def test_single_prime_length_word():
     assert words_in_sentence("a") == "a"
 
 def test_multiple_prime_length_words():
-    assert words_in_sentence("lets go for swimming") == "go for"
-
-def test_mixed_prime_and_non_prime_length_words():
     assert words_in_sentence("This is a test") == "is"
 
-def test_sentence_with_leading_and_trailing_spaces():
-    assert words_in_sentence("  This is a test  ") == "is"
+def test_mixed_prime_and_non_prime_words():
+    assert words_in_sentence("lets go for swimming") == "go for"
 
-def test_sentence_with_multiple_spaces_between_words():
+def test_spaces_handling():
+    assert words_in_sentence("  This is a test  ") == "is"
     assert words_in_sentence("This  is   a    test") == "is"
+    assert words_in_sentence("   ") == ""
 
 def test_sentence_with_only_one_word():
     assert words_in_sentence("prime") == "prime"
@@ -82,30 +81,16 @@ def test_sentence_with_prime_length_words_at_beginning_and_end():
     assert words_in_sentence("a lets go for swimming") == "a lets"
 
 def test_sentence_with_all_prime_length_words():
-    assert words_in_sentence("a is go for") == "a is go for"
+    assert words_in_sentence("a is go") == "a is go"
 
 def test_sentence_with_long_prime_length_words():
     assert words_in_sentence("This is a verylongword test") == ""
 
 def test_sentence_with_short_prime_length_words():
-    assert words_in_sentence("I am here") == "I am"
+    assert words_in_sentence("I am") == "I am"
 
-def test_sentence_with_non_ascii_characters():
-    assert words_in_sentence("café is a test") == "café"
+def test_mixed_case():
+    assert words_in_sentence("This Is A Test") == "Is A"
 
-def test_sentence_with_numbers():
-    assert words_in_sentence("This is a 1 test") == ""
-
-def test_long_sentence():
-    sentence = "a " * 50
-    assert words_in_sentence(sentence) == "a " * 50
-
-def test_is_prime_zero():
-    assert is_prime(0) == False
-
-def test_is_prime_one():
-    assert is_prime(1) == False
-
-def test_prime_number_greater_than_100():
-    assert is_prime(101) == True
-    assert words_in_sentence("a " * 101) == "a " * 101
+def test_with_special_characters():
+    assert words_in_sentence("hello! world?") == ""

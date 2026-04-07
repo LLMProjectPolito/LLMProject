@@ -45,24 +45,16 @@ def test_number_with_repeating_digits():
 
 def test_empty_input():
     with pytest.raises(TypeError):
-        even_odd_count("")
+        even_odd_count(None)
 
 def test_float_input():
     with pytest.raises(TypeError):
-        even_odd_count(1.23)
+        even_odd_count(12.34)
 
 def test_string_input():
     with pytest.raises(TypeError):
-        even_odd_count("123")
+        even_odd_count("1234")
 
 def test_boolean_input():
     with pytest.raises(TypeError):
         even_odd_count(True)
-
-def test_none_input():
-    with pytest.raises(TypeError):
-        even_odd_count(None)
-
-def test_list_input():
-    with pytest.raises(TypeError):
-        even_odd_count([1, 2, 3])

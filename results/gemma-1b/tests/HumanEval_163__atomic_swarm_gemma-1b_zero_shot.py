@@ -25,10 +25,11 @@ def generate_integers(a, b):
     """
     result = []
     for num in range(a, b + 1):
-        for digit in str(num):
+        s = str(num)
+        for digit in s:
             if int(digit) % 2 == 0:
                 result.append(num)
-    result.sort()
+                break
     return result
 
 def generate_integers(a, b):
@@ -62,7 +63,11 @@ def generate_integers(a, b):
     result = []
     for i in range(a, b + 1):
         s = str(i)
-        even_digits = [digit for digit in s if int(digit) % 2 == 0]
+        even_digits = []
+        for digit in s:
+            digit = int(digit)
+            if digit % 2 == 0:
+                even_digits.append(digit)
         even_digits.sort()
         result.extend(even_digits)
     return result

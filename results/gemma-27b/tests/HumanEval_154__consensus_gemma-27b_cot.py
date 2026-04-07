@@ -60,79 +60,31 @@ def test_cycpattern_check_10():
     assert cycpattern_check("abc","acb") == False
 
 def test_cycpattern_check_11():
-    assert cycpattern_check("aaaaa","aa") == True
+    assert cycpattern_check("aaaa","aa") == True
 
 def test_cycpattern_check_12():
-    assert cycpattern_check("aaaaa","aaa") == True
+    assert cycpattern_check("aaaa","aaa") == True
 
 def test_cycpattern_check_13():
-    assert cycpattern_check("aaaaa","aaaa") == True
+    assert cycpattern_check("aaaa","a") == True
 
 def test_cycpattern_check_14():
-    assert cycpattern_check("aaaaa","aaaaa") == True
+    assert cycpattern_check("a","aaaa") == False
 
 def test_cycpattern_check_15():
-    assert cycpattern_check("aaaaa","aaaaaa") == False
+    assert cycpattern_check("","") == True
 
 def test_cycpattern_check_16():
-    assert cycpattern_check("","") == False
+    assert cycpattern_check("abc","") == True
 
 def test_cycpattern_check_17():
-    assert cycpattern_check("abc","") == False
-
-def test_cycpattern_check_18():
     assert cycpattern_check("","abc") == False
 
-def test_cycpattern_check_19():
+def test_cycpattern_check_18():
     assert cycpattern_check("longstring","short") == False
 
-def test_cycpattern_check_20():
+def test_cycpattern_check_19():
     assert cycpattern_check("longstring","string") == True
 
-def test_cycpattern_check_empty_strings():
-    assert cycpattern_check("", "") == False
-
-def test_cycpattern_check_basic_true():
-    assert cycpattern_check("hello", "ell") == True
-
-def test_cycpattern_check_basic_false():
-    assert cycpattern_check("abcd", "abd") == False
-
-def test_cycpattern_check_rotation_true():
-    assert cycpattern_check("abab", "baa") == True
-
-def test_cycpattern_check_no_rotation_true():
-    assert cycpattern_check("himenss", "simen") == True
-
-def test_cycpattern_check_false_case():
-    assert cycpattern_check("efef", "eeff") == False
-
-def test_cycpattern_check_longer_string():
-    assert cycpattern_check("thisisalongstring", "long") == True
-
-def test_cycpattern_check_longer_string_false():
-    assert cycpattern_check("thisisalongstring", "short") == False
-
-def test_cycpattern_check_same_string():
-    assert cycpattern_check("abc", "abc") == True
-
-def test_cycpattern_check_substring_at_start():
-    assert cycpattern_check("abcdef", "abc") == True
-
-def test_cycpattern_check_substring_at_end():
-    assert cycpattern_check("abcdef", "def") == True
-
-def test_cycpattern_check_substring_in_middle():
-    assert cycpattern_check("abcdef", "cde") == True
-
-def test_cycpattern_check_repeated_pattern():
-    assert cycpattern_check("abababab", "aba") == True
-
-def test_cycpattern_check_repeated_pattern_false():
-    assert cycpattern_check("abababab", "babab") == False
-
-def test_cycpattern_check_complex_rotation():
-    assert cycpattern_check("waterbottle", "erbottlewat") == True
-
-def test_cycpattern_check_complex_rotation_false():
-    assert cycpattern_check("waterbottle", "bottlewater") == False
+def test_cycpattern_check_20():
+    assert cycpattern_check("longstring","ngstri") == True

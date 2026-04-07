@@ -55,25 +55,14 @@ class TestSortedListSum:
     def test_list_with_same_length_strings(self):
         assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
 
-    def test_list_with_same_length_strings_different_order(self):
+    def test_list_with_same_length_strings_alphabetical_order(self):
         assert sorted_list_sum(["cd", "ab", "ef"]) == ["ab", "cd", "ef"]
 
-    def test_list_with_same_length_strings_and_duplicates(self):
-        assert sorted_list_sum(["ab", "ab", "cd", "ef"]) == ["ab", "ab", "cd", "ef"]
+    def test_list_with_different_lengths_and_duplicates(self):
+        assert sorted_list_sum(["aa", "a", "aaa", "bb", "cc", "cd", "aa"]) == ["aa", "aa", "bb", "cc", "cd"]
 
-    def test_list_with_various_lengths(self):
-        assert sorted_list_sum(["a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa"]) == ["aa", "aaaa"]
+    def test_list_with_long_strings(self):
+        assert sorted_list_sum(["abcdef", "abcde", "abcd", "abc"]) == ["abcd", "abcde", "abcdef"]
 
     def test_list_with_special_characters(self):
-        assert sorted_list_sum(["!a", "!!", "!!!"]) == ["!!"]
-
-    def test_list_with_numbers_as_strings(self):
-        assert sorted_list_sum(["12", "1", "123"]) == ["12"]
-
-    def test_list_with_empty_string(self):
-        assert sorted_list_sum(["", "a", "aa"]) == ["", "aa"]
-
-    def test_long_list(self):
-        long_list = ["a" * i for i in range(1, 21)]
-        expected = [s for i, s in enumerate(long_list) if i % 2 == 0]
-        assert sorted_list_sum(long_list) == expected
+        assert sorted_list_sum(["a!", "aa?", "aaa#"]) == ["aa?"]

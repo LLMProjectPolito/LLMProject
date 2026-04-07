@@ -16,9 +16,10 @@ def even_odd_count(num):
         even_odd_count(-12) ==> (1, 1)
         even_odd_count(123) ==> (1, 2)
     """
+    num_str = str(abs(num))
     even_count = 0
     odd_count = 0
-    for digit in str(abs(num)):
+    for digit in num_str:
         digit = int(digit)
         if digit % 2 == 0:
             even_count += 1

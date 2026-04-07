@@ -91,10 +91,19 @@ def test_get_max_triples_large_n():
 
 def test_get_max_triples_mod_3_distribution():
     # Test cases to check the distribution of remainders when divided by 3
+    # This helps ensure the logic correctly counts triples based on remainders
+    n = 15
+    result = get_max_triples(n)
+    assert result == 455
+
+    n = 18
+    result = get_max_triples(n)
+    assert result == 816
+
+def test_get_max_triples_edge_case():
+    # Test with a slightly larger n to check for potential overflow issues
     n = 30
     result = get_max_triples(n)
-    # Expected result based on the formula n*(n-1)*(n-2)/6, adjusted for the remainders
-    # This is a more advanced test to verify the logic is correct for larger inputs
     assert result == 4060
 
 def test_palindrome_basic():

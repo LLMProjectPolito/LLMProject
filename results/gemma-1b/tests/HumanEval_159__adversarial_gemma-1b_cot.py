@@ -65,6 +65,5 @@ def eat(number, need, remaining):
     
     if number < need:
         remaining_after_meals = remaining - need
-        total_eaten = number
     
     return [total_eaten, remaining_after_meals]

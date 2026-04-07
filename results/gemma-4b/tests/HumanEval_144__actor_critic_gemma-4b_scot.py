@@ -44,14 +44,14 @@ def simplify(x, n):
 # 2. Simple multiplication where the result is not an integer.
 # 3. Fractions with different numerators and denominators.
 # 4. Fractions where the denominator is 1.
-# 5. Fractions where the numerator is 1.
+# 5. Fractions where the numerator and denominator are equal.
 
 # STEP 2: PLAN - List test functions names and scenarios.
 # test_simplify_integer_result
 # test_simplify_non_integer_result
 # test_simplify_fraction_with_denominator_1
-# test_simplify_fraction_with_numerator_1
-# test_simplify_different_fractions
+# test_simplify_equal_numerator_denominator
+# test_simplify_different_numerators_denominators
 
 # STEP 3: CODE - Write the high-quality pytest suite.
 def test_simplify_integer_result():
@@ -65,16 +65,14 @@ def test_simplify_non_integer_result():
     assert simplify("3/4", "4/3") == False
 
 def test_simplify_fraction_with_denominator_1():
-    assert simplify("1/1", "5/1") == True
     assert simplify("5/1", "1/1") == True
     assert simplify("1/1", "1/1") == True
 
-def test_simplify_fraction_with_numerator_1():
-    assert simplify("1/5", "5/1") == True
-    assert simplify("5/1", "1/5") == True
-    assert simplify("1/10", "10/1") == True
+def test_simplify_equal_numerator_denominator():
+    assert simplify("2/2", "2/2") == True
+    assert simplify("1/1", "1/1") == True
 
-def test_simplify_different_fractions():
-    assert simplify("2/7", "7/2") == True
-    assert simplify("3/8", "8/3") == False
-    assert simplify("1/2", "2/3") == False
+def test_simplify_different_numerators_denominators():
+    assert simplify("10/2", "2/1") == True
+    assert simplify("1/2", "2/1") == True
+    assert simplify("1/3", "3/1") == True

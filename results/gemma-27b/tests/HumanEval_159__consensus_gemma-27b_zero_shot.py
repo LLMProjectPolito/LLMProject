@@ -98,7 +98,7 @@ def test_eat_large_numbers():
     assert eat(100, 200, 300) == [300, 100]
 
 def test_eat_large_numbers_not_enough():
-    assert eat(100, 300, 200) == [300, 0]
+    assert eat(100, 200, 50) == [150, 0]
 
 def test_eat_max_values_not_enough():
     assert eat(1000, 1000, 500) == [1500, 0]
@@ -108,9 +108,3 @@ def test_eat_edge_case_1():
 
 def test_eat_edge_case_2():
     assert eat(1, 1, 1) == [2, 0]
-
-def test_eat_zero_initial_carrots():
-    assert eat(0, 5, 10) == [5, 5]
-
-def test_eat_zero_need():
-    assert eat(5, 0, 0) == [5, 0]

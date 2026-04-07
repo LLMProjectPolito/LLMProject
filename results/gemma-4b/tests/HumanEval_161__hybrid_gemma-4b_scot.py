@@ -40,7 +40,7 @@ def solve(s):
 
 ### STEP 1: REASONING
 # The function `solve(s)` takes a string `s` as input and modifies it based on the case of each character.
-# If a character is a letter, its case is reversed. If it's not a letter, it remains unchanged.
+# If a character is a letter, its case is reversed. If it's not a letter, it's kept as is.
 # If the string contains no letters, the string is reversed.
 # The tests should cover various scenarios:
 # 1. Empty string: Should return an empty string.
@@ -94,4 +94,4 @@ def test_numbers_and_letters():
 
 # test_combination.py
 def test_combination():
-    assert solve("HeLlO wOrLd!") == "hElLo WoRlD!"
+    assert solve("aBc12") == "AbC12"

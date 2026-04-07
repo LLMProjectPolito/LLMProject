@@ -27,11 +27,11 @@ def test_generate_integers_single_even():
 def test_generate_integers_same_number():
     assert generate_integers(4, 4) == [4]
 
-def test_generate_integers_start_with_even():
-    assert generate_integers(4, 6) == [4, 6]
+def test_generate_integers_start_with_odd():
+    assert generate_integers(3, 7) == [4, 6]
 
-def test_generate_integers_end_with_even():
-    assert generate_integers(6, 8) == [6, 8]
+def test_generate_integers_end_with_odd():
+    assert generate_integers(3, 6) == [4, 6]
 
 def test_generate_integers_large_range():
     assert generate_integers(1, 20) == [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]

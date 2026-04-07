@@ -74,7 +74,7 @@ def test_simplify_negative_numerator():
     assert simplify("-1/2", "2/1") == False
 
 def test_simplify_negative_denominator():
-    assert simplify("1/-2", "2/1") == False
+    assert simplify("1/2", "-2/1") == False
 
 def test_simplify_mixed_negative():
     assert simplify("-1/2", "-2/1") == True

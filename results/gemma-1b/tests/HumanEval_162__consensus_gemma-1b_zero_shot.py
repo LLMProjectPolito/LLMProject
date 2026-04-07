@@ -35,7 +35,7 @@ def test_string_to_md5_numbers():
     assert string_to_md5('12345') == 'a68f7a9b8d1c2e3f4d5a6b7c8'
 
 def test_string_to_md5_unicode():
-    assert string_to_md5('你好世界') == 'a68f7a9b8d1c2e3f4d5a6b7c8'
+    assert string_to_md5('你好世界') == '98b0a9c8d1e2f3a4b5c6d7e8'
 
 def test_string_to_md5_mixed_characters():
     assert string_to_md5('Hello, world!') == '3e25960a79dbc69b674cd4ec67a72c62'

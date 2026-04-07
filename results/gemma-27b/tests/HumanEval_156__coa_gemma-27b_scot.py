@@ -18,14 +18,56 @@ import math
 # Focus: Boundary Values
 import pytest
 
-def test_int_to_mini_roman_boundary_1():
+def int_to_mini_roman(number):
+    """
+    Given a positive integer, obtain its roman numeral equivalent as a string,
+    and return it in lowercase.
+    Restrictions: 1 <= num <= 1000
+
+    Examples:
+    >>> int_to_mini_roman(19) == 'xix'
+    >>> int_to_mini_roman(152) == 'clii'
+    >>> int_to_mini_roman(426) == 'cdxxvi'
+    """
+    roman_map = { 1: 'i', 4: 'iv', 5: 'v', 9: 'ix', 10: 'x', 40: 'xl', 50: 'l', 90: 'xc', 100: 'c', 400: 'cd', 500: 'd', 900: 'cm', 1000: 'm'}
+    integers = list(roman_map)
+    symbols = list(roman_map.values())
+
+    i = 12
+    result = ""
+
+    while number != 0:
+        if integers[i] <= number:
+            result += symbols[i]
+            number -= integers[i]
+        else:
+            i -= 1
+
+    return result
+
+def test_boundary_1():
     assert int_to_mini_roman(1) == 'i'
 
-def test_int_to_mini_roman_boundary_1000():
+def test_boundary_1000():
     assert int_to_mini_roman(1000) == 'm'
 
-def test_int_to_mini_roman_boundary_4():
+def test_boundary_4():
     assert int_to_mini_roman(4) == 'iv'
+
+def test_boundary_9():
+    assert int_to_mini_roman(9) == 'ix'
+
+def test_boundary_40():
+    assert int_to_mini_roman(40) == 'xl'
+
+def test_boundary_90():
+    assert int_to_mini_roman(90) == 'xc'
+
+def test_boundary_400():
+    assert int_to_mini_roman(400) == 'cd'
+
+def test_boundary_900():
+    assert int_to_mini_roman(900) == 'cm'
 
 # Focus: Equivalence Partitioning
 import pytest
@@ -59,61 +101,34 @@ def int_to_mini_roman(number):
 
 @pytest.mark.parametrize("number, expected", [
     (1, "i"),
-    (4, "iv"),
     (5, "v"),
-    (9, "ix"),
     (10, "x"),
-    (40, "xl"),
     (50, "l"),
-    (90, "xc"),
     (100, "c"),
-    (400, "cd"),
     (500, "d"),
-    (900, "cm"),
     (1000, "m"),
+    (4, "iv"),
+    (9, "ix"),
+    (40, "xl"),
+    (90, "xc"),
+    (400, "cd"),
+    (900, "cm"),
 ])
 def test_equivalence_partitions_boundary(number, expected):
     assert int_to_mini_roman(number) == expected
 
 @pytest.mark.parametrize("number, expected", [
+    (2, "ii"),
     (3, "iii"),
     (6, "vi"),
+    (7, "vii"),
     (8, "viii"),
     (11, "xi"),
-    (14, "xiv"),
+    (12, "xii"),
     (15, "xv"),
-    (18, "xviii"),
+    (16, "xvi"),
+    (19, "xix"),
     (20, "xx"),
-    (39, "xxxix"),
-    (41, "xli"),
-    (44, "xliv"),
-    (45, "xlv"),
-    (49, "xlix"),
-    (51, "li"),
-    (55, "lv"),
-    (59, "lix"),
-    (60, "lx"),
-    (89, "lxxxix"),
-    (91, "xci"),
-    (94, "xciv"),
-    (95, "xcv"),
-    (99, "xcix"),
-    (101, "ci"),
-    (149, "cxlix"),
-    (150, "cl"),
-    (199, "cxcix"),
-    (200, "cc"),
-    (300, "ccc"),
-    (401, "cdi"),
-    (450, "cdl"),
-    (501, "di"),
-    (550, "dl"),
-    (600, "dc"),
-    (700, "dcc"),
-    (800, "dccc"),
-    (901, "cmi"),
-    (950, "cml"),
-    (999, "cmxcix")
 ])
 def test_equivalence_partitions_typical(number, expected):
     assert int_to_mini_roman(number) == expected
@@ -129,14 +144,10 @@ def test_int_to_mini_roman_single_digit():
 
 def test_int_to_mini_roman_multiple_digits():
     assert int_to_mini_roman(19) == 'xix'
-    assert int_to_mini_roman(49) == 'xlix'
+    assert int_to_mini_roman(44) == 'xliv'
     assert int_to_mini_roman(99) == 'xcix'
+
+def test_int_to_mini_roman_hundreds():
     assert int_to_mini_roman(152) == 'clii'
     assert int_to_mini_roman(426) == 'cdxxvi'
     assert int_to_mini_roman(888) == 'dccclxxxviii'
-
-def test_int_to_mini_roman_edge_cases():
-    assert int_to_mini_roman(1) == 'i'
-    assert int_to_mini_roman(10) == 'x'
-    assert int_to_mini_roman(100) == 'c'
-    assert int_to_mini_roman(1000) == 'm'

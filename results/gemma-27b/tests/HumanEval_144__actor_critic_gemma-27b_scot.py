@@ -29,72 +29,81 @@ def simplify(x, n):
     x_num, x_den = map(int, x.split('/'))
     n_num, n_den = map(int, n.split('/'))
 
+    # Calculate the numerator and denominator of the product
     result_num = x_num * n_num
     result_den = x_den * n_den
 
-    return result_num % result_den == 0
+    # Function to calculate the greatest common divisor (GCD)
+    def gcd(a, b):
+        while(b):
+            a, b = b, a % b
+        return a
 
+    # Find the GCD of the numerator and denominator
+    common_divisor = gcd(result_num, result_den)
+    # Simplify the denominator by dividing by the GCD
+    simplified_den = result_den // common_divisor
 
-# STEP 1: REASONING
-# The original implementation of `simplify` had an incorrect return condition. It checked if the denominator was 1, which only indicates a whole number if the denominator is 1. The correct condition is to check if the numerator is divisible by the denominator (remainder is 0).
-# The tests for invalid input were correct in expecting a ValueError, but the function doesn't explicitly raise it. The tests should verify that the ValueError is raised by the `map(int, x.split('/'))` call.
-# The test suite lacked tests for cases where the numerator and denominator are equal, resulting in 1.
-# The test suite could benefit from tests with larger numbers to ensure no overflow issues occur.
-# The edge cases `test_simplify_edge_case_1` and `test_simplify_edge_case_2` were not particularly insightful and should be replaced.
+    # Return True if the simplified denominator is 1, indicating a whole number
+    return simplified_den == 1
 
-# STEP 2: PLAN
-# 1. test_simplify_zero_numerator: Tests cases with zero numerator.
-# 2. test_simplify_valid_whole: Tests valid fractions that result in a whole number.
-# 3. test_simplify_invalid_whole: Tests valid fractions that do not result in a whole number.
-# 4. test_simplify_large_numbers: Tests cases with large numbers to check for overflow.
-# 5. test_simplify_equal_fractions: Tests cases where the fractions are equal but represented differently.
-# 6. test_simplify_invalid_input: Tests cases with invalid input strings that raise ValueError.
-# 7. test_simplify_missing_slash: Tests cases where the input string is missing a slash.
-# 8. test_simplify_empty_string: Tests cases where the input string is empty.
-
-# STEP 3: CODE
-def test_simplify_zero_numerator():
-    assert simplify("0/1", "1/1") == True
-    assert simplify("0/5", "5/1") == True
-    assert simplify("1/2", "0/3") == True
-    assert simplify("0/2", "0/1") == True
-
-def test_simplify_valid_whole():
+def test_simplify_valid_whole_number():
     assert simplify("1/5", "5/1") == True
     assert simplify("2/3", "3/2") == True
     assert simplify("4/1", "1/4") == True
 
-def test_simplify_invalid_whole():
+def test_simplify_invalid_whole_number():
     assert simplify("1/6", "2/1") == False
     assert simplify("7/10", "10/2") == False
     assert simplify("1/2", "1/3") == False
 
+def test_simplify_numerator_one():
+    assert simplify("1/2", "2/1") == True
+    assert simplify("1/3", "3/4") == False
+
+def test_simplify_denominator_one():
+    assert simplify("2/1", "1/2") == True
+    assert simplify("3/1", "1/4") == False
+
+def test_simplify_already_whole_numbers():
+    assert simplify("2/1", "3/1") == True
+    assert simplify("4/1", "1/1") == True
+
 def test_simplify_large_numbers():
-    assert simplify("1000000000/1", "1/1000000000") == True
-    assert simplify("1000000007/1", "1/1000000007") == True
-    assert simplify("1000000000/2", "2/1000000000") == True
+    assert simplify("100/1", "1/100") == True
+    assert simplify("1000/1", "1/1000") == True
+    assert simplify("100/2", "2/100") == True
 
-def test_simplify_equal_fractions():
-    assert simplify("2/4", "1/2") == True
-    assert simplify("5/5", "1/1") == True
-    assert simplify("10/10", "2/2") == True
+def test_simplify_invalid_input_format():
+    with pytest.raises(ValueError):
+        simplify("1.5/2", "2/1")
+    with pytest.raises(ValueError):
+        simplify("1/2", "2.5/1")
+    with pytest.raises(ValueError):
+        simplify("1", "2/1")
+    with pytest.raises(ValueError):
+        simplify("1//2", "2/1")
+    with pytest.raises(ValueError):
+        simplify("1 / 2", "2/1")
 
-def test_simplify_invalid_input():
+def test_simplify_invalid_input_negative():
     with pytest.raises(ValueError):
-        simplify("1a/2", "2/1")
+        simplify("-1/2", "2/1")
     with pytest.raises(ValueError):
-        simplify("1/2", "2b/1")
+        simplify("1/-2", "2/1")
     with pytest.raises(ValueError):
-        simplify("1/2", "2/0")
+        simplify("-1/-2", "2/1")
 
-def test_simplify_missing_slash():
+def test_simplify_invalid_input_non_numeric():
+    with pytest.raises(ValueError):
+        simplify("a/2", "2/1")
+    with pytest.raises(ValueError):
+        simplify("1/b", "2/1")
+    with pytest.raises(ValueError):
+        simplify("a/b", "2/1")
+
+def test_simplify_invalid_input_missing_slash():
     with pytest.raises(ValueError):
         simplify("12", "2/1")
     with pytest.raises(ValueError):
-        simplify("1/2", "21")
-
-def test_simplify_empty_string():
-    with pytest.raises(ValueError):
-        simplify("", "2/1")
-    with pytest.raises(ValueError):
-        simplify("1/2", "")
+        simplify("1/2", "2")

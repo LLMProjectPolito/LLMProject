@@ -47,33 +47,34 @@ def test_order_by_points_sample(sample_list):
 def test_order_by_points_empty(empty_list):
     assert order_by_points(empty_list) == []
 
-def test_order_by_points_single_element(single_element_list):
+def test_order_by_points_single(single_element_list):
     assert order_by_points(single_element_list) == single_element_list
 
-def test_order_by_points_with_zeros(list_with_zeros):
-    expected = [0, -10, 10, 100]
+def test_order_by_points_zeros(list_with_zeros):
+    expected = [0, 10, 100, -10]
     assert order_by_points(list_with_zeros) == expected
 
 def test_order_by_points_negative_and_positive(list_with_negative_and_positive):
-    expected = [-5, 5, -10, 10, -15, 15]
+    expected = [-5, 5, -10, 10, 15, -15]
     assert order_by_points(list_with_negative_and_positive) == expected
 
-def test_order_by_points_same_digit_sum():
-    nums = [12, 3, 21, 4]
-    expected = [3, 4, 12, 21]
-    assert order_by_points(nums) == expected
+def test_order_by_points_similar_digit_sum(sample_list):
+    assert order_by_points([12, 21, 3]) == [3, 12, 21]
 
-def test_order_by_points_large_numbers():
-    nums = [123, 45, 6, 789, 10]
-    expected = [10, 6, 45, 123, 789]
-    assert order_by_points(nums) == expected
+def test_order_by_points_large_numbers(sample_list):
+    assert order_by_points([123, 321, 1]) == [1, 123, 321]
 
-def test_order_by_points_all_negative():
-    nums = [-1, -2, -3, -4, -5]
-    expected = [-1, -2, -3, -4, -5]
-    assert order_by_points(nums) == expected
+def test_order_by_points_all_negative(sample_list):
+    assert order_by_points([-1, -2, -3]) == [-1, -2, -3]
 
-def test_order_by_points_mixed_signs_same_sum():
-    nums = [1, -1, 10, -10, 11, -11]
-    expected = [1, -1, 10, -10, 11, -11]
-    assert order_by_points(nums) == expected
+def test_order_by_points_all_positive(sample_list):
+    assert order_by_points([1, 2, 3]) == [1, 2, 3]
+
+def test_order_by_points_mixed_signs_same_digit_sum(sample_list):
+    assert order_by_points([-1, 1]) == [-1, 1]
+
+def test_order_by_points_duplicate_numbers(sample_list):
+    assert order_by_points([1, 1, 1]) == [1, 1, 1]
+
+def test_order_by_points_with_zeroes_and_negatives(sample_list):
+    assert order_by_points([0, -1, 1]) == [0, -1, 1]

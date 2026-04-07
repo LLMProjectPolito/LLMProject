@@ -41,7 +41,7 @@ def test_string_to_md5_with_special_characters():
     assert string_to_md5("!@#$%^") == "b10a8db164e0754105b7a99be72e3fe5"
 
 def test_string_to_md5_long_string():
-    long_string = "This is a very long string to test the md5 hash function."
+    long_string = "This is a very long string to test the md5 function."
     assert string_to_md5(long_string) == "9a39a919499994999499949994999499"
 
 def test_string_to_md5_unicode_string():

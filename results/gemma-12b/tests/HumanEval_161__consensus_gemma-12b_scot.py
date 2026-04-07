@@ -55,8 +55,5 @@ def test_string_with_unicode_characters():
 def test_string_with_special_characters():
     assert solve("a\nb") == "A\nB"
     assert solve("a\tb") == "A\tB"
-    assert solve("a\rb") == "A\rB"
-
-def test_string_with_mixed_special_and_letters():
-    assert solve("a\nB!c") == "A\nB!C"
-    assert solve("1a\nB2c") == "1A\nB2C"
+    assert solve("a\"b") == "A\"B"
+    assert solve("a'b") == "A'B"

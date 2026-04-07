@@ -65,6 +65,5 @@ def generate_integers(a, b):
         s = str(i)
         even_digits = [digit for digit in s if int(digit) % 2 == 0]
         even_digits.sort()
-        if even_digits:
-            result.append(even_digits[0])
+        result.extend(even_digits)
     return result

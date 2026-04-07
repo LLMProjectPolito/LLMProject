@@ -38,32 +38,28 @@ def test_generate_integers_ascending():
     assert generate_integers(10, 14) == []
     assert generate_integers(2, 2) == [2]
     assert generate_integers(4, 4) == [4]
-    assert generate_integers(1, 5) == []
-    assert generate_integers(2, 4) == [2, 4]
-
-def test_generate_integers_with_zeros():
-    assert generate_integers(20, 28) == [2, 4, 6, 8]
-    assert generate_integers(100, 108) == [0, 2, 4, 6, 8]
-    assert generate_integers(200, 208) == [0, 2, 4, 6, 8]
+    assert generate_integers(1, 5) == [2, 4]
+    assert generate_integers(6, 6) == [6]
 
 def test_generate_integers_no_even_digits():
     assert generate_integers(1, 3) == []
     assert generate_integers(11, 13) == []
-    assert generate_integers(101, 103) == []
+    assert generate_integers(1, 9) == []
 
-def test_generate_integers_single_digit():
-    assert generate_integers(2, 2) == [2]
-    assert generate_integers(8, 8) == [8]
-    assert generate_integers(1, 1) == []
-    assert generate_integers(0, 0) == [0]
+def test_generate_integers_with_mixed_digits():
+    assert generate_integers(12, 16) == [2, 4, 6]
+    assert generate_integers(20, 25) == [2, 4]
+    assert generate_integers(100, 102) == [0, 2]
+    assert generate_integers(222, 228) == [2, 4, 6, 8]
 
 def test_generate_integers_large_range():
-    assert generate_integers(1000, 1010) == [0, 2, 4, 6, 8]
-    assert generate_integers(2000, 2008) == [0, 2, 4, 6, 8]
+    assert generate_integers(100, 110) == [0, 2, 4, 6, 8, 10]
+    assert generate_integers(200, 205) == [0, 2]
 
 def test_generate_integers_edge_cases():
-    assert generate_integers(1, 1) == []
-    assert generate_integers(2, 1) == [2]
-    assert generate_integers(1, 2) == [2]
+    assert generate_integers(0, 1) == []
+    assert generate_integers(1, 0) == []
+    assert generate_integers(2, 2) == [2]
     assert generate_integers(2, 3) == [2]
     assert generate_integers(3, 2) == [2]
+    assert generate_integers(10, 10) == []

@@ -34,8 +34,6 @@ def test_x_or_y_prime():
     assert x_or_y(13, -1, -2) == -1
     assert x_or_y(17, 0, 0) == 0
     assert x_or_y(19, 10, -10) == 10
-    assert x_or_y(23, -5, 5) == -5
-    assert x_or_y(29, 1000, 1) == 1000
 
 def test_x_or_y_not_prime():
     assert x_or_y(15, 8, 5) == 5
@@ -43,19 +41,15 @@ def test_x_or_y_not_prime():
     assert x_or_y(6, 3, 6) == 6
     assert x_or_y(8, 7, 8) == 8
     assert x_or_y(9, 9, 1) == 1
+    assert x_or_y(10, 0, 1) == 1
+    assert x_or_y(12, -1, 1) == 1
+    assert x_or_y(14, 2, -2) == -2
+    assert x_or_y(16, 100, -100) == -100
+    assert x_or_y(21, 22, 23) == 23
     assert x_or_y(10, 2, 4) == 4
     assert x_or_y(12, 5, 10) == 10
     assert x_or_y(14, -5, 1) == 1
     assert x_or_y(16, 0, 1) == 1
-    assert x_or_y(9, 9, 10) == 10
-    assert x_or_y(10, 11, 12) == 12
-    assert x_or_y(12, 13, 14) == 14
-    assert x_or_y(14, 15, 16) == 16
-    assert x_or_y(16, 17, 18) == 18
-    assert x_or_y(18, 19, 20) == 20
-    assert x_or_y(20, 21, 22) == 22
-    assert x_or_y(1, 1, 2) == 2
-    assert x_or_y(0, 1, 2) == 2
 
 def test_x_or_y_edge_cases():
     assert x_or_y(1, 10, 20) == 20
@@ -64,11 +58,12 @@ def test_x_or_y_edge_cases():
     assert x_or_y(1, 0, 0) == 0
     assert x_or_y(1, -1, -2) == -2
     assert x_or_y(2, -1, -2) == -1
-    assert x_or_y(21, 1, 1) == 1
-    assert x_or_y(25, 1, 1) == 1
-    assert x_or_y(29, 1, 1) == 1
-    assert x_or_y(30, 1, 1) == 1
-    assert x_or_y(31, 1, 1) == 1
-    assert x_or_y(32, 1, 1) == 1
     assert x_or_y(4, -1, -2) == -2
-    assert x_or_y(1, 1, 1) == 1
+    assert x_or_y(0, -1, -2) == -2
+    assert x_or_y(-1, -1, -2) == -2
+    assert x_or_y(21, 1, 1) == 1
+    assert x_or_y(25, 5, 5) == 5
+    assert x_or_y(29, 10, 20) == 10
+    assert x_or_y(30, 10, 20) == 20
+    assert x_or_y(31, 10, 20) == 10
+    assert x_or_y(32, 10, 20) == 20

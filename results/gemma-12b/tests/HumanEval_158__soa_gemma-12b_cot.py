@@ -29,11 +29,11 @@ def find_max(words):
     result = ""
 
     for word in words:
-        unique_chars = len(set(word))
-        if unique_chars > max_unique_count:
-            max_unique_count = unique_chars
+        unique_count = len(set(word))
+        if unique_count > max_unique_count:
+            max_unique_count = unique_count
             result = word
-        elif unique_chars == max_unique_count and word < result:
+        elif unique_count == max_unique_count and word < result:
             result = word
 
     return result
@@ -53,7 +53,7 @@ class TestFindMax:
         assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
     def test_mixed_lengths(self):
-        assert find_max(["a", "aa", "aaa", "aaaa"]) == "a"
+        assert find_max(["a", "aa", "aaa", "aaaa"]) == "aaaa"
 
     def test_all_same_unique_count(self):
         assert find_max(["abc", "bca", "cab"]) == "abc"
@@ -79,8 +79,11 @@ class TestFindMax:
     def test_unicode_characters(self):
         assert find_max(["你好", "世界", "你好世界"]) == "你好世界"
 
+    def test_case_sensitivity(self):
+        assert find_max(["abc", "ABC"]) == "abc"
+
     def test_complex_case(self):
         assert find_max(["apple", "banana", "orange", "grape"]) == "orange"
 
-    def test_case_sensitivity(self):
-        assert find_max(["Apple", "apple"]) == "Apple"
+    def test_another_complex_case(self):
+        assert find_max(["hello", "world", "python"]) == "python"

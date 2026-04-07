@@ -40,7 +40,7 @@ def int_to_mini_roman(number):
 
     return result
 
-def test_int_to_mini_roman_basic():
+def test_int_to_mini_roman_19():
     assert int_to_mini_roman(19) == 'xix'
 
 def test_int_to_mini_roman_152():
@@ -58,9 +58,6 @@ def test_int_to_mini_roman_10():
 def test_int_to_mini_roman_99():
     assert int_to_mini_roman(99) == 'XCIX'
 
-def test_int_to_mini_roman_100():
-    assert int_to_mini_roman(100) == 'C'
-
 def test_int_to_mini_roman_400():
     assert int_to_mini_roman(400) == 'CD'
 
@@ -77,4 +74,7 @@ def test_int_to_mini_roman_1001():
     assert int_to_mini_roman(1001) == 'X'
 
 def test_int_to_mini_roman_10000():
-    assert int_to_mini_roman(10000) == 'MCMXC'
+    assert int_to_mini_roman(10000) == 'X'
+
+def test_int_to_mini_roman_10001():
+    assert int_to_mini_roman(10001) == 'M'

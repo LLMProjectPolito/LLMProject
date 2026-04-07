@@ -50,16 +50,19 @@ def test_multiple_elements_basic():
     assert sum_squares([1, 2, 3]) == 6
 
 def test_multiple_elements_with_squares_and_cubes():
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 2**2 + 3**2 + 4**3 + 5**2 + 6**3  # 1 + 4 + 9 + 64 + 25 + 216 = 319
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 4 + 9 + 64 + 25 + 36
 
 def test_negative_numbers():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
 def test_mixed_positive_and_negative():
-    assert sum_squares([1, -2, 3, -4, 5]) == 1 + 4 + 9 + (-64) + 25 = 15
+    assert sum_squares([1, -2, 3, -4, 5]) == 1 + 4 + 9 + (-64) + 25
 
 def test_large_numbers():
-    assert sum_squares([10, 20, 30, 40]) == 100 + 4000 + 900 + 64000 = 73500
+    assert sum_squares([10, 20, 30, 40]) == 100 + 400 + 900 + 6400
+
+def test_zero_values():
+    assert sum_squares([0, 1, 2, 3]) == 0 + 1 + 4 + 9
 
 def test_multiple_multiples_of_3_and_4():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1 + 4 + 9 + 64 + 25 + 36 + 49 + 64 + 81 + 100 + 121 + 144
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 4 + 9 + 64 + 25 + 36 + 49 + 512 + 81 + 100

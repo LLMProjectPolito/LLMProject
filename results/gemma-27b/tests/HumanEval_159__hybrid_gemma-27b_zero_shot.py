@@ -102,7 +102,7 @@ class TestEat:
         assert eat(500, 500, 1000) == [1000, 500]
 
     def test_large_numbers_not_enough(self):
-        assert eat(500, 600, 500) == [1000, 0]
+        assert eat(500, 600, 100) == [600, 0]
 
     def test_max_values(self):
         assert eat(1000, 1000, 1000) == [2000, 0]

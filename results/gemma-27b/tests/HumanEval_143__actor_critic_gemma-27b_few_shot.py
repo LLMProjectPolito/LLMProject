@@ -58,14 +58,11 @@ def words_in_sentence(sentence):
 def test_basic():
     assert words_in_sentence("This is a test") == "is"
 
-def test_example2():
+def test_example_2():
     assert words_in_sentence("lets go for swimming") == "go for"
 
-def test_no_prime_length_words():
+def test_no_primes():
     assert words_in_sentence("hello world") == ""
-
-def test_all_prime_length_words():
-    assert words_in_sentence("it is a") == "it is a"
 
 def test_empty_sentence():
     assert words_in_sentence("") == ""
@@ -74,7 +71,7 @@ def test_single_prime_word():
     assert words_in_sentence("two") == "two"
 
 def test_single_non_prime_word():
-    assert words_in_sentence("four") == ""
+    assert words_in_sentence("one") == ""
 
 def test_mixed_lengths():
     assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the fox the dog"
@@ -88,19 +85,11 @@ def test_leading_trailing_spaces():
 def test_multiple_spaces():
     assert words_in_sentence("This  is   a test") == "is a"
 
-def test_large_input():
-    sentence = "a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z"
-    expected = "a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z"
-    assert words_in_sentence(sentence) == "a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z"
+def test_one_word_not_prime():
+    assert words_in_sentence("hello") == ""
 
-def test_non_letter_characters():
-    with pytest.raises(TypeError):  # Or ValueError, depending on desired behavior
-        words_in_sentence("hello 123 world!")
-
-def test_numbers_and_punctuation():
-    with pytest.raises(TypeError):  # Or ValueError, depending on desired behavior
-        words_in_sentence("123 !@# test")
-
-def test_very_long_word():
-    long_word = "a" * 1009  # 1009 is a prime number
-    assert words_in_sentence(long_word) == long_word
+def test_constraint_violation():
+    with pytest.raises(ValueError):
+        words_in_sentence("This is a test1") # Enforces the constraint
+    #Alternatively, if the function is meant to ignore non-letter characters:
+    #assert words_in_sentence("This is a test1") == "is a" # and document this behavior in the docstring

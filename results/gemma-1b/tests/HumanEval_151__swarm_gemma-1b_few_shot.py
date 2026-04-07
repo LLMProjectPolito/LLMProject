@@ -17,16 +17,18 @@ import math
 
 def double_the_difference(numbers):
     """
-    Calculates the difference between each pair of numbers in a list.
+    Calculates the double of the difference between elements in a list.
     """
     if not numbers:
         return 0
     
-    result = []
-    for i in range(len(numbers)):
-        for j in range(i + 1, len(numbers)):
-            result.append(numbers[j] - numbers[i])
-    return sum(result)
+    if len(numbers) == 1:
+        return numbers[0]
+    
+    result = numbers[0]
+    for i in range(1, len(numbers)):
+        result += math.sqrt(result * numbers[i])
+    return result
 
 def test_double_the_difference():
     assert double_the_difference([1, 3, 2, 0]) == 10

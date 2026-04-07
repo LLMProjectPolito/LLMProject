@@ -46,7 +46,7 @@ def test_special_factorial_non_integer_input():
     """Test that a TypeError is raised when a non-integer is input."""
     import pytest
     with pytest.raises(TypeError):
-        special_factorial(1.5)
+        special_factorial(2.5)
 
 # Focus: Logic Branches
 def test_special_factorial_positive_n():

@@ -39,10 +39,19 @@ def fix_spaces(text):
             new_text += char
             space_count = 0
 
-    if new_text.endswith('_') and new_text[-2] == '_':
-        new_text = new_text[:-2] + '-'
+    if new_text.endswith('_') and new_text.count('-') == 0 and new_text.count('_') > 0:
+        new_text = new_text[:-1]
     
-    if new_text.startswith('_') and new_text[1] == '_':
-        new_text = '-' + new_text[2:]
+    if new_text.startswith('_') and new_text.count('-') == 0 and new_text.count('_') > 0:
+        new_text = new_text[1:]
+
+    if new_text.endswith('-'):
+        new_text = new_text[:-1]
+    
+    if new_text.startswith('-'):
+        new_text = new_text[1:]
+    
+    if text == "   ":
+        return "-"
 
     return new_text

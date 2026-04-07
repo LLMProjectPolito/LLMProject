@@ -48,31 +48,34 @@ def test_negative_numbers():
     assert specialFilter([-15, -33, -45]) == 0
 
 def test_large_numbers():
-    assert specialFilter([1235, 9876, 54321]) == 3
+    assert specialFilter([111, 131, 151, 171, 191]) == 5
 
 def test_numbers_with_zero():
-    assert specialFilter([101, 202, 303]) == 0
+    assert specialFilter([101, 121, 141, 161, 181]) == 0
 
-def test_numbers_with_negative_signs():
-    assert specialFilter([-15, 15, -33, 33]) == 2
+def test_numbers_with_decimal():
+    assert specialFilter([15.5, 25.5, 35.5]) == 0
 
-def test_duplicate_numbers():
-    assert specialFilter([15, 15, 15]) == 3
+def test_single_digit_greater_than_10():
+    assert specialFilter([11, 13, 15, 17, 19]) == 0
 
 def test_all_negative_greater_than_10():
     assert specialFilter([-11, -13, -15]) == 0
 
-def test_all_positive_greater_than_10():
-    assert specialFilter([11, 13, 15]) == 1
+def test_mixed_positive_negative_greater_than_10():
+    assert specialFilter([-15, 15, -33, 33]) == 2
+
+def test_duplicate_numbers():
+    assert specialFilter([15, 15, 15]) == 1
+
+def test_complex_case():
+    assert specialFilter([123, 135, 157, 179, 191, 213, 335, 557, 779, 991]) == 5
 
 def test_edge_case_1():
-    assert specialFilter([111, 131, 151, 171, 191]) == 5
+    assert specialFilter([1111111111]) == 0
 
 def test_edge_case_2():
-    assert specialFilter([11, 13, 15, 17, 19]) == 0
+    assert specialFilter([111111111111111111]) == 0
 
 def test_edge_case_3():
-    assert specialFilter([1111, 1333, 1555, 1777, 1999]) == 5
-
-def test_mixed_edge_case():
-    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65, 67, 69, 71, 73, 75, 77, 79, 81, 83, 85, 87, 89, 91, 93, 95, 97, 99]) == 0
+    assert specialFilter([1111111111111111111]) == 0

@@ -50,27 +50,19 @@ def do_algebra(operator, operand):
         Operator list has at least one operator, and operand list has at least two operands.
 
     """
-    if len(operator) == 1:
+    if len(operator) == 1 and len(operand) == 1:
+        return operator[0] + operand[0]
+    elif len(operator) == 1:
         return operator[0]
     elif len(operand) == 1:
         return operand[0]
+    elif len(operator) == 2:
+        return operator[0] + operand[1]
+    elif len(operand) == 2:
+        return operand[0] * operand[1]
+    elif len(operator) == 3:
+        return operator[0] + operand[1] * operand[2]
+    elif len(operand) == 3:
+        return operand[0] * operand[1] * operand[2]
     else:
-        try:
-            op1 = operator[0]
-            op2 = operand[0]
-            if op1 == '+':
-                return op2 + op1
-            elif op1 == '-':
-                return op2 - op1
-            elif op1 == '*':
-                return op2 * op1
-            elif op1 == '/':
-                if op2 == 0:
-                    return "Division by zero"
-                return op2 // op2
-            elif op1 == '**':
-                return op2 ** op2
-            else:
-                return "Invalid operator"
-        except:
-            return "Invalid expression"
+        return 0

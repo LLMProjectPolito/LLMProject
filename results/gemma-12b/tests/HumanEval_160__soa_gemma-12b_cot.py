@@ -68,6 +68,11 @@ def test_do_algebra_exponentiation_and_multiplication():
     operand = [2, 3, 2]
     assert do_algebra(operator, operand) == 36
 
+def test_do_algebra_subtraction_and_division():
+    operator = ['-', '//']
+    operand = [10, 2, 2]
+    assert do_algebra(operator, operand) == 4
+
 def test_do_algebra_large_numbers():
     operator = ['+']
     operand = [1000, 2000]
@@ -83,33 +88,27 @@ def test_do_algebra_negative_result():
     operand = [2, 5]
     assert do_algebra(operator, operand) == -3
 
-def test_do_algebra_multiple_subtractions():
-    operator = ['-', '-']
-    operand = [10, 3, 2]
-    assert do_algebra(operator, operand) == 5
+def test_do_algebra_multiple_operators_and_operands():
+    operator = ['+', '*', '-', '//', '**']
+    operand = [2, 3, 4, 5, 2]
+    assert do_algebra(operator, operand) == 28
 
-def test_do_algebra_multiple_multiplications():
-    operator = ['*', '*']
-    operand = [2, 3, 4]
-    assert do_algebra(operator, operand) == 24
-
-def test_do_algebra_floor_division_zero_divisor():
-    operator = ['//']
-    operand = [10, 0]
-    with pytest.raises(ZeroDivisionError):
-        do_algebra(operator, operand)
-
-def test_do_algebra_exponentiation_zero_base():
-    operator = ['**']
-    operand = [0, 2]
-    assert do_algebra(operator, operand) == 0
-
-def test_do_algebra_exponentiation_negative_exponent():
-    operator = ['**']
-    operand = [2, -1]
-    assert do_algebra(operator, operand) == 0.5
+def test_do_algebra_all_operators():
+    operator = ['+', '-', '*', '//', '**']
+    operand = [2, 3, 4, 5, 2]
+    assert do_algebra(operator, operand) == 28
 
 def test_do_algebra_long_expression():
-    operator = ['+', '*', '-', '//', '**']
-    operand = [1, 2, 3, 4, 5, 2]
-    assert do_algebra(operator, operand) == 12
+    operator = ['+', '*', '-', '//', '**', '+', '*']
+    operand = [1, 2, 3, 4, 5, 6, 7]
+    assert do_algebra(operator, operand) == 145
+
+def test_do_algebra_with_same_numbers():
+    operator = ['+', '+', '+']
+    operand = [1, 1, 1]
+    assert do_algebra(operator, operand) == 3
+
+def test_do_algebra_with_zero_and_other_numbers():
+    operator = ['*']
+    operand = [0, 5]
+    assert do_algebra(operator, operand) == 0

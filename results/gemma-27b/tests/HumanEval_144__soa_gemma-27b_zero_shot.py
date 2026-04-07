@@ -48,13 +48,13 @@ def test_simplify_true_case3():
     assert simplify("4/5", "5/4") == True
 
 def test_simplify_false_case3():
-    assert simplify("1/2", "1/3") == False
+    assert simplify("1/2", "3/4") == False
 
 def test_simplify_true_case4():
     assert simplify("1/1", "1/1") == True
 
 def test_simplify_false_case4():
-    assert simplify("1/2", "2/3") == False
+    assert simplify("1/3", "1/2") == False
 
 def test_simplify_large_numbers_true():
     assert simplify("100/20", "20/1") == True

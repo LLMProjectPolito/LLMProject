@@ -102,7 +102,7 @@ def bf(planet1, planet2):
     if planet1 == "Uranus" and planet2 == "Saturn":
         return ("Saturn", "Uranus")
     if planet1 == "Neptune" and planet2 == "Uranus":
-        return ("Neptune", "Uranus")
+        return ("Saturn", "Uranus")
     return ()
 
 def bf(planet1, planet2):
@@ -128,10 +128,29 @@ def bf(planet1, planet2):
     if planet2 not in ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]:
         return ()
     
-    planet1_orbit = planet1
-    planet2_orbit = planet2
+    orbits1 = {
+        "Mercury": 0.397,
+        "Venus": 0.723,
+        "Earth": 1.000,
+        "Mars": 1.524,
+        "Jupiter": 5.206,
+        "Saturn": 9.534,
+        "Uranus": 19.196,
+        "Neptune": 30.066
+    }
+    orbits2 = {
+        "Mercury": 0.397,
+        "Venus": 0.723,
+        "Earth": 1.000,
+        "Mars": 1.524,
+        "Jupiter": 5.206,
+        "Saturn": 9.534,
+        "Uranus": 19.196,
+        "Neptune": 30.066
+    }
     
-    if planet1_orbit < planet2_orbit:
-        return (planet1, planet2)
-    else:
-        return (planet2, planet1)
+    planet1_orbit = orbits1[planet1]
+    planet2_orbit = orbits2[planet2]
+    
+    result = tuple(sorted((planet1, planet2)))
+    return result

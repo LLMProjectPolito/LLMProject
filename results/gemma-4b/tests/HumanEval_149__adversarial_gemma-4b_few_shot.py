@@ -83,7 +83,7 @@ def test_sorted_list_sum_basic():
 
 def test_sorted_list_sum_duplicates():
     assert sorted_list_sum(["aa", "aa", "a"]) == ["aa", "aa"]
-    assert sorted_list_sum(["ab", "ab", "a"]) == ["ab", "ab"]
+    assert sorted_list_sum(["ab", "ab", "cd"]) == ["ab", "ab"]
 
 def test_sorted_list_sum_mixed():
     assert sorted_list_sum(["aa", "a", "aaa", "cd", "bb"]) == ["aa", "bb", "cd"]

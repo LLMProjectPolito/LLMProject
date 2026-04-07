@@ -69,7 +69,4 @@ def test_fix_spaces_multiple_consecutive_and_trailing():
     assert fix_spaces("Hello  World   ") == "Hello__World-"
 
 def test_fix_spaces_with_special_characters():
-    assert fix_spaces("Hello!  World?") == "Hello!_World?"
-
-def test_fix_spaces_with_numbers():
-    assert fix_spaces("Value 123  Test") == "Value_123-Test"
+    assert fix_spaces("Hello!  World?") == "Hello!__World?"

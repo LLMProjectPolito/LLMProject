@@ -34,9 +34,8 @@ def find_max(words):
         if unique_chars > max_unique_chars:
             max_unique_chars = unique_chars
             max_word = word
-        elif unique_chars == max_unique_chars:
-            if word < max_word:
-                max_word = word
+        elif unique_chars == max_unique_chars and word < max_word:
+            max_word = word
 
     return max_word
 
@@ -74,10 +73,10 @@ def test_find_max():
     assert find_max(["a", "b", "a"]) == "a"
     assert find_max(["a", "b", "c", "d"]) == "a"
     assert find_max(["a", "b", "c", "d", "e"]) == "a"
-    assert find_max(["abc", "ab"]) == "ab"
-    assert find_max(["abc", "ab", "c"]) == "ab"
-    assert find_max(["abc", "ab", "c", "d"]) == "ab"
-    assert find_max(["a", "aa", "aaa"]) == "a"
-    assert find_max(["a", "aa", "a"]) == "a"
-    assert find_max(["a", "aa", "b"]) == "a"
-    assert find_max(["a", "aa", "b", "c"]) == "a"
+    assert find_max(["a", "b", "c", "d", "e", "f"]) == "a"
+    assert find_max(["a", "b", "c", "d", "e", "f", "g"]) == "a"
+    assert find_max(["a", "b", "c", "d", "e", "f", "g", "h"]) == "a"
+    assert find_max(["a", "b", "c", "d", "e", "f", "g", "h", "i"]) == "a"
+    assert find_max(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]) == "a"
+    assert find_max(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"]) == "a"
+    print("All tests passed")

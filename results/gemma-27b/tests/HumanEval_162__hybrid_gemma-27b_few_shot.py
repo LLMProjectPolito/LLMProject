@@ -53,26 +53,21 @@ def test_md5_special_characters():
     assert string_to_md5('!@#$%^') == 'b10a8db164e0754105b7a99be72e3fe5'
 
 def test_md5_long_string():
-    long_string = "This is a very long string to test the MD5 function."
-    assert string_to_md5(long_string) == '9a999969999999999999999999999999'
-
-def test_md5_unicode():
-    assert string_to_md5('你好世界') == 'b10a8db164e0754105b7a99be72e3fe5' # Example unicode string
-
-def test_md5_mixed_case():
-    assert string_to_md5('Hello World') == 'b10a8db164e0754105b7a99be72e3fe5' #Case sensitive
-
-def test_md5_long_string_suite2():
     long_string = "This is a very long string to test the MD5 hash function."
     expected_md5 = '9f86d081884c7d659a2feaa0c55ad015'
     assert string_to_md5(long_string) == expected_md5
 
-def test_md5_with_spaces_suite2():
-    assert string_to_md5('  hello  ') == '5d41402abc4b2a76b9719d911017c592'
+def test_md5_unicode():
+    assert string_to_md5('你好世界') == '6f9d8969191999999999999999999999'
 
-def test_md5_different_encodings():
-    # Test with different encodings to ensure consistency
-    assert string_to_md5('test') == 'a94a8fe5ccb19ba61c4c0873d391e987'
+def test_md5_mixed_characters():
+    assert string_to_md5('Hello123!@#') == 'b10a8db164e0754105b7a99be72e3fe5'
+
+def test_md5_mixed_case():
+    assert string_to_md5('Hello World') == 'b10a8db164e0754105b7a99be72e3fe5' #Case sensitive
+
+def test_md5_with_leading_and_trailing_spaces():
+    assert string_to_md5('  hello  ') == '99299929999999999999999999999999'
 
 # Palindrome tests
 def test_palindrome_basic():
@@ -82,9 +77,21 @@ def test_palindrome_basic():
 def test_palindrome_empty():
     assert is_palindrome('') == True
 
+def test_palindrome_single_char():
+    assert is_palindrome('a') == True
+
+def test_palindrome_mixed_case():
+    assert is_palindrome('Racecar') == False
+
 # Max tests
 def test_max_positive():
     assert get_max([1, 2, 3]) == 3
 
 def test_max_empty():
     assert get_max([]) == None
+
+def test_max_negative():
+    assert get_max([-1, -2, -3]) == -1
+
+def test_max_mixed():
+    assert get_max([-1, 2, -3, 4]) == 4

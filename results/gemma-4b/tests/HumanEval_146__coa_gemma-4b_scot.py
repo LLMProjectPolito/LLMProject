@@ -31,7 +31,7 @@ def test_specialFilter_negative_numbers():
     assert specialFilter([-15, -33]) == 0
 
 def test_specialFilter_mixed_numbers():
-    assert specialFilter([11, 13, 15, 17, 19, 21, 33]) == 3
+    assert specialFilter([11, 13, 15, 17, 19, 21, 33, 35, 37, 39]) == 5
 
 # Focus: Type Scenarios
 import pytest
@@ -64,4 +64,4 @@ def test_specialFilter_negative_numbers():
     assert specialFilter([-15, -33]) == 0
 
 def test_specialFilter_mixed_numbers():
-    assert specialFilter([11, 13, 15, 17, 19, 21, 33]) == 3
+    assert specialFilter([11, 13, 15, 17, 19, 21, 33, 35, 37, 39]) == 5

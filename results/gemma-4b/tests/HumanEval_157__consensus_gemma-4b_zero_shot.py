@@ -52,7 +52,6 @@ def test_right_angle_triangle_negative_side():
 
 def test_right_angle_triangle_equal_sides():
     assert right_angle_triangle(5, 5, 5) == False
-    assert right_angle_triangle(1, 1, 1) == False
 
 def test_right_angle_triangle_large_numbers():
     assert right_angle_triangle(1000, 1000, 1414) == True

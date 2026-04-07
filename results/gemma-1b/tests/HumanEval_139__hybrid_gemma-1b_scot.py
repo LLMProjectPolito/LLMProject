@@ -47,7 +47,7 @@ def test_special_factorial_four():
 
 def test_special_factorial_five():
     assert special_factorial(5) == 120
-    
+
 def test_special_factorial_ten():
     assert special_factorial(10) == 3628800
 
@@ -60,29 +60,8 @@ def test_special_factorial_zero_large():
 def test_special_factorial_one_large():
     assert special_factorial(1) == 1
 
-def test_special_factorial_two_large():
-    assert special_factorial(2) == 2
-
-def test_special_factorial_three_large():
-    assert special_factorial(3) == 6
-
-def test_special_factorial_four_large():
-    assert special_factorial(4) == 288
-
 def test_special_factorial_five_large():
     assert special_factorial(5) == 120
-
-def test_special_factorial_six_large():
-    assert special_factorial(6) == 720
-
-def test_special_factorial_seven_large():
-    assert special_factorial(7) == 5040
-
-def test_special_factorial_eight_large():
-    assert special_factorial(8) == 40320
-
-def test_special_factorial_nine_large():
-    assert special_factorial(9) == 362880
-
-def test_special_factorial_ten_large():
-    assert special_factorial(10) == 3628800
+    
+def test_special_factorial_large_number_two():
+    assert special_factorial(21) == 5109094217170944000

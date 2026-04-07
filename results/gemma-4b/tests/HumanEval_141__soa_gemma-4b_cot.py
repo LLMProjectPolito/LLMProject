@@ -67,40 +67,37 @@ def test_valid_file_name_with_more_than_three_digits():
     assert file_name_check("example1234.txt") == 'No'
 
 def test_no_dot():
-    assert file_name_check("example") == 'No'
+    assert file_name_check("exampletxt") == 'No'
 
 def test_multiple_dots():
     assert file_name_check("example..txt") == 'No'
 
-def test_starts_with_digit():
+def test_prefix_not_starting_with_letter():
     assert file_name_check("1example.txt") == 'No'
+
+def test_suffix_not_valid():
+    assert file_name_check("example.pdf") == 'No'
 
 def test_empty_prefix():
     assert file_name_check(".txt") == 'No'
 
-def test_prefix_with_numbers():
+def test_prefix_with_only_digits():
     assert file_name_check("123.txt") == 'No'
 
-def test_invalid_suffix():
-    assert file_name_check("example.pdf") == 'No'
+def test_prefix_with_digits_and_letters():
+    assert file_name_check("a123.txt") == 'Yes'
 
 def test_prefix_with_special_characters():
-    assert file_name_check("example!txt") == 'No'
+    assert file_name_check("a!@#$example.txt") == 'No'
 
-def test_prefix_with_underscore():
-    assert file_name_check("example_txt") == 'No'
+def test_suffix_with_spaces():
+    assert file_name_check("example. txt") == 'No'
 
-def test_prefix_with_space():
-    assert file_name_check("example txt") == 'No'
+def test_file_name_with_leading_and_trailing_spaces():
+    assert file_name_check("  example.txt  ") == 'Yes'
 
-def test_prefix_with_dot():
-    assert file_name_check("example.txt") == 'Yes'
-
-def test_suffix_with_numbers():
-    assert file_name_check("example.123") == 'No'
-
-def test_long_file_name():
-    assert file_name_check("a very long file name.txt") == 'No'
+def test_file_name_with_only_spaces():
+    assert file_name_check("   ") == 'No'
 
 def test_file_name_with_multiple_dots_in_prefix():
-    assert file_name_check("a..b.c.txt") == 'No'
+    assert file_name_check("a..b.txt") == 'No'

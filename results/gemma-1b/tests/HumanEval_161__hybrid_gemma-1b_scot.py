@@ -54,14 +54,23 @@ def test_mixed_case():
 def test_numbers():
     assert solve("123") == "321"
 
-def test_special_characters():
-    assert solve("#a@C") == "#A@c"
+def test_symbols():
+    assert solve("#a") == "#A"
 
 def test_palindrome():
-    assert solve("#a@C") == "#A@c"
+    assert solve("#a") == "#a"
 
 def test_longer_string():
-    assert solve("hello") == "olleh"
+    assert solve("Hello World!") == "dlroW olleH"
 
 def test_string_with_spaces():
     assert solve("hello world") == "dlrow olleh"
+
+def test_case_insensitive():
+    assert solve("Hello World!") == "dlroW olleH"
+
+def test_special_characters():
+    assert solve("#a") == "#A"
+
+def test_complex_string():
+    assert solve("aBcDeF") == "aBcDeF"

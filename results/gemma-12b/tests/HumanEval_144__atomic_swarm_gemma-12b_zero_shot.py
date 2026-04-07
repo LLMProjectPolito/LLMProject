@@ -24,12 +24,12 @@ def test_edge_zero_numerator():
 def test_simplify_invalid_type():
     """Test with invalid input types."""
     try:
-        simplify(1, "2/3")
+        simplify(1, "5/1")
         assert False, "Should have raised a TypeError"
     except TypeError:
         pass
     try:
-        simplify("1/2", 2)
+        simplify("1/5", 1)
         assert False, "Should have raised a TypeError"
     except TypeError:
         pass

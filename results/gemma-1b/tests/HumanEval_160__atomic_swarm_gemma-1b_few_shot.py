@@ -157,5 +157,5 @@ def do_algebra(operator, operand):
             return operand[0]
         else:
             return eval(str(operator[0]) + str(operand[0]))
-    except:
+    except (TypeError, ValueError, IndexError):
         return None

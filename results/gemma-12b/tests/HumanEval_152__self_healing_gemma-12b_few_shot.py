@@ -18,35 +18,62 @@ def compare(game,guess):
 import pytest
 from your_module import compare  # Replace your_module
 
-def test_empty_arrays():
-    assert compare([], []) == []
+def test_compare_correct_guesses():
+    game = [1, 2, 3, 4, 5, 1]
+    guess = [1, 2, 3, 4, 5, 1]
+    expected = [0, 0, 0, 0, 0, 0]
+    assert compare(game, guess) == expected
 
-def test_correct_guesses():
-    assert compare([1, 2, 3], [1, 2, 3]) == [0, 0, 0]
+def test_compare_incorrect_guesses():
+    game = [1, 2, 3, 4, 5, 1]
+    guess = [1, 2, 3, 4, 2, -2]
+    expected = [0, 0, 0, 0, 3, 3]
+    assert compare(game, guess) == expected
 
-def test_incorrect_guesses():
-    assert compare([1, 2, 3], [4, 5, 6]) == [3, 3, 3]
+def test_compare_mixed_guesses():
+    game = [0, 5, 0, 0, 0, 4]
+    guess = [4, 1, 1, 0, 0, -2]
+    expected = [4, 4, 1, 0, 0, 6]
+    assert compare(game, guess) == expected
 
-def test_mixed_guesses():
-    assert compare([1, 2, 3, 4, 5], [1, 2, 4, 4, 5]) == [0, 0, 1, 0, 0]
+def test_compare_empty_lists():
+    game = []
+    guess = []
+    expected = []
+    assert compare(game, guess) == expected
 
-def test_negative_scores_and_guesses():
-    assert compare([-1, -2, -3], [-1, -2, -4]) == [0, 0, 1]
+def test_compare_single_element_lists():
+    game = [5]
+    guess = [6]
+    expected = [1]
+    assert compare(game, guess) == expected
 
-def test_zero_scores_and_guesses():
-    assert compare([0, 0, 0], [0, 1, 2]) == [0, 1, 2]
+def test_compare_single_element_correct():
+    game = [5]
+    guess = [5]
+    expected = [0]
+    assert compare(game, guess) == expected
 
-def test_example_1():
-    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
+def test_compare_negative_scores():
+    game = [-1, -2, -3]
+    guess = [-1, -2, -4]
+    expected = [0, 0, 1]
+    assert compare(game, guess) == expected
 
-def test_example_2():
-    assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
+def test_compare_large_numbers():
+    game = [1000, 2000, 3000]
+    guess = [1000, 2001, 3000]
+    expected = [0, 1, 0]
+    assert compare(game, guess) == expected
 
-def test_large_numbers():
-    assert compare([100, 200, 300], [105, 195, 305]) == [5, 5, 5]
-
-def test_unequal_length_arrays():
+def test_compare_different_lengths():
+    game = [1, 2, 3]
+    guess = [1, 2]
     with pytest.raises(ValueError):
-        compare([1, 2], [1])
-    with pytest.raises(ValueError):
-        compare([1], [1, 2])
+        compare(game, guess)
+
+def test_compare_different_types():
+    game = [1, 2, 3]
+    guess = ["1", "2", "3"]
+    with pytest.raises(TypeError):
+        compare(game, guess)

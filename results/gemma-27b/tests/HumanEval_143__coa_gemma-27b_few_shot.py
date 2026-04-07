@@ -128,8 +128,7 @@ def test_empty_sentence():
     assert words_in_sentence("") == ""
 
 def test_null_sentence():
-    with pytest.raises(TypeError):
-        words_in_sentence(None)
+    assert words_in_sentence(None) == ""
 
 # Focus: Sentence with Non-Space Characters Only
 import pytest

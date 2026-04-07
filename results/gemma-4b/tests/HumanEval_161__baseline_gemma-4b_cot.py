@@ -57,11 +57,11 @@ def test_letters_and_symbols():
 def test_letters_and_numbers():
     assert solve("a1b2c") == "A1B2C"
 
-def test_all_lowercase():
-    assert solve("hello") == "HELLO"
-
 def test_all_uppercase():
-    assert solve("WORLD") == "world"
+    assert solve("ABC") == "abc"
+
+def test_all_lowercase():
+    assert solve("abc") == "ABC"
 
 def test_long_string():
     assert solve("This is a long string with mixed case and symbols!") == "!gnirts gnol dna secim xemI"
@@ -69,11 +69,14 @@ def test_long_string():
 def test_string_with_only_symbols():
     assert solve("!@#$%^") == "^%$#@!"
 
-def test_string_with_numbers_and_symbols():
-    assert solve("123!@#") == "321!@#"
+def test_string_with_spaces():
+    assert solve("Hello World") == "HELLO WORLD"
 
 def test_string_with_special_characters():
     assert solve("!@#$%^") == "^%$#@!"
+
+def test_string_with_numbers_and_letters():
+    assert solve("1a2b3c") == "1A2B3C"
 
 def test_string_with_unicode_characters():
     assert solve("你好世界") == "界世好你"

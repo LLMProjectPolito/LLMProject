@@ -52,8 +52,7 @@ def test_cycpattern_check_empty_string():
     assert cycpattern_check("abc", "") == False
     assert cycpattern_check("", "abc") == False
 
-def test_cycpattern_check_single_char_substring():
+def test_cycpattern_check_single_char_match():
     assert cycpattern_check("abc", "a") == True
     assert cycpattern_check("abc", "b") == True
     assert cycpattern_check("abc", "c") == True
-    assert cycpattern_check("abc", "d") == False

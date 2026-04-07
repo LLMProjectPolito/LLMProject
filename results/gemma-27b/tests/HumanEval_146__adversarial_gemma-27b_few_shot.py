@@ -61,5 +61,5 @@ def test_specialFilter_numbers_with_leading_zeros():
     assert specialFilter([011, 013]) == 0 # Leading zeros are not considered odd digits
 
 def test_specialFilter_numbers_close_to_10():
-    assert specialFilter([11, 9]) == 1
-    assert specialFilter([10, 11]) == 1
+    assert specialFilter([11, 9, 10]) == 1
+    assert specialFilter([10, 11, 12]) == 1

@@ -39,4 +39,4 @@ def test_even_odd_count_negative_number():
     assert even_odd_count(-2468) == (4, 0)
 
 def test_even_odd_count_mixed_number():
-    assert even_odd_count(1357924680) == (4, 6)
+    assert even_odd_count(1234567890) == (5, 5)

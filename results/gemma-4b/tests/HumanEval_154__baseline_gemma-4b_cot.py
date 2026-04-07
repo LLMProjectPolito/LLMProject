@@ -48,12 +48,13 @@ def test_cycpattern_check_basic_false():
     assert cycpattern_check("efef", "eeff") == False
 
 def test_cycpattern_check_longer_strings():
-    assert cycpattern_check("thisisalongstring", "islong") == True
-    assert cycpattern_check("thisisalongstring", "longstring") == True
-    assert cycpattern_check("thisisalongstring", "string") == True
-    assert cycpattern_check("thisisalongstring", "stringis") == False
+    assert cycpattern_check("thisisatest", "test") == True
+    assert cycpattern_check("thisisatest", "testi") == False
+    assert cycpattern_check("thisisatest", "stis") == True
+    assert cycpattern_check("thisisatest", "testsi") == False
 
 def test_cycpattern_check_overlapping_rotations():
+    assert cycpattern_check("abcabc", "abc") == True
     assert cycpattern_check("abcabc", "bca") == True
     assert cycpattern_check("abcabc", "cab") == True
 

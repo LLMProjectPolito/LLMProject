@@ -68,62 +68,45 @@ def eat(number, need, remaining):
         remaining_after_meal = 0
     return [total_eaten, remaining_after_meal]
 
-# STEP 1: REASONING
-# The function `eat` calculates the total number of carrots eaten and the number of carrots remaining after a rabbit eats some carrots.
-# The constraints are 0 <= number <= 1000, 0 <= need <= 1000, and 0 <= remaining <= 1000.
-# We need to test various scenarios, including:
-#   - Enough remaining carrots to meet the need.
-#   - Not enough remaining carrots to meet the need (eat all remaining).
-#   - Edge cases with zero values for input parameters.
-#   - Boundary conditions for the input constraints.
+# STEP 1: REASONING - Analyze functional goals and constraints.
+# The function `eat` calculates the total number of carrots eaten and the remaining carrots after a meal.
+# It takes three integer arguments: `number` (already eaten), `need` (carrots needed), and `remaining` (carrots in stock).
+# The function returns a list containing the total carrots eaten and the remaining carrots.
+# If the remaining carrots are less than the needed carrots, all remaining carrots are eaten, and the remaining carrots after the meal is 0.
+# Constraints: 0 <= number <= 1000, 0 <= need <= 1000, 0 <= remaining <= 1000.
 
-# STEP 2: PLAN
-# Test functions:
-#   - test_enough_carrots: Enough remaining carrots to meet the need.
-#   - test_not_enough_carrots: Not enough remaining carrots to meet the need.
-#   - test_zero_carrots_eaten: Number of carrots eaten is zero.
-#   - test_zero_carrots_needed: Number of carrots needed is zero.
-#   - test_zero_carrots_remaining: Number of carrots remaining is zero.
-#   - test_boundary_carrots_eaten: Number of carrots eaten is at the upper boundary (1000).
-#   - test_boundary_carrots_needed: Number of carrots needed is at the upper boundary (1000).
-#   - test_boundary_carrots_remaining: Number of carrots remaining is at the upper boundary (1000).
-#   - test_all_zero_values: All input values are zero.
-#   - test_large_values: Test with large values close to the upper boundary.
+# STEP 2: PLAN - List test functions names and scenarios.
+# 1. Test with enough remaining carrots: `test_enough_remaining`
+# 2. Test with not enough remaining carrots: `test_not_enough_remaining`
+# 3. Test with zero remaining carrots: `test_zero_remaining`
+# 4. Test with zero needed carrots: `test_zero_needed`
+# 5. Test with zero already eaten carrots: `test_zero_eaten`
+# 6. Test with all inputs being zero: `test_all_zero`
+# 7. Test boundary conditions for inputs (max values): `test_max_values`
+# 8. Test with large numbers within constraints: `test_large_numbers`
 
-# STEP 3: CODE
+# STEP 3: CODE - Write the high-quality pytest suite.
 class TestEat:
-    def test_enough_carrots(self):
+    def test_enough_remaining(self):
         assert eat(5, 6, 10) == [11, 4]
 
-    def test_not_enough_carrots(self):
+    def test_not_enough_remaining(self):
         assert eat(4, 8, 9) == [13, 0]
 
-    def test_zero_carrots_eaten(self):
+    def test_zero_remaining(self):
+        assert eat(1, 10, 0) == [1, 0]
+
+    def test_zero_needed(self):
+        assert eat(2, 0, 5) == [2, 5]
+
+    def test_zero_eaten(self):
         assert eat(0, 10, 10) == [10, 0]
 
-    def test_zero_carrots_needed(self):
-        assert eat(5, 0, 10) == [5, 10]
-
-    def test_zero_carrots_remaining(self):
-        assert eat(5, 6, 0) == [5, 0]
-
-    def test_boundary_carrots_eaten(self):
-        assert eat(1000, 5, 10) == [1015, 5]
-
-    def test_boundary_carrots_needed(self):
-        assert eat(5, 1000, 1000) == [2005, 0]
-
-    def test_boundary_carrots_remaining(self):
-        assert eat(5, 6, 1000) == [1005, 994]
-
-    def test_all_zero_values(self):
+    def test_all_zero(self):
         assert eat(0, 0, 0) == [0, 0]
 
-    def test_large_values(self):
-        assert eat(999, 999, 999) == [1998, 0]
+    def test_max_values(self):
+        assert eat(1000, 1000, 1000) == [2000, 0]
 
-    def test_need_equals_remaining(self):
-        assert eat(5, 5, 5) == [10, 0]
-
-    def test_need_greater_than_remaining(self):
-        assert eat(2, 11, 5) == [7, 0]
+    def test_large_numbers(self):
+        assert eat(500, 600, 700) == [1200, 100]

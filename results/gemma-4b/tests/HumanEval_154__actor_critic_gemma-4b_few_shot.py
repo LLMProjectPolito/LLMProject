@@ -42,7 +42,7 @@ def test_cycpattern_check_empty_b():
     assert cycpattern_check("abcd", "") == True
 
 def test_cycpattern_check_b_longer_than_a():
-    assert cycpattern_check("abc", "abcdef") == False
+    assert cycpattern_check("abc", "abcd") == False
 
 def test_cycpattern_check_b_equal_to_a():
     assert cycpattern_check("abc", "abc") == True

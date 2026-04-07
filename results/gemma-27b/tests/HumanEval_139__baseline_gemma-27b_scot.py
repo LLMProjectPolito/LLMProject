@@ -31,30 +31,23 @@ def special_factorial(n):
     if n <= 0:
         raise ValueError("Input must be a positive integer.")
 
+    def factorial(num):
+        if num == 0:
+            return 1
+        else:
+            return num * factorial(num-1)
+
     result = 1
     for i in range(1, n + 1):
-        factorial = 1
-        for j in range(1, i + 1):
-            factorial *= j
-        result *= factorial
+        result *= factorial(i)
     return result
-
-def factorial(n):
-    if n == 0:
-        return 1
-    else:
-        return n * factorial(n-1)
 
 def test_special_factorial_base_case():
     assert special_factorial(1) == 1
 
-def test_special_factorial_small_value_2():
+def test_special_factorial_small_values():
     assert special_factorial(2) == 2
-
-def test_special_factorial_small_value_3():
     assert special_factorial(3) == 12
-
-def test_special_factorial_small_value_4():
     assert special_factorial(4) == 288
 
 def test_special_factorial_larger_value():
@@ -67,3 +60,5 @@ def test_special_factorial_zero():
 def test_special_factorial_type_error():
     with pytest.raises(TypeError):
         special_factorial(2.5)
+    with pytest.raises(TypeError):
+        special_factorial("2")

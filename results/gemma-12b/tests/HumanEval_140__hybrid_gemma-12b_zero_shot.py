@@ -35,17 +35,14 @@ def test_multiple_consecutive_spaces_at_beginning():
 def test_multiple_consecutive_spaces_at_end():
     assert fix_spaces("Example 5   ") == "Example_5-"
 
-def test_multiple_consecutive_spaces_in_middle():
-    assert fix_spaces("Example  6  7") == "Example_6-7"
-
 def test_mixed_spaces():
-    assert fix_spaces("Example  8   9  10") == "Example_8-9_10"
+    assert fix_spaces("Example  6  7") == "Example__6-7"
 
 def test_only_spaces():
     assert fix_spaces("   ") == "-"
 
-def test_long_string_with_consecutive_spaces():
-    assert fix_spaces("This is a very long string with   multiple    consecutive spaces.") == "This_is_a_very_long_string_with-multiple-consecutive_spaces."
+def test_long_string_with_multiple_consecutive_spaces():
+    assert fix_spaces("This is a  very   long   string with  multiple   consecutive spaces.") == "This_is_a-very--long--string_with_multiple-consecutive_spaces."
 
 def test_string_with_tabs_and_spaces():
     assert fix_spaces("Example\t 1") == "Example_1"
@@ -60,13 +57,16 @@ def test_string_with_numbers_and_spaces():
     assert fix_spaces("123 Example   456") == "123_Example-456"
 
 def test_string_with_mixed_characters_and_spaces():
-    assert fix_spaces("a b  c   d") == "a_b-c_d"
+    assert fix_spaces("a1b2c Example   d3e4") == "a1b2c_Example-d3e4"
 
 def test_string_with_consecutive_spaces_and_leading_trailing_spaces():
     assert fix_spaces("  a   b  ") == "--a-b-"
 
-def test_long_string_with_multiple_consecutive_spaces_suite2():
-    assert fix_spaces("This is a  very   long string with    multiple     consecutive spaces.") == "This_is_a-very--long_string_with---multiple-----consecutive_spaces."
+def test_string_with_only_consecutive_spaces():
+    assert fix_spaces("     ") == "-" * (len("     "))
 
-def test_mixed_spaces_suite2():
-    assert fix_spaces("Example  6  7") == "Example_6-7"
+def test_string_with_single_consecutive_spaces():
+    assert fix_spaces("a  b") == "a__b"
+
+def test_string_with_mixed_spaces():
+    assert fix_spaces("a b  c   d") == "a_b-c-d"

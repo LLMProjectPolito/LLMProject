@@ -68,20 +68,14 @@ def test_words_with_empty_string_and_same_unique_chars():
 def test_words_with_special_characters():
     assert find_max(["hello!", "world?"]) == "world?"
 
+def test_words_with_numbers():
+    assert find_max(["123", "abc"]) == "123"
+
 def test_long_words():
     assert find_max(["abcdefghijklmnopqrstuvwxyz", "abc"]) == "abcdefghijklmnopqrstuvwxyz"
 
 def test_duplicate_words():
     assert find_max(["hello", "hello", "world"]) == "hello"
 
-def test_words_with_numbers():
-    assert find_max(["123", "abc"]) == "123"
-
 def test_case_sensitivity():
     assert find_max(["Hello", "hello"]) == "Hello"
-
-def test_words_with_mixed_characters():
-    assert find_max(["a1b2c", "abc"]) == "a1b2c"
-
-def test_lexicographical_tiebreaker():
-    assert find_max(["cab", "abc"]) == "abc"

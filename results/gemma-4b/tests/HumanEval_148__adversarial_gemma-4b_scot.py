@@ -41,37 +41,35 @@ def bf(planet1, planet2):
     result = []
     for planet in planets:
         if planet != planet1 and planet != planet2:
-            if planet1 != planet2:
-                if planet1 < planet < planet2:
-                    result.append(planet)
-            else:
+            if planet1 < planet < planet2:
                 result.append(planet)
+
     return tuple(sorted(result))
 
 
-def test_valid_planet_names_jupiter_neptune():
+def test_valid_planets_jupiter_neptune():
     assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
 
-def test_valid_planet_names_earth_mercury():
+def test_valid_planets_earth_mercury():
     assert bf("Earth", "Mercury") == ("Venus")
 
-def test_valid_planet_names_mercury_uranus():
+def test_valid_planets_mercury_uranus():
     assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
 
-def test_valid_planet_names_venus_earth():
+def test_valid_planets_venus_earth():
     assert bf("Venus", "Earth") == ("Mars")
+
+def test_valid_planets_jupiter_jupiter():
+    assert bf("Jupiter", "Jupiter") == ()
 
 def test_invalid_planet_name():
     assert bf("Pluto", "Neptune") == ()
 
-def test_same_planet_names():
-    assert bf("Earth", "Earth") == ("Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
+def test_invalid_planet_name_empty():
+    assert bf("", "Neptune") == ()
 
-def test_planet1_before_planet2():
-    assert bf("Mercury", "Venus") == ("Earth", "Mars", "Jupiter", "Saturn")
+def test_adjacent_planets():
+    assert bf("Mars", "Jupiter") == ("Earth", "Venus", "Mercury")
 
-def test_planet2_before_planet1():
-    assert bf("Venus", "Mercury") == ("Earth", "Mars", "Jupiter", "Saturn")
-
-def test_planet1_equals_planet2():
-    assert bf("Earth", "Earth") == ("Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
+def test_same_orbit():
+    assert bf("Earth", "Earth") == ()

@@ -63,17 +63,20 @@ def test_numbers_and_letters():
 def test_special_characters_and_letters():
     assert solve("!a@B#") == "!A@b#"
 
-def test_string_with_spaces():
-    assert solve("a b C") == "A b c"
+def test_only_special_characters():
+    assert solve("!@#$") == "$#@!"
 
 def test_long_string():
     assert solve("ThisIsALongString") == "tHISiSaLONGsTRING"
 
-def test_string_with_only_special_characters():
-    assert solve("!@#$%^") == "^%$#@!"
+def test_string_with_spaces():
+    assert solve("hello world") == "HELLO WORLD"
 
 def test_string_with_unicode_characters():
     assert solve("你好世界") == "你好世界"
 
-def test_string_with_numbers_and_special_characters():
+def test_string_with_numbers_and_special_chars():
     assert solve("123!@#") == "#@!321"
+
+def test_string_with_mixed_cases_and_numbers():
+    assert solve("aBc12") == "AbC12"

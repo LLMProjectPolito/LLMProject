@@ -38,7 +38,7 @@ def test_eat_boundary_need_equals_remaining():
     assert eat(5, 10, 10) == [20, 0]
 
 def test_eat_boundary_need_slightly_greater_than_remaining():
-    assert eat(2, 11, 10) == [12, 0]
+    assert eat(2, 11, 10) == [22, 0]
 
 def test_eat_boundary_need_equals_zero():
     assert eat(5, 0, 10) == [5, 10]

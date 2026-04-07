@@ -24,64 +24,60 @@ def fix_spaces(text):
     fix_spaces(" Example 2") == "_Example_2"
     fix_spaces(" Example   3") == "_Example-3"
     """
-    text = text.replace("  ", "-")
-    text = text.replace(" ", "_")
-    return text
+    result = ""
+    count = 0
+    for char in text:
+        if char == ' ':
+            count += 1
+            if count <= 2:
+                result += "_"
+        else:
+            count = 0
+            result += char
+    return result
 
 ### SCoT Steps:
 
-### STEP 1: REASONING
+# STEP 1: REASONING - Analyze functional goals and constraints.
 # The function `fix_spaces` aims to replace spaces in a string with underscores.
 # If there are more than two consecutive spaces, it replaces them with a hyphen.
-# We need to test various scenarios including:
-# 1. No spaces: The input string has no spaces.
-# 2. Single space: The input string has a single space.
-# 3. Multiple spaces: The input string has multiple spaces between words.
-# 4. Consecutive spaces: The input string has more than two consecutive spaces.
-# 5. Leading/trailing spaces: The input string has spaces at the beginning or end.
-# 6. Empty string: The input string is empty.
-# 7. String with only spaces: The input string contains only spaces.
+# The function should handle empty strings, strings with no spaces, strings with single spaces,
+# strings with multiple spaces, and strings with more than two consecutive spaces.
+# Edge cases include empty string, string with only spaces, string with leading/trailing spaces.
 
-### STEP 2: PLAN
-# Test functions:
-# - test_no_spaces: Tests the case where the input string has no spaces.
-# - test_single_space: Tests the case where the input string has a single space.
-# - test_multiple_spaces: Tests the case where the input string has multiple spaces between words.
-# - test_consecutive_spaces: Tests the case where the input string has more than two consecutive spaces.
-# - test_leading_trailing_spaces: Tests the case where the input string has spaces at the beginning or end.
-# - test_empty_string: Tests the case where the input string is empty.
-# - test_only_spaces: Tests the case where the input string contains only spaces.
+# STEP 2: PLAN - List test functions names and scenarios.
+# test_empty_string: Test with an empty string.
+# test_no_spaces: Test with a string containing no spaces.
+# test_single_space: Test with a string containing a single space.
+# test_multiple_spaces: Test with a string containing multiple spaces.
+# test_consecutive_spaces: Test with a string containing more than two consecutive spaces.
+# test_leading_trailing_spaces: Test with a string containing leading and trailing spaces.
+# test_mixed_spaces: Test with a string containing a mix of spaces and other characters.
 
-### STEP 3: CODE
-###
-# test_no_spaces.py
-def test_no_spaces():
-    assert fix_spaces("Example") == "Example"
-
-# test_single_space.py
-def test_single_space():
-    assert fix_spaces("Example 1") == "Example_1"
-
-# test_multiple_spaces.py
-def test_multiple_spaces():
-    assert fix_spaces(" Example 2") == "_Example_2"
-
-# test_consecutive_spaces.py
-def test_consecutive_spaces():
-    assert fix_spaces(" Example   3") == "_Example-3"
-
-# test_leading_trailing_spaces.py
-def test_leading_trailing_spaces():
-    assert fix_spaces("  Hello World  ") == "_Hello_World_"
-
-# test_empty_string.py
+# STEP 3: CODE - Write the high-quality pytest suite.
 def test_empty_string():
     assert fix_spaces("") == ""
 
-# test_only_spaces.py
-def test_only_spaces():
-    assert fix_spaces("   ") == ""
+def test_no_spaces():
+    assert fix_spaces("Example") == "Example"
 
-# test_mixed_spaces.py
+def test_single_space():
+    assert fix_spaces("Example 1") == "Example_1"
+
+def test_multiple_spaces():
+    assert fix_spaces(" Example 2") == "_Example_2"
+
+def test_consecutive_spaces():
+    assert fix_spaces(" Example   3") == "_Example-3"
+
+def test_leading_trailing_spaces():
+    assert fix_spaces("  Hello World  ") == "_Hello_World_"
+
 def test_mixed_spaces():
-    assert fix_spaces("Hello  World!  ") == "Hello_World!"
+    assert fix_spaces("This is a test string.  ") == "This_is_a_test_string__"
+
+def test_all_spaces():
+    assert fix_spaces("   ") == "--"
+
+def test_long_consecutive_spaces():
+    assert fix_spaces("This has many   spaces   in a row.") == "This_has_many---spaces---in_a_row."

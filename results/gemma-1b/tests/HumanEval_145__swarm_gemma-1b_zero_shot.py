@@ -30,7 +30,7 @@ def order_by_points(nums: List[int]) -> List[int]:
 
     def digit_sum(n):
         s = 0
-        for digit in str(n):
+        for digit in str(abs(n)):
             s += int(digit)
         return s
 
@@ -52,7 +52,7 @@ def order_by_points(nums: List[int]) -> List[int]:
 
     def digit_sum(n):
         s = 0
-        for digit in str(n):
+        for digit in str(abs(n)):
             s += int(digit)
         return s
 
@@ -62,9 +62,8 @@ def test_order_by_points():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
     assert order_by_points([]) == []
     assert order_by_points([5, 2, 8, 1, 9]) == [1, 2, 5, 8, 9]
-    assert order_by_points([-1, -11, 1, 11]) == [-1, -11, 1, 11]
+    assert order_by_points([-1, -11, 1, -12]) == [-1, -11, 1, -12]
     assert order_by_points([10, 20, 30]) == [10, 20, 30]
     assert order_by_points([1, 2, 3, 4, 5]) == [1, 2, 3, 4, 5]
     assert order_by_points([11, 22, 33]) == [11, 22, 33]
-    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
-    print("All tests passed")
+    assert order_by_points([1, 11, -1, -11, -12, 111]) == [-1, -11, 1, -12, 111, 1]

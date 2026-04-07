@@ -44,10 +44,9 @@ def test_special_factorial_positive_integer():
     assert special_factorial(4) == 288
     assert special_factorial(5) == 34560
     assert special_factorial(6) == 4177926400
-    assert special_factorial(7) == 570000000000
-    assert special_factorial(8) == 8224697280000000
-    assert special_factorial(9) == 1186167640000000000
-    assert special_factorial(10) == 17682880000000000000
+    assert special_factorial(7) == 5189184000000
+    assert special_factorial(8) == 622702080000000
+    assert special_factorial(9) == 78865788000000000
 
 def test_special_factorial_zero():
     assert special_factorial(0) == 1
@@ -57,4 +56,5 @@ def test_special_factorial_negative_integer():
     assert special_factorial(-5) == 1
 
 def test_special_factorial_large_integer():
-    assert special_factorial(15) == 175453945240000000000000
+    assert special_factorial(10) == 3628800 * 3628800 * 3628800 * 3628800 * 3628800 * 3628800 * 3628800 * 3628800 * 3628800 * 3628800
+    assert special_factorial(11) == 3628800 * 3628800 * 3628800 * 3628800 * 3628800 * 3628800 * 3628800 * 3628800 * 3628800 * 3628800 * 3628800

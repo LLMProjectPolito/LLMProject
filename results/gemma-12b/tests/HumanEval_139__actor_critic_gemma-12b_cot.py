@@ -40,27 +40,23 @@ def special_factorial(n):
     return result
 
 def test_special_factorial_positive_integer():
-    assert special_factorial(1) == 1, "Test case for n=1"
-    assert special_factorial(2) == 2, "Test case for n=2"
-    assert special_factorial(3) == 18, "Test case for n=3"
-    assert special_factorial(4) == 288, "Test case for n=4"
-    assert special_factorial(5) == 34560, "Test case for n=5"
-    assert special_factorial(6) == 6048000, "Test case for n=6"
-    assert special_factorial(10) == 13168189440000, "Test case for n=10"
-    assert special_factorial(12) == 4714246787776000000, "Test case for n=12 - Larger input to check for potential overflow"
+    # Assert the special factorial for various positive integers
+    assert special_factorial(1) == 1
+    assert special_factorial(2) == 2
+    assert special_factorial(3) == 18
+    assert special_factorial(4) == 288
+    assert special_factorial(5) == 34560
+    assert special_factorial(6) == 6451200
+    assert special_factorial(10) == 13168189440000
 
-def test_special_factorial_invalid_input_float():
-    with pytest.raises(TypeError):
-        special_factorial(1.5), "Test that float input raises TypeError"
+def test_special_factorial_type_error():
+    invalid_inputs = [1.5, "abc", [1, 2, 3]]
+    for input_val in invalid_inputs:
+        with pytest.raises(TypeError):
+            special_factorial(input_val)
 
-def test_special_factorial_invalid_input_string():
-    with pytest.raises(TypeError):
-        special_factorial("abc"), "Test that string input raises TypeError"
-
-def test_special_factorial_invalid_input_list():
-    with pytest.raises(TypeError):
-        special_factorial([1, 2, 3]), "Test that list input raises TypeError"
-
-def test_special_factorial_negative_input():
-    with pytest.raises(ValueError):
-        special_factorial(0), "Test that n=0 raises ValueError"
+def test_special_factorial_value_error():
+    invalid_inputs = [0, -1, -5]
+    for input_val in invalid_inputs:
+        with pytest.raises(ValueError):
+            special_factorial(input_val)

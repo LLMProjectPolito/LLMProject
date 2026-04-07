@@ -48,27 +48,24 @@ def test_invalid_file_name_not_letter_before_dot():
     assert file_name_check("1example.txt") == "No"
     assert file_name_check("example!.txt") == "No"
     assert file_name_check("example#.txt") == "No"
+    assert file_name_check("example$.txt") == "No"
 
 def test_invalid_file_name_invalid_extension():
     assert file_name_check("example.pdf") == "No"
     assert file_name_check("example.jpg") == "No"
-    assert file_name_check("example.dat") == "No"
+    assert file_name_check("example.xyz") == "No"
     assert file_name_check("example.") == "No"
 
 def test_invalid_file_name_empty_extension():
     assert file_name_check("example.") == "No"
 
-def test_file_name_with_spaces():
-    assert file_name_check("example .txt") == "No"
-    assert file_name_check(" example.txt") == "No"
-    assert file_name_check("example.txt ") == "No"
+def test_file_name_with_digits_and_valid_extension():
+    assert file_name_check("1.txt") == "Yes"
+    assert file_name_check("12.txt") == "Yes"
+    assert file_name_check("123.txt") == "Yes"
+    assert file_name_check("1234.txt") == "No"
 
-def test_file_name_with_special_characters():
-    assert file_name_check("example@.txt") == "No"
-    assert file_name_check("example!.txt") == "No"
-    assert file_name_check("example#.txt") == "No"
-    assert file_name_check("example$.txt") == "No"
-
-def test_file_name_with_unicode_characters():
-    assert file_name_check("example你好.txt") == "No"
-    assert file_name_check("你好example.txt") == "No"
+def test_file_name_with_digits_and_invalid_extension():
+    assert file_name_check("1.pdf") == "No"
+    assert file_name_check("12.jpg") == "No"
+    assert file_name_check("123.xyz") == "No"

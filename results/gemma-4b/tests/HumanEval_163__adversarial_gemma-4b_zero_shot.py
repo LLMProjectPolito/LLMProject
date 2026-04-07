@@ -41,27 +41,25 @@ def test_generate_integers_ascending():
     assert generate_integers(1, 5) == [2, 4]
     assert generate_integers(6, 6) == [6]
 
-def test_generate_integers_with_zeros():
-    assert generate_integers(20, 28) == [2, 4, 6, 8]
-    assert generate_integers(100, 108) == [0, 2, 4, 6, 8]
-    assert generate_integers(200, 208) == [0, 2, 4, 6, 8]
+def test_generate_integers_empty_range():
+    assert generate_integers(10, 10) == []
+    assert generate_integers(11, 11) == []
 
-def test_generate_integers_large_range():
-    assert generate_integers(1000, 1010) == [0, 2, 4, 6, 8]
-    assert generate_integers(2000, 2008) == [0, 2, 4, 6, 8]
+def test_generate_integers_with_zero():
+    assert generate_integers(0, 2) == [2]
+    assert generate_integers(2, 0) == [2]
+    assert generate_integers(10, 12) == []
+
+def test_generate_integers_large_numbers():
+    assert generate_integers(123456, 123456) == [2, 4, 6]
+    assert generate_integers(123456789, 123456789) == [2, 4, 6, 8]
 
 def test_generate_integers_no_even_digits():
     assert generate_integers(1, 3) == []
     assert generate_integers(11, 13) == []
 
-def test_generate_integers_single_digit():
-    assert generate_integers(2, 2) == [2]
-    assert generate_integers(8, 8) == [8]
-    assert generate_integers(1, 1) == []
-    assert generate_integers(9, 9) == []
-
-def test_generate_integers_edge_cases():
-    assert generate_integers(0, 1) == []
-    assert generate_integers(1, 0) == []
-    assert generate_integers(2, 3) == [2]
-    assert generate_integers(3, 2) == [2]
+def test_generate_integers_negative_input():
+    with pytest.raises(ValueError):
+        generate_integers(-1, 5)
+    with pytest.raises(ValueError):
+        generate_integers(1, -5)

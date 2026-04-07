@@ -37,8 +37,12 @@ def is_prime(n):
 
 def test_prime_number():
     assert x_or_y(7, 34, 12) == 34
+    assert x_or_y(11, 100, 200) == 100
+    assert x_or_y(2, 5, 10) == 5
 
 def test_non_prime_number():
+    assert x_or_y(4, 5, 10) == 10
+    assert x_or_y(9, 1, 2) == 2
     assert x_or_y(15, 8, 5) == 5
 
 def test_n_is_one():
@@ -56,12 +60,8 @@ def test_small_prime():
 def test_small_non_prime():
     assert x_or_y(4, 1, 2) == 2
 
-def test_larger_prime():
-    assert x_or_y(29, 100, 200) == 100
-
-def test_larger_non_prime():
-    assert x_or_y(30, 100, 200) == 200
-
-def test_examples():
+def test_docstring_example_1():
     assert x_or_y(7, 34, 12) == 34
+
+def test_docstring_example_2():
     assert x_or_y(15, 8, 5) == 5

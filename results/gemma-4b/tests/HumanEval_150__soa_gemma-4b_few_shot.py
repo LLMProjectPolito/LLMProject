@@ -20,32 +20,26 @@ def x_or_y(n, x, y):
     for x_or_y(15, 8, 5) == 5
     
     """
-    def is_prime(n):
-        if n <= 1:
-            return False
-        for i in range(2, int(n**0.5) + 1):
-            if n % i == 0:
-                return False
-        return True
-
-    if is_prime(n):
-        return x
-    else:
+    if n == 1:
         return y
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return y
+    return x
 
 def test_x_or_y_prime():
     assert x_or_y(7, 34, 12) == 34
-    assert x_or_y(11, 22, 33) == 22
-    assert x_or_y(13, 1, 2) == 1
-    assert x_or_y(17, 100, 50) == 100
-    assert x_or_y(19, 10, 20) == 10
+    assert x_or_y(11, 22, 1) == 22
+    assert x_or_y(13, 100, 5) == 100
+    assert x_or_y(17, 99, 1) == 99
+    assert x_or_y(19, 5, 20) == 5
 
 def test_x_or_y_not_prime():
     assert x_or_y(15, 8, 5) == 5
-    assert x_or_y(20, 1, 2) == 1
-    assert x_or_y(21, 100, 50) == 50
-    assert x_or_y(22, 10, 20) == 20
-    assert x_or_y(25, 1, 2) == 1
+    assert x_or_y(20, 1, 10) == 10
+    assert x_or_y(21, 7, 21) == 21
+    assert x_or_y(22, 3, 1) == 1
+    assert x_or_y(25, 4, 25) == 25
 
 def test_x_or_y_edge_cases():
     assert x_or_y(1, 34, 12) == 12
@@ -57,27 +51,3 @@ def test_x_or_y_edge_cases():
     assert x_or_y(8, 34, 12) == 12
     assert x_or_y(9, 34, 12) == 12
     assert x_or_y(10, 34, 12) == 12
-    assert x_or_y(12, 34, 12) == 12
-    assert x_or_y(14, 34, 12) == 12
-    assert x_or_y(16, 34, 12) == 12
-    assert x_or_y(18, 34, 12) == 12
-    assert x_or_y(20, 34, 12) == 12
-    assert x_or_y(24, 34, 12) == 12
-    assert x_or_y(26, 34, 12) == 12
-    assert x_or_y(27, 34, 12) == 12
-    assert x_or_y(28, 34, 12) == 12
-    assert x_or_y(30, 34, 12) == 12
-    assert x_or_y(32, 34, 12) == 12
-    assert x_or_y(33, 34, 12) == 12
-    assert x_or_y(35, 34, 12) == 12
-    assert x_or_y(36, 34, 12) == 12
-    assert x_or_y(38, 34, 12) == 12
-    assert x_or_y(39, 34, 12) == 12
-    assert x_or_y(40, 34, 12) == 12
-    assert x_or_y(42, 34, 12) == 12
-    assert x_or_y(44, 34, 12) == 12
-    assert x_or_y(45, 34, 12) == 12
-    assert x_or_y(46, 34, 12) == 12
-    assert x_or_y(48, 34, 12) == 12
-    assert x_or_y(49, 34, 12) == 34
-    assert x_or_y(50, 34, 12) == 12

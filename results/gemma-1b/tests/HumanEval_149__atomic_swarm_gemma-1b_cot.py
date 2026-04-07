@@ -76,5 +76,5 @@ def list_sort(lst):
     for s in lst:
         if len(s) % 2 == 0:
             new_list.append(s)
-    new_list.sort()
+    new_list.sort(key=lambda x: (len(x), x))
     return new_list

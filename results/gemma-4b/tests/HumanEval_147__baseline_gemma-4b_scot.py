@@ -41,51 +41,55 @@ def get_max_triples(n):
 
 ### SCoT Steps:
 
-### STEP 1: REASONING
-# The function `get_max_triples(n)` calculates the number of triples (i, j, k) in an array `a` of length `n` such that `i < j < k` and the sum `a[i] + a[j] + a[k]` is divisible by 3.
+# STEP 1: REASONING
+# The function `get_max_triples(n)` calculates the number of triples (i, j, k) in an array `a` of length `n` such that `i < j < k` and `a[i] + a[j] + a[k]` is divisible by 3.
 # The array `a` is generated as `a[i] = i * i - i + 1`.
-# The test suite should cover various input values of `n` to ensure the function returns the correct count of triples.
-# We need to consider edge cases like n = 1, n = 2, and n = 3.
-# We also need to consider cases where the number of triples is 0 or greater.
+# We need to test different values of `n` and verify that the returned count is correct.
+# We should consider edge cases like n = 1, n = 2, and n = 3.
+# We should also consider larger values of n to ensure the code is efficient.
 
-### STEP 2: PLAN
+# STEP 2: PLAN
 # Test cases:
-# 1. n = 1: Should return 0 (no triples possible)
-# 2. n = 2: Should return 0 (no triples possible)
-# 3. n = 3: Should return 0 (no triples possible)
-# 4. n = 4: Should return 1 (one triple: (1, 3, 7))
-# 5. n = 5: Should return 1 (one triple: (1, 7, 13))
-# 6. n = 6: Should return 3 (multiple triples)
-# 7. n = 7: Should return 5 (multiple triples)
-# 8. n = 8: Should return 8 (multiple triples)
+# - n = 1: Should return 0
+# - n = 2: Should return 0
+# - n = 3: Should return 0
+# - n = 4: Should return 0
+# - n = 5: Should return 1
+# - n = 6: Should return 2
+# - n = 7: Should return 3
+# - n = 8: Should return 4
 
-### STEP 3: CODE
-def test_get_max_triples_n1():
+# Test functions:
+# - test_n_1()
+# - test_n_2()
+# - test_n_3()
+# - test_n_4()
+# - test_n_5()
+# - test_n_6()
+# - test_n_7()
+# - test_n_8()
+
+# STEP 3: CODE
+def test_n_1():
     assert get_max_triples(1) == 0
 
-def test_get_max_triples_n2():
+def test_n_2():
     assert get_max_triples(2) == 0
 
-def test_get_max_triples_n3():
+def test_n_3():
     assert get_max_triples(3) == 0
 
-def test_get_max_triples_n4():
-    assert get_max_triples(4) == 1
+def test_n_4():
+    assert get_max_triples(4) == 0
 
-def test_get_max_triples_n5():
+def test_n_5():
     assert get_max_triples(5) == 1
 
-def test_get_max_triples_n6():
-    assert get_max_triples(6) == 3
+def test_n_6():
+    assert get_max_triples(6) == 2
 
-def test_get_max_triples_n7():
-    assert get_max_triples(7) == 5
+def test_n_7():
+    assert get_max_triples(7) == 3
 
-def test_get_max_triples_n8():
-    assert get_max_triples(8) == 8
-
-def test_get_max_triples_n9():
-    assert get_max_triples(9) == 12
-
-def test_get_max_triples_n10():
-    assert get_max_triples(10) == 21
+def test_n_8():
+    assert get_max_triples(8) == 4

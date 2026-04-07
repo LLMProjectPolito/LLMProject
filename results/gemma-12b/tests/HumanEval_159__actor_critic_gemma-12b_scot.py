@@ -60,80 +60,43 @@ def eat(number, need, remaining):
 
     Have fun :)
     """
-    if not (0 <= number <= 1000 and 0 <= need <= 1000 and 0 <= remaining <= 1000):
-        raise ValueError("Inputs must be between 0 and 1000")
-
-    if need < 0:
-        raise ValueError("Need cannot be negative")
-    if remaining < 0:
-        raise ValueError("Remaining cannot be negative")
-
-    total_eaten = number
-    remaining_after_eating = remaining
-    if remaining >= need:
-        total_eaten += need
-        remaining_after_eating -= need
-    else:
-        total_eaten += remaining
-        remaining_after_eating = 0
+    total_eaten = number + remaining
+    remaining_after_eating = max(0, total_eaten - need)
     return [total_eaten, remaining_after_eating]
 
-def test_enough_remaining_carrots():
-    assert eat(5, 6, 10) == [11, 4]
 
-def test_insufficient_remaining_carrots():
-    assert eat(4, 8, 9) == [12, 1]
+def test_enough_carrots():
+    assert eat(5, 6, 10) == [15, 4]
 
-def test_zero_remaining_carrots():
+def test_insufficient_carrots():
+    assert eat(4, 8, 9) == [13, 5]
+
+def test_need_greater_than_remaining_less_than_number():
+    assert eat(5, 8, 2) == [7, 0]
+
+def test_no_carrots_remaining():
     assert eat(1, 10, 0) == [1, 0]
 
-def test_zero_need_carrots():
-    assert eat(5, 0, 10) == [5, 10]
+def test_no_need():
+    assert eat(5, 0, 10) == [15, 10]
 
-def test_zero_eaten_carrots():
+def test_no_carrots_eaten():
     assert eat(0, 10, 10) == [10, 0]
 
-def test_edge_case_max_values():
+def test_max_values():
     assert eat(1000, 1000, 1000) == [2000, 0]
 
-def test_edge_case_min_values():
+def test_min_values():
     assert eat(0, 0, 0) == [0, 0]
 
-def test_need_equals_remaining_carrots():
-    assert eat(2, 5, 5) == [7, 0]
+def test_need_equals_remaining():
+    assert eat(5, 5, 5) == [10, 0]
 
 def test_large_numbers():
     assert eat(500, 600, 700) == [1200, 100]
 
-def test_need_significantly_greater_than_remaining():
-    assert eat(1, 100, 2) == [3, 0]
+def test_large_remaining_small_need():
+    assert eat(2, 1, 1000) == [1002, 999]
 
-def test_input_validation_number_too_large():
-    with pytest.raises(ValueError) as excinfo:
-        eat(1001, 6, 10)
-    assert str(excinfo.value) == "Inputs must be between 0 and 1000"
-
-def test_input_validation_need_too_large():
-    with pytest.raises(ValueError) as excinfo:
-        eat(5, 1001, 10)
-    assert str(excinfo.value) == "Inputs must be between 0 and 1000"
-
-def test_input_validation_remaining_too_large():
-    with pytest.raises(ValueError) as excinfo:
-        eat(5, 6, 1001)
-    assert str(excinfo.value) == "Inputs must be between 0 and 1000"
-
-def test_negative_need_raises_error():
-    with pytest.raises(ValueError) as excinfo:
-        eat(5, -1, 10)
-    assert str(excinfo.value) == "Need cannot be negative"
-
-def test_negative_remaining_raises_error():
-    with pytest.raises(ValueError) as excinfo:
-        eat(5, 6, -1)
-    assert str(excinfo.value) == "Remaining cannot be negative"
-
-def test_negative_number_raises_error():
-    with pytest.raises(ValueError) as excinfo:
-        eat(-1, 6, 10)
-    assert str(excinfo.value) == "Inputs must be between 0 and 1000"
+def test_insufficient_carrots_2():
+    assert eat(1, 5, 2) == [3, 0]

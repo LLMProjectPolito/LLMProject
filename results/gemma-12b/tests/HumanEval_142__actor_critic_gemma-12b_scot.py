@@ -40,46 +40,37 @@ class TestSumSquares:
     def test_empty_list(self):
         assert sum_squares([]) == 0
 
-    def test_multiples_of_3_and_4(self):
-        lst = [1, 2, 3, 4, 5, 6]
-        expected_sum = 1 + 4 + 9 + 64 + 25 + 36
-        assert sum_squares(lst) == expected_sum
+    def test_multiple_of_3(self):
+        assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 2 + 9 + 4 + 5 + 36
 
-        lst = [3, 6, 9]
-        expected_sum = 9 + 36 + 81
-        assert sum_squares(lst) == expected_sum
+    def test_multiple_of_4(self):
+        assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 1 + 2 + 3 + 64 + 5 + 6 + 7 + 512
 
-    def test_multiples_of_4_only(self):
-        lst = [1, 2, 3, 4, 5, 6, 7, 8]
-        expected_sum = 1 + 2 + 3 + 64 + 5 + 6 + 7 + 512
-        assert sum_squares(lst) == expected_sum
+    def test_multiple_of_3_and_4(self):
+        assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1 + 2 + 9 + 64 + 5 + 6 + 7 + 512 + 81 + 10 + 11 + 144
 
-        lst = [4, 8, 12]
-        expected_sum = 64 + 512 + 144
-        assert sum_squares(lst) == expected_sum
-
-    def test_mixed_indices(self):
-        lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-        expected_sum = sum(lst[i]**2 if i % 3 == 0 else lst[i]**3 if i % 4 == 0 and i % 3 != 0 else lst[i] for i in range(len(lst)))
-        assert sum_squares(lst) == expected_sum
-
-    def test_no_multiples(self):
-        assert sum_squares([1, 2, 5, 7, 10]) == 1 + 2 + 5 + 7 + 10
+    def test_neither_multiple(self):
+        assert sum_squares([1, 2, 5, 7, 10]) == 25
 
     def test_negative_numbers(self):
-        lst = [-1, -2, -3, -4, -5]
-        expected_sum = (-1)**2 + (-2) + (-3)**2 + (-4)**3 + (-5)
-        assert sum_squares(lst) == expected_sum
+        assert sum_squares([-1, -2, -3, -4, -5]) == 1 - 4 + 9 - 64 - 125
 
-        assert sum_squares([-1,-5,2,-1,-5]) == -126
+    def test_mixed_numbers(self):
+        assert sum_squares([-1, 2, -3, 4, -5]) == 1 + 4 - 9 + 64 - 125
 
     def test_zero(self):
-        assert sum_squares([0, 1, 2, 3, 4]) == (0**2) + 1 + 2 + (3**2) + (4**3)
+        assert sum_squares([0, 1, 2, 3, 4]) == 0 + 1 + 4 + 9 + 16
 
     def test_large_list(self):
         lst = list(range(1, 21))
         expected_sum = sum(lst[i]**2 if i % 3 == 0 else lst[i]**3 if i % 4 == 0 and i % 3 != 0 else lst[i] for i in range(len(lst)))
         assert sum_squares(lst) == expected_sum
 
-    def test_index_zero(self):
-        assert sum_squares([5]) == 5
+    def test_only_multiples_of_3(self):
+        assert sum_squares([3, 6, 9, 12]) == 9 + 36 + 81 + 144
+
+    def test_only_multiples_of_4(self):
+        assert sum_squares([4, 8, 12, 16]) == 64 + 512 + 144 + 256
+
+    def test_mixed_multiples_of_3_and_4(self):
+        assert sum_squares([3, 4, 6, 8, 9, 12, 16]) == 9 + 64 + 36 + 512 + 81 + 144 + 256

@@ -74,31 +74,33 @@ class TestSimplify:
         assert simplify("100/200", "200/100") == True
         assert simplify("1000/2000", "2000/1000") == True
         assert simplify("12345/67890", "67890/12345") == True
-        assert simplify("12345/67890", "1/2") == False
+        assert simplify("12345/67891", "67891/12345") == False
 
     def test_edge_cases(self):
         """Test edge cases like fractions equal to 1."""
         assert simplify("1/1", "2/2") == True
         assert simplify("2/2", "3/3") == True
-        assert simplify("1/1", "1/1") == True
-        assert simplify("1/1", "5/5") == True
+        assert simplify("10/10", "11/11") == True
+        assert simplify("1/1", "1/2") == False
+        assert simplify("2/2", "1/1") == False
 
-    def test_mixed_numbers_as_strings(self):
-        """Test cases where mixed numbers are represented as strings."""
-        assert simplify("1 1/2", "2/3") == False # This test case is not valid as the function expects fractions in the format "numerator/denominator"
-        assert simplify("1/2", "1 1/2") == False # This test case is not valid as the function expects fractions in the format "numerator/denominator"
+    def test_fraction_simplification(self):
+        """Test cases where the fractions simplify to whole numbers before multiplication."""
+        assert simplify("2/4", "4/2") == True
+        assert simplify("3/6", "6/3") == True
+        assert simplify("4/8", "8/4") == True
+        assert simplify("5/10", "10/5") == True
+        assert simplify("6/12", "12/6") == True
 
-    def test_invalid_input_handling(self):
-        """Test cases with invalid input (not fractions).  These should not be tested as the prompt states that the input is valid."""
-        pass # The prompt states that x and n are valid fractions.
-
-    def test_zero_numerator(self):
-        """Test cases with zero numerator."""
-        assert simplify("0/1", "1/1") == True
-        assert simplify("0/1", "2/1") == True
-        assert simplify("1/1", "0/1") == True
-        assert simplify("1/1", "2/1") == False
-
-    def test_negative_numbers(self):
-        """Test cases with negative numbers. The prompt states that numerator and denominator are positive."""
-        pass # The prompt states that numerator and denominator are positive.
+    def test_mixed_cases(self):
+        """Test cases combining different scenarios."""
+        assert simplify("1/2", "3/4") == False
+        assert simplify("2/3", "1/2") == False
+        assert simplify("3/5", "2/3") == False
+        assert simplify("4/7", "1/2") == False
+        assert simplify("5/9", "2/3") == False
+        assert simplify("6/11", "1/2") == False
+        assert simplify("7/13", "2/3") == False
+        assert simplify("8/15", "1/2") == False
+        assert simplify("9/17", "2/3") == False
+        assert simplify("10/19", "1/2") == False

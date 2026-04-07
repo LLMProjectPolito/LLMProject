@@ -76,51 +76,30 @@ def test_all_non_prime_words():
     assert words_in_sentence("a an the") == ""
 
 def test_mixed_prime_and_non_prime():
-    assert words_in_sentence("hello world is a test") == "world is"
+    assert words_in_sentence("hello is a world") == "is"
 
 def test_long_sentence():
-    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "quick fox over dog"
+    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "over dog"
 
-def test_sentence_with_leading_and_trailing_spaces():
-    assert words_in_sentence("  hello world  ") == "hello world"
+def test_invalid_input_whitespace():
+    assert words_in_sentence("  is   a    test  ") == ""
 
-def test_sentence_with_multiple_spaces():
-    assert words_in_sentence("hello   world") == "hello world"
+def test_invalid_input_non_letters():
+    assert words_in_sentence("hello123 world!") == ""
 
-def test_sentence_with_prime_and_composite_length_words():
-    assert words_in_sentence("two three four five") == "three five"
+def test_prime_non_prime_mix():
+    assert words_in_sentence("one two three four five six seven") == "three five seven"
 
-def test_sentence_with_only_one_word_length_2():
-    assert words_in_sentence("to") == ""
+def test_boundary_lengths():
+    assert words_in_sentence("a ab abc abcd abcde") == "ab abc abcde"
 
-def test_sentence_with_only_one_word_length_3():
-    assert words_in_sentence("cat") == "cat"
+def test_long_word():
+    long_word = "a" * 53  # A prime number
+    assert words_in_sentence(long_word) == long_word
 
-def test_sentence_with_only_one_word_length_4():
-    assert words_in_sentence("word") == ""
+def test_word_length_two():
+    assert words_in_sentence("is") == "is"
 
-def test_longer_prime_word():
-    assert words_in_sentence("programming is fun") == "programming"
-
-def test_mixed_lengths():
-    assert words_in_sentence("the quick brown fox jumps over lazy") == "quick fox"
-
-def test_sentence_with_only_spaces():
-    assert words_in_sentence("   ") == ""
-
-def test_invalid_input_punctuation():
-    with pytest.raises(TypeError):
-        words_in_sentence("hello, world!")
-
-def test_invalid_input_numbers():
-    with pytest.raises(TypeError):
-        words_in_sentence("123 abc")
-
-def test_prime_number_2():
-    assert words_in_sentence("be") == "be"
-
-def test_prime_number_3():
-    assert words_in_sentence("sun") == "sun"
-
-def test_large_prime_word():
-    assert words_in_sentence("strengths") == "strengths"
+def test_sentence_too_long():
+    long_sentence = "a " * 101
+    assert words_in_sentence(long_sentence) == ""

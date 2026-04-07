@@ -32,31 +32,28 @@ def Strongest_Extension(class_name, extensions):
     return 'Slices.SErviNGSliCes' since 'SErviNGSliCes' is the strongest extension 
     (its strength is -1).
     Example:
-    for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
+    Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
     """
-    if not isinstance(class_name, str):
-        raise TypeError("class_name must be a string")
-    if not isinstance(extensions, list):
-        raise TypeError("extensions must be a list")
-    for extension in extensions:
-        if not isinstance(extension, str):
-            raise TypeError("Each element in extensions must be a string")
-
     strongest_extension = None
     max_strength = float('-inf')
 
+    if not extensions:
+        return f"{class_name}.None"
+
     for extension in extensions:
-        cap_count = sum(1 for char in extension if char.isupper())
-        sm_count = sum(1 for char in extension if char.islower())
+        cap_count = 0
+        sm_count = 0
+        for char in extension:
+            if char.isupper():
+                cap_count += 1
+            elif char.islower():
+                sm_count += 1
 
         strength = cap_count - sm_count
 
         if strength > max_strength:
             max_strength = strength
             strongest_extension = extension
-
-    if not extensions:
-        return f"{class_name}.None"
 
     return f"{class_name}.{strongest_extension}"
 
@@ -66,48 +63,29 @@ import pytest
 def test_basic():
     assert Strongest_Extension('Slices', ['SErviNGSliCes', 'Cheese', 'StuFfed']) == 'Slices.SErviNGSliCes'
 
-def test_example():
+def test_tie():
     assert Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
 
 def test_empty_extensions():
-    assert Strongest_Extension('MyClass', []) == 'MyClass.None'
+    assert Strongest_Extension('my_class', []) == 'my_class.None'
 
 def test_none_class_name():
-    assert Strongest_Extension(None, ['Extension1', 'Extension2']) == 'None.Extension1'
-
-def test_tie():
-    assert Strongest_Extension('Class', ['AB', 'Ba']) == 'Class.AB'
-
-def test_all_lowercase():
-    assert Strongest_Extension('Class', ['lowercase', 'anotherlowercase']) == 'Class.lowercase'
+    assert Strongest_Extension(None, ['AA', 'Be', 'CC']) == 'None.AA'
 
 def test_all_uppercase():
-    assert Strongest_Extension('Class', ['UPPERCASE', 'ANOTHERUPPERCASE']) == 'Class.UPPERCASE'
+    assert Strongest_Extension('Class', ['AAA', 'BBB', 'CCC']) == 'Class.AAA'
+
+def test_all_lowercase():
+    assert Strongest_Extension('Class', ['aaa', 'bbb', 'ccc']) == 'Class.aaa'
 
 def test_mixed_case():
-    assert Strongest_Extension('Class', ['MiXeD', 'CaSe']) == 'Class.MiXeD'
+    assert Strongest_Extension('Class', ['aA', 'Bb', 'Cc']) == 'Class.aA'
 
-def test_type_error_class_name():
-    with pytest.raises(TypeError):
-        Strongest_Extension(123, ['Extension'])
-
-def test_type_error_extensions():
-    with pytest.raises(TypeError):
-        Strongest_Extension('Class', 123)
-
-def test_type_error_extension_element():
-    with pytest.raises(TypeError):
-        Strongest_Extension('Class', ['Extension', 123])
+def test_with_non_alphabetic():
+    assert Strongest_Extension('Class', ['A1', 'b2', 'C3']) == 'Class.A1'
 
 def test_empty_string_extension():
-    assert Strongest_Extension('Class', ['']) == 'Class.'
+    assert Strongest_Extension('Class', ['A', '', 'B']) == 'Class.A'
 
-def test_non_ascii_characters():
-    assert Strongest_Extension('Class', ['éàçüö']) == 'Class.éàçüö'
-
-def test_numbers_and_symbols():
-    assert Strongest_Extension('Class', ['123!@#', 'abc']) == 'Class.abc'
-
-def test_very_long_extension():
-    long_extension = 'A' * 1000 + 'b' * 1000
-    assert Strongest_Extension('Class', [long_extension, 'short']) == 'Class.short'
+def test_same_strength_different_order():
+    assert Strongest_Extension('Class', ['AB', 'BA']) == 'Class.AB'

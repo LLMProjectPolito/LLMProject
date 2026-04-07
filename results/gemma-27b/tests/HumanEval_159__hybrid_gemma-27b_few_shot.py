@@ -66,7 +66,7 @@ def eat(number, need, remaining):
     remaining -= eaten
     return [total_eaten, remaining]
 
-# Pytest Suite - Consolidated
+# Pytest Suite - Consolidated and Enhanced
 def test_eat_enough_carrots():
     assert eat(5, 6, 10) == [11, 4]
     assert eat(4, 8, 9) == [12, 1]
@@ -79,38 +79,41 @@ def test_eat_not_enough_carrots():
 
 def test_eat_exactly_enough_carrots():
     assert eat(3, 5, 2) == [5, 0]
-    assert eat(7, 7, 0) == [7, 0]
+    assert eat(0, 0, 10) == [0, 10]
+    assert eat(5, 5, 0) == [5, 0]
 
 def test_eat_no_carrots_needed():
     assert eat(5, 0, 10) == [5, 10]
-    assert eat(0, 0, 5) == [0, 5]
+    assert eat(0, 0, 0) == [0, 0]
 
-def test_eat_no_carrots_remaining():
+def test_eat_zero_remaining():
     assert eat(5, 6, 0) == [5, 0]
     assert eat(0, 5, 0) == [0, 0]
-
-def test_eat_zero_initial_carrots():
-    assert eat(0, 5, 10) == [5, 5]
-    assert eat(0, 10, 5) == [5, 0]
-
-def test_eat_large_numbers():
-    assert eat(500, 500, 1000) == [1000, 500]
-    assert eat(500, 1000, 500) == [1000, 0]
-    assert eat(999, 1, 1) == [1000, 0]
-
-def test_eat_edge_cases():
-    assert eat(0, 0, 0) == [0, 0]
-    assert eat(1000, 1000, 1000) == [2000, 0]
-    assert eat(1000, 1, 0) == [1000, 0]
 
 def test_eat_max_values():
     assert eat(1000, 1000, 1000) == [2000, 0]
     assert eat(1000, 500, 500) == [1500, 0]
-    assert eat(500, 1000, 1000) == [1500, 500]
+    assert eat(500, 1000, 1000) == [1500, 0]
 
-def test_eat_more_edge_cases():
-    assert eat(1, 1, 1) == [2, 0]
-    assert eat(1, 2, 1) == [2, 0]
+def test_eat_edge_cases():
+    assert eat(0, 1, 1) == [1, 0]
+    assert eat(1, 0, 0) == [1, 0]
+    assert eat(0, 0, 0) == [0, 0]
+
+def test_eat_zero_need():
+    assert eat(5, 0, 10) == [5, 10]
+    assert eat(0, 0, 0) == [0, 0]
+    assert eat(10, 0, 5) == [10, 5]
+
+def test_eat_max_values_variations():
+    assert eat(0, 1000, 1000) == [1000, 0]
+    assert eat(1000, 0, 1000) == [1000, 1000]
+    assert eat(1000, 1000, 0) == [1000, 0]
+
+def test_eat_large_numbers():
+    assert eat(500, 500, 500) == [1000, 0]
+    assert eat(250, 750, 1000) == [1000, 0]
+    assert eat(750, 250, 500) == [1000, 0]
 
 # --- Additional Problems and Tests ---
 
@@ -127,6 +130,7 @@ def test_palindrome_empty():
 
 def test_palindrome_mixed_case():
     assert is_palindrome('Racecar') == False # Case sensitive
+    assert is_palindrome('madam') == True
 
 def test_palindrome_with_spaces():
     assert is_palindrome('A man a plan a canal Panama') == False # Spaces matter
@@ -148,3 +152,6 @@ def test_max_negative():
 
 def test_max_mixed():
     assert get_max([-1, 2, -3, 4]) == 4
+
+def test_max_duplicates():
+    assert get_max([1, 1, 1]) == 1

@@ -15,4 +15,13 @@ def compare(game,guess):
     compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) -> [4,4,1,0,0,6]
     """
 
-# ERROR: setup_competitive_graph() got an unexpected keyword argument 'model_a'
+import pytest
+
+def compare(game, guess):
+    results = []
+    for i in range(len(game)):
+        if game[i] == guess:
+            results.append(0)
+        else:
+            results.append(abs(guess - game[i]))
+    return results

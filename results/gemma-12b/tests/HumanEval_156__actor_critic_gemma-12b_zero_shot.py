@@ -14,72 +14,68 @@ def int_to_mini_roman(number):
 import pytest
 from your_module import int_to_mini_roman  # Replace your_module
 
-MAX_VALUE = 1000  # Define the maximum allowed value
+def test_int_to_mini_roman_basic():
+    assert int_to_mini_roman(1) == "i"
+    assert int_to_mini_roman(2) == "ii"
+    assert int_to_mini_roman(3) == "iii"
+    assert int_to_mini_roman(4) == "iv"
+    assert int_to_mini_roman(5) == "v"
+    assert int_to_mini_roman(6) == "vi"
+    assert int_to_mini_roman(7) == "vii"
+    assert int_to_mini_roman(8) == "viii"
+    assert int_to_mini_roman(9) == "ix"
+    assert int_to_mini_roman(10) == "x"
 
+def test_int_to_mini_roman_teens():
+    assert int_to_mini_roman(11) == "xi"
+    assert int_to_mini_roman(12) == "xii"
+    assert int_to_mini_roman(13) == "xiii"
+    assert int_to_mini_roman(14) == "xiv"
+    assert int_to_mini_roman(15) == "xv"
+    assert int_to_mini_roman(16) == "xvi"
+    assert int_to_mini_roman(17) == "xvii"
+    assert int_to_mini_roman(18) == "xviii"
+    assert int_to_mini_roman(19) == "xix"
 
-@pytest.mark.parametrize(
-    "number, expected_roman",
-    [
-        (1, "i"),
-        (2, "ii"),
-        (3, "iii"),
-        (4, "iv"),
-        (5, "v"),
-        (6, "vi"),
-        (7, "vii"),
-        (8, "viii"),
-        (9, "ix"),
-        (10, "x"),
-        (11, "xi"),
-        (19, "xix"),
-        (20, "xx"),
-        (39, "xxxix"),
-        (40, "xl"),
-        (41, "xli"),
-        (49, "xlix"),
-        (50, "l"),
-        (51, "li"),
-        (90, "xc"),
-        (91, "xci"),
-        (100, "c"),
-        (101, "ci"),
-        (149, "cxlix"),
-        (150, "cl"),
-        (152, "clii"),
-        (199, "xciix"),
-        (200, "cc"),
-        (399, "cccxciix"),
-        (400, "cd"),
-        (426, "cdxxvi"),
-        (444, "cdxliv"),
-        (499, "cdxciix"),
-        (500, "d"),
-        (501, "di"),
-        (900, "cm"),
-        (901, "cmi"),
-        (999, "cmxciix"),
-        (1000, "m"),
-    ],
-)
-def test_valid_input(number, expected_roman):
-    """Tests valid integer inputs and their corresponding Roman numeral representations."""
-    assert int_to_mini_roman(number) == expected_roman
+def test_int_to_mini_roman_multiples():
+    assert int_to_mini_roman(20) == "xx"
+    assert int_to_mini_roman(30) == "xxx"
+    assert int_to_mini_roman(40) == "xl"
+    assert int_to_mini_roman(50) == "l"
+    assert int_to_mini_roman(60) == "lx"
+    assert int_to_mini_roman(70) == "lxx"
+    assert int_to_mini_roman(80) == "lxxx"
+    assert int_to_mini_roman(90) == "xc"
+    assert int_to_mini_roman(100) == "c"
+    assert int_to_mini_roman(152) == "clii"
+    assert int_to_mini_roman(426) == "cdxxvi"
+    assert int_to_mini_roman(999) == "cmxciii"
 
+def test_int_to_mini_roman_larger_values():
+    assert int_to_mini_roman(1001) == "m"
+    assert int_to_mini_roman(147) == "cxlvii"
+    assert int_to_mini_roman(888) == "dccclxxxviii"
+    assert int_to_mini_roman(2000) == "mm"
+    assert int_to_mini_roman(3000) == "mmm"
 
-def test_invalid_input():
-    """Tests invalid input types and boundary conditions."""
+def test_int_to_mini_roman_edge_cases():
+    assert int_to_mini_roman(3999) == "mmmcmxciii"
+
+def test_int_to_mini_roman_specific_combinations():
+    assert int_to_mini_roman(44) == "xliv"
+    assert int_to_mini_roman(94) == "xciv"
+    assert int_to_mini_roman(49) == "xlix"
+    assert int_to_mini_roman(99) == "xciii"
+    assert int_to_mini_roman(199) == "cxcix"
+    assert int_to_mini_roman(400) == "cd"
+    assert int_to_mini_roman(900) == "cm"
+
+def test_int_to_mini_roman_invalid_input():
     with pytest.raises(ValueError):
-        int_to_mini_roman(0)  # Test zero
+        int_to_mini_roman(0)
     with pytest.raises(ValueError):
-        int_to_mini_roman(1001)  # Test above maximum allowed value
-    with pytest.raises(ValueError):
-        int_to_mini_roman(-1)  # Test negative number
+        int_to_mini_roman(-1)
     with pytest.raises(TypeError):
-        int_to_mini_roman("abc")  # Test invalid type (string)
+        int_to_mini_roman("abc")
     with pytest.raises(TypeError):
-        int_to_mini_roman(None)  # Test invalid type (None)
-
-
-def test_max_value():
-    """Tests the maximum allowed value (1000)."""
-    assert int_to_mini_roman(MAX_VALUE) == "m"
+        int_to_mini_roman(1.5)

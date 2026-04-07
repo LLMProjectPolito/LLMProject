@@ -69,16 +69,13 @@ def test_cycpattern_check_long_strings_false():
     assert cycpattern_check("thisisalongstringwithoutpattern", "differentpattern") == False
 
 def test_cycpattern_check_repeated_chars_true():
-    assert cycpattern_check("aaaaaa", "aaa") == True
+    assert cycpattern_check("aaaaaa", "aa") == True
 
 def test_cycpattern_check_repeated_chars_false():
-    assert cycpattern_check("aaaaaa", "aab") == False
-
-def test_cycpattern_check_case_sensitive():
-    assert cycpattern_check("Hello", "ell") == False
+    assert cycpattern_check("aaaaaa", "aaaab") == False
 
 def test_cycpattern_check_b_is_a():
     assert cycpattern_check("abc", "abc") == True
 
-def test_cycpattern_check_b_is_a_rotated():
-    assert cycpattern_check("abcabc", "bca") == True
+def test_cycpattern_check_case_sensitive():
+    assert cycpattern_check("Hello", "ell") == False

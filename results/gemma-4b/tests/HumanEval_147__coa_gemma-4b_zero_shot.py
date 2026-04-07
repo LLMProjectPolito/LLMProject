@@ -58,4 +58,4 @@ def test_logic_branches_small():
     assert get_max_triples(5) == 1
 
 def test_logic_branches_larger():
-    assert get_max_triples(10) == 4
+    assert get_max_triples(10) == 2

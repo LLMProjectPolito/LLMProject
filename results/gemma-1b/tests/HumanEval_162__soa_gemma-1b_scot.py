@@ -38,5 +38,5 @@ def test_string_with_special_characters():
     assert string_to_md5('Hello! world') == '3e25960a79dbc69b674cd4ec67a72c62'
 
 def test_long_string():
-    assert string_to_md5('This is a very long string to test the function.') == '3e25960a79dbc69b674cd4ec67a72c62'
+    assert string_to_md5('This is a very long string.') == '3e25960a79dbc69b674cd4ec67a72c62'
 ```

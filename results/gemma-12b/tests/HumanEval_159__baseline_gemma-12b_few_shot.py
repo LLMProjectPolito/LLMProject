@@ -41,7 +41,7 @@ def test_eat_exactly_enough():
 def test_eat_remaining_less_than_need():
     assert eat(2, 11, 5) == [7, 0]
 
-def test_eat_zero_initial_eaten():
+def test_eat_zero_eaten():
     assert eat(0, 5, 10) == [5, 5]
 
 def test_eat_zero_need():
@@ -58,3 +58,6 @@ def test_eat_large_numbers():
 
 def test_eat_large_numbers_2():
     assert eat(100, 1000, 500) == [600, 0]
+
+def test_eat_need_equals_remaining():
+    assert eat(2, 5, 5) == [7, 0]

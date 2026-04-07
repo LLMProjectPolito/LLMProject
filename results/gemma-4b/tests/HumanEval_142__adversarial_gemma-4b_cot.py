@@ -46,23 +46,23 @@ def test_single_element_multiple_of_3():
 def test_single_element_multiple_of_4_not_3():
     assert sum_squares([5]) == 125
 
-def test_multiple_elements_basic():
-    assert sum_squares([1, 2, 3]) == 6
-
-def test_multiple_elements_with_squares_and_cubes():
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 2**2 + 3**2 + 4**3 + 5**2 + 6**3
-
+def test_multiple_elements_mix():
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 4 + 9 + 64 + 25 + 36
+    
 def test_negative_numbers():
-    assert sum_squares([-1, -5, 2, -1, -5]) == -126
+    assert sum_squares([-1, -5, 2, -1, -5]) == -1 + 25 + 8 + 25 + 125
 
-def test_mixed_positive_and_negative():
-    assert sum_squares([1, -2, 3, -4, 5]) == 1 + (-2)**2 + 3**2 + (-4)**3 + 5**2
+def test_mixed_positive_negative():
+    assert sum_squares([1, -2, 3, -4, 5]) == 1 + 4 + 9 + (-64) + 25
 
 def test_large_numbers():
-    assert sum_squares([10, 20, 30, 40]) == 10**2 + 20**2 + 30**2 + 40**3
+    assert sum_squares([100, 200, 300]) == 10000 + 80000 + 270000
 
 def test_zero_values():
-    assert sum_squares([0, 1, 2, 3]) == 0 + 1**2 + 2**2 + 3**2
+    assert sum_squares([0, 1, 2, 3]) == 0 + 1 + 4 + 9
 
-def test_multiple_multiples_of_3_and_4():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 1 + 2**2 + 3**2 + 4**3 + 5**2 + 6**3 + 7**2 + 8**3 + 9**2
+def test_example_1():
+    assert sum_squares([1, 2, 3]) == 6
+
+def test_example_2():
+    assert sum_squares([-1, -5, 2, -1, -5]) == -126

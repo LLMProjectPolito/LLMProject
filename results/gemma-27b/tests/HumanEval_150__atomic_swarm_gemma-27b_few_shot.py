@@ -14,6 +14,7 @@ import math
 
 def test_basic():
     assert x_or_y(7, 34, 12) == 34
+    assert x_or_y(15, 8, 5) == 5
 
 import pytest
 
@@ -38,6 +39,20 @@ def test_edge():
 
 import pytest
 
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
 def x_or_y(n, x, y):
     """A simple program which should return the value of x if n is 
     a prime number and should return the value of y otherwise.
@@ -47,20 +62,10 @@ def x_or_y(n, x, y):
     for x_or_y(15, 8, 5) == 5
     
     """
-    if n < 2:
+    if is_prime(n):
+        return x
+    else:
         return y
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0:
-            return y
-    return x
-
-def is_prime(n):
-    if n < 2:
-        return False
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0:
-            return False
-    return True
 
 def test_x_or_y_negative_n():
     assert x_or_y(-5, 10, 20) == 20

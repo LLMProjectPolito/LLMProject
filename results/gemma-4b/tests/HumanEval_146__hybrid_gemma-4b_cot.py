@@ -80,5 +80,5 @@ def test_specialFilter_with_negative_first_digit():
 def test_specialFilter_with_negative_last_digit():
     assert specialFilter([15, 22, -33, 44, 55]) == 0
 
-def test_specialFilter_with_negative_first_and_last_digit():
-    assert specialFilter([-15, 22, -33, 44, 55]) == 0
+def test_specialFilter_with_negative_and_odd_digits():
+    assert specialFilter([-15, 22, -33, 45, 21, 109]) == 2

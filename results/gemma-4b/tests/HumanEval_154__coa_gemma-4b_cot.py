@@ -48,11 +48,11 @@ def test_cycpattern_check_substring_present():
     assert cycpattern_check("himenss","simen") == True
 
 def test_cycpattern_check_empty_string():
-    assert cycpattern_check("", "abc") == False
+    assert cycpattern_check("", "") == True
     assert cycpattern_check("abc", "") == False
-    assert cycpattern_check("", "") == False
+    assert cycpattern_check("", "abc") == False
 
-def test_cycpattern_check_same_string():
-    assert cycpattern_check("abc", "abc") == True
-    assert cycpattern_check("abc", "bca") == True
-    assert cycpattern_check("abc", "cab") == True
+def test_cycpattern_check_single_char_match():
+    assert cycpattern_check("abc", "a") == True
+    assert cycpattern_check("abc", "b") == True
+    assert cycpattern_check("abc", "c") == True

@@ -43,11 +43,14 @@ def file_name_check(file_name):
     if not parts[0][0].isalpha():
         return 'No'
 
-    digit_count = sum(c.isdigit() for c in file_name)
-    if digit_count > 3:
+    if len(parts) != 2:
         return 'No'
 
     if parts[1] not in ['txt', 'exe', 'dll']:
+        return 'No'
+
+    digit_count = sum(c.isdigit() for c in file_name)
+    if digit_count > 3:
         return 'No'
 
     return 'Yes'
@@ -57,38 +60,26 @@ class TestFileNameCheck:
     def test_valid_file_name(self):
         assert file_name_check("example.txt") == 'Yes'
 
-    def test_invalid_file_name_too_many_digits(self):
+    def test_invalid_too_many_digits(self):
         assert file_name_check("1234example.txt") == 'No'
 
-    def test_invalid_file_name_no_dot(self):
+    def test_invalid_no_dot(self):
         assert file_name_check("exampletxt") == 'No'
 
-    def test_invalid_file_name_multiple_dots(self):
+    def test_invalid_multiple_dots(self):
         assert file_name_check("example.sub.txt") == 'No'
 
-    def test_invalid_file_name_invalid_extension(self):
+    def test_invalid_extension(self):
         assert file_name_check("example.pdf") == 'No'
 
-    def test_invalid_file_name_empty_before_dot(self):
+    def test_invalid_empty_before_dot(self):
         assert file_name_check(".txt") == 'No'
 
-    def test_invalid_file_name_non_letter_start(self):
+    def test_invalid_not_letter_before_dot(self):
         assert file_name_check("1example.txt") == 'No'
-
-    def test_valid_file_name_with_digits(self):
-        assert file_name_check("ex1ample.txt") == 'Yes'
-
-    def test_valid_file_name_max_digits(self):
-        assert file_name_check("ex123ample.txt") == 'Yes'
 
     def test_empty_file_name(self):
         assert file_name_check("") == 'No'
-
-    def test_valid_file_name_exe(self):
-        assert file_name_check("example.exe") == 'Yes'
-
-    def test_valid_file_name_dll(self):
-        assert file_name_check("example.dll") == 'Yes'
 
     def test_valid_file_name_all_caps(self):
         assert file_name_check("EXAMPLE.TXT") == 'Yes'
@@ -96,5 +87,11 @@ class TestFileNameCheck:
     def test_valid_file_name_mixed_case(self):
         assert file_name_check("ExAmPlE.tXt") == 'Yes'
 
-    def test_invalid_too_many_digits_in_name(self):
-        assert file_name_check("12345example.txt") == 'No'
+    def test_valid_file_name_with_digits(self):
+        assert file_name_check("ex1ample.txt") == 'Yes'
+
+    def test_valid_file_name_max_digits(self):
+        assert file_name_check("ex123ample.txt") == 'Yes'
+
+    def test_invalid_extension_case(self):
+        assert file_name_check("example.TXT") == 'No'

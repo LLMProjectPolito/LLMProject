@@ -26,6 +26,18 @@ def test_valid_exe_file():
 def test_valid_dll_file():
     assert file_name_check("example.dll") == 'Yes'
 
+def test_valid_py_file():
+    assert file_name_check("example.py") == 'Yes'
+
+def test_valid_java_file():
+    assert file_name_check("example.java") == 'Yes'
+
+def test_valid_html_file():
+    assert file_name_check("example.html") == 'Yes'
+
+def test_valid_csv_file():
+    assert file_name_check("example.csv") == 'Yes'
+
 def test_invalid_extension_pdf():
     assert file_name_check("example.pdf") == 'No'
 
@@ -35,34 +47,29 @@ def test_invalid_extension_doc():
 def test_invalid_extension_jpg():
     assert file_name_check("example.jpg") == 'No'
 
-def test_invalid_extension_py():
-    assert file_name_check("example.py") == 'No'
+def test_extension_case_txt():
+    assert file_name_check("example.TXT") == 'No'
 
-def test_invalid_extension_java():
-    assert file_name_check("example.java") == 'No'
+def test_extension_case_exe():
+    assert file_name_check("example.EXE") == 'No'
 
-def test_invalid_extension_html():
-    assert file_name_check("example.html") == 'No'
+def test_extension_case_dll():
+    assert file_name_check("example.DLL") == 'No'
 
-def test_invalid_extension_csv():
-    assert file_name_check("example.csv") == 'No'
+def test_extension_case_py():
+    assert file_name_check("example.PY") == 'No'
 
-def test_extension_case_insensitive():
-    assert file_name_check("example.TXT") == 'Yes'
-    assert file_name_check("example.tXt") == 'Yes'
-    assert file_name_check("example.TxT") == 'Yes'
-
-def test_leading_whitespace():
+def test_whitespace_leading():
     assert file_name_check(" example.txt") == 'No'
 
-def test_trailing_whitespace():
+def test_whitespace_trailing():
     assert file_name_check("example.txt ") == 'No'
-
-def test_whitespace_within_filename():
-    assert file_name_check("example file.txt") == 'No'
 
 def test_dot_at_end():
     assert file_name_check("example.") == 'No'
+
+def test_too_many_digits():
+    assert file_name_check("1234example.txt") == 'No'
 
 def test_no_dot():
     assert file_name_check("exampletxt") == 'No'
@@ -79,31 +86,12 @@ def test_non_letter_start():
 def test_empty_string():
     assert file_name_check("") == 'No'
 
+def test_special_characters():
+    assert file_name_check("!@#$%^example.txt") == 'No'
+
+def test_long_name():
+    long_name = "a" * 255 + ".txt"  # Realistic max length
+    assert file_name_check(long_name) == 'No'
+
 def test_digits_and_letters():
     assert file_name_check("a1b2c.txt") == 'Yes'
-
-def test_special_characters_filename():
-    assert file_name_check("example!.txt") == 'No'
-
-def test_special_characters_extension():
-    assert file_name_check("example.t!xt") == 'No'
-
-def test_too_many_digits_four():
-    assert file_name_check("1234example.txt") == 'No'
-
-def test_too_many_digits_five():
-    assert file_name_check("12345example.txt") == 'No'
-
-def test_valid_digits_three():
-    assert file_name_check("123example.txt") == 'Yes'
-
-def test_dot_in_middle():
-    assert file_name_check("example.a.txt") == 'No'
-
-def test_long_name_within_limit():
-    long_name = "a" * 160 + ".txt"
-    assert file_name_check(long_name) == 'Yes'
-
-def test_long_name_exceeds_limit():
-    long_name = "a" * 170 + ".txt"
-    assert file_name_check(long_name) == 'No'

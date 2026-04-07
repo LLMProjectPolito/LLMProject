@@ -97,17 +97,18 @@ def int_to_mini_roman(number):
         (150, "cl"),
         (152, "clii"),
         (194, "cxciv"),
-        (199, "cxcix"),
+        (199, "cxciix"),
         (200, "cc"),
-        (300, "ccc"),
+        (399, "cccxciix"),
         (400, "cd"),
         (401, "cdi"),
+        (426, "cdxxvi"),
         (444, "cdxliv"),
         (499, "cdxcix"),
         (500, "d"),
         (501, "di"),
         (549, "div"),
-        (599, "dxci"),
+        (599, "dxciix"),
         (600, "dc"),
         (700, "dcc"),
         (800, "dccc"),
@@ -122,9 +123,16 @@ def test_int_to_mini_roman(input_num, expected_output):
     assert int_to_mini_roman(input_num) == expected_output.lower()
 
 def test_invalid_input_less_than_1():
-    with pytest.raises(Exception):
+    with pytest.raises(TypeError):
         int_to_mini_roman(0)
 
 def test_invalid_input_greater_than_1000():
-    with pytest.raises(Exception):
+    with pytest.raises(TypeError):
         int_to_mini_roman(1001)
+
+def test_invalid_input_type():
+    with pytest.raises(TypeError):
+        int_to_mini_roman("10")
+
+    with pytest.raises(TypeError):
+        int_to_mini_roman(3.14)

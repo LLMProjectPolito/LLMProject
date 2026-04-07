@@ -22,70 +22,69 @@ def cycpattern_check(a , b):
     cycpattern_check("himenss","simen") => True
 
     """
-    if b in a or b in a[1:] or b in a[:-1]:
+    if b in a or any(rotation in a for rotation in rotations(b)):
         return True
     else:
         return False
 
+def rotations(s):
+    """Helper function to generate all rotations of a string."""
+    return [s[i:] + s[:i] for i in range(len(s))]
+
 ### SCoT Steps:
 
-### STEP 1: REASONING
-# The function `cycpattern_check` checks if a substring of `b` (or any rotation of `b`) exists within `a`.
+# STEP 1: REASONING
+# The function `cycpattern_check` checks if a substring of `b` (or any of its rotations) exists within `a`.
 # We need to test various cases including:
-# 1.  `b` is a direct substring of `a`.
-# 2.  `b` is a rotation of a substring of `a`.
-# 3.  `b` is not a substring or rotation of `a`.
-# 4.  Edge cases like empty strings or very short strings.
-# We will use pytest to create a comprehensive test suite covering these scenarios.
+#   - Basic substring matches
+#   - Rotations of `b` matching substrings of `a`
+#   - Cases where `b` is not a substring of `a`
+#   - Cases where `a` and `b` are empty strings (edge case)
+#   - Cases where `b` is an empty string (edge case)
+#   - Cases where `a` and `b` are the same string
+#   - Cases where `a` and `b` are different lengths
 
-### STEP 2: PLAN
-# Test cases:
-# 1.  Positive cases: `b` is a substring or rotation of `a`.
-# 2.  Negative cases: `b` is not a substring or rotation of `a`.
-# 3.  Edge cases: Empty strings, short strings.
-
+# STEP 2: PLAN
 # Test functions:
-# 1.  test_b_is_substring
-# 2.  test_b_is_rotation
-# 3.  test_b_is_not_substring
-# 4.  test_empty_strings
-# 5.  test_short_strings
+#   - test_basic_substring
+#   - test_rotation_substring
+#   - test_no_substring
+#   - test_empty_strings
+#   - test_same_strings
+#   - test_different_lengths
 
-### STEP 3: CODE
-def test_b_is_substring():
+# STEP 3: CODE
+# pytest suite
+###
+def test_basic_substring():
     assert cycpattern_check("abcd", "abd") == False
     assert cycpattern_check("hello", "ell") == True
     assert cycpattern_check("whassup", "psus") == False
     assert cycpattern_check("abab", "baa") == True
     assert cycpattern_check("efef", "eeff") == False
     assert cycpattern_check("himenss", "simen") == True
-    assert cycpattern_check("abcde", "cde") == True
-    assert cycpattern_check("abcde", "ab") == False
 
-def test_b_is_rotation():
+def test_rotation_substring():
     assert cycpattern_check("abcd", "bcda") == True
     assert cycpattern_check("abcd", "dabc") == True
     assert cycpattern_check("abcd", "cdab") == True
     assert cycpattern_check("abcd", "abdc") == False
-    assert cycpattern_check("hello", "lohel") == True
-    assert cycpattern_check("hello", "elloh") == True
-    assert cycpattern_check("abab", "baba") == True
 
-def test_b_is_not_substring():
-    assert cycpattern_check("abcd", "abcde") == False
-    assert cycpattern_check("hello", "hellos") == False
-    assert cycpattern_check("whassup", "whassupx") == False
-    assert cycpattern_check("abab", "abac") == False
-    assert cycpattern_check("efef", "efg") == False
-    assert cycpattern_check("himenss", "simenx") == False
+def test_no_substring():
+    assert cycpattern_check("abcd", "xyz") == False
+    assert cycpattern_check("hello", "world") == False
 
 def test_empty_strings():
     assert cycpattern_check("", "") == True
     assert cycpattern_check("abc", "") == True
     assert cycpattern_check("", "abc") == False
 
-def test_short_strings():
-    assert cycpattern_check("ab", "a") == True
-    assert cycpattern_check("ab", "b") == False
-    assert cycpattern_check("a", "ab") == False
-    assert cycpattern_check("aa", "a") == True
+def test_same_strings():
+    assert cycpattern_check("abc", "abc") == True
+    assert cycpattern_check("xyz", "xyz") == True
+
+def test_different_lengths():
+    assert cycpattern_check("abc", "ab") == False
+    assert cycpattern_check("ab", "abc") == False
+    assert cycpattern_check("abc", "abcd") == False
+    assert cycpattern_check("abcd", "abc") == False

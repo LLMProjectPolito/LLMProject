@@ -42,14 +42,26 @@ def compare(game,guess):
         result.append(abs(game[i] - guess[i]))
     return result
 
-def test_boundary_empty_lists():
+def test_compare_empty_lists():
     assert compare([], []) == []
 
-def test_boundary_single_element_correct():
-    assert compare([5], [5]) == [0]
+def test_compare_all_correct():
+    assert compare([1, 2, 3], [1, 2, 3]) == [0, 0, 0]
 
-def test_boundary_single_element_incorrect():
-    assert compare([5], [10]) == [5]
+def test_compare_all_incorrect():
+    assert compare([1, 2, 3], [4, 5, 6]) == [3, 3, 3]
+
+def test_compare_mixed():
+    assert compare([1, 2, 3, 4, 5], [1, 2, 0, 4, 6]) == [0, 0, 3, 0, 1]
+
+def test_compare_negative_values():
+    assert compare([-1, -2, -3], [-1, -2, -4]) == [0, 0, 1]
+
+def test_compare_zero_values():
+    assert compare([0, 0, 0], [0, 0, 1]) == [0, 0, 1]
+
+def test_compare_large_values():
+    assert compare([100, 200, 300], [100, 190, 310]) == [0, 10, 10]
 
 # Focus: Equivalence Partitioning
 import pytest
@@ -117,6 +129,6 @@ def test_compare_invalid_input_non_list():
     with pytest.raises(TypeError):
         compare("123", [1, 2, 3])
 
-def test_compare_invalid_input_non_numeric_list():
+def test_compare_invalid_input_non_list_2():
     with pytest.raises(TypeError):
-        compare([1, 2, "a"], [1, 2, 3])
+        compare([1, 2, 3], "123")

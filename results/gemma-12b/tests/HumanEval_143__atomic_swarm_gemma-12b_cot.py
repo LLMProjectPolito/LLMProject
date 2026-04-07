@@ -23,8 +23,7 @@ def words_in_sentence(sentence):
 import pytest
 import math
 
-def test_words_in_sentence_positive():
-    from main import words_in_sentence
+def test_words_in_sentence():
     sentence = "This is a test"
     expected = "is"
     assert words_in_sentence(sentence) == expected

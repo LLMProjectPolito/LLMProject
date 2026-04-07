@@ -70,22 +70,26 @@ def test_get_max_mixed():
     assert get_max([-1, 2, -3, 4]) == 4
     assert get_max([1, -2, 3, -4]) == 3
 
-def test_specialFilter_basic():
-    assert specialFilter([15, -73, 14, -15]) == 1
-    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
-    assert specialFilter([11, 13, 15, 17, 19]) == 5
-    assert specialFilter([22, 24, 26, 28, 30]) == 0
-
 def test_specialFilter_empty():
     assert specialFilter([]) == 0
 
-def test_specialFilter_negative():
-    assert specialFilter([-11, -13, -15, -17, -19]) == 0
+def test_specialFilter_basic():
+    assert specialFilter([15, -73, 14, -15]) == 1
 
-def test_specialFilter_mixed():
-    assert specialFilter([-11, 13, -15, 17, -19]) == 2
-    assert specialFilter([11, -13, 15, -17, 19]) == 2
-    assert specialFilter([11, 13, -15, 17, -19]) == 2
-    assert specialFilter([11, 13, 15, -17, 19]) == 2
-    assert specialFilter([11, 13, 15, 17, -19]) == 2
+def test_specialFilter_multiple():
+    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
+
+def test_specialFilter_no_match():
+    assert specialFilter([12, 14, 16]) == 0
+
+def test_specialFilter_all_match():
     assert specialFilter([11, 13, 15, 17, 19]) == 5
+
+def test_specialFilter_negative_and_positive():
+    assert specialFilter([-11, 13, -15, 17, -19]) == 2
+
+def test_specialFilter_edge_cases():
+    assert specialFilter([11, 13, 15, 17, 19, 1]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 21]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 23]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 25]) == 5

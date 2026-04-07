@@ -9,29 +9,31 @@ def specialFilter(nums):
     """
 
 # STEP 1: REASONING
-# The function `specialFilter` needs to be tested thoroughly. We need to cover various scenarios, including:
-# 1. Empty input list.
-# 2. List with no numbers greater than 10.
-# 3. List with numbers greater than 10, but none with odd first and last digits.
-# 4. List with numbers greater than 10 and some with odd first and last digits.
-# 5. List with negative numbers.
-# 6. List with zero.
-# 7. List with single element.
-# 8. List with multiple elements satisfying the condition.
-# 9. Edge cases with numbers like 11, 33, 55, 77, 99.
-# 10. Numbers with leading zeros (although the problem doesn't explicitly mention it, it's good to consider).
+# The function `specialFilter` filters a list of numbers based on two conditions:
+# 1. The number must be greater than 10.
+# 2. Both the first and last digits of the number must be odd.
+# The function returns the count of numbers that satisfy both conditions.
+# We need to test various scenarios, including:
+# - Empty list
+# - List with no numbers greater than 10
+# - List with numbers greater than 10 but not satisfying the odd digit condition
+# - List with numbers greater than 10 and satisfying the odd digit condition
+# - List with negative numbers
+# - List with mixed positive and negative numbers
+# - List with single-digit numbers
+# - List with numbers having leading zeros (should be handled correctly)
 
 # STEP 2: PLAN
 # Test functions:
 # - test_empty_list: Test with an empty list.
-# - test_no_numbers_greater_than_10: Test with numbers <= 10.
-# - test_no_odd_digits: Test with numbers > 10 but no odd first/last digits.
-# - test_mixed_numbers: Test with a mix of numbers, some satisfying the condition.
+# - test_no_numbers_greater_than_10: Test with a list where no number is greater than 10.
+# - test_numbers_greater_than_10_odd_digits_fail: Test with numbers greater than 10 but failing the odd digit condition.
+# - test_numbers_greater_than_10_odd_digits_pass: Test with numbers greater than 10 and satisfying the odd digit condition.
 # - test_negative_numbers: Test with negative numbers.
-# - test_single_element: Test with a single element.
-# - test_multiple_matches: Test with multiple elements satisfying the condition.
-# - test_edge_cases: Test with numbers like 11, 33, 55, 77, 99.
-# - test_zero: Test with zero.
+# - test_mixed_numbers: Test with a mix of positive and negative numbers.
+# - test_single_digit_numbers: Test with single-digit numbers.
+# - test_leading_zeros: Test with numbers having leading zeros.
+# - test_edge_cases: Test with edge cases like 11, 33, 55, 77, 99.
 
 # STEP 3: CODE
 import pytest
@@ -59,29 +61,31 @@ class TestSpecialFilter:
         assert specialFilter([]) == 0
 
     def test_no_numbers_greater_than_10(self):
-        assert specialFilter([1, 2, 3, 4, 5, 10]) == 0
+        assert specialFilter([1, 2, 3, 4, 5]) == 0
 
-    def test_no_odd_digits(self):
-        assert specialFilter([22, 44, 66, 88, 10, 12]) == 0
+    def test_numbers_greater_than_10_odd_digits_fail(self):
+        assert specialFilter([12, 24, 36, 48, 50]) == 0
 
-    def test_mixed_numbers(self):
-        assert specialFilter([15, -73, 14, -15, 22, 33, 45, 21, 109]) == 4
+    def test_numbers_greater_than_10_odd_digits_pass(self):
+        assert specialFilter([15, 37, 59, 71, 93]) == 5
 
     def test_negative_numbers(self):
-        assert specialFilter([-15, -73, -14, -15]) == 2
+        assert specialFilter([-15, -37, -59, -71, -93]) == 0
 
-    def test_single_element(self):
-        assert specialFilter([15]) == 1
-        assert specialFilter([12]) == 0
+    def test_mixed_numbers(self):
+        assert specialFilter([15, -73, 14, -15, 33, -2, -3, 45, 21, 109]) == 2
 
-    def test_multiple_matches(self):
-        assert specialFilter([15, 35, 55, 75, 95]) == 5
+    def test_single_digit_numbers(self):
+        assert specialFilter([1, 3, 5, 7, 9]) == 0
+
+    def test_leading_zeros(self):
+        assert specialFilter([015, 037, 059]) == 0
 
     def test_edge_cases(self):
         assert specialFilter([11, 33, 55, 77, 99]) == 5
 
-    def test_zero(self):
-        assert specialFilter([0, 15, 33]) == 1
+    def test_large_numbers(self):
+        assert specialFilter([151, 373, 595, 717, 939]) == 5
 
-    def test_leading_zeros(self):
-        assert specialFilter([15, 35, 015, 035]) == 4
+    def test_mixed_positive_negative(self):
+        assert specialFilter([15, -37, 22, 59, -71, 93, -11]) == 3

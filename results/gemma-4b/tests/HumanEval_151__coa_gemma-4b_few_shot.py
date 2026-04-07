@@ -22,10 +22,10 @@ import pytest
 def test_double_the_difference_positive_odd():
     assert double_the_difference([1, 3, 2, 0]) == 10
 
-def test_double_the_difference_negative_odd():
+def test_double_the_difference_negative_and_zero():
     assert double_the_difference([-1, -2, 0]) == 0
 
-def test_double_the_difference_positive_odd_only():
+def test_double_the_difference_positive_only():
     assert double_the_difference([9, -2]) == 81
 
 # Focus: Type Scenarios

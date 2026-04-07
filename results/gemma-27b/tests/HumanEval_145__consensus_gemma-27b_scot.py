@@ -62,14 +62,11 @@ def test_negative_and_positive_same_sum():
 def test_duplicate_numbers():
     assert order_by_points([1, 1, 1]) == [1, 1, 1]
 
+def test_complex_case():
+    assert order_by_points([123, 45, 6, 789, 1, 23]) == [1, 6, 23, 45, 123, 789]
+
+def test_all_negative_same_sum():
+    assert order_by_points([-10, -1, -19]) == [-1, -10, -19]
+
 def test_zero():
     assert order_by_points([0, 1, 10]) == [0, 1, 10]
-
-def test_negative_zero():
-    assert order_by_points([-0, 1, 10]) == [-0, 1, 10]
-
-def test_complex_case():
-    assert order_by_points([123, 45, 6, 789, 1, 0]) == [0, 1, 6, 45, 123, 789]
-
-def test_all_same_digit_sum():
-    assert order_by_points([1, 10, 100, 1000]) == [1, 10, 100, 1000]

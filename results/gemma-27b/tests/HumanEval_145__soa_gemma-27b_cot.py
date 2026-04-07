@@ -53,20 +53,20 @@ def test_example_case():
 def test_same_digit_sum():
     assert order_by_points([10, 1, 100, 1000]) == [1, 10, 100, 1000]
 
-def test_same_digit_sum_negative():
-    assert order_by_points([-10, -1, -100, -1000]) == [-1, -10, -100, -1000]
-
 def test_duplicate_numbers():
     assert order_by_points([1, 1, 1, 1]) == [1, 1, 1, 1]
 
 def test_large_numbers():
     assert order_by_points([12345, 6789, 10, 1]) == [1, 10, 12345, 6789]
 
-def test_negative_and_zero():
-    assert order_by_points([-1, 0, -10, 1]) == [0, -1, -10, 1]
+def test_negative_and_positive_with_same_sum():
+    assert order_by_points([-11, 2, 11, -2]) == [-11, -2, 2, 11]
+
+def test_zero():
+    assert order_by_points([0, 1, 10]) == [0, 1, 10]
+
+def test_all_zeros():
+    assert order_by_points([0, 0, 0]) == [0, 0, 0]
 
 def test_complex_case():
     assert order_by_points([12, 3, 45, 6, 78, 9]) == [3, 6, 9, 12, 45, 78]
-
-def test_complex_case_negative():
-    assert order_by_points([-12, -3, -45, -6, -78, -9]) == [-3, -6, -9, -12, -45, -78]

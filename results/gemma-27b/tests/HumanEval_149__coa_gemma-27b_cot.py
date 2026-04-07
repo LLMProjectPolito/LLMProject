@@ -86,11 +86,11 @@ def sorted_list_sum(lst):
     (["ab", "a", "aaa", "cd"], ["ab", "cd"]),
     (["abc", "def", "ghi"], []),
     (["abcd", "efgh", "ijkl"], ["abcd", "efgh", "ijkl"]),
-    (["ab", "cd", "ab"], ["ab", "ab", "cd"]),
+    (["bb", "aa", "dd", "cc"], ["aa", "bb", "cc", "dd"]),
+    (["", "a", "aa"], ["aa"]),
     ([], []),
-    (["", "a", ""], [""]),
-    (["aa", "bb", "cc"], ["aa", "bb", "cc"]),
-    (["ba", "ac", "cb"], ["ac", "ba", "cb"])
+    (["aaaa", "bbbb", "cccc"], ["aaaa", "bbbb", "cccc"]),
+    (["aaaa", "bbbb", "cccc", "aa"], ["aa", "aaaa", "bbbb", "cccc"])
 ])
 def test_equivalence_partitioning(lst, expected):
     assert sorted_list_sum(lst) == expected

@@ -33,30 +33,28 @@ def test_bf_valid_planets():
 def test_bf_invalid_planets():
     assert bf("Pluto", "Neptune") == ()
     assert bf("Jupiter", "Pluto") == ()
-    assert bf("Invalid", "Mercury") == ()
-    assert bf("Mercury", "Invalid") == ()
-    assert bf("Invalid1", "Invalid2") == ()
+    assert bf("Earth", "Venussss") == ()
+    assert bf("Venussss", "Earth") == ()
+    assert bf("Plutoss", "Pluto") == ()
+    assert bf("", "Neptune") == ()
+    assert bf("Jupiter", "") == ()
+    assert bf("", "") == ()
 
 def test_bf_same_planet():
-    assert bf("Mercury", "Mercury") == ()
-    assert bf("Venus", "Venus") == ()
     assert bf("Earth", "Earth") == ()
-    assert bf("Mars", "Mars") == ()
-    assert bf("Jupiter", "Jupiter") == ()
-    assert bf("Saturn", "Saturn") == ()
-    assert bf("Uranus", "Uranus") == ()
+    assert bf("Mercury", "Mercury") == ()
     assert bf("Neptune", "Neptune") == ()
 
 def test_bf_planet1_after_planet2():
     assert bf("Neptune", "Mercury") == planets[:-1]
     assert bf("Uranus", "Venus") == ("Earth", "Mars", "Jupiter", "Saturn")
     assert bf("Saturn", "Earth") == ("Venus", "Mars", "Jupiter")
-    assert bf("Jupiter", "Mars") == ("Earth",)
-    assert bf("Venus", "Mercury") == ("Earth",)
-    assert bf("Earth", "Venus") == ()
-    assert bf("Mars", "Mercury") == ("Earth", "Venus")
-    assert bf("Mercury", "Neptune") == planets[:-1]
 
-def test_bf_empty_tuple():
-    assert bf("Saturn", "Uranus") == ()
-    assert bf("Uranus", "Neptune") == ()
+def test_bf_planets_order():
+    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
+    assert bf("Venus", "Uranus") == ("Earth", "Mars", "Jupiter", "Saturn")
+    assert bf("Earth", "Saturn") == ("Mars", "Jupiter")
+    assert bf("Mars", "Uranus") == ("Jupiter", "Saturn")
+    assert bf("Jupiter", "Saturn") == ()
+    assert bf("Saturn", "Neptune") == ()
+    assert bf("Uranus", "Uranus") == ()

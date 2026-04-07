@@ -49,7 +49,7 @@ def Strongest_Extension(class_name, extensions):
         try:
             strength = cap - sm
         except ZeroDivisionError:
-            strength = 0  # Handle cases where SM is zero to avoid division by zero
+            strength = 0  # Handle cases where there are no lowercase letters
         if strength > max_strength:
             max_strength = strength
             strongest_extension = extension
@@ -70,8 +70,8 @@ def test_all_lowercase():
 def test_mixed_case():
     assert Strongest_Extension("TestClass", ["Aa", "BB", "cC"]) == "TestClass.BB"
 
-def test_equal_strength_first_wins():
-    assert Strongest_Extension("TestClass", ["Aa", "aA"]) == "TestClass.Aa"
+def test_equal_strength_first_in_list():
+    assert Strongest_Extension("TestClass", ["AB", "Ba"]) == "TestClass.AB"
 
 # Focus: Equivalence Partitioning
 import pytest
@@ -95,26 +95,30 @@ def Strongest_Extension(class_name, extensions):
     """
     strongest_extension = ""
     max_strength = float('-inf')
+
     for extension in extensions:
-        cap = sum(1 for char in extension if char.isupper())
-        sm = sum(1 for char in extension if char.islower())
-        strength = cap - sm
+        cap_count = sum(1 for char in extension if char.isupper())
+        sm_count = sum(1 for char in extension if char.islower())
+        
+        try:
+            strength = cap_count - sm_count
+        except ZeroDivisionError:
+            strength = 0  # Handle cases where there are no lowercase letters
+
         if strength > max_strength:
             max_strength = strength
             strongest_extension = extension
+
     return f"{class_name}.{strongest_extension}"
 
-def test_equivalence_partitioning_1():
-    """All extensions have negative strength."""
-    assert Strongest_Extension("ClassA", ["abc", "def", "ghi"]) == "ClassA.abc"
+def test_equivalence_partitioning_positive_strength():
+    assert Strongest_Extension("ClassA", ["AA", "Be", "CC"]) == "ClassA.AA"
 
-def test_equivalence_partitioning_2():
-    """All extensions have positive strength."""
-    assert Strongest_Extension("ClassB", ["ABC", "DEF", "GHI"]) == "ClassB.ABC"
+def test_equivalence_partitioning_negative_strength():
+    assert Strongest_Extension("Slices", ["SErviNGSliCes", "Cheese", "StuFfed"]) == "Slices.SErviNGSliCes"
 
-def test_equivalence_partitioning_3():
-    """Mixed positive and negative strength."""
-    assert Strongest_Extension("ClassC", ["AbC", "dEf", "GHI"]) == "ClassC.GHI"
+def test_equivalence_partitioning_equal_strength():
+    assert Strongest_Extension("Test", ["AB", "Cd", "EF"]) == "Test.AB"
 
 # Focus: Error Handling/Invalid Input
 import pytest

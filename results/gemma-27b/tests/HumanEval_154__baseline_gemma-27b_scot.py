@@ -49,11 +49,11 @@ def test_b_rotation_is_substring_of_a():
 def test_no_match():
     assert cycpattern_check("abcd", "abd") == False
 
-def test_identical_strings():
+def test_a_and_b_same():
     assert cycpattern_check("test", "test") == True
 
 def test_a_contains_b_multiple_times():
-    assert cycpattern_check("ababab", "ab") == True
+    assert cycpattern_check("abababa", "aba") == True
 
 def test_edge_case_1():
     assert cycpattern_check("abab", "baa") == True
@@ -73,3 +73,6 @@ def test_long_strings_no_match():
     a = "abcdefghijklmnopqrstuvwxyz" * 2
     b = "zyxwvutsrqponmlkjihgfedcba"
     assert cycpattern_check(a, b) == False
+
+def test_b_is_empty():
+    assert cycpattern_check("abc", "") == True

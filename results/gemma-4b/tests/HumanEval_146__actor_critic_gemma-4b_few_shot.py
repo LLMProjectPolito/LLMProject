@@ -47,7 +47,6 @@ def test_is_palindrome_basic():
 def test_is_palindrome_empty():
     assert is_palindrome('') == True
     assert is_palindrome(' ') == True
-    assert is_palindrome('a') == True
 
 def test_is_palindrome_mixed_case():
     assert is_palindrome('Racecar') == True
@@ -89,12 +88,18 @@ def test_specialFilter_negative_numbers():
     assert specialFilter([-11, -13, -15, -17, -19]) == 0
 
 def test_specialFilter_edge_cases():
-    assert specialFilter([10, 11, 12]) == 0
-    assert specialFilter([11, 12, 13]) == 0
-    assert specialFilter([11, 13, 15]) == 2
+    assert specialFilter([11, 12, 13, 14, 15]) == 1
+    assert specialFilter([15, 16, 17, 18, 19]) == 1
+    assert specialFilter([11, 12, 13, 14, 15, 111, 131, 151, 171, 191]) == 3
 
-def test_specialFilter_negative_numbers():
-    assert specialFilter([-11, -13, -15, -17, -19]) == 0
+def test_is_palindrome_only_spaces():
+    assert is_palindrome('   ') == True
 
-def test_specialFilter_mixed():
-    assert specialFilter([11, 22, 33, 44, 55, 111, 131, 151, 171, 191]) == 5
+def test_specialFilter_close_to_10():
+    assert specialFilter([9, 11, 10, 12]) == 1
+
+def test_specialFilter_exactly_10():
+    assert specialFilter([10, 11, 12]) == 1
+
+def test_specialFilter_positive_and_negative_mix():
+    assert specialFilter([11, -11, 13, -13]) == 2

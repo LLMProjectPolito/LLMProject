@@ -67,4 +67,7 @@ def test_eat_not_enough_remaining():
     assert eat(4, 8, 9) == [12, 1]
 
 def test_eat_all_remaining():
-    assert eat(1, 10, 5) == [7, 0]
+    assert eat(1, 10, 10) == [11, 0]
+
+def test_eat_eat_all_remaining_2():
+    assert eat(2, 11, 5) == [7, 0]

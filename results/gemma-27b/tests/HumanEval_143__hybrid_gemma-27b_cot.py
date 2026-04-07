@@ -64,56 +64,46 @@ def test_empty_sentence():
     assert words_in_sentence("") == ""
 
 def test_no_prime_length_words():
-    assert words_in_sentence("This is a test") == "is"
-
-def test_all_prime_length_words():
-    assert words_in_sentence("go for") == "go for"
-
-def test_mixed_length_words():
-    assert words_in_sentence("lets go for swimming") == "go for"
+    assert words_in_sentence("hello world") == ""
 
 def test_single_prime_length_word():
-    assert words_in_sentence("two") == "two"
+    assert words_in_sentence("is") == "is"
 
-def test_single_non_prime_length_word():
-    assert words_in_sentence("one") == ""
+def test_multiple_prime_length_words():
+    assert words_in_sentence("lets go for swimming") == "go for"
+
+def test_mixed_length_words():
+    assert words_in_sentence("This is a test") == "is"
 
 def test_sentence_with_leading_and_trailing_spaces():
-    assert words_in_sentence("  go for  ") == "go for"
+    assert words_in_sentence("  hello world  ") == ""
 
-def test_sentence_with_multiple_spaces_between_words():
-    assert words_in_sentence("go   for") == "go for"
+def test_sentence_with_multiple_spaces():
+    assert words_in_sentence("hello   world") == ""
 
 def test_long_sentence():
     sentence = "a bb ccc dddd eeeee ffffff ggggggg"
     assert words_in_sentence(sentence) == "bb ccc"
 
-def test_sentence_with_only_one_word_length_2():
-    assert words_in_sentence("to") == "to"
+def test_all_words_prime_length():
+    sentence = "is it a"
+    assert words_in_sentence(sentence) == "is it a"
 
-def test_sentence_with_only_one_word_length_3():
-    assert words_in_sentence("cat") == "cat"
+def test_prime_numbers():
+    assert is_prime(2) == True
+    assert is_prime(3) == True
+    assert is_prime(5) == True
+    assert is_prime(7) == True
+    assert is_prime(11) == True
+    assert is_prime(13) == True
 
-def test_sentence_with_only_one_word_length_4():
-    assert words_in_sentence("word") == ""
-
-def test_sentence_with_only_one_word_length_5():
-    assert words_in_sentence("apple") == "apple"
-
-def test_sentence_with_only_one_word_length_6():
-    assert words_in_sentence("banana") == ""
-
-def test_sentence_with_only_one_word_length_7():
-    assert words_in_sentence("orange") == "orange"
-
-def test_sentence_with_only_one_word_length_8():
-    assert words_in_sentence("grape") == ""
-
-def test_sentence_with_only_one_word_length_9():
-    assert words_in_sentence("pineapple") == "pineapple"
-
-def test_sentence_with_only_one_word_length_10():
-    assert words_in_sentence("strawberry") == ""
+def test_not_prime_numbers():
+    assert is_prime(1) == False
+    assert is_prime(4) == False
+    assert is_prime(6) == False
+    assert is_prime(8) == False
+    assert is_prime(9) == False
+    assert is_prime(10) == False
 
 def test_single_prime_word():
     assert words_in_sentence("is") == "is"

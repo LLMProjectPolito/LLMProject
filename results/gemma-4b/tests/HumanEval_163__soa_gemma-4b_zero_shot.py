@@ -32,38 +32,56 @@ def generate_integers(a, b):
     result.sort()
     return result
 
-def test_generate_integers_normal():
+def test_generate_integers_2_8():
     assert generate_integers(2, 8) == [2, 4, 6, 8]
 
-def test_generate_integers_reverse():
+def test_generate_integers_8_2():
     assert generate_integers(8, 2) == [2, 4, 6, 8]
 
-def test_generate_integers_no_even():
+def test_generate_integers_10_14():
     assert generate_integers(10, 14) == []
 
-def test_generate_integers_single_number():
+def test_generate_integers_1_9():
+    assert generate_integers(1, 9) == []
+
+def test_generate_integers_2_2():
     assert generate_integers(2, 2) == [2]
 
-def test_generate_integers_a_greater_than_b():
-    assert generate_integers(5, 1) == [1]
-
-def test_generate_integers_with_zeros():
-    assert generate_integers(20, 28) == [2, 4, 6, 8]
-
-def test_generate_integers_with_larger_numbers():
-    assert generate_integers(100, 108) == [0, 2, 4, 6, 8]
-
-def test_generate_integers_no_even_digits_in_range():
-    assert generate_integers(1, 3) == []
-
-def test_generate_integers_with_duplicate_even_digits():
-    assert generate_integers(22, 28) == [2, 4, 6, 8]
-
-def test_generate_integers_a_equals_b():
+def test_generate_integers_4_4():
     assert generate_integers(4, 4) == [4]
 
-def test_generate_integers_a_and_b_are_same_even_number():
-    assert generate_integers(6, 6) == [6]
+def test_generate_integers_12_12():
+    assert generate_integers(12, 12) == [2, 4, 6, 8]
 
-def test_generate_integers_large_range():
-    assert generate_integers(1000, 1010) == [0, 2, 4, 6, 8]
+def test_generate_integers_1_10():
+    assert generate_integers(1, 10) == [2, 4, 6, 8]
+
+def test_generate_integers_10_11():
+    assert generate_integers(10, 11) == [2, 4, 6, 8]
+
+def test_generate_integers_11_12():
+    assert generate_integers(11, 12) == [2, 4, 6, 8]
+
+def test_generate_integers_20_22():
+    assert generate_integers(20, 22) == [2, 4]
+
+def test_generate_integers_22_20():
+    assert generate_integers(22, 20) == [2, 4]
+
+def test_generate_integers_1_20():
+    assert generate_integers(1, 20) == [2, 4, 6, 8]
+
+def test_generate_integers_20_1():
+    assert generate_integers(20, 1) == [2, 4, 6, 8]
+
+def test_generate_integers_100_102():
+    assert generate_integers(100, 102) == [2, 4, 6, 8]
+
+def test_generate_integers_102_100():
+    assert generate_integers(102, 100) == [2, 4, 6, 8]
+
+def test_generate_integers_1_1():
+    assert generate_integers(1, 1) == []
+
+def test_generate_integers_2_4():
+    assert generate_integers(2, 4) == [2, 4]

@@ -67,10 +67,10 @@ def do_algebra(operator, operand):
     return result
 
 def test_addition():
-    assert do_algebra(['+', '+'], [1, 2, 3]) == 6
+    assert do_algebra(['+', '+'], [2, 3, 4]) == 9
 
 def test_subtraction():
-    assert do_algebra(['-', '-', ], [5, 2, 1]) == 2
+    assert do_algebra(['-', '-', ], [5, 3, 2]) == 0
 
 def test_multiplication():
     assert do_algebra(['*', '*'], [2, 3, 4]) == 24
@@ -85,24 +85,27 @@ def test_mixed_operations():
     assert do_algebra(['+', '*', '-', '**'], [2, 3, 4, 5, 2]) == 14
 
 def test_single_operand():
-    assert do_algebra(['+', '-'], [1, 2]) == 1
+    assert do_algebra(['+', '-'], [2, 3]) == 1
 
 def test_empty_operator():
     with pytest.raises(IndexError):
-        do_algebra([], [1, 2, 3])
+        do_algebra([], [1, 2])
 
 def test_empty_operand():
     with pytest.raises(IndexError):
         do_algebra(['+', '-'], [])
 
 def test_invalid_operator():
-    assert do_algebra(['%', '+'], [1, 2, 3]) == 3
+    assert do_algebra(['%', '+'], [1, 2, 3]) == 1
 
 def test_large_numbers():
     assert do_algebra(['*', '**'], [10, 2, 3]) == 1000
 
 def test_zero_operand():
-    assert do_algebra(['+', '-'], [5, 0, 2]) == 5
+    assert do_algebra(['+', '-'], [5, 0, 2]) == 2
 
 def test_floor_division_zero():
-    assert do_algebra(['//', '//'], [10, 0, 5]) == 0
+    assert do_algebra(['//', '//'], [10, 0, 2]) == 0
+
+def test_exponentiation_zero():
+    assert do_algebra(['**'], [2, 0]) == 1

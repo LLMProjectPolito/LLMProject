@@ -33,20 +33,19 @@ def list_sort(lst):
     assert list_sort(["ab", "a", "aaa", "cd"]) => ["ab", "cd"]
     """
     new_lst = []
-    for word in lst:
-        if len(word) % 2 == 0:
-            new_lst.append(word)
+    for s in lst:
+        if len(s) % 2 == 0:
+            new_lst.append(s)
+        else:
+            new_lst.append(s)
     new_lst.sort(key=lambda x: (len(x), x))
     return new_lst
 
-def test_list_sort_positive():
+def test_list_sort():
     assert list_sort(["aa", "a", "aaa"]) == ["aa"]
-
-def test_list_sort_empty():
+    assert list_sort(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
+    assert list_sort(["abc", "ab", "a"]) == ["a", "ab", "abc"]
     assert list_sort([]) == []
-
-def test_list_sort_single_element():
-    assert list_sort(["hello"]) == ["hello"]
-
-def test_list_sort_duplicates():
-    assert list_sort(["aa", "a", "aaa", "aa"]) == ["aa", "aa", "a", "aaa"]
+    assert list_sort(["a"]) == ["a"]
+    assert list_sort(["aa", "aa"]) == ["aa", "aa"]
+    assert list_sort(["a", "a"]) == ["a", "a"]

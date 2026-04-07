@@ -52,7 +52,7 @@ def test_list_with_zeros():
     assert sum_squares([0, 0, 0, 0, 0]) == 0
 
 def test_list_with_mixed_positive_and_negative():
-    assert sum_squares([1, -2, 3, -4, 5, -6]) == 35
+    assert sum_squares([1, -2, 3, -4, 5, -6]) == 41
 
 def test_list_with_large_numbers():
     assert sum_squares([100, 200, 300, 400, 500]) == 360000
@@ -74,10 +74,10 @@ def test_list_with_none_value():
         sum_squares([1, None, 3])
 
 def test_list_multiple_of_3_and_4():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 704
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 714
 
 def test_list_only_multiples_of_3():
-    assert sum_squares([3, 6, 9, 12]) == 288
+    assert sum_squares([3, 6, 9]) == 126
 
 def test_list_only_multiples_of_4():
-    assert sum_squares([4, 8, 12, 16]) == 1000
+    assert sum_squares([4, 8, 12]) == 784

@@ -51,5 +51,5 @@ def right_angle_triangle(a, b, c):
     sides = sorted([a, b, c])
     return sides[0]**2 + sides[1]**2 == sides[2]**2
 
-def test_right_angle_triangle_zero_side():
-    assert right_angle_triangle(0, 4, 5) == False
+def test_invalid_negative_side():
+    assert right_angle_triangle(-3, 4, 5) == False

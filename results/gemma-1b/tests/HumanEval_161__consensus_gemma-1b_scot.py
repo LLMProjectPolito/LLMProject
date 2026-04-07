@@ -24,7 +24,14 @@ def solve(s):
     solve("ab") = "AB"
     solve("#a@C") = "#A@c"
     """
-    s = s.lower()
-    if not s.isalpha():
-        s = s[::-1]
-    return s
+    if not s:
+        return s[::-1]
+    result = ""
+    for char in s:
+        if 'a' <= char <= 'z':
+            result += char.upper()
+        elif 'A' <= char <= 'Z':
+            result += char.lower()
+        else:
+            result += char
+    return result

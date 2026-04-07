@@ -55,13 +55,13 @@ class TestSimplify:
         assert simplify("2/7", "7/2") == True
 
     def test_simplify_false_case_4(self):
-        assert simplify("1/4", "3/7") == False
+        assert simplify("1/4", "3/5") == False
 
     def test_simplify_true_case_5(self):
         assert simplify("5/8", "8/5") == True
 
     def test_simplify_false_case_5(self):
-        assert simplify("1/5", "3/8") == False
+        assert simplify("1/7", "3/4") == False
 
     def test_simplify_large_numbers_true(self):
         assert simplify("100/200", "200/100") == True
@@ -82,4 +82,4 @@ class TestSimplify:
         assert simplify("2/3", "3/2") == True
 
     def test_simplify_complex_false(self):
-        assert simplify("2/3", "5/7") == False
+        assert simplify("2/5", "3/7") == False

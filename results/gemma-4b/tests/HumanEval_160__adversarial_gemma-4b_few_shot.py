@@ -136,5 +136,5 @@ def test_do_algebra_complex():
 
 def test_do_algebra_edge_cases():
     assert do_algebra(['+', '-'], [1, 1]) == 0
-    assert do_algebra(['*', '//'], [2, 3, 2]) == 1
-    assert do_algebra(['**'], [2, 2]) == 4
+    assert do_algebra(['*', '//'], [2, 3, 2]) == 0
+    assert do_algebra(['**'], [2, 0]) == 1

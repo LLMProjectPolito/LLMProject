@@ -33,22 +33,25 @@ class TestStringtoMD5:
     def test_string_with_spaces(self):
         assert string_to_md5("  ") == '9c6a94a9999999999999999999999999'
 
-    def test_string_with_numbers(self):
-        assert string_to_md5("12345") == '5994471abb01112afec8179848d3ed02'
-
     def test_string_with_special_characters(self):
-        assert string_to_md5("!@#$%^&*()") == '9f86d081884c7d659a2feaa0c55ad015'
+        assert string_to_md5("!@#$%^&*()") == '99d8310496a999999999999999999999'
+
+    def test_string_with_numbers(self):
+        assert string_to_md5("1234567890") == 'd1e2f3e4d5e6f7e8d9e0f1e2d3e4f5e6'
 
     def test_string_with_unicode_characters(self):
-        assert string_to_md5("你好世界") == 'a94a8fe5ccb19ba61c4c082e53e9674a'
+        assert string_to_md5("你好世界") == 'b10a8db164e0754105b7a99be72e3fe5'
 
     def test_long_string(self):
         long_string = "This is a very long string to test the md5 hash function."
-        expected_md5 = '99a99999999999999999999999999999'
+        expected_md5 = 'a94a8fe5ccb19ba61c4c0873d391e987'
         assert string_to_md5(long_string) == expected_md5
 
     def test_string_with_newlines(self):
-        assert string_to_md5("Line1\nLine2") == '99a99999999999999999999999999999'
+        assert string_to_md5("Line1\nLine2") == '99999999999999999999999999999999'
 
     def test_string_with_tabs(self):
-        assert string_to_md5("Line1\tLine2") == '99a99999999999999999999999999999'
+        assert string_to_md5("Line1\tLine2") == '99999999999999999999999999999999'
+
+    def test_string_with_mixed_characters(self):
+        assert string_to_md5("Hello123!@#") == '99999999999999999999999999999999'

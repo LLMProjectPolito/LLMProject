@@ -19,38 +19,22 @@ def test_empty_list():
     assert sum_squares([]) == 0
 
 def test_list_with_one_element():
-    assert sum_squares([5]) == 5
+    assert sum_squares([5]) == 25
+
+def test_list_with_multiple_elements():
+    assert sum_squares([1, 2, 3]) == 14
 
 def test_list_with_negative_numbers():
     assert sum_squares([-1, -5, 2, -1, -5]) == 56
 
-def test_list_with_zeros():
-    assert sum_squares([0, 0, 0, 0]) == 0
-
 def test_list_with_mixed_positive_and_negative():
-    assert sum_squares([1, -2, 3, -4, 5, -6]) == 41
+    assert sum_squares([1, -2, 3, -4, 5, -6]) == 91
 
 def test_list_with_large_numbers():
     assert sum_squares([100, 200, 300, 400]) == 3000000
 
-@pytest.mark.parametrize("lst, expected", [
-    ([1, 2, 9], 1 + 4 + 81),
-    ([1, 2, 3, 8], 1 + 4 + 9 + 64),
-    ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 1 + 4 + 9 + 16 + 25 + 36 + 49 + 64 + 81 + 100 + 121 + 144),
-])
-def test_sum_of_squares_of_indices(lst, expected):
-    assert sum_squares(lst) == expected
-
-def test_large_list():
-    large_list = list(range(1000))
-    expected_sum = sum(i**2 for i in range(1000))
-    assert sum_squares(large_list) == expected_sum
-
-def test_list_with_very_large_numbers():
-    assert sum_squares([10**9, 2*10**9]) == 5 * 10**18
-
-def test_list_with_large_positive_and_negative():
-    assert sum_squares([10**9, -2*10**9]) == 5 * 10**18
+def test_list_with_many_small_numbers():
+    assert sum_squares([1] * 1000) == 1000000
 
 def test_list_with_floats():
     with pytest.raises(TypeError):
@@ -63,3 +47,8 @@ def test_list_with_strings():
 def test_list_with_mixed_types():
     with pytest.raises(TypeError):
         sum_squares([1, 2.0, "3"])
+
+def test_large_list():
+    large_list = list(range(1, 1001))
+    expected_sum = sum(x**2 for x in large_list)
+    assert sum_squares(large_list) == expected_sum

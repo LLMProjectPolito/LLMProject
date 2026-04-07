@@ -41,45 +41,28 @@ def test_only_spaces():
     assert fix_spaces("   ") == "-"
 
 def test_mixed_spaces():
-    assert fix_spaces("Example  1   2") == "Example-1-2"
+    assert fix_spaces("Example  1 2   3") == "Example-1_2-3"
+
+def test_long_string_with_multiple_spaces():
+    assert fix_spaces("This is a long string with   multiple    spaces.") == "This_is_a_long_string_with-multiple-spaces."
+
+def test_string_with_tabs():
+    assert fix_spaces("Example\t1") == "Example_1"
+
+def test_string_with_newlines():
+    assert fix_spaces("Example\n1") == "Example_1"
+
+def test_string_with_carriage_returns():
+    assert fix_spaces("Example\r1") == "Example_1"
 
 def test_consecutive_and_single_spaces():
     assert fix_spaces("Example   1 2") == "Example-1_2"
 
-def test_long_string_with_multiple_spaces():
-    assert fix_spaces("This is a long string with   multiple   spaces.") == "This_is_a_long_string_with-multiple-spaces."
+def test_consecutive_spaces_and_leading():
+    assert fix_spaces("  Example 1") == "-Example_1"
 
-def test_string_with_tabs():
-    assert fix_spaces("Example\t1") == "Example\t1"
-
-def test_string_with_newlines():
-    assert fix_spaces("Example\n1") == "Example\n1"
+def test_consecutive_spaces_and_trailing():
+    assert fix_spaces("Example 1  ") == "Example_1-"
 
 def test_string_with_mixed_whitespace():
     assert fix_spaces("Example \t  \n1") == "Example\t-1"
-
-def test_trailing_space():
-    assert fix_spaces("Example 4 ") == "Example_4_"
-
-def test_leading_and_trailing_spaces():
-    assert fix_spaces(" Example 5 ") == "_Example_5_"
-
-def test_multiple_leading_spaces():
-    assert fix_spaces("   Example 6") == "-Example_6"
-
-def test_multiple_trailing_spaces():
-    assert fix_spaces("Example 7   ") == "Example_7-"
-
-def test_multiple_consecutive_spaces():
-    assert fix_spaces("Example   1   2") == "Example-1-2"
-
-def test_mixed_spaces():
-    assert fix_spaces("  Example 1  2   3  ") == "-Example_1-2-3-"
-
-def test_long_string_with_multiple_spaces():
-    long_string = "This is a long string with   multiple   spaces and some text."
-    expected_string = "This_is_a_long_string_with-multiple-spaces_and_some_text."
-    assert fix_spaces(long_string) == expected_string
-
-def test_string_with_mixed_whitespace():
-    assert fix_spaces("Example \t 1\n2   ") == "Example_\t1\n2-"

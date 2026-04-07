@@ -21,60 +21,62 @@ def sum_digits(n):
     return s
 
 @pytest.fixture
-def sample_list():
+def sample_data():
     return [1, 11, -1, -11, -12]
 
 @pytest.fixture
-def empty_list():
+def empty_data():
     return []
 
 @pytest.fixture
-def single_element_list():
+def single_element_data():
     return [5]
 
 @pytest.fixture
-def list_with_zeros():
-    return [0, 10, 100, -10]
+def multiple_elements_data():
+    return [10, 1, 11, 2, 21]
 
 @pytest.fixture
-def list_with_negative_and_positive():
-    return [-5, 5, -10, 10, 15, -15]
+def negative_numbers_data():
+    return [-1, -10, -11, -2, -20]
 
-def test_order_by_points_sample(sample_list):
+@pytest.fixture
+def mixed_positive_negative_data():
+    return [1, -1, 10, -10, 11, -11]
+
+def test_order_by_points_sample_data(sample_data):
     expected = [-1, -11, 1, -12, 11]
-    assert order_by_points(sample_list) == expected
+    assert order_by_points(sample_data) == expected
 
-def test_order_by_points_empty(empty_list):
-    assert order_by_points(empty_list) == []
+def test_order_by_points_empty_data(empty_data):
+    assert order_by_points(empty_data) == []
 
-def test_order_by_points_single(single_element_list):
-    assert order_by_points(single_element_list) == single_element_list
+def test_order_by_points_single_element_data(single_element_data):
+    assert order_by_points(single_element_data) == single_element_data
 
-def test_order_by_points_zeros(list_with_zeros):
-    expected = [0, 10, 100, -10]
-    assert order_by_points(list_with_zeros) == expected
+def test_order_by_points_multiple_elements_data(multiple_elements_data):
+    expected = [1, 10, 11, 2, 21]
+    assert order_by_points(multiple_elements_data) == expected
 
-def test_order_by_points_negative_and_positive(list_with_negative_and_positive):
-    expected = [-5, 5, -10, 10, 15, -15]
-    assert order_by_points(list_with_negative_and_positive) == expected
+def test_order_by_points_negative_numbers_data(negative_numbers_data):
+    expected = [-1, -10, -11, -2, -20]
+    assert order_by_points(negative_numbers_data) == expected
 
-def test_order_by_points_similar_digit_sum(sample_list):
-    assert order_by_points([12, 21, 3]) == [3, 12, 21]
+def test_order_by_points_mixed_positive_negative_data(mixed_positive_negative_data):
+    expected = [1, -1, 10, -10, 11, -11]
+    assert order_by_points(mixed_positive_negative_data) == expected
 
-def test_order_by_points_large_numbers(sample_list):
-    assert order_by_points([123, 321, 1]) == [1, 123, 321]
+def test_order_by_points_with_zeros(data_with_zeros):
+    data_with_zeros = [10, 0, 1, -10, -1]
+    expected = [0, 1, 10, -1, -10]
+    assert order_by_points(data_with_zeros) == expected
 
-def test_order_by_points_all_negative(sample_list):
-    assert order_by_points([-1, -11, -12]) == [-1, -11, -12]
+def test_order_by_points_large_numbers(large_numbers_data):
+    large_numbers_data = [123, 45, 6, 789, 10]
+    expected = [10, 6, 45, 123, 789]
+    assert order_by_points(large_numbers_data) == expected
 
-def test_order_by_points_all_positive(sample_list):
-    assert order_by_points([1, 11, 12]) == [1, 11, 12]
-
-def test_order_by_points_mixed_signs_same_digit_sum(sample_list):
-    assert order_by_points([-1, 1, -10, 10]) == [-1, 1, -10, 10]
-
-def test_order_by_points_duplicate_numbers(sample_list):
-    assert order_by_points([1, 1, 1]) == [1, 1, 1]
-
-def test_order_by_points_with_zeroes_and_negatives(sample_list):
-    assert order_by_points([0, -1, 1, -2, 2]) == [0, -1, 1, -2, 2]
+def test_order_by_points_duplicate_sums(duplicate_sums_data):
+    duplicate_sums_data = [1, 10, 11, 2, 20]
+    expected = [1, 2, 10, 11, 20]
+    assert order_by_points(duplicate_sums_data) == expected

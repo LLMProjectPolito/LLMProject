@@ -40,9 +40,9 @@ def sorted_list_sum(lst):
 def test_sorted_list_sum_basic():
     assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
     assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
-    assert sorted_list_sum(["abc", "def", "ghi"]) == []
+    assert sorted_list_sum(["abc", "defg", "hi", "jklm"]) == []
     assert sorted_list_sum(["abcd", "efgh", "ijkl"]) == ["abcd", "efgh", "ijkl"]
-    assert sorted_list_sum(["abcde", "fghij", "klmno"]) == []
+    assert sorted_list_sum(["abcd", "efgh", "ijkl", "mnop"]) == ["abcd", "efgh", "ijkl", "mnop"]
 
 def test_sorted_list_sum_empty():
     assert sorted_list_sum([]) == []
@@ -53,7 +53,7 @@ def test_sorted_list_sum_duplicates():
 
 def test_sorted_list_sum_same_length():
     assert sorted_list_sum(["bc", "ab", "cd"]) == ["ab", "bc", "cd"]
-    assert sorted_list_sum(["zy", "ax", "bw"]) == ["ax", "bw", "zy"]
+    assert sorted_list_sum(["cba", "abc", "bac"]) == ["abc", "bac", "cba"]
 
 def test_sorted_list_sum_mixed_lengths():
     assert sorted_list_sum(["a", "aa", "aaa", "aaaa", "b", "bb", "bbb", "bbbb"]) == ["aa", "bb", "aaaa", "bbbb"]

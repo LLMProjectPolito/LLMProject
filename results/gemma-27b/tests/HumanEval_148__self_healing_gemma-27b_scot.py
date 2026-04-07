@@ -35,16 +35,11 @@ def bf(planet1, planet2):
     planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
     if planet1 not in planets or planet2 not in planets:
         return ()
-    
+    if planet1 == planet2:
+        return ()
     index1 = planets.index(planet1)
     index2 = planets.index(planet2)
-    
-    if index1 == index2:
+    if index1 > index2:
         return ()
-    
-    start = min(index1, index2) + 1
-    end = max(index1, index2)
-    
-    between_planets = tuple(planets[start:end])
-    
-    return between_planets
+    result = tuple(planets[index1+1:index2])
+    return result

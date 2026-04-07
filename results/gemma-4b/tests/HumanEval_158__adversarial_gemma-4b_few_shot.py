@@ -87,7 +87,6 @@ def test_find_max_basic():
 
 def test_find_max_equal_unique():
     assert find_max(["abc", "bca", "cab"]) == "abc"
-    assert find_max(["cab", "abc", "bca"]) == "abc"
 
 def test_find_max_empty_list():
     assert find_max([]) == ""
@@ -95,8 +94,11 @@ def test_find_max_empty_list():
 def test_find_max_single_word():
     assert find_max(["hello"]) == "hello"
 
-def test_find_max_duplicate_words():
-    assert find_max(["apple", "apple", "banana"]) == "banana"
+def test_find_max_duplicate_unique():
+    assert find_max(["apple", "banana", "orange"]) == "banana"
+
+def test_find_max_lexicographical():
+    assert find_max(["cat", "dog", "bat"]) == "bat"
 
 def test_find_max_mixed_case():
-    assert find_max(["Apple", "apple"]) == "apple"
+    assert find_max(["Cat", "dog", "Bat"]) == "Bat"

@@ -53,6 +53,7 @@ def get_max(arr: list[int]) -> int:
         return None
     return max(arr)
 
+
 class TestCompare:
     def test_correct_guesses(self):
         assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 5, 1]) == [0, 0, 0, 0, 0, 0]
@@ -76,14 +77,18 @@ class TestCompare:
         assert compare([-1, -2, -3], [-1, -2, -4]) == [0, 0, 1]
 
     def test_zero_values(self):
-        assert compare([0, 0, 0], [0, 1, 0]) == [0, 1, 0]
+        assert compare([0, 0, 0], [1, 2, 3]) == [1, 2, 3]
 
     def test_large_numbers(self):
         assert compare([1000, 2000, 3000], [1000, 2001, 3000]) == [0, 1, 0]
 
-    def test_different_lengths(self):
+    def test_all_negative_incorrect(self):
+        assert compare([-1, -2, -3], [-4, -5, -6]) == [3, 3, 3]
+
+    def test_different_lengths_raises_error(self):
         with pytest.raises(ValueError):
-            compare([1, 2], [1])
+            compare([1, 2, 3], [1, 2])
+
 
 class TestPalindrome:
     def test_palindrome_basic(self):

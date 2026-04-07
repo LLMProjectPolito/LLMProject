@@ -36,9 +36,11 @@ def simplify(x, n):
             return False
         
         common_divisor = gcd(numerator, denominator)
+        numerator //= common_divisor
+        denominator //= common_divisor
         
-        return numerator // common_divisor == denominator // common_divisor
-    except:
+        return abs(numerator) == abs(denominator)
+    except ValueError:
         return False
 
 def gcd(a, b):

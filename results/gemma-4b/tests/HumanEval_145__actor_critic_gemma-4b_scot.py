@@ -32,15 +32,20 @@ def order_by_points(nums):
 
     return sorted(nums, key=lambda x: (sum_digits(x), nums.index(x)))
 
-
-def test_order_by_points_basic():
-    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
-
-def test_order_by_points_negative():
-    assert order_by_points([-1, -11, 1, -12, 11]) == [-1, -11, 1, -12, 11]
-
-def test_order_by_points_empty():
+def test_order_by_points_empty_list():
     assert order_by_points([]) == []
 
-def test_order_by_points_duplicates():
+def test_order_by_points_positive_numbers():
     assert order_by_points([1, 11, 2, 20]) == [1, 2, 11, 20]
+
+def test_order_by_points_negative_numbers():
+    assert order_by_points([-1, -11, -2, -20]) == [-1, -2, -11, -20]
+
+def test_order_by_points_mixed_numbers():
+    assert order_by_points([1, -1, 11, -11, 2, -2]) == [-1, -2, 1, -11, 2, 11]
+
+def test_order_by_points_duplicate_sums():
+    assert order_by_points([1, 11, 2, 20, 10]) == [1, 10, 11, 2, 20]
+
+def test_order_by_points_example_case():
+    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]

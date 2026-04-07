@@ -57,7 +57,7 @@ def test_special_factorial_boundary_2():
 def test_special_factorial_boundary_3():
     assert special_factorial(3) == 12
 
-# Focus: Large Inputs
+# Focus: Equivalence Partitioning
 import pytest
 
 def special_factorial(n):
@@ -73,14 +73,15 @@ def special_factorial(n):
     factorial of this integer.
     """
     if n <= 0:
-        return 1
-    result = 1
+        raise ValueError("Input must be a positive integer.")
+    
+    factorial_product = 1
     for i in range(1, n + 1):
         factorial = 1
         for j in range(1, i + 1):
             factorial *= j
-        result *= factorial
-    return result
+        factorial_product *= factorial
+    return factorial_product
 
 def factorial(n):
     if n == 0:
@@ -88,19 +89,19 @@ def factorial(n):
     else:
         return n * factorial(n-1)
 
-@pytest.mark.parametrize("n", [10, 12, 15])
-def test_special_factorial_large_input(n):
+@pytest.mark.parametrize("n", [1, 2, 3, 4, 5])
+def test_special_factorial_positive_values(n):
+    """Tests with valid positive integer inputs."""
     expected = 1
     for i in range(1, n + 1):
         expected *= factorial(i)
     assert special_factorial(n) == expected
 
-@pytest.mark.parametrize("n", [8, 11, 14])
-def test_special_factorial_large_input_2(n):
-    expected = 1
-    for i in range(1, n + 1):
-        expected *= factorial(i)
-    assert special_factorial(n) == expected
+@pytest.mark.parametrize("n", [0, -1, -5])
+def test_special_factorial_invalid_values(n):
+    """Tests with invalid inputs (non-positive integers)."""
+    with pytest.raises(ValueError):
+        special_factorial(n)
 
 # Focus: Error Handling/Invalid Input
 import pytest
@@ -117,5 +118,5 @@ def test_special_factorial_zero_input():
 
 def test_special_factorial_non_integer_input():
     with pytest.raises(TypeError) as excinfo:
-        special_factorial(1.5)
+        special_factorial(3.14)
     assert "Input must be an integer." == str(excinfo.value)

@@ -64,13 +64,10 @@ def test_negative_large_numbers():
     assert order_by_points([-123, -45, -6, -789]) == [-6, -45, -123, -789]
 
 def test_mixed_large_numbers():
-    assert order_by_points([123, -45, 6, -789]) == [-789, -45, 6, 123]
+    assert order_by_points([-123, 123, -45, 45, -6, 6]) == [-6, 6, -45, 45, -123, 123]
 
 def test_complex_case():
     assert order_by_points([10, 1, 100, 11, 2, 20]) == [1, 2, 10, 11, 20, 100]
 
-def test_all_same_sums():
-    assert order_by_points([1, 10, 100, 1000]) == [1, 10, 100, 1000]
-
-def test_negative_and_positive_same_sum():
-    assert order_by_points([-1, 1, -11, 11]) == [-1, 1, -11, 11]
+def test_negative_complex_case():
+    assert order_by_points([-10, -1, -100, -11, -2, -20]) == [-1, -2, -10, -11, -20, -100]

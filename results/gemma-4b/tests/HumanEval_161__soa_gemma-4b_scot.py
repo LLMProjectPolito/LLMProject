@@ -32,7 +32,7 @@ def solve(s):
             res += char.lower()
         else:
             res += char
-    if not any('a' <= char <= 'z' for char in s):
+    if not any('a' <= c <= 'z' for c in s):
         return s[::-1]
     return res
 
@@ -61,7 +61,7 @@ def test_mixed_characters():
     assert solve("a1B2c3!") == "A1b2C3!"
 
 def test_long_string():
-    assert solve("This is a long string with mixed case and numbers.") == "tHIS Is A LONG STRING WITH MIXED CASE AND NUMBERS."
+    assert solve("This is a long string with mixed case and numbers.") == "tHIS IS A LONG STRING WITH MIXED CASE AND NUMBERS."
 
 def test_string_with_spaces():
     assert solve("Hello World") == "hELLO wORLD"

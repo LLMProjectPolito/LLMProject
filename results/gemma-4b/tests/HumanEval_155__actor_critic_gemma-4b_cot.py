@@ -58,5 +58,5 @@ class TestEvenOddCount:
         assert even_odd_count(2468135790) == (5, 5)
 
     def test_negative_mixed_digits(self):
-        assert even_odd_count(-1234567890) == (5, 5)
         assert even_odd_count(-2468135790) == (5, 5)
+        assert even_odd_count(-1234567890) == (5, 5)

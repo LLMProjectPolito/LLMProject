@@ -32,26 +32,11 @@ def double_the_difference(lst):
             sum_of_squares += num * num
     return sum_of_squares
 
-def test_empty_list():
-    assert double_the_difference([]) == 0
+def test_mixed_types():
+    assert double_the_difference([1, 3.14, "hello", 5, -7, 9]) == 1 + 25 + 81
 
-def test_negative_numbers():
-    assert double_the_difference([-1, -2, 0]) == 0
-
-def test_mixed_numbers():
-    assert double_the_difference([1, 3, 2, 0]) == 10
-
-def test_odd_and_negative():
-    assert double_the_difference([9, -2]) == 81
-
-def test_zero():
-    assert double_the_difference([0]) == 0
+def test_mixed_edge_case():
+    assert double_the_difference([1, 3.14, -5, 999999999, 7]) == 1 + 999999999**2 + 49
 
 def test_large_odd_numbers():
     assert double_the_difference([123456789]) == 123456789 * 123456789
-
-def test_multiple_odd_numbers():
-    assert double_the_difference([1, 3, 5, 7]) == 1 + 9 + 25 + 49
-
-def test_floats_and_strings():
-    assert double_the_difference([1, 3.14, "hello", 5]) == 1 + 25

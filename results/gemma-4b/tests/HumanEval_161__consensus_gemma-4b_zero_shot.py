@@ -75,8 +75,5 @@ def test_string_with_unicode_and_letters():
 def test_string_with_unicode_and_numbers():
     assert solve("你好123") == "你好123"
 
-def test_all_uppercase():
-    assert solve("ABC") == "abc"
-
-def test_all_lowercase():
-    assert solve("abc") == "ABC"
+def test_string_with_unicode_and_special_characters():
+    assert solve("你好!@#") == "你好!@#"

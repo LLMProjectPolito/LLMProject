@@ -37,7 +37,6 @@ def get_max(arr: list[int]) -> int:
     return max(arr)
 
 
-# Even/Odd Count Tests
 def test_even_odd_count_positive():
     assert even_odd_count(123) == (1, 2)
 
@@ -54,6 +53,10 @@ def test_even_odd_count_zero():
     assert even_odd_count(0) == (1, 0)
 
 def test_even_odd_count_mixed():
+    assert even_odd_count(123456) == (3, 3)
+    assert even_odd_count(1234567890) == (5, 5)
+
+def test_even_odd_count_large_number():
     assert even_odd_count(1234567890) == (5, 5)
 
 def test_even_odd_count_single_even():
@@ -62,23 +65,26 @@ def test_even_odd_count_single_even():
 def test_even_odd_count_single_odd():
     assert even_odd_count(1) == (0, 1)
 
-def test_even_odd_count_large_negative():
-    assert even_odd_count(-1234567890) == (5, 5)
-
-def test_even_odd_count_leading_zero():
-    assert even_odd_count(102) == (2, 1)
+def test_even_odd_count_negative_large():
+    assert even_odd_count(-9876543210) == (5, 5)
 
 def test_even_odd_count_repeated_digits():
     assert even_odd_count(2222) == (4, 0)
     assert even_odd_count(1111) == (0, 4)
 
-def test_even_odd_count_edge_case_max_int():
+def test_even_odd_count_leading_zero():
+    assert even_odd_count(102) == (2, 1)
+    assert even_odd_count(-012) == (1, 1) #handles leading zero in negative numbers
+
+def test_even_odd_count_max_int():
     assert even_odd_count(2147483647) == (4, 6)
 
-def test_even_odd_count_edge_case_min_int():
+def test_even_odd_count_min_int():
     assert even_odd_count(-2147483648) == (1, 9)
 
-# Palindrome Tests
+def test_even_odd_count_large_negative():
+    assert even_odd_count(-1234567890) == (5, 5)
+
 def test_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
@@ -86,7 +92,6 @@ def test_palindrome_basic():
 def test_palindrome_empty():
     assert is_palindrome('') == True
 
-# Get Max Tests
 def test_max_positive():
     assert get_max([1, 2, 3]) == 3
 

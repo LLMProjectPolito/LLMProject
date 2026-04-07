@@ -66,7 +66,7 @@ def test_subtraction_division():
 def test_multiplication_exponentiation():
     operator = ['*', '**']
     operand = [2, 3, 2]
-    assert do_algebra(operator, operand) == 32
+    assert do_algebra(operator, operand) == 36
 
 def test_complex_expression():
     operator = ['+', '*', '-', '//']

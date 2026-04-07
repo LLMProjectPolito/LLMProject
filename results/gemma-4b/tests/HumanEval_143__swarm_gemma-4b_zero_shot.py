@@ -70,14 +70,11 @@ def test_sentence_with_primes():
 def test_sentence_with_no_primes():
     assert words_in_sentence("hello world") == ""
 
-def test_sentence_with_single_prime_word():
+def test_sentence_with_mixed_primes():
+    assert words_in_sentence("a b c d e") == "a"
+
+def test_sentence_with_single_word_prime():
     assert words_in_sentence("prime") == "prime"
 
-def test_sentence_with_multiple_prime_words():
-    assert words_in_sentence("one two three") == "one three"
-
-def test_sentence_with_long_words():
-    assert words_in_sentence("abcdefghijk") == ""
-
-def test_sentence_with_mixed_words():
-    assert words_in_sentence("a b c d e f g h i j k") == "a c e g i k"
+def test_sentence_with_single_word_non_prime():
+    assert words_in_sentence("notprime") == ""

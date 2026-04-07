@@ -24,20 +24,18 @@ def is_prime(n):
     return True
 
 def test_prime_number():
-    assert is_prime(7) == True
-    assert is_prime(2) == True
-    assert is_prime(11) == True
-    assert is_prime(13) == True
+    assert x_or_y(7, 34, 12) == 34
+    assert x_or_y(11, 100, 20) == 100
+    assert x_or_y(2, 50, 10) == 50
 
 def test_non_prime_number():
-    assert is_prime(1) == False
-    assert is_prime(4) == False
-    assert is_prime(6) == False
-    assert is_prime(8) == False
-    assert is_prime(9) == False
-    assert is_prime(10) == False
-    assert is_prime(12) == False
-    assert is_prime(15) == False
+    assert x_or_y(15, 8, 5) == 5
+    assert x_or_y(4, 1, 7) == 7
+    assert x_or_y(9, 25, 15) == 15
+
+def test_edge_cases():
+    assert x_or_y(1, 10, 20) == 20
+    assert x_or_y(0, 30, 40) == 40
 
 # Focus: Boundary Values
 def test_x_or_y_boundary_prime():
@@ -50,11 +48,11 @@ def test_x_or_y_boundary_edge_case():
     assert x_or_y(0, 5, 10) == 10
 
 # Focus: Type Scenarios
-def test_prime_input():
+def test_prime_returns_x():
     assert x_or_y(7, 34, 12) == 34
 
-def test_non_prime_input():
+def test_non_prime_returns_y():
     assert x_or_y(15, 8, 5) == 5
 
-def test_another_non_prime_input():
-    assert x_or_y(4, 10, 20) == 20
+def test_edge_case_one_returns_y():
+    assert x_or_y(1, 10, 20) == 20

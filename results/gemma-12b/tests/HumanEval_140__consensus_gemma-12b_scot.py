@@ -54,7 +54,7 @@ def test_string_with_numbers_and_spaces():
     assert fix_spaces("123 Example   456") == "123_Example-3"
 
 def test_string_with_underscores_and_spaces():
-    assert fix_spaces("Example_ 1   2") == "_Example_1-2"
+    assert fix_spaces("Example_ 1 2") == "_Example_1_2"
 
 def test_string_with_hyphens_and_spaces():
-    assert fix_spaces("Example- 1   2") == "Example-1-2"
+    assert fix_spaces("Example- 1 2") == "Example-1_2"

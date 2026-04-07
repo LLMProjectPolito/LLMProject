@@ -34,7 +34,7 @@ def bf(planet1, planet2):
     bf("Earth", "Mercury") ==> ("Venus")
     bf("Mercury", "Uranus") ==> ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
     '''
-    planets = ("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
+    planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
     if planet1 not in planets or planet2 not in planets:
         return ()
 
@@ -44,9 +44,8 @@ def bf(planet1, planet2):
     start = min(index1, index2) + 1
     end = max(index1, index2)
 
-    between_planets = planets[start:end]
-    return tuple(between_planets)
-
+    between_planets = tuple(planets[start:end])
+    return between_planets
 
 class TestBF:
     def test_jupiter_neptune(self):
@@ -65,7 +64,7 @@ class TestBF:
         assert bf("Pluto", "Venus") == ()
 
     def test_invalid_planet2(self):
-        assert bf("Venus", "Ceres") == ()
+        assert bf("Venus", "Pluto") == ()
 
     def test_invalid_planets(self):
         assert bf("Pluto", "Ceres") == ()
@@ -82,5 +81,5 @@ class TestBF:
     def test_earth_jupiter(self):
         assert bf("Earth", "Jupiter") == ("Mars", "Jupiter", "Saturn")
 
-    def test_uranus_venus(self):
-        assert bf("Uranus", "Venus") == ("Saturn", "Jupiter", "Mars", "Earth")
+    def test_jupiter_earth(self):
+        assert bf("Jupiter", "Earth") == ("Saturn", "Uranus")

@@ -29,23 +29,29 @@ def test_mixed_positive_numbers():
 def test_negative_numbers():
     assert double_the_difference([-1, -3, -5]) == 0
 
-def test_mixed_positive_and_negative():
+def test_mixed_positive_and_negative_numbers():
     assert double_the_difference([1, -2, 3, -4, 5]) == 1 + 9 + 25
 
-def test_zeroes():
-    assert double_the_difference([0, 0, 0]) == 0
+def test_zero():
+    assert double_the_difference([0]) == 0
 
-def test_mixed_with_zeroes():
+def test_mixed_numbers_with_zero():
     assert double_the_difference([1, 0, 3, 0, 5]) == 1 + 9 + 25
 
-def test_floats():
-    assert double_the_difference([1.0, 2.0, 3.0]) == 1 + 9
+def test_float_numbers():
+    assert double_the_difference([1.0, 3.0, 2.0]) == 1 + 9
+
+def test_mixed_integer_and_float():
+    assert double_the_difference([1, 3.0, 2, 5.0]) == 1 + 9 + 25
+
+def test_string_input():
+    assert double_the_difference(['1', '3', '2']) == 0
 
 def test_mixed_types():
-    assert double_the_difference([1, 2.5, 3, "a"]) == 1 + 9
+    assert double_the_difference([1, '3', 2.0, 5]) == 1 + 25
 
 def test_large_numbers():
-    assert double_the_difference([99, 101]) == 9801 + 10201
+    assert double_the_difference([101, 203, 305]) == 10201 + 41209 + 93025
 
 def test_example_1():
     assert double_the_difference([1, 3, 2, 0]) == 10

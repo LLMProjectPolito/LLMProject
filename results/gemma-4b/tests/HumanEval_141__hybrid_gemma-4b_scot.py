@@ -48,7 +48,10 @@ def file_name_check(file_name):
     prefix = file_name[:dot_index]
     suffix = file_name[dot_index + 1:]
 
-    if not prefix or not 'a' <= prefix[0] <= 'z' or not 'A' <= prefix[0] <= 'Z':
+    if not prefix:
+        return 'No'
+
+    if not 'a' <= prefix[0] <= 'z' and not 'A' <= prefix[0] <= 'Z':
         return 'No'
 
     if suffix not in ['txt', 'exe', 'dll']:
@@ -56,27 +59,63 @@ def file_name_check(file_name):
 
     return 'Yes'
 
+### SCoT Steps:
+
+# STEP 1: REASONING
+# The function `file_name_check` validates a file name based on several criteria:
+# 1. Digit count: No more than three digits.
+# 2. Dot count: Exactly one dot.
+# 3. Prefix: Non-empty and starts with a letter.
+# 4. Suffix: Must be one of 'txt', 'exe', or 'dll'.
+# We need to test all combinations of these conditions to ensure the function behaves correctly.
+# Edge cases include empty strings, strings with multiple dots, strings starting with digits,
+# and suffixes that are not in the allowed list.
+
+# STEP 2: PLAN
+# Test functions:
+# - test_valid_name: Tests a valid file name.
+# - test_too_many_digits: Tests a file name with more than three digits.
+# - test_no_dot: Tests a file name with no dot.
+# - test_multiple_dots: Tests a file name with multiple dots.
+# - test_invalid_prefix: Tests a file name with an invalid prefix (not starting with a letter).
+# - test_invalid_suffix: Tests a file name with an invalid suffix.
+# - test_empty_prefix: Tests a file name with an empty prefix.
+# - test_invalid_input: Tests with invalid input type (non-string).
+
+# STEP 3: CODE
+#
+
+"""
+pytest suite for file_name_check function.
+"""
 def test_valid_name():
     assert file_name_check("example.txt") == 'Yes'
     assert file_name_check("test.exe") == 'Yes'
     assert file_name_check("a.dll") == 'Yes'
+    assert file_name_check("123example.txt") == 'No'
+    assert file_name_check("example.123") == 'No'
+    assert file_name_check("example.txt.txt") == 'No'
 
 def test_too_many_digits():
-    assert file_name_check("123example.txt") == 'No'
     assert file_name_check("1234example.txt") == 'No'
+    assert file_name_check("123example.txt") == 'No'
+    assert file_name_check("12example.txt") == 'No'
+    assert file_name_check("1example.txt") == 'No'
+    assert file_name_check("1.txt") == 'No'
 
 def test_no_dot():
-    assert file_name_check("exampleexe") == 'No'
+    assert file_name_check("exampletxt") == 'No'
     assert file_name_check("example") == 'No'
 
 def test_multiple_dots():
-    assert file_name_check("example.extra.txt") == 'No'
+    assert file_name_check("example.txt.txt") == 'No'
     assert file_name_check("example..txt") == 'No'
 
 def test_invalid_prefix():
     assert file_name_check("1example.txt") == 'No'
-    assert file_name_check("example.1txt") == 'No'
-    assert file_name_check("example.2txt") == 'No'
+    assert file_name_check("example.123") == 'No'
+    assert file_name_check("example.000") == 'No'
+    assert file_name_check("example.1234") == 'No'
 
 def test_invalid_suffix():
     assert file_name_check("example.pdf") == 'No'
@@ -84,15 +123,9 @@ def test_invalid_suffix():
 
 def test_empty_prefix():
     assert file_name_check(".txt") == 'No'
+    assert file_name_check("..txt") == 'No'
 
-def test_empty_suffix():
-    assert file_name_check("example.") == 'No'
-
-def test_invalid_input_type():
+def test_invalid_input():
     assert file_name_check(123) == 'No'
     assert file_name_check(None) == 'No'
-
-def test_special_characters():
-    assert file_name_check("example!txt") == 'No'
-    assert file_name_check("example@.txt") == 'No'
-    assert file_name_check("example.txt ") == 'No'
+    assert file_name_check(b'test.txt') == 'No'

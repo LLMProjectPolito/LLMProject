@@ -54,11 +54,5 @@ def test_fix_spaces_single_space():
 def test_fix_spaces_with_leading_and_trailing_spaces():
     assert fix_spaces("  Example ") == "_Example_"
     
-def test_fix_spaces_with_multiple_spaces_at_start():
-    assert fix_spaces("  Example  ") == "_Example_"
-    
-def test_fix_spaces_with_multiple_spaces_at_end():
-    assert fix_spaces("Example   ") == "_Example-"
-    
 def test_fix_spaces_with_mixed_spaces():
-    assert fix_spaces("Example -1") == "_Example-"
+    assert fix_spaces("Example 123") == "Example_123"

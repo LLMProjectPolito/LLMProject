@@ -30,10 +30,10 @@ class TestStringtoMD5:
         assert string_to_md5("Hello world") == '3e25960a79dbc69b674cd4ec67a72c62'
 
     def test_string_with_spaces(self):
-        assert string_to_md5("  ") == '9c6a98d4695394a99999999999999999'
+        assert string_to_md5("  ") == '9c6a94a9999999999999999999999999'
 
     def test_string_with_special_characters(self):
-        assert string_to_md5("!@#$%^&*()") == '99d83104963399999999999999999999'
+        assert string_to_md5("!@#$%^&*()") == '99d8310496a999999999999999999999'
 
     def test_string_with_numbers(self):
         assert string_to_md5("1234567890") == 'd1e2f3a4b5c6d7e8f9a0b1c2d3e4f5'

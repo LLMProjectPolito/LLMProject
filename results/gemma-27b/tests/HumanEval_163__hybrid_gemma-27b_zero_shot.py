@@ -43,15 +43,14 @@ class TestGenerateIntegers:
     def test_single_digit_range(self):
         assert generate_integers(1, 1) == []
         assert generate_integers(2, 2) == [2]
-        assert generate_integers(3, 3) == []
 
-    def test_range_with_one_even_digit(self):
-        assert generate_integers(1, 2) == [2]
-        assert generate_integers(2, 3) == [2]
+    def test_range_with_one_even(self):
+        assert generate_integers(1, 3) == [2]
+        assert generate_integers(3, 5) == [4]
 
-    def test_range_with_multiple_even_digits(self):
+    def test_range_with_multiple_even(self):
         assert generate_integers(1, 6) == [2, 4, 6]
-        assert generate_integers(4, 9) == [4, 6, 8]
+        assert generate_integers(5, 9) == [6, 8]
 
     def test_edge_cases(self):
         assert generate_integers(0, 1) == []
@@ -61,7 +60,7 @@ class TestGenerateIntegers:
 
     def test_larger_range(self):
         assert generate_integers(1, 10) == [2, 4, 6, 8]
-        assert generate_integers(5, 15) == [6, 8]
+        assert generate_integers(11, 15) == []
 
     def test_negative_inputs(self):
         assert generate_integers(-2, -1) == []
@@ -70,13 +69,14 @@ class TestGenerateIntegers:
 
     def test_mixed_inputs(self):
         assert generate_integers(-1, 1) == []
-        assert generate_integers(-2, 3) == [2]
+        assert generate_integers(-1, 3) == [2]
 
     def test_empty_range(self):
-        assert generate_integers(5, 4) == []
+        assert generate_integers(5, 5) == []
 
     def test_large_numbers(self):
         assert generate_integers(100, 101) == []
+        assert generate_integers(101, 102) == []
         assert generate_integers(102, 104) == []
 
     def test_zero_in_range(self):
@@ -114,10 +114,10 @@ class TestGenerateIntegers:
         assert generate_integers(0, 2) == [2]
 
     def test_generate_integers_edge_case_1(self):
-        assert generate_integers(9, 1) == [2, 4, 6, 8]
+        assert generate_integers(9, 10) == []
 
     def test_generate_integers_edge_case_2(self):
-        assert generate_integers(1, 10) == [2, 4, 6, 8]
+        assert generate_integers(0, 0) == []
 
     def test_generate_integers_negative_inputs(self):
         with pytest.raises(TypeError):

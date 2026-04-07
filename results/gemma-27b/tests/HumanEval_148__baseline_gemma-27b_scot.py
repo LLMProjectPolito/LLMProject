@@ -72,4 +72,4 @@ def test_first_and_last_planet():
     assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
 
 def test_adjacent_planets():
-    assert bf("Earth", "Mars") == ("Venus",)
+    assert bf("Earth", "Mars") == ("")

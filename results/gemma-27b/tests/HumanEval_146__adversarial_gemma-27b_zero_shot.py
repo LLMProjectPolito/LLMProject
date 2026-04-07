@@ -37,36 +37,35 @@ def test_no_special_numbers():
 
 def test_single_special_number():
     assert specialFilter([15]) == 1
-    assert specialFilter([11]) == 1
-    assert specialFilter([33]) == 1
-    assert specialFilter([55]) == 1
-    assert specialFilter([77]) == 1
-    assert specialFilter([99]) == 1
+    assert specialFilter([-73]) == 1
+    assert specialFilter([109]) == 1
 
 def test_multiple_special_numbers():
-    assert specialFilter([15, 33, 55, 77, 99]) == 5
     assert specialFilter([15, -73, 14, -15]) == 1
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
-
-def test_negative_numbers():
-    assert specialFilter([-15, -33, -55]) == 3
-    assert specialFilter([-12, -34, -56]) == 0
-    assert specialFilter([-11, -13, -15]) == 3
+    assert specialFilter([11, 33, 55, 77, 99]) == 5
 
 def test_mixed_numbers():
-    assert specialFilter([15, -33, 45, -77, 10, 22]) == 3
-    assert specialFilter([12, -35, 46, -79, 11, 23]) == 2
+    assert specialFilter([12, 15, 23, 35, 47, 59, 61, 73, 85, 97]) == 4
+    assert specialFilter([1, 11, 13, 15, 17, 19, 21, 23, 25, 27]) == 5
+
+def test_negative_numbers():
+    assert specialFilter([-15, -33, -55, -77, -99]) == 5
+    assert specialFilter([-12, -15, -23, -35, -47, -59, -61, -73, -85, -97]) == 4
 
 def test_large_numbers():
-    assert specialFilter([100001, 100003, 100005]) == 3
-    assert specialFilter([100002, 100004, 100006]) == 0
+    assert specialFilter([100001, 123455, 987659]) == 2
+    assert specialFilter([200002, 345678, 876540]) == 0
 
-def test_numbers_less_than_or_equal_to_10():
-    assert specialFilter([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]) == 0
+def test_numbers_close_to_10():
+    assert specialFilter([11, 13, 15, 17, 19]) == 5
+    assert specialFilter([9, 10, 11, 12, 13]) == 2
 
-def test_edge_case_single_digit_odd():
-    assert specialFilter([1, 3, 5, 7, 9]) == 0
+def test_zero_and_negative_numbers():
+    assert specialFilter([0, -1, -5, -15, 11]) == 1
+    assert specialFilter([-10, -11, -12, -13]) == 1
 
-def test_numbers_with_leading_zeros():
-    assert specialFilter([015]) == 0 # Should treat as 15
-    assert specialFilter([033]) == 0 # Should treat as 33
+def test_edge_case_single_digit_greater_than_10():
+    assert specialFilter([11]) == 1
+    assert specialFilter([13]) == 1
+    assert specialFilter([15]) == 1

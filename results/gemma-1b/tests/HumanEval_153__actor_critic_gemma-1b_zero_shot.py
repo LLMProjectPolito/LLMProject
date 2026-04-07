@@ -51,3 +51,19 @@ def Strongest_Extension(class_name, extensions):
             max_strength = strength
             strongest_extension = extension
     return strongest_extension
+
+def test_strongest_extension():
+    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
+    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC', 'EE']) == 'my_class.AA'
+    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC', 'EE', 'GG']) == 'my_class.AA'
+    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC', 'EE', 'GG', 'HH']) == 'my_class.AA'
+    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC', 'EE', 'GG', 'HH', 'II']) == 'my_class.AA'
+    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC', 'EE', 'GG', 'HH', 'II', 'NN']) == 'my_class.AA'
+    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC', 'EE', 'GG', 'HH', 'II', 'NN', 'MM']) == 'my_class.AA'
+    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC', 'EE', 'GG', 'HH', 'II', 'NN', 'MM', 'OO']) == 'my_class.AA'
+    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC', 'EE', 'GG', 'HH', 'II', 'NN', 'MM', 'OO', 'PP']) == 'my_class.AA'
+    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC', 'EE', 'GG', 'HH', 'II', 'NN', 'MM', 'OO', 'PP', 'QQ']) == 'my_class.AA'
+    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC', 'EE', 'GG', 'HH', 'II', 'NN', 'MM', 'OO', 'PP', 'QQ', 'RR']) == 'my_class.AA'
+    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC', 'EE', 'GG', 'HH', 'II', 'NN', 'MM', 'OO', 'PP', 'QQ', 'RR', 'SS']) == 'my_class.AA'
+    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC', 'EE', 'GG', 'HH', 'II', 'NN', 'MM', 'OO', 'PP', 'QQ', 'RR', 'SS', 'TT']) == 'my_class.AA'
+    print("All tests passed!")

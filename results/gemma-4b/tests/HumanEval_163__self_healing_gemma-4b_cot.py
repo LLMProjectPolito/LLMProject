@@ -57,7 +57,7 @@ def test_generate_integers_1_10():
     assert generate_integers(1, 10) == [2, 4, 6, 8]
 
 def test_generate_integers_10_20():
-    assert generate_integers(10, 20) == [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+    assert generate_integers(10, 20) == [10, 12, 14, 16, 18, 20]
 
 def test_generate_integers_20_30():
     assert generate_integers(20, 30) == [20, 22, 24, 26, 28, 30]

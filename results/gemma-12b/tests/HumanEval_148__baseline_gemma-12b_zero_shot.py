@@ -46,7 +46,7 @@ def test_bf_mars_jupiter():
 def test_bf_saturn_uranus():
     """Test case: Saturn and Uranus"""
     result = bf("Saturn", "Uranus")
-    assert result == ("Uranus",)
+    assert result == ("Neptune",)
 
 def test_bf_uranus_neptune():
     """Test case: Uranus and Neptune"""

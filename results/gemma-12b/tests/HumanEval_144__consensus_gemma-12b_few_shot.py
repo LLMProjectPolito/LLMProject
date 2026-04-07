@@ -27,47 +27,38 @@ def test_simplify_another_not_whole_number():
 def test_simplify_one_whole():
     assert simplify("1/1", "2/3") == True
 
-def test_simplify_other_whole():
-    assert simplify("3/1", "1/1") == True
-
 def test_simplify_both_whole():
     assert simplify("1/1", "1/1") == True
 
 def test_simplify_large_numbers_whole():
-    assert simplify("100/1", "1/100") == True
+    assert simplify("100/2", "2/1") == True
 
 def test_simplify_large_numbers_not_whole():
-    assert simplify("100/3", "3/100") == False
+    assert simplify("100/3", "3/1") == False
 
-def test_simplify_same_numerator_denominator():
-    assert simplify("1/1", "2/2") == True
-
-def test_simplify_complex_fraction():
-    assert simplify("2/3", "3/4") == False
-
-def test_simplify_another_complex_fraction():
-    assert simplify("1/2", "4/5") == False
-
-def test_simplify_fraction_with_larger_denominator():
-    assert simplify("1/1000", "1000/1") == True
-
-def test_simplify_fraction_with_larger_numerator():
-    assert simplify("1000/1", "1/1000") == True
-
-def test_simplify_fraction_with_same_numerator():
-    assert simplify("2/3", "4/6") == True
-
-def test_simplify_fraction_with_same_denominator():
-    assert simplify("2/4", "4/2") == False
+def test_simplify_same_fraction():
+    assert simplify("1/2", "1/2") == True
 
 def test_simplify_fraction_with_one_as_numerator():
-    assert simplify("1/2", "2/1") == False
+    assert simplify("1/3", "3/1") == False
 
 def test_simplify_fraction_with_one_as_denominator():
-    assert simplify("2/1", "1/2") == False
+    assert simplify("2/1", "1/3") == False
 
-def test_simplify_fraction_with_zero_numerator():
-    assert simplify("0/1", "1/1") == True
+def test_simplify_fraction_with_large_numerator_and_denominator():
+    assert simplify("12345/6789", "6789/12345") == False
 
-def test_simplify_fraction_with_zero_numerator_and_denominator():
-    assert simplify("0/1", "0/1") == True
+def test_simplify_fraction_with_small_numerator_and_denominator():
+    assert simplify("2/3", "3/2") == False
+
+def test_simplify_fraction_with_same_numerator_and_denominator():
+    assert simplify("5/5", "5/5") == True
+
+def test_simplify_fraction_with_different_numerator_and_denominator():
+    assert simplify("3/4", "5/6") == False
+
+def test_simplify_fraction_with_one_numerator_and_denominator():
+    assert simplify("1/1", "2/2") == True
+
+def test_simplify_fraction_with_one_numerator_and_denominator_2():
+    assert simplify("2/2", "1/1") == True

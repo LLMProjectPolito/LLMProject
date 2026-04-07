@@ -60,12 +60,6 @@ def eat(number, need, remaining):
 
     Have fun :)
     """
-    if not all(isinstance(arg, int) for arg in [number, need, remaining]):
-        raise TypeError("Inputs must be integers.")
-
-    if not (0 <= number <= 1000 and 0 <= need <= 1000 and 0 <= remaining <= 1000):
-        raise ValueError("Inputs must be between 0 and 1000.")
-
     total_eaten = number
     remaining_carrots = remaining
     
@@ -79,53 +73,46 @@ def eat(number, need, remaining):
     return [total_eaten, remaining_carrots]
 
 @pytest.mark.parametrize("number, need, remaining, expected", [
-    (5, 6, 10, [11, 4]),  # Basic case: need > remaining
-    (4, 8, 9, [12, 1]),  # Basic case: need > remaining
-    (1, 10, 10, [11, 0]), # Basic case: need > remaining
-    (2, 11, 5, [7, 0]),  # Basic case: need > remaining
+    (5, 6, 10, [11, 4]),  # Sufficient remaining carrots to meet the need
+    (4, 8, 9, [12, 1]),  # Sufficient remaining carrots to meet the need
+    (1, 10, 10, [11, 0]), # Sufficient remaining carrots to meet the need
+    (2, 11, 5, [7, 0]),  # Not enough remaining carrots
     (0, 0, 0, [0, 0]),   # All zeros
-    (0, 5, 10, [5, 5]),  # Initial eaten is zero
-    (1000, 1000, 1000, [2000, 0]), # Max values
-    (0, 1000, 0, [0, 0]), # Need is max, remaining is zero
-    (1000, 0, 1000, [1000, 1000]), # Need is zero
+    (0, 5, 10, [5, 5]),  # Zero eaten, need some, remaining available
+    (1000, 1000, 1000, [2000, 0]), # Max values, enough carrots
+    (0, 1000, 0, [0, 0]), # Zero eaten, max need, zero remaining
+    (1000, 0, 1000, [1000, 1000]), # Max eaten, zero need, remaining available
     (500, 500, 500, [1000, 0]), # Need and remaining equal
-    (100, 200, 100, [200, 0]), # Need is double remaining
-    (200, 100, 100, [300, 0]), # Remaining is double need
-    (0, 1, 1, [1, 0]),   # Small values
-    (1, 0, 1, [1, 1]),   # Need is zero, small values
-    (1000, 1, 1, [1001, 0]), # Max eaten, small need/remaining
-    (1, 1000, 1, [1001, 0]), # Small eaten, max need/remaining
-    (5, 5, 5, [10, 0]), # need and remaining equal
-    (10, 5, 10, [15, 5]), # need less than remaining
-    (5, 10, 5, [15, 0]), # need greater than remaining
-    (0, 10, 5, [10, 0]), # initial eaten is zero, need greater than remaining
+    (100, 200, 100, [200, 0]), # Need more than remaining
+    (200, 100, 100, [300, 0]), # Remaining more than need
+    (0, 1, 1, [1, 0]),   # Small values, need exactly one
+    (1, 0, 1, [1, 1]),   # One eaten, zero need
+    (1000, 1, 1, [1001, 0]), # Max eaten, need one, one remaining
+    (1, 1000, 1, [1001, 0]), # One eaten, max need, one remaining
+    (5, 5, 5, [10, 0]), # Need and remaining equal, number > 0
+    (0, 0, 5, [0, 5]), # Need and number are 0, remaining > 0
 ])
 def test_eat(number, need, remaining, expected):
     assert eat(number, need, remaining) == expected
 
-def test_negative_inputs():
-    with pytest.raises(TypeError):
-        eat(-1, 5, 10)
-    with pytest.raises(TypeError):
-        eat(5, -1, 10)
-    with pytest.raises(TypeError):
-        eat(5, 5, -1)
+@pytest.mark.parametrize("number, need, remaining, expected", [
+    (1, 1, 1, [2, 0]),  # Need and remaining equal, number > 0
+    (0, 0, 0, [0, 0]),  # All zeros
+])
+def test_equal_need_remaining(number, need, remaining, expected):
+    assert eat(number, need, remaining) == expected
 
-def test_invalid_input_type():
-    with pytest.raises(TypeError):
-        eat(5.5, 5, 10)
-    with pytest.raises(TypeError):
-        eat(5, 5.5, 10)
-    with pytest.raises(TypeError):
-        eat(5, 5, 10.5)
-
-def test_input_out_of_range():
-    with pytest.raises(ValueError):
-        eat(1001, 5, 10)
-    with pytest.raises(ValueError):
-        eat(5, 1001, 10)
-    with pytest.raises(ValueError):
-        eat(5, 5, 1001)
-
-def test_need_is_zero():
-    assert eat(100, 0, 100) == [100, 100]
+@pytest.mark.parametrize("number, need, remaining, expected", [
+    (1001, 100, 100),  # Number exceeds constraint
+    (100, 1001, 100),  # Need exceeds constraint
+    (100, 100, 1001),  # Remaining exceeds constraint
+    (-1, 100, 100),   # Negative number
+    (100, -1, 100),   # Negative need
+    (100, 100, -1),   # Negative remaining
+])
+def test_invalid_inputs(number, need, remaining, expected):
+    try:
+        eat(number, need, remaining)
+        assert False, "Should have raised an exception"
+    except Exception:
+        pass

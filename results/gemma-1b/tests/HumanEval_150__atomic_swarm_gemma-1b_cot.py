@@ -57,6 +57,4 @@ def x_or_y(n, x, y):
         for i in range(2, n):
             if n % i == 0:
                 return i
-        return n
-    else:
-        return y
+    return y

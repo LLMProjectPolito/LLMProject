@@ -49,7 +49,7 @@ def test_get_max_triples_n_12():
     assert get_max_triples(12) == 12
 
 def test_get_max_triples_large_n():
-    assert get_max_triples(100) == 1617
+    assert get_max_triples(100) == 161700
 
 def test_get_max_triples_n_zero():
     with pytest.raises(ValueError):

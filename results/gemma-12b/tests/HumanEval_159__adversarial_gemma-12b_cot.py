@@ -60,41 +60,47 @@ def eat(number, need, remaining):
 
     Have fun :)
     """
+    total_eaten = number + remaining
+    remaining_after_meal = 0
     if remaining >= need:
-        return [number + need, remaining - need]
+        remaining_after_meal = remaining - need
     else:
-        return [number + remaining, 0]
+        remaining_after_meal = 0
+    return [total_eaten, remaining_after_meal]
 
+class TestEat:
+    def test_enough_carrots(self):
+        assert eat(5, 6, 10) == [15, 4]
 
-def test_eat_enough_carrots():
-    assert eat(5, 6, 10) == [11, 4]
+    def test_not_enough_carrots(self):
+        assert eat(4, 8, 9) == [13, 1]
 
-def test_eat_almost_enough_carrots():
-    assert eat(4, 8, 9) == [12, 1]
+    def test_exact_carrots_needed(self):
+        assert eat(1, 10, 10) == [11, 0]
 
-def test_eat_exactly_enough_carrots():
-    assert eat(1, 10, 10) == [11, 0]
+    def test_less_carrots_needed(self):
+        assert eat(2, 11, 5) == [7, 0]
 
-def test_eat_not_enough_carrots():
-    assert eat(2, 11, 5) == [7, 0]
+    def test_zero_initial_eaten(self):
+        assert eat(0, 5, 10) == [10, 5]
 
-def test_eat_zero_initial_eaten():
-    assert eat(0, 5, 10) == [5, 5]
+    def test_zero_need(self):
+        assert eat(5, 0, 10) == [5, 10]
 
-def test_eat_zero_need():
-    assert eat(5, 0, 10) == [5, 10]
+    def test_zero_remaining(self):
+        assert eat(5, 6, 0) == [5, 0]
 
-def test_eat_zero_remaining():
-    assert eat(5, 6, 0) == [5, 0]
+    def test_large_numbers(self):
+        assert eat(999, 999, 1000) == [1998, 1]
 
-def test_eat_large_numbers():
-    assert eat(999, 999, 1000) == [1998, 1]
+    def test_all_zero(self):
+        assert eat(0, 0, 0) == [0, 0]
 
-def test_eat_all_carrots_needed():
-    assert eat(0, 1000, 1000) == [1000, 0]
+    def test_need_equals_remaining(self):
+        assert eat(5, 5, 5) == [10, 0]
 
-def test_eat_need_greater_than_remaining():
-    assert eat(100, 200, 50) == [150, 0]
+    def test_number_equals_need(self):
+        assert eat(5, 5, 10) == [15, 5]
 
-def test_eat_all_constraints_met():
-    assert eat(100, 500, 750) == [850, 250]
+    def test_number_greater_than_need(self):
+        assert eat(6, 5, 10) == [16, 5]

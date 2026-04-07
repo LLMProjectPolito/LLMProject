@@ -10,6 +10,7 @@ def x_or_y(n, x, y):
     """
 
 import pytest
+import math
 
 def x_or_y(n, x, y):
     """A simple program which should return the value of x if n is 

@@ -54,20 +54,20 @@ def Strongest_Extension(class_name, extensions):
 def test_empty_extensions():
     assert Strongest_Extension("my_class", []) == "my_class."
 
-def test_strongest_extension_negative_strength():
-    assert Strongest_Extension("Slices", ['SErviNGSliCes', 'Cheese', 'StuFfed']) == "Slices.SErviNGSliCes"
+def test_same_strength():
+    assert Strongest_Extension("my_class", ["AA", "BB"]) == "my_class.AA"
 
-def test_strongest_extension_positive_strength():
-    assert Strongest_Extension("my_class", ['AA', 'Be', 'CC']) == "my_class.AA"
+def test_different_strengths():
+    assert Strongest_Extension("my_class", ["AA", "BB", "CC"]) == "my_class.AA"
 
-def test_strongest_extension_equal_strengths():
-    assert Strongest_Extension("my_class", ['AA', 'BB']) == "my_class.AA"
+def test_mixed_case():
+    assert Strongest_Extension("my_class", ["aA", "Be", "CC"]) == "my_class.aA"
 
-def test_strongest_extension_mixed_case():
-    assert Strongest_Extension("my_class", ['aA', 'bB', 'cC']) == "my_class.aA"
+def test_all_uppercase():
+    assert Strongest_Extension("my_class", ["AAA", "BBB"]) == "my_class.AAA"
 
-def test_strongest_extension_all_uppercase():
-    assert Strongest_Extension("my_class", ['ABC', 'DEF']) == "my_class.ABC"
+def test_all_lowercase():
+    assert Strongest_Extension("my_class", ["aaa", "bbb"]) == "my_class.aaa"
 
-def test_strongest_extension_all_lowercase():
-    assert Strongest_Extension("my_class", ['abc', 'def']) == "my_class.abc"
+def test_complex_extension():
+    assert Strongest_Extension("my_class", ["SErviNGSliCes", "Cheese", "StuFfed"]) == "my_class.SErviNGSliCes"

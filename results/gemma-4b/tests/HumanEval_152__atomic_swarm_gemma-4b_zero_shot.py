@@ -39,6 +39,9 @@ def compare(game,guess):
     for i in range(len(game)):
         result.append(abs(guess[i] - game[i]))
     return result
+    
+def test_basic():
+    assert compare([1,2,3,4,5,1],[1,2,3,4,2,-2]) == [0,0,0,0,3,3]
 
 import pytest
 

@@ -41,49 +41,46 @@ def int_to_mini_roman(number):
 
     return result
 
-def test_edge_zero():
-    assert int_to_mini_roman(0) == ""
-
 def test_zero():
     assert int_to_mini_roman(0) == ""
 
-def test_9():
+def test_nine():
     assert int_to_mini_roman(9) == 'ix'
 
-def test_1():
-    assert int_to_mini_roman(1) == 'i'
-
-def test_4():
+def test_four():
     assert int_to_mini_roman(4) == 'iv'
 
-def test_5():
+def test_five():
     assert int_to_mini_roman(5) == 'v'
 
-def test_10():
+def test_one():
+    assert int_to_mini_roman(1) == 'i'
+
+def test_ten():
     assert int_to_mini_roman(10) == 'x'
 
-def test_40():
+def test_forty():
     assert int_to_mini_roman(40) == 'xl'
 
-def test_50():
+def test_fifty():
     assert int_to_mini_roman(50) == 'l'
 
-def test_90():
+def test_ninety():
     assert int_to_mini_roman(90) == 'xc'
 
-def test_100():
+def test_one_hundred():
     assert int_to_mini_roman(100) == 'c'
 
-def test_400():
+def test_four_hundred():
     assert int_to_mini_roman(400) == 'cd'
 
-def test_500():
+def test_five_hundred():
     assert int_to_mini_roman(500) == 'd'
 
-def test_900():
+def test_nine_hundred():
     assert int_to_mini_roman(900) == 'cm'
 
-def test_1000():
+def test_thousand():
     assert int_to_mini_roman(1000) == 'm'
 
 def test_19():

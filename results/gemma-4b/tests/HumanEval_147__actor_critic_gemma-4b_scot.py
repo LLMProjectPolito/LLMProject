@@ -53,7 +53,7 @@ def get_max_triples(n):
 # test_empty_array: Test with n = 0.
 # test_single_element_array: Test with n = 1.
 # test_two_element_array: Test with n = 2.
-# test_small_array: Test with n = 5 (example from the prompt).
+# test_small_array: Test with n = 5 (example from the problem description).
 # test_large_array: Test with n = 10.
 # test_all_multiples_of_3: Test with n such that all elements of a are multiples of 3.
 # test_no_triples: Test with n such that no triples sum to a multiple of 3.
@@ -89,3 +89,18 @@ def test_n_equals_6():
 
 def test_n_equals_7():
     assert get_max_triples(7) == 10
+
+def test_n_equals_3():
+    assert get_max_triples(3) == 0
+
+def test_n_equals_4():
+    assert get_max_triples(4) == 0
+
+def test_n_equals_8():
+    assert get_max_triples(8) == 28
+
+def test_n_equals_9():
+    assert get_max_triples(9) == 27
+
+def test_n_equals_10():
+    assert get_max_triples(10) == 45

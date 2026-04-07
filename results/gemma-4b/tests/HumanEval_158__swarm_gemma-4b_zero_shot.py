@@ -51,8 +51,8 @@ def test_example_2():
 def test_example_3():
     assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
-def test_same_max_unique():
-    assert find_max(["abc", "def", "ghi"]) == "abc"
+def test_same_max_lexicographical():
+    assert find_max(["abc", "bca", "cab"]) == "abc"
 
 def test_mixed_case():
     assert find_max(["Name", "name"]) == "Name"

@@ -55,95 +55,21 @@ def do_algebra(operator, operand):
     try:
         op1 = operator[0]
         op2 = operator[1]
-        operand1 = operand[0]
-        operand2 = operand[1]
+        operand = operand[1:]
 
         if op1 == '+':
-            return operand1 + operand2
+            return op2 + float(operand[0])
         elif op1 == '-':
-            return operand1 - operand2
+            return op2 - float(operand[0])
         elif op1 == '*':
-            return operand1 * operand2
+            return op2 * float(operand[0])
         elif op1 == '/':
-            if operand2 == 0:
+            if float(operand[0]) == 0:
                 return "Error: Division by zero"
-            return operand1 // operand2
+            return float(op2) / float(operand[0])
         elif op1 == '**':
-            return operand1 ** operand2
+            return op2 ** float(operand[0])
         else:
             return "Error: Invalid operator"
-    except:
+    except (IndexError, TypeError):
         return "Error: Invalid input"
-
-    return "Error: Invalid input"
-    
-def test_addition():
-    array = [2, 3, 4, 5]
-    result = 2 + 3 * 4 - 5
-    assert result == 9
-    
-def test_subtraction():
-    array = [2, 3, 4, 5]
-    result = 2 - 3 * 4
-    assert result == -5
-    
-def test_multiplication():
-    array = [2, 3, 4, 5]
-    result = 2 * 3 * 4 - 5
-    assert result == 24
-    
-def test_floor_division():
-    array = [2, 3, 4, 5]
-    result = 2 // 3
-    assert result == 0.6666666666666666
-    
-def test_exponentiation():
-    array = [2, 3, 4, 5]
-    result = 2 ** 3
-    assert result == 8
-    
-def test_invalid_operator():
-    array = [2, 3, 4, 5]
-    result = 2 + 3 * 4
-    assert result == "Error: Invalid operator"
-    
-def test_invalid_operand():
-    array = [2, 3, 4, 5]
-    result = 2 + 3 * 4
-    assert result == "Error: Invalid input"
-    
-def test_empty_operand():
-    array = [2, 3, 4, 5]
-    result = 2 + 3 * 4
-    assert result == "Error: Invalid input"
-    
-def test_zero_operand():
-    array = [2, 3, 4, 5]
-    result = 2 + 3 * 4
-    assert result == "Error: Invalid input"
-    
-def test_mixed_operators():
-    array = [2, 3, 4, 5]
-    result = 2 + 3 * 4 // 5
-    assert result == 2
-    
-def test_complex_expression():
-    array = [1, 2, 3, 4, 5]
-    result = 10 + 2 * 3 - 4 // 2
-    assert result == 10
-    
-def test_negative_numbers():
-    array = [-2, -3, -4, -5]
-    result = -2 + -3 * -4
-    assert result == -24
-    
-def test_zero_in_operand():
-    array = [2, 3, 4, 5]
-    result = 2 + 3 * 4
-    assert result == "Error: Invalid input"
-    
-def test_large_numbers():
-    array = [1000, 2000, 3000, 4000]
-    result = 1000 + 2000 * 3000
-    assert result == 6000000
-```

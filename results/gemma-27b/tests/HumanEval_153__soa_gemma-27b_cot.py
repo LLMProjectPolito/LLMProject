@@ -67,10 +67,11 @@ def Strongest_Extension(class_name, extensions):
         ("Class2", ['sameStrength1', 'sameStrength2'], "Class2.sameStrength1"),
         ("Class3", [], "Class3.None"),
         ("Class4", [''], "Class4."),
-        ("Class5", ['AAAA', 'bbbb'], "Class5.AAAA"),
-        ("Class6", ['aA', 'Aa'], "Class6.aA"),
+        ("Class5", ['AAAA', 'aaaa'], "Class5.AAAA"),
+        ("Class6", ['A', 'a'], "Class6.A"),
         ("Class7", ['123', 'abc'], "Class7.123"),
-        ("Class8", ['!@#', 'abc'], "Class8.!@#"),
+        ("Class8", ['!@#', 'ABC'], "Class8.ABC"),
+        ("Class9", ['ExtensionWithNumbers123', 'ExtensionWithLetters'], "Class9.ExtensionWithLetters"),
     ],
 )
 def test_Strongest_Extension(class_name, extensions, expected):

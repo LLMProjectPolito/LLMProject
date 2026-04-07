@@ -47,23 +47,21 @@ def test_bf_empty_string():
     assert bf("", "Neptune") == ()
     assert bf("Jupiter", "") == ()
     assert bf("", "") == ()
-    assert bf("", "Earth") == ()
-    assert bf("Earth", "") == ()
-
-def test_bf_mixed_valid_invalid():
-    assert bf("Earth", "Pluto") == ()
-    assert bf("Pluto", "Earth") == ()
-
-def test_bf_edge_cases():
-    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
-    assert bf("Neptune", "Mercury") == ()
 
 def test_bf_planets_at_extremes():
     assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
-    assert bf("Neptune", "Mercury") == ("Uranus", "Saturn", "Jupiter", "Mars", "Earth", "Venus")
+    assert bf("Neptune", "Mercury") == ()
 
 def test_bf_adjacent_planets():
     assert bf("Earth", "Mars") == ()
     assert bf("Mars", "Earth") == ()
     assert bf("Venus", "Earth") == ()
     assert bf("Jupiter", "Saturn") == ()
+
+def test_bf_mixed_valid_invalid():
+    assert bf("Earth", "Pluto") == ()
+    assert bf("Invalid", "Earth") == ()
+
+def test_bf_edge_cases():
+    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
+    assert bf("Neptune", "Mercury") == ()

@@ -28,31 +28,34 @@ def test_all_even_length():
     assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
 def test_mixed_lengths():
-    assert sorted_list_sum(["aa", "a", "aaa", "bb", "b", "ccc"]) == ["aa", "bb", "ccc"]
+    assert sorted_list_sum(["aa", "a", "aaa", "cd"]) == ["aa", "cd"]
 
 def test_mixed_lengths_with_duplicates():
-    assert sorted_list_sum(["aa", "a", "aaa", "bb", "a", "ccc", "aa"]) == ["aa", "aa", "bb", "ccc"]
+    assert sorted_list_sum(["aa", "a", "aaa", "cd", "aa"]) == ["aa", "aa", "cd"]
 
-def test_same_length_different_alphabetical():
+def test_same_length_alphabetical():
     assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
 
-def test_same_length_with_duplicates():
-    assert sorted_list_sum(["ab", "cd", "ab", "ef", "cd"]) == ["ab", "ab", "cd", "cd", "ef"]
+def test_same_length_alphabetical_with_duplicates():
+    assert sorted_list_sum(["ab", "cd", "ef", "ab"]) == ["ab", "ab", "cd", "ef"]
+
+def test_mixed_lengths_and_alphabetical():
+    assert sorted_list_sum(["aa", "a", "aaa", "cd", "bb", "cc"]) == ["aa", "bb", "cc", "cd"]
+
+def test_longer_strings():
+    assert sorted_list_sum(["abcdef", "abc", "ab", "a"]) == ["ab", "abc", "abcdef"]
+
+def test_strings_with_spaces():
+    assert sorted_list_sum(["a b", "aa", "aaa"]) == ["aa"]
+
+def test_strings_with_special_characters():
+    assert sorted_list_sum(["!@#", "!!", "!!!"]) == ["!!", "!!!"]
+
+def test_duplicate_strings_with_same_length():
+    assert sorted_list_sum(["abc", "abc", "def"]) == ["abc", "abc", "def"]
+
+def test_duplicate_strings_with_different_lengths():
+    assert sorted_list_sum(["abc", "ab", "abc"]) == ["ab", "abc", "abc"]
 
 def test_complex_case():
     assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape"]) == ["kiwi", "grape"]
-
-def test_case_with_empty_string():
-    assert sorted_list_sum(["", "a", "aa"]) == ["", "aa"]
-
-def test_case_with_special_characters():
-    assert sorted_list_sum(["!@#", "a", "!!"]) == ["!@#", "!!"]
-
-def test_long_strings():
-    assert sorted_list_sum(["abcdefgh", "abcdefg", "abcdef"]) == ["abcdef", "abcdefg", "abcdefgh"]
-
-def test_all_same_length_and_same_value():
-    assert sorted_list_sum(["abc", "abc", "abc"]) == ["abc", "abc", "abc"]
-
-def test_mixed_lengths_and_duplicates_and_alphabetical():
-    assert sorted_list_sum(["aa", "a", "aaa", "bb", "a", "ccc", "aa", "bb"]) == ["aa", "aa", "bb", "bb", "ccc"]

@@ -25,6 +25,7 @@ def generate_integers(a, b):
     s = set()
     for i in range(a, b + 1):
         for digit in str(i):
-            if int(digit) % 2 == 0:
+            digit = int(digit)
+            if digit % 2 == 0:
                 s.add(i)
     return sorted(list(s))

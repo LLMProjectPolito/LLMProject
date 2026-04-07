@@ -39,17 +39,16 @@ def bf(planet1, planet2):
     if planet1 not in planets or planet2 not in planets:
         return ()
     
-    index1 = planets.index(planet1)
-    index2 = planets.index(planet2)
+    start_index = planets.index(planet1)
+    end_index = planets.index(planet2)
     
-    start = min(index1, index2) + 1
-    end = max(index1, index2)
+    if start_index > end_index:
+        start_index, end_index = end_index, start_index
     
-    between_planets = tuple(planets[start:end])
-    
-    return between_planets
+    result = tuple(planets[start_index + 1:end_index])
+    return result
 
-# Pytest Suite
+# Pytest Suite - Combined and Enhanced
 def test_bf_jupiter_neptune():
     assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
 
@@ -68,28 +67,7 @@ def test_bf_invalid_planet2():
 def test_bf_same_planet():
     assert bf("Earth", "Earth") == ()
 
-def test_bf_mercury_neptune():
-    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
-
-def test_bf_neptune_mercury():
-    assert bf("Neptune", "Mercury") == ("Uranus", "Saturn", "Jupiter", "Mars", "Earth", "Venus")
-
-def test_bf_mars_saturn():
-    assert bf("Mars", "Saturn") == ("Jupiter")
-
-def test_bf_saturn_mars():
-    assert bf("Saturn", "Mars") == ("Jupiter")
-
-def test_bf_venus_earth():
-    assert bf("Venus", "Earth") == ()
-
-def test_bf_earth_venus():
-    assert bf("Earth", "Venus") == ()
-
-def test_bf_edge_case_first_and_last():
-    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
-
-def test_bf_edge_case_last_and_first():
+def test_bf_reverse_order():
     assert bf("Neptune", "Mercury") == ("Uranus", "Saturn", "Jupiter", "Mars", "Earth", "Venus")
 
 def test_bf_adjacent_planets():
@@ -98,8 +76,17 @@ def test_bf_adjacent_planets():
 def test_bf_adjacent_planets_reverse():
     assert bf("Mars", "Earth") == ("Venus",)
 
-def test_bf_reverse_order():
+def test_bf_mercury_neptune():
+    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
+
+def test_bf_neptune_mercury():
     assert bf("Neptune", "Mercury") == ("Uranus", "Saturn", "Jupiter", "Mars", "Earth", "Venus")
+
+def test_bf_mars_jupiter():
+    assert bf("Mars", "Jupiter") == ("Earth",)
+
+def test_bf_jupiter_mars():
+    assert bf("Jupiter", "Mars") == ("Saturn", "Uranus")
 
 def is_palindrome(s: str) -> bool:
     """ Checks if a string is a palindrome """

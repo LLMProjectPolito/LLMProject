@@ -50,7 +50,7 @@ def file_name_check(file_name):
 
     return 'Yes'
 
-# Pytest Suite - Merged and Improved
+# Pytest Suite - Combined and Superior
 def test_valid_filenames():
     assert file_name_check("example.txt") == 'Yes'
     assert file_name_check("MyFile.exe") == 'Yes'
@@ -58,8 +58,8 @@ def test_valid_filenames():
     assert file_name_check("A.txt") == 'Yes'
     assert file_name_check("file23.exe") == 'Yes'
     assert file_name_check("longFileName123.dll") == 'Yes'
-    assert file_name_check("FILE1.EXE") == 'Yes'
     assert file_name_check("file123.txt") == 'Yes'
+    assert file_name_check("FILE1.exe") == 'Yes'
 
 def test_invalid_filenames_dot_count():
     assert file_name_check("exampletxt") == 'No'
@@ -72,19 +72,20 @@ def test_invalid_filenames_starting_character():
     assert file_name_check("!document.dll") == 'No'
     assert file_name_check(" file.txt") == 'No'
 
-def test_invalid_filenames_digit_count():
-    assert file_name_check("file1234.txt") == 'No'
-    assert file_name_check("file12345.exe") == 'No'
-    assert file_name_check("document1234.dll") == 'No'
-    assert file_name_check("1234file.dll") == 'No'
-
 def test_invalid_filenames_extension():
     assert file_name_check("example.pdf") == 'No'
     assert file_name_check("myfile.jpg") == 'No'
     assert file_name_check("document.zip") == 'No'
     assert file_name_check("file.something") == 'No'
 
-def test_invalid_filenames_empty_before_dot():
+def test_invalid_filenames_digit_count():
+    assert file_name_check("file1234.txt") == 'No'
+    assert file_name_check("name1234.exe") == 'No'
+    assert file_name_check("doc1234.dll") == 'No'
+    assert file_name_check("file12345.exe") == 'No'
+    assert file_name_check("1234file.dll") == 'No'
+
+def test_invalid_filenames_empty_prefix():
     assert file_name_check(".txt") == 'No'
     assert file_name_check(".exe") == 'No'
     assert file_name_check(".dll") == 'No'
@@ -93,12 +94,10 @@ def test_edge_cases():
     assert file_name_check("a.txt") == 'Yes'
     assert file_name_check("A.exe") == 'Yes'
     assert file_name_check("abc.dll") == 'Yes'
-    assert file_name_check("abc1.txt") == 'Yes'
-    assert file_name_check("abc12.exe") == 'Yes'
-    assert file_name_check("abc123.dll") == 'Yes'
-    assert file_name_check("abc1234.txt") == 'No'
-
-# --- Additional Problems and Tests ---
+    assert file_name_check("a1.txt") == 'Yes'
+    assert file_name_check("a12.exe") == 'Yes'
+    assert file_name_check("a123.dll") == 'Yes'
+    assert file_name_check("a1234.txt") == 'No'
 
 def is_palindrome(s: str) -> bool:
     """ Checks if a string is a palindrome """
@@ -111,9 +110,6 @@ def test_palindrome_basic():
 def test_palindrome_empty():
     assert is_palindrome('') == True
 
-def test_palindrome_case_insensitive():
-    assert is_palindrome('Racecar') == True
-
 def get_max(arr: list[int]) -> int:
     """ Returns the maximum element in a list, or None if empty """
     if not arr:
@@ -125,9 +121,3 @@ def test_max_positive():
 
 def test_max_empty():
     assert get_max([]) == None
-
-def test_max_negative():
-    assert get_max([-1, -2, -3]) == -1
-
-def test_max_mixed():
-    assert get_max([-1, 2, -3]) == 2

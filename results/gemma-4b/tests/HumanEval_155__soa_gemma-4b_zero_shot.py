@@ -53,4 +53,4 @@ def test_even_odd_count_large_number():
 def test_even_odd_count_mixed_digits():
     assert even_odd_count(1020304) == (4, 4)
     assert even_odd_count(11223344) == (4, 4)
-    assert even_odd_count(1234567890) == (5, 5)
+    assert even_odd_count(123456789) == (2, 7)

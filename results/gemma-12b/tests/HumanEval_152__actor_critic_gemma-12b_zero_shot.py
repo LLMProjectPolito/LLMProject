@@ -27,50 +27,35 @@ def test_compare_mixed_guesses():
 def test_compare_all_incorrect_guesses():
     assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
 
-def test_compare_empty_lists():
-    assert compare([], []) == []
+def test_compare_single_element_lists():
+    assert compare([5], [5]) == [0]
+    assert compare([5], [6]) == [1]
 
-@pytest.mark.parametrize(
-    "list1, list2, expected",
-    [
-        ([5], [5], [0]),
-        ([5], [6], [1]),
-    ],
-)
-def test_compare_single_element_lists(list1, list2, expected):
-    assert compare(list1, list2) == expected
+def test_compare_negative_scores():
+    assert compare([-1, -2, -3], [-1, -2, -4]) == [0, 0, 1]
 
-def test_compare_single_element_list_vs_empty_list():
-    with pytest.raises(ValueError):
-        compare([5], [])
-    with pytest.raises(ValueError):
-        compare([], [5])
-
-def test_compare_different_lengths_list1_shorter():
+def test_compare_unequal_length_lists():
     with pytest.raises(ValueError):
         compare([1, 2], [1])
 
-def test_compare_different_lengths_list2_shorter():
-    with pytest.raises(ValueError):
-        compare([1], [1, 2])
+def test_compare_lists_with_duplicate_elements():
+    assert compare([1, 2, 2, 3], [1, 2, 4, 3]) == [0, 0, 2, 0]
 
-def test_compare_duplicate_values_correct_incorrect():
-    assert compare([1, 1, 2], [1, 3, 2]) == [0, 2, 0]
+def test_compare_lists_with_negative_numbers_and_zero():
+    assert compare([-1, 0, 2], [-1, 1, 2]) == [0, 1, 0]
 
-def test_compare_duplicate_values_both_correct():
-    assert compare([1, 1, 1], [1, 1, 1]) == [0, 0, 0]
+def test_compare_empty_lists():
+    assert compare([], []) == []
 
-def test_compare_duplicate_values_both_incorrect():
-    assert compare([1, 1, 1], [2, 2, 2]) == [1, 1, 1]
-
-def test_compare_negative_numbers_and_zero():
-    assert compare([-1, 0, 1], [0, 1, 2]) == [1, 1, 1]
+def test_compare_one_element_list_vs_empty_list():
+    assert compare([5], []) == [5]
+    assert compare([], [5]) == [5]
 
 def test_compare_large_numbers():
-    assert compare([1000, 2000, 3000], [1000, 2001, 3000]) == [0, 1, 0]
+    assert compare([1000000, 2000000], [1000000, 2000001]) == [0, 1]
 
-def test_compare_non_integer_input():
-    with pytest.raises(TypeError):
-        compare([1, 2, "a"], [1, 2, 3])
-    with pytest.raises(TypeError):
-        compare([1, 2, 3], [1, 2, "a"])
+def test_compare_numbers_near_limits():
+    assert compare([2**31 - 1, -2**31], [2**31 - 1, -2**31]) == [0, 0]
+
+def test_compare_lists_with_same_elements_different_order():
+    assert compare([1, 2, 3], [3, 2, 1]) == [2, 2, 2]

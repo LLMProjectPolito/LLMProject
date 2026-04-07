@@ -59,12 +59,20 @@ class TestFindMax:
         """Test with words containing Unicode characters."""
         assert find_max(["你好", "abc", "世界"]) == "你好"
 
+    def test_all_words_same_unique_chars(self):
+        """Test when all words have the same number of unique characters."""
+        assert find_max(["abc", "cba", "bac"]) == "abc"
+
+    def test_long_words(self):
+        """Test with long words."""
+        assert find_max(["abcdefghijklmnopqrstuvwxyz", "1234567890"]) == "abcdefghijklmnopqrstuvwxyz"
+
     def test_words_with_empty_string(self):
         """Test with a list containing an empty string."""
         assert find_max(["", "abc", "def"]) == ""
 
-    def test_all_words_empty(self):
-        """Test when all words in the list are empty strings."""
+    def test_words_with_only_empty_strings(self):
+        """Test with a list containing only empty strings."""
         assert find_max(["", "", ""]) == ""
 
     def test_words_with_same_length_and_unique_chars(self):
@@ -75,10 +83,6 @@ class TestFindMax:
         """Test when words have the same unique chars and length."""
         assert find_max(["abc", "bac", "cab"]) == "abc"
 
-    def test_long_words(self):
-        """Test with long words to ensure efficiency."""
-        assert find_max(["abcdefghijklmnopqrstuvwxyz", "1234567890"]) == "abcdefghijklmnopqrstuvwxyz"
-
-    def test_words_with_duplicates_and_same_unique_count(self):
-        """Test with words containing duplicates and same unique character count."""
+    def test_words_with_duplicates_and_same_unique_chars(self):
+        """Test with words containing duplicates and same unique chars."""
         assert find_max(["aabbcc", "ddeeff", "gghhii"]) == "aabbcc"

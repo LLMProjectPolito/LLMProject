@@ -18,31 +18,41 @@ def sorted_list_sum(lst):
 import pytest
 
 def list_sort(lst):
-    """Sorts a list of strings by length, then alphabetically, and removes strings with odd lengths."""
-    filtered_list = [s for s in lst if len(s) % 2 == 0]
-    filtered_list.sort(key=lambda x: (len(x), x))
-    return filtered_list
+    """Sorts a list of strings by length, then alphabetically, and handles duplicates."""
+    unique_words = sorted(list(set(lst)))
+    result = []
+    for word in unique_words:
+        result.append(word)
+    return result
 
 def test_empty_list():
+    """Test with an empty list."""
     assert list_sort([]) == []
 
 def test_single_element():
+    """Test with a list containing a single element."""
     assert list_sort(["a"]) == ["a"]
 
-def test_even_length_strings():
+def test_example_1():
+    """Test with the example case from the prompt."""
     assert list_sort(["aa", "a", "aaa"]) == ["aa"]
 
-def test_odd_length_strings():
+def test_example_2():
+    """Test with another example case."""
     assert list_sort(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
-def test_duplicate_strings():
-    assert list_sort(["aa", "a", "aaa", "aa"]) == ["aa", "aa", "a", "aaa"]
+def test_duplicate_words():
+    """Test with duplicate words in the list."""
+    assert list_sort(["aa", "a", "aaa", "aa"]) == ["aa", "a", "aa"]
 
-def test_mixed_length_strings():
-    assert list_sort(["ab", "a", "aaa", "cd", "aa"]) == ["aa", "ab", "a", "cd", "aaa"]
+def test_same_length_words():
+    """Test with words of the same length."""
+    assert list_sort(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
+
+def test_mixed_case():
+    """Test with mixed case words."""
+    assert list_sort(["Aa", "a", "AAA"]) == ["Aa", "a", "AAA"]
 
 def test_long_list():
-    assert list_sort(["aa", "aaa", "aaaa", "aaaaa"]) == ["aa", "aaa", "aaaa", "aaaaa"]
-
-def test_list_with_duplicates():
-    assert list_sort(["aa", "a", "aaa", "aa"]) == ["aa", "aa", "a", "aaa"]
+    """Test with a longer list to check for performance."""
+    assert list_sort(["a", "bb", "ccc", "dd", "e"]) == ["a", "bb", "ccc", "dd"]

@@ -35,23 +35,23 @@ def simplify(x, n):
     
     return product_num % product_den == 0
 
-def test_edge_case_large_numbers():
-    assert simplify("1000/1001", "1001/1") == True
-
-def test_simple_true():
+def test_simplify_basic_true():
     assert simplify("1/5", "5/1") == True
 
-def test_simple_false():
+def test_simplify_basic_false():
     assert simplify("1/6", "2/1") == False
 
-def test_simple_false2():
+def test_simplify_basic_false2():
     assert simplify("7/10", "10/2") == False
 
-def test_equal_fractions():
-    assert simplify("1/1", "1/1") == True
+def test_simplify_edge_case_large_numbers():
+    assert simplify("1000/1", "1/1") == True
 
-def test_reverse_equal_fractions():
-    assert simplify("1/1", "1/1") == True
+def test_simplify_same_fraction():
+    assert simplify("5/5", "5/5") == True
 
-def test_zero_denominator():
-    assert simplify("1/0", "1/1") == False
+def test_simplify_one_is_one():
+    assert simplify("1/2", "1/1") == True
+
+def test_simplify_one_is_two():
+    assert simplify("1/2", "2/1") == False

@@ -24,36 +24,39 @@ def solve(s):
     solve("ab") = "AB"
     solve("#a@C") = "#A@c"
     """
-    result = ""
+    res = ""
     for char in s:
         if 'a' <= char <= 'z':
-            result += char.upper()
+            res += char.upper()
         elif 'A' <= char <= 'Z':
-            result += char.lower()
+            res += char.lower()
         else:
-            result += char
-    return result
+            res += char
+    return res
 
-def test_solve_empty_string():
+def test_solve_empty():
     assert solve("") == ""
 
 def test_solve_all_letters():
-    assert solve("abcdefghijklmnopqrstuvwxyz") == "zyxwvutsrqponmlkjihgfedcba"
+    assert solve("abcdefg") == "gfedcba"
 
-def test_solve_all_numbers():
-    assert solve("1234") == "4321"
-
-def test_solve_all_symbols():
+def test_solve_no_letters():
     assert solve("#a@C") == "#C@a"
 
 def test_solve_mixed_case():
-    assert solve("aBcDeF") == "aBcDeF"
+    assert solve("aB") == "Ab"
 
-def test_solve_mixed_case_with_numbers():
-    assert solve("a1b2c3") == "123abc"
+def test_solve_numbers():
+    assert solve("1234") == "4321"
 
-def test_solve_with_special_characters():
-    assert solve("!@#$%^") == "!@#$%^"
+def test_solve_symbols():
+    assert solve("!@#") == "!@#"
 
-def test_solve_with_unicode():
-    assert solve("你好世界") == "世界你好"
+def test_solve_unicode():
+    assert solve("你好世界") == "界世好你"
+
+def test_solve_simple_case():
+    assert solve("abc") == "ABC"
+
+def test_solve_complex_case():
+    assert solve("aBc") == "aBc"

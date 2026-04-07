@@ -22,10 +22,10 @@ def test_sum_squares_empty_list():
     assert sum_squares([]) == 0
 
 def test_sum_squares_multiple_of_3():
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 4 + 9 + 16 + 25 + 36
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 2 + 9 + 4 + 5 + 36
 
 def test_sum_squares_multiple_of_4_not_3():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 1 + 8 + 16 + 25 + 36 + 49 + 64
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 1 + 2 + 3 + 64 + 5 + 6 + 7 + 512
 
 # Focus: Logic Branches
 def test_sum_squares_multiple_of_3():

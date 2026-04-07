@@ -88,8 +88,8 @@ def test_eat_zero_number():
 def test_eat_large_numbers():
     assert eat(999, 999, 999) == [1998, 0]
 
-def test_eat_edge_case_1():
+def test_eat_edge_cases():
     assert eat(0, 0, 0) == [0, 0]
-
-def test_eat_edge_case_2():
     assert eat(1000, 1000, 1000) == [2000, 0]
+    assert eat(1000, 0, 1000) == [1000, 0]
+    assert eat(0, 1000, 1000) == [1000, 0]

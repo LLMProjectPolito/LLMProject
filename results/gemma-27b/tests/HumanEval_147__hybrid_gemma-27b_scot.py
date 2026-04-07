@@ -61,4 +61,4 @@ def test_get_max_triples_ten():
     assert get_max_triples(10) == 20
 
 def test_get_max_triples_large():
-    assert get_max_triples(20) == 440
+    assert get_max_triples(20) == 1330

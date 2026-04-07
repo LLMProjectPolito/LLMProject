@@ -21,13 +21,12 @@ def even_odd_count(num):
     num = abs(num)
     if num == 0:
         return (1, 0)
-    while num > 0:
-        digit = num % 10
+    for digit in str(num):
+        digit = int(digit)
         if digit % 2 == 0:
             even_count += 1
         else:
             odd_count += 1
-        num //= 10
     return (even_count, odd_count)
 
 class TestEvenOddCount:
@@ -68,5 +67,5 @@ class TestEvenOddCount:
     def test_single_digit_odd(self):
         assert even_odd_count(1) == (0, 1)
 
-    def test_number_with_only_zeros(self):
-        assert even_odd_count(0000) == (4, 0)
+    def test_large_negative_number(self):
+        assert even_odd_count(-9876543210) == (5, 5)

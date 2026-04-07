@@ -14,11 +14,8 @@ def solve(s):
 import pytest
 import math
 
-def test_solve_all_letters_mixed_case_1():
+def test_solve_all_letters_mixed_case():
     assert solve("aBcDeFg") == "AbCdEfG"
 
 def test_solve_all_letters_mixed_case_2():
     assert solve("aBcDeF") == "AbCdEf"
-
-def test_solve_all_letters_mixed_case_3():
-    assert solve("aBcDeFg") == "AbCdEfG"

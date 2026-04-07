@@ -40,39 +40,89 @@ def int_to_mini_roman(number):
 
     return result
 
-def test_int_to_mini_roman():
-    assert int_to_mini_roman(1) == 'i'
-    assert int_to_mini_roman(3) == 'iii'
-    assert int_to_mini_roman(4) == 'iv'
-    assert int_to_mini_roman(5) == 'v'
-    assert int_to_mini_roman(9) == 'ix'
-    assert int_to_mini_roman(10) == 'x'
-    assert int_to_mini_roman(14) == 'xiv'
-    assert int_to_mini_roman(16) == 'xvi'
+def test_int_to_mini_roman_1():
     assert int_to_mini_roman(19) == 'xix'
-    assert int_to_mini_roman(20) == 'xx'
-    assert int_to_mini_roman(39) == 'xxxix'
-    assert int_to_mini_roman(40) == 'xl'
-    assert int_to_mini_roman(44) == 'xliv'
-    assert int_to_mini_roman(49) == 'xlix'
-    assert int_to_mini_roman(50) == 'l'
-    assert int_to_mini_roman(54) == 'lv'
-    assert int_to_mini_roman(58) == 'lviii'
-    assert int_to_mini_roman(59) == 'lix'
-    assert int_to_mini_roman(90) == 'xc'
-    assert int_to_mini_roman(94) == 'xciii'
-    assert int_to_mini_roman(99) == 'xcix'
-    assert int_to_mini_roman(100) == 'c'
-    assert int_to_mini_roman(104) == 'ciii'
-    assert int_to_mini_roman(400) == 'cd'
-    assert int_to_mini_roman(444) == 'cdxliv'
-    assert int_to_mini_roman(500) == 'd'
-    assert int_to_mini_roman(545) == 'dlxv'
-    assert int_to_mini_roman(900) == 'cm'
-    assert int_to_mini_roman(949) == 'cmxliii'
-    assert int_to_mini_roman(1000) == 'm'
-    assert int_to_mini_roman(144) == 'cxliv'
-    assert int_to_mini_roman(1994) == 'mcmxciv'
+
+def test_int_to_mini_roman_2():
     assert int_to_mini_roman(152) == 'clii'
+
+def test_int_to_mini_roman_3():
     assert int_to_mini_roman(426) == 'cdxxvi'
-    assert int_to_mini_roman(999) == 'cxcix'
+
+def test_int_to_mini_roman_4():
+    assert int_to_mini_roman(3) == 'iii'
+
+def test_int_to_mini_roman_5():
+    assert int_to_mini_roman(4) == 'iv'
+
+def test_int_to_mini_roman_6():
+    assert int_to_mini_roman(5) == 'v'
+
+def test_int_to_mini_roman_7():
+    assert int_to_mini_roman(9) == 'ix'
+
+def test_int_to_mini_roman_8():
+    assert int_to_mini_roman(10) == 'x'
+
+def test_int_to_mini_roman_9():
+    assert int_to_mini_roman(40) == 'xl'
+
+def test_int_to_mini_roman_10():
+    assert int_to_mini_roman(50) == 'l'
+
+def test_int_to_mini_roman_11():
+    assert int_to_mini_roman(90) == 'xc'
+
+def test_int_to_mini_roman_12():
+    assert int_to_mini_roman(100) == 'c'
+
+def test_int_to_mini_roman_13():
+    assert int_to_mini_roman(400) == 'cd'
+
+def test_int_to_mini_roman_14():
+    assert int_to_mini_roman(500) == 'd'
+
+def test_int_to_mini_roman_15():
+    assert int_to_mini_roman(900) == 'cm'
+
+def test_int_to_mini_roman_16():
+    assert int_to_mini_roman(1000) == 'm'
+
+def test_int_to_mini_roman_17():
+    assert int_to_mini_roman(1) == 'i'
+
+def test_int_to_mini_roman_18():
+    assert int_to_mini_roman(2) == 'ii'
+
+def test_int_to_mini_roman_19():
+    assert int_to_mini_roman(6) == 'vi'
+
+def test_int_to_mini_roman_20():
+    assert int_to_mini_roman(7) == 'vii'
+
+def test_int_to_mini_roman_21():
+    assert int_to_mini_roman(8) == 'viii'
+
+def test_int_to_mini_roman_22():
+    assert int_to_mini_roman(11) == 'xi'
+
+def test_int_to_mini_roman_23():
+    assert int_to_mini_roman(12) == 'xii'
+
+def test_int_to_mini_roman_24():
+    assert int_to_mini_roman(13) == 'xiii'
+
+def test_int_to_mini_roman_25():
+    assert int_to_mini_roman(14) == 'xiv'
+
+def test_int_to_mini_roman_26():
+    assert int_to_mini_roman(16) == 'xvi'
+
+def test_int_to_mini_roman_27():
+    assert int_to_mini_roman(17) == ' xvii'
+
+def test_int_to_mini_roman_28():
+    assert int_to_mini_roman(18) == ' xviii'
+
+def test_int_to_mini_roman_29():
+    assert int_to_mini_roman(19) == ' xix'

@@ -34,7 +34,7 @@ def solve(s):
         else:
             res += char
     if not any('a' <= char <= 'z' for char in s):
-        return res[::-1]
+        return s[::-1]
     return res
 
 def test_empty_string():
@@ -55,5 +55,5 @@ def test_all_uppercase():
 def test_all_lowercase():
     assert solve("abc") == "ABC"
 
-def test_mixed_case_and_numbers():
-    assert solve("a1B2c") == "A1b2C"
+def test_mixed_with_numbers_and_symbols():
+    assert solve("a1!b2@c") == "A1!B2@C"

@@ -61,38 +61,37 @@ def words_in_sentence(sentence):
     return " ".join(prime_words)
 
 def test_words_in_sentence():
+    # Basic examples
     assert words_in_sentence("This is a test") == "is"
     assert words_in_sentence("lets go for swimming") == "go for"
     assert words_in_sentence("hello world") == ""
-    assert words_in_sentence("a bb ccc dddd") == "a bb ccc"
-    assert words_in_sentence("very long sentence with some words") == "very long some"
-    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the quick fox jumps over dog"
-    assert words_in_sentence("a") == "a"
-    assert words_in_sentence("aa") == ""  # Length 2 is not prime
-    assert words_in_sentence("aaa") == "aaa"
-    assert words_in_sentence("") == ""
-    assert words_in_sentence("   ") == ""  # Handle whitespace only
-    assert words_in_sentence("  hello world  ") == "hello world" # Leading/trailing spaces
-    assert words_in_sentence("p") == "p"
-    assert words_in_sentence("pp") == ""
-    assert words_in_sentence("ppp") == "ppp"
-    assert words_in_sentence("This is a very very long sentence") == "is very long"
-    assert words_in_sentence("one two three four five six seven eight nine ten") == "one three five seven"
-    assert words_in_sentence("two three five seven eleven thirteen seventeen nineteen") == "two three five seven eleven thirteen seventeen nineteen"
 
-    # Longer sentence with a mix of prime and non-prime word lengths
-    assert words_in_sentence("the quick brown fox jumps over the lazy dog and cat") == "the quick fox jumps over dog cat"
+    # Empty and single word cases
+    assert words_in_sentence("") == ""  # Empty sentence should return an empty string
+    assert words_in_sentence("a") == "a"  # Single word sentence should return the word if its length is prime
 
-    # Test with a larger prime number
-    assert words_in_sentence("a verylongword") == "verylongword"
+    # Multiple words with varying lengths
+    assert words_in_sentence("a bb ccc dddd eeeee") == "bb ccc"
+    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the quick fox over the dog"
 
-    # Test case with mixed case
-    assert words_in_sentence("This Is A Test") == "Is Test"
+    # Representative prime and non-prime lengths
+    assert words_in_sentence("one two three five seven eleven") == "one two three five seven eleven"
 
-    # Test case with punctuation - should ideally raise an exception or filter
-    # For now, we'll just check it doesn't crash.  A more robust solution would handle this.
+    # Edge case: Non-letter characters - should return empty string
     assert words_in_sentence("hello, world!") == ""
+    assert words_in_sentence("123 abc") == ""
 
-    # Test case with numbers - should ideally raise an exception or filter
-    # For now, we'll just check it doesn't crash. A more robust solution would handle this.
-    assert words_in_sentence("one 2 three 4 five") == "one three five"
+    # Long sentence with mixed prime and non-prime lengths
+    long_sentence = " ".join(["a" * i for i in range(1, 21)])
+    expected_output = " ".join([ "a" * i for i in [2, 3, 5, 7, 11, 13, 17, 19]])
+    assert words_in_sentence(long_sentence) == expected_output
+
+    # Test for large prime number
+    large_prime_word = "a" * 101
+    assert words_in_sentence(large_prime_word) == large_prime_word
+
+    # Test with negative number (should handle gracefully)
+    assert words_in_sentence("-1") == ""
+
+    # Test with a sentence containing a negative number
+    assert words_in_sentence("hello -1 world") == "hello world"

@@ -70,7 +70,7 @@ def test_long_string():
     assert solve("ThisIsALongString") == "tHISiSaLONGsTRING"
 
 def test_string_with_spaces():
-    assert solve("a b C") == "A B c"
+    assert solve("hello world") == "HELLO WORLD"
 
 def test_string_with_unicode():
     assert solve("你好世界") == "你好世界"
@@ -80,3 +80,15 @@ def test_string_with_numbers_and_special_chars():
 
 def test_string_with_mixed_unicode_and_ascii():
     assert solve("a1你好b2") == "A1你好B2"
+
+def test_string_with_numbers_and_spaces():
+    assert solve("123 hello 456") == "123 HELLO 456"
+
+def test_string_with_special_chars_numbers_and_spaces():
+    assert solve("!@# 123 hello 456 $^&") == "!@# 123 HELLO 456 $^&"
+
+def test_string_with_unicode_characters():
+    assert solve("你好世界") == "你好世界"
+
+def test_string_with_mixed_unicode_and_ascii():
+    assert solve("hello你好world") == "HELLO你好WORLD"

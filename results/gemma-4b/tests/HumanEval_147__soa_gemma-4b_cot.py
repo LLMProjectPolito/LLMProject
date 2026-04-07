@@ -67,4 +67,4 @@ def test_get_max_triples_n9():
     assert get_max_triples(9) == 4
 
 def test_get_max_triples_n10():
-    assert get_max_triples(10) == 5
+    assert get_max_triples(10) == 4

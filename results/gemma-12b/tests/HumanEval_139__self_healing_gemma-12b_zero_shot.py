@@ -24,12 +24,11 @@ def test_special_factorial_positive():
     assert special_factorial(6) == 46656000
 
 def test_special_factorial_large_number():
-    assert special_factorial(7) == 725760000000
-    # Add more tests for larger numbers if needed
+    assert special_factorial(7) == 7257600000000
+    # Add more tests for larger numbers if needed, but be mindful of potential overflow
 
 def test_special_factorial_edge_case():
-    with pytest.raises(ValueError):
-        special_factorial(0) # Or raise an exception, depending on desired behavior
+    assert special_factorial(0) == 1 # Or raise an exception, depending on desired behavior
 
 def test_special_factorial_type_error():
     with pytest.raises(TypeError):

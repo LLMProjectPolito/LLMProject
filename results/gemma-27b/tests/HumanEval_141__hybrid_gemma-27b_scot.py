@@ -64,30 +64,33 @@ def test_valid_file_names():
     assert file_name_check("MyFile.exe") == "Yes"
     assert file_name_check("document1.dll") == "Yes"
     assert file_name_check("a123.txt") == "Yes"
-    assert file_name_check("FileNameWithNumbers12.exe") == "Yes"
+    assert file_name_check("AnotherExample.exe") == "Yes"
+    assert file_name_check("file.dll") == "Yes"
 
-def test_invalid_file_names_digit_count():
+def test_invalid_digit_count():
     assert file_name_check("1234example.txt") == "No"
-    assert file_name_check("a1234.dll") == "No"
+    assert file_name_check("example1234.dll") == "No"
+    assert file_name_check("12345.exe") == "No"
 
-def test_invalid_file_names_dot_count():
-    assert file_name_check("example.txt.txt") == "No"
-    assert file_name_check("example") == "No"
-    assert file_name_check("example.") == "No"
-
-def test_invalid_file_names_empty_before_dot():
+def test_invalid_dot_count():
+    assert file_name_check("exampletxt") == "No"
+    assert file_name_check("example..txt") == "No"
     assert file_name_check(".txt") == "No"
 
-def test_invalid_file_names_not_start_with_letter():
-    assert file_name_check("1example.dll") == "No"
-    assert file_name_check("2file.txt") == "No"
+def test_invalid_before_dot():
+    assert file_name_check("1example.txt") == "No"
+    assert file_name_check(".txt") == "No"
+    assert file_name_check("example.") == "No"
+    assert file_name_check("example.txt.") == "No"
 
-def test_invalid_file_names_invalid_extension():
+def test_invalid_after_dot():
     assert file_name_check("example.pdf") == "No"
-    assert file_name_check("file.jpg") == "No"
+    assert file_name_check("example.jpg") == "No"
+    assert file_name_check("example.py") == "No"
 
 def test_edge_cases():
     assert file_name_check("a.txt") == "Yes"
     assert file_name_check("verylongfilename.txt") == "Yes"
     assert file_name_check("a1.txt") == "Yes"
-    assert file_name_check("a123.exe") == "Yes"
+    assert file_name_check("a123.txt") == "Yes"
+    assert file_name_check("a1234.txt") == "No"

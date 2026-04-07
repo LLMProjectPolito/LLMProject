@@ -80,16 +80,15 @@ def test_sentence_with_multiple_spaces():
     assert words_in_sentence("a  is   be  do") == "a is be do"
 
 def test_long_sentence():
-    assert words_in_sentence("This is a very long sentence with some prime length words") == "is a very long"
+    sentence = "This is a very long sentence with many words of varying lengths"
+    expected = "is a very"
+    assert words_in_sentence(sentence) == expected
 
 def test_sentence_with_only_one_word():
     assert words_in_sentence("prime") == "prime"
 
 def test_sentence_with_same_length_words():
-    assert words_in_sentence("aa bb cc") == ""
+    assert words_in_sentence("go no so to") == "go no so to"
 
 def test_sentence_with_prime_and_non_prime_same_length():
-    assert words_in_sentence("aa bb cc dd") == ""
-
-def test_sentence_with_numbers_in_words():
-    assert words_in_sentence("a1 b2 c3") == ""
+    assert words_in_sentence("go no so to be") == "go no so to"

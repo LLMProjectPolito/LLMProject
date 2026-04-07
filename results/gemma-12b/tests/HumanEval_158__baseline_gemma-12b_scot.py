@@ -18,9 +18,9 @@ def find_max(words):
 # - List with a single word
 # - List with multiple words, where one word has the maximum unique characters
 # - List with multiple words, where multiple words have the same maximum unique characters (lexicographical comparison)
-# - List with words containing duplicate characters
+# - List with words containing repeated characters
 # - List with empty strings
-# - List with special characters
+# - List with mixed case strings (should be case-sensitive)
 
 # STEP 2: PLAN
 # Test functions:
@@ -28,10 +28,9 @@ def find_max(words):
 # - test_single_word: Test with a list containing a single word.
 # - test_multiple_words_unique_max: Test with multiple words, where one has the maximum unique characters.
 # - test_multiple_words_same_max_lexicographical: Test with multiple words having the same maximum unique characters, checking lexicographical order.
-# - test_words_with_duplicate_characters: Test with words containing duplicate characters.
+# - test_words_with_repeated_characters: Test with words containing repeated characters.
 # - test_empty_strings: Test with a list containing empty strings.
-# - test_special_characters: Test with words containing special characters.
-# - test_mixed_case: Test with words containing mixed case characters.
+# - test_mixed_case_strings: Test with mixed-case strings to ensure case sensitivity.
 
 # STEP 3: CODE
 import pytest
@@ -49,15 +48,15 @@ def find_max(words):
     if not words:
         return ""
 
-    max_unique_count = -1
+    max_unique_chars = -1
     result = ""
 
     for word in words:
         unique_chars = len(set(word))
-        if unique_chars > max_unique_count:
-            max_unique_count = unique_chars
+        if unique_chars > max_unique_chars:
+            max_unique_chars = unique_chars
             result = word
-        elif unique_chars == max_unique_count and word < result:
+        elif unique_chars == max_unique_chars and word < result:
             result = word
 
     return result
@@ -75,14 +74,11 @@ class TestFindMax:
     def test_multiple_words_same_max_lexicographical(self):
         assert find_max(["name", "enam", "game"]) == "enam"
 
-    def test_words_with_duplicate_characters(self):
+    def test_words_with_repeated_characters(self):
         assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
     def test_empty_strings(self):
         assert find_max(["", "abc", ""]) == "abc"
 
-    def test_special_characters(self):
-        assert find_max(["!@#", "abc", "xyz"]) == "!@#"
-
-    def test_mixed_case(self):
-        assert find_max(["aBc", "AbC", "abc"]) == "AbC"
+    def test_mixed_case_strings(self):
+        assert find_max(["Name", "name", "STRING", "string"]) == "Name"

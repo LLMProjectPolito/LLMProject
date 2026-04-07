@@ -27,67 +27,67 @@ def generate_integers(a, b):
         s = str(i)
         for digit in s:
             if int(digit) % 2 == 0:
-                if int(digit) not in result:
+                if not result or int(digit) > result[-1]:
                     result.append(int(digit))
-    result.sort()
     return result
 
 ### SCoT Steps:
 
 # STEP 1: REASONING
-# The function `generate_integers(a, b)` aims to extract even digits from the range [a, b] (inclusive) and return them in ascending order.
-# The function handles cases where a > b by reversing the range.
+# The function `generate_integers(a, b)` aims to extract even digits from the range of integers between `a` and `b` (inclusive) and return them in ascending order.
+# The function handles cases where `a` > `b` by reversing the range.
 # The function should return an empty list if no even digits are found within the range.
-# The function should handle duplicate even digits correctly, ensuring only unique even digits are included in the result.
 # The function should handle single-digit and multi-digit numbers correctly.
+# The function should handle edge cases like `a` and `b` being equal.
 
 # STEP 2: PLAN
 # Test Cases:
 # 1. Basic case: a = 2, b = 8 (Expected: [2, 4, 6, 8])
-# 2. a > b: a = 8, b = 2 (Expected: [2, 4, 6, 8])
+# 2. Reversed range: a = 8, b = 2 (Expected: [2, 4, 6, 8])
 # 3. No even digits: a = 10, b = 14 (Expected: [])
-# 4. Single digit even number: a = 2, b = 2 (Expected: [2])
-# 5. Single digit odd number: a = 1, b = 1 (Expected: [])
-# 6. Mixed even and odd digits: a = 1, b = 5 (Expected: [2, 4])
-# 7. Larger range with multiple even digits: a = 10, b = 20 (Expected: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20])
-# 8. Edge case: a = b (Expected: [a])
-# 9. a and b are both even: a = 2, b = 6 (Expected: [2, 4, 6])
+# 4. Single digit a and b: a = 2, b = 2 (Expected: [2])
+# 5. Single digit a and b, both odd: a = 1, b = 3 (Expected: [])
+# 6. Larger range with multiple even digits: a = 10, b = 20 (Expected: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20])
+# 7. a and b are close to each other: a = 12, b = 14 (Expected: [2, 4, 6, 8, 10, 12, 14])
+# 8. a is 0, b is 1 (Expected: [])
+# 9. a and b are negative (should not happen based on problem description, but good to check)
 
 # Test Function Names:
-# test_generate_integers_basic
-# test_generate_integers_reverse
-# test_generate_integers_no_even
-# test_generate_integers_single_even
-# test_generate_integers_single_odd
-# test_generate_integers_mixed
-# test_generate_integers_larger_range
-# test_generate_integers_edge_case
-# test_generate_integers_both_even
+# test_basic_range
+# test_reversed_range
+# test_no_even_digits
+# test_single_digit_a_b
+# test_single_digit_a_b_odd
+# test_larger_range
+# test_close_a_b
+# test_zero_b
+# test_negative_a_b (optional, if the function is not designed to handle negative inputs)
+
 
 # STEP 3: CODE
-def test_generate_integers_basic():
+def test_basic_range():
     assert generate_integers(2, 8) == [2, 4, 6, 8]
 
-def test_generate_integers_reverse():
+def test_reversed_range():
     assert generate_integers(8, 2) == [2, 4, 6, 8]
 
-def test_generate_integers_no_even():
+def test_no_even_digits():
     assert generate_integers(10, 14) == []
 
-def test_generate_integers_single_even():
+def test_single_digit_a_b():
     assert generate_integers(2, 2) == [2]
 
-def test_generate_integers_single_odd():
-    assert generate_integers(1, 1) == []
+def test_single_digit_a_b_odd():
+    assert generate_integers(1, 3) == []
 
-def test_generate_integers_mixed():
-    assert generate_integers(1, 5) == [2, 4]
-
-def test_generate_integers_larger_range():
+def test_larger_range():
     assert generate_integers(10, 20) == [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
 
-def test_generate_integers_edge_case():
-    assert generate_integers(5, 5) == [5]
+def test_close_a_b():
+    assert generate_integers(12, 14) == [2, 4, 6, 8, 10, 12, 14]
 
-def test_generate_integers_both_even():
-    assert generate_integers(2, 6) == [2, 4, 6]
+def test_zero_b():
+    assert generate_integers(0, 1) == []
+
+def test_negative_a_b():
+    assert generate_integers(-1, 1) == [] #Handles negative input gracefully

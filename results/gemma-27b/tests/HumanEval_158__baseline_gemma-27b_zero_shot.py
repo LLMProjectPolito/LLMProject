@@ -56,23 +56,17 @@ def test_all_words_same_unique_chars():
 def test_words_with_repeated_characters():
     assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
-def test_mixed_words():
-    assert find_max(["abcde", "ab", "a"]) == "abcde"
-
-def test_words_with_empty_string():
-    assert find_max(["", "abc"]) == "abc"
-
-def test_words_with_empty_string_and_same_unique_chars():
-    assert find_max(["", "ab", "cd"]) == "ab"
-
-def test_long_words():
-    assert find_max(["abcdefghijklmnopqrstuvwxyz", "abc"]) == "abcdefghijklmnopqrstuvwxyz"
-
-def test_words_with_special_characters():
-    assert find_max(["hello!", "world?"]) == "world?"
+def test_mixed_case():
+    assert find_max(["Hello", "hello", "World"]) == "World"
 
 def test_words_with_numbers():
-    assert find_max(["12345", "123"]) == "12345"
+    assert find_max(["word1", "word22", "word333"]) == "word1"
 
-def test_words_with_mixed_characters():
-    assert find_max(["a1b2c", "abc"]) == "a1b2c"
+def test_words_with_special_characters():
+    assert find_max(["word!", "word@", "word#"]) == "word!"
+
+def test_long_words():
+    assert find_max(["abcdefghijklmnopqrstuvwxyz", "abcdef"]) == "abcdefghijklmnopqrstuvwxyz"
+
+def test_words_with_spaces():
+    assert find_max(["hello world", "hello"]) == "hello world"

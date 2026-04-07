@@ -29,7 +29,7 @@ def test_special_characters():
     assert solve("#a@C") == "#A@c"
 
 def test_string_with_spaces():
-    assert solve("a b C") == "A b c"
+    assert solve("a b C") == "A b c"  # Spaces should remain unchanged
 
 def test_long_string():
     assert solve("ThisIsALongString") == "tHISiSaLONGsTRING"
@@ -37,7 +37,7 @@ def test_long_string():
 def test_string_with_unicode_characters():
     assert solve("你好世界") == "你好世界"
 
-def test_mixed_content():
+def test_string_with_letters_numbers_and_special_chars():
     assert solve("a1b2!c3@") == "A1b2!C3@"
 
 def test_edge_case_single_letter_lowercase():
@@ -47,7 +47,7 @@ def test_edge_case_single_letter_uppercase():
     assert solve("A") == "a"
 
 def test_unicode_and_letters():
-    assert solve("a你好A") == "A你好a"
+    assert solve("a你好b") == "A你好B"
 
 def test_invalid_input_none():
     with pytest.raises(TypeError) as excinfo:
@@ -64,14 +64,8 @@ def test_invalid_input_list():
         solve([1, 2, 3])
     assert str(excinfo.value) == "Input must be a string"
 
-def test_complex_arrangement():
-    assert solve("a1B2c3D") == "A1b2C3d"
-
-def test_leading_trailing_spaces():
-    assert solve("  a b C  ") == "  A b c  "
-
-def test_unicode_combining_characters():
+def test_complex_unicode():
     assert solve("áb") == "ÁB"
 
-def test_unicode_different_scripts():
-    assert solve("αβγ") == "ΑΒΓ"
+def test_unicode_combining_characters():
+    assert solve("café") == "CAFÉ"

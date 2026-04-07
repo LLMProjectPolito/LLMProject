@@ -131,7 +131,7 @@ def test_do_algebra_multiple_operators_same_precedence():
 def test_do_algebra_all_operators():
     operator = ['+', '-', '*', '//', '**']
     operand = [2, 3, 4, 5, 2]
-    assert do_algebra(operator, operand) == 17
+    assert do_algebra(operator, operand) == 13
 
 def test_do_algebra_with_zero_in_expression():
     operator = ['+', '*']

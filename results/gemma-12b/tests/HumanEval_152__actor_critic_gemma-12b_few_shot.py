@@ -19,49 +19,26 @@ import pytest
 
 def compare(game, guess):
     """
-    Compares two lists of numbers (scores and guesses) and returns a list
-    indicating the difference between each guess and the corresponding score.
+    Compares two arrays of scores and guesses, returning an array indicating the difference between each guess and the score.
 
     Args:
-        game (list[float | int]): A list of numbers representing the actual scores.
-        guess (list[float | int]): A list of numbers representing the guesses.
+        game (list[int]): The array of actual scores.
+        guess (list[int]): The array of guessed scores.
 
     Returns:
-        list[float | int]: A list of the same length as the inputs, where each
-                           element represents the absolute difference between the
-                           corresponding score and guess.  If the guess is correct,
-                           the value is 0.
+        list[int]: An array of the same length as the input arrays, where each element represents the absolute difference
+                   between the corresponding score and guess. If the guess is correct, the value is 0.
+                   Returns an empty list if either input array is empty.
+                   Raises ValueError if the input arrays are not of equal length.
 
     Raises:
-        TypeError: If either input is not a list, or if any element within the lists
-                   is not a number (int or float).
-        ValueError: If the input lists have different lengths.
-
-    Examples:
-        compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
-        compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
-        compare([1.5, 2.0, 3.5], [1, 2, 4]) == [0.5, 0.0, 0.5]
+        ValueError: If the input arrays `game` and `guess` have different lengths.
     """
 
-    # Type and Length Validation
-    if not isinstance(game, list) or not isinstance(guess, list):
-        raise TypeError("Inputs must be lists.")
-
     if len(game) != len(guess):
-        raise ValueError("Input lists must have the same length.")
+        raise ValueError("Input arrays must be of equal length.")
 
-    for items in [game, guess]:
-        for item in items:
-            if not isinstance(item, (int, float)):
-                raise TypeError("All elements in the lists must be numbers (int or float).")
-
-    result = []
-    for g, s in zip(game, guess):
-        if g == s:
-            result.append(0)
-        else:
-            result.append(abs(g - s))
-    return result
+    return [0 if game[i] == guess[i] else abs(game[i] - guess[i]) for i in range(len(game))]
 
 
 ### Tests (Pytest):
@@ -69,24 +46,26 @@ def test_compare_basic():
     assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
     assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
 
-def test_compare_floats():
-    assert compare([1.5, 2.0, 3.5], [1, 2, 4]) == [0.5, 0.0, 0.5]
-
-def test_compare_empty():
+def test_compare_empty_arrays():
     assert compare([], []) == []
 
-def test_compare_type_error():
-    with pytest.raises(TypeError):
-        compare([1, 2, 3], "not a list")
-    with pytest.raises(TypeError):
-        compare([1, 2, "a"], [1, 2, 3])
-
-def test_compare_value_error():
-    with pytest.raises(ValueError):
+def test_compare_unequal_length_arrays():
+    with pytest.raises(ValueError) as excinfo:
         compare([1, 2, 3], [1, 2])
+    assert str(excinfo.value) == "Input arrays must be of equal length."
+
+def test_compare_all_correct():
+    assert compare([1, 2, 3], [1, 2, 3]) == [0, 0, 0]
+
+def test_compare_all_incorrect():
+    assert compare([1, 2, 3], [4, 5, 6]) == [3, 3, 3]
 
 def test_compare_negative_numbers():
     assert compare([-1, -2, -3], [-1, -2, -4]) == [0, 0, 1]
 
-def test_compare_mixed_types():
-    assert compare([1, 2.0, 3], [1.0, 2, 3.0]) == [0.0, 0.0, 0.0]
+def test_compare_zero_values():
+    assert compare([0, 0, 0], [0, 0, 0]) == [0, 0, 0]
+
+def test_compare_single_element_arrays():
+    assert compare([5], [5]) == [0]
+    assert compare([5], [6]) == [1]

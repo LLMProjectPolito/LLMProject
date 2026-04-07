@@ -76,9 +76,16 @@ def int_to_mini_roman(number):
         (49, "xlix"),
         (50, "l"),
         (51, "li"),
+        (52, "lii"),
+        (53, "liii"),
+        (54, "liv"),
+        (55, "lv"),
+        (56, "lvi"),
+        (57, "lvii"),
+        (58, "lviii"),
+        (59, "lix"),
         (60, "lx"),
-        (70, "lxx"),
-        (80, "lxxx"),
+        (89, "lxxxix"),
         (90, "xc"),
         (91, "xci"),
         (92, "xcii"),
@@ -91,14 +98,16 @@ def int_to_mini_roman(number):
         (99, "xcix"),
         (100, "c"),
         (101, "ci"),
+        (102, "cii"),
         (149, "cxlix"),
         (150, "cl"),
         (152, "clii"),
         (194, "cxciv"),
+        (199, "cxciix"),
         (200, "cc"),
         (300, "ccc"),
-        (399, "cccxcix"),
         (400, "cd"),
+        (401, "cdi"),
         (426, "cdxxvi"),
         (444, "cdxliv"),
         (499, "cdxcix"),
@@ -106,11 +115,8 @@ def int_to_mini_roman(number):
         (501, "di"),
         (555, "dlv"),
         (600, "dc"),
-        (649, "dcxlix"),
         (700, "dcc"),
-        (777, "dccclxxvii"),
         (800, "dccc"),
-        (854, "dcccliv"),
         (900, "cm"),
         (901, "cmi"),
         (944, "cmxliv"),
@@ -123,7 +129,7 @@ def test_int_to_mini_roman(input_num, expected_roman):
 
 def test_invalid_input():
     with pytest.raises(TypeError):
-        int_to_mini_roman("abc")
+        int_to_mini_roman("5")
     with pytest.raises(TypeError):
         int_to_mini_roman(3.14)
     with pytest.raises(ValueError):

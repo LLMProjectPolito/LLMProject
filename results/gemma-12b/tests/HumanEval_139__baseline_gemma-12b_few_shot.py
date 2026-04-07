@@ -22,8 +22,8 @@ def test_special_factorial_positive():
     assert special_factorial(5) == 34560
     assert special_factorial(6) == 12441600
 
-def test_special_factorial_edge_case():
-    assert special_factorial(0) == 1 #Handles the edge case where n is 0.  While the prompt specifies n > 0, it's good practice to handle this gracefully.
+def test_special_factorial_edge():
+    assert special_factorial(0) == 1 #Handles edge case where n = 0.  While not explicitly stated, it's good to handle.
 
-def test_special_factorial_large_number():
-    assert special_factorial(7) == 1270080000
+def test_special_factorial_large():
+    assert special_factorial(7) == 125411328000

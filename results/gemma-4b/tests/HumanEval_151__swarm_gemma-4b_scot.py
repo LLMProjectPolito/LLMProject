@@ -13,6 +13,7 @@ def double_the_difference(lst):
     '''
 
 import pytest
+import math
 
 def double_the_difference(lst):
     '''
@@ -53,14 +54,8 @@ def test_single_even_positive():
 def test_single_negative():
     assert double_the_difference([-1]) == 0
 
-def test_list_with_non_integers():
-    assert double_the_difference([1.5, 2, 3]) == 0
+def test_large_numbers():
+    assert double_the_difference([1001, 1003]) == 1001*1001 + 1003*1003
 
-def test_mixed_odd_even_positive():
-    assert double_the_difference([1, 2, 3, 4, 5]) == 35
-
-def test_negative_and_odd():
-    assert double_the_difference([-1, 3]) == 10
-
-def test_only_odd_positive():
-    assert double_the_difference([1, 3, 5]) == 35
+def test_single_zero():
+    assert double_the_difference([0]) == 0

@@ -67,32 +67,29 @@ def do_algebra(operator, operand):
             result **= operand[i+1]
     return result
 
+def test_empty_operator():
+    assert do_algebra([], [1, 2, 3]) == 1
+
+def test_empty_operand():
+    operator = ['+', '*']
+    operand = []
+    with pytest.raises(IndexError):
+        do_algebra(operator, operand)
+
 def test_addition():
-    operator = ['+', '+']
-    operand = [2, 3]
-    assert do_algebra(operator, operand) == 5
+    assert do_algebra(['+', 2, 3, 4], [2, 3, 4]) == 9
 
 def test_subtraction():
-    operator = ['-', '-']
-    operand = [5, 2]
-    assert do_algebra(operator, operand) == 3
+    assert do_algebra(['-', 5, 2, 1], [5, 2, 1]) == 4
 
 def test_multiplication():
-    operator = ['*', '*']
-    operand = [2, 3]
-    assert do_algebra(operator, operand) == 6
+    assert do_algebra(['*', 2, 3, 4], [2, 3, 4]) == 24
 
 def test_floor_division():
-    operator = ['//', '//']
-    operand = [10, 2]
-    assert do_algebra(operator, operand) == 5
+    assert do_algebra(['//', 10, 2, 1], [10, 2, 1]) == 5
 
 def test_exponentiation():
-    operator = ['**', '**']
-    operand = [2, 3]
-    assert do_algebra(operator, operand) == 8
+    assert do_algebra(['**', 2, 3, 4], [2, 3, 4]) == 16
 
 def test_mixed_operations():
-    operator = ['+', '*', '-', '**', '//']
-    operand = [2, 3, 4, 5, 2]
-    assert do_algebra(operator, operand) == 10
+    assert do_algebra(['+', '*', '-', 2, 3, 4, 5], [2, 3, 4, 5]) == 14

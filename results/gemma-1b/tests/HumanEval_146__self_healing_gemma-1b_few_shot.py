@@ -8,6 +8,8 @@ def specialFilter(nums):
     specialFilter([33, -2, -3, 45, 21, 109]) => 2
     """
 
+import pytest
+
 def specialFilter(nums):
     """Write a function that takes an array of numbers as input and returns 
     the number of elements in the array that are greater than 10 and both 

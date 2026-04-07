@@ -55,7 +55,7 @@ def do_algebra(operator, operand):
     if not operator or not operand:
         raise ValueError("Operator and operand lists cannot be empty.")
     if len(operator) != len(operand) - 1:
-        raise ValueError("Length of operator list must be one less than operand list.")
+        raise ValueError("Length of operator list must be one less than the length of operand list.")
     if len(operand) < 2:
         raise ValueError("Operand list must have at least two operands.")
     for num in operand:
@@ -91,6 +91,7 @@ class TestDoAlgebra:
 
     def test_multiplication(self):
         assert do_algebra(['*'], [4, 5]) == 20
+        assert do_algebra(['*'], [4, 3]) == 12
 
     def test_floor_division(self):
         assert do_algebra(['//'], [10, 2]) == 5
@@ -102,9 +103,9 @@ class TestDoAlgebra:
     def test_complex_expression(self):
         assert do_algebra(['+', '*', '-'], [2, 3, 4, 5]) == 9
         assert do_algebra(['*', '+', '//'], [2, 3, 4, 2]) == 8
-        assert do_algebra(['**', '-', '+'], [2, 3, 4, 1]) == 5
 
     def test_multiple_operations(self):
+        assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 5]) == 1
         assert do_algebra(['+', '+', '+'], [1, 2, 3, 4]) == 10
         assert do_algebra(['*', '*', '*'], [2, 2, 2, 2]) == 16
 
@@ -134,25 +135,21 @@ class TestDoAlgebra:
         with pytest.raises(ValueError):
             do_algebra(['+'], [])
 
-    def test_invalid_operator_operand_length(self):
-        with pytest.raises(ValueError):
-            do_algebra(['+', '+'], [2, 3, 4])
-        with pytest.raises(ValueError):
-            do_algebra(['+'], [2, 3, 4])
-
     def test_invalid_operand_length(self):
         with pytest.raises(ValueError):
             do_algebra(['+'], [2])
+        with pytest.raises(ValueError):
+            do_algebra(['+', '+'], [2, 3, 4])
 
     def test_negative_operand(self):
         with pytest.raises(ValueError):
             do_algebra(['+'], [-2, 3])
 
     def test_long_expression(self):
-        operators = ['+', '*', '-', '//', '**']
-        operands = [1, 2, 3, 4, 5, 6]
-        assert do_algebra(operators, operands) == 1
+        operators = ['+', '-', '*', '//', '**', '+', '-']
+        operands = [1, 2, 3, 4, 5, 6, 7]
+        assert do_algebra(operators, operands) == -11
+        assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 5, 2]) == 1
 
-    def test_large_numbers(self):
-        assert do_algebra(['+'], [10**9, 10**9]) == 2 * 10**9
-        assert do_algebra(['*'], [10**5, 10**5]) == 10**10
+    def test_exponentiation_zero(self):
+        assert do_algebra(['**'], [5, 0]) == 1

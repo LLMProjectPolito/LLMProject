@@ -30,24 +30,24 @@ class TestStringToMD5:
         assert string_to_md5("Hello world") == "3e25960a79dbc69b674cd4ec67a72c62"
 
     def test_single_character_string(self):
-        assert string_to_md5("a") == "2aae6c71c3b4d15876a8b343293f3f2d"
+        assert string_to_md5("a") == "2aae6c71c3b4d15879d97a8e388d399e"
 
     def test_string_with_spaces(self):
-        assert string_to_md5("  test  ") == "26a8a99933b783369999999999999999"
+        assert string_to_md5("  test  ") == "26a854a9933b16233998696399693b7a"
 
     def test_string_with_numbers(self):
-        assert string_to_md5("12345") == "6b9340a8f7a3465b9642897693333988"
+        assert string_to_md5("12345") == "6b93423b6698e466669863d96669863d"
 
     def test_string_with_special_characters(self):
-        assert string_to_md5("!@#$%^") == "89663399999999999999999999999999"
+        assert string_to_md5("!@#$%^") == "88696969696969696969696969696969"
 
     def test_unicode_string(self):
-        assert string_to_md5("你好世界") == "b9a7d999999999999999999999999999"
+        assert string_to_md5("你好世界") == "b9a89696e294399696e294399696e294399696e294399696e294399696e2943"
 
     def test_long_string(self):
         long_string = "This is a very long string to test the function with a large input."
-        expected_md5 = "89663399999999999999999999999999"
+        expected_md5 = "8f79899999999999999999999999999999999999999999999999999999999999"
         assert string_to_md5(long_string) == expected_md5
 
     def test_string_with_mixed_characters(self):
-        assert string_to_md5("Hello123!@#") == "89663399999999999999999999999999"
+        assert string_to_md5("Hello123!@#") == "8999999999999999999999999999999999999999999999999999999999999999"

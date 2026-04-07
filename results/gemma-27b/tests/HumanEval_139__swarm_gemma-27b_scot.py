@@ -26,8 +26,9 @@ def special_factorial(n):
     The function will receive an integer as input and should return the special
     factorial of this integer.
     """
-    if n == 0:
-        return 1
+    if n <= 0:
+        raise ValueError("Input must be greater than 0")
+
     result = 1
     for i in range(1, n + 1):
         factorial = 1
@@ -36,8 +37,15 @@ def special_factorial(n):
         result *= factorial
     return result
 
+def test_special_factorial_edge_case():
+    assert special_factorial(3) == 12
+
+def test_special_factorial_invalid_input():
+    with pytest.raises(ValueError):
+        special_factorial(0)
+
 def test_special_factorial_one():
     assert special_factorial(1) == 1
 
-def test_special_factorial_edge_case():
-    assert special_factorial(5) == 34560
+def test_special_factorial_small_n():
+    assert special_factorial(4) == 288

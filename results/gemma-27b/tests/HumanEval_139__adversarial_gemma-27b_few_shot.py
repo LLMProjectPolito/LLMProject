@@ -66,6 +66,6 @@ def test_special_factorial_type_error():
     with pytest.raises(TypeError):
         special_factorial(1.5)
 
-def test_special_factorial_type_error_string():
+def test_special_factorial_string_input():
     with pytest.raises(TypeError):
-        special_factorial("abc")
+        special_factorial("4")

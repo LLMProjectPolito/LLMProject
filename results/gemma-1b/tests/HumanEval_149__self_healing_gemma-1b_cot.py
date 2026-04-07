@@ -32,9 +32,9 @@ def list_sort(lst):
     assert list_sort(["aa", "a", "aaa"]) => ["aa"]
     assert list_sort(["ab", "a", "aaa", "cd"]) => ["ab", "cd"]
     """
-    new_list = []
+    new_lst = []
     for s in lst:
         if len(s) % 2 == 0:
-            new_list.append(s)
-    new_list.sort(key=lambda x: (len(x), x))
-    return new_list
+            new_lst.append(s)
+    new_lst.sort(key=lambda x: (len(x), x))
+    return new_lst

@@ -58,10 +58,12 @@ def eat(number, need, remaining):
 
     Have fun :)
     """
+    
     if remaining >= need:
         total_eaten = number + need
         remaining_carrots = remaining - need
     else:
         total_eaten = number + remaining
         remaining_carrots = 0
+        
     return [total_eaten, remaining_carrots]

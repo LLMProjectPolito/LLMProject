@@ -44,13 +44,13 @@ def test_negative_numbers():
     assert specialFilter([-11, -13, -15]) == 0
     assert specialFilter([-11, 13, -15]) == 0
 
-def test_boundary_conditions():
-    assert specialFilter([10, 11, 19, 21]) == 0
-    assert specialFilter([11, 13, 15, 17, 19]) == 5
+def test_boundary_cases():
+    assert specialFilter([10, 11, 12]) == 0
+    assert specialFilter([11, 13]) == 1
 
 def test_mixed_numbers():
-    assert specialFilter([15, 20, 11, 13, 17, 21, 23, 29]) == 5
-    assert specialFilter([-15, -20, -11, -13, -17, -21, -23, -29]) == 0
+    assert specialFilter([11, 13, 15, 17, 19, 21]) == 5
+    assert specialFilter([11, 13, 14, 16, 18, 19]) == 1
 
 def test_large_numbers():
     assert specialFilter([1111111111, 1333333333]) == 2

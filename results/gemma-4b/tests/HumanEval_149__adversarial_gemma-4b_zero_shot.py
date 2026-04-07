@@ -69,8 +69,9 @@ def test_complex_case():
 def test_single_element():
     assert sorted_list_sum(["hello"]) == ["hello"]
 
-def test_single_odd_element():
+def test_single_element_odd():
     assert sorted_list_sum(["world"]) == []
 
-def test_mixed_case():
-    assert sorted_list_sum(["abc", "def", "ghi", "jkl"]) == ["abc", "def", "ghi", "jkl"]
+def test_large_list():
+    assert sorted_list_sum(["a" for _ in range(100)]) == []
+    assert sorted_list_sum(["aa" for _ in range(50)] + ["ab" for _ in range(50)]) == ["aa", "aa", "ab", "ab", "ab", "ab", "ab", "ab", "ab", "ab"]

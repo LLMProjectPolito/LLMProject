@@ -63,14 +63,11 @@ def test_file_name_check_edge_case():
 def test_file_name_check_valid():
     assert file_name_check("example.txt") == 'Yes'
 
-def test_file_name_check_too_many_digits():
+def test_file_name_check_invalid_digits():
     assert file_name_check("123example.txt") == 'No'
 
-def test_file_name_check_no_dot():
-    assert file_name_check("example") == 'No'
-
-def test_file_name_check_multiple_dots():
-    assert file_name_check("example.txt.bak") == 'No'
+def test_file_name_check_invalid_dot():
+    assert file_name_check("example.exe") == 'No'
 
 def test_file_name_check_invalid_prefix():
     assert file_name_check("1example.txt") == 'No'

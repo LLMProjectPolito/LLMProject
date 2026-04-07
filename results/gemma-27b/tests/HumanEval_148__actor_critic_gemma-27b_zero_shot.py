@@ -35,57 +35,48 @@ def bf(planet1, planet2):
     bf("Mercury", "Uranus") ==> ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
     '''
     planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
-    if not isinstance(planet1, str) or not isinstance(planet2, str):
-        return ()
     if planet1 not in planets or planet2 not in planets:
-        return ()
-
-    if planet1 == planet2:
         return ()
 
     index1 = planets.index(planet1)
     index2 = planets.index(planet2)
 
-    start_index = min(index1, index2) + 1
-    end_index = max(index1, index2)
-
-    between_planets = tuple(planets[start_index:end_index])
+    start = min(index1, index2)
+    end = max(index1, index2)
+    if start == end:
+        return ()
+    between_planets = tuple(planets[start+1:end])
     return between_planets
 
-def test_bf_jupiter_neptune():
+def test_bf_valid_input_jupiter_neptune():
     assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
 
-def test_bf_earth_mercury():
-    assert bf("Earth", "Mercury") == ("Venus")
+def test_bf_valid_input_earth_mercury():
+    assert bf("Earth", "Mercury") == ("Venus",)
 
-def test_bf_mercury_uranus():
+def test_bf_valid_input_mercury_uranus():
     assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
 
-def test_bf_invalid_planet1():
+def test_bf_invalid_input_planet1():
     assert bf("Pluto", "Neptune") == ()
 
-def test_bf_invalid_planet2():
+def test_bf_invalid_input_planet2():
     assert bf("Jupiter", "Pluto") == ()
 
 def test_bf_same_planet():
     assert bf("Earth", "Earth") == ()
 
-def test_bf_mercury_neptune():
+def test_bf_valid_input_mercury_neptune():
     assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
 
-def test_bf_mars_saturn():
-    assert bf("Mars", "Saturn") == ("Jupiter")
+def test_bf_valid_input_neptune_mercury():
+    assert bf("Neptune", "Mercury") == ("Uranus", "Saturn", "Jupiter", "Mars", "Earth", "Venus")
 
-def test_bf_venus_earth():
+def test_bf_valid_input_mars_saturn():
+    assert bf("Mars", "Saturn") == ("Jupiter",)
+
+def test_bf_adjacent_planets():
     assert bf("Venus", "Earth") == ()
 
-def test_bf_case_sensitivity():
-    assert bf("Earth", "earth") == ()
-
-def test_bf_invalid_input_types():
-    assert bf(123, "Neptune") == ()
-    assert bf("Jupiter", 456) == ()
-    assert bf([1,2], "Earth") == ()
-
-def test_bf_planet2_before_planet1():
-    assert bf("Venus", "Mercury") == ()
+def test_bf_edge_case_neptune_mercury():
+    assert bf("Neptune", "Mercury") == ("Uranus", "Saturn", "Jupiter", "Mars", "Earth", "Venus")

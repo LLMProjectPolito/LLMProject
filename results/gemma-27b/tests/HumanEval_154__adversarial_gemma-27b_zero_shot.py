@@ -32,7 +32,7 @@ def cycpattern_check(a , b):
 
     return False
 
-class TestCycpatternCheck:
+class TestCycPatternCheck:
 
     def test_empty_strings(self):
         assert cycpattern_check("", "") == False
@@ -49,19 +49,19 @@ class TestCycpatternCheck:
     def test_basic_false(self):
         assert cycpattern_check("abcd", "abd") == False
 
+    def test_longer_b(self):
+        assert cycpattern_check("abc", "abcd") == False
+
     def test_rotation_needed(self):
         assert cycpattern_check("abab", "baa") == True
 
     def test_no_match(self):
         assert cycpattern_check("efef", "eeff") == False
 
-    def test_longer_string(self):
+    def test_complex_true(self):
         assert cycpattern_check("himenss", "simen") == True
 
-    def test_b_longer_than_a(self):
-        assert cycpattern_check("abc", "abcd") == False
-
-    def test_same_strings(self):
+    def test_same_string(self):
         assert cycpattern_check("abc", "abc") == True
 
     def test_substring_at_start(self):
@@ -77,19 +77,19 @@ class TestCycpatternCheck:
         assert cycpattern_check("abcdef", "fabc") == False
 
     def test_rotation_at_end(self):
-        assert cycpattern_check("abcdef", "efab") == False
+        assert cycpattern_check("abcdef", "defa") == False
 
-    def test_complex_rotation(self):
-        assert cycpattern_check("waterbottle", "erbottlewat") == True
+    def test_long_strings_true(self):
+        assert cycpattern_check("thisisalongstring", "longstring") == True
 
-    def test_case_sensitivity(self):
+    def test_long_strings_false(self):
+        assert cycpattern_check("thisisalongstring", "notpresent") == False
+
+    def test_repeated_characters(self):
+        assert cycpattern_check("aaaaaa", "aa") == True
+
+    def test_repeated_characters_false(self):
+        assert cycpattern_check("aaaaaa", "aaaab") == False
+
+    def test_case_sensitive(self):
         assert cycpattern_check("Hello", "ell") == False
-
-    def test_special_characters(self):
-        assert cycpattern_check("a!b@c#", "!b@c") == True
-
-    def test_numbers(self):
-        assert cycpattern_check("12345", "234") == True
-
-    def test_long_strings_no_match(self):
-        assert cycpattern_check("abcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcba") == False

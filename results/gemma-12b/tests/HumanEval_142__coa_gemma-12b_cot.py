@@ -47,8 +47,8 @@ def test_sum_squares_no_multiples():
 def test_empty_list():
     assert sum_squares([]) == 0
 
-def test_list_with_multiples_of_3():
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == (1 + 4 + 27 + 16 + 25 + 216)
+def test_list_with_no_multiples():
+    assert sum_squares([1, 2, 4, 5]) == 12
 
-def test_list_with_multiples_of_4_and_3():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == (1 + 4 + 27 + 64 + 125 + 216 + 343 + 512 + 729 + 1000 + 1331 + 1728)
+def test_list_with_multiples_of_3_and_4():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 2 + 27 + 4 + 5 + 36 + 7 + 64 + 9 + 10 == 175

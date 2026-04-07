@@ -71,19 +71,19 @@ class TestStrongestExtension:
     def test_mixed_case(self):
         assert Strongest_Extension("TestClass", ['aA', 'Bb', 'Cc']) == "TestClass.aA"
 
-    def test_equal_strength_first_wins(self):
+    def test_equal_strength(self):
         assert Strongest_Extension("TestClass", ['AA', 'BB', 'CC']) == "TestClass.AA"
 
     def test_negative_strength(self):
         assert Strongest_Extension("TestClass", ['abc', 'def', 'ghi']) == "TestClass.abc"
 
-    def test_class_name_with_underscores(self):
-        assert Strongest_Extension("my_class_name", ['AA', 'Be', 'CC']) == "my_class_name.AA"
+    def test_class_name_with_special_chars(self):
+        assert Strongest_Extension("My_Class!", ['AA', 'Be', 'CC']) == "My_Class!.AA"
 
     def test_extension_with_numbers(self):
         assert Strongest_Extension("TestClass", ['A1', 'B2', 'C3']) == "TestClass.A1"
 
-    def test_extension_with_special_characters(self):
+    def test_extension_with_symbols(self):
         assert Strongest_Extension("TestClass", ['A!', 'B@', 'C#']) == "TestClass.A!"
 
     def test_long_extensions(self):

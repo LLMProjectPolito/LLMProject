@@ -61,7 +61,7 @@ class TestFindMax:
         assert find_max(["hello world", "good bye"]) == "hello world"
 
     def test_words_with_special_characters(self):
-        assert find_max(["abc!", "def@", "ghi#"]) == "abc!"
+        assert find_max(["abc!", "def?", "ghi#"]) == "abc!"
 
     def test_words_with_numbers(self):
         assert find_max(["abc1", "def2", "ghi3"]) == "abc1"

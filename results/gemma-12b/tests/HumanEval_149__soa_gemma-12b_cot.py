@@ -28,22 +28,22 @@ def test_all_even_length():
     assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
 def test_mixed_lengths():
-    assert sorted_list_sum(["aa", "a", "aaa", "bb", "b", "ccc"]) == ["aa", "bb", "ccc"]
+    assert sorted_list_sum(["aa", "a", "aaa", "bb", "b", "cc"]) == ["aa", "bb", "cc"]
 
 def test_mixed_lengths_with_duplicates():
-    assert sorted_list_sum(["aa", "a", "aaa", "bb", "a", "ccc", "aa"]) == ["aa", "aa", "bb", "ccc"]
+    assert sorted_list_sum(["aa", "a", "aaa", "bb", "b", "cc", "aa"]) == ["aa", "aa", "bb", "cc"]
 
-def test_same_length_alphabetical():
+def test_same_length_different_alphabetical():
     assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
 
-def test_same_length_alphabetical_with_odd():
-    assert sorted_list_sum(["ab", "a", "cd", "ef", "b"]) == ["ab", "cd", "ef"]
+def test_same_length_different_alphabetical_with_odd():
+    assert sorted_list_sum(["ab", "a", "cd", "ef", "bc"]) == ["ab", "cd", "ef"]
 
 def test_complex_case():
     assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape"]) == ["kiwi", "grape"]
 
 def test_duplicate_same_length():
-    assert sorted_list_sum(["aa", "bb", "aa", "cc", "bb"]) == ["aa", "aa", "bb", "bb", "cc"]
+    assert sorted_list_sum(["aa", "aa", "bb", "cc", "cc"]) == ["aa", "aa", "bb", "cc", "cc"]
 
 def test_single_element_even():
     assert sorted_list_sum(["aa"]) == ["aa"]
@@ -52,16 +52,16 @@ def test_single_element_odd():
     assert sorted_list_sum(["a"]) == []
 
 def test_long_strings():
-    assert sorted_list_sum(["abcdefgh", "abcde", "abcdef"]) == ["abcde", "abcdef", "abcdefgh"]
+    assert sorted_list_sum(["abcdef", "abcde", "abcdefg"]) == ["abcde", "abcdef"]
 
 def test_strings_with_spaces():
-    assert sorted_list_sum(["a b", "c d e", "f"]) == ["a b", "c d e"]
+    assert sorted_list_sum(["a b", "ab", "abc"]) == ["ab", "abc"]
 
 def test_strings_with_special_characters():
-    assert sorted_list_sum(["a!", "b?", "c#"]) == ["a!", "b?", "c#"]
+    assert sorted_list_sum(["a!", "ab?", "abc."]) == ["ab?", "abc."]
 
 def test_strings_with_numbers():
-    assert sorted_list_sum(["12", "1", "123"]) == ["12", "123"]
+    assert sorted_list_sum(["12", "1", "123"]) == ["12"]
 
 def test_all_same_length_different_alphabetical():
     assert sorted_list_sum(["zebra", "apple", "banana"]) == ["apple", "banana", "zebra"]

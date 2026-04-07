@@ -69,7 +69,7 @@ def test_strings_and_integers():
     assert double_the_difference([1, "2", 3, "4"]) == 10
 
 def test_mixed_types():
-    assert double_the_difference([1, 3.14, -2, "hello", 5]) == 26
+    assert double_the_difference([1, 3.14, -2, "hello", 5]) == 1 + 25
 
 def test_large_numbers():
     assert double_the_difference([101, 103]) == 101**2 + 103**2

@@ -61,7 +61,7 @@ def test_example_2():
     assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
 def test_long_strings():
-    assert sorted_list_sum(["abcdef", "abc", "ab", "def"]) == ["ab", "def"]
+    assert sorted_list_sum(["abcdef", "abc", "def", "ghi"]) == ["def", "ghi"]
 
-def test_special_characters():
-    assert sorted_list_sum(["a!", "b@", "c#"]) == ["a!", "b@", "c#"]
+def test_mixed_case():
+    assert sorted_list_sum(["aB", "Ab", "ab"]) == ["aB", "Ab", "ab"]

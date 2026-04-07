@@ -65,6 +65,8 @@ def test_generate_integers():
     assert generate_integers(1, 6) == [2, 4, 6]
     assert generate_integers(1, 7) == []
     assert generate_integers(1, 8) == [2, 4, 6, 8]
-    assert generate_integers(2, 10) == [2, 4, 6, 8]
-    assert generate_integers(10, 14) == []
+    assert generate_integers(1, 9) == [2, 4, 6, 8]
+    assert generate_integers(1, 10) == [2, 4, 6, 8]
+    assert generate_integers(1, 11) == []
+    assert generate_integers(1, 12) == []
     print("All tests passed")

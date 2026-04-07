@@ -53,6 +53,5 @@ def test_special_factorial_positive_n():
     assert special_factorial(4) == 288
     assert special_factorial(5) == 34560
     assert special_factorial(1) == 1
-
-def test_special_factorial_n_equals_2():
     assert special_factorial(2) == 2
+    assert special_factorial(3) == 12

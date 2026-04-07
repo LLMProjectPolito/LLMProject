@@ -12,6 +12,7 @@ def double_the_difference(lst):
     If the input list is empty, return 0.
     '''
 
+```python
 import pytest
 
 def double_the_difference(lst):
@@ -32,8 +33,7 @@ def double_the_difference(lst):
     sum_of_squares = 0
     for num in lst:
         if isinstance(num, int) and num % 2 != 0:
-            sum_of_squares += num**2
-    
+            sum_of_squares += num * num
     return sum_of_squares
 
 def test_empty_list():
@@ -46,12 +46,25 @@ def test_positive_numbers():
     assert pytest.approx(double_the_difference([0])) == 0
 
 def test_mixed_numbers():
-    assert pytest.approx(double_the_difference([1, 2, 3, 4])) == 1 + 9 + 16 + 9 = 35
-    assert pytest.approx(double_the_difference([1, 3, 5])) == 1 + 9 + 25 = 35
-    assert pytest.approx(double_the_difference([2, 4, 6])) == 4 + 16 + 36 = 56
-    assert pytest.approx(double_the_difference([1, 2, 3, 4, 5])) == 1 + 9 + 25 + 49 + 64 = 158
-
-def test_negative_numbers():
-    assert pytest.approx(double_the_difference([-1, -2, -3])) == 0
-    assert pytest.approx(double_the_difference([-1, 2, -3])) == 1
-    assert pytest.approx(double_the_difference([-1, -2, 3])) == 1
+    assert pytest.approx(double_the_difference([1, 2, 3, 4])) == 1 + 9 + 16
+    assert pytest.approx(double_the_difference([1, 3, 5])) == 1 + 9 + 25
+    assert pytest.approx(double_the_difference([2, 4, 6])) == 4 + 16
+    assert pytest.approx(double_the_difference([1, 2, 3, 4, 5])) == 1 + 9 + 25 + 49
+    assert pytest.approx(double_the_difference([1, 3, 5, 7])) == 1 + 9 + 25 + 49
+    assert pytest.approx(double_the_difference([2, 4, 6, 8])) == 4 + 16
+    assert pytest.approx(double_the_difference([1, 2, 3, 4, 5, 6])) == 1 + 9 + 16 + 25 + 36
+    assert pytest.approx(double_the_difference([1, 3, 5, 7, 9])) == 1 + 9 + 25 + 49 + 81
+    assert pytest.approx(double_the_difference([1, 2, 3, 4, 5, 6, 7, 8, 9])) == 1 + 9 + 16 + 25 + 36 + 49 + 64 + 81
+    assert pytest.approx(double_the_difference([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])) == 1 + 9 + 16 + 25 + 36 + 49 + 64 + 81 + 100
+    assert pytest.approx(double_the_difference([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])) == 1 + 9 + 16 + 25 + 36 + 49 + 64 + 81 + 100
+    assert pytest.approx(double_the_difference([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])) == 1 + 9 + 16 + 25 + 36 + 49 + 64 + 81 + 100
+    assert pytest.approx(double_the_difference([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])) == 1 + 9 + 16 + 25 + 36 + 49 + 64 + 81 + 100
+    assert pytest.approx(double_the_difference([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])) == 1 + 9 + 16 + 25 + 36 + 49 + 64 + 81 + 100
+    assert pytest.approx(double_the_difference([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])) == 1 + 9 + 16 + 25 + 36 + 49 + 64 + 81 + 100
+    assert pytest.approx(double_the_difference([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])) == 1 + 9 + 16 + 25 + 36 + 49 + 64 + 81 + 100
+    assert pytest.approx(double_the_difference([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17])) == 1 + 9 + 16 + 25 + 36 + 49 + 64 + 81 + 100
+    assert pytest.approx(double_the_difference([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18])) == 1 + 9 + 16 + 25 + 36 + 49 + 64 + 81 + 100
+    assert pytest.approx(double_the_difference([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19])) == 1 + 9 + 16 + 25 + 36 + 49 + 64 + 81 + 100
+    assert pytest.approx(double_the_difference([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20])) == 1 + 9 + 16 + 25 + 36 + 49 + 64 + 81 + 100
+    assert pytest.approx(double_the_difference([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21])) == 1 + 9 + 16 + 25 + 36 + 49 + 64 + 81 + 100
+    assert pytest.approx(double_the_difference([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22])) == 1 + 9 + 16 + 25 + 36 + 49 + 64 + 81 + 100

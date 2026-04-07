@@ -48,28 +48,25 @@ def test_mixed_positive_negative():
     assert specialFilter([15, -33, 45, -109]) == 2
 
 def test_with_zero():
-    assert specialFilter([11, 13, 15, 17, 19]) == 5
+    assert specialFilter([11, 12, 13, 14, 15]) == 1
 
-def test_with_large_numbers():
+def test_large_numbers():
     assert specialFilter([111, 133, 155, 177, 199]) == 5
 
-def test_with_negative_large_numbers():
-    assert specialFilter([-111, -133, -155, -177, -199]) == 0
-
-def test_with_duplicates():
+def test_duplicate_numbers():
     assert specialFilter([15, 15, 15]) == 3
 
-def test_with_non_numeric_values():
-    assert specialFilter([15, "abc", 45]) == 2
+def test_numbers_around_threshold():
+    assert specialFilter([11, 12, 13, 14, 15, 16, 17, 18, 19, 20]) == 1
 
-def test_with_zero_values():
-    assert specialFilter([10, 11, 12, 13]) == 1
+def test_complex_example():
+    assert specialFilter([15, -73, 14, -15, 33, -2, -3, 45, 21, 109]) == 2
 
-def test_complex_case():
-    assert specialFilter([115, 133, 155, 177, 199, 21, 23, 25, 27, 29]) == 5
+def test_all_negative_greater_than_10():
+    assert specialFilter([-11, -13, -15, -17, -19]) == 0
 
-def test_all_negative_and_less_than_10():
-    assert specialFilter([-1, -2, -3, -4, -5]) == 0
+def test_single_digit_greater_than_10():
+    assert specialFilter([11, 13, 15, 17, 19]) == 0
 
-def test_mixed_positive_and_negative_less_than_10():
-    assert specialFilter([-1, 1, -2, 2, -3, 3]) == 0
+def test_mixed_single_and_multi_digit():
+    assert specialFilter([11, 15, 13, 17, 19]) == 3

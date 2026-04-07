@@ -89,25 +89,25 @@ def test_sentence_with_mixed_prime_and_non_prime_words():
     assert words_in_sentence("hello world python") == "world python"
 
 def test_sentence_with_long_words():
-    assert words_in_sentence("This is a verylongword") == "is a"
+    assert words_in_sentence("This is a very long sentence") == "is a"
 
 def test_sentence_with_short_words():
-    assert words_in_sentence("a b c d e") == "a b c d"
+    assert words_in_sentence("a b c d e f") == "a b c d"
 
-def test_sentence_with_prime_length_words_and_non_prime():
-    assert words_in_sentence("abc def ghi jkl") == "abc def"
+def test_sentence_with_prime_length_words_at_the_end():
+    assert words_in_sentence("This is a test long") == "is a"
 
-def test_sentence_with_non_prime_length_words_and_prime():
-    assert words_in_sentence("abc def ghi a") == "def ghi"
+def test_sentence_with_prime_length_words_at_the_beginning():
+    assert words_in_sentence("abc This is a test") == "abc"
 
-def test_sentence_with_all_non_prime_length_words():
-    assert words_in_sentence("abcd efgh ijkl mnop") == ""
+def test_sentence_with_prime_length_words_in_the_middle():
+    assert words_in_sentence("This is a test abc") == "is a"
 
-def test_sentence_with_prime_length_words_and_non_prime_and_prime():
-    assert words_in_sentence("abc def ghi jkl mno") == "def ghi"
+def test_sentence_with_prime_length_words_and_non_prime_words():
+    assert words_in_sentence("This is a test long abc") == "is a"
 
-def test_sentence_with_prime_length_words_and_non_prime_and_non_prime():
-    assert words_in_sentence("abc def ghi jkl mno pqr") == "def ghi"
+def test_sentence_with_numbers_as_words():
+    assert words_in_sentence("123 456 789") == "456"
 
-def test_sentence_with_prime_length_words_and_non_prime_and_prime_and_non_prime():
-    assert words_in_sentence("abc def ghi jkl mno pqr stu") == "def ghi"
+def test_sentence_with_special_characters():
+    assert words_in_sentence("This is a test!") == "is"

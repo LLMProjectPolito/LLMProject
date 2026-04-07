@@ -22,6 +22,11 @@ def generate_integers(a, b):
     generate_integers(8, 2) => [2, 4, 6, 8]
     generate_integers(10, 14) => []
     """
+    if not isinstance(a, int) or not isinstance(b, int):
+        raise TypeError("Inputs must be integers.")
+    if a <= 0 or b <= 0:
+        raise ValueError("Inputs must be positive integers.")
+
     if a > b:
         a, b = b, a
     result = []
@@ -30,41 +35,49 @@ def generate_integers(a, b):
             result.append(i)
     return result
 
-def test_basic_case():
+def test_generate_integers_basic():
     assert generate_integers(2, 8) == [2, 4, 6, 8]
 
-def test_reverse_order():
+def test_generate_integers_reverse_order():
     assert generate_integers(8, 2) == [2, 4, 6, 8]
 
-def test_no_even_numbers():
+def test_generate_integers_no_even():
     assert generate_integers(10, 14) == []
 
-def test_single_even_number():
+def test_generate_integers_single_even():
     assert generate_integers(2, 2) == [2]
 
-def test_adjacent_even_numbers():
+def test_generate_integers_adjacent_even():
     assert generate_integers(4, 6) == [4, 6]
 
-def test_start_at_zero():
-    assert generate_integers(0, 4) == [0, 2, 4]
+def test_generate_integers_zero_input():
+    with pytest.raises(ValueError):
+        generate_integers(0, 4)
+    with pytest.raises(ValueError):
+        generate_integers(2, 0)
+    with pytest.raises(ValueError):
+        generate_integers(0, 0)
 
-def test_end_at_zero():
-    assert generate_integers(2, 0) == [0, 2]
+def test_generate_integers_a_equals_b_even():
+    assert generate_integers(4, 4) == [4]
 
-def test_large_numbers():
-    assert generate_integers(100, 110) == [100, 102, 104, 106, 108, 110]
-
-def test_same_number():
-    assert generate_integers(5, 5) == []
-
-def test_negative_input():
+def test_generate_integers_non_integer_input():
     with pytest.raises(TypeError):
-        generate_integers(-2, 8)
-
-def test_float_input():
+        generate_integers(2.5, 8)
     with pytest.raises(TypeError):
-        generate_integers(2.0, 8)
-
-def test_string_input():
+        generate_integers(2, 8.5)
+    with pytest.raises(TypeError):
+        generate_integers(2, 8)
+    with pytest.raises(TypeError):
+        generate_integers("2", 8)
+    with pytest.raises(TypeError):
+        generate_integers(2, "8")
     with pytest.raises(TypeError):
         generate_integers("2", "8")
+
+def test_generate_integers_large_range():
+    expected_output = [i for i in range(2, 101, 2)]
+    assert generate_integers(1, 100) == expected_output
+
+def test_generate_integers_same_number_odd():
+    assert generate_integers(5, 5) == []

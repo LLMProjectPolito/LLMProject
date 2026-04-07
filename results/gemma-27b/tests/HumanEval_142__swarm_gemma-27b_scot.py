@@ -49,7 +49,7 @@ def test_negative_numbers():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
 def test_mixed_positive_and_negative():
-    assert sum_squares([1, -2, 3, -4, 5, -6]) == 48
+    assert sum_squares([1, -2, 3, -4, 5, -6]) == 41
 
 def test_edge_case_multiple_of_3_and_4():
     assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 407

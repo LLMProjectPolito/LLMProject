@@ -43,29 +43,26 @@ def find_max(words):
 
     return max_word
 
-def test_empty_list():
+def test_find_max_empty_list():
     assert find_max([]) == ""
 
-def test_single_word():
+def test_find_max_single_word():
     assert find_max(["hello"]) == "hello"
 
-def test_all_same_length():
+def test_find_max_all_same_length():
     assert find_max(["abc", "def", "ghi"]) == "abc"
 
-def test_max_unique_at_start():
-    assert find_max(["string", "of", "name"]) == "string"
+def test_find_max_different_lengths():
+    assert find_max(["a", "aa", "aaa"]) == "aaa"
 
-def test_max_unique_at_end():
+def test_find_max_same_unique_count_lexicographical():
+    assert find_max(["enam", "name", "game"]) == "enam"
+
+def test_find_max_example_1():
     assert find_max(["name", "of", "string"]) == "string"
 
-def test_multiple_max_unique_lexicographical():
-    assert find_max(["name", "enam", "game"]) == "enam"
-
-def test_all_same_chars():
-    assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
-
-def test_mixed_lengths_and_unique():
-    assert find_max(["a", "aa", "aaa", "abcde"]) == "abcde"
+def test_find_max_example_2():
+    assert find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
 
 # Focus: Equivalence Partitioning
 import pytest

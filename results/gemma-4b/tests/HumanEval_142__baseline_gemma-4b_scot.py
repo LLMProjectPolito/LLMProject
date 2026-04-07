@@ -68,10 +68,10 @@ def test_multiple_elements_index_6_multiple():
     assert sum_squares([1, 2, 3, 4, 5, 6]) == 91
 
 def test_multiple_elements_index_8_multiple_not_3():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 182
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 224
 
 def test_negative_numbers():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
 def test_mixed_positive_negative():
-    assert sum_squares([1, -2, 3, -4, 5]) == 35
+    assert sum_squares([1, -2, 3, -4, 5]) == 14

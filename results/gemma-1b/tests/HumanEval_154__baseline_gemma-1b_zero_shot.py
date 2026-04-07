@@ -29,10 +29,10 @@ def cycpattern_check(a, b):
         return a.lower() in b.lower()
 
     if len(a) == 1:
-        return b.lower() in a.lower()
+        return a.lower() in b.lower()
 
     if len(b) == 1:
-        return a.lower() in b.lower()
+        return b.lower() in a.lower()
 
     for i in range(1, len(b)):
         rotated_b = b[i:] + b[:i]
@@ -40,3 +40,28 @@ def cycpattern_check(a, b):
             return True
 
     return False
+
+def test_cycpattern_check_basic():
+    assert cycpattern_check("abcd", "abd") == False
+    assert cycpattern_check("hello", "ell") == True
+    assert cycpattern_check("whassup", "psus") == False
+    assert cycpattern_check("abab", "baa") == True
+    assert cycpattern_check("efef", "eeff") == False
+    assert cycpattern_check("himenss", "simen") == True
+
+def test_cycpattern_check_empty_strings():
+    assert cycpattern_check("", "") == False
+    assert cycpattern_check("a", "") == False
+    assert cycpattern_check("", "a") == False
+
+def test_cycpattern_check_single_char():
+    assert cycpattern_check("a", "a") == True
+    assert cycpattern_check("a", "b") == False
+    assert cycpattern_check("b", "a") == False
+    assert cycpattern_check("b", "b") == True
+
+def test_cycpattern_check_different_lengths():
+    assert cycpattern_check("abc", "abcd") == False
+    assert cycpattern_check("abc", "bc") == True
+    assert cycpattern_check("abc", "c") == True
+    assert cycpattern_check("abc", "ab") == False

@@ -51,7 +51,7 @@ def test_multiple_words_same_unique_chars_lexicographical_order():
     assert find_max(["name", "enam", "game"]) == "enam"
 
 def test_all_words_same_unique_chars():
-    assert find_max(["abc", "bac", "cab"]) == "abc"
+    assert find_max(["abc", "bca", "cab"]) == "abc"
 
 def test_words_with_repeated_characters():
     assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"

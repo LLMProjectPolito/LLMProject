@@ -47,16 +47,16 @@ def bf(planet1, planet2):
     '''
     planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
     try:
-        idx1 = planets.index(planet1)
-        idx2 = planets.index(planet2)
+        index1 = planets.index(planet1)
+        index2 = planets.index(planet2)
     except ValueError:
         return ()
 
-    if idx1 >= idx2:
+    if index1 >= index2:
         return ()
 
     result = []
-    for i in range(idx1 + 1, idx2):
+    for i in range(index1 + 1, index2):
         result.append(planets[i])
 
     return tuple(result)
@@ -72,18 +72,18 @@ def test_is_palindrome_basic():
 def test_is_palindrome_empty():
     assert is_palindrome('') == True
     assert is_palindrome(' ') == True
+    assert is_palindrome('a') == True
 
 def test_is_palindrome_mixed_case():
-    assert is_palindrome('Racecar') == True
+    assert is_palindrome('RaceCar') == True
 
 def test_is_palindrome_with_punctuation():
     assert is_palindrome('Madam, I\'m Adam') == True
 
-def test_is_palindrome_non_palindrome():
-    assert is_palindrome('Python') == False
-
 def test_max_positive():
     assert get_max([1, 2, 3]) == 3
+    assert get_max([3, 2, 1]) == 3
+    assert get_max([1, 3, 2]) == 3
 
 def test_max_empty():
     assert get_max([]) == None

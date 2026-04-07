@@ -12,8 +12,8 @@ def cycpattern_check(a , b):
 
 import pytest
 
-def test_empty_b_in_a():
+def test_empty_b():
     assert cycpattern_check("abc", "") == True
 
-def test_empty_b():
+def test_empty_b_in_a():
     assert cycpattern_check("abc", "") == True

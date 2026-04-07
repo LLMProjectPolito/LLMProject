@@ -36,35 +36,32 @@ def order_by_points(nums):
 def test_order_by_points_empty():
     assert order_by_points([]) == []
 
-def test_order_by_points_basic():
+def test_order_by_points_positive():
+    assert order_by_points([1, 11, 2, 3, 4]) == [1, 2, 3, 4, 11]
+
+def test_order_by_points_negative():
+    assert order_by_points([-1, -11, -2, -3, -4]) == [-1, -2, -3, -4, -11]
+
+def test_order_by_points_mixed():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
 
-def test_order_by_points_same_sum():
-    assert order_by_points([1, 11, 2, 22]) == [1, 2, 11, 22]
-
-def test_order_by_points_negative_numbers():
-    assert order_by_points([-1, -11, -2, -22]) == [-1, -2, -11, -22]
-
-def test_order_by_points_mixed_numbers():
-    assert order_by_points([-1, 1, 11, -11, 2, -22]) == [-1, -22, -11, 1, 2, 11]
-
-def test_order_by_points_duplicate_numbers():
-    assert order_by_points([1, 1, 11, 11]) == [1, 1, 11, 11]
+def test_order_by_points_duplicate_sums():
+    assert order_by_points([1, 11, 2, 20, 10]) == [1, 10, 11, 2, 20]
 
 def test_order_by_points_large_numbers():
-    assert order_by_points([123, 45, 6, 789]) == [6, 45, 123, 789]
+    assert order_by_points([123, 45, 678, 9, 100]) == [9, 45, 100, 123, 678]
+
+def test_order_by_points_negative_large_numbers():
+    assert order_by_points([-123, -45, -678, -9, -100]) == [-9, -100, -123, -45, -678]
 
 def test_order_by_points_zero():
-    assert order_by_points([0, 1, 10, 100]) == [0, 1, 10, 100]
-
-def test_order_by_points_negative_zero():
-    assert order_by_points([-0, 1, 10, 100]) == [-0, 1, 10, 100]
-
-def test_order_by_points_complex_numbers():
-    assert order_by_points([-12, 12, -21, 21]) == [-12, -21, 12, 21]
+    assert order_by_points([0, 1, 10, -1, -10]) == [-1, -10, 0, 1, 10]
 
 def test_order_by_points_single_element():
     assert order_by_points([5]) == [5]
 
 def test_order_by_points_all_same_sum():
-    assert order_by_points([1, 10, 100]) == [1, 10, 100]
+    assert order_by_points([1, 10, 100, 1000]) == [1, 10, 100, 1000]
+
+def test_order_by_points_negative_all_same_sum():
+    assert order_by_points([-1, -10, -100, -1000]) == [-1, -10, -100, -1000]

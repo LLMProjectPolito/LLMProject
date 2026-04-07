@@ -90,6 +90,3 @@ def test_eat_large_numbers():
 
 def test_eat_all_remaining():
     assert eat(0, 5, 3) == [5, 0]
-
-def test_eat_need_zero():
-    assert eat(5, 0, 10) == [5, 5]

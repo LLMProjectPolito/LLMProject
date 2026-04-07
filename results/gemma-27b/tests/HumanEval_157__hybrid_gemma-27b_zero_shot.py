@@ -43,9 +43,9 @@ class TestRightAngleTriangle:
 
     def test_zero_values(self):
         assert right_angle_triangle(0, 0, 0) == True  # Technically a degenerate triangle
-        assert right_angle_triangle(0, 3, 4) == False
+        assert right_angle_triangle(0, 3, 5) == False
         assert right_angle_triangle(3, 0, 5) == False
-        assert right_angle_triangle(3, 4, 0) == False
+        assert right_angle_triangle(3, 5, 0) == False
 
     def test_negative_values(self):
         assert right_angle_triangle(-3, 4, 5) == False

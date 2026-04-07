@@ -100,18 +100,15 @@ import pytest
 
 def test_large_number_addition():
     operators = ['+']
-    operands = [10**18, 10**18]
-    expected = 2 * (10**18)
-    assert do_algebra(operators, operands) == expected
+    operands = [10**10, 10**10]
+    assert do_algebra(operators, operands) == 2 * (10**10)
 
 def test_large_number_multiplication():
     operators = ['*']
-    operands = [10**9, 10**9]
-    expected = 10**18
-    assert do_algebra(operators, operands) == expected
+    operands = [10**5, 10**5]
+    assert do_algebra(operators, operands) == 10**10
 
-def test_large_number_mixed_operations():
-    operators = ['+', '*', '-', '//']
-    operands = [10**9, 2, 10**9, 2]
-    expected = (10**9 + 2 * 10**9) - (10**9 // 2)
-    assert do_algebra(operators, operands) == expected
+def test_large_number_exponentiation():
+    operators = ['**']
+    operands = [2, 30]
+    assert do_algebra(operators, operands) == 2**30

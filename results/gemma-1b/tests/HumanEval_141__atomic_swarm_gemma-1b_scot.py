@@ -31,20 +31,17 @@ def file_name_check(file_name):
     file_name_check("example.txt") # => 'Yes'
     file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
-    if not file_name.isdigit():
-        return 'No'
     if len(file_name) > 3:
         return 'No'
-    if not file_name.startswith('.'):
+    if file_name.count('.') == 0:
         return 'No'
-    parts = file_name.split('.')
-    if len(parts) != 2:
+    if not file_name[:1].isalpha():
         return 'No'
-    if not parts[0][0].isalpha():
+    if not file_name[1:].islower():
         return 'No'
-    if parts[1] not in ['txt', 'exe', 'dll']:
-        return 'No'
-    return 'Yes'
+    if file_name[1:].startswith('a') and file_name[1:].endswith('z'):
+        return 'Yes'
+    return 'No'
 
 def test_file_name_check():
     assert file_name_check("example.txt") == 'Yes'

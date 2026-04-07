@@ -41,5 +41,5 @@ def test_find_max_different_unique_chars():
 def test_find_max_same_unique_chars_lexicographical():
     assert find_max(["name", "enam", "game"]) == "enam"
 
-def test_find_max_all_same_chars():
+def test_find_max_repeated_chars():
     assert find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"

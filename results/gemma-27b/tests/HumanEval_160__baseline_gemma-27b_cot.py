@@ -91,25 +91,24 @@ def test_do_algebra_with_zero():
     assert do_algebra(['+'], [0, 5]) == 5
     assert do_algebra(['*'], [0, 5]) == 0
     assert do_algebra(['//'], [5, 0]) == pytest.raises(ZeroDivisionError)
-    assert do_algebra(['**'], [0, 2]) == 0
-
-def test_do_algebra_large_numbers():
-    assert do_algebra(['+'], [1000000, 2000000]) == 3000000
-    assert do_algebra(['*'], [1000, 1000]) == 1000000
-
-def test_do_algebra_edge_case():
-    assert do_algebra(['-'], [1, 1]) == 0
-    assert do_algebra(['*'], [1, 1]) == 1
-    assert do_algebra(['//'], [1, 1]) == 1
-    assert do_algebra(['**'], [1, 1]) == 1
 
 def test_do_algebra_long_expression():
-    operators = ['+', '+', '+', '+', '+']
-    operands = [1, 2, 3, 4, 5, 6]
-    assert do_algebra(operators, operands) == 21
+    assert do_algebra(['+', '+', '+', '+'], [1, 2, 3, 4, 5]) == 15
 
 def test_do_algebra_mixed_operations():
-    assert do_algebra(['+', '*', '-', '//'], [1, 2, 3, 4, 5]) == 1
+    assert do_algebra(['+', '*', '-', '//'], [10, 2, 3, 6, 2]) == 13
 
 def test_do_algebra_exponentiation_and_addition():
     assert do_algebra(['**', '+'], [2, 3, 1]) == 9
+
+def test_do_algebra_edge_case_division():
+    assert do_algebra(['//'], [7, 3]) == 2
+
+def test_do_algebra_edge_case_exponentiation():
+    assert do_algebra(['**'], [3, 2]) == 9
+
+def test_do_algebra_large_numbers():
+    assert do_algebra(['+'], [1000000, 2000000]) == 3000000
+
+def test_do_algebra_negative_result():
+    assert do_algebra(['-', '+'], [10, 5, 2]) == 3

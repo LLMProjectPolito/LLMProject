@@ -62,3 +62,9 @@ def test_earth_mercury():
 
 def test_mercury_uranus():
     assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+
+def test_invalid_planet():
+    assert bf("Pluto", "Neptune") == ()
+
+def test_same_planet():
+    assert bf("Earth", "Earth") == ()

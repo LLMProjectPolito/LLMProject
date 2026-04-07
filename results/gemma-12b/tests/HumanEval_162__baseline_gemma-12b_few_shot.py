@@ -22,19 +22,19 @@ def string_to_md5(text):
     return md5_hash.hexdigest()
 
 def test_string_to_md5_valid():
-    assert string_to_md5("Hello world") == "3e25960a79dbc69b674cd4ec67a72c62"
-    assert string_to_md5("abc") == "ba7816bf8f01cfea414140de5dae2223"
-    assert string_to_md5("12345") == "5d41402abc4b2a76b9719d911017c592"
+    assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
+    assert string_to_md5('abc') == 'ba7816bf8f01cfea414140de5dae2223'
+    assert string_to_md5('12345') == '5d414c7b119794610da0d97679c441cd'
 
 def test_string_to_md5_empty():
-    assert string_to_md5("") is None
+    assert string_to_md5('') is None
 
 def test_string_to_md5_special_characters():
-    assert string_to_md5("!@#$%^") == "9d0b2b99432933991136191399999999"
-    assert string_to_md5("你好世界") == "b10a8db164e0754105b7a99be72e3fe5"
-
-def test_string_to_md5_with_spaces():
-    assert string_to_md5("  hello  ") == "981a1b29469699999999999999999999"
+    assert string_to_md5('!@#$%^') == '9469c999999999999999999999999999'
+    assert string_to_md5('你好世界') == 'b10a8db164e0754105b7a99be72e3fe5'
 
 def test_string_to_md5_unicode():
-    assert string_to_md5("éàçüö") == "99999999999999999999999999999999"
+    assert string_to_md5('éàçüö') == '94a99999999999999999999999999999'
+
+def test_string_to_md5_mixed_case():
+    assert string_to_md5('HeLlO wOrLd') == '3e25960a79dbc69b674cd4ec67a72c62'

@@ -28,7 +28,7 @@ def test_valid_file_name():
 
 def test_invalid_file_name_too_many_digits():
     assert file_name_check("1234example.txt") == "No"
-    assert file_name_check("12345.txt") == "No"
+    assert file_name_check("1234567890.txt") == "No"
 
 def test_invalid_file_name_no_dot():
     assert file_name_check("example") == "No"
@@ -64,5 +64,6 @@ def test_file_name_with_spaces():
 
 def test_file_name_with_special_characters():
     assert file_name_check("example@.txt") == "No"
+    assert file_name_check("example!.txt") == "No"
     assert file_name_check("example#.txt") == "No"
     assert file_name_check("example$.txt") == "No"

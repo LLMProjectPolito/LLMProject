@@ -83,13 +83,10 @@ def test_long_sentence():
     assert words_in_sentence("This is a very long sentence with some prime length words") == "is a very long"
 
 def test_sentence_with_only_one_word():
-    assert words_in_sentence("prime") == "prime"
+    assert words_in_sentence("prime") == ""
 
-def test_sentence_with_same_length_words():
-    assert words_in_sentence("go no so to") == "go no so to"
+def test_sentence_with_prime_and_non_prime_words_at_start_and_end():
+    assert words_in_sentence("a lets go for swimming") == "a"
 
-def test_sentence_with_numbers_in_words():
-    assert words_in_sentence("a1 b2 c3") == ""
-
-def test_sentence_with_special_characters():
-    assert words_in_sentence("a! b@ c#") == ""
+def test_sentence_with_prime_and_non_prime_words_interspersed():
+    assert words_in_sentence("this is a long test") == "is a"

@@ -26,8 +26,10 @@ def x_or_y(n, x, y):
     if n > 1:
         for i in range(2, n):
             if n % i == 0:
-                return i
-    return x
+                return n
+        return x
+    else:
+        return y
 
 # Focus: Type Scenarios
 def x_or_y(n, x, y):
@@ -43,7 +45,9 @@ def x_or_y(n, x, y):
         for i in range(2, n):
             if n % i == 0:
                 return i
-    return x
+        return x
+    else:
+        return y
 
 # Focus: Logic Branches
 def x_or_y(n, x, y):

@@ -47,13 +47,13 @@ def test_large_list():
     expected_sum = sum(x**2 if i % 3 == 0 else x**3 if i % 4 == 0 and i % 3 != 0 else x for i, x in enumerate(lst))
     assert sum_squares(lst) == expected_sum
 
-def test_list_with_single_element_multiple_of_3():
+def test_single_element_list_multiple_of_3():
     assert sum_squares([3]) == 3**2
 
-def test_list_with_single_element_multiple_of_4():
+def test_single_element_list_multiple_of_4():
     assert sum_squares([4]) == 4**3
 
-def test_list_with_single_element_not_multiple_of_3_or_4():
+def test_single_element_list_not_multiple_of_3_or_4():
     assert sum_squares([5]) == 5
 
 def test_list_with_decimal_numbers():

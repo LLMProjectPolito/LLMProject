@@ -39,12 +39,11 @@ def test_cycpattern_check():
     assert cycpattern_check("abc","abc") == True
     assert cycpattern_check("abc","bca") == True
     assert cycpattern_check("abc","cab") == True
-    assert cycpattern_check("abc","acb") == False
-    assert cycpattern_check("aaaaa","aa") == True
-    assert cycpattern_check("aaaaa","aaa") == True
-    assert cycpattern_check("aaaaa","aaaa") == True
-    assert cycpattern_check("aaaaa","aaaaa") == True
-    assert cycpattern_check("aaaaa","aaaaaa") == False
+    assert cycpattern_check("abc","cba") == False
+    assert cycpattern_check("aaaa","aa") == True
+    assert cycpattern_check("aaaa","aaa") == True
+    assert cycpattern_check("aaaa","aaaa") == True
+    assert cycpattern_check("aaaa","aaaaa") == False
     assert cycpattern_check("","") == True
     assert cycpattern_check("abc","") == True
     assert cycpattern_check("","abc") == False
@@ -53,12 +52,9 @@ def test_cycpattern_check():
     assert cycpattern_check("ababab","aba") == True
     assert cycpattern_check("ababab","bab") == True
     assert cycpattern_check("ababab","ab") == True
-    assert cycpattern_check("ababab","b") == True
-    assert cycpattern_check("ababab","c") == False
+    assert cycpattern_check("ababab","baba") == False
     assert cycpattern_check("longstring","short") == False
-    assert cycpattern_check("shortstring","long") == False
-    assert cycpattern_check("testtest","test") == True
-    assert cycpattern_check("testtest","estt") == True
-    assert cycpattern_check("testtest","ttes") == True
-    assert cycpattern_check("testtest","ttest") == True
-    assert cycpattern_check("testtest","sttes") == False
+    assert cycpattern_check("longstring","strin") == True
+    assert cycpattern_check("longstring","gstri") == True
+    assert cycpattern_check("longstring","ingst") == True
+    assert cycpattern_check("longstring","stgin") == False

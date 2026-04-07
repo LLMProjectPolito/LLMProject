@@ -82,7 +82,7 @@ def test_words_in_sentence_single_non_prime_word():
     assert words_in_sentence("world") == ""
 
 def test_words_in_sentence_long_sentence():
-    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the quick fox over the dog"
+    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the over dog"
 
 def test_words_in_sentence_sentence_with_leading_and_trailing_spaces():
     assert words_in_sentence("  hello world  ") == "hello world"
@@ -90,8 +90,8 @@ def test_words_in_sentence_sentence_with_leading_and_trailing_spaces():
 def test_words_in_sentence_sentence_with_multiple_spaces():
     assert words_in_sentence("hello   world") == "hello world"
 
-def test_words_in_sentence_sentence_with_prime_and_non_prime():
-    assert words_in_sentence("cat dog bird") == "cat dog bird"
+def test_words_in_sentence_prime_numbers():
+    assert words_in_sentence("2 3 5 7 11") == "2 3 5 7 11"
 
-def test_words_in_sentence_sentence_with_only_one_word():
-    assert words_in_sentence("two") == "two"
+def test_words_in_sentence_composite_numbers():
+    assert words_in_sentence("4 6 8 9 10") == ""

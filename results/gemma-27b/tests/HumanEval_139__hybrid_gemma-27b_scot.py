@@ -53,4 +53,4 @@ def test_negative_integer():
         special_factorial(-5)
 
 def test_large_integer():
-    assert special_factorial(10) == 13168189440000
+    assert special_factorial(6) == 4608000

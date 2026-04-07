@@ -16,13 +16,13 @@ import math
 
 
 # Focus: Boundary Values
-def test_fix_spaces_boundary_two_consecutive():
+def test_fix_spaces_two_consecutive_spaces():
     assert fix_spaces("Example  1") == "Example__1"
 
-def test_fix_spaces_boundary_three_consecutive():
+def test_fix_spaces_three_consecutive_spaces():
     assert fix_spaces("Example   1") == "Example-1"
 
-def test_fix_spaces_boundary_four_consecutive():
+def test_fix_spaces_four_consecutive_spaces():
     assert fix_spaces("Example    1") == "Example-1"
 
 # Focus: Logic Branches
@@ -35,7 +35,7 @@ def test_fix_spaces_single_space():
 def test_fix_spaces_leading_space():
     assert fix_spaces(" Example 2") == "_Example_2"
 
-def test_fix_spaces_multiple_spaces():
+def test_fix_spaces_multiple_consecutive_spaces():
     assert fix_spaces(" Example   3") == "_Example-3"
 
 # Focus: Type Scenarios

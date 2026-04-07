@@ -51,17 +51,17 @@ def test_order_by_points_duplicate_sums():
 def test_order_by_points_large_numbers():
     assert order_by_points([123, 45, 678, 9, 100]) == [9, 45, 100, 123, 678]
 
-def test_order_by_points_negative_large_numbers():
-    assert order_by_points([-123, -45, -678, -9, -100]) == [-9, -100, -123, -45, -678]
-
 def test_order_by_points_zero():
-    assert order_by_points([0, 1, 10, -1, -10]) == [-1, -10, 0, 1, 10]
+    assert order_by_points([0, 1, 10, 100]) == [0, 1, 10, 100]
+
+def test_order_by_points_negative_zero():
+    assert order_by_points([-0, 1, 10, 100]) == [-0, 1, 10, 100]
 
 def test_order_by_points_single_element():
     assert order_by_points([5]) == [5]
 
-def test_order_by_points_all_same_sum():
-    assert order_by_points([1, 10, 100, 1000]) == [1, 10, 100, 1000]
+def test_order_by_points_negative_single_element():
+    assert order_by_points([-5]) == [-5]
 
-def test_order_by_points_negative_all_same_sum():
-    assert order_by_points([-1, -10, -100, -1000]) == [-1, -10, -100, -1000]
+def test_order_by_points_complex_case():
+    assert order_by_points([5, 15, 2, 20, 1, 11]) == [1, 2, 11, 5, 15, 20]

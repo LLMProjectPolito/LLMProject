@@ -19,10 +19,12 @@ import pytest
 import math
 
 def test_sorted_list_sum():
-    assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
+    lst = ["aa", "a", "aaa"]
+    expected = ["aa"]
+    assert sorted_list_sum(lst) == expected
 
 def test_empty_list():
-    """Test with an empty list."""
+    """Test with an empty list as input."""
     from solution import sorted_list_sum
     assert sorted_list_sum([]) == []
 

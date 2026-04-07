@@ -62,19 +62,13 @@ def test_simplify_same_fraction():
     assert simplify("2/2", "2/2") == True
 
 def test_simplify_one_whole_number():
-    assert simplify("1/1", "5/1") == True
+    assert simplify("1/1", "2/1") == True
 
 def test_simplify_another_whole_number():
-    assert simplify("5/1", "1/1") == True
+    assert simplify("2/1", "1/1") == True
 
-def test_simplify_mixed_case():
-    assert simplify("3/4", "8/3") == False
+def test_simplify_complex_true():
+    assert simplify("15/4", "4/3") == True
 
-def test_simplify_complex_case():
-    assert simplify("11/12", "12/11") == True
-
-def test_simplify_edge_case1():
-    assert simplify("1/100", "100/1") == True
-
-def test_simplify_edge_case2():
-    assert simplify("1/101", "100/1") == False
+def test_simplify_complex_false():
+    assert simplify("15/4", "5/6") == False

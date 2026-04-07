@@ -42,7 +42,7 @@ def test_floats_in_list():
     assert double_the_difference([1.0, 2.5, 3.0]) == 10
 
 def test_mixed_types():
-    assert double_the_difference([1, "a", 3, 2.5, 5]) == 35
+    assert double_the_difference([1, "2", 3.0, 4]) == 10
 
 def test_large_numbers():
     assert double_the_difference([99, 101]) == 20002
@@ -56,32 +56,35 @@ def test_single_odd_number():
 def test_single_even_number():
     assert double_the_difference([2]) == 0
 
-def test_example_1():
-    assert double_the_difference([1, 3, 2, 0]) == 10
+def test_multiple_zeros_and_odds():
+    assert double_the_difference([0, 0, 1, 3, 0]) == 10
 
-def test_example_2():
-    assert double_the_difference([-1, -2, 0]) == 0
+def test_large_numbers_suite2():
+    assert double_the_difference([101, 203, 305]) == 101**2 + 203**2 + 305**2
 
-def test_example_3():
-    assert double_the_difference([9, -2]) == 81
+def test_float_numbers_suite2():
+    assert double_the_difference([1.0, 2.0, 3.0]) == 10
 
-def test_single_odd():
-    assert double_the_difference([1]) == 1
+def test_float_and_int_suite2():
+    assert double_the_difference([1, 2.0, 3]) == 10
 
-def test_single_even():
-    assert double_the_difference([2]) == 0
+def test_negative_float_suite2():
+    assert double_the_difference([-1.0, 1, 2]) == 1
 
-def test_single_negative():
-    assert double_the_difference([-1]) == 0
+def test_string_in_list_suite2():
+    assert double_the_difference([1, "a", 3]) == 10
 
-def test_example_4():
-    assert double_the_difference([0]) == 0
-
-def test_list_with_strings_and_floats():
-    assert double_the_difference([1, "hello", 2.5, 3, "world"]) == 10
-
-def test_list_with_boolean():
-    assert double_the_difference([True, 1, False, 3]) == 10
-
-def test_list_with_none():
+def test_none_in_list_suite2():
     assert double_the_difference([1, None, 3]) == 10
+
+def test_boolean_in_list_suite2():
+    assert double_the_difference([1, True, 3]) == 10
+
+def test_mixed_types_suite2():
+    assert double_the_difference([1, 2.0, "a", 3, None, True]) == 10
+
+def test_edge_case_large_odd_suite2():
+    assert double_the_difference([999999]) == 999999**2
+
+def test_edge_case_small_odd_suite2():
+    assert double_the_difference([1]) == 1

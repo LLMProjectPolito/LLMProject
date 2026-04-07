@@ -37,7 +37,7 @@ def Strongest_Extension(class_name, extensions):
     for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
     """
     strongest_extension = None
-    max_strength = float('-inf')
+    max_strength = -1
 
     for extension in extensions:
         cap_count = 0

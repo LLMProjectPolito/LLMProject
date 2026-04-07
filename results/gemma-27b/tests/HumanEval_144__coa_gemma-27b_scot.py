@@ -17,8 +17,6 @@ import math
 
 
 # Focus: Boundary Values
-import pytest
-
 def test_boundary_zero_numerator():
     assert simplify("0/1", "1/1") == True
     assert simplify("1/1", "0/1") == True
@@ -31,8 +29,9 @@ def test_boundary_one_numerator_denominator():
 
 def test_boundary_large_numbers():
     assert simplify("1000/1", "1/1000") == True
-    assert simplify("1/1000", "1000/1") == True
-    assert simplify("999/1000", "1000/1") == False
+    assert simplify("1000/2", "1/500") == True
+    assert simplify("999/1", "1/999") == True
+    assert simplify("999/2", "1/499.5") == False
 
 # Focus: Equivalence Partitioning
 import pytest
