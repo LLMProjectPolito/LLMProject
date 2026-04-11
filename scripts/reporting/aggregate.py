@@ -79,7 +79,13 @@ def main() -> None:
         "--output",
         type=Path,
         default=None,
-        help="Output CSV path. Default: reports/gen/gemma_176_aggregate.csv",
+        help="Output CSV path. Default: reports/gen2/gemma_176_aggregate.csv",
+    )
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=None,
+        help="Directory where gemma_176_aggregate.csv will be written. Default: reports/gen2",
     )
     parser.add_argument(
         "--results-roots",
@@ -91,7 +97,8 @@ def main() -> None:
     args = parser.parse_args()
 
     repo_root = args.repo_root
-    output_path = args.output or (repo_root / "reports" / "gen" / "gemma_176_aggregate.csv")
+    output_dir = args.output_dir or (repo_root / "reports" / "gen")
+    output_path = args.output or (output_dir / "gemma_176_aggregate.csv")
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     result_files = discover_result_files(repo_root, args.results_roots)
