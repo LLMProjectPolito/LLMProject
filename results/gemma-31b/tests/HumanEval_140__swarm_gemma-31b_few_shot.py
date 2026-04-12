@@ -1,0 +1,21 @@
+
+def fix_spaces(text):
+    """
+    Given a string text, replace all spaces in it with underscores, 
+    and if a string has more than 2 consecutive spaces, 
+    then replace all consecutive spaces with - 
+    
+    fix_spaces("Example") == "Example"
+    fix_spaces("Example 1") == "Example_1"
+    fix_spaces(" Example 2") == "_Example_2"
+    fix_spaces(" Example   3") == "_Example-3"
+    """
+
+import pytest
+import math
+
+def test_fix_spaces_mixed_consecutive():
+    assert fix_spaces("a  b   c    d") == "a__b-c-d"
+
+def test_fix_spaces_boundary():
+    assert fix_spaces("a  b   c") == "a__b-c"
