@@ -8,7 +8,10 @@ AVAILABLE_MODELS = {
     "gemma-27b":     {"provider": "google", "id": "gemma-3-27b-it"},
     "llama-70b":     {"provider": "openrouter", "id": "meta-llama/llama-3.3-70b-instruct"},
     "chatgpt-oss":   {"provider": "openrouter", "id": "openai/gpt-oss-120b"},
-    "gemma-31b":     {"provider": "google", "id": "gemma-4-31b-it"},
+    "gemma-4-31b":   {"provider": "google", "id": "gemma-4-31b-it"},
+    "gemma-4-26b":   {"provider": "google", "id": "gemma-4-26b-a4b-it"},
+    "gemma-4-4b":    {"provider": "google", "id": "gemma-3n-e4b-it"},
+    "gemma-4-2b":    {"provider": "google", "id": "gemma-3n-e2b-it"},
 }
 
 from langchain_core.callbacks import BaseCallbackHandler
