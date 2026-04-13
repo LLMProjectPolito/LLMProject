@@ -42,7 +42,7 @@ def test_multiple_matching_elements():
     assert specialFilter([15, 25, 35, 45, 55]) == 5
 
 def test_mixed_elements():
-    assert specialFilter([15, -73, 14, -15, 25, 33]) == 2
+    assert specialFilter([15, -73, 14, -15, 21, 109]) == 2
 
 def test_negative_numbers():
     assert specialFilter([-15, -25, -35]) == 0
@@ -62,11 +62,11 @@ def test_edge_case_first_digit_odd_last_digit_even():
 def test_edge_case_first_digit_even_last_digit_odd():
     assert specialFilter([21, 43, 65, 87, 109]) == 0
 
-def test_edge_case_first_digit_last_digit_odd():
-    assert specialFilter([15, 35, 55, 75, 95]) == 5
+def test_edge_case_first_digit_even_last_digit_even():
+    assert specialFilter([22, 44, 66, 88, 100]) == 0
 
-def test_edge_case_first_digit_last_digit_even():
-    assert specialFilter([12, 32, 52, 72, 92]) == 0
+def test_edge_case_first_digit_odd_last_digit_zero():
+    assert specialFilter([10, 30, 50, 70, 90]) == 0
 
 def test_mixed_positive_negative_numbers():
     assert specialFilter([-15, 25, -35, 45]) == 2
@@ -76,6 +76,3 @@ def test_zero_in_list():
 
 def test_duplicate_numbers():
     assert specialFilter([15, 15, 15]) == 3
-
-def test_complex_case():
-    assert specialFilter([115, -23, 335, -45, 555, 775, -89, 995]) == 4

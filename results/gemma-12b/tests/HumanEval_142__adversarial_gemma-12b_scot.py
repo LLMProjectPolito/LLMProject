@@ -74,7 +74,7 @@ class TestSumSquares:
     def test_list_with_zero(self):
         lst = [0, 1, 2, 3, 4]
         expected = (0**2) + 1 + 2 + (3**2) + (4**3)
-        assert sum_squares(lst) == 72
+        assert sum_squares(lst) == 73
 
     def test_large_list(self):
         lst = list(range(1, 21))

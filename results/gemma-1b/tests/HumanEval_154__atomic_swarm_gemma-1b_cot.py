@@ -69,9 +69,9 @@ def cycpattern_check(a, b):
     cycpattern_check("himenss","simen") => True
 
     """
-    if len(b) < len(a):
-        return False
-    for i in range(len(b)):
+    if len(b) == 0:
+        return True
+    for i in range(1, len(b)):
         rotated_b = b[i:] + b[:i]
         if rotated_b in a:
             return True

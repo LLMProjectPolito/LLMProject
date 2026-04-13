@@ -24,6 +24,6 @@ def generate_integers(a, b):
         a, b = b, a
     even_digits = []
     for i in range(a, b + 1):
-        if i % 2 == 0 and 0 <= i <= 9:
+        if i % 2 == 0 and i < 10:
             even_digits.append(i)
     return sorted(list(set(even_digits)))

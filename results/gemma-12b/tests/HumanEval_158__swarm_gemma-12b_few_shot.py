@@ -13,5 +13,11 @@ def find_max(words):
 import pytest
 import math
 
-def test_find_max_mixed_case():
+def test_find_max_mixed_case_1():
+    assert find_max(["Name", "name", "STRING"]) == "Name"
+
+def test_find_max_mixed_case_2():
+    assert find_max(["Name", "name", "STRING"]) == "Name"
+
+def test_find_max_mixed_case_3():
     assert find_max(["Name", "name", "STRING"]) == "STRING"

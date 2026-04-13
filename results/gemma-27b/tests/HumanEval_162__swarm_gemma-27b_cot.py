@@ -21,12 +21,8 @@ def string_to_md5(text):
         return None
     return hashlib.md5(text.encode()).hexdigest()
 
-def test_string_to_md5_very_long_string():
-    long_string = "a" * 1000
-    expected_md5 = hashlib.md5(long_string.encode()).hexdigest()
-    assert string_to_md5(long_string) == expected_md5
-
-def test_string_to_md5_very_very_long_string():
-    long_string = "a" * 10000
+@pytest.mark.parametrize("long_string_length", [1000, 10000])
+def test_string_to_md5_very_long_string(long_string_length):
+    long_string = "a" * long_string_length
     expected_md5 = hashlib.md5(long_string.encode()).hexdigest()
     assert string_to_md5(long_string) == expected_md5

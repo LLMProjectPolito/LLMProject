@@ -33,10 +33,10 @@ def test_all_even_digits():
 def test_all_odd_digits():
     assert even_odd_count(13579) == (0, 5)
 
-def test_negative_single_digit_even():
+def test_negative_single_even():
     assert even_odd_count(-2) == (1, 0)
 
-def test_negative_single_digit_odd():
+def test_negative_single_odd():
     assert even_odd_count(-1) == (0, 1)
 
 def test_large_number():
@@ -51,11 +51,26 @@ def test_number_with_leading_zeros_as_string():
 def test_number_with_trailing_zeros():
     assert even_odd_count(120) == (2, 1)
 
-def test_number_with_leading_zeros():
-    assert even_odd_count(0022) == (2, 0)
+def test_negative_with_zero():
+    assert even_odd_count(-120) == (2, 1)
 
-def test_number_with_mixed_leading_zeros():
-    assert even_odd_count(0123) == (1, 2)
+def test_positive_with_zero():
+    assert even_odd_count(120) == (2, 1)
+
+def test_negative_all_odd():
+    assert even_odd_count(-13579) == (0, 5)
+
+def test_negative_all_even():
+    assert even_odd_count(-2468) == (4, 0)
+
+def test_number_with_leading_zeroes_string():
+    assert even_odd_count(0012) == (1, 1)
+
+def test_number_with_leading_zeroes():
+    assert even_odd_count(0000) == (4, 0)
 
 def test_number_with_multiple_zeros():
     assert even_odd_count(102030) == (3, 3)
+
+def test_negative_number_with_zeros():
+    assert even_odd_count(-10203) == (2, 3)

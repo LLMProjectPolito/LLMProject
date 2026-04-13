@@ -67,41 +67,39 @@ def do_algebra(operator, operand):
     return result
 
 def test_addition():
-    assert do_algebra(['+'], [1, 2]) == 3
-    assert do_algebra(['+', '+'], [1, 2, 3]) == 6
+    assert do_algebra(['+'], [2, 3]) == 5
 
 def test_subtraction():
     assert do_algebra(['-'], [5, 2]) == 3
-    assert do_algebra(['-', '-'], [10, 2, 1]) == 7
 
 def test_multiplication():
-    assert do_algebra(['*'], [2, 3]) == 6
-    assert do_algebra(['*', '*'], [1, 2, 3]) == 6
+    assert do_algebra(['*'], [4, 3]) == 12
 
 def test_floor_division():
     assert do_algebra(['//'], [10, 2]) == 5
-    assert do_algebra(['//', '//'], [20, 2, 5]) == 2
 
 def test_exponentiation():
     assert do_algebra(['**'], [2, 3]) == 8
-    assert do_algebra(['**', '**'], [2, 3, 2]) == 512
 
 def test_mixed_operations():
     assert do_algebra(['+', '*', '-'], [2, 3, 4, 5]) == 9
-    assert do_algebra(['*', '+', '//'], [2, 3, 4, 2]) == 8
 
-def test_edge_case_division_by_zero():
+def test_zero_operand():
+    assert do_algebra(['+'], [5, 0]) == 5
+
+def test_division_by_zero():
     with pytest.raises(ZeroDivisionError):
         do_algebra(['//'], [5, 0])
 
-def test_single_operation():
-    assert do_algebra(['+'], [1, 2]) == 3
-    assert do_algebra(['-'], [5, 2]) == 3
+def test_exponentiation_zero():
+    assert do_algebra(['**'], [0, 2]) == 0
+
+def test_exponentiation_one():
+    assert do_algebra(['**'], [5, 1]) == 5
+
+def test_long_expression():
+    assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 5, 2]) == 1
 
 def test_negative_numbers():
-    assert do_algebra(['+'], [1, -2]) == -1
-    assert do_algebra(['*'], [2, -3]) == -6
-
-def test_large_numbers():
-    assert do_algebra(['+'], [10**9, 10**9]) == 2 * 10**9
-    assert do_algebra(['*'], [10**5, 10**5]) == 10**10
+    assert do_algebra(['+'], [-2, 3]) == 1
+    assert do_algebra(['-'], [5, -2]) == 7

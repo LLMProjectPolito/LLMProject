@@ -22,29 +22,23 @@ def generate_integers(a, b):
     generate_integers(8, 2) => [2, 4, 6, 8]
     generate_integers(10, 14) => []
     """
-    if a > b:
-        a, b = b, a
-
     result = []
     for i in range(a, b + 1):
         if i % 2 == 0:
             result.append(i)
     return result
 
-
+### Tests (Pytest):
 def test_generate_integers_basic():
     assert generate_integers(2, 8) == [2, 4, 6, 8]
 
 def test_generate_integers_reverse():
     assert generate_integers(8, 2) == [2, 4, 6, 8]
 
-def test_generate_integers_empty_range():
-    assert generate_integers(10, 14) == []
+def test_generate_integers_no_even():
+    assert generate_integers(1, 3) == []
 
-def test_generate_integers_equal_even():
-    assert generate_integers(4, 4) == [4]
-
-def test_generate_integers_equal_odd():
+def test_generate_integers_equal():
     assert generate_integers(5, 5) == []
 
 def test_generate_integers_negative_a():

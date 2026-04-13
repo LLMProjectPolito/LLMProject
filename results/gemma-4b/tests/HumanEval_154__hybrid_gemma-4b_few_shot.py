@@ -58,8 +58,9 @@ def test_is_palindrome_basic():
     assert is_palindrome('deified') == True
     assert is_palindrome('reviver') == True
     assert is_palindrome('redder') == True
-    assert is_palindrome('detartrated') == True
     assert is_palindrome('rotator') == True
+    assert is_palindrome('kayak') == True
+    assert is_palindrome('civic') == True
     assert is_palindrome('hannah') == True
     assert is_palindrome('ababa') == True
     assert is_palindrome('12321') == True
@@ -90,6 +91,7 @@ def test_cycpattern_check_basic():
     assert cycpattern_check("efef", "eeff") == False
     assert cycpattern_check("himenss", "simen") == True
     assert cycpattern_check("abcde", "cde") == True
+    assert cycpattern_check("abcde", "bca") == True
     assert cycpattern_check("abcde", "edc") == True
     assert cycpattern_check("abcde", "abc") == True
     assert cycpattern_check("abcde", "de") == True
@@ -98,39 +100,58 @@ def test_cycpattern_check_basic():
     assert cycpattern_check("abcde", "d") == True
     assert cycpattern_check("abcde", "c") == True
     assert cycpattern_check("abcde", "b") == True
-    assert cycpattern_check("abcde", "ab") == False
-    assert cycpattern_check("abcde", "bc") == False
-    assert cycpattern_check("abcde", "cd") == False
-    assert cycpattern_check("abcde", "de") == False
-    assert cycpattern_check("abcde", "e") == False
-    assert cycpattern_check("abcde", "abc") == False
-    assert cycpattern_check("abcde", "abcd") == False
+    assert cycpattern_check("abcde", "a") == True
     assert cycpattern_check("abcde", "abcde") == True
     assert cycpattern_check("abcde", "edcba") == False
-    assert cycpattern_check("abcde", "abcde") == True
-    assert cycpattern_check("abcde", "edc") == True
-    assert cycpattern_check("abcde", "abc") == True
-    assert cycpattern_check("abcde", "de") == True
-    assert cycpattern_check("abcde", "e") == True
-    assert cycpattern_check("abcde", "a") == True
-    assert cycpattern_check("abcde", "d") == True
-    assert cycpattern_check("abcde", "c") == True
-    assert cycpattern_check("abcde", "b") == True
-    assert cycpattern_check("abcde", "ab") == False
-    assert cycpattern_check("abcde", "bc") == False
-    assert cycpattern_check("abcde", "cd") == False
-    assert cycpattern_check("abcde", "de") == False
-    assert cycpattern_check("abcde", "e") == False
-    assert cycpattern_check("abcde", "abc") == False
-    assert cycpattern_check("abcde", "abcd") == False
-    assert cycpattern_check("abcde", "abcde") == True
-    assert cycpattern_check("abcde", "edcba") == False
-    assert cycpattern_check("abcde", "abcde") == True
-    assert cycpattern_check("abcde", "edc") == True
-    assert cycpattern_check("abcde", "abc") == True
-    assert cycpattern_check("abcde", "de") == True
-    assert cycpattern_check("abcde", "e") == True
-    assert cycpattern_check("abcde", "a") == True
-    assert cycpattern_check("abcde", "d") == True
-    assert cycpattern_check("abcde", "c") == True
-    assert cycpattern_check("abcde", "b") == True
+    assert cycpattern_check("abc", "bc") == True
+    assert cycpattern_check("abc", "ac") == True
+    assert cycpattern_check("abc", "ab") == True
+    assert cycpattern_check("abc", "c") == True
+    assert cycpattern_check("abc", "a") == True
+    assert cycpattern_check("abc", "b") == True
+    assert cycpattern_check("abc", "c") == True
+    assert cycpattern_check("abc", "b") == True
+    assert cycpattern_check("abc", "a") == True
+    assert cycpattern_check("abc", "abc") == True
+    assert cycpattern_check("abc", "cab") == True
+    assert cycpattern_check("abc", "bac") == True
+    assert cycpattern_check("abc", "bca") == True
+    assert cycpattern_check("abc", "acb") == True
+    assert cycpattern_check("abc", "cba") == False
+    assert cycpattern_check("a", "a") == True
+    assert cycpattern_check("a", "b") == False
+    assert cycpattern_check("ab", "ba") == True
+    assert cycpattern_check("ab", "ab") == True
+    assert cycpattern_check("ab", "a") == False
+    assert cycpattern_check("ab", "b") == False
+    assert cycpattern_check("aba", "aba") == True
+    assert cycpattern_check("aba", "baa") == True
+    assert cycpattern_check("aba", "aab") == True
+    assert cycpattern_check("aba", "baa") == True
+    assert cycpattern_check("aba", "aba") == True
+    assert cycpattern_check("aba", "baa") == True
+    assert cycpattern_check("aba", "baa") == True
+    assert cycpattern_check("aba", "aba") == True
+    assert cycpattern_check("aba", "baa") == True
+    assert cycpattern_check("aba", "baa") == True
+    assert cycpattern_check("aba", "aba") == True
+    assert cycpattern_check("aba", "baa") == True
+    assert cycpattern_check("aba", "baa") == True
+    assert cycpattern_check("aba", "aba") == True
+    assert cycpattern_check("aba", "baa") == True
+    assert cycpattern_check("aba", "baa") == True
+    assert cycpattern_check("aba", "aba") == True
+    assert cycpattern_check("aba", "baa") == True
+    assert cycpattern_check("aba", "baa") == True
+    assert cycpattern_check("aba", "aba") == True
+
+def test_cycpattern_check_empty():
+    assert cycpattern_check("", "abc") == False
+    assert cycpattern_check("abc", "") == False
+
+def test_cycpattern_check_same_string():
+    assert cycpattern_check("abc", "abc") == True
+    assert cycpattern_check("abc", "cab") == True
+    assert cycpattern_check("abc", "bca") == True
+    assert cycpattern_check("abc", "acb") == True
+    assert cycpattern_check("abc", "cba") == False

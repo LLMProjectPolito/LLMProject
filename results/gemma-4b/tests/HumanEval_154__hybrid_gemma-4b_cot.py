@@ -65,11 +65,11 @@ def test_cycpattern_check_b_rotation_is_substring_of_a():
 def test_cycpattern_check_b_rotation_is_substring_of_a_multiple_times():
     assert cycpattern_check("abababa", "aba") == True
 
-def test_cycpattern_check_b_rotation_not_substring_of_a():
+def test_cycpattern_check_b_rotation_is_substring_of_a_no_match():
     assert cycpattern_check("abcabc", "cab") == False
 
-def test_cycpattern_check_b_rotation_is_substring_of_a_overlapping():
-    assert cycpattern_check("aaaaa", "aaa") == True
+def test_cycpattern_check_b_is_empty():
+    assert cycpattern_check("abc", "") == False
 
-def test_cycpattern_check_b_rotation_is_substring_of_a_overlapping_false():
-    assert cycpattern_check("ababab", "aba") == True
+def test_cycpattern_check_a_is_empty():
+    assert cycpattern_check("", "abc") == False

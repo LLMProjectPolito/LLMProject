@@ -26,13 +26,13 @@ def sum_squares(lst):
     For lst = []  the output should be 0
     For lst = [-1,-5,2,-1,-5]  the output should be -126
     """
-    total_sum = 0
+    total = 0
     for i, num in enumerate(lst):
         if i % 3 == 0:
-            total_sum += num ** 2
+            total += num**2
         elif i % 4 == 0 and i % 3 != 0:
-            total_sum += num ** 3
-    return total_sum
+            total += num**3
+    return total
 
 def test_empty_list():
     assert sum_squares([]) == 0
@@ -46,30 +46,32 @@ def test_single_element_multiple_of_3():
 def test_single_element_multiple_of_4_not_3():
     assert sum_squares([5]) == 125
 
-def test_example_1():
-    assert sum_squares([1, 2, 3]) == 6
+def test_multiple_of_3():
+    assert sum_squares([1, 2, 3]) == 14
 
-def test_example_2():
-    assert sum_squares([-1, -5, 2, -1, -5]) == -126
+def test_multiple_of_4_not_3():
+    assert sum_squares([1, 2, 3, 4]) == 100
 
-def test_multiple_multiples_of_3():
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 4 + 9 + 16 + 25 + 36
-    
-def test_multiple_multiples_of_4_not_3():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 8 + 27 + 64 + 125 + 216 + 343 + 512 + 729 + 1000
-
-def test_mixed_multiples():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 4 + 9 + 64 + 125 + 36 + 343 + 512 + 729 + 1000
+def test_multiple_of_3_and_4():
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 126
 
 def test_negative_numbers():
-    assert sum_squares([-1, -2, -3]) == -1 + 4 + (-27)
+    assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
-def test_zeroes():
-    assert sum_squares([0, 1, 2, 3]) == 0 + 1 + 4 + 9
+def test_mixed_positive_negative():
+    assert sum_squares([-1, 2, -3, 4, -5]) == -126
 
-def test_large_numbers():
-    assert sum_squares([100, 200, 300]) == 10000 + 80000 + 270000
+def test_longer_list():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 385
 
-def test_long_list():
-    lst = list(range(1, 11))
-    assert sum_squares(lst) == 1 + 8 + 27 + 64 + 125 + 216 + 343 + 512 + 729 + 1000
+def test_list_with_zeros():
+    assert sum_squares([0, 1, 2, 3, 4]) == 30
+
+def test_list_with_large_numbers():
+    assert sum_squares([100, 200, 300, 400]) == 240000
+
+def test_list_with_duplicate_values():
+    assert sum_squares([1, 1, 1, 1]) == 4
+
+def test_list_with_mixed_indices():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 640

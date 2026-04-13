@@ -22,4 +22,4 @@ def test_empty_list():
     assert double_the_difference([]) == 0
 
 def test_double_the_difference_wrong_type():
-    assert double_the_difference([1, 2.5, 3]) == 9
+    assert double_the_difference([1, 2.5, "a", 3]) == 1 + 9

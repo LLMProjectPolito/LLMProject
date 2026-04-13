@@ -35,29 +35,23 @@ def double_the_difference(lst):
 def test_empty_list():
     assert double_the_difference([]) == 0
 
-def test_negative_numbers():
-    assert double_the_difference([-1, -2, -3]) == 0
+def test_only_even_numbers():
+    assert double_the_difference([2, 4, 6, 8]) == 0
 
-def test_even_numbers():
-    assert double_the_difference([2, 4, 6]) == 0
+def test_only_negative_numbers():
+    assert double_the_difference([-1, -3, -5]) == 0
 
 def test_mixed_numbers():
-    assert double_the_difference([1, 3, 2, 0]) == 10
+    assert double_the_difference([1, 3, 2, 0, -1, 5.5]) == 1 + 9 + 0 + 0 + 0
 
-def test_floats():
-    assert double_the_difference([1.5, 2.0, 3.7]) == 0
+def test_with_floats():
+    assert double_the_difference([1.5, 2.5, 3.5]) == 0
 
-def test_mixed_types():
-    assert double_the_difference([1, 2.5, "3", 4, 5]) == 26
+def test_with_zero():
+    assert double_the_difference([0, 0, 0]) == 0
 
-def test_single_odd():
-    assert double_the_difference([5]) == 25
-
-def test_single_even():
-    assert double_the_difference([4]) == 0
-
-def test_zero():
-    assert double_the_difference([0]) == 0
+def test_only_odd_numbers():
+    assert double_the_difference([1, 3, 5, 7]) == 1 + 9 + 25 + 49
 
 def test_large_numbers():
-    assert double_the_difference([99, 101, 103]) == 9801 + 10201 + 10609
+    assert double_the_difference([1001, 1003]) == 1001 * 1001 + 1003 * 1003

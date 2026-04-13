@@ -49,9 +49,9 @@ def eat(number, need, remaining):
     Variables:
     @number : integer
         the number of carrots that you have eaten.
-    @need : integer
+    * need : integer
         the number of carrots that you need to eat.
-    @remaining : integer
+    * @remaining : integer
         the number of remaining carrots thet exist in stock
     
     Constrain:
@@ -64,11 +64,12 @@ def eat(number, need, remaining):
     total_eaten = number
     remaining_after_meals = remaining
     
-    if number < need:
-        remaining_after_meals = remaining - need
-        total_eaten = number
-    
-    return [total_eaten, remaining_after_meals]
+    if remaining <= 0:
+        return [total_eaten, 0]
+    else:
+        total_eaten += remaining
+        remaining_after_meals -= remaining
+        return [total_eaten, remaining_after_meals]
 
 def eat(number, need, remaining):
     """
@@ -101,9 +102,15 @@ def eat(number, need, remaining):
     """
     total_eaten = number
     remaining_after_meals = remaining
-    if number < need:
-        remaining_after_meals = remaining - need
-    return [total_eaten, remaining_after_meals]
+    
+    if number == need:
+        return [total_eaten, remaining]
+    elif number > need:
+        remaining_after_meals -= number
+        total_eaten += number
+        return [total_eaten, remaining_after_meals]
+    else:
+        return [total_eaten, 0]
 
 def eat(number, need, remaining):
     """

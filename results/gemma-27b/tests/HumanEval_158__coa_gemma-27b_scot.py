@@ -101,7 +101,7 @@ def test_equivalence_partitioning_valid_input():
     assert find_max(["name", "enam", "game"]) == "enam"
     assert find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
     assert find_max(["abc", "def", "ghi"]) == "abc"
-    assert find_max(["xyz", "abc", "pqr"]) == "abc"
+    assert find_max(["aaa", "bbb", "ccc"]) == "aaa"
 
 def test_equivalence_partitioning_empty_list():
     assert find_max([]) == ""

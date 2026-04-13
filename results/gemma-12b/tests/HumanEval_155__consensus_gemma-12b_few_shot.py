@@ -54,7 +54,3 @@ def test_float_input():
 def test_string_input():
     with pytest.raises(TypeError):
         even_odd_count("1234")
-
-def test_boolean_input():
-    with pytest.raises(TypeError):
-        even_odd_count(True)

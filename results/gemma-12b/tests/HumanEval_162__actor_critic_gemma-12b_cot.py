@@ -14,7 +14,7 @@ def string_to_md5(text):
     """
     Given a string 'text', return its md5 hash equivalent string.
     If 'text' is an empty string, return None.
-    Uses UTF-8 encoding.
+    The input string is encoded using UTF-8 before calculating the MD5 hash.
 
     >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
     """
@@ -27,35 +27,51 @@ def test_empty_string():
     assert string_to_md5("") is None
 
 def test_valid_string():
-    expected_md5 = hashlib.md5("Hello world".encode('utf-8')).hexdigest()
-    assert string_to_md5("Hello world") == expected_md5
+    assert string_to_md5("Hello world") == '3e25960a79dbc69b674cd4ec67a72c62'
 
 def test_string_with_spaces():
-    assert string_to_md5("  ") == hashlib.md5("  ".encode('utf-8')).hexdigest()
+    md5_hash = hashlib.md5("  ".encode('utf-8')).hexdigest()
+    assert string_to_md5("  ") == md5_hash
 
 def test_string_with_special_characters():
-    assert string_to_md5("!@#$%^&*()") == hashlib.md5("!@#$%^&*()".encode('utf-8')).hexdigest()
+    md5_hash = hashlib.md5("!@#$%^&*()".encode('utf-8')).hexdigest()
+    assert string_to_md5("!@#$%^&*()") == md5_hash
 
 def test_string_with_unicode_characters():
-    assert string_to_md5("你好世界") == hashlib.md5("你好世界".encode('utf-8')).hexdigest()
+    md5_hash = hashlib.md5("你好世界".encode('utf-8')).hexdigest()
+    assert string_to_md5("你好世界") == md5_hash
 
 def test_string_with_numbers():
-    assert string_to_md5("1234567890") == hashlib.md5("1234567890".encode('utf-8')).hexdigest()
+    md5_hash = hashlib.md5("1234567890".encode('utf-8')).hexdigest()
+    assert string_to_md5("1234567890") == md5_hash
 
-def test_string_with_leading_and_trailing_whitespace():
-    assert string_to_md5("  test  ") == hashlib.md5("  test  ".encode('utf-8')).hexdigest()
-
-def test_string_with_control_characters():
-    assert string_to_md5("test\tstring\n") == hashlib.md5("test\tstring\n".encode('utf-8')).hexdigest()
-
-def test_case_sensitivity():
-    assert string_to_md5("hello") == hashlib.md5("hello".encode('utf-8')).hexdigest()
-    assert string_to_md5("Hello") == hashlib.md5("Hello".encode('utf-8')).hexdigest()
+def test_string_with_mixed_characters():
+    md5_hash = hashlib.md5("Hello123!@#".encode('utf-8')).hexdigest()
+    assert string_to_md5("Hello123!@#") == md5_hash
 
 def test_long_string():
-    long_string = "This is a very long string to test the md5 hash function with a significant amount of data."
-    assert string_to_md5(long_string) == hashlib.md5(long_string.encode('utf-8')).hexdigest()
+    long_string = "This is a very long string to test the md5 hash function."
+    md5_hash = hashlib.md5(long_string.encode('utf-8')).hexdigest()
+    assert string_to_md5(long_string) == md5_hash
 
-def test_invalid_input():
+def test_string_with_newline():
+    md5_hash = hashlib.md5("Hello\nworld".encode('utf-8')).hexdigest()
+    assert string_to_md5("Hello\nworld") == md5_hash
+
+def test_case_sensitivity():
+    md5_hash_hello = hashlib.md5("Hello".encode('utf-8')).hexdigest()
+    md5_hash_hello_lower = hashlib.md5("hello".encode('utf-8')).hexdigest()
+    assert string_to_md5("Hello") != string_to_md5("hello")
+
+def test_whitespace_only_string():
+    md5_hash = hashlib.md5("   ".encode('utf-8')).hexdigest()
+    assert string_to_md5("   ") == md5_hash
+
+def test_invalid_input_type():
     with pytest.raises(TypeError):
         string_to_md5(123)
+    with pytest.raises(TypeError):
+        string_to_md5([1, 2, 3])
+
+def test_docstring_example():
+    assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'

@@ -40,11 +40,14 @@ def Strongest_Extension(class_name, extensions):
     strongest_extension = ''
     max_strength = -1
     for extension in extensions:
-        strength = 0
+        cap = 0
+        sm = 0
         for char in extension:
-            if 'A' <= char <= 'Z':
-                strength += 1
-        strength = strength - len(extension)
+            if char.isupper():
+                cap += 1
+            elif char.islower():
+                sm += 1
+        strength = cap - sm
         if strength > max_strength:
             max_strength = strength
             strongest_extension = extension

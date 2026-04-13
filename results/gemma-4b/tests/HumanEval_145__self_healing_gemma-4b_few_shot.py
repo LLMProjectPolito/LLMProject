@@ -52,7 +52,7 @@ def test_order_by_points_duplicate_numbers():
     assert order_by_points([1, 1, 11, 11]) == [1, 1, 11, 11]
 
 def test_order_by_points_large_numbers():
-    assert order_by_points([123, 456, 789, 10]) == [10, 123, 456, 789]
+    assert order_by_points([123, 45, 6, 789]) == [6, 45, 123, 789]
 
 def test_order_by_points_zero():
     assert order_by_points([0, 1, 10, 11]) == [0, 1, 10, 11]

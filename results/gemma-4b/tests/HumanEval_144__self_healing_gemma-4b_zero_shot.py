@@ -65,4 +65,3 @@ def test_simplify_edge_cases():
     assert simplify("1/3", "2/1") == False
     assert simplify("2/3", "1/1") == False
     assert simplify("1/1", "2/1") == False
-    assert simplify("2/1", "1/1") == True

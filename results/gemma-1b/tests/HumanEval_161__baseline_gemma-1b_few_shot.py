@@ -11,7 +11,7 @@ def solve(s):
     solve("#a@C") = "#A@c"
     """
 
-import pytest
+import unittest
 
 def solve(s):
     """You are given a string s.
@@ -24,9 +24,9 @@ def solve(s):
     solve("ab") = "AB"
     solve("#a@C") = "#A@c"
     """
+    s = s.lower()
     if not s:
         return s[::-1]
-
     result = ""
     for char in s:
         if 'a' <= char <= 'z':
@@ -35,5 +35,16 @@ def solve(s):
             result += char.lower()
         else:
             result += char
-
     return result
+
+def test_solve_positive():
+    assert solve("1234") == "4321"
+
+def test_solve_empty():
+    assert solve("") == ""
+
+def test_solve_mixed():
+    assert solve("ab") == "AB"
+
+def test_solve_no_letters():
+    assert solve("#a@C") == "#C@a"

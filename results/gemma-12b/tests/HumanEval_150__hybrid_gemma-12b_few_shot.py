@@ -59,7 +59,7 @@ class TestXOrY:
     def test_large_numbers(self):
         """Test cases with larger numbers to ensure no overflow or unexpected behavior."""
         assert x_or_y(1000000007, 1000, 2000) == 1000  # 1000000007 is prime
-        assert x_or_y(1000000000, 500, 600) == 600  # 1000000000 is not prime
+        assert x_or_y(1000000000, 5000, 6000) == 6000  # 1000000000 is not prime
 
     def test_negative_x_and_y(self):
         """Test cases where both x and y are negative."""

@@ -58,6 +58,7 @@ def is_prime(n):
     return True
 
 class TestWordsInSentence:
+
     def test_empty_sentence(self):
         assert words_in_sentence("") == ""
 

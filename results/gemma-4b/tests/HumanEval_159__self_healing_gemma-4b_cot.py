@@ -62,6 +62,9 @@ def eat(number, need, remaining):
     """
     eaten = number + need
     left = remaining - eaten
+    if left < 0:
+        left = 0
+        eaten = number + need
     return [eaten, left]
 
 def test_eat_basic():
@@ -85,8 +88,14 @@ def test_eat_zero_remaining():
 def test_eat_zero_number():
     assert eat(0, 6, 10) == [6, 4]
 
-def test_eat_large_numbers():
-    assert eat(999, 1, 1000) == [1000, 0]
+def test_eat_zero_number_and_remaining():
+    assert eat(0, 0, 0) == [0, 0]
 
-def test_eat_all_remaining():
-    assert eat(0, 5, 3) == [5, 0]
+def test_eat_large_numbers():
+    assert eat(999, 999, 999) == [1998, 0]
+
+def test_eat_edge_cases():
+    assert eat(0, 0, 0) == [0, 0]
+    assert eat(1000, 1000, 1000) == [2000, 0]
+    assert eat(0, 1000, 1000) == [1000, 0]
+    assert eat(1000, 0, 1000) == [1000, 0]

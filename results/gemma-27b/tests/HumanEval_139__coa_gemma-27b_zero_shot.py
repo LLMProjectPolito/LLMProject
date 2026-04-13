@@ -34,13 +34,13 @@ def special_factorial(n):
     if n <= 0:
         raise ValueError("Input must be a positive integer.")
     
-    result = 1
+    factorial_product = 1
     for i in range(1, n + 1):
         factorial = 1
         for j in range(1, i + 1):
             factorial *= j
-        result *= factorial
-    return result
+        factorial_product *= factorial
+    return factorial_product
 
 def factorial(n):
     if n == 0:
@@ -48,14 +48,16 @@ def factorial(n):
     else:
         return n * factorial(n-1)
 
-def test_special_factorial_boundary_1():
-    assert special_factorial(1) == 1
+@pytest.mark.parametrize("n", [1, 2])
+def test_special_factorial_boundary_low(n):
+    assert special_factorial(n) == factorial(n)
 
-def test_special_factorial_boundary_2():
-    assert special_factorial(2) == 2
-
-def test_special_factorial_boundary_3():
-    assert special_factorial(3) == 12
+@pytest.mark.parametrize("n", [3, 4, 5])
+def test_special_factorial_boundary_mid(n):
+    expected = 1
+    for i in range(1, n + 1):
+        expected *= factorial(i)
+    assert special_factorial(n) == expected
 
 # Focus: Large Inputs
 import pytest

@@ -41,7 +41,7 @@ def sorted_list_sum(lst):
 # It filters out strings with odd lengths, keeping only even-length strings.
 # Then, it sorts the remaining strings first by length (ascending) and then alphabetically (ascending) for strings of the same length.
 # The function returns the sorted list of strings.
-# We need to create a pytest suite to test this function with various inputs, including empty lists, lists with odd and even length strings, lists with duplicates, and lists with different string lengths.
+# We need to test various scenarios including empty list, list with odd and even length strings, list with duplicates, and lists with different lengths.
 
 ### STEP 2: PLAN
 # Test cases:
@@ -50,9 +50,9 @@ def sorted_list_sum(lst):
 # 3. List with only even length strings: ["aa", "bb", "cc"]
 # 4. List with mixed odd and even length strings: ["aa", "a", "aaa", "cd"]
 # 5. List with duplicates: ["aa", "aa", "a", "aaa"]
-# 6. List with different string lengths: ["ab", "a", "aaa", "cd", "efg"]
+# 6. List with different lengths: ["ab", "a", "aaa", "cd", "efg"]
 # 7. List with single element: ["aa"]
-# 8. List with single odd length element: ["a"]
+# 8. List with single odd element: ["a"]
 
 ### STEP 3: CODE
 def test_empty_list():
@@ -79,8 +79,5 @@ def test_single_element():
 def test_single_odd_element():
     assert sorted_list_sum(["a"]) == []
 
-def test_example_1():
-    assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
-
-def test_example_2():
-    assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
+def test_complex_list():
+    assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape"]) == ["banana", "orange"]

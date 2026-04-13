@@ -35,7 +35,7 @@ def solve(s):
             has_letter = True
         else:
             result += char
-            has_letter = has_letter or (char.isalpha())
+            has_letter = has_letter or (not ('a' <= char <= 'z' or 'A' <= char <= 'Z'))
 
     if not has_letter:
         return s[::-1]
@@ -65,8 +65,8 @@ class TestSolve:
 
     def test_with_numbers_and_symbols(self):
         assert solve("1a2B3c") == "1A2b3C"
-        assert solve("!@a#B$c%") == "!@A#b$C%"
-        assert solve("123aBc456") == "123AAb456"
+        assert solve("!a@B#c$") == "!A@b#C$"
+        assert solve("123aB456c") == "123A456B"
 
     def test_empty_string(self):
         assert solve("") == ""
@@ -77,9 +77,10 @@ class TestSolve:
 
     def test_long_string(self):
         long_string = "ThisIsALongStringWithMixedCaseAndNumbers123!"
-        expected_result = "tHISisALONGSTRINGWITHMIXEDCASEANDNUMBERS123!"
+        expected_result = "tHISisAlongsTRINGwithmIXedCASEandnUMBERS123!"
         assert solve(long_string) == expected_result
 
     def test_string_with_unicode_characters(self):
+        assert solve("你好世界") == "你好世界"
         assert solve("你好a世界") == "你好A世界"
-        assert solve("你好A世界") == "你好a世界"
+        assert solve("a你好世界") == "A你好世界"

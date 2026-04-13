@@ -29,9 +29,9 @@ def sum_squares(lst):
     total = 0
     for i, num in enumerate(lst):
         if i % 3 == 0:
-            total += num**2
+            total += num ** 2
         elif i % 4 == 0 and i % 3 != 0:
-            total += num**3
+            total += num ** 3
     return total
 
 def test_empty_list():
@@ -44,28 +44,19 @@ def test_negative_numbers():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
 def test_mixed_positive_negative():
-    assert sum_squares([1, -2, 3, -4, 5]) == 1 + 4 + 9 + (-64) + 25 == 11
+    assert sum_squares([1, -2, 3, -4, 5]) == 1 + 4 + 9 + (-64) + 25 == 1 + 4 + 9 - 64 + 25 == -25
 
 def test_multiple_3():
     assert sum_squares([1, 2, 3, 4, 5, 6]) == 1**2 + 2**2 + 3**2 + 4**2 + 5**2 + 6**2 == 1 + 4 + 9 + 16 + 25 + 36 == 91
 
-def test_multiple_4():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 1**2 + 2**2 + 3**2 + 4**2 + 5**2 + 6**2 + 7**2 + 8**2 == 1 + 4 + 9 + 16 + 25 + 36 + 49 + 64 == 204
+def test_multiple_4_not_3():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 1**2 + 2**2 + 3**2 + 4**3 + 5**2 + 6**2 + 7**2 + 8**3 == 1 + 4 + 9 + 64 + 25 + 36 + 49 + 512 == 690
 
-def test_multiple_3_and_4():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1**2 + 2**2 + 3**2 + 4**2 + 5**2 + 6**2 + 7**2 + 8**2 + 9**2 + 10**2 == 1 + 4 + 9 + 16 + 25 + 36 + 49 + 64 + 81 + 100 == 385
+def test_all_multiples_of_3():
+    assert sum_squares([3, 6, 9, 12]) == 3**2 + 6**2 + 9**2 + 12**2 == 9 + 36 + 81 + 144 == 269
 
-def test_large_numbers():
-    assert sum_squares([100, 200, 300, 400, 500]) == 100**2 + 200**2 + 300**2 + 400**2 + 500**2 == 10000 + 40000 + 90000 + 160000 + 250000 == 550000
+def test_all_multiples_of_4_not_3():
+    assert sum_squares([4, 8, 12, 16]) == 4**3 + 8**3 + 12**3 + 16**3 == 64 + 512 + 1728 + 4096 == 6400
 
-def test_zero_values():
-    assert sum_squares([0, 1, 2, 3, 4]) == 0 + 1**2 + 2**2 + 3**2 + 4**2 == 0 + 1 + 4 + 9 + 16 == 30
-
-def test_single_element_multiple_3():
-    assert sum_squares([3]) == 3**2 == 9
-
-def test_single_element_multiple_4():
-    assert sum_squares([4]) == 4**3 == 64
-
-def test_single_element_not_multiple_3_or_4():
-    assert sum_squares([2]) == 2
+def test_mixed_multiples():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1**2 + 2**2 + 3**2 + 4**3 + 5**2 + 6**2 + 7**2 + 8**3 + 9**2 + 10**2 == 1 + 4 + 9 + 64 + 25 + 36 + 49 + 512 + 81 + 100 == 881

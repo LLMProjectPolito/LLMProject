@@ -11,69 +11,57 @@ def right_angle_triangle(a, b, c):
     '''
 
 import pytest
-import math
+from decimal import Decimal
 
 def test_right_angle_triangle_valid():
     assert right_angle_triangle(3, 4, 5) == True
     assert right_angle_triangle(5, 12, 13) == True
     assert right_angle_triangle(8, 15, 17) == True
     assert right_angle_triangle(7, 24, 25) == True
-    assert right_angle_triangle(3.0, 4.0, 5.0) == True
-    assert right_angle_triangle(5.0, 12.0, 13.0) == True
-    assert right_angle_triangle(1.5, 2.0, 2.5) == True
 
 def test_right_angle_triangle_invalid():
     assert right_angle_triangle(1, 2, 3) == False
-    assert right_angle_triangle(1, 1, 1) == False
     assert right_angle_triangle(2, 3, 4) == False
     assert right_angle_triangle(6, 8, 11) == False
-    assert right_angle_triangle(6, 8, 10) == False
 
-@pytest.mark.parametrize("a, b, c", [
-    (0, 0, 0),
-    (0, 4, 5),
-    (3, 0, 5),
-    (3, 4, 0),
-    (0, 0, 5)
-])
-def test_right_angle_triangle_zero(a, b, c):
-    assert right_angle_triangle(a, b, c) == False
+def test_right_angle_triangle_zero():
+    assert right_angle_triangle(0, 0, 0) == False
+    assert right_angle_triangle(0, 4, 5) == False
+    assert right_angle_triangle(3, 0, 5) == False
+    assert right_angle_triangle(3, 4, 0) == False
+    assert right_angle_triangle(0, 0, 5) == False
 
-@pytest.mark.parametrize("a, b, c", [
-    (-3, 4, 5),
-    (3, -4, 5),
-    (3, 4, -5),
-    (-3, -4, -5)
-])
-def test_right_angle_triangle_negative(a, b, c):
-    assert right_angle_triangle(a, b, c) == False
+def test_right_angle_triangle_negative_sides():
+    assert right_angle_triangle(-3, 4, 5) == False
+    assert right_angle_triangle(3, -4, 5) == False
+    assert right_angle_triangle(3, 4, -5) == False
+    assert right_angle_triangle(-3, -4, -5) == False
 
-def test_triangle_inequality():
-    assert right_angle_triangle(1, 2, 5) == False
-    assert right_angle_triangle(1, 5, 2) == False
-    assert right_angle_triangle(5, 1, 2) == False
-    assert right_angle_triangle(2, 1, 5) == False
-    assert right_angle_triangle(2, 5, 1) == False
-    assert right_angle_triangle(5, 2, 1) == False
+def test_right_angle_triangle_float():
+    assert right_angle_triangle(3.0, 4.0, 5.0) == True
+    assert right_angle_triangle(5.0, 12.0, 13.0) == True
+    assert right_angle_triangle(1.5, 2.0, 2.5) == True
+    assert right_angle_triangle(1.0, 2.0, 3.0) == False
 
 def test_right_angle_triangle_large_numbers():
-    assert pytest.approx(right_angle_triangle(1000, 1000, math.sqrt(2000000))) == True
+    assert right_angle_triangle(1000, 1000, 1414) == False
+    assert right_angle_triangle(1000, 1000, 1414.2135623730951) == pytest.approx(True)
 
-def test_right_angle_triangle_same_sides():
+def test_right_angle_triangle_equilateral():
     assert right_angle_triangle(5, 5, 5) == False
     assert right_angle_triangle(10, 10, 10) == False
 
-def test_right_angle_triangle_edge_case():
-    assert pytest.approx(right_angle_triangle(1, 1, math.sqrt(2))) == True
+def test_right_angle_triangle_different_order():
+    assert right_angle_triangle(4, 3, 5) == True
+    assert right_angle_triangle(5, 3, 4) == True
+    assert right_angle_triangle(3, 5, 4) == True
 
-@pytest.mark.parametrize("a, b, c", [
-    ("3", 4, 5),
-    (3, "4", 5),
-    (3, 4, "5"),
-    ([3], 4, 5),
-    (3, [4], 5),
-    (3, 4, [5])
-])
-def test_right_angle_triangle_invalid_input(a, b, c):
-    with pytest.raises(TypeError):
-        right_angle_triangle(a, b, c)
+def test_right_angle_triangle_zero_length_sides():
+    assert right_angle_triangle(0, 0, 5) == False
+    assert right_angle_triangle(0, 5, 0) == False
+    assert right_angle_triangle(5, 0, 0) == False
+
+def test_right_angle_triangle_decimal():
+    assert right_angle_triangle(Decimal('3'), Decimal('4'), Decimal('5')) == True
+    assert right_angle_triangle(Decimal('1.5'), Decimal('2'), Decimal('2.5')) == True
+    assert right_angle_triangle(Decimal('1'), Decimal('2'), Decimal('3')) == False

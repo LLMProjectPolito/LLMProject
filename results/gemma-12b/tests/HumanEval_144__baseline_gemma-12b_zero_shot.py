@@ -51,24 +51,20 @@ class TestSimplify:
         assert simplify("1/5", "2/1") == False
         assert simplify("3/4", "1/3") == False
 
-    def test_simplify_large_numbers(self):
-        assert simplify("100/200", "200/100") == True
-        assert simplify("1000/2000", "2000/1000") == True
-        assert simplify("100/300", "300/100") == False
-
     def test_simplify_edge_cases(self):
-        assert simplify("1/1", "2/1") == False
-        assert simplify("2/1", "1/1") == False
-        assert simplify("1/2", "2/2") == False
-        assert simplify("2/2", "1/2") == False
+        assert simplify("1/100", "100/1") == True
+        assert simplify("1/101", "101/1") == True
+        assert simplify("100/1", "1/100") == False
+        assert simplify("1000/1", "1/1000") == False
 
-    def test_simplify_same_fraction(self):
-        assert simplify("1/2", "1/2") == False
-        assert simplify("2/3", "2/3") == False
-        assert simplify("3/4", "3/4") == False
+    def test_simplify_large_numbers(self):
+        assert simplify("1000000/1", "1/1000000") == False
+        assert simplify("1000000/1000000", "1/1") == True
+        assert simplify("1000000/1", "1000000/1") == True
 
-    def test_simplify_with_one(self):
-        assert simplify("1/1", "5/1") == True
-        assert simplify("5/1", "1/1") == True
-        assert simplify("1/2", "1/1") == False
-        assert simplify("1/1", "1/2") == False
+    def test_simplify_mixed_numbers(self):
+        # While the problem states fractions are in the form numerator/denominator,
+        # it's good to test behavior if mixed numbers are passed.  The current
+        # implementation will treat them as improper fractions.
+        assert simplify("1 1/2", "2/3") == False # treated as 3/2 * 2/3 = 1
+        assert simplify("1/2", "1 1/3") == False # treated as 1/2 * 4/3 = 2/3

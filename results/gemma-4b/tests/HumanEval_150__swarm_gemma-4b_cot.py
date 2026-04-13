@@ -39,3 +39,9 @@ def test_x_or_y_composite():
 
 def test_x_or_y_n_equals_2():
     assert x_or_y(2, 34, 12) == 34
+
+def test_x_or_y_n_equals_3():
+    assert x_or_y(3, 34, 12) == 34
+
+def test_x_or_y_n_equals_4():
+    assert x_or_y(4, 34, 12) == 12

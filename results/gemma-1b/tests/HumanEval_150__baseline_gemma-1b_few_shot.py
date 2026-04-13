@@ -21,7 +21,7 @@ def x_or_y(n, x, y):
     if n > 1:
         for i in range(2, n):
             if n % i == 0:
-                return n - 1  # n is prime
+                return n - 1  # Return the value of y
         return x
     else:
         return y

@@ -85,8 +85,14 @@ def test_eat_edge_case_zero_remaining():
 def test_eat_edge_case_zero_need():
     assert eat(0, 0, 10) == [0, 10]
 
+def test_eat_edge_case_zero_number():
+    assert eat(0, 0, 0) == [0, 0]
+
 def test_eat_large_numbers():
     assert eat(999, 999, 999) == [1998, 0]
+
+def test_eat_mixed_numbers():
+    assert eat(1000, 1000, 1000) == [2000, 0]
 
 def test_eat_small_numbers():
     assert eat(1, 1, 1) == [2, 0]

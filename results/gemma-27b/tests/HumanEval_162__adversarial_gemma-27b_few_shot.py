@@ -42,4 +42,4 @@ def test_md5_with_special_chars():
     assert string_to_md5('!@#$%^') == 'b10a8db164e0754105b7a99be72e3fe5'
 
 def test_md5_unicode():
-    assert string_to_md5('你好世界') == '6f9d9999999999999999999999999999' # Example unicode string
+    assert string_to_md5('你好世界') == '6f996999999999999999999999999999' # Example unicode string

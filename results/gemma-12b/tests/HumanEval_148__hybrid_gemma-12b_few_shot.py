@@ -56,18 +56,18 @@ def get_max(arr: list[int]) -> int:
     return max(arr)
 
 # Tests (Pytest):
-def test_planet_between_jupiter_neptune():
+def test_planet_function_jupiter_neptune():
     assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
 
-def test_planet_between_earth_mercury():
+def test_planet_function_earth_mercury():
     assert bf("Earth", "Mercury") == ("Venus",)
 
-def test_planet_between_mercury_uranus():
+def test_planet_function_mercury_uranus():
     assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
 
-def test_planet_invalid_input():
-    assert bf("Pluto", "Neptune") == ()
-    assert bf("Jupiter", "Mars") == ()
+def test_planet_function_invalid_planets():
+    assert bf("Pluto", "Venus") == ()
+    assert bf("Earth", "Marsian") == ()
 
 def test_palindrome_basic():
     assert is_palindrome('radar') == True

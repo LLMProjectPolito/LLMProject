@@ -81,22 +81,22 @@ class TestWordsInSentence:
         assert words_in_sentence("hello   world") == "hello world"
 
     def test_sentence_with_prime_and_non_prime_words(self):
-        assert words_in_sentence("a bb ccc dddd eeeee") == "a"
+        assert words_in_sentence("a bb ccc dddd eeeee ffffff") == "a"
 
     def test_sentence_with_long_words(self):
-        assert words_in_sentence("abcdefghijklmnopqrstuvwxyz abcdefghij") == "abcdefghijklmnopqrstuvwxyz"
+        assert words_in_sentence("abcdefghijklmnopqrstuvwxyz abcdefghijklmnop abcdefghijklmno") == "abcdefghijklmnopqrstuvwxyz"
 
     def test_sentence_with_short_words(self):
-        assert words_in_sentence("a b c d e") == "a b c d e"
+        assert words_in_sentence("a b c d e f g h i j k l m n o p q r s t u v w x y z") == "a b c d e f g h i j k l m n o p q r s t u v w x y z"
 
     def test_sentence_with_mixed_length_words(self):
-        assert words_in_sentence("a bb c d efg hijk lmnop") == "a c"
+        assert words_in_sentence("one two three four five six seven eight nine ten") == "one two three five seven"
 
     def test_sentence_with_same_length_words(self):
-        assert words_in_sentence("aa bb cc dd") == "aa bb cc dd"
+        assert words_in_sentence("aa bb cc dd ee") == "aa bb cc dd ee"
 
     def test_sentence_with_prime_length_words_at_start_and_end(self):
-        assert words_in_sentence("go for swimming test") == "go for"
+        assert words_in_sentence("go for swimming") == "go for"
 
     def test_sentence_with_non_prime_length_words_at_start_and_end(self):
-        assert words_in_sentence("the quick brown fox jumps") == ""
+        assert words_in_sentence("the quick brown fox") == ""

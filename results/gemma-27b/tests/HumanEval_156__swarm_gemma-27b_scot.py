@@ -25,18 +25,29 @@ def int_to_mini_roman(number):
     >>> int_to_mini_roman(426) == 'cdxxvi'
     """
     roman_map = { 1: 'i', 4: 'iv', 5: 'v', 9: 'ix', 10: 'x', 40: 'xl', 50: 'l', 90: 'xc', 100: 'c', 400: 'cd', 500: 'd', 900: 'cm', 1000: 'm'}
+    integers = list(roman_map)
+    symbols = list(roman_map.values())
+
     i = 12
     result = ""
 
     while number != 0:
-        if list(roman_map.keys())[i] <= number:
-            result += list(roman_map.values())[i]
-            number -= list(roman_map.keys())[i]
+        if integers[i] <= number:
+            result += symbols[i]
+            number -= integers[i]
         else:
             i -= 1
 
     return result
 
-@pytest.mark.parametrize("input_num, expected_roman", [(999, "cmxcix")])
-def test_int_to_mini_roman_999(input_num, expected_roman):
-    assert int_to_mini_roman(input_num) == expected_roman
+def test_int_to_mini_roman_999():
+    assert int_to_mini_roman(999) == 'cmxcix'
+
+def test_int_to_mini_roman_19():
+    assert int_to_mini_roman(19) == 'xix'
+
+def test_int_to_mini_roman_152():
+    assert int_to_mini_roman(152) == 'clii'
+
+def test_int_to_mini_roman_426():
+    assert int_to_mini_roman(426) == 'cdxxvi'

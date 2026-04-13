@@ -28,10 +28,9 @@ def generate_integers(a, b):
     result = []
     for num in range(a, b + 1):
         s = str(num)
-        for digit in s:
-            if int(digit) % 2 == 0:
-                result.append(num)
-                break
+        even_digits = [digit for digit in s if int(digit) % 2 == 0]
+        even_digits.sort()
+        result.extend(even_digits)
     return result
 
 # Focus: Type Scenarios

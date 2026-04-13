@@ -33,4 +33,5 @@ def double_the_difference(lst):
     for num in lst:
         if isinstance(num, int) and num % 2 != 0:
             sum_of_squares += num**2
+    
     return sum_of_squares

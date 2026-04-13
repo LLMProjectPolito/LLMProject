@@ -34,9 +34,7 @@ def test_edge():
     assert file_name_check("a..txt") == "No"
     assert file_name_check("a.txttxt") == "No"
     assert file_name_check("a.123") == "No"
-    assert file_name_check("a1b.txt") == "Yes"
-    assert file_name_check("A.txt") == "Yes"
-    assert file_name_check("A123.dll") == "Yes"
+    assert file_name_check("a123.123") == "No"
 
 def test_invalid_extension():
     assert file_name_check("example.pdf") == "No"

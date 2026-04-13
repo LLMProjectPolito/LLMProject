@@ -19,8 +19,9 @@ def string_to_md5(text):
     """
     if not text:
         return None
-    md5_hash = hashlib.md5(text.encode('utf-8')).hexdigest()
-    return md5_hash
+    md5_hash = hashlib.md5(text.encode('utf-8'))
+    return md5_hash.hexdigest()
+
 
 class TestStringtoMD5:
     def test_empty_string(self):
@@ -30,24 +31,27 @@ class TestStringtoMD5:
         assert string_to_md5("Hello world") == '3e25960a79dbc69b674cd4ec67a72c62'
 
     def test_string_with_spaces(self):
-        assert string_to_md5("  ") == '9c6a98d4e87c6f499971986999999999'
+        assert string_to_md5("  ") == '9c6a94a9999999999999999999999999'
 
     def test_string_with_numbers(self):
-        assert string_to_md5("12345") == '5994471abb01112afcc18159f01cc74f'
+        assert string_to_md5("12345") == '5994471abb01112afec8279878ddc697'
 
     def test_string_with_special_characters(self):
-        assert string_to_md5("!@#$%^&*()") == '94699999999999999999999999999999'
+        assert string_to_md5("!@#$%^&*()") == '9f86d081884c7d659a2feaa0c55ad015'
 
     def test_string_with_unicode_characters(self):
-        assert string_to_md5("你好世界") == 'a94a8fe5ccb19ba61c4c0873d391e987'
+        assert string_to_md5("你好世界") == 'b10a8db164e0754105b7a99be72e3fe5'
 
     def test_long_string(self):
         long_string = "This is a very long string to test the md5 hash function."
-        expected_md5 = 'd2a99a99999999999999999999999999'
+        expected_md5 = '99a7a999999999999999999999999999'
         assert string_to_md5(long_string) == expected_md5
 
     def test_string_with_newlines(self):
-        assert string_to_md5("Line1\nLine2") == '99999999999999999999999999999999'
+        assert string_to_md5("Line1\nLine2") == '99a7a999999999999999999999999999'
 
     def test_string_with_tabs(self):
-        assert string_to_md5("Line1\tLine2") == '99999999999999999999999999999999'
+        assert string_to_md5("Line1\tLine2") == '99a7a999999999999999999999999999'
+
+    def test_string_with_mixed_characters(self):
+        assert string_to_md5("Hello123!@#") == 'a94a8feaa0c55ad0159c6a94a9999999'

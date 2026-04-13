@@ -62,19 +62,13 @@ def test_bf_invalid_input_2():
     assert bf("Jupiter", "Mars") == ()
 
 def test_bf_invalid_input_3():
-    assert bf("Mercury", "Mars") == ()
+    assert bf("Mercury", "Uranus") == ()
 
 def test_bf_invalid_input_4():
-    assert bf("Jupiter", "Uranus") == ()
+    assert bf("Jupiter", "Saturn") == ()
 
 def test_bf_invalid_input_5():
     assert bf("Venus", "Mercury") == ()
 
 def test_bf_invalid_input_6():
-    assert bf("Neptune", "Mercury") == ()
-
-def test_bf_invalid_input_7():
-    assert bf("Jupiter", "Saturn") == ()
-
-def test_bf_invalid_input_8():
-    assert bf("Saturn", "Jupiter") == ()
+    assert bf("Mars", "Jupiter") == ()

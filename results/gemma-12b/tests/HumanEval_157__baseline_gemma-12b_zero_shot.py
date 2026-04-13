@@ -57,8 +57,8 @@ class TestRightAngleTriangle:
         assert right_angle_triangle(5, 5, 6) == False
 
     def test_large_numbers(self):
-        assert right_angle_triangle(1000, 1000, 1414) == False #approximate
-        assert right_angle_triangle(1000, 1000, 1414.2135623730951) == True #approximate
+        assert right_angle_triangle(1000, 1000, 1414) == False #approx sqrt(2)
+        assert right_angle_triangle(1000, 1000, 1414.2135623730951) == True
         assert right_angle_triangle(3000, 4000, 5000) == True
 
     def test_float_inputs(self):

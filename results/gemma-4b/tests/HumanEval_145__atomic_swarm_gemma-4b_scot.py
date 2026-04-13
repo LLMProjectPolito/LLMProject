@@ -39,7 +39,7 @@ def order_by_points(nums):
         return s
 
     return sorted(nums, key=lambda x: (sum_digits(x), nums.index(x)))
-
+    
 def test_edge():
     assert order_by_points([]) == []
 

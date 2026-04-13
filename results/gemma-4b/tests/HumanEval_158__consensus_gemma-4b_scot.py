@@ -20,7 +20,7 @@ def find_max(words):
 
     find_max(["name", "of", "string"]) == "string"
     find_max(["name", "enam", "game"]) == "enam"
-    find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
+    find_max(["aaaaaaa", "bb" ,"cc"]) == ""aaaaaaa"
     """
     if not words:
         return ""
@@ -54,28 +54,31 @@ def test_multiple_words_same_unique_chars_and_lexicographical_order():
     assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
 def test_multiple_words_same_unique_chars_and_lexicographical_order_2():
-    assert find_max(["abc", "bca", "cab"]) == "abc"
+    assert find_max(["abc", "def", "ghi"]) == "abc"
 
 def test_mixed_case():
-    assert find_max(["HeLlO", "world"]) == "HeLlO"
+    assert find_max(["Name", "enam", "GAME"]) == "enam"
 
 def test_numbers_and_letters():
-    assert find_max(["a1b2c", "abc"]) == "a1b2c"
+    assert find_max(["a123", "b456", "c789"]) == "a123"
 
 def test_special_characters():
-    assert find_max(["!@#", "abc"]) == "!@#"
+    assert find_max(["!@#", "$%^", "&*()"]) == "!@#"
 
-def test_empty_string():
-    assert find_max([""]) == ""
+def test_empty_string_in_list():
+    assert find_max(["", "abc", "def"]) == "abc"
 
-def test_words_with_duplicates():
-    assert find_max(["hello", "hello"]) == "hello"
+def test_all_empty_strings():
+    assert find_max(["", "", ""]) == ""
+
+def test_duplicate_words():
+    assert find_max(["hello", "hello", "world"]) == "hello"
 
 def test_long_words():
-    assert find_max(["abcdefgh", "ijklmnop"]) == "abcdefgh"
+    assert find_max(["abcdefgh", "ijklmnop", "qrstuvwxyz"]) == "abcdefgh"
 
-def test_complex_case():
-    assert find_max(["apple", "banana", "orange", "grape"]) == "banana"
+def test_words_with_same_unique_chars_and_length():
+    assert find_max(["abc", "def", "ghi"]) == "abc"
 
-def test_complex_case_2():
-    assert find_max(["zebra", "apple", "banana", "orange"]) == "zebra"
+def test_words_with_same_unique_chars_and_length_2():
+    assert find_max(["xyz", "abc", "def"]) == "abc"

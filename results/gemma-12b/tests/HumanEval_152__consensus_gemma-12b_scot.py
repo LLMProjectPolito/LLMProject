@@ -32,7 +32,7 @@ def test_compare_empty_lists():
 
 def test_compare_single_element_lists():
     assert compare([5], [5]) == [0]
-    assert compare([5], [6]) == [1]
+    assert compare([5], [2]) == [3]
 
 def test_compare_negative_scores():
     assert compare([-1, -2, -3], [-1, -2, -4]) == [0, 0, 1]
@@ -49,4 +49,4 @@ def test_compare_different_lengths():
 
 def test_compare_different_lengths2():
     with pytest.raises(ValueError):
-        compare([1], [1,2])
+        compare([1], [1, 2])

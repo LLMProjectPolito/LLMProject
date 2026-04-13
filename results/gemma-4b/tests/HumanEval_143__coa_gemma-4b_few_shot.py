@@ -87,7 +87,7 @@ def is_prime(n):
             return False
     return True
 
-def test_words_in_sentence_empty_sentence():
+def test_words_in_sentence_empty():
     assert words_in_sentence("") == ""
 
 def test_words_in_sentence_no_prime_words():

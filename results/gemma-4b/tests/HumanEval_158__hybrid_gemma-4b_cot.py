@@ -74,27 +74,3 @@ def test_find_max_words_with_empty_and_non_empty():
 
 def test_find_max_all_empty_strings():
     assert find_max(["", "", ""]) == ""
-
-def test_find_max_multiple_words_same_unique_chars_lexicographical_order_2():
-    assert find_max(["abc", "bca", "cab"]) == "abc"
-
-def test_find_max_words_with_duplicates():
-    assert find_max(["aabbcc", "abc"]) == "aabbcc"
-
-def test_find_max_words_with_mixed_case():
-    assert find_max(["Hello", "hello"]) == "Hello"
-
-def test_find_max_words_with_special_characters():
-    assert find_max(["!@#", "abc"]) == "!@#"
-
-def test_find_max_words_with_numbers():
-    assert find_max(["123", "abc"]) == "123"
-
-def test_find_max_words_with_empty_string():
-    assert find_max(["", "abc"]) == "abc"
-
-def test_find_max_words_with_empty_string_and_empty_string():
-    assert find_max(["", ""]) == ""
-
-def test_find_max_words_with_mixed_empty_and_non_empty():
-    assert find_max(["", "abc", ""]) == "abc"

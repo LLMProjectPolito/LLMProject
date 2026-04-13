@@ -8,4 +8,49 @@ def specialFilter(nums):
     specialFilter([33, -2, -3, 45, 21, 109]) => 2
     """
 
-# ERROR: setup_competitive_graph() got an unexpected keyword argument 'model_a'
+import pytest
+
+def test_empty_list():
+    assert specialFilter([]) == 0
+
+def test_no_special_numbers():
+    assert specialFilter([2, 4, 6, 8, 10, 12]) == 0
+
+def test_single_special_number():
+    assert specialFilter([15]) == 1
+
+def test_multiple_special_numbers():
+    assert specialFilter([15, 37, 59, 71, 93]) == 5
+
+def test_mixed_numbers():
+    assert specialFilter([15, -73, 14, -15]) == 1
+
+def test_negative_numbers():
+    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
+
+def test_numbers_with_even_first_digit():
+    assert specialFilter([21, 43, 65, 87, 09]) == 0
+
+def test_numbers_with_even_last_digit():
+    assert specialFilter([12, 34, 56, 78, 90]) == 0
+
+def test_numbers_with_both_even_digits():
+    assert specialFilter([24, 46, 68, 80]) == 0
+
+def test_numbers_greater_than_10_but_not_special():
+    assert specialFilter([12, 14, 16, 18, 21]) == 0
+
+def test_numbers_less_than_or_equal_to_10():
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 0
+
+def test_large_numbers():
+    assert specialFilter([111, 333, 555, 777, 999, 101, 103, 105, 107, 109]) == 5
+
+def test_mixed_large_and_small_numbers():
+    assert specialFilter([15, 111, 22, 333, 44, 555, 66, 777, 88, 999]) == 4
+
+def test_negative_special_numbers():
+    assert specialFilter([-13, -35, -57, -79, -91]) == 0
+
+def test_negative_and_positive_special_numbers():
+    assert specialFilter([15, -37, 59, -71, 93]) == 2

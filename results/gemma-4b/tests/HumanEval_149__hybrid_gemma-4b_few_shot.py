@@ -53,6 +53,8 @@ def test_is_palindrome_basic():
     assert is_palindrome('A man, a plan, a canal: Panama') == True
     assert is_palindrome('Racecar') == True
     assert is_palindrome('Was it a car or a cat I saw?') == True
+    assert is_palindrome('Madam') == True
+    assert is_palindrome('No lemon, no melon') == True
 
 def test_is_palindrome_empty():
     assert is_palindrome('') == True
@@ -61,64 +63,61 @@ def test_is_palindrome_empty():
 
 def test_is_palindrome_mixed_case():
     assert is_palindrome('Racecar') == True
-    assert is_palindrome('Madam') == True
+    assert is_palindrome('RaCeCaR') == True
 
-def test_is_palindrome_with_punctuation():
+def test_is_palindrome_with_spaces():
     assert is_palindrome('A man, a plan, a canal: Panama') == True
-    assert is_palindrome('No ' + 'x in Nixon') == True
 
 def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
     assert get_max([3, 2, 1]) == 3
     assert get_max([1, 3, 2]) == 3
+    assert get_max([1, 1, 1]) == 1
 
 def test_get_max_empty():
     assert get_max([]) == None
 
 def test_get_max_negative():
     assert get_max([-1, -2, -3]) == -1
-    assert get_max([-1, -2, 3]) == 3
+    assert get_max([-1, -3, -2]) == -1
 
 def test_get_max_mixed():
-    assert get_max([-1, 2, -3, 4]) == 4
+    assert get_max([-1, 2, -3, 1]) == 2
 
 def test_sorted_list_sum_basic():
     assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
     assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
     assert sorted_list_sum(["abc", "def", "ghi"]) == ["abc", "def", "ghi"]
-    assert sorted_list_sum(["aabb", "ccdd", "eeff"]) == ["aabb", "ccdd", "eeff"]
+    assert sorted_list_sum(["abc", "def", "ghi", "jkl"]) == ["abc", "def", "ghi", "jkl"]
 
 def test_sorted_list_sum_duplicates():
     assert sorted_list_sum(["aa", "aa", "a"]) == ["aa", "aa"]
-    assert sorted_list_sum(["ab", "ab", "cd"]) == ["ab", "ab"]
+    assert sorted_list_sum(["ab", "ab", "a"]) == ["ab", "ab"]
 
-def test_sorted_list_sum_empty():
+def test_sorted_list_sum_same_length_different_order():
+    assert sorted_list_sum(["abc", "def", "ghi"]) == ["abc", "def", "ghi"]
+    assert sorted_list_sum(["ghi", "def", "abc"]) == ["abc", "def", "ghi"]
+
+def test_sorted_list_sum_empty_input():
     assert sorted_list_sum([]) == []
 
-def test_sorted_list_sum_mixed():
-    assert sorted_list_sum(["aa", "a", "aaa", "cd", "bb"]) == ["aa", "bb", "cd"]
+def test_sorted_list_sum_mixed_lengths():
+    assert sorted_list_sum(["a", "bb", "ccc", "dddd"]) == ["a", "bb", "ddd"]
+    assert sorted_list_sum(["dddd", "ccc", "bb", "a"]) == ["a", "bb", "ddd"]
 
-def test_sorted_list_sum_same_length_alphabetical():
-    assert sorted_list_sum(["abc", "abd", "abe"]) == ["abc", "abd", "abe"]
-    assert sorted_list_sum(["cab", "cad", "cba"]) == ["cab", "cad", "cba"]
-
-def test_is_palindrome_spaces():
-    assert is_palindrome('A man, a plan, a canal: Panama') == True
+def test_is_palindrome_edge_cases():
+    assert is_palindrome(" ") == True
+    assert is_palindrome("a") == True
+    assert is_palindrome("ab") == False
 
 def test_get_max_single_element():
     assert get_max([5]) == 5
 
-def test_get_max_negative_single_element():
-    assert get_max([-5]) == -5
+def test_sorted_list_sum_all_odd():
+    assert sorted_list_sum(["a", "b", "c"]) == []
 
 def test_sorted_list_sum_all_even():
-    assert sorted_list_sum(["abcd", "efgh", "ijkl"]) == ["abcd", "efgh", "ijkl"]
+    assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
-def test_sorted_list_sum_single_element():
-    assert sorted_list_sum(["abc"]) == ["abc"]
-
-def test_is_palindrome_single_char():
-    assert is_palindrome('a') == True
-
-def test_is_palindrome_single_char_not_palindrome():
-    assert is_palindrome('b') == False
+def test_sorted_list_sum_with_empty_string():
+    assert sorted_list_sum(["", "aa", "bb"]) == ["", "aa", "bb"]

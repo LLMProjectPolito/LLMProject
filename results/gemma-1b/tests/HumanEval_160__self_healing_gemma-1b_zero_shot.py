@@ -52,19 +52,14 @@ def do_algebra(operator, operand):
         Operator list has at least one operator, and operand list has at least two operands.
 
     """
-    if len(operator) != len(operand) - 1:
-        raise ValueError("Length of operator list must be equal to the length of operand list minus 1.")
-
-    expression = ""
-    for i in range(len(operator)):
-        if operator[i] == '+':
-            expression += str(operand[i])
-        elif operator[i] == '-':
-            expression += str(operand[i])
-        elif operator[i] == '*':
-            expression += str(operand[i])
-        elif operator[i] == '/':
-            expression += str(operand[i])
-        elif operator[i] == '**':
-            expression += str(operand[i])
-    return float(expression)
+    try:
+        if len(operator) == 1 and len(operand) == 1:
+            return operator[0] + operand[0]
+        elif len(operator) == 1:
+            return operator[0]
+        elif len(operand) == 1:
+            return operand[0]
+        else:
+            return operator[0] + operand[0]
+    except:
+        return None

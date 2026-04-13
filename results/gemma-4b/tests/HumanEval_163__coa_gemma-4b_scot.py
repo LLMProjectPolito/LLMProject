@@ -39,10 +39,10 @@ def test_generate_integers_empty():
     assert generate_integers(10, 14) == []
 
 def test_generate_integers_single_even():
-    assert generate_integers(2, 2) == [2]
-
-def test_generate_integers_multiple_even():
     assert generate_integers(2, 8) == [2, 4, 6, 8]
+
+def test_generate_integers_reverse_order():
+    assert generate_integers(8, 2) == [2, 4, 6, 8]
 
 # Focus: Logic Branches
 import pytest

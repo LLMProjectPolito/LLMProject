@@ -35,8 +35,11 @@ def test_right_triangle_invalid():
 def test_zero_side():
     assert right_angle_triangle(0, 4, 5) == False
 
-def test_large_numbers():
+def test_negative_side():
+    assert right_angle_triangle(-3, 4, 5) == False
+
+def test_large_sides():
     assert right_angle_triangle(100, 100, 141.42135623730951) == True
 
-def test_small_numbers():
-    assert right_angle_triangle(1, 1, 1.4142135623730951) == True
+def test_small_sides():
+    assert right_angle_triangle(1, 1, math.sqrt(2)) == True

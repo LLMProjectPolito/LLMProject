@@ -30,29 +30,19 @@ def compare(game, guess):
 def test_compare_valid_guess():
     game = [1, 2, 3, 4, 5]
     guess = 3
-    expected_result = [0, 0, 0, 0, 0]
-    assert compare(game, guess) == expected_result
+    assert compare(game, guess) == [0, 0, 0, 0, 0]
 
 def test_compare_invalid_guess():
     game = [1, 2, 3, 4, 5]
     guess = 6
-    expected_result = [0, 0, 0, 0, 0]
-    assert compare(game, guess) == expected_result
+    assert compare(game, guess) == [0, 0, 0, 0, 0]
 
 def test_compare_empty_game():
     game = []
     guess = 3
-    expected_result = []
-    assert compare(game, guess) == expected_result
+    assert compare(game, guess) == []
 
 def test_compare_single_element_game():
     game = [5]
     guess = 5
-    expected_result = [0]
-    assert compare(game, guess) == expected_result
-
-def test_compare_all_elements_same():
-    game = [1, 1, 1, 1, 1]
-    guess = 1
-    expected_result = [0, 0, 0, 0, 0]
-    assert compare(game, guess) == expected_result
+    assert compare(game, guess) == [0]

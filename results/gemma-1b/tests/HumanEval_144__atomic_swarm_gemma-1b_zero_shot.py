@@ -27,20 +27,27 @@ def simplify(x, n):
     simplify("1/6", "2/1") = False
     simplify("7/10", "10/2") = False
     """
-    x_val = str(x)
-    n_val = str(n)
-    
     try:
-        num, den = map(int, x_val.split("/"))
-        num_val = int(num)
-        den_val = int(den)
+        x_val = int(x)
+        n_val = int(n)
+        numerator = x_val
+        denominator = n_val
         
-        if den_val == 0:
+        if denominator == 0:
             return False
         
-        return num_val * den_val == den_val
+        common_divisor = gcd(numerator, denominator)
+        numerator //= common_divisor
+        denominator //= common_divisor
+        
+        return abs(numerator) == abs(denominator)
     except ValueError:
         return False
+
+def gcd(a, b):
+    if b == 0:
+        return a
+    return gcd(b, a % b)
 
 def test_simplify_empty_input():
     assert simplify("", 5) == False
@@ -62,11 +69,24 @@ def simplify(x, n):
     simplify("1/6", "2/1") = False
     simplify("7/10", "10/2") = False
     """
-    try:
-        x_val = int(x)
-        n_val = int(n)
-        if x_val == 0 or n_val == 0:
-            return False
-        return x_val * n_val == 0
-    except:
+    x_val = int(x)
+    n_val = int(n)
+
+    if x_val == 0 or n_val == 0:
         return False
+
+    numerator = x_val
+    denominator = n_val
+
+    if denominator == 0:
+        return False
+
+    common_divisor = gcd(numerator, denominator)
+    numerator //= common_divisor
+    denominator //= common_divisor
+
+    return numerator == denominator
+def gcd(a, b):
+    if b == 0:
+        return a
+    return gcd(b, a % b)

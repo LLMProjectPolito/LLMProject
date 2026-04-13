@@ -54,32 +54,39 @@ def words_in_sentence(sentence):
     prime_words = [word for word in words if is_prime(len(word))]
     return " ".join(prime_words)
 
-def test_empty_sentence():
-    assert words_in_sentence("") == ""
+class TestWordsInSentence:
+    def test_empty_sentence(self):
+        assert words_in_sentence("") == ""
 
-def test_no_prime_words():
-    assert words_in_sentence("this is not a prime sentence") == ""
+    def test_no_prime_words(self):
+        assert words_in_sentence("this is a long sentence") == ""
+        assert words_in_sentence("this is not a prime sentence") == ""
 
-def test_all_prime_words():
-    assert words_in_sentence("a is i") == "a is i"
-    assert words_in_sentence("go for a swim") == "go for a"
-    assert words_in_sentence("to be or not") == "to be or"
+    def test_all_prime_words(self):
+        assert words_in_sentence("a is i") == "a is i"
+        assert words_in_sentence("go for a swim") == "go for a"
 
-def test_mixed_words():
-    assert words_in_sentence("This is a test sentence") == "is a"
-    assert words_in_sentence("This is a test") == "is"
+    def test_mixed_prime_non_prime(self):
+        assert words_in_sentence("This is a test") == "is a"
+        assert words_in_sentence("This is a very long test") == "is a"
 
-def test_leading_trailing_spaces():
-    assert words_in_sentence("  This is a test  ") == "is"
+    def test_leading_trailing_spaces(self):
+        assert words_in_sentence("  This is a test  ") == "is a"
 
-def test_multiple_spaces():
-    assert words_in_sentence("This  is   a    test") == "is"
+    def test_multiple_spaces(self):
+        assert words_in_sentence("This  is   a    test") == "is a"
 
-def test_single_prime_word():
-    assert words_in_sentence("go") == "go"
+    def test_single_prime_word(self):
+        assert words_in_sentence("go") == "go"
 
-def test_single_letter_prime():
-    assert words_in_sentence("a b c d e") == "a b c d e"
+    def test_prime_numbers(self):
+        assert words_in_sentence("a bb ccc dddd eeeee") == "a bb ccc"
 
-def test_longer_prime_word():
-    assert words_in_sentence("This is a very long prime word") == "This is a very long"
+    def test_long_sentence(self):
+        assert words_in_sentence("The quick brown fox jumps over the lazy dog") == "The fox over"
+
+    def test_single_letter_prime(self):
+        assert words_in_sentence("a b c") == "a"
+
+    def test_longer_prime_word(self):
+        assert words_in_sentence("This is a very long test") == "is a"

@@ -81,9 +81,6 @@ def find_max(words):
     find_max(["name", "enam", "game"]) == "enam"
     find_max(["aaaaaaa", "bb" ,"cc"]) == ""aaaaaaa"
     """
-    if not words:
-        return ""
-
     max_unique_chars = -1
     max_word = ""
 

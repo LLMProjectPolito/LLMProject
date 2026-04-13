@@ -22,10 +22,6 @@ def right_angle_triangle(a, b, c):
     right_angle_triangle(3, 4, 5) == True
     right_angle_triangle(1, 2, 3) == False
     '''
-    if not all(isinstance(side, (int, float)) for side in [a, b, c]):
-        raise TypeError("Sides must be numbers (int or float)")
-    if any(side <= 0 for side in [a, b, c]):
-        return False
     sides = sorted([a, b, c])
     return sides[0]**2 + sides[1]**2 == sides[2]**2
 

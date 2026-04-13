@@ -58,10 +58,19 @@ def test_type_scenario_4():
     assert file_name_check("example..txt") == "No"
 
 def test_type_scenario_5():
-    assert file_name_check("example.abc") == "No"
+    assert file_name_check("example.txt.txt") == "No"
 
 def test_type_scenario_6():
-    assert file_name_check("example.txt.txt") == "No"
+    assert file_name_check("example.123") == "No"
+
+def test_type_scenario_7():
+    assert file_name_check("a.txt") == "Yes"
+
+def test_type_scenario_8():
+    assert file_name_check("A.TXT") == "Yes"
+
+def test_type_scenario_9():
+    assert file_name_check("1a.txt") == "No"
 
 # Focus: Logic Branches
 import pytest
@@ -71,13 +80,9 @@ def test_valid_file_name_one_dot():
     assert file_name_check("data.dll") == 'Yes'
     assert file_name_check("report.exe") == 'Yes'
 
-def test_invalid_file_name_no_dot():
-    assert file_name_check("example123") == 'No'
-    assert file_name_check("1example") == 'No'
-
 def test_invalid_file_name_multiple_dots():
     assert file_name_check("example..txt") == 'No'
-    assert file_name_check("example.txt.bak") == 'No'
+    assert file_name_check("example.abc.txt") == 'No'
 
 def test_invalid_file_name_digit_count():
     assert file_name_check("123example.txt") == 'No'

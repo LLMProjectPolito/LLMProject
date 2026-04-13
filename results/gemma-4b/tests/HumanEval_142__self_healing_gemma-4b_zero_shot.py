@@ -37,32 +37,38 @@ def sum_squares(lst):
 def test_empty_list():
     assert sum_squares([]) == 0
 
-def test_single_element_not_multiple_of_3_or_4():
-    assert sum_squares([5]) == 5
-
-def test_single_element_multiple_of_3():
-    assert sum_squares([5]) == 25
-
-def test_single_element_multiple_of_4_not_3():
-    assert sum_squares([5]) == 125
-
-def test_example_1():
+def test_simple_list():
     assert sum_squares([1, 2, 3]) == 6
 
-def test_example_2():
+def test_negative_numbers():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
-def test_multiple_of_3_and_4():
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 4 + 9 + 64 + 25 + 36
+def test_multiple_of_3():
+    assert sum_squares([1, 3, 5, 7, 9]) == 1 + 9 + 25 + 49 + 81
 
-def test_no_multiples_of_3_or_4():
-    assert sum_squares([1, 2, 3, 4, 5]) == 1 + 2 + 3 + 4 + 5
-
-def test_only_multiples_of_3():
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 9 + 36 + 64 + 25 + 36
-
-def test_only_multiples_of_4_not_3():
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 8 + 27 + 64 + 125 + 216
+def test_multiple_of_4_not_3():
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 8 + 27 + 64 + 125
 
 def test_mixed_multiples():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 1 + 4 + 9 + 64 + 25 + 36 + 49 + 512 + 81
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 4 + 9 + 64 + 125 + 36 + 49 + 64 + 81 + 100
+
+def test_large_numbers():
+    assert sum_squares([100, 200, 300, 400, 500]) == 10000 + 8000000 + 27000000 + 64000000 + 125000000
+
+def test_zero_values():
+    assert sum_squares([0, 1, 2, 3]) == 0 + 1 + 4 + 9
+
+def test_list_with_zeros():
+    assert sum_squares([0, 0, 0]) == 0
+
+def test_single_element_multiple_of_3():
+    assert sum_squares([3]) == 9
+
+def test_single_element_multiple_of_4_not_3():
+    assert sum_squares([4]) == 64
+
+def test_single_element_not_multiple_of_3_or_4():
+    assert sum_squares([2]) == 2
+
+def test_complex_list():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1 + 4 + 9 + 64 + 125 + 36 + 49 + 64 + 81 + 100 + 121 + 144

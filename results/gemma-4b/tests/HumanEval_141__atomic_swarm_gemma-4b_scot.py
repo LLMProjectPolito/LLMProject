@@ -57,7 +57,7 @@ def file_name_check(file_name):
 
     return 'Yes'
 
-def test_edge_empty_string():
+def test_edge_empty():
     assert file_name_check("") == 'No'
 
 def test_edge_too_many_digits():
@@ -66,14 +66,11 @@ def test_edge_too_many_digits():
 def test_edge_no_dot():
     assert file_name_check("exampletxt") == 'No'
 
-def test_edge_multiple_dots():
-    assert file_name_check("example..txt") == 'No'
+def test_edge_dot_before_letter():
+    assert file_name_check(".example.txt") == 'No'
 
-def test_edge_empty_before_dot():
-    assert file_name_check(".txt") == 'No'
-
-def test_edge_digit_before_dot():
-    assert file_name_check("1.txt") == 'No'
+def test_edge_dot_after_letter():
+    assert file_name_check("example.txt.") == 'No'
 
 def test_edge_invalid_extension():
     assert file_name_check("example.pdf") == 'No'
@@ -130,7 +127,7 @@ def test_no_dot():
     assert file_name_check("exampletxt") == 'No'
 
 def test_empty_prefix():
-    assert file_name_check(" .txt") == 'No'
+    assert file_name_check(" .example.txt") == 'No'
 
 def test_prefix_not_letter():
     assert file_name_check("1example.txt") == 'No'

@@ -21,7 +21,6 @@ def cycpattern_check(a , b):
     cycpattern_check("efef","eeff") => False
     cycpattern_check("himenss","simen") => True
 
-    Note: Returning True when b is empty is intentional.  It signifies that an empty pattern is always found within a string.
     """
     n = len(b)
     for i in range(n):
@@ -30,68 +29,74 @@ def cycpattern_check(a , b):
             return True
     return False
 
-def test_basic_true_false():
+# Basic Cases
+def test_cycpattern_check_basic_true():
     assert cycpattern_check("hello","ell") == True
+
+def test_cycpattern_check_basic_false():
     assert cycpattern_check("abcd","abd") == False
 
-def test_whassup():
+def test_cycpattern_check_whassup():
     assert cycpattern_check("whassup","psus") == False
 
-def test_abab():
+def test_cycpattern_check_abab():
     assert cycpattern_check("abab","baa") == True
 
-def test_efef():
+def test_cycpattern_check_efef():
     assert cycpattern_check("efef","eeff") == False
 
-def test_himenss():
+def test_cycpattern_check_himenss():
     assert cycpattern_check("himenss","simen") == True
 
-def test_empty_b():
+# Empty String Cases
+def test_cycpattern_check_empty_b():
     assert cycpattern_check("hello","") == True
 
-def test_empty_a():
+def test_cycpattern_check_empty_a():
     assert cycpattern_check("","ell") == False
 
-def test_both_empty():
+def test_cycpattern_check_both_empty():
     assert cycpattern_check("","") == True
 
-def test_a_equals_b():
-    assert cycpattern_check("test","test") == True
+# Edge Cases
+def test_cycpattern_check_a_shorter_than_b():
+    assert cycpattern_check("ab","abc") == False
 
-def test_b_longer_than_a():
-    assert cycpattern_check("abc","abcdef") == False
+def test_cycpattern_check_b_is_rotation_of_a():
+    assert cycpattern_check("abcdef","defabc") == True
 
-def test_b_much_longer_than_a():
-    assert cycpattern_check("abc", "abcdefghijklmnopqrstuvwxyz") == False
+def test_cycpattern_check_same_strings():
+    assert cycpattern_check("test", "test") == True
 
-def test_unicode():
-    assert cycpattern_check("你好世界","世界") == True
+def test_cycpattern_check_single_char_in_a():
+    assert cycpattern_check("hello", "l") == True
 
-def test_unicode_false():
-    assert cycpattern_check("你好世界","你好世界啊") == False
+def test_cycpattern_check_single_char_not_in_a():
+    assert cycpattern_check("hello", "z") == False
 
-def test_complex_rotation():
-    assert cycpattern_check("abcdefgh", "efghab") == True
+# Long String Cases
+def test_cycpattern_check_long_strings_true():
+    assert cycpattern_check("thisisalongstringwithpattern","pattern") == True
 
-def test_repeated_chars():
-    assert cycpattern_check("banana", "a") == True
+def test_cycpattern_check_long_strings_false():
+    assert cycpattern_check("thisisalongstringwithoutpattern","pattern") == False
 
-def test_repeated_chars_false():
-    assert cycpattern_check("aaaaa","aaaab") == False
+# Special Character and Number Cases
+def test_cycpattern_check_special_chars_true():
+    assert cycpattern_check("!@#$%^","@#$") == True
 
-def test_special_chars():
-    assert cycpattern_check("!@#$%^&*()","@#$") == True
+def test_cycpattern_check_special_chars_false():
+    assert cycpattern_check("!@#$%^","@#$x") == False
 
-def test_special_chars_false():
-    assert cycpattern_check("!@#$%^&*()","@#$x") == False
+def test_cycpattern_check_numbers():
+    assert cycpattern_check("12345","345") == True
 
-def test_long_strings_almost_match():
-    long_string = "a" * 1000 + "b"
-    pattern = "b" * 999 + "a"
-    assert cycpattern_check(long_string, pattern) == False
+# Other Cases
+def test_cycpattern_check_b_much_longer_than_a():
+    assert cycpattern_check("abc", "abcdefg") == False
 
-def test_unicode_both():
-    assert cycpattern_check("你好世界你好","世界你") == True
+def test_cycpattern_check_unicode():
+    assert cycpattern_check("你好世界","世界你") == True
 
-def test_substring_of_itself():
-    assert cycpattern_check("abcabc", "abc") == True
+def test_cycpattern_check_repeated_chars():
+    assert cycpattern_check("aaaaa","aa") == True

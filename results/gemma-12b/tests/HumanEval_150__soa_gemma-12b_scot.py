@@ -34,12 +34,12 @@ class TestXorY:
         assert x_or_y(4, 10, 20) == 20
         assert x_or_y(6, 50, 100) == 100
         assert x_or_y(9, 2, 4) == 4
-        assert x_or_y(10, 100, 50) == 50
+        assert x_or_y(10, 1, 2) == 2
 
     def test_edge_cases(self):
-        assert x_or_y(1, 10, 20) == 20
-        assert x_or_y(0, 5, 10) == 10
-        assert x_or_y(-5, 1, 2) == 2
+        assert x_or_y(1, 10, 20) == 20  # 1 is not prime
+        assert x_or_y(0, 5, 10) == 10  # 0 is not prime
+        assert x_or_y(-5, 1, 2) == 2 # Negative numbers are not prime
         assert x_or_y(2, 0, 0) == 0
         assert x_or_y(3, 0, 0) == 0
 
@@ -54,10 +54,10 @@ class TestXorY:
         assert x_or_y(10, 5, 5) == 5
         assert x_or_y(2, 5, 5) == 5
 
-    def test_negative_x_and_y(self):
-        assert x_or_y(7, -34, -12) == -34
-        assert x_or_y(15, -8, -5) == -5
-
-    def test_zero_x_and_y(self):
-        assert x_or_y(7, 0, 0) == 0
-        assert x_or_y(15, 0, 0) == 0
+    def test_type_checking(self):
+        with pytest.raises(TypeError):
+            x_or_y("7", 34, 12)
+        with pytest.raises(TypeError):
+            x_or_y(7, "34", 12)
+        with pytest.raises(TypeError):
+            x_or_y(7, 34, "12")

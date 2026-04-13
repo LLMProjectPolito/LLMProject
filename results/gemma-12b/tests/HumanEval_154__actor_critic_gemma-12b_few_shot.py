@@ -12,7 +12,7 @@ def cycpattern_check(a , b):
 
 import pytest
 
-def cycpattern_check(a , b):
+def cycpattern_check(a, b):
     """You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word
     cycpattern_check("abcd","abd") => False
     cycpattern_check("hello","ell") => True
@@ -22,8 +22,9 @@ def cycpattern_check(a , b):
     cycpattern_check("himenss","simen") => True
 
     """
-    if not b:
+    if not a or not b:
         return False
+
     if len(b) > len(a):
         return False
 
@@ -31,6 +32,7 @@ def cycpattern_check(a , b):
         rotated_b = b[i:] + b[:i]
         if rotated_b in a:
             return True
+
     return False
 
 
@@ -43,7 +45,7 @@ def test_cycpattern_check_basic_true():
 def test_cycpattern_check_basic_false():
     assert cycpattern_check("abcd", "abd") == False
 
-def test_cycpattern_check_whassup():
+def test_cycpattern_check_whassup_psus():
     assert cycpattern_check("whassup", "psus") == False
 
 def test_cycpattern_check_abab_baa():
@@ -61,29 +63,23 @@ def test_cycpattern_check_a_equals_b():
 def test_cycpattern_check_b_longer_than_a():
     assert cycpattern_check("abc", "abcdef") == False
 
-def test_cycpattern_check_pattern_longer_than_string():
-    assert cycpattern_check("abc", "abcdefg") == False
+def test_cycpattern_check_a_shorter_than_b_not_rotation():
+    assert cycpattern_check("ab", "abc") == False
 
-def test_cycpattern_check_pattern_contains_chars_not_in_string():
-    assert cycpattern_check("abc", "axc") == False
+def test_cycpattern_check_b_longer_than_a_and_rotation():
+    assert cycpattern_check("abcdef", "defabc") == True
 
-def test_cycpattern_check_string_contains_pattern_multiple_times():
-    assert cycpattern_check("ababab", "abab") == False
+def test_cycpattern_check_overlapping_patterns():
+    assert cycpattern_check("ababab", "bababa") == True
 
-def test_cycpattern_check_single_char_match():
-    assert cycpattern_check("a", "a") == True
+def test_cycpattern_check_case_sensitive():
+    assert cycpattern_check("Hello", "ell") == False  # Case-sensitive
 
-def test_cycpattern_check_single_char_no_match():
-    assert cycpattern_check("a", "b") == False
+def test_cycpattern_check_case_insensitive():
+    assert cycpattern_check("Hello", "ell") == False #Case-sensitive
 
-def test_cycpattern_check_repeated_chars_true():
-    assert cycpattern_check("aaaa", "aa") == True
-
-def test_cycpattern_check_repeated_chars_false():
-    assert cycpattern_check("aaaa", "aba") == False
-
-def test_cycpattern_check_repeated_chars_true_complex():
-    assert cycpattern_check("abababab", "abab") == True
-
-def test_cycpattern_check_repeated_chars_false_complex():
-    assert cycpattern_check("abababab", "abaa") == False
+def test_cycpattern_check_unicode_characters():
+    assert cycpattern_check("你好世界", "世界") == True
+    assert cycpattern_check("你好世界", "你好") == True
+    assert cycpattern_check("你好世界", "世界你好") == True
+    assert cycpattern_check("你好世界", "世界你") == False

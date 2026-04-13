@@ -19,7 +19,7 @@ def Strongest_Extension(class_name, extensions):
 
 import pytest
 
-def strongest_extension(class_name, extensions):
+def Strongest_Extension(class_name, extensions):
     """You will be given the name of a class (a string) and a list of extensions.
     The extensions are to be used to load additional classes to the class. The
     strength of the extension is as follows: Let CAP be the number of the uppercase
@@ -36,6 +36,9 @@ def strongest_extension(class_name, extensions):
     Example:
     for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
     """
+    if not extensions:
+        return f"{class_name}.None"  # Handle empty extension list
+
     strongest_extension = None
     max_strength = float('-inf')
 
@@ -50,10 +53,27 @@ def strongest_extension(class_name, extensions):
 
     return f"{class_name}.{strongest_extension}"
 
-def test_strongest_extension():
-    assert strongest_extension("Slices", ['SErviNGSliCes', 'Cheese', 'StuFfed']) == "Slices.SErviNGSliCes"
-    assert strongest_extension("my_class", ['AA', 'Be', 'CC']) == "my_class.AA"
-    assert strongest_extension("TestClass", ['abc', 'DEF', 'ghi']) == "TestClass.DEF"
-    assert strongest_extension("EmptyClass", []) == "EmptyClass.None"
-    assert strongest_extension("MixedCaseClass", ['aBc', 'DeF', 'gHi']) == "MixedCaseClass.aBc"
-    assert strongest_extension("SingleExtension", ["OnlyOne"]) == "SingleExtension.OnlyOne"
+
+def test_Strongest_Extension_basic():
+    assert Strongest_Extension('Slices', ['SErviNGSliCes', 'Cheese', 'StuFfed']) == 'Slices.SErviNGSliCes'
+
+def test_Strongest_Extension_same_strength():
+    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
+
+def test_Strongest_Extension_empty_extensions():
+    assert Strongest_Extension('Class', []) == 'Class.None'
+
+def test_Strongest_Extension_mixed_case():
+    assert Strongest_Extension('Mixed', ['aBc', 'DeF', 'GhI']) == 'Mixed.aBc'
+
+def test_Strongest_Extension_special_chars():
+    assert Strongest_Extension('Special', ['!@#', 'abc', '123']) == 'Special.!@#'
+
+def test_Strongest_Extension_single_extension():
+    assert Strongest_Extension('Single', ['Only']) == 'Single.Only'
+
+def test_Strongest_Extension_all_uppercase():
+    assert Strongest_Extension('Upper', ['ABC', 'DEF', 'GHI']) == 'Upper.ABC'
+
+def test_Strongest_Extension_all_lowercase():
+    assert Strongest_Extension('Lower', ['abc', 'def', 'ghi']) == 'Lower.abc'

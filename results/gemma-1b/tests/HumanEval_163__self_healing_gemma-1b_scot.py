@@ -30,24 +30,3 @@ def generate_integers(a, b):
                 result.append(num)
                 break
     return result
-
-def test_generate_integers_2_8():
-    assert generate_integers(2, 8) == [2, 4, 6, 8]
-
-def test_generate_integers_8_2():
-    assert generate_integers(8, 2) == [2, 4, 6, 8]
-
-def test_generate_integers_10_14():
-    assert generate_integers(10, 14) == []
-
-def test_generate_integers_1_2():
-    assert generate_integers(1, 2) == [2]
-
-def test_generate_integers_2_1():
-    assert generate_integers(2, 1) == [2]
-
-def test_generate_integers_1_3():
-    assert generate_integers(1, 3) == [2]
-
-def test_generate_integers_3_2():
-    assert generate_integers(3, 2) == [2]

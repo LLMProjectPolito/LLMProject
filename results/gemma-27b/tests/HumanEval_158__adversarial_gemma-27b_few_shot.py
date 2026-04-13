@@ -68,4 +68,4 @@ def test_find_max_long_strings():
     assert find_max(["abcdefg", "abc"]) == "abcdefg"
 
 def test_find_max_mixed_case():
-    assert find_max(["aBc", "AbC"]) == "AbC" #lexicographical order
+    assert find_max(["aBc", "AbC"]) == "aBc" #lexicographical order

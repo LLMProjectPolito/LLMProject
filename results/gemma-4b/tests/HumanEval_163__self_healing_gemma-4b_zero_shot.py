@@ -56,14 +56,14 @@ def test_generate_integers_12_12():
 def test_generate_integers_1_10():
     assert generate_integers(1, 10) == [2, 4, 6, 8]
 
-def test_generate_integers_10_11():
-    assert generate_integers(10, 11) == [2, 4, 6, 8]
+def test_generate_integers_10_20():
+    assert generate_integers(10, 20) == [10, 12, 14, 16, 18, 20]
 
-def test_generate_integers_20_22():
-    assert generate_integers(20, 22) == [2, 4]
+def test_generate_integers_20_30():
+    assert generate_integers(20, 30) == [20, 22, 24, 26, 28, 30]
 
-def test_generate_integers_100_102():
-    assert generate_integers(100, 102) == [2, 4]
+def test_generate_integers_1_1():
+    assert generate_integers(1, 1) == []
 
-def test_generate_integers_22_28():
-    assert generate_integers(22, 28) == [2, 4, 6, 8]
+def test_generate_integers_24_24():
+    assert generate_integers(24, 24) == [2, 4]

@@ -27,10 +27,10 @@ def order_by_points(nums):
     if not nums:
         return []
 
-    def sum_digits(n):
+    def digit_sum(n):
         s = 0
         for digit in str(n):
             s += int(digit)
         return s
 
-    return sorted(nums, key=lambda x: (sum_digits(x), nums.index(x)))
+    return sorted(nums, key=lambda x: (digit_sum(x), nums.index(x)))

@@ -18,6 +18,7 @@ evalplus
 # Execution & Testing
 pytest
 pytest-cov
+mutmut
 radon
 
 # Data & Utilities

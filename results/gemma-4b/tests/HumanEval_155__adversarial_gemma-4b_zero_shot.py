@@ -18,8 +18,7 @@ def even_odd_count(num):
     """
     even_count = 0
     odd_count = 0
-    num = abs(num)
-    for digit in str(num):
+    for digit in str(abs(num)):
         digit = int(digit)
         if digit % 2 == 0:
             even_count += 1

@@ -25,8 +25,6 @@ import math
 
 
 # Focus: Boundary Values
-import pytest
-
 def is_prime(n):
     if n < 2:
         return False
@@ -35,7 +33,7 @@ def is_prime(n):
             return False
     return True
 
-def words_in_sentence(sentence):
+def words_in_sentence_prime(sentence):
     words = sentence.split()
     result = []
     for word in words:
@@ -71,7 +69,7 @@ def is_prime(n):
             return False
     return True
 
-def words_in_sentence(sentence):
+def words_in_sentence_prime(sentence):
     words = sentence.split()
     result = []
     for word in words:

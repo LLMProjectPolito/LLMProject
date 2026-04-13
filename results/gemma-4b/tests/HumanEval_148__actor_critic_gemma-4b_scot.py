@@ -82,7 +82,7 @@ def test_bf_same_planets():
     assert bf("Earth", "Earth") == ()
 
 def test_bf_planet1_before_planet2():
-    assert bf("Mercury", "Venus") == ("Earth", "Mars")
+    assert bf("Mercury", "Venus") == ("Earth")
 
 def test_bf_planet1_after_planet2():
     assert bf("Venus", "Mercury") == ()

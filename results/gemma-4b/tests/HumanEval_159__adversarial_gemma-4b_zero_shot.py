@@ -70,10 +70,10 @@ def test_eat_enough_carrots():
 def test_eat_need_more_than_remaining():
     assert eat(4, 8, 9) == [12, 1]
 
-def test_eat_all_remaining():
+def test_eat_already_eaten_enough():
     assert eat(1, 10, 10) == [11, 0]
 
-def test_eat_eat_all_remaining_2():
+def test_eat_not_enough_carrots():
     assert eat(2, 11, 5) == [7, 0]
 
 def test_eat_zero_need():
@@ -88,8 +88,8 @@ def test_eat_zero_number():
 def test_eat_large_numbers():
     assert eat(999, 999, 999) == [1998, 0]
 
-def test_eat_edge_case_1():
-    assert eat(0, 0, 0) == [0, 0]
+def test_eat_edge_case_need_equals_remaining():
+    assert eat(0, 5, 5) == [5, 0]
 
-def test_eat_edge_case_2():
-    assert eat(1000, 1000, 1000) == [2000, 0]
+def test_eat_edge_case_number_equals_remaining():
+    assert eat(5, 0, 5) == [5, 0]

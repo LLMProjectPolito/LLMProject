@@ -12,110 +12,89 @@ def solve(s):
     """
 
 import pytest
-from your_module import solve  # Replace your_module
+from your_module import solve  # Assuming the function is in your_module.py
 
-# Test Suite for solve(s) function
+class TestSolve:
+    """
+    Comprehensive pytest suite for the solve function.
+    """
 
-def test_solve_no_letters():
-    assert solve("1234") == "4321"
-    assert solve("!@#$%^") == "^%$#@!"
-    assert solve("") == ""  # Empty string case
+    def test_solve_no_letters(self):
+        """Test case: String with no letters, should reverse if only numbers/symbols."""
+        assert solve("1234") == "4321"
+        assert solve("!@#$%^") == "^%$#@!"
+        assert solve("") == ""  # Empty string should remain empty
 
-def test_solve_all_letters_lower():
-    assert solve("abc") == "ABC"
-    assert solve("hello") == "HELLO"
+    def test_solve_all_letters_lower(self):
+        """Test case: String with only lowercase letters, should swap case."""
+        assert solve("abc") == "ABC"
+        assert solve("hello") == "HELLO"
 
-def test_solve_all_letters_upper():
-    assert solve("ABC") == "abc"
-    assert solve("WORLD") == "world"
+    def test_solve_all_letters_upper(self):
+        """Test case: String with only uppercase letters, should swap case."""
+        assert solve("ABC") == "abc"
+        assert solve("WORLD") == "world"
 
-def test_solve_mixed_letters_and_symbols():
-    assert solve("#a@C") == "#A@c"
-    assert solve("1a2B3c") == "1A2b3C"
-    assert solve("a1B2c3D") == "A1b2C3d"
-    assert solve("!a@B#c$D") == "!A@b#C$d"
+    def test_solve_mixed_letters_and_symbols(self):
+        """Test case: String with letters and symbols, letters case swap, symbols unchanged."""
+        assert solve("#a@C") == "#A@c"
+        assert solve("1a2B#c") == "1A2b#C"
+        assert solve("!@aB#c$") == "!@Ab#c$"
+        assert solve("a1b2c3d4e") == "A1b2C3d4E"
 
-def test_solve_with_spaces():
-    assert solve("hello world") == "HELLO WORLD"
-    assert solve("  a b  ") == "  A B  "
+    def test_solve_with_spaces(self):
+        """Test case: String with spaces, spaces should remain unchanged."""
+        assert solve("hello world") == "HELLO WORLD"
+        assert solve(" a b c ") == " A B C "
 
-def test_solve_with_numbers_and_letters():
-    assert solve("1a2B3c") == "1A2b3C"
-    assert solve("a1B2c3D") == "A1b2C3d"
+    def test_solve_with_numbers_and_symbols(self):
+        """Test case: String with numbers and symbols, numbers unchanged, letters case swapped."""
+        assert solve("123abc456ABC!@#") == "123ABC456abc!@#"
+        assert solve("a1b2c3A") == "A1b2C3a"
 
-def test_solve_long_string():
-    long_string = "This is a long string with some letters and numbers 1234567890"
-    expected_result = "ThIs Is A lONG sTRING wITH sOME lETTERS AND NUMBERS 1234567890"
-    assert solve(long_string) == expected_result
+    def test_solve_long_string(self):
+        """Test case: Long string to ensure efficiency and correctness."""
+        long_string = "This is a long string with some letters and numbers 1234567890"
+        expected_result = "ThIs Is A Long String With Some Letters And Numbers 1234567890"
+        assert solve(long_string) == expected_result
 
-def test_solve_string_with_special_characters():
-    assert solve("!@#$%^&*()") == "!@#$%^&*()"
-    assert solve("!@#a$b%^&*()") == "!@#A$b%^&*()"
+    def test_solve_unicode_characters(self):
+        """Test case: String with unicode characters, should handle them correctly."""
+        assert solve("你好世界") == "你好世界"  # No case change for Chinese characters
+        assert solve("你好World") == "你好wORLD"
+        assert solve("éàçü") == "ÉÀÇÜ" # Test accented characters
 
-def test_solve_unicode_string():
-    assert solve("你好世界") == "你好世界" # Unicode characters should remain unchanged
-    assert solve("你好a世界") == "你好A世界"
+    def test_solve_special_characters(self):
+        """Test case: String with special characters, should remain unchanged."""
+        assert solve("!@#$%^&*()") == "!@#$%^&*()"
+        assert solve("~`[]\{}|;':\",./<>?") == "~`[]\{}|;':\",./<>?"
 
-def test_solve_string_with_newline():
-    assert solve("hello\nworld") == "HELLO\nWORLD"
+    def test_solve_mixed_case_and_symbols_with_numbers(self):
+        """Test case: Mixed case, symbols, and numbers."""
+        assert solve("aB1cDe2F") == "A b 1 C d e 2 f"
 
-def test_solve_string_with_tab():
-    assert solve("hello\tworld") == "HELLO\tWORLD"
+    def test_solve_edge_case_single_letter(self):
+        """Test case: String with a single letter, should swap case."""
+        assert solve("a") == "A"
+        assert solve("A") == "a"
 
-def test_solve_no_letters_reverse_suite2():
-    assert solve("1234") == "4321"
-    assert solve("!@#$%^") == "^%$#@!"
-    assert solve("1a2b3c") == "c b 2 a 1"
+    def test_solve_edge_case_single_number(self):
+        """Test case: String with a single number, should remain unchanged."""
+        assert solve("1") == "1"
 
-def test_solve_all_letters_case_swap_suite2():
-    assert solve("ab") == "AB"
-    assert solve("aB") == "Ab"
-    assert solve("abcXYZ") == "ABCxyz"
-    assert solve("AbCdEf") == "aBcDeF"
+    def test_solve_edge_case_single_symbol(self):
+        """Test case: String with a single symbol, should remain unchanged."""
+        assert solve("!") == "!"
 
-def test_solve_mixed_letters_and_symbols_suite2():
-    assert solve("#a@C") == "#A@c"
-    assert solve("!A#b@C") == "!a#B@c"
-    assert solve("1a!B@c") == "1A!b@C"
-    assert solve("a1B2c3D") == "A1b2C3d"
+    def test_solve_no_letters_reverse_suite2(self):
+        """Test case: String with no letters, should reverse."""
+        assert solve("1234") == "4321"
+        assert solve("!@#$%^") == "^%$#@!"
+        assert solve("123abc456") == "654cba321"
 
-def test_solve_empty_string_suite2():
-    assert solve("") == ""
-
-def test_solve_string_with_spaces_suite2():
-    assert solve("hello world") == "Hello World"
-    assert solve("  a b  ") == "  A B  "
-
-def test_solve_string_with_unicode_characters_suite2():
-    assert solve("你好世界") == "你好世界"  # No change as there are no letters
-    assert solve("你好A世界") == "你好a世界"
-
-def test_solve_string_with_numbers_and_letters_suite2():
-    assert solve("1a2B3c") == "1A2b3C"
-    assert solve("a1B2c3") == "A1b2C3"
-
-def test_solve_string_with_special_characters_suite2():
-    assert solve("!@#$%^&*()") == "!@#$%^&*()"
-    assert solve("a!B@c#D") == "A!b@C#d"
-
-def test_solve_long_string_suite2():
-    long_string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()"
-    expected_result = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()"
-    assert solve(long_string) == expected_result
-
-def test_solve_string_with_mixed_case_and_symbols_suite2():
-    assert solve("aBcDeF#gHiJ") == "AbCdEf#GhIj"
-
-
-def test_palindrome_basic():
-    assert is_palindrome('radar') == True
-    assert is_palindrome('hello') == False
-
-def test_palindrome_empty():
-    assert is_palindrome('') == True
-
-def test_max_positive():
-    assert get_max([1, 2, 3]) == 3
-
-def test_max_empty():
-    assert get_max([]) == None
+    def test_solve_all_letters_case_swap_suite2(self):
+        """Test case: String with only letters, should swap case."""
+        assert solve("ab") == "AB"
+        assert solve("aB") == "Ab"
+        assert solve("abcXYZ") == "ABCxyz"
+        assert solve("AbCdEf") == "aBcDeF"

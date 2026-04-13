@@ -27,6 +27,13 @@ def specialFilter(nums):
     return count
 
 def test_negative_odd_digits():
+    assert specialFilter([-15]) == 0
+
+def test_negative_odd_digits_2():
     assert specialFilter([-13]) == 0
-    assert specialFilter([-15]) == 0
-    assert specialFilter([-15]) == 0
+
+def test_example_1():
+    assert specialFilter([15, -73, 14, -15]) == 1
+
+def test_example_2():
+    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2

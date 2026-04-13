@@ -83,4 +83,4 @@ class TestSolve:
 
     def test_string_with_special_characters(self):
         assert solve("!@#$%^&*()") == "!@#$%^&*()"
-        assert solve("!a@b#c$d%") == "!A@B#C$D%"
+        assert solve("!a@B#c$") == "!A@b#C$"

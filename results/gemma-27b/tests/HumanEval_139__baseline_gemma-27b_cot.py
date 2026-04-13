@@ -47,9 +47,9 @@ def test_special_factorial_positive_integer():
 def test_special_factorial_large_integer():
     assert special_factorial(6) == 4608000
     # Test with a slightly larger number to check for potential overflow issues
-    # Note: Factorials grow very quickly, so very large numbers might cause issues.
-    # This test is limited by the maximum integer size.
-    # assert special_factorial(7) == 86400000000
+    # Note: Factorials grow very quickly, so very large numbers might cause issues
+    # depending on the system's integer limits.
+    # assert special_factorial(7) == 87178291200
 
 def test_special_factorial_type_error():
     with pytest.raises(TypeError):

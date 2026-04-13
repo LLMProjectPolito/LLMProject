@@ -52,7 +52,7 @@ def test_x_or_y_edge_cases():
     assert x_or_y(0, 10, 20) == 20  # 0 is not prime
     assert x_or_y(-1, 10, 20) == 20 # Negative number is not prime
     assert x_or_y(2, 0, 0) == 0
-    assert x_or_y(1, 0, 0) == 0
+    assert x_or_y(4, 0, 0) == 0
 
 def test_x_or_y_large_numbers():
     assert x_or_y(101, 1000, 1) == 1000 # 101 is prime

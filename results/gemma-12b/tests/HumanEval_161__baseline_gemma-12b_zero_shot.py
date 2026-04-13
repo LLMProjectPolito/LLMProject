@@ -71,12 +71,12 @@ class TestSolve:
         assert solve(" A b C ") == " a B c "
 
     def test_string_with_numbers_and_letters(self):
-        assert solve("1a2B3c4D") == "1A2b3C4d"
-        assert solve("a1B2c3D4") == "A1b2C3d4"
+        assert solve("1a2b3c") == "1A2B3c"
+        assert solve("a1b2c3") == "A1b2C3"
 
     def test_string_with_special_characters(self):
         assert solve("!@#$%^&*()") == "!@#$%^&*()"
-        assert solve("!a@B#c$D%") == "!A@b#C$d%"
+        assert solve("!a@b#c$d%") == "!A@b#C$d%"
 
     def test_long_string(self):
         long_string = "This is a long string with some letters and numbers 1234567890"

@@ -43,25 +43,16 @@ def test_mixed_numbers():
 def test_positive_and_negative_numbers():
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
-def test_single_number_11():
-    assert specialFilter([11]) == 0
-
-def test_single_number_15():
+def test_single_number():
     assert specialFilter([15]) == 1
-
-def test_single_number_21():
-    assert specialFilter([21]) == 0
-
-def test_single_number_109():
-    assert specialFilter([109]) == 1
 
 def test_large_numbers():
     assert specialFilter([111, 333, 555, 777, 999]) == 5
 
-def test_numbers_with_leading_zeros():
-    assert specialFilter([101, 303, 505, 707, 909]) == 5
+def test_number_109():
+    assert specialFilter([109]) == 1
 
-def test_number_equal_to_10():
+def test_number_10():
     assert specialFilter([10]) == 0
 
 def test_all_numbers_satisfying_condition():

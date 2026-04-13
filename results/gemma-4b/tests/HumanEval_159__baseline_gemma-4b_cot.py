@@ -92,6 +92,3 @@ def test_eat_large_numbers():
 
 def test_eat_edge_case_need_equals_remaining():
     assert eat(5, 5, 5) == [10, 0]
-
-def test_eat_edge_case_number_equals_remaining():
-    assert eat(5, 5, 5) == [10, 0]

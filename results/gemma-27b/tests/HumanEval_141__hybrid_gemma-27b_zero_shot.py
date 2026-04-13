@@ -84,14 +84,13 @@ class TestFileNameCheck:
         assert file_name_check(".txt") == 'No'
         assert file_name_check("MyFileexe") == 'No'
         assert file_name_check("documentdll") == 'No'
-        assert file_name_check("file.name.txt") == 'No'
 
     def test_invalid_file_names_starts_with_digit(self):
         assert file_name_check("1example.dll") == 'No'
         assert file_name_check("2file.txt") == 'No'
-        assert file_name_check("999file.exe") == 'No'
+        assert file_name_check("0document.exe") == 'No'
         assert file_name_check("2MyFile.exe") == 'No'
-        assert file_name_check("3document.dll") == 'No'
+        assert file_name_check("3document1.dll") == 'No'
 
     def test_invalid_file_names_empty_before_dot(self):
         assert file_name_check(".txt") == 'No'
@@ -102,13 +101,13 @@ class TestFileNameCheck:
         assert file_name_check("example.pdf") == 'No'
         assert file_name_check("file.jpg") == 'No'
         assert file_name_check("document.zip") == 'No'
-        assert file_name_check("file.abc") == 'No'
+        assert file_name_check("MyFile.jpg") == 'No'
+        assert file_name_check("document1.zip") == 'No'
 
     def test_invalid_file_names_non_alphabetic_start(self):
         assert file_name_check("_example.txt") == 'No'
         assert file_name_check("!MyFile.exe") == 'No'
-        assert file_name_check("#document.dll") == 'No'
-        assert file_name_check("$.txt") == 'No'
+        assert file_name_check("#document1.dll") == 'No'
 
     def test_edge_cases(self):
         assert file_name_check("a.txt") == 'Yes'
@@ -123,10 +122,4 @@ class TestFileNameCheck:
         assert file_name_check("A12.exe") == 'Yes'
         assert file_name_check("a123.dll") == 'Yes'
         assert file_name_check("A123.exe") == 'Yes'
-        assert file_name_check("file.dll") == 'Yes'
-        assert file_name_check("file1.txt") == 'Yes'
-        assert file_name_check("file12.exe") == 'Yes'
-        assert file_name_check("file123.dll") == 'Yes'
-        assert file_name_check("verylongfilename.txt") == 'Yes'
-        assert file_name_check("verylongfilename1.exe") == 'Yes'
-        assert file_name_check("verylongfilename12.dll") == 'Yes'
+        assert file_name_check("a1b.dll") == 'Yes'

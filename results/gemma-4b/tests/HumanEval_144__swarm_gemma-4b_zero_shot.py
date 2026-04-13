@@ -29,10 +29,10 @@ def simplify(x, n):
     """
     num_x, den_x = map(int, x.split('/'))
     num_n, den_n = map(int, n.split('/'))
-
+    
     product_num = num_x * num_n
     product_den = den_x * den_n
-
+    
     if product_num % product_den == 0:
         return True
     else:
@@ -50,8 +50,5 @@ def test_simplify_false():
 def test_simplify_false2():
     assert simplify("7/10", "10/2") == False
 
-def test_simplify_equal():
-    assert simplify("2/3", "3/2") == True
-
 def test_simplify_zero_denominator():
-    assert simplify("1/0", "5/1") == False
+    assert simplify("1/0", "5/1") == False # Should handle zero denominator gracefully

@@ -96,9 +96,3 @@ def test_int_to_mini_roman_900():
 
 def test_int_to_mini_roman_1000():
     assert int_to_mini_roman(1000) == 'm'
-
-def test_int_to_mini_roman_14():
-    assert int_to_mini_roman(14) == 'xiv'
-
-def test_int_to_mini_roman_41():
-    assert int_to_mini_roman(41) == 'xlI'

@@ -46,18 +46,6 @@ def test_long_string_with_mixed_content():
 def test_string_with_unicode_characters():
     assert solve("你好世界") == "你好世界"
 
-def test_string_with_numbers_and_special_chars():
-    assert solve("123!@#") == "!@#321"
-
-def test_string_with_letters_at_beginning_and_end():
-    assert solve("a123b") == "A123B"
-
-def test_string_with_only_one_letter():
-    assert solve("a") == "A"
-
-def test_string_with_only_one_number():
-    assert solve("1") == "1"
-
 def test_string_with_numbers_and_unicode():
     assert solve("123你好") == "123你好"
 
@@ -74,7 +62,19 @@ def test_string_with_only_numbers_and_spaces():
     assert solve("1 2 3") == "3 2 1"
 
 def test_string_with_only_special_characters_and_spaces():
-    assert solve("! @ #") == "! @ #"
+    assert solve("! @ #") == "# @ !"
 
-def test_string_with_mixed_special_characters_numbers_and_spaces():
-    assert solve("!1@ 2#") == "!1@ 2#"
+def test_long_string():
+    assert solve("ThisIsALongString") == "tHISiSaLONGsTRING"
+
+def test_string_with_numbers_and_special_chars():
+    assert solve("123!@#") == "123!@#"
+
+def test_string_with_letters_at_beginning_and_end():
+    assert solve("a123b") == "A123B"
+
+def test_string_with_multiple_letters():
+    assert solve("abc123def") == "ABC123DEF"
+
+def test_string_with_consecutive_letters():
+    assert solve("aaBBcc") == "AAbbCC"

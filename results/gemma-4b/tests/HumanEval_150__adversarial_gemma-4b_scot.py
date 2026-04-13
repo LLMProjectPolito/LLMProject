@@ -38,21 +38,21 @@ def is_prime(n):
 STEP 1: REASONING -
 The function `x_or_y` checks if a number `n` is prime. If it is, it returns `x`; otherwise, it returns `y`.
 We need to test various scenarios:
-1.  `n` is prime: `x` should be returned.
+1.  `n` is prime:  `x` should be returned.
 2.  `n` is not prime: `y` should be returned.
 3.  `n` is 1 or less: `y` should be returned.
-4.  `x` and `y` are equal: The function should return `x` when `n` is prime and `y` otherwise.
-5.  Edge cases: Small prime and non-prime numbers.
+4.  `x` and `y` are equal:  The function should return `x` for prime `n` and `y` for non-prime `n`.
+5.  `x` and `y` are different: The function should return the correct value based on primality.
+6.  Edge cases: Small prime and non-prime numbers.
 
 STEP 2: PLAN -
 Test functions:
-1.  `test_prime_x()`: Tests when `n` is prime and `x` is returned.
-2.  `test_non_prime_y()`: Tests when `n` is not prime and `y` is returned.
-3.  `test_n_is_one()`: Tests when `n` is 1 or less and `y` is returned.
-4.  `test_x_equals_y()`: Tests when `x` and `y` are equal.
-5.  `test_small_prime()`: Tests with a small prime number.
-6.  `test_small_non_prime()`: Tests with a small non-prime number.
-7.  `test_large_prime()`: Tests with a large prime number.
-8.  `test_large_non_prime()`: Tests with a large non-prime number.
+1.  `test_prime_x`: Tests when `n` is prime and `x` is returned.
+2.  `test_non_prime_y`: Tests when `n` is not prime and `y` is returned.
+3.  `test_one_y`: Tests when `n` is 1 and `y` is returned.
+4.  `test_x_equals_y`: Tests when `x` and `y` are equal.
+5.  `test_different_x_y`: Tests when `x` and `y` are different.
+6.  `test_small_prime`: Tests with a small prime number.
+7.  `test_small_non_prime`: Tests with a small non-prime number.
 
 STEP 3: CODE -

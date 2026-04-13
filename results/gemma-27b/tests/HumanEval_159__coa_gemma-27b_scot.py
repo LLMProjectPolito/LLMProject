@@ -56,13 +56,13 @@ def test_equivalence_partitioning_enough_carrots():
 def test_equivalence_partitioning_not_enough_carrots():
     assert eat(2, 11, 5) == [7, 0]
     assert eat(10, 20, 5) == [15, 0]
-    assert eat(100, 200, 50) == [150, 0]
+    assert eat(50, 100, 20) == [70, 0]
 
 def test_equivalence_partitioning_zero_values():
     assert eat(0, 0, 0) == [0, 0]
     assert eat(0, 5, 10) == [5, 5]
-    assert eat(5, 0, 10) == [5, 10]
-    assert eat(5, 5, 0) == [5, 0]
+    assert eat(5, 0, 0) == [5, 0]
+    assert eat(0, 5, 0) == [0, 0]
 
 # Focus: Logic Branches
 import pytest

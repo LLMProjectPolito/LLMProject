@@ -42,14 +42,14 @@ def test_find_max_empty():
     assert find_max([]) == ""
 
 def test_find_max_single():
-    assert find_max(["a"]) == "a"
+    assert find_max(["abc"]) == "abc"
 
 def test_find_max_multiple():
     assert find_max(["name", "of", "string"]) == "string"
     assert find_max(["name", "enam", "game"]) == "enam"
     assert find_max(["aaaaaaa", "bb" ,"cc"]) == ""
-    assert find_max(["abc", "def", "ghi"]) == "abc"
     assert find_max(["a", "b", "c"]) == "a"
+    assert find_max(["abc", "def", "ghi"]) == "abc"
     
 def test_duplicate_max():
     assert find_max(["a", "a", "b"]) == "a"
@@ -57,11 +57,10 @@ def test_duplicate_max():
     
 def test_lexicographical_order():
     assert find_max(["aaaaaaa", "bb", "cc"]) == ""
-    assert find_max(["a", "aa", "aaa"]) == "aaa"
     
-def test_same_max_unique_chars():
-    assert find_max(["abc", "def", "ghi"]) == "abc"
+def test_different_lengths():
+    assert find_max(["a", "bb", "ccc"]) == "ccc"
     
 def test_mixed_case():
-    assert find_max(["aBc", "bC", "cD"]) == "bC"
+    assert find_max(["aBc", "bC", "cC"]) == "bC"
 ```

@@ -53,26 +53,23 @@ def test_generate_integers_mixed():
 def test_generate_integers_with_zeros():
     assert generate_integers(20, 28) == [2, 4, 6, 8]
 
-def test_generate_integers_with_multiple_even_digits():
-    assert generate_integers(12, 18) == [2, 4, 6, 8]
-
-def test_generate_integers_large_range():
-    assert generate_integers(100, 108) == [0, 2, 4, 6, 8]
+def test_generate_integers_larger_range():
+    assert generate_integers(100, 110) == [100, 102, 104, 106, 108, 110]
 
 def test_generate_integers_no_even_digits():
     assert generate_integers(1, 3) == []
 
+def test_generate_integers_with_duplicate_even_digits():
+    assert generate_integers(2, 6) == [2, 4, 6]
+
 def test_generate_integers_start_and_end_same():
     assert generate_integers(4, 4) == [4]
 
-def test_generate_integers_negative_range():
-    assert generate_integers(-2, 2) == [2]
+def test_generate_integers_large_numbers():
+    assert generate_integers(123456, 123456) == []
 
-def test_generate_integers_negative_and_positive():
-    assert generate_integers(-2, 2) == [2]
+def test_generate_integers_with_multiple_even_digits():
+    assert generate_integers(12, 18) == [2, 4, 6, 8]
 
-def test_generate_integers_complex_range():
-    assert generate_integers(11, 15) == []
-
-def test_generate_integers_with_duplicate_even_digits():
-    assert generate_integers(22, 28) == [2, 4, 6, 8]
+def test_generate_integers_with_mixed_even_and_odd_digits():
+    assert generate_integers(12, 16) == [2, 4, 6]

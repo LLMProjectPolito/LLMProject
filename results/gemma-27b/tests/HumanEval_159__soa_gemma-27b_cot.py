@@ -62,7 +62,7 @@ def test_eat_large_numbers():
     assert eat(100, 200, 300) == [300, 100]
 
 def test_eat_large_numbers_not_enough():
-    assert eat(100, 200, 100) == [200, 0]
+    assert eat(100, 200, 50) == [150, 0]
 
 def test_eat_max_values():
     assert eat(1000, 1000, 1000) == [2000, 0]

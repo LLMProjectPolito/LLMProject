@@ -39,7 +39,7 @@ def test_single_special_number():
     assert specialFilter([15]) == 1
 
 def test_multiple_special_numbers():
-    assert specialFilter([15, 33, 57, 79, 91]) == 5
+    assert specialFilter([15, 33, 55, 77, 99]) == 5
 
 def test_mixed_numbers():
     assert specialFilter([15, -73, 14, -15]) == 1
@@ -48,7 +48,7 @@ def test_negative_numbers():
     assert specialFilter([-11, -13, -15, -17, -19]) == 5
 
 def test_large_numbers():
-    assert specialFilter([101, 123, 155, 177, 199]) == 5
+    assert specialFilter([101, 123, 157, 189, 1001]) == 4
 
 def test_numbers_with_even_digits():
     assert specialFilter([12, 34, 56, 78, 90]) == 0
@@ -62,11 +62,35 @@ def test_complex_case():
 def test_zero_in_number():
     assert specialFilter([101, 103, 105, 107, 109]) == 0
 
-def test_all_negative_numbers():
-    assert specialFilter([-11, -12, -13, -14, -15]) == 3
+def test_all_numbers_greater_than_10_but_none_special():
+    assert specialFilter([12, 14, 16, 18, 21, 23]) == 0
 
-def test_mixed_positive_and_negative():
-    assert specialFilter([11, -13, 15, -17, 19]) == 5
+def test_mixed_positive_and_negative_special():
+    assert specialFilter([15, -33, 57, -79, 91]) == 5
 
-def test_large_negative_numbers():
-    assert specialFilter([-101, -123, -155, -177, -199]) == 5
+def test_large_negative_special():
+    assert specialFilter([-111, -131, -151]) == 3
+
+def test_numbers_with_even_first_digit():
+    assert specialFilter([21, 43, 65, 87, 09]) == 0
+
+def test_numbers_with_even_last_digit():
+    assert specialFilter([12, 34, 56, 78, 90]) == 0
+
+def test_numbers_with_both_even_digits():
+    assert specialFilter([24, 46, 68, 80]) == 0
+
+def test_numbers_greater_than_10_but_not_special():
+    assert specialFilter([12, 14, 16, 18, 21]) == 0
+
+def test_large_numbers():
+    assert specialFilter([111, 333, 555, 777, 999, 12345]) == 5
+
+def test_mixed_large_and_small_numbers():
+    assert specialFilter([15, 12345, 20, 37, 59, 71, 93, 10]) == 5
+
+def test_negative_special_numbers():
+    assert specialFilter([-13, -35, -57, -79, -91]) == 5
+
+def test_negative_and_positive_special_numbers():
+    assert specialFilter([15, -37, 59, -71, 93]) == 4

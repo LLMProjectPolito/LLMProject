@@ -46,17 +46,18 @@ def test_number_with_repeating_digits():
 def test_number_with_leading_zeros_treated_as_digits():
     assert even_odd_count(10203) == (2, 2)
 
-def test_edge_case_small_negative():
-    assert even_odd_count(-1) == (0, 1)
+def test_empty_input():
+    with pytest.raises(TypeError):
+        even_odd_count(None)
 
-def test_edge_case_small_positive():
-    assert even_odd_count(1) == (0, 1)
+def test_float_input():
+    with pytest.raises(TypeError):
+        even_odd_count(1.23)
 
-def test_edge_case_zero_and_one():
-    assert even_odd_count(10) == (1, 1)
+def test_string_input():
+    with pytest.raises(TypeError):
+        even_odd_count("123")
 
-def test_another_mixed_digits():
-    assert even_odd_count(2143) == (2, 2)
-
-def test_another_negative_mixed_digits():
-    assert even_odd_count(-2143) == (2, 2)
+def test_boolean_input():
+    with pytest.raises(TypeError):
+        even_odd_count(True)

@@ -19,6 +19,7 @@ def x_or_y(n, x, y):
     
     """
     def is_prime(n):
+        """Helper function to determine if a number is prime."""
         if n <= 1:
             return False
         if n <= 3:

@@ -66,7 +66,7 @@ def test_compare_zero_values():
 
 def test_compare_large_numbers():
     assert compare([1000, 2000, 3000], [1000, 2000, 3000]) == [0, 0, 0]
-    assert compare([1000, 2000, 3000], [1001, 1999, 3002]) == [1, 1, 2]
+    assert compare([1000, 2000, 3000], [1001, 1999, 3001]) == [1, 1, 1]
 
 def test_compare_different_lengths():
     with pytest.raises(IndexError):

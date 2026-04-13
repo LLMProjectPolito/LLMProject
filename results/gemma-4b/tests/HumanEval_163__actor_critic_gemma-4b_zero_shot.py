@@ -64,5 +64,5 @@ def test_generate_integers_edge_cases():
     assert generate_integers(1, 10) == [2, 4, 6, 8]
     assert generate_integers(10, 1) == [2, 4, 6, 8]
     assert generate_integers(22, 22) == [2, 2]
-    assert generate_integers(2, 22) == [2, 4, 6, 8]
-    assert generate_integers(22, 2) == [2, 4, 6, 8]
+    assert generate_integers(2, 100) == [2, 4, 6, 8]
+    assert generate_integers(100, 2) == [2, 4, 6, 8]

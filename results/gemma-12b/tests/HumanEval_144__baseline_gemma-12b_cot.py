@@ -35,50 +35,47 @@ def simplify(x, n):
     return num % den == 0
 
 class TestSimplify:
-    def test_whole_number_result(self):
+    def test_basic_true(self):
         assert simplify("1/5", "5/1") == True
 
-    def test_non_whole_number_result(self):
+    def test_basic_false(self):
         assert simplify("1/6", "2/1") == False
 
-    def test_another_non_whole_number_result(self):
+    def test_another_false(self):
         assert simplify("7/10", "10/2") == False
 
-    def test_simple_whole_number(self):
+    def test_whole_numbers(self):
         assert simplify("1/1", "1/1") == True
 
-    def test_larger_numbers_whole(self):
+    def test_large_numbers_true(self):
+        assert simplify("100/2", "2/100") == True
+
+    def test_large_numbers_false(self):
+        assert simplify("100/3", "3/100") == False
+
+    def test_mixed_numbers_true(self):
         assert simplify("2/3", "3/2") == True
 
-    def test_larger_numbers_not_whole(self):
-        assert simplify("2/3", "1/2") == False
+    def test_mixed_numbers_false(self):
+        assert simplify("2/5", "5/3") == False
+
+    def test_same_numerator_different_denominator_true(self):
+        assert simplify("1/2", "2/1") == True
+
+    def test_same_denominator_different_numerator_false(self):
+        assert simplify("1/3", "2/1") == False
 
     def test_one_is_one(self):
-        assert simplify("1/2", "2/1") == False
-
-    def test_both_fractions_are_one(self):
         assert simplify("1/1", "1/1") == True
 
-    def test_numerator_one(self):
-        assert simplify("1/4", "4/1") == True
+    def test_zero_numerator_true(self):
+        assert simplify("0/1", "1/1") == True
 
-    def test_denominator_one(self):
-        assert simplify("2/1", "1/2") == False
+    def test_zero_numerator_false(self):
+        assert simplify("0/1", "1/2") == True
 
-    def test_mixed_numbers_whole(self):
-        assert simplify("3/4", "4/3") == True
+    def test_complex_fractions_true(self):
+        assert simplify("3/7", "14/3") == True
 
-    def test_mixed_numbers_not_whole(self):
-        assert simplify("3/4", "1/3") == False
-
-    def test_large_numbers_whole(self):
-        assert simplify("12/15", "15/12") == True
-
-    def test_large_numbers_not_whole(self):
-        assert simplify("12/15", "1/2") == False
-
-    def test_same_numerator_and_denominator(self):
-        assert simplify("5/5", "5/5") == True
-
-    def test_different_numerator_and_denominator(self):
-        assert simplify("2/7", "3/5") == False
+    def test_complex_fractions_false(self):
+        assert simplify("3/7", "15/3") == False

@@ -38,48 +38,60 @@ def file_name_check(file_name):
     file_name_check("example.txt") # => 'Yes'
     file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
-    if not file_name:
-        return 'No'
-
-    digit_count = 0
-    for char in file_name:
-        if char.isdigit():
-            digit_count += 1
-
-    if digit_count > 3:
-        return 'No'
-
-    if file_name.count('.') != 1:
-        return 'No'
-
+    digits = 0
+    dot_count = 0
     parts = file_name.split('.')
-    if not parts[0] or not parts[0][0].isalpha():
+    if len(parts) != 2:
         return 'No'
-
-    if parts[1] not in ['txt', 'exe', 'dll']:
+    
+    substring_before_dot = parts[0]
+    substring_after_dot = parts[1]
+    
+    for char in substring_before_dot:
+        if char.isdigit():
+            digits += 1
+    
+    dot_count = file_name.count('.')
+    
+    if digits > 3 or dot_count != 1:
         return 'No'
-
+    
+    if not substring_before_dot or not substring_before_dot[0].isalpha():
+        return 'No'
+    
+    if substring_after_dot not in ['txt', 'exe', 'dll']:
+        return 'No'
+    
     return 'Yes'
 
-def test_edge_empty():
+def test_edge_empty_string():
     assert file_name_check("") == 'No'
 
-def test_edge_too_many_digits():
-    assert file_name_check("1234.txt") == 'No'
+def test_edge_only_digits():
+    assert file_name_check("1234") == 'No'
+
+def test_edge_multiple_dots():
+    assert file_name_check("file.with.multiple.dots.txt") == 'No'
 
 def test_edge_no_dot():
-    assert file_name_check("exampletxt") == 'No'
+    assert file_name_check("example") == 'No'
 
-def test_edge_dot_multiple():
-    assert file_name_check("example..txt") == 'No'
+def test_edge_dot_at_start():
+    assert file_name_check(".example.txt") == 'No'
 
-def test_edge_empty_before_dot():
-    assert file_name_check(".txt") == 'No'
+def test_edge_dot_at_end():
+    assert file_name_check("example.") == 'No'
 
-def test_edge_invalid_start_letter():
+def test_edge_substring_empty():
+    assert file_name_check("..txt") == 'No'
+
+def test_edge_substring_only_digits():
+    assert file_name_check("123.txt") == 'No'
+
+def test_edge_substring_starts_with_digit():
     assert file_name_check("1example.txt") == 'No'
 
-def test_edge_invalid_extension():
+def test_edge_substring_invalid_extension():
     assert file_name_check("example.pdf") == 'No'
 
 import pytest

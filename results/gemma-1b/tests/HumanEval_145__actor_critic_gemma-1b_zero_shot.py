@@ -29,7 +29,7 @@ def order_by_points(nums):
 
     def digit_sum(n):
         s = 0
-        for digit in str(n):
+        for digit in str(abs(n)):
             s += int(digit)
         return s
 

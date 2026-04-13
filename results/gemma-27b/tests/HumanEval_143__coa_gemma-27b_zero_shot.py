@@ -62,8 +62,11 @@ def words_in_sentence(sentence):
         * sentence contains only letters
     """
     words = sentence.split()
-    prime_words = [word for word in words if is_prime(len(word))]
-    return " ".join(prime_words)
+    result = []
+    for word in words:
+        if is_prime(len(word)):
+            result.append(word)
+    return " ".join(result)
 
 def test_prime_number_word_lengths_example_1():
     assert words_in_sentence("This is a test") == "is"
@@ -71,10 +74,10 @@ def test_prime_number_word_lengths_example_1():
 def test_prime_number_word_lengths_example_2():
     assert words_in_sentence("lets go for swimming") == "go for"
 
-def test_prime_number_word_lengths_no_prime_lengths():
+def test_prime_number_word_lengths_no_primes():
     assert words_in_sentence("hello world") == ""
 
-def test_prime_number_word_lengths_all_prime_lengths():
+def test_prime_number_word_lengths_all_primes():
     assert words_in_sentence("a bb ccc dddd eeeee") == "a bb ccc"
 
 def test_prime_number_word_lengths_empty_string():
@@ -127,9 +130,6 @@ def test_empty_sentence():
 def test_null_sentence():
     assert words_in_sentence(None) == ""
 
-def test_sentence_with_only_spaces():
-    assert words_in_sentence("   ") == ""
-
 # Focus: Sentence with Non-Space Characters Only
 import pytest
 
@@ -178,4 +178,4 @@ def test_non_space_only_2():
     assert words_in_sentence("abcdef") == "abcdef"
 
 def test_non_space_only_3():
-    assert words_in_sentence("abcdefgh") == "abcdefgh"
+    assert words_in_sentence("a") == ""

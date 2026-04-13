@@ -31,8 +31,6 @@ def sum_squares(lst):
     for i, num in enumerate(lst):
         if i % 3 == 0 and i % 4 != 0:
             total += num ** 2
-        elif i % 3 == 0:
-            total += num ** 2
         elif i % 4 == 0 and i % 3 != 0:
             total += num ** 3
         else:
@@ -54,10 +52,24 @@ def sum_squares(lst):
     for i, num in enumerate(lst):
         if i % 3 == 0 and i % 4 != 0:
             total += num ** 2
-        elif i % 3 == 0:
-            total += num ** 2
         elif i % 4 == 0 and i % 3 != 0:
             total += num ** 3
         else:
             pass
     return total
+
+def test_sum_squares():
+    """
+    Tests the sum_squares function.
+    """
+    assert sum_squares([1, 2, 3]) == 6
+    assert sum_squares([]) == 0
+    assert sum_squares([-1, -5, 2, -1, -5]) == -126
+    assert sum_squares([1, 2, 3, 4, 5]) == 55
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 55
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7]) == 55
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 55
+    print("All tests passed!")
+
+if __name__ == '__main__':
+    test_sum_squares()

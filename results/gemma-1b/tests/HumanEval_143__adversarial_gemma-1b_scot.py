@@ -56,3 +56,17 @@ def words_in_sentence(sentence):
         if is_prime(len(word)):
             result.append(word)
     return " ".join(result)
+
+# Test cases
+def test_words_in_sentence():
+    assert words_in_sentence("This is a test") == "is"
+    assert words_in_sentence("lets go for swimming") == "go for"
+    assert words_in_sentence("a b c d e") == "a b c d e"
+    assert words_in_sentence("abc") == "abc"
+    assert words_in_sentence("12345") == "12345"
+    assert words_in_sentence("1234567890") == "1234567890"
+    assert words_in_sentence("") == ""
+    assert words_in_sentence("a b c") == "a b c"
+    assert words_in_sentence("a b c d e f") == "a b c d e f"
+    assert words_in_sentence("a b c d e f g h") == "a b c d e f g h"
+    print("All test cases passed")

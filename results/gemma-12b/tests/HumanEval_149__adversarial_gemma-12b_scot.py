@@ -36,29 +36,27 @@ def sorted_list_sum(lst):
     even_length_strings.sort(key=lambda s: (len(s), s))
     return even_length_strings
 
-def test_empty_list():
-    assert sorted_list_sum([]) == []
+class TestSortedListSum:
+    def test_empty_list(self):
+        assert sorted_list_sum([]) == []
 
-def test_all_odd_length():
-    assert sorted_list_sum(["a", "bbb", "ccccc"]) == []
+    def test_only_odd_length(self):
+        assert sorted_list_sum(["a", "bbb", "ccccc"]) == []
 
-def test_all_even_length():
-    assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
+    def test_only_even_length(self):
+        assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
-def test_mixed_lengths():
-    assert sorted_list_sum(["aa", "a", "aaa", "bb", "c"]) == ["aa", "bb"]
+    def test_mixed_odd_even(self):
+        assert sorted_list_sum(["aa", "a", "aaa", "bb", "c"]) == ["aa", "bb"]
 
-def test_duplicate_strings():
-    assert sorted_list_sum(["aa", "a", "aa", "bbb", "bb"]) == ["aa", "aa", "bb"]
+    def test_duplicates(self):
+        assert sorted_list_sum(["aa", "a", "aaa", "bb", "c", "aa"]) == ["aa", "aa", "bb"]
 
-def test_same_length_strings():
-    assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
+    def test_same_length(self):
+        assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
 
-def test_various_lengths_and_alphabetical():
-    assert sorted_list_sum(["abc", "ab", "a", "abcd", "abcde"]) == ["ab", "abc", "abcd"]
+    def test_short_and_long_strings(self):
+        assert sorted_list_sum(["a", "bb", "ccc", "dddd"]) == ["bb", "dddd"]
 
-def test_single_element_list():
-    assert sorted_list_sum(["aa"]) == ["aa"]
-
-def test_long_strings():
-    assert sorted_list_sum(["abcdefgh", "abcdef", "abcde"]) == ["abcdef", "abcdefgh"]
+    def test_edge_case_single_char(self):
+        assert sorted_list_sum(["a", "bb"]) == ["bb"]

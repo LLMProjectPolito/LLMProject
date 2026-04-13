@@ -59,6 +59,4 @@ def test_non_numeric_input():
     with pytest.raises(TypeError):
         compare([1, 2], ['a', 'b'])
     with pytest.raises(TypeError):
-        compare([1, 2], [1, 'a'])
-    with pytest.raises(TypeError):
         compare(['a', 'b'], [1, 2])

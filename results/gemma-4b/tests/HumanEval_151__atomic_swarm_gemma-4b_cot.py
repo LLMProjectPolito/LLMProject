@@ -43,6 +43,27 @@ def double_the_difference(lst):
 def test_empty_list():
     assert double_the_difference([]) == 0
 
+def test_all_negative():
+    assert double_the_difference([-1, -3, -5]) == 0
+
+def test_mixed_positive_negative():
+    assert double_the_difference([-1, 3, -5, 7]) == 1 + 9 + 25 + 49
+
+def test_zeroes_and_odd():
+    assert double_the_difference([0, 1, 0, 3]) == 1 + 9
+
+def test_only_zeroes():
+    assert double_the_difference([0, 0, 0]) == 0
+
+def test_large_numbers():
+    assert double_the_difference([1001, 2003]) == 1002001 + 4012009
+
+def test_negative_limits():
+    assert double_the_difference([-1, -2, -3]) == 0
+
+def test_non_integer():
+    assert double_the_difference([1.5, 2, 3]) == 9
+
 import pytest
 
 def test_empty_list():

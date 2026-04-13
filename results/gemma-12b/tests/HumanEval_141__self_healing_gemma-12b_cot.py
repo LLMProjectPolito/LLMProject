@@ -59,11 +59,10 @@ def test_invalid_file_name_empty_extension():
 
 def test_file_name_with_spaces():
     assert file_name_check("example .txt") == "No"
+    assert file_name_check("example. txt") == "No"
     assert file_name_check(" example.txt") == "No"
-    assert file_name_check("example.txt ") == "No"
 
 def test_file_name_with_special_characters():
     assert file_name_check("example@.txt") == "No"
-    assert file_name_check("example!.txt") == "No"
     assert file_name_check("example#.txt") == "No"
     assert file_name_check("example$.txt") == "No"

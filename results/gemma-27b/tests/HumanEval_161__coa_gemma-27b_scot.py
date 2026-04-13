@@ -41,17 +41,17 @@ def solve(s):
         else:
             result += char
     if not has_letter:
-        return result[::-1]
+        result = result[::-1]
     return result
 
-def test_case_sensitivity_1():
+def test_case_sensitivity_letters():
     assert solve("ab") == "AB"
 
-def test_case_sensitivity_2():
-    assert solve("aBc") == "AbC"
-
-def test_case_sensitivity_3():
+def test_case_sensitivity_mixed():
     assert solve("#a@C") == "#A@c"
+
+def test_no_letters():
+    assert solve("1234") == "4321"
 
 # Focus: Empty/All Non-Letter Strings
 import pytest

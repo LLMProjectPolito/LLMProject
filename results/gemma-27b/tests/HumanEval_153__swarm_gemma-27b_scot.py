@@ -42,11 +42,7 @@ def Strongest_Extension(class_name, extensions):
     for extension in extensions:
         cap_count = sum(1 for char in extension if char.isupper())
         sm_count = sum(1 for char in extension if char.islower())
-        
-        if len(extension) > 0:
-            strength = cap_count - sm_count
-        else:
-            strength = float('-inf')
+        strength = cap_count - sm_count
 
         if strength > max_strength:
             max_strength = strength
@@ -64,3 +60,14 @@ def test_empty_extension_string(class_name, extensions):
     """
     expected_result = "TestClass.Extension1"
     assert Strongest_Extension(class_name, extensions) == expected_result
+
+@pytest.mark.parametrize("class_name, extensions", [
+    ("TestClass", ["ALLCAPS", "alllower", "MiXeDCase"])
+])
+def test_edge_case_all_same_strength(class_name, extensions):
+    """Tests the case where multiple extensions have the same strength,
+    ensuring the first one in the list is chosen."""
+    assert Strongest_Extension(class_name, extensions) == "TestClass.ALLCAPS"
+
+def test_empty_extensions_list():
+    assert Strongest_Extension("MyClass", []) == "MyClass.None"

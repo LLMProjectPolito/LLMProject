@@ -90,5 +90,4 @@ class TestFileNameCheck:
         assert file_name_check("000.txt") == "Yes"
         assert file_name_check("a000.txt") == "No"
         assert file_name_check("a123.txt") == "No"
-        assert file_name_check("a.txt") == "Yes"
         assert file_name_check("a.TXT") == "Yes"

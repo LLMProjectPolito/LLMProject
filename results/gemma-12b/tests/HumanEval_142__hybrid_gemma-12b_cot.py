@@ -26,15 +26,13 @@ def sum_squares(lst):
     For lst = []  the output should be 0
     For lst = [-1,-5,2,-1,-5]  the output should be -126
     """
-    total = 0
-    for i, num in enumerate(lst):
+    new_lst = lst[:]
+    for i in range(len(new_lst)):
         if i % 3 == 0:
-            total += num**2
+            new_lst[i] = new_lst[i]**2
         elif i % 4 == 0 and i % 3 != 0:
-            total += num**3
-        else:
-            total += num
-    return total
+            new_lst[i] = new_lst[i]**3
+    return sum(new_lst)
 
 class TestSumSquares:
     def test_empty_list(self):
@@ -46,46 +44,29 @@ class TestSumSquares:
     def test_negative_numbers(self):
         assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
-    def test_mixed_positive_negative(self):
-        assert sum_squares([1, -2, 3, -4, 5]) == 33
+    def test_mixed_numbers(self):
+        assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 232
 
-    def test_multiples_of_3(self):
-        assert sum_squares([3, 6, 9, 1, 2, 4]) == 126
-
-    def test_multiples_of_4(self):
-        assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 100
-
-    def test_multiples_of_both_3_and_4(self):
-        assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 210
+    def test_multiples_of_3_and_4(self):
+        assert sum_squares([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 216
 
     def test_large_numbers(self):
-        assert sum_squares([10, 20, 30, 40]) == 10000
+        assert sum_squares([10, 20, 30, 40]) == 100 + 8000 + 900 + 64000
 
-    def test_zeroes(self):
+    def test_list_with_zeros(self):
         assert sum_squares([0, 0, 0, 0, 0]) == 0
 
-    def test_zero_in_list(self):
-        assert sum_squares([0, 1, 2, 3, 4]) == 0 + 1 + 2 + 9 + 4
-
-    def test_list_with_zeros_at_indices_3_and_4(self):
-        assert sum_squares([1, 2, 3, 0, 0, 6]) == 1 + 2 + 9 + 0 + 0 + 36
-
-    def test_list_with_duplicate_numbers(self):
-        assert sum_squares([2, 2, 2, 2, 2]) == 4 + 4 + 8 + 8 + 2
-
-    def test_single_element_list_multiple_of_3(self):
-        assert sum_squares([3]) == 9
-
-    def test_single_element_list_multiple_of_4(self):
-        assert sum_squares([4]) == 64
-
-    def test_single_element_list_not_multiple_of_3_or_4(self):
+    def test_list_with_one_element(self):
         assert sum_squares([5]) == 5
 
-    def test_list_with_floats(self):
-        with pytest.raises(TypeError):
-            sum_squares([1.0, 2.0, 3.0])
+    def test_list_with_one_element_multiple_of_3(self):
+        assert sum_squares([3]) == 9
 
-    def test_list_with_strings(self):
-        with pytest.raises(TypeError):
-            sum_squares(["a", "b", "c"])
+    def test_list_with_one_element_multiple_of_4(self):
+        assert sum_squares([4]) == 64
+
+    def test_list_with_multiple_of_both_3_and_4(self):
+        assert sum_squares([12]) == 144
+
+    def test_list_with_negative_and_positive(self):
+        assert sum_squares([-2, 3, -4, 5]) == 25 + 5 - 8 + 125

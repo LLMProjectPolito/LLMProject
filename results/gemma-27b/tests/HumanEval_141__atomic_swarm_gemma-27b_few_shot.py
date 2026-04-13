@@ -31,11 +31,11 @@ def test_edge():
     assert file_name_check("a.tx") == "No"
     assert file_name_check("a.txtt") == "No"
     assert file_name_check("a.123") == "No"
-    assert file_name_check("a..txt") == "No"
-    assert file_name_check("a.txt.") == "No"
     assert file_name_check("a.txt.txt") == "No"
-    assert file_name_check("a123.txt") == "Yes"
-    assert file_name_check("A123.txt") == "Yes"
+    assert file_name_check("a") == "No"
+    assert file_name_check("a.") == "No"
+    assert file_name_check("a.txt ") == "No"
+    assert file_name_check(" a.txt") == "No"
 
 def test_invalid_extension():
     assert file_name_check("example.pdf") == "No"

@@ -19,7 +19,6 @@ def x_or_y(n, x, y):
     Examples:
     for x_or_y(7, 34, 12) == 34
     for x_or_y(15, 8, 5) == 5
-    
     """
     if n <= 1:
         return y
@@ -28,26 +27,34 @@ def x_or_y(n, x, y):
             return y
     return x
 
-def test_prime_number():
-    assert x_or_y(7, 34, 12) == 34
-    assert x_or_y(2, 100, 200) == 100
-    assert x_or_y(5, 50, 60) == 50
-    assert x_or_y(11, 70, 80) == 70
-    assert x_or_y(13, 1, 2) == 1
-    assert x_or_y(1000000007, 100, 200) == 100
+@pytest.mark.parametrize("n, x, y, expected", [
+    (7, 34, 12, 34),
+    (2, 100, 200, 100),
+    (5, 50, 60, 50),
+    (11, 70, 80, 70),
+    (13, 1, 2, 1),
+    (17, 1000, 2000, 1000),  # Larger prime
+])
+def test_prime_number(n, x, y, expected):
+    assert x_or_y(n, x, y) == expected
 
-def test_non_prime_number():
-    assert x_or_y(15, 8, 5) == 5
-    assert x_or_y(4, 20, 30) == 30
-    assert x_or_y(6, 10, 15) == 15
-    assert x_or_y(8, 40, 50) == 50
-    assert x_or_y(9, 1000, 2000) == 2000
-    assert x_or_y(1, 3, 4) == 4
+@pytest.mark.parametrize("n, x, y, expected", [
+    (15, 8, 5, 5),
+    (4, 20, 30, 30),
+    (6, 10, 15, 15),
+    (8, 40, 50, 50),
+    (9, 1000, 2000, 2000),
+    (10, 5, 10, 10), # Added a different non-prime
+])
+def test_non_prime_number(n, x, y, expected):
+    assert x_or_y(n, x, y) == expected
 
-def test_zero_or_negative_input():
-    assert x_or_y(0, 1, 2) == 2
+def test_negative_input():
     assert x_or_y(-1, 5, 6) == 6
-    assert x_or_y(-7, 10, 20) == 20
+    assert x_or_y(-2, 10, 20) == 20
 
-def test_large_numbers():
-    assert x_or_y(1000000008, 100, 200) == 200
+def test_large_non_prime():
+    assert x_or_y(999999996, 100, 200) == 200
+
+def test_edge_case_two():
+    assert x_or_y(2, 5, 10) == 5

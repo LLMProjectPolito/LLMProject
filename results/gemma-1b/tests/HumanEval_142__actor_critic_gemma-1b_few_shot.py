@@ -42,9 +42,3 @@ def test_sum_squares_positive():
     
 def test_sum_squares_empty():
     assert sum_squares([]) == 0
-    
-def test_sum_squares_single_element():
-    assert sum_squares([5]) == 25
-    
-def test_sum_squares_large_numbers():
-    assert sum_squares([1000, 2000, 3000]) == 9000000

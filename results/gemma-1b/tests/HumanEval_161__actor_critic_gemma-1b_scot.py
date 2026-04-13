@@ -59,7 +59,7 @@ def test_special_characters():
     assert solve("#a@C") == "#A@c"
 
 def test_mixed_case_numbers():
-    assert solve("123a") == "A123"
+    assert solve("123a") == "A321"
 
 def test_mixed_case_numbers_and_letters():
     assert solve("a123") == "321a"

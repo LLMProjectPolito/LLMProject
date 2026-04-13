@@ -65,5 +65,5 @@ def test_find_max_multiple_words_different_unique_chars():
 def test_find_max_multiple_words_same_unique_chars_lexicographical():
     assert find_max(["name", "enam", "game"]) == "enam"
 
-def test_find_max_multiple_words_same_unique_chars_and_different_lengths():
-    assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
+def test_find_max_multiple_words_same_unique_chars_and_lexicographical():
+    assert find_max(["aaaaaaa", "bb", "cc"]) == ""aaaaaaa"

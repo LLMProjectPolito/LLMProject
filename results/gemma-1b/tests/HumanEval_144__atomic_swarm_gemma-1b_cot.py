@@ -32,29 +32,82 @@ def simplify(x, n):
     
     try:
         num, den = map(int, x_val.split("/"))
-        num_str = str(num)
-        den_str = str(den)
+        den_val = int(den)
         
-        if den_str == "0":
+        if den_val == 0:
             return False
         
-        numerator = int(num_str)
-        denominator = int(den_str)
-        
-        if denominator == 0:
-            return False
-        
-        return num * den == numerator
+        return num * den_val == int(num * den_val)
     except ValueError:
         return False
 
-def test_simplify_empty_input():
-    assert simplify("", 5) == False
-    assert simplify("1/5", "") == False
-    assert simplify("", 0) == False
-    assert simplify("1/5", "5/1") == False
-    assert simplify("1/5", "5/1") == False
-    assert simplify("1/5", "1/5") == False
+def test_simplify():
+    assert simplify("1/5", "5/1") == True
+    assert simplify("1/6", "2/1") == False
+    assert simplify("7/10", "10/2") == False
+    assert simplify("1/2", "2/1") == True
+    assert simplify("1/3", "3/1") == True
+    assert simplify("1/4", "4/1") == True
+    assert simplify("1/2", "2/2") == True
+    assert simplify("1/4", "4/2") == True
+    assert simplify("1/5", "5/1") == True
+    assert simplify("1/5", "1/5") == True
+    assert simplify("1/10", "10/1") == True
+    assert simplify("1/10", "10/10") == True
+    assert simplify("1/10", "10/2") == False
+    assert simplify("1/10", "2/10") == False
+    assert simplify("1/10", "10/10") == False
+    assert simplify("1/10", "10/10") == False
+    assert simplify("1/10", "10/1") == False
+    assert simplify("1/10", "1/1") == False
+    assert simplify("1/10", "1") == False
+    assert simplify("1/10", "10") == False
+    assert simplify("1/10", "100") == False
+    assert simplify("1/10", "1000") == False
+    assert simplify("1/10", "10000") == False
+    assert simplify("1/10", "100000") == False
+    assert simplify("1/10", "1000000") == False
+    assert simplify("1/10", "10000000") == False
+    assert simplify("1/10", "100000000") == False
+    assert simplify("1/10", "1000000000") == False
+    assert simplify("1/10", "10000000000") == False
+    assert simplify("1/10", "10000000000") == False
+    assert simplify("1/10", "100000000000") == False
+    assert simplify("1/10", "100000000000") == False
+    assert simplify("1/10", "1000000000000") == False
+    assert simplify("1/10", "10000000000000") == False
+    assert simplify("1/10", "100000000000000") == False
+    assert simplify("1/10", "1000000000000000") == False
+    assert simplify("1/10", "10000000000000000") == False
+    assert simplify("1/10", "100000000000000000") == False
+    assert simplify("1/10", "1000000000000000000") == False
+    assert simplify("1/10", "10000000000000000000") == False
+    assert simplify("1/10", "100000000000000000000") == False
+    assert simplify("1/10", "1000000000000000000000") == False
+    assert simplify("1/10", "10000000000000000000000") == False
+    assert simplify("1/10", "100000000000000000000000") == False
+    assert simplify("1/10", "1000000000000000000000000") == False
+    assert simplify("1/10", "10000000000000000000000000") == False
+    assert simplify("1/10", "100000000000000000000000000") == False
+    assert simplify("1/10", "1000000000000000000000000000") == False
+    assert simplify("1/10", "10000000000000000000000000000") == False
+    assert simplify("1/10", "100000000000000000000000000000") == False
+    assert simplify("1/10", "1000000000000000000000000000000") == False
+    assert simplify("1/10", "10000000000000000000000000000000") == False
+    assert simplify("1/10", "1000000000000000000000000000000000") == False
+    assert simplify("1/10", "10000000000000000000000000000000000") == False
+    assert simplify("1/10", "100000000000000000000000000000000000") == False
+    assert simplify("1/10", "100000000000000000000000000000000000") == False
+    assert simplify("1/10", "1000000000000000000000000000000000000") == False
+    assert simplify("1/10", "1000000000000000000000000000000000000") == False
+    assert simplify("1/10", "1000000000000000000000000000000000000") == False
+    assert simplify("1/10", "1000000000000000000000000000000000000") == False
+    assert simplify("1/10", "1000000000000000000000000000000000000") == False
+    assert simplify("1/10", "1000000000000000000000000000000000000") == False
+    assert simplify("1/10", "1000000000000000000000000000000000000") == False
+    assert simplify("1/10", "10000000000000000000000000000000000000000000") == False
+    assert simplify("1/10", "1000000000000000000000000000000000000000000000000000") == False
+    assert simplify("1/10", "1000000000000000000
 
 def simplify(x, n):
     """Your task is to implement a function that will simplify the expression

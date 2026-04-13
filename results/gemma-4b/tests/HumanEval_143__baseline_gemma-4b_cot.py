@@ -87,8 +87,8 @@ def test_words_in_sentence_sentence_with_numbers():
 def test_words_in_sentence_sentence_with_special_characters():
     assert words_in_sentence("This is a!@# test") == "is"
 
-def test_words_in_sentence_sentence_with_long_words():
-    assert words_in_sentence("This is a verylongword test") == "is"
+def test_words_in_sentence_long_sentence():
+    assert words_in_sentence("This is a very long sentence with many words") == "is"
 
 def test_words_in_sentence_sentence_with_prime_length_words():
     assert words_in_sentence("prime test") == "prime"
@@ -97,4 +97,4 @@ def test_words_in_sentence_sentence_with_non_prime_length_words():
     assert words_in_sentence("nonprime test") == ""
 
 def test_words_in_sentence_sentence_with_mixed_prime_and_non_prime_words():
-    assert words_in_sentence("This is a test nonprime another") == "is a"
+    assert words_in_sentence("prime nonprime test") == "prime"

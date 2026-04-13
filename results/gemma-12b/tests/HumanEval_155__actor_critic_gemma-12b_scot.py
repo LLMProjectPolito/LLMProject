@@ -42,20 +42,20 @@ def test_single_digit_even():
 def test_single_digit_odd():
     assert even_odd_count(1) == (0, 1)
 
-def test_all_even_digits():
+def test_all_even():
     assert even_odd_count(2468) == (4, 0)
 
-def test_all_odd_digits():
+def test_all_odd():
     assert even_odd_count(1357) == (0, 4)
 
-def test_mixed_digits():
+def test_mixed():
     assert even_odd_count(123456) == (3, 3)
-
-def test_number_with_zero():
-    assert even_odd_count(1023) == (1, 2)
 
 def test_large_number():
     assert even_odd_count(1234567890) == (5, 5)
 
-def test_number_with_leading_zeros():
+def test_leading_zeros():
     assert even_odd_count(1002) == (2, 1)
+
+def test_all_zeros():
+    assert even_odd_count(0) == (1, 0)

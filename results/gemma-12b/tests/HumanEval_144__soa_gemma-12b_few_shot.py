@@ -76,7 +76,7 @@ class TestSimplify:
         assert simplify("0/1", "1/1") == True
 
     def test_simplify_zero_numerator_false(self):
-        assert simplify("0/1", "1/2") == True
+        assert simplify("0/1", "1/2") == False
 
     def test_simplify_complex_true(self):
         assert simplify("2/3", "3/2") == True

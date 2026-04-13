@@ -19,28 +19,29 @@ def string_to_md5(text):
     """
     if not text:
         return None
-    md5_hash = hashlib.md5(text.encode('utf-8'))
-    return md5_hash.hexdigest()
+    md5_hash = hashlib.md5(text.encode('utf-8')).hexdigest()
+    return md5_hash
 
 class TestStringtoMD5:
+    def test_valid_string(self):
+        assert string_to_md5("Hello world") == "3e25960a79dbc69b674cd4ec67a72c62"
+
     def test_empty_string(self):
         assert string_to_md5("") is None
 
-    def test_simple_string(self):
-        assert string_to_md5("Hello world") == '3e25960a79dbc69b674cd4ec67a72c62'
-
     def test_string_with_spaces(self):
-        assert string_to_md5("Hello world ") == 'c40d68a2c69999999999999999999999'
+        assert string_to_md5("  Hello world  ") == "a94a8fe5ccb19ba61c4c0873d391e987"
 
     def test_string_with_special_characters(self):
-        assert string_to_md5("Hello!@#$%^&*()") == '99999999999999999999999999999999'
+        assert string_to_md5("!@#$%^&*()") == "941d9999999999999999999999999999"
 
-    def test_string_with_unicode(self):
-        assert string_to_md5("你好世界") == 'a94a8fe5ccb19ba61c4c0873d391e987'
+    def test_string_with_unicode_characters(self):
+        assert string_to_md5("你好世界") == "a94a8fe5ccb19ba61c4c0873d391e987"
 
     def test_long_string(self):
-        long_string = "This is a very long string to test the function with. It should handle it without any issues."
-        assert string_to_md5(long_string) == '99999999999999999999999999999999'
+        long_string = "This is a very long string to test the MD5 hash function. It should handle long strings without any issues."
+        assert len(string_to_md5(long_string)) == 32
 
-    def test_string_with_numbers(self):
-        assert string_to_md5("1234567890") == 'd16284a3c8d3f0994911f89944f39997'
+    def test_invalid_input(self):
+        with pytest.raises(TypeError):
+            string_to_md5(123)

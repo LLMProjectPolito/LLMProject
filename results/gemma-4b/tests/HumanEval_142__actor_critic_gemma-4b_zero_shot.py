@@ -52,23 +52,27 @@ def test_example_1():
 def test_example_2():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
-def test_multiple_multiples_of_3_and_4():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 1 + 4 + 9 + 64 + 25 + 36 + 49 + 512 + 81 == 781
+def test_multiple_elements_with_various_indices():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 1 + 4 + 9 + 64 + 25 + 36 + 49 + 64 + 81
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 325
 
-def test_mixed_multiples():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 4 + 9 + 64 + 25 + 36 + 49 + 512 + 81 + 100 == 871
+def test_all_elements_multiple_of_3():
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 4 + 9 + 16 + 25 + 36
+
+def test_all_elements_multiple_of_4_not_3():
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 8 + 27 + 64 + 125 + 216
+
+def test_mixed_indices():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 4 + 9 + 64 + 25 + 36 + 49 + 64 + 81 + 100
 
 def test_negative_numbers():
-    assert sum_squares([-1, -2, -3]) == -1 + 4 + (-27) == -24
+    assert sum_squares([-1, -2, -3]) == -1 + 4 + (-27)
 
 def test_zeroes():
     assert sum_squares([0, 0, 0]) == 0
 
 def test_large_numbers():
-    assert sum_squares([1000, 2000, 3000]) == 1000000 + 8000000 + 27000000 == 36000000
+    assert sum_squares([100, 200, 300]) == 10000 + 80000 + 270000
 
-def test_list_with_only_multiples_of_4_not_3():
-    assert sum_squares([4, 8, 12, 16]) == 16 + 512 + 4096 + 65536 == 70000
-
-def test_list_with_only_multiples_of_3():
-    assert sum_squares([3, 6, 9, 12]) == 9 + 36 + 81 + 144 == 270
+def test_mixed_positive_negative_zeroes():
+    assert sum_squares([1, -2, 0, 3, -4]) == 1 + (-8) + 0 + 9 + (-64)

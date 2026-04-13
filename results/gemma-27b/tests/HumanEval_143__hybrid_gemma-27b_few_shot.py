@@ -45,9 +45,15 @@ def words_in_sentence(sentence):
     def is_prime(n):
         if n <= 1:
             return False
-        for i in range(2, int(n**0.5) + 1):
-            if n % i == 0:
+        if n <= 3:
+            return True
+        if n % 2 == 0 or n % 3 == 0:
+            return False
+        i = 5
+        while i * i <= n:
+            if n % i == 0 or n % (i + 2) == 0:
                 return False
+            i += 6
         return True
 
     words = sentence.split()
@@ -65,10 +71,10 @@ def get_max(arr: list[int]) -> int:
     return max(arr)
 
 
-def test_words_in_sentence_example1():
+def test_words_in_sentence_basic1():
     assert words_in_sentence("This is a test") == "is"
 
-def test_words_in_sentence_example2():
+def test_words_in_sentence_basic2():
     assert words_in_sentence("lets go for swimming") == "go for"
 
 def test_words_in_sentence_empty():
@@ -78,54 +84,53 @@ def test_words_in_sentence_no_primes():
     assert words_in_sentence("one two four five") == ""
 
 def test_words_in_sentence_all_primes():
-    assert words_in_sentence("a bb ccc dddd eeeee") == "a bb ccc"
+    assert words_in_sentence("two three five seven") == "two three five seven"
 
 def test_words_in_sentence_mixed():
-    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the fox the dog"
+    assert words_in_sentence("one two three four five six seven eight nine ten") == "two three five seven"
+
+def test_words_in_sentence_long_sentence():
+    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the over dog"
+
+def test_words_in_sentence_single_prime():
+    assert words_in_sentence("two") == "two"
+
+def test_words_in_sentence_single_non_prime():
+    assert words_in_sentence("one") == ""
+
+def test_words_in_sentence_repeated_words():
+    assert words_in_sentence("two two two") == "two two two"
+
+def test_words_in_sentence_leading_trailing_spaces():
+    assert words_in_sentence("  two three  ") == "two three"
+
+def test_words_in_sentence_multiple_spaces():
+    assert words_in_sentence("two   three") == "two three"
+
+def test_words_in_sentence_prime_at_start():
+    assert words_in_sentence("two one three") == "two three"
+
+def test_words_in_sentence_prime_at_end():
+    assert words_in_sentence("one three two") == "two"
+
+def test_words_in_sentence_large_prime():
+    assert words_in_sentence("a very long word") == "very"
+
+def test_words_in_sentence_mixed():
+    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the over dog"
 
 def test_words_in_sentence_single_prime():
     assert words_in_sentence("hello") == ""
 
 def test_words_in_sentence_long_sentence():
     sentence = "This is a very long sentence with some words of different lengths"
-    assert words_in_sentence(sentence) == "This is a long"
+    assert words_in_sentence(sentence) == "is a very long"
 
 def test_words_in_sentence_repeated_words():
     assert words_in_sentence("a a a") == "a a a"
 
 def test_words_in_sentence_prime_at_start_and_end():
     assert words_in_sentence("a long sentence a") == "a a"
-
-def test_words_in_sentence_basic():
-    assert words_in_sentence("This is a test") == "is"
-    assert words_in_sentence("lets go for swimming") == "go for"
-    assert words_in_sentence("hello world") == ""
-    assert words_in_sentence("a bb ccc dddd") == "a bb ccc"
-
-def test_words_in_sentence_all_prime():
-    assert words_in_sentence("a bb ccc") == "a bb ccc"
-
-def test_words_in_sentence_no_prime():
-    assert words_in_sentence("four five six seven") == ""
-
-def test_words_in_sentence_mixed():
-    assert words_in_sentence("one two three four five") == "two three five"
-
-def test_words_in_sentence_long_sentence():
-    sentence = "the quick brown fox jumps over the lazy dog"
-    assert words_in_sentence(sentence) == "the quick fox over dog"
-
-def test_words_in_sentence_single_word_prime():
-    assert words_in_sentence("two") == "two"
-
-def test_words_in_sentence_single_word_not_prime():
-    assert words_in_sentence("one") == ""
-
-def test_words_in_sentence_repeated_words():
-    assert words_in_sentence("two two two") == "two two two"
-
-def test_words_in_sentence_edge_case_2():
-    assert words_in_sentence("a ab abc abcd abcde") == "a ab abc abcde"
 
 def test_palindrome_basic():
     assert is_palindrome('radar') == True

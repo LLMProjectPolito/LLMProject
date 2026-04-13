@@ -58,7 +58,7 @@ def test_with_numbers_and_symbols():
     assert solve("#a@C") == "#A@c"
 
 def test_numbers_and_symbols_only():
-    assert solve("#@123") == "321@"
+    assert solve("#$%^") == "^%$#"
 
 def test_long_string():
     assert solve("ThisIsALongString") == "tHISiSaLONGsTRING"
@@ -67,13 +67,13 @@ def test_string_with_spaces():
     assert solve("hello world") == "HELLO WORLD"
 
 def test_string_with_special_characters():
-    assert solve("!@#$%^") == "!@#$%^"
+    assert solve("!@#$%^&*()") == "!@#$%^&*()"
 
 def test_string_with_unicode_characters():
     assert solve("你好世界") == "你好世界"
 
-def test_mixed_string():
-    assert solve("a1B2c3D") == "A1b2C3d"
+def test_string_with_mixed_characters():
+    assert solve("a1b2c3d") == "A1B2C3D"
 
 def test_string_with_leading_and_trailing_spaces():
     assert solve("  abc  ") == "  ABC  "
@@ -82,19 +82,31 @@ def test_string_with_only_spaces():
     assert solve("   ") == "   "
 
 def test_string_with_numbers_and_letters():
-    assert solve("a1b2c3d") == "A1B2C3D"
+    assert solve("a12b34c") == "A12B34C"
 
 def test_string_with_symbols_and_letters():
-    assert solve("!a@b#c$d") == "!A@B#C$D"
+    assert solve("!a@b#c$") == "!A@B#C$"
 
 def test_string_with_mixed_symbols_numbers_and_letters():
-    assert solve("a1!b2@c3#d4$") == "A1!B2@C3#D4$"
+    assert solve("a1!b2@c3#") == "A1!B2@C3#"
 
-def test_edge_case_single_number():
-    assert solve("5") == "5"
-
-def test_edge_case_single_letter_lowercase():
+def test_edge_case_single_letter():
     assert solve("a") == "A"
 
-def test_edge_case_single_letter_uppercase():
-    assert solve("A") == "a"
+def test_edge_case_single_number():
+    assert solve("1") == "1"
+
+def test_edge_case_single_symbol():
+    assert solve("!") == "!"
+
+def test_string_with_tabs():
+    assert solve("a\tb\tc") == "A\tB\tC"
+
+def test_string_with_newlines():
+    assert solve("a\nb\nc") == "A\nB\nC"
+
+def test_string_with_multiple_spaces():
+    assert solve("a b c") == "A B C"
+
+def test_only_symbols_and_numbers():
+    assert solve("!1@2#3$4") == "4$3#2@1!"

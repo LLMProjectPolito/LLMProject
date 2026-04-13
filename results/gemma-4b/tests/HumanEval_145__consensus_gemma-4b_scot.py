@@ -57,8 +57,5 @@ def test_order_by_points_negative_large_numbers():
 def test_order_by_points_zero():
     assert order_by_points([0, 1, 10, 11]) == [0, 1, 10, 11]
 
-def test_order_by_points_negative_zero():
-    assert order_by_points([-0, -1, -10, -11]) == [-0, -1, -10, -11]
-
-def test_order_by_points_with_negatives_and_zeros():
-    assert order_by_points([-1, 0, 1, -10, 10]) == [-1, -10, 0, 1, 10]
+def test_order_by_points_mixed_zero():
+    assert order_by_points([-1, 0, 1, -10, 11]) == [-1, 0, 1, -10, 11]

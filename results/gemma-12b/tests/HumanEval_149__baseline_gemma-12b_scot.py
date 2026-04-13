@@ -38,15 +38,16 @@ def sorted_list_sum(lst):
 
 # STEP 1: REASONING
 # The function `sorted_list_sum` takes a list of strings, filters out strings with odd lengths,
-# and returns the remaining strings sorted by length (ascending) and then alphabetically.
+# and returns a sorted list of the remaining strings. The sorting is based on length (ascending)
+# and then alphabetically for strings of the same length.
 # We need to test various scenarios including:
 # 1. Empty list input
 # 2. List with only odd length strings
 # 3. List with only even length strings
-# 4. List with mixed odd and even length strings
+# 4. List with a mix of odd and even length strings
 # 5. List with duplicate strings
-# 6. List with strings of the same length (to test alphabetical sorting)
-# 7. Edge cases with very short and very long strings.
+# 6. List with strings of varying lengths
+# 7. List with strings of the same length (to test alphabetical sorting)
 
 # STEP 2: PLAN
 # Test functions:
@@ -55,8 +56,10 @@ def sorted_list_sum(lst):
 # - test_only_even_length: Test with a list containing only strings with even lengths.
 # - test_mixed_lengths: Test with a list containing both odd and even length strings.
 # - test_duplicate_strings: Test with a list containing duplicate strings.
+# - test_varying_lengths: Test with a list containing strings of different lengths.
 # - test_same_length_strings: Test with a list containing strings of the same length.
-# - test_edge_cases: Test with very short and very long strings.
+# - test_example_1: Test with the first example provided in the prompt.
+# - test_example_2: Test with the second example provided in the prompt.
 
 # STEP 3: CODE
 class TestSortedListSum:
@@ -64,22 +67,25 @@ class TestSortedListSum:
         assert sorted_list_sum([]) == []
 
     def test_only_odd_length(self):
-        assert sorted_list_sum(["a", "bbb", "ccccc"]) == []
+        assert sorted_list_sum(["a", "bbb", "cc"]) == []
 
     def test_only_even_length(self):
         assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
     def test_mixed_lengths(self):
-        assert sorted_list_sum(["aa", "a", "aaa", "cd"]) == ["aa", "cd"]
+        assert sorted_list_sum(["a", "aa", "bbb", "cc", "dddd"]) == ["aa", "cc"]
 
     def test_duplicate_strings(self):
-        assert sorted_list_sum(["aa", "aa", "bb", "cc", "cc"]) == ["aa", "aa", "bb", "cc", "cc"]
+        assert sorted_list_sum(["aa", "aa", "bb", "cc"]) == ["aa", "aa", "bb", "cc"]
+
+    def test_varying_lengths(self):
+        assert sorted_list_sum(["a", "aa", "aaa", "aaaa", "aaaaa"]) == ["aa", "aaaa"]
 
     def test_same_length_strings(self):
-        assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
+        assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
-    def test_edge_cases(self):
-        assert sorted_list_sum(["", "a", "aa", "aaa", "aaaa"]) == ["", "aa", "aaaa"]
+    def test_example_1(self):
+        assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
 
-    def test_longer_strings(self):
-        assert sorted_list_sum(["abcdef", "abcde", "abcd", "abc"]) == ["abc", "abcd"]
+    def test_example_2(self):
+        assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]

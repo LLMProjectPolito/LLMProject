@@ -64,7 +64,7 @@ def test_special_characters_and_letters():
     assert solve("!a@B#") == "!A@b#"
 
 def test_only_special_characters():
-    assert solve("!@#$%^") == "^%$#@!"
+    assert solve("!@#$") == "$#@!"
 
 def test_long_string():
     assert solve("ThisIsALongString") == "tHISiSaLONGsTRING"
@@ -76,7 +76,7 @@ def test_string_with_unicode():
     assert solve("你好世界") == "你好世界"
 
 def test_string_with_numbers_and_special_chars():
-    assert solve("123!@#") == "!@#321"
+    assert solve("123!@#") == "#@!321"
 
 def test_string_with_mixed_unicode_and_ascii():
     assert solve("a1你好b2") == "A1你好B2"

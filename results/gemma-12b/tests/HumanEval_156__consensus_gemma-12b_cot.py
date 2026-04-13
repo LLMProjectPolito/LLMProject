@@ -69,7 +69,7 @@ def test_int_to_mini_roman_complex():
     assert int_to_mini_roman(689) == "dclxxxix"
     assert int_to_mini_roman(799) == "dccxcix"
     assert int_to_mini_roman(854) == "dcccliv"
-    assert int_to_mini_roman(911) == "cmxi"
+    assert int_to_mini_roman(912) == "cmxii"
     assert int_to_mini_roman(987) == "cmccclxxxvii"
     assert int_to_mini_roman(1000) == "m"
 

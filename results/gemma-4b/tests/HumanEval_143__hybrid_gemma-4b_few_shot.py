@@ -85,8 +85,8 @@ def test_is_palindrome_mixed_case():
     assert is_palindrome('Madam') == True
 
 def test_is_palindrome_with_punctuation():
-    assert is_palindrome('A man, a plan, a canal: Panama') == True
-    assert is_palindrome('No ' + 'x' + 's') == True
+    assert is_palindrome("Amore, Roma") == True
+    assert is_palindrome("No 'x' in Nixon") == True
 
 def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
@@ -97,51 +97,50 @@ def test_get_max_positive():
 def test_get_max_empty():
     assert get_max([]) == None
 
-def test_get_max_negative():
+def test_get_max_single_element():
+    assert get_max([5]) == 5
+
+def test_get_max_negative_numbers():
     assert get_max([-1, -2, -3]) == -1
 
-def test_get_max_mixed():
+def test_get_max_mixed_numbers():
     assert get_max([-1, 2, -3, 4]) == 4
 
 def test_words_in_sentence_simple():
     assert words_in_sentence("This is a test") == "is"
     assert words_in_sentence("lets go for swimming") == "go for"
 
-def test_words_in_sentence_no_prime():
+def test_words_in_sentence_no_prime_words():
     assert words_in_sentence("This is a test") == ""
     assert words_in_sentence("lets go for swimming") == ""
 
-def test_words_in_sentence_all_prime():
-    assert words_in_sentence("hello world") == "hello"
-    assert words_in_sentence("abc def ghi") == "abc def"
+def test_words_in_sentence_all_prime_words():
+    assert words_in_sentence("abc def ghi") == "def"
 
-def test_words_in_sentence_mixed():
+def test_words_in_sentence_mixed_prime_and_non_prime():
     assert words_in_sentence("This is a test sentence") == "is a"
-    assert words_in_sentence("lets go for swimming") == "go for"
 
-def test_words_in_sentence_empty():
+def test_words_in_sentence_empty_sentence():
     assert words_in_sentence("") == ""
 
-def test_words_in_sentence_single_word():
-    assert words_in_sentence("hello") == "hello"
+def test_words_in_sentence_sentence_with_only_one_word():
+    assert words_in_sentence("word") == ""
 
-def test_words_in_sentence_prime_length_word():
-    assert words_in_sentence("a b c") == "a b"
+def test_words_in_sentence_sentence_with_prime_word():
+    assert words_in_sentence("prime") == "prime"
 
 def test_is_prime_small_numbers():
     assert is_prime(2) == True
     assert is_prime(3) == True
     assert is_prime(4) == False
     assert is_prime(5) == True
-    assert is_prime(6) == False
 
 def test_is_prime_larger_numbers():
     assert is_prime(7) == True
     assert is_prime(11) == True
+    assert is_prime(12) == False
     assert is_prime(13) == True
-    assert is_prime(17) == True
-    assert is_prime(19) == True
 
 def test_is_prime_edge_cases():
-    assert is_prime(0) == False
     assert is_prime(1) == False
+    assert is_prime(0) == False

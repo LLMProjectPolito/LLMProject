@@ -26,5 +26,3 @@ def test_string_to_md5():
     assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
     assert string_to_md5('') is None
     assert string_to_md5('') is None
-    assert string_to_md5('a') == '7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7'
-    assert string_to_md5('1') == 'ff6f6f6f6f6f6f6f6f6f6f6f6f6f6f6'

@@ -64,29 +64,14 @@ def test_int_to_mini_roman_39():
 def test_int_to_mini_roman_40():
     assert int_to_mini_roman(40) == 'xl'
 
-def test_int_to_mini_roman_44():
-    assert int_to_mini_roman(44) == 'xliv'
-
-def test_int_to_mini_roman_49():
-    assert int_to_mini_roman(49) == 'xlix'
-
 def test_int_to_mini_roman_50():
     assert int_to_mini_roman(50) == 'l'
 
 def test_int_to_mini_roman_88():
     assert int_to_mini_roman(88) == 'lxxxviii'
 
-def test_int_to_mini_roman_89():
-    assert int_to_mini_roman(89) == 'lxxxix'
-
 def test_int_to_mini_roman_90():
     assert int_to_mini_roman(90) == 'xc'
-
-def test_int_to_mini_roman_94():
-    assert int_to_mini_roman(94) == 'xciv'
-
-def test_int_to_mini_roman_99():
-    assert int_to_mini_roman(99) == 'xcix'
 
 def test_int_to_mini_roman_100():
     assert int_to_mini_roman(100) == 'c'

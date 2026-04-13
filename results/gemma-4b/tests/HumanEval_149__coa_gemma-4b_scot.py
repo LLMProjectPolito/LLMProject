@@ -61,8 +61,8 @@ def test_sorted_list_sum_odd_lengths():
 def test_sorted_list_sum_mixed_lengths():
     assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
-def test_sorted_list_sum_same_lengths():
-    assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
-
 def test_sorted_list_sum_duplicates():
     assert sorted_list_sum(["aa", "a", "aa", "aaa"]) == ["aa", "aa"]
+
+def test_sorted_list_sum_same_length():
+    assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]

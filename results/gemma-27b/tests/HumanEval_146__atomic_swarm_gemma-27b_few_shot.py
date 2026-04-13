@@ -38,34 +38,5 @@ def specialFilter(nums):
                     count += 1
     return count
 
-def test_empty_array():
+def test_empty_list():
     assert specialFilter([]) == 0
-
-def test_all_numbers_less_than_10():
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 0
-
-def test_valid_numbers():
-    assert specialFilter([15, -73, 14, -15]) == 1
-    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
-
-def test_negative_numbers():
-    assert specialFilter([-11, -13, -15, -17, -19]) == 0
-
-def test_numbers_with_even_digits():
-    assert specialFilter([12, 14, 16, 18, 21, 32, 34, 36, 38]) == 0
-
-def test_large_numbers():
-    assert specialFilter([111, 131, 151, 171, 191, 112, 132, 152]) == 5
-
-def test_mixed_numbers():
-    assert specialFilter([11, 12, 13, 14, 15, 16, 17, 18, 19, 20]) == 2
-
-def test_single_digit_odd_number():
-    assert specialFilter([1]) == 0
-
-def test_two_digit_odd_number():
-    assert specialFilter([11]) == 1
-
-def test_string_input():
-    with pytest.raises(TypeError):
-        specialFilter(["15", "21"])

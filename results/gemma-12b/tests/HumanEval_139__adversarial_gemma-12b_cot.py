@@ -13,33 +13,50 @@ def special_factorial(n):
     """
 
 import pytest
-from your_module import special_factorial  # Replace your_module
+from math import factorial
 
-def test_special_factorial_base_cases():
+def special_factorial(n):
+    """The Brazilian factorial is defined as:
+    brazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!
+    where n > 0
+
+    For example:
+    >>> special_factorial(4)
+    288
+
+    The function will receive an integer as input and should return the special
+    factorial of this integer.
+    """
+    if not isinstance(n, int):
+        raise TypeError("Input must be an integer.")
+    if n <= 0:
+        raise ValueError("Input must be a positive integer.")
+
+    result = 1
+    for i in range(1, n + 1):
+        result *= factorial(i)
+    return result
+
+
+def test_special_factorial_positive_cases():
     assert special_factorial(1) == 1
     assert special_factorial(2) == 2
     assert special_factorial(3) == 12
     assert special_factorial(4) == 288
+    assert special_factorial(5) == 34560
 
-def test_special_factorial_large_n():
-    assert special_factorial(10) == 479001600
-
-def test_special_factorial_zero():
+def test_special_factorial_zero_input():
     with pytest.raises(ValueError):
         special_factorial(0)
 
-def test_special_factorial_negative():
+def test_special_factorial_negative_input():
     with pytest.raises(ValueError):
         special_factorial(-1)
 
-def test_special_factorial_type_error_float():
+def test_special_factorial_type_error():
     with pytest.raises(TypeError):
-        special_factorial(1.5)
-
-def test_special_factorial_type_error_string():
+        special_factorial(3.14)
     with pytest.raises(TypeError):
         special_factorial("abc")
-
-def test_special_factorial_type_error_list():
     with pytest.raises(TypeError):
         special_factorial([1, 2, 3])

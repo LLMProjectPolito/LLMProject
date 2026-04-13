@@ -55,7 +55,7 @@ class TestOrderByPoints:
         assert order_by_points([0, 1, -1]) == [0, 1, -1]
 
     def test_large_numbers(self):
-        assert order_by_points([123, 321, 111]) == [111, 123, 321]
+        assert order_by_points([123, 45, 6]) == [6, 45, 123]
 
     def test_duplicate_numbers(self):
         assert order_by_points([1, 1, 1]) == [1, 1, 1]
@@ -64,7 +64,7 @@ class TestOrderByPoints:
         assert order_by_points([-10, 10]) == [-10, 10]
 
     def test_complex_case(self):
-        assert order_by_points([5, 15, 2, 25, 3, 35]) == [2, 5, 3, 15, 25, 35]
+        assert order_by_points([5, 15, 2, 25, 3]) == [2, 5, 3, 15, 25]
 
     def test_single_element(self):
         assert order_by_points([7]) == [7]

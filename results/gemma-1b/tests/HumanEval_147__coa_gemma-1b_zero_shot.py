@@ -41,7 +41,7 @@ def get_max_triples(n):
                     count += 1
     return count
 
-# Focus: Logic Branches
+# Focus: Type Scenarios
 def get_max_triples(n):
     """
     You are given a positive integer n. You have to create an integer array a of length n.
@@ -64,7 +64,7 @@ def get_max_triples(n):
                     count += 1
     return count
 
-# Focus: Type Scenarios
+# Focus: Logic Branches
 def get_max_triples(n):
     """
     You are given a positive integer n. You have to create an integer array a of length n.

@@ -75,10 +75,4 @@ def test_cycpattern_check_15():
     assert cycpattern_check("waterbottle","erbottlewat") == True
 
 def test_cycpattern_check_16():
-    assert cycpattern_check("waterbottle","lewaterbot") == True
-
-def test_cycpattern_check_17():
-    assert cycpattern_check("abcde","cdeab") == True
-
-def test_cycpattern_check_18():
-    assert cycpattern_check("abcde","abced") == False
+    assert cycpattern_check("waterbottle","rbottlewat") == False

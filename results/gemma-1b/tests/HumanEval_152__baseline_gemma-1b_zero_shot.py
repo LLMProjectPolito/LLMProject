@@ -23,7 +23,7 @@ def compare(game, guess):
         if game[i] == guess:
             results.append(0)
         else:
-            results.append(abs(game[i] - guess))
+            results.append(abs(guess - game[i]))
     return results
 
 def test_compare_correct_guess():
@@ -36,4 +36,4 @@ def test_compare_empty_arrays():
     assert compare([], []) == []
 
 def test_compare_single_element_arrays():
-    assert compare([1, 1], 1) == [0]
+    assert compare([1], 1) == [0]

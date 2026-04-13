@@ -24,11 +24,10 @@ def fix_spaces(text):
     fix_spaces(" Example 2") == "_Example_2"
     fix_spaces(" Example   3") == "_Example-3"
     """
-    text = text.replace(" ", "_")
-    if "___" in text:
-        return text.replace("___", "-")
+    if "   " in text:
+        return text.replace("   ", "-").replace(" ", "_")
     else:
-        return text
+        return text.replace(" ", "_")
 
 def test_no_spaces():
     assert fix_spaces("Example") == "Example"
@@ -40,19 +39,19 @@ def test_leading_space():
     assert fix_spaces(" Example 2") == "_Example_2"
 
 def test_multiple_spaces():
-    assert fix_spaces("Example   3") == "_Example-3"
+    assert fix_spaces("Example   3") == "Example-3"
 
 def test_trailing_space():
     assert fix_spaces("Example 1 ") == "Example_1_"
 
-def test_leading_trailing_spaces():
+def test_leading_trailing():
     assert fix_spaces(" Example 1 ") == "_Example_1_"
 
-def test_multiple_spaces_with_leading_and_trailing():
-    assert fix_spaces("  Example   1  ") == "__Example-1__"
+def test_multiple_with_leading_trailing():
+    assert fix_spaces("  Example   1  ") == "_Example-1_"
 
 def test_only_spaces():
-    assert fix_spaces("   ") == "___"
+    assert fix_spaces("   ") == "-"
 
 def test_empty_string():
     assert fix_spaces("") == ""
@@ -61,28 +60,19 @@ def test_string_with_mixed_spaces():
     assert fix_spaces("Example  1   2") == "Example__1-2"
 
 def test_string_with_many_spaces():
-    assert fix_spaces("   Example     1      2   ") == "___Example------1------2___"
+    assert fix_spaces("   Example     1        2   ") == "-Example---------1---------2-"
+
+def test_string_with_four_spaces():
+    assert fix_spaces("Example    3") == "Example-3"
+
+def test_leading_trailing_multiple_spaces():
+    assert fix_spaces("   Example   ") == "-Example-"
 
 def test_string_with_tabs():
-    assert fix_spaces("Example\t1") == "Example_1"
+    assert fix_spaces("Example\t1") == "Example\t1"
 
 def test_string_with_newlines():
-    assert fix_spaces("Example\n1") == "Example_1"
+    assert fix_spaces("Example\n1") == "Example\n1"
 
-def test_string_with_carriage_returns():
-    assert fix_spaces("Example\r1") == "Example_1"
-
-def test_two_spaces_then_single():
-    assert fix_spaces("Example  1") == "Example__1"
-
-def test_consecutive_four_spaces():
-    assert fix_spaces("Example    1") == "Example-1"
-
-def test_consecutive_spaces_at_beginning():
-    assert fix_spaces("   Example 1") == "___Example_1"
-
-def test_vertical_tab():
-    assert fix_spaces("Example\v1") == "Example_1"
-
-def test_form_feed():
-    assert fix_spaces("Example\f1") == "Example_1"
+def test_leading_trailing_and_multiple():
+    assert fix_spaces("  Example  1   2  ") == "_Example__1-2_"

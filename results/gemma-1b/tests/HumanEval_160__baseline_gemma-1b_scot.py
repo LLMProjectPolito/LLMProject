@@ -53,13 +53,11 @@ def do_algebra(operator, operand):
 
     """
     try:
-        if len(operator) == 1 and len(operand) == 1:
-            return operator[0] + operand[0]
-        elif len(operator) == 1:
+        if len(operator) == 1:
             return operator[0]
         elif len(operand) == 1:
             return operand[0]
         else:
-            return operator[0] + operand[0]
-    except:
+            return eval(str(operator[0]) + str(operand[0]) + operator[1] + str(operand[1]))
+    except Exception:
         return None

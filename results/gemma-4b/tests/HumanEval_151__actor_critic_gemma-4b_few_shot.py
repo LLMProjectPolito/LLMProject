@@ -57,7 +57,7 @@ def test_is_palindrome_empty():
 
 def test_is_palindrome_mixed_case():
     assert is_palindrome('Racecar') == True
-    assert is_palindrome('RaCeCaR') == True
+    assert is_palindrome('Madam') == True
 
 def test_is_palindrome_with_spaces():
     assert is_palindrome('A man, a plan, a canal: Panama') == True
@@ -91,8 +91,10 @@ def test_double_the_difference_mixed():
     assert double_the_difference([0]) == 0
     assert double_the_difference([1, 2, 3, 4, 5]) == 55
     assert double_the_difference([-1, 2, -3, 4, -5]) == 50
-
-def test_double_the_difference_non_integers():
-    assert double_the_difference([1.5, 2, 3]) == 9
-    assert double_the_difference([1.5, -2, 3]) == 9
-    assert double_the_difference([1.5, 2.5, 3]) == 9
+    assert double_the_difference([1, 3, 2, 0]) == 10
+    assert double_the_difference([9, -2]) == 81
+    assert double_the_difference([0]) == 0
+    assert double_the_difference([1, 3, 2, 0]) == 10
+    assert double_the_difference([-1, -2, 0]) == 0
+    assert double_the_difference([9, -2]) == 81
+    assert double_the_difference([0]) == 0

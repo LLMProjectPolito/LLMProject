@@ -27,7 +27,7 @@ def test_get_max_triples_larger():
     assert get_max_triples(6) == 2
 
 def test_get_max_triples_even_larger():
-    assert get_max_triples(10) == 6
+    assert get_max_triples(10) == 8
 
 def test_get_max_triples_n_equals_1():
     assert get_max_triples(1) == 0

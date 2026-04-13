@@ -51,7 +51,19 @@ def specialFilter(nums):
     count = 0
     for num in nums:
         if num > 10 and (num % 10 == 1 or num % 10 == 3 or num % 10 == 5 or num % 10 == 7 or num % 10 == 9):
-            s = str(num)
-            if len(s) > 0 and int(s[0]) % 2 != 0 and int(s[-1]) % 2 != 0:
-                count += 1
+            if num % 10 == 1:
+                if num == 11:
+                    count += 1
+            elif num % 10 == 3:
+                if num == 33:
+                    count += 1
+            elif num % 10 == 5:
+                if num == 55:
+                    count += 1
+            elif num % 10 == 7:
+                if num == 77:
+                    count += 1
+            elif num % 10 == 9:
+                if num == 99:
+                    count += 1
     return count

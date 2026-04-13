@@ -39,40 +39,52 @@ def file_name_check(file_name):
     file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
     digits = 0
-    for char in file_name:
+    dot_count = 0
+    substring_before_dot = ""
+    substring_after_dot = ""
+
+    for i, char in enumerate(file_name):
         if char.isdigit():
             digits += 1
-    if digits > 3:
+        elif char == '.':
+            dot_count += 1
+        if i < file_name.rfind('.'):
+            substring_before_dot = file_name[:i]
+            substring_after_dot = file_name[i+1:]
+
+    if digits > 3 or dot_count != 1:
         return 'No'
 
-    if file_name.count('.') != 1:
+    if not substring_before_dot or not substring_before_dot[0].isalpha():
         return 'No'
 
-    parts = file_name.split('.')
-    if not parts[0] or not parts[0][0].isalpha():
-        return 'No'
-
-    if parts[1] not in ['txt', 'exe', 'dll']:
+    if substring_after_dot not in ['txt', 'exe', 'dll']:
         return 'No'
 
     return 'Yes'
 
-def test_edge_empty():
+def test_edge_empty_string():
     assert file_name_check("") == 'No'
 
-def test_edge_too_many_digits():
-    assert file_name_check("1234.txt") == 'No'
+def test_edge_only_digits():
+    assert file_name_check("1234") == 'No'
+
+def test_edge_multiple_dots():
+    assert file_name_check("file.txt.dll") == 'No'
 
 def test_edge_no_dot():
-    assert file_name_check("exampletxt") == 'No'
+    assert file_name_check("exampledll") == 'No'
 
-def test_edge_dot_before_letter():
-    assert file_name_check(".example.txt") == 'No'
+def test_edge_dot_at_start():
+    assert file_name_check(".txt") == 'No'
 
-def test_edge_dot_after_letter():
-    assert file_name_check("example.txt.") == 'No'
+def test_edge_dot_at_end():
+    assert file_name_check("example.") == 'No'
 
-def test_edge_invalid_extension():
+def test_edge_invalid_prefix():
+    assert file_name_check("1example.txt") == 'No'
+
+def test_edge_invalid_suffix():
     assert file_name_check("example.pdf") == 'No'
 
 import pytest
@@ -105,11 +117,14 @@ def file_name_check(file_name):
     if file_name.count('.') != 1:
         return 'No'
 
-    parts = file_name.split('.')
-    if not parts[0] or not parts[0][0].isalpha():
+    dot_index = file_name.find('.')
+    prefix = file_name[:dot_index]
+    suffix = file_name[dot_index + 1:]
+
+    if not prefix or not 'a' <= prefix[0] <= 'z' or not 'A' <= prefix[0] <= 'Z':
         return 'No'
 
-    if parts[1] not in ['txt', 'exe', 'dll']:
+    if suffix not in ['txt', 'exe', 'dll']:
         return 'No'
 
     return 'Yes'
@@ -123,8 +138,11 @@ def test_too_many_digits():
 def test_no_dot():
     assert file_name_check("exampletxt") == 'No'
 
-def test_empty_before_dot():
+def test_empty_prefix():
     assert file_name_check(" .txt") == 'No'
 
-def test_invalid_extension():
+def test_prefix_not_letter():
+    assert file_name_check("1example.txt") == 'No'
+
+def test_invalid_suffix():
     assert file_name_check("example.pdf") == 'No'

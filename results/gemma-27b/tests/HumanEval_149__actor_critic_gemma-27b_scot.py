@@ -27,42 +27,38 @@ def sorted_list_sum(lst):
     should return the list sorted by that rule.
     If two words have the same length, sort the list alphabetically.
     The function should return a list of strings in sorted order.
-    For example:
-    assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
-    assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
     """
     even_length_strings = [s for s in lst if len(s) % 2 == 0]
     even_length_strings.sort(key=lambda s: (len(s), s))
     return even_length_strings
 
-def test_empty_list():
+def test_empty_list_returns_empty_list():
     assert sorted_list_sum([]) == []
 
-def test_all_odd_lengths():
-    assert sorted_list_sum(["a", "abc", "de"]) == []
+def test_all_odd_lengths_returns_empty_list():
+    assert sorted_list_sum(["a", "abc", "xyz"]) == []
 
 def test_mixed_lengths():
-    assert sorted_list_sum(["aa", "a", "aaa", "cd"]) == ["aa", "cd"]
-
-def test_same_length_strings():
-    assert sorted_list_sum(["ab", "aa", "ac"]) == ["aa", "ab", "ac"]
+    assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
 def test_duplicate_strings():
-    assert sorted_list_sum(["aa", "aa", "bb"]) == ["aa", "aa", "bb"]
+    assert sorted_list_sum(["aa", "bb", "aa", "cc"]) == ["aa", "aa", "bb", "cc"]
 
-def test_mixed_lengths_duplicates():
-    assert sorted_list_sum(["aa", "a", "bb", "aa", "ccc", "bb"]) == ["aa", "aa", "bb", "bb"]
+def test_same_length_strings():
+    assert sorted_list_sum(["bc", "ab", "cd"]) == ["ab", "bc", "cd"]
 
-def test_single_even_length_string_returns_itself():
+def test_mixed_lengths_and_duplicates():
+    assert sorted_list_sum(["a", "bb", "ccc", "bb", "dd"]) == ["bb", "bb", "dd"]
+
+def test_single_even_length_string():
     assert sorted_list_sum(["aa"]) == ["aa"]
 
-def test_longer_strings():
-    assert sorted_list_sum(["abcdef", "abc", "ab", "defghi"]) == ["ab", "abcdef"]
+def test_single_odd_length_string():
+    assert sorted_list_sum(["a"]) == []
 
 def test_large_list():
-    large_list = ["".join([chr(ord('a') + i % 26) for i in range(j)]) for j in range(1, 11, 2)] + ["".join([chr(ord('a') + i % 26) for i in range(j)]) for j in range(2, 12, 2)]
-    expected = sorted_list_sum(large_list)
-    assert sorted_list_sum(large_list) == expected
+    large_list = ["a" * i for i in range(1, 101) if i % 2 == 0]
+    assert sorted_list_sum(large_list) == sorted(large_list, key=lambda s: (len(s), s))
 
-def test_empty_string():
-    assert sorted_list_sum([""]) == [""]
+def test_same_length_different_order():
+    assert sorted_list_sum(["zz", "aa", "bb", "cc"]) == ["aa", "bb", "cc", "zz"]

@@ -55,37 +55,34 @@ def test_empty_extensions():
     assert Strongest_Extension("my_class", []) == "my_class."
 
 def test_single_extension():
-    assert Strongest_Extension("Slices", ["SErviNGSliCes"]) == "Slices.SErviNGSliCes"
+    assert Strongest_Extension("Slices", ["AA"]) == "Slices.AA"
 
 def test_multiple_extensions_different_strengths():
-    assert Strongest_Extension("my_class", ["AA", "Be", "CC"]) == "my_class.AA"
+    assert Strongest_Extension("Slices", ["SErviNGSliCes", "Cheese", "StuFfed"]) == "Slices.SErviNGSliCes"
 
-def test_multiple_extensions_same_strength():
-    assert Strongest_Extension("my_class", ["AA", "BB", "CC"]) == "my_class.AA"
+def test_multiple_extensions_same_strengths():
+    assert Strongest_Extension("Slices", ["AA", "Be", "CC"]) == "Slices.AA"
 
-def test_extension_with_no_uppercase():
-    assert Strongest_Extension("my_class", ["abc", "def"]) == "my_class.abc"
+def test_mixed_case_extensions():
+    assert Strongest_Extension("MyClass", ["aA", "Be", "cC"]) == "MyClass.aA"
 
-def test_extension_with_no_lowercase():
-    assert Strongest_Extension("my_class", ["ABC", "DEF"]) == "my_class.ABC"
-
-def test_extension_with_mixed_case():
-    assert Strongest_Extension("my_class", ["aBc", "DeF"]) == "my_class.aBc"
+def test_extension_with_numbers():
+    assert Strongest_Extension("TestClass", ["123", "abc"]) == "TestClass.123"
 
 def test_extension_with_special_characters():
-    assert Strongest_Extension("my_class", ["!@#", "abc"]) == "my_class.!@#"
+    assert Strongest_Extension("SpecialClass", ["!@#", "abc"]) == "SpecialClass.!@#"
+
+def test_extension_with_all_uppercase():
+    assert Strongest_Extension("my_class", ["AAAA", "Be", "CC"]) == "my_class.AAAA"
+
+def test_extension_with_all_lowercase():
+    assert Strongest_Extension("my_class", ["aaaa", "Be", "CC"]) == "my_class.aaaa"
+
+def test_extension_with_mixed_case_and_numbers():
+    assert Strongest_Extension("my_class", ["aA1", "Be", "CC"]) == "my_class.aA1"
 
 def test_class_name_with_special_characters():
-    assert Strongest_Extension("my_class!", ["AA", "BB"]) == "my_class!.AA"
+    assert Strongest_Extension("my_class!", ["AA", "Be", "CC"]) == "my_class!.AA"
 
-def test_extension_name_with_class_name():
-    assert Strongest_Extension("my_class", ["my_class"]) == "my_class.my_class"
-
-def test_complex_extension():
-    assert Strongest_Extension("Data", ["DataAnalysis", "DataVisualization", "DataMining"]) == "Data.DataAnalysis"
-
-def test_all_uppercase():
-    assert Strongest_Extension("Test", ["UPPER", "ALL"]) == "Test.UPPER"
-
-def test_all_lowercase():
-    assert Strongest_Extension("Test", ["lower", "all"]) == "Test.lower"
+def test_class_name_with_numbers():
+    assert Strongest_Extension("my_class1", ["AA", "Be", "CC"]) == "my_class1.AA"

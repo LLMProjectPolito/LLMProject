@@ -12,6 +12,7 @@ def simplify(x, n):
     simplify("7/10", "10/2") = False
     """
 
+```python
 import pytest
 
 def simplify(x, n):
@@ -59,18 +60,24 @@ def test_simplify_large_numbers():
     assert simplify("123/456", "456/1") == True
     assert simplify("1000/1001", "1001/1") == True
 
-def test_simplify_edge_cases():
+def test_simplify_one():
     assert simplify("1/1", "1/1") == True
-    assert simplify("1/1", "2/1") == False
+    assert simplify("1/2", "1/1") == True
     assert simplify("2/1", "1/1") == True
-    assert simplify("1/2", "1/2") == True
 
-def test_simplify_different_formats():
-    with pytest.raises(ValueError):
-        simplify("1/2", "2/1a")
-    with pytest.raises(ValueError):
-        simplify("2/1b", "1/2")
-    with pytest.raises(ValueError):
-        simplify("1/2", "2/1 ")
-    with pytest.raises(ValueError):
-        simplify("2/1 ", "1/2")
+def test_simplify_zero_denominator():
+    with pytest.raises(ZeroDivisionError):
+        simplify("1/0", "5/1")
+
+def test_simplify_negative_numbers():
+    assert simplify("-1/2", "2/1") == False
+    assert simplify("1/2", "-2/1") == False
+    assert simplify("-1/2", "-2/1") == True
+
+def test_simplify_fraction_with_large_numerator():
+    assert simplify("1000000/1", "1/1") == True
+    assert simplify("1/1000000", "1000000/1") == True
+
+def test_simplify_fraction_with_large_denominator():
+    assert simplify("1/1000000", "1000000/1") == True
+    assert simplify("1000000/1", "1/1") == True

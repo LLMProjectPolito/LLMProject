@@ -20,19 +20,53 @@ def Strongest_Extension(class_name, extensions):
 import pytest
 from your_module import Strongest_Extension  # Replace your_module
 
+def test_empty_class_and_extensions():
+    assert Strongest_Extension("", []) == "."
+
+def test_strength_logic_uppercase_vs_lowercase():
+    extensions = ["AA", "aa", "BB", "bb"]
+    assert Strongest_Extension("MyClass", extensions) == "MyClass.AA"
+
+def test_strength_logic_multiple_same_strength():
+    extensions = ["AA", "BB", "CC"]
+    assert Strongest_Extension("MyClass", extensions) == "MyClass.AA"
+
+def test_strength_logic_explicit_comparison():
+    extensions = ["AA", "Be", "CC", "aA"]
+    assert Strongest_Extension("MyClass", extensions) == "MyClass.AA"
+
+def test_whitespace_class_name():
+    assert Strongest_Extension(" MyClass ", ["Extension1"]) == " MyClass .Extension1"
+
+def test_whitespace_extension():
+    assert Strongest_Extension("MyClass", [" Extension1 "]) == "MyClass. Extension1 "
+
+def test_extension_with_underscore():
+    assert Strongest_Extension("MyClass", ["Ext_123"]) == "MyClass.Ext_123"
+
+def test_extension_with_hyphen():
+    assert Strongest_Extension("MyClass", ["Ext-123"]) == "MyClass.Ext-123"
+
 def test_empty_extensions():
     assert Strongest_Extension("MyClass", []) == "MyClass."
+
+def test_none_extension():
+    with pytest.raises(TypeError):
+        Strongest_Extension("MyClass", [None])
+
+def test_invalid_extension_type():
+    with pytest.raises(TypeError):
+        Strongest_Extension("MyClass", [123])
+
+def test_invalid_extensions_type():
+    with pytest.raises(TypeError):
+        Strongest_Extension("MyClass", "not a list")
 
 def test_single_extension():
     assert Strongest_Extension("MyClass", ["Extension1"]) == "MyClass.Extension1"
 
-def test_multiple_extensions_different_strengths():
-    extensions = ["AA", "Be", "CC"]
-    assert Strongest_Extension("MyClass", extensions) == "MyClass.AA"
-
-def test_multiple_extensions_same_strength():
-    extensions = ["AA", "BB", "CC"]
-    assert Strongest_Extension("MyClass", extensions) == "MyClass.AA"
+def test_empty_class_name():
+    assert Strongest_Extension("", ["Extension1"]) == ".Extension1"
 
 def test_extension_no_uppercase():
     assert Strongest_Extension("MyClass", ["lowercase"]) == "MyClass.lowercase"
@@ -43,17 +77,8 @@ def test_extension_no_lowercase():
 def test_extension_mixed_case():
     assert Strongest_Extension("MyClass", ["MiXeDCase"]) == "MyClass.MiXeDCase"
 
-def test_empty_class_name():
-    assert Strongest_Extension("", ["Extension1"]) == ".Extension1"
-
-def test_class_name_with_special_characters():
-    assert Strongest_Extension("My!Class#", ["Extension1"]) == "My!Class#.Extension1"
-
 def test_extension_with_numbers():
     assert Strongest_Extension("MyClass", ["Ext123"]) == "MyClass.Ext123"
 
 def test_extension_with_symbols():
-    assert Strongest_Extension("MyClass", ["Ext$#@"]) == "MyClass.Ext$#@"
-
-def test_class_name_and_extension_empty():
-    assert Strongest_Extension("", []) == "."
+    assert Strongest_Extension("MyClass", ["Ext$#%"]) == "MyClass.Ext$#%"

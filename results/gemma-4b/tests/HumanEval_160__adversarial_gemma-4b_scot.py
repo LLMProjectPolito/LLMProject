@@ -67,59 +67,54 @@ def do_algebra(operator, operand):
     return result
 
 def test_addition():
-    operator = ['+', '+']
-    operand = [1, 2]
-    assert do_algebra(operator, operand) == 3
+    operator = ['+', '*', '-']
+    operand = [2, 3, 4, 5]
+    assert do_algebra(operator, operand) == 9
 
 def test_subtraction():
-    operator = ['-', '+']
-    operand = [5, 2]
-    assert do_algebra(operator, operand) == 3
+    operator = ['-', '+', '*']
+    operand = [5, 2, 3, 4]
+    assert do_algebra(operator, operand) == 1
 
 def test_multiplication():
-    operator = ['*', '+']
-    operand = [2, 3]
-    assert do_algebra(operator, operand) == 6
+    operator = ['*', '+', '-']
+    operand = [2, 3, 4, 5]
+    assert do_algebra(operator, operand) == 14
 
 def test_floor_division():
-    operator = ['//', '+']
-    operand = [10, 3]
+    operator = ['//', '+', '*']
+    operand = [10, 2, 3, 4]
     assert do_algebra(operator, operand) == 3
 
 def test_exponentiation():
-    operator = ['**', '+']
-    operand = [2, 3]
-    assert do_algebra(operator, operand) == 8
+    operator = ['**', '+', '-']
+    operand = [2, 3, 4, 5]
+    assert do_algebra(operator, operand) == 19
 
 def test_mixed_operations():
-    operator = ['+', '*', '-', '**']
-    operand = [1, 2, 3, 4]
-    assert do_algebra(operator, operand) == 13
+    operator = ['+', '*', '//', '**']
+    operand = [2, 3, 4, 5, 6]
+    assert do_algebra(operator, operand) == 122
 
 def test_zero_operand():
     operator = ['+', '*']
-    operand = [5, 0]
-    assert do_algebra(operator, operand) == 0
+    operand = [0, 5, 2]
+    assert do_algebra(operator, operand) == 5
 
 def test_single_operand():
     operator = ['+']
-    operand = [5]
+    operand = [2, 3, 4]
     with pytest.raises(IndexError):
         do_algebra(operator, operand)
 
 def test_empty_operator():
     operator = []
-    operand = [5, 2]
+    operand = [2, 3, 4]
     with pytest.raises(IndexError):
         do_algebra(operator, operand)
 
 def test_empty_operand():
-    operator = ['+', '*']
+    operator = ['+']
     operand = []
     with pytest.raises(IndexError):
         do_algebra(operator, operand)
-        
-def test_large_numbers():
-    operator = ['*', '**']
-    operand = [2, 10]
-    assert do_algebra(operator, operand) == 1024

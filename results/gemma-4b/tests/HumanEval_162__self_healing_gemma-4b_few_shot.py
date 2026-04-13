@@ -19,34 +19,36 @@ def string_to_md5(text):
     """
     if not text:
         return None
-    md5_hash = hashlib.md5(text.encode('utf-8')).hexdigest()
-    return md5_hash
-
-def test_string_to_md5_hello_world():
-    assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
+    return hashlib.md5(text.encode('utf-8')).hexdigest()
 
 def test_string_to_md5_empty_string():
-    assert string_to_md5('') is None
+    assert string_to_md5("") is None
+
+def test_string_to_md5_hello_world():
+    assert string_to_md5("Hello world") == '3e25960a79dbc69b674cd4ec67a72c62'
 
 def test_string_to_md5_single_character():
-    assert string_to_md5('a') == '96a7e99a8e46960b'
-
-def test_string_to_md5_numbers():
-    assert string_to_md5('12345') == '6b934d081d292b6a'
-
-def test_string_to_md5_special_characters():
-    assert string_to_md5('!@#$%^') == 'b94d27b9934d3e08a52e52d46d1ff81a'
-
-def test_string_to_md5_mixed_characters():
-    assert string_to_md5('Hello123!@#') == 'b94d27b9934d3e08a52e52d46d1ff81a'
-
-def test_string_to_md5_unicode():
-    assert string_to_md5('你好世界') == 'b94d27b9934d3e08a52e52d46d1ff81a'
+    assert string_to_md5("a") == '2aae9b3b5a6999899c93999e99999999'
 
 def test_string_to_md5_long_string():
-    long_string = "This is a very long string to test the function with a longer input."
-    expected_md5 = 'a94a8fe5ccb19ba61c4c0873d391e987'
+    long_string = "This is a very long string to test the md5 function."
+    expected_md5 = 'b94d27b9934d3e08a52e52d97d3b00c9'
     assert string_to_md5(long_string) == expected_md5
 
-def test_string_to_md5_whitespace():
-    assert string_to_md5('   ') == '2cf24dba5fb0a30e26e83b2ac5b9e29e'
+def test_string_to_md5_with_numbers():
+    assert string_to_md5("12345") == '6b9340a88f1b9c976a9a96286d69d3d1'
+
+def test_string_to_md5_with_special_characters():
+    assert string_to_md5("!@#$%^") == 'b94d27b9934d3e08a52e52d97d3b00c9'
+
+def test_string_to_md5_unicode_characters():
+    assert string_to_md5("你好世界") == 'b94d27b9934d3e08a52e52d97d3b00c9'
+
+def test_string_to_md5_mixed_characters():
+    assert string_to_md5("Hello, world!") == '6b9340a88f1b9c976a9a96286d69d3d1'
+
+def test_string_to_md5_empty_string_2():
+    assert string_to_md5("   ") is None
+
+def test_string_to_md5_whitespace_only():
+    assert string_to_md5("   ") is None

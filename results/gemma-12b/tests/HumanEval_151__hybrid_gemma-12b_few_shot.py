@@ -64,22 +64,55 @@ def test_double_the_difference_empty_list():
     assert double_the_difference([]) == 0
 
 def test_double_the_difference_mixed_positive_negative_and_zero():
-    assert double_the_difference([1, -2, 3, 0, 5]) == 1 + 9 + 25
+    assert double_the_difference([1, -2, 3, 0, 5]) == 35
 
 def test_double_the_difference_non_integer_values():
-    assert double_the_difference([1, 2.5, 3, "a", 5]) == 1 + 9 + 25
+    assert double_the_difference([1, 2.5, 3, "a"]) == 9
 
 def test_double_the_difference_all_even():
     assert double_the_difference([2, 4, 6, 8]) == 0
 
 def test_double_the_difference_large_numbers():
-    assert double_the_difference([101, 303]) == 10201 + 91809
+    assert double_the_difference([11, 13, 15]) == 515
 
-def test_double_the_difference_only_negative_numbers():
-    assert double_the_difference([-1, -3, -5]) == 0
+def test_double_the_difference_with_zero_and_odd():
+    assert double_the_difference([0, 1, 3]) == 10
 
-def test_double_the_difference_zero_and_even():
-    assert double_the_difference([0, 2, 4]) == 0
+def test_empty_list():
+    assert double_the_difference([]) == 0
+
+def test_positive_odd_numbers():
+    assert double_the_difference([1, 3, 5]) == 35
+
+def test_mixed_numbers():
+    assert double_the_difference([1, 3, 2, 0]) == 10
+
+def test_negative_numbers():
+    assert double_the_difference([-1, -2, -3]) == 0
+
+def test_negative_and_positive():
+    assert double_the_difference([-1, 1, -2, 3]) == 10
+
+def test_zero():
+    assert double_the_difference([0]) == 0
+
+def test_large_numbers():
+    assert double_the_difference([9, 11, 13]) == 371
+
+def test_non_integer_numbers():
+    assert double_the_difference([1.5, 2, 3.0]) == 0
+
+def test_mixed_types():
+    assert double_the_difference([1, "a", 3, 5.5, 7]) == 59
+
+def test_all_even():
+    assert double_the_difference([2, 4, 6, 8]) == 0
+
+def test_single_odd_number():
+    assert double_the_difference([7]) == 49
+
+def test_complex_list():
+    assert double_the_difference([1, 2, -3, 4, 5, -6, 7, 8, 9, -10]) == 156
 
 def test_palindrome_basic():
     assert is_palindrome('radar') == True
@@ -88,20 +121,8 @@ def test_palindrome_basic():
 def test_palindrome_empty():
     assert is_palindrome('') == True
 
-def test_palindrome_mixed_case():
-    assert is_palindrome('Racecar') == True
-
-def test_palindrome_with_spaces():
-    assert is_palindrome('A man, a plan, a canal: Panama') == False # Spaces are not ignored
-
 def test_max_positive():
     assert get_max([1, 2, 3]) == 3
 
 def test_max_empty():
     assert get_max([]) == None
-
-def test_max_negative():
-    assert get_max([-1, -2, -3]) == -1
-
-def test_max_mixed():
-    assert get_max([-1, 2, -3, 4]) == 4

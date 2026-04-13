@@ -59,7 +59,7 @@ def test_empty_sentence():
     assert words_in_sentence("") == ""
 
 def test_no_prime_length_words():
-    assert words_in_sentence("this is not a prime") == ""
+    assert words_in_sentence("this is a long sentence") == ""
 
 def test_single_prime_length_word():
     assert words_in_sentence("a") == "a"
@@ -70,34 +70,26 @@ def test_multiple_prime_length_words():
 def test_mixed_prime_and_non_prime_words():
     assert words_in_sentence("lets go for swimming") == "go for"
 
-def test_all_words_prime_length():
-    assert words_in_sentence("I am here") == "I am"
+def test_all_prime_length_words():
+    assert words_in_sentence("a is be do") == "a is be do"
 
 def test_sentence_with_leading_and_trailing_spaces():
-    assert words_in_sentence("  This is a test  ") == "is"
+    assert words_in_sentence("  a is be do  ") == "a is be do"
 
 def test_sentence_with_multiple_spaces():
-    assert words_in_sentence("This  is   a    test") == "is"
+    assert words_in_sentence("a  is   be  do") == "a is be do"
 
 def test_long_sentence():
-    sentence = "This is a very long sentence with some words of prime lengths and some not"
-    expected = "is a very long with some and"
-    assert words_in_sentence(sentence) == expected
+    assert words_in_sentence("This is a very long sentence with many words of varying lengths") == "is a very"
 
 def test_sentence_with_only_one_word():
     assert words_in_sentence("prime") == "prime"
 
 def test_sentence_with_same_length_words():
-    assert words_in_sentence("go do re mi") == "go do re"
+    assert words_in_sentence("go no so to") == "go no so to"
 
-def test_sentence_with_numbers_as_words():
-    assert words_in_sentence("1 2 3 4 5") == "2 3"
+def test_sentence_with_numbers_in_words():
+    assert words_in_sentence("a1 b2 c3") == ""
 
 def test_sentence_with_special_characters():
-    assert words_in_sentence("!@#$ %^&*()") == ""
-
-def test_sentence_with_unicode_characters():
-    assert words_in_sentence("你好 世界") == ""
-
-def test_prime_length_at_end():
-    assert words_in_sentence("This is a test a") == "is a"
+    assert words_in_sentence("a! b@ c#") == ""

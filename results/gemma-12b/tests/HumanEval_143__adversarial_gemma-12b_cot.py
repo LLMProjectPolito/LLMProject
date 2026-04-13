@@ -61,7 +61,7 @@ def test_no_prime_length_words():
     assert words_in_sentence("this is a test") == ""
 
 def test_single_prime_length_word():
-    assert words_in_sentence("go") == "go"
+    assert words_in_sentence("a") == "a"
 
 def test_multiple_prime_length_words():
     assert words_in_sentence("lets go for swimming") == "go for"
@@ -70,10 +70,10 @@ def test_mixed_prime_and_non_prime_words():
     assert words_in_sentence("This is a test") == "is"
 
 def test_sentence_with_leading_and_trailing_spaces():
-    assert words_in_sentence("  lets go for swimming  ") == "go for"
+    assert words_in_sentence("  This is a test  ") == "is"
 
 def test_sentence_with_multiple_spaces_between_words():
-    assert words_in_sentence("lets  go   for swimming") == "go for"
+    assert words_in_sentence("This  is   a    test") == "is"
 
 def test_sentence_with_one_letter_words():
     assert words_in_sentence("a b c d e") == "a b c d e"
@@ -82,13 +82,7 @@ def test_sentence_with_long_words():
     assert words_in_sentence("abcdefghijklmnopqrstuvwxyz abcdefghijk abcdefghijklm") == ""
 
 def test_sentence_with_prime_and_non_prime_words_at_start_and_end():
-    assert words_in_sentence("go this is a test") == "go"
+    assert words_in_sentence("go This is a test for swimming") == "go for"
 
-def test_sentence_with_only_prime_words():
-    assert words_in_sentence("go for") == "go for"
-
-def test_sentence_with_same_length_words():
-    assert words_in_sentence("aa bb cc dd") == ""
-
-def test_sentence_with_prime_length_words_and_duplicates():
-    assert words_in_sentence("go go for for") == "go go for for"
+def test_sentence_with_only_prime_length_words():
+    assert words_in_sentence("a is be do") == "a is be do"

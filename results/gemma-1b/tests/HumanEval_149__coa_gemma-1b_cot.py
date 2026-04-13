@@ -30,7 +30,7 @@ def list_sort(lst):
 import pytest
 
 def list_sort(lst):
-    """Sorts a list of strings based on their length, handling duplicates and ensuring ascending order."""
+    """Sorts a list of strings based on their length, ascending by length, and alphabetically for duplicates."""
     return sorted(lst, key=lambda x: (len(x), x))
 
 # Focus: Logic Branches

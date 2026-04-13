@@ -22,7 +22,27 @@ def fix_spaces(text):
     fix_spaces(" Example 2") == "_Example_2"
     fix_spaces(" Example   3") == "_Example-3"
     """
-    import re
-    text = re.sub(r" {3,}", "-", text)
-    text = text.replace(" ", "_")
-    return text
+    
+    if not text:
+        return ""
+
+    new_text = ""
+    space_count = 0
+    for char in text:
+        if char == ' ':
+            space_count += 1
+            if space_count > 2:
+                new_text += '-'
+            else:
+                new_text += '_'
+        else:
+            new_text += char
+            space_count = 0
+
+    if new_text.endswith('_') and new_text[-2] == '_':
+        new_text = new_text[:-2] + '-'
+    
+    if new_text.startswith('_') and new_text[1] == '_':
+        new_text = '-' + new_text[2:]
+
+    return new_text

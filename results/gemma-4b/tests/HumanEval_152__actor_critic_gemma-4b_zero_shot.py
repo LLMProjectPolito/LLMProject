@@ -52,20 +52,20 @@ def test_compare_single_element_arrays():
 
 def test_compare_different_lengths():
     with pytest.raises(IndexError):
-        compare([1, 2], [1])
+        compare([1, 2, 3], [1, 2])
 
-def test_compare_negative_scores():
+def test_compare_negative_numbers():
     assert compare([-1, -2, -3], [-1, -2, -3]) == [0, 0, 0]
-    assert compare([-1, -2, -3], [-4, -5, -6]) == [3, 3, 3]
+    assert compare([-1, -2, -3], [-4, -1, -2]) == [3, 1, 1]
 
-def test_compare_mixed_scores():
-    assert compare([1, -2, 3], [1, -2, 3]) == [0, 0, 0]
-    assert compare([1, -2, 3], [4, -5, 6]) == [3, 3, 3]
+def test_compare_mixed_numbers():
+    assert compare([1, -2, 3], [1, 2, 3]) == [0, 0, 0]
+    assert compare([1, -2, 3], [4, 2, 3]) == [3, 0, 0]
+
+def test_compare_zero_values():
+    assert compare([0, 0, 0], [0, 0, 0]) == [0, 0, 0]
+    assert compare([0, 0, 0], [1, 1, 1]) == [1, 1, 1]
 
 def test_compare_large_numbers():
     assert compare([1000, 2000, 3000], [1000, 2000, 3000]) == [0, 0, 0]
-    assert compare([1000, 2000, 3000], [1001, 2002, 3003]) == [1, 1, 1]
-
-def test_compare_zero_scores():
-    assert compare([0, 0, 0], [0, 0, 0]) == [0, 0, 0]
-    assert compare([0, 0, 0], [1, 2, 3]) == [1, 2, 3]
+    assert compare([1000, 2000, 3000], [1001, 2002, 3003]) == [1, 2, 3]

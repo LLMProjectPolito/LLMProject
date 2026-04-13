@@ -92,11 +92,11 @@ def test_get_max_positive():
 def test_get_max_empty():
     assert get_max([]) == None
 
-def test_get_max_single_element():
-    assert get_max([5]) == 5
-
-def test_get_max_negative_numbers():
+def test_get_max_negative():
     assert get_max([-1, -2, -3]) == -1
+
+def test_get_max_mixed():
+    assert get_max([-1, 2, -3, 4]) == 4
 
 def test_words_in_sentence_basic():
     assert words_in_sentence("This is a test") == "is"
@@ -107,16 +107,17 @@ def test_words_in_sentence_basic():
 
 def test_words_in_sentence_no_prime_words():
     assert words_in_sentence("hello world") == ""
-    assert words_in_sentence("abc def ghi") == ""
+    assert words_in_sentence("a b c d") == ""
 
 def test_words_in_sentence_empty_sentence():
     assert words_in_sentence("") == ""
 
-def test_words_in_sentence_single_word_prime():
-    assert words_in_sentence("prime") == "prime"
+def test_words_in_sentence_single_word():
+    assert words_in_sentence("word") == ""
 
-def test_words_in_sentence_single_word_non_prime():
-    assert words_in_sentence("hello") == ""
+def test_words_in_sentence_prime_length_words():
+    assert words_in_sentence("prime test") == "prime"
+    assert words_in_sentence("test prime") == "prime"
 
 def test_is_prime_small_numbers():
     assert is_prime(2) == True

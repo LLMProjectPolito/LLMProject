@@ -40,18 +40,25 @@ def special_factorial(n):
 
 
 # Tests (Pytest)
-def test_special_factorial_base_cases():
-    """Tests the base cases of the Brazilian factorial (n=1, n=2)."""
+def test_special_factorial_positive_integer_one():
+    """Tests the special factorial for n = 1."""
     assert special_factorial(1) == 1
+
+def test_special_factorial_positive_integer_small():
+    """Tests the special factorial for small positive integers."""
     assert special_factorial(2) == 2
     assert special_factorial(3) == 18
 
-def test_special_factorial_larger_values():
-    """Tests for larger values to ensure calculation correctness."""
+def test_special_factorial_positive_integer_medium():
+    """Tests the special factorial for medium positive integers."""
     assert special_factorial(4) == 288
     assert special_factorial(5) == 34560
-    assert special_factorial(6) == 6220800
-    assert special_factorial(7) == 40320 * 5040 * 720 * 120 * 24 * 6 * 2 == 40320 * 5040 * 720 * 120 * 24 * 6 * 2
+    assert special_factorial(6) == 6048000
+
+def test_special_factorial_positive_integer_larger():
+    """Tests the special factorial for a larger positive integer."""
+    assert special_factorial(7) == 113400 * 5040 == 571536000
+    assert special_factorial(8) == 40320 * 5040 * 7 * 6 * 5 * 4 * 3 * 2 * 1 == 40320 * 5040 * 5040 == 101606400000
 
 def test_special_factorial_type_error():
     """Tests for TypeError when input is not an integer."""

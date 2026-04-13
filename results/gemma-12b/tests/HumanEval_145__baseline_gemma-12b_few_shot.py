@@ -43,10 +43,10 @@ def test_order_by_points_duplicate_numbers():
     assert order_by_points([2, 2, 2]) == [2, 2, 2]
 
 def test_order_by_points_large_numbers():
-    assert order_by_points([123, 45, 6]) == [45, 6, 123]
+    assert order_by_points([123, 45, 6]) == [123, 45, 6]
 
 def test_order_by_points_complex_case():
-    assert order_by_points([12, 21, 3, 1, 4]) == [3, 1, 12, 21, 4]
+    assert order_by_points([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) == [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 
-def test_order_by_points_all_negative():
-    assert order_by_points([-12, -21, -3, -1, -4]) == [-1, -3, -12, -21, -4]
+def test_order_by_points_another_complex_case():
+    assert order_by_points([12, 21, 3, 13, 23]) == [3, 12, 21, 13, 23]

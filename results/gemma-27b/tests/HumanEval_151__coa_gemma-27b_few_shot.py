@@ -40,17 +40,23 @@ def double_the_difference(lst):
             total += num * num
     return total
 
-def test_double_the_difference_empty_list():
+def test_empty_list():
     assert double_the_difference([]) == 0
 
-def test_double_the_difference_zero():
+def test_list_with_only_even_numbers():
+    assert double_the_difference([2, 4, 6, 8]) == 0
+
+def test_list_with_only_negative_numbers():
+    assert double_the_difference([-1, -3, -5]) == 0
+
+def test_list_with_zero():
     assert double_the_difference([0]) == 0
 
-def test_double_the_difference_negative_numbers():
-    assert double_the_difference([-1, -2, -3]) == 0
+def test_list_with_one_odd_number():
+    assert double_the_difference([1]) == 1
 
-def test_double_the_difference_max_int():
-    assert double_the_difference([2**31 - 1]) == (2**31 - 1)**2
+def test_list_with_one_even_number():
+    assert double_the_difference([2]) == 0
 
 # Focus: Invalid Input Handling
 import pytest
@@ -76,5 +82,5 @@ def test_empty_list():
 def test_negative_and_non_integer_values():
     assert double_the_difference([-1, -2, 0, 2.5]) == 0
 
-def test_mixed_odd_and_even():
+def test_mixed_odd_and_even_positive_integers():
     assert double_the_difference([1, 3, 2, 0]) == 10

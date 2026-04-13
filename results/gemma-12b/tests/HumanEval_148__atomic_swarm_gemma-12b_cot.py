@@ -26,7 +26,7 @@ def test_basic():
 def test_edge_invalid_planets():
     """Tests the edge case where both input planets are invalid."""
     from solution import bf
-    result = bf("Pluto", "Xena")
+    result = bf("Pluto", "Ceres")
     assert result == ()
 
 def test_invalid_planet_names():

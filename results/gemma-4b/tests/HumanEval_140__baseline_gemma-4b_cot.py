@@ -31,9 +31,11 @@ def fix_spaces(text):
             count += 1
             if count <= 2:
                 result += "_"
+            else:
+                result += "-"
         else:
-            count = 0
             result += char
+            count = 0
     return result
 
 def test_fix_spaces_no_spaces():
@@ -55,10 +57,13 @@ def test_fix_spaces_only_spaces():
     assert fix_spaces("   ") == "--"
 
 def test_fix_spaces_mixed_spaces():
-    assert fix_spaces("Hello  World  !") == "Hello__World!"
+    assert fix_spaces("Hello  World") == "Hello__World"
 
 def test_fix_spaces_long_consecutive_spaces():
-    assert fix_spaces("This   has    many   spaces") == "This___has____many__spaces"
+    assert fix_spaces("This   has    many   spaces") == "This---has----many---spaces"
 
-def test_fix_spaces_trailing_spaces():
-    assert fix_spaces("Hello  ") == "Hello_"
+def test_fix_spaces_spaces_at_end():
+    assert fix_spaces("Some text   ") == "Some_text--"
+
+def test_fix_spaces_spaces_at_beginning():
+    assert fix_spaces("   Some text") == "_Some_text"

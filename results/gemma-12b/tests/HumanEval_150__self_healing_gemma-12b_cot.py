@@ -36,15 +36,16 @@ class TestXorY:
         assert x_or_y(10, 1, 2) == 2
 
     def test_edge_cases(self):
-        assert x_or_y(1, 10, 20) == 20  # 1 is not prime
-        assert x_or_y(0, 10, 20) == 20  # 0 is not prime
-        assert x_or_y(-5, 10, 20) == 20 # Negative numbers are not prime
-        assert x_or_y(2, 10, 10) == 10 # Prime, x and y are same
-        assert x_or_y(3, 3, 3) == 3 # Prime, x and y are same
-        assert x_or_y(4, 4, 4) == 4 # Not prime, x and y are same
+        assert x_or_y(1, 5, 10) == 10  # 1 is not prime
+        assert x_or_y(0, 5, 10) == 10  # 0 is not prime
+        assert x_or_y(-5, 5, 10) == 10 # Negative numbers are not prime
+        assert x_or_y(2, 5, 10) == 5 # 2 is prime
+        assert x_or_y(3, 5, 10) == 5 # 3 is prime
 
-    def test_large_prime(self):
-        assert x_or_y(101, 50, 100) == 50
+    def test_large_numbers(self):
+        assert x_or_y(101, 1000, 2000) == 1000
+        assert x_or_y(1000, 1000, 2000) == 2000
 
-    def test_large_non_prime(self):
-        assert x_or_y(100, 50, 100) == 100
+    def test_same_values(self):
+        assert x_or_y(7, 5, 5) == 5
+        assert x_or_y(4, 5, 5) == 5

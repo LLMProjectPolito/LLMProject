@@ -43,11 +43,11 @@ def test_valid_string_input_with_numbers():
     assert string_to_md5("Test1234") == "a94a8fe5ccb19ba61c4c0873d391e987"
 
 def test_valid_string_input_with_special_characters():
-    assert string_to_md5("!@#$%^") == "96f96999999999999999999999999999"
+    assert string_to_md5("!@#$%^") == "b10a8db164e0754105b7a99be72e3fe5"
 
-# Focus: Error/Exception Handling (for potentially large strings or unsupported characters)
+# Focus: Error Handling/Invalid Input Types
 import pytest
-import hashlib
+from hashlib import md5
 
 def string_to_md5(text):
     """
@@ -58,22 +58,16 @@ def string_to_md5(text):
     """
     if not text:
         return None
-    return hashlib.md5(text.encode('utf-8')).hexdigest()
+    return md5(text.encode()).hexdigest()
 
-def test_string_to_md5_large_string():
-    large_string = "a" * 100000
-    result = string_to_md5(large_string)
-    assert isinstance(result, str)
-    assert len(result) == 32
+def test_string_to_md5_invalid_input_type_int():
+    with pytest.raises(TypeError):
+        string_to_md5(123)
 
-def test_string_to_md5_unsupported_characters():
-    unsupported_string = "Hello\ud800world"  # Contains a surrogate code point
-    try:
-        string_to_md5(unsupported_string)
-    except UnicodeEncodeError:
-        pass
-    else:
-        pytest.fail("UnicodeEncodeError not raised for unsupported characters")
+def test_string_to_md5_invalid_input_type_list():
+    with pytest.raises(TypeError):
+        string_to_md5(['a', 'b', 'c'])
 
-def test_string_to_md5_empty_string():
-    assert string_to_md5("") is None
+def test_string_to_md5_invalid_input_type_none():
+    with pytest.raises(TypeError):
+        string_to_md5(None)

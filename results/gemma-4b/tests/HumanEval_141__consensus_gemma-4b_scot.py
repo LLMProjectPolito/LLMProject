@@ -52,53 +52,50 @@ def file_name_check(file_name):
 
 def test_valid_file_name():
     assert file_name_check("example.txt") == 'Yes'
-    assert file_name_check("my_file.dll") == 'Yes'
-    assert file_name_check("another.exe") == 'Yes'
-    assert file_name_check("valid_name.txt") == 'Yes'
-    assert file_name_check("a.txt") == 'Yes'
 
 
-def test_invalid_file_name_too_many_digits():
-    assert file_name_check("123example.txt") == 'No'
-    assert file_name_check("1234example.txt") == 'No'
-    assert file_name_check("12.txt") == 'No'
-    assert file_name_check("123.123") == 'No'
+def test_valid_file_name_with_digits():
+    assert file_name_check("example123.txt") == 'No'
 
 
-def test_invalid_file_name_no_dot():
+def test_no_dot():
     assert file_name_check("example") == 'No'
-    assert file_name_check("1example") == 'No'
 
 
-def test_invalid_file_name_multiple_dots():
-    assert file_name_check("example.example.txt") == 'No'
+def test_multiple_dots():
     assert file_name_check("example..txt") == 'No'
 
 
-def test_invalid_file_name_empty_before_dot():
+def test_empty_before_dot():
     assert file_name_check(".txt") == 'No'
-    assert file_name_check("1.txt") == 'No'
 
 
-def test_invalid_file_name_starts_with_digit():
+def test_digit_before_dot():
     assert file_name_check("1example.txt") == 'No'
+
+
+def test_invalid_extension():
+    assert file_name_check("example.pdf") == 'No'
+
+
+def test_more_than_three_digits():
     assert file_name_check("123example.txt") == 'No'
 
 
-def test_invalid_file_name_invalid_extension():
-    assert file_name_check("example.pdf") == 'No'
-    assert file_name_check("example.jpg") == 'No'
-    assert file_name_check("example.doc") == 'No'
+def test_valid_file_name_with_uppercase():
+    assert file_name_check("Example.txt") == 'Yes'
 
+def test_valid_file_name_with_mixed_case():
+    assert file_name_check("ExAmple.txt") == 'Yes'
 
-def test_edge_cases():
-    assert file_name_check("a.txt") == 'Yes'
-    assert file_name_check("A.TXT") == 'Yes'
+def test_valid_file_name_with_numbers_and_letters():
+    assert file_name_check("a123b.txt") == 'Yes'
+
+def test_valid_file_name_with_leading_numbers():
     assert file_name_check("1a.txt") == 'No'
-    assert file_name_check("1.txt") == 'No'
-    assert file_name_check("12.txt") == 'No'
-    assert file_name_check("123.txt") == 'No'
-    assert file_name_check("1234.txt") == 'No'
-    assert file_name_check("a.exe") == 'Yes'
-    assert file_name_check("a.dll") == 'Yes'
-    assert file_name_check("a.txt") == 'Yes'
+
+def test_valid_file_name_with_trailing_numbers():
+    assert file_name_check("a.123") == 'No'
+
+def test_valid_file_name_with_special_characters():
+    assert file_name_check("example.txt!") == 'No'

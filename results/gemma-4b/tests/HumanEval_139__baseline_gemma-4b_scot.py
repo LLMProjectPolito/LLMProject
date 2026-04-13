@@ -51,7 +51,7 @@ def special_factorial(n):
 # - special_factorial(3) - Another simple case
 # - special_factorial(4) - Example from the docstring
 # - special_factorial(5) - Larger case
-# - special_factorial(-1) - Negative input (should return 1 as per the problem description)
+# - special_factorial(-1) - Negative input (should return 1)
 
 ### STEP 3: CODE
 def test_special_factorial_0():

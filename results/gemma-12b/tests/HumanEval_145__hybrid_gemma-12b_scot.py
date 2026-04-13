@@ -23,41 +23,41 @@ def digit_sum(n):
         n //= 10
     return s
 
-# Combine test cases from both suites
-test_cases = [
+@pytest.mark.parametrize("nums, expected", [
     ([], []),
     ([1, 11, -1, -11, -12], [-1, -11, 1, -12, 11]),
     ([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]),
     ([-1, -2, -3, -4, -5], [-1, -2, -3, -4, -5]),
     ([1, -2, 3, -4, 5], [1, -2, 3, -4, 5]),
-    ([12, 11, 10], [10, 11, 12]),
+    ([11, 2, 1, 22], [1, 2, 11, 22]),
     ([0], [0]),
     ([123, 45, 6], [6, 45, 123]),
+    ([1, 1, 1, 1], [1, 1, 1, 1]),
     ([5, 55, 555], [5, 55, 555]),
-    ([1, 1, 1], [1, 1, 1]),
     ([10, 1, 100], [1, 10, 100]),
-    ([22, 11, 3], [3, 11, 22]),
-    ([-10, -1, -100], [-1, -10, -100]),
-    ([12, 10, 2, 21], [2, 10, 12, 21]),
-    ([5, 5], [5, 5]),
-    ([123, 45, 678, 9], [9, 45, 123, 678]),
-    ([11, 2, 3, 4, 5], [2, 3, 4, 5, 11]),
-    ([1, 1, 1, 1, 1], [1, 1, 1, 1, 1]),
-    ([10, 1, 100, 1000], [1, 10, 100, 1000]),
-    ([-10, -1, -100, -1000], [-1, -10, -100, -1000]),
-]
-
-# Remove duplicate test cases
-seen_cases = set()
-unique_test_cases = []
-for nums, expected in test_cases:
-    case_str = str((nums, expected))
-    if case_str not in seen_cases:
-        unique_test_cases.append((nums, expected))
-        seen_cases.add(case_str)
-
-
-@pytest.mark.parametrize("nums, expected", unique_test_cases)
-def test_order_by_points(nums, expected):
+    ([101, 11, 1], [1, 11, 101]),
+    ([12, 11, 10], [10, 11, 12]),
+    ([1, 10, 100, 1000], [1, 10, 100, 1000]),
+    ([1, 10, 100, 1000, 1], [1, 10, 100, 1000, 1]),
+])
+def test_order_by_points_various_scenarios(nums, expected):
     """Tests the order_by_points function with various scenarios."""
+    assert order_by_points(nums) == expected
+
+def test_same_digit_sum():
+    """Test with numbers having the same digit sum to ensure original order is preserved."""
+    nums = [1, 10, 100]
+    expected = [1, 10, 100]
+    assert order_by_points(nums) == expected
+
+def test_single_element():
+    """Test with a list containing only one element."""
+    nums = [5]
+    expected = [5]
+    assert order_by_points(nums) == expected
+
+def test_all_same_digit_sum():
+    """Test where all numbers have the same digit sum."""
+    nums = [11, 20, 101]
+    expected = [11, 20, 101]
     assert order_by_points(nums) == expected

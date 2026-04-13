@@ -71,7 +71,10 @@ class TestFindMax:
         assert find_max(["!@#", "$%^", "&*()"]) == "!@#"
 
     def test_numbers_and_letters(self):
-        assert find_max(["123", "abc", "1a2b"]) == "1a2b"
+        assert find_max(["123", "abc", "1a2"]) == "1a2"
 
     def test_unicode_characters(self):
         assert find_max(["你好", "世界", "你好世界"]) == "你好世界"
+
+    def test_mixed_unicode_and_ascii(self):
+        assert find_max(["hello", "你好", "world"]) == "你好"

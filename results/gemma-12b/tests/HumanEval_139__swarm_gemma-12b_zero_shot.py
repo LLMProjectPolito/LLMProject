@@ -16,5 +16,7 @@ import pytest
 import math
 
 def test_special_factorial_zero():
-    """Test that special_factorial(0) returns 1, handling the edge case of zero."""
-    assert special_factorial(0) == 1
+    """Test with n = 0.  Should raise a ValueError because the factorial is not defined for 0."""
+    with pytest.raises(ValueError):
+        from your_module import special_factorial  # Replace your_module
+        special_factorial(0)

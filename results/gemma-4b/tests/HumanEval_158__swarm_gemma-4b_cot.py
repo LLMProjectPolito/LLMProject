@@ -42,20 +42,20 @@ def find_max(words):
 def test_empty_list():
     assert find_max([]) == ""
 
-def test_single_word():
-    assert find_max(["hello"]) == "hello"
+def test_example_1():
+    assert find_max(["name", "of", "string"]) == "string"
 
-def test_multiple_words_different_unique_chars():
+def test_example_2():
+    assert find_max(["name", "enam", "game"]) == "enam"
+
+def test_example_3():
+    assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
+
+def test_same_max_unique():
     assert find_max(["abc", "def", "ghi"]) == "abc"
 
-def test_multiple_words_same_unique_chars_lexicographical():
-    assert find_max(["abc", "cba", "bac"]) == "abc"
+def test_mixed_case():
+    assert find_max(["Name", "name"]) == "Name"
 
-def test_edge_case_all_same_characters():
-    assert find_max(["aaaa", "bbbb", "cccc"]) == "aaaa"
-
-def test_edge_case_empty_string():
-    assert find_max(["", "abc", "def"]) == "abc"
-
-def test_edge_case_mixed_empty_and_non_empty():
-    assert find_max(["", "abc", ""]) == "abc"
+def test_numbers_and_letters():
+    assert find_max(["a1b2", "a1c2"]) == "a1b2"

@@ -42,7 +42,7 @@ def even_odd_count(num):
 # 5. Zero: (0, (0, 0))
 # 6. Negative zero: (-0, (0, 0))
 # 7. Single digit even: (2, (0, 1))
-# 8. Single digit odd: (1, (0, 1))
+# 8. Single digit odd: (1, (1, 0))
 
 ### STEP 3: CODE
 def test_positive_mixed():

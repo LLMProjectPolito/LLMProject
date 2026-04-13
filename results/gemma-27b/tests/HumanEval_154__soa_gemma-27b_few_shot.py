@@ -54,23 +54,23 @@ def test_cycpattern_check_substring_at_start():
 def test_cycpattern_check_substring_at_end():
     assert cycpattern_check("abcdef", "def") == True
 
-def test_cycpattern_check_substring_in_middle():
-    assert cycpattern_check("abcdef", "cde") == True
-
 def test_cycpattern_check_rotation_needed():
     assert cycpattern_check("waterbottle", "erbottlewat") == True
 
 def test_cycpattern_check_long_strings():
     assert cycpattern_check("thisisalongstring", "longstring") == True
     assert cycpattern_check("thisisalongstring", "stringthisis") == True
-    assert cycpattern_check("thisisalongstring", "isalongstrin") == True
     assert cycpattern_check("thisisalongstring", "notpresent") == False
+
+def test_cycpattern_check_repeated_characters():
+    assert cycpattern_check("aaaaa", "aa") == True
+    assert cycpattern_check("aaaaa", "aaa") == True
+    assert cycpattern_check("aaaaa", "aaaa") == True
+    assert cycpattern_check("aaaaa", "aaaaa") == True
+    assert cycpattern_check("aaaaa", "aaaaaa") == False
 
 def test_cycpattern_check_edge_cases():
     assert cycpattern_check("a", "a") == True
     assert cycpattern_check("a", "b") == False
-    assert cycpattern_check("aa", "a") == True
-    assert cycpattern_check("aa", "aa") == True
+    assert cycpattern_check("abc", "cba") == False
     assert cycpattern_check("abcabc", "bca") == True
-    assert cycpattern_check("abcabc", "cab") == True
-    assert cycpattern_check("abcabc", "abc") == True

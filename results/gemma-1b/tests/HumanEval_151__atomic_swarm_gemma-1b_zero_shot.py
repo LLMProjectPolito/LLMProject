@@ -16,7 +16,7 @@ import pytest
 import math
 
 def double_the_difference(lst):
-    '''
+    """
     Given a list of numbers, return the sum of squares of the numbers
     in the list that are odd. Ignore numbers that are negative or not integers.
     
@@ -26,7 +26,7 @@ def double_the_difference(lst):
     double_the_difference([0]) == 0  
    
     If the input list is empty, return 0.
-    '''
+    """
     if not lst:
         return 0
     

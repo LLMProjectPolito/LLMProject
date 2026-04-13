@@ -28,10 +28,10 @@ def bf(planet1, planet2):
     located between the orbit of planet1 and the orbit of planet2, sorted by 
     the proximity to the sun. 
     The function should return an empty tuple if planet1 or planet2
-    are not correct planet names. 
+    are not correct planet names, or if planet1 is after planet2 in the solar system.
     Examples
     bf("Jupiter", "Neptune") ==> ("Saturn", "Uranus")
-    bf("Earth", "Mercury") ==> ("Venus")
+    bf("Earth", "Mercury") ==> ("Venus",)
     bf("Mercury", "Uranus") ==> ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
     '''
     planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
@@ -47,6 +47,7 @@ def bf(planet1, planet2):
     between_planets = planets[index1 + 1:index2]
     return tuple(between_planets)
 
+
 def test_bf_jupiter_to_neptune():
     assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
 
@@ -60,24 +61,18 @@ def test_bf_venus_to_saturn():
     assert bf("Venus", "Saturn") == ("Earth", "Mars", "Jupiter")
 
 def test_bf_mars_to_jupiter():
-    assert bf("Mars", "Jupiter") == ("Jupiter",)
-
-def test_bf_earth_to_earth():
-    assert bf("Earth", "Earth") == ()
-
-def test_bf_invalid_planet_name():
-    assert bf("Pluto", "Neptune") == ()
-    assert bf("Earth", "Pluto") == ()
-    assert bf("Invalid", "Neptune") == ()
-    assert bf("Earth", "Invalid") == ()
-    assert bf("Invalid", "Invalid") == ()
-
-def test_bf_empty_tuple_invalid_input():
-    assert bf("Invalid1", "Invalid2") == ()
+    assert bf("Mars", "Jupiter") == ("Earth",)
 
 def test_bf_adjacent_planets():
-    assert bf("Earth", "Mars") == ("Mars",)
+    assert bf("Mercury", "Venus") == ()
+    assert bf("Venus", "Earth") == ()
 
-def test_bf_edge_cases():
-    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
-    assert bf("Neptune", "Mercury") == ()
+def test_bf_invalid_planet_names():
+    assert bf("Pluto", "Neptune") == ()
+    assert bf("Earth", "Invalid") == ()
+
+def test_bf_same_planet():
+    assert bf("Earth", "Earth") == ()
+
+def test_bf_planet1_after_planet2():
+    assert bf("Neptune", "Jupiter") == ()

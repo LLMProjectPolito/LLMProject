@@ -40,7 +40,7 @@ def test_list_with_non_integers():
     assert double_the_difference([1, 2.5, 3, "a"]) == 1 + 9 == 10
 
 def test_list_with_mixed_types():
-    assert double_the_difference([1, 2, "a", 3.5, 5]) == 1 + 25 == 26
+    assert double_the_difference([1, 2, "a", 3.5, 5]) == 1 + 9 + 25 == 35
 
 def test_single_odd_number():
     assert double_the_difference([7]) == 49
@@ -51,14 +51,11 @@ def test_single_even_number():
 def test_single_negative_number():
     assert double_the_difference([-5]) == 0
 
-def test_example_1():
-    assert double_the_difference([1, 3, 2, 0]) == 10
+def test_large_numbers():
+    assert double_the_difference([101, 203]) == 10201 + 41209 == 51410
 
-def test_example_2():
-    assert double_the_difference([-1, -2, 0]) == 0
+def test_zero_and_odd():
+    assert double_the_difference([0, 1]) == 1
 
-def test_example_3():
-    assert double_the_difference([9, -2]) == 81
-
-def test_example_4():
-    assert double_the_difference([0]) == 0
+def test_zero_and_even():
+    assert double_the_difference([0, 2]) == 0

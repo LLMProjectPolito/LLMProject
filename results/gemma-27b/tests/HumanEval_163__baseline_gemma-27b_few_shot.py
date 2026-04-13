@@ -35,7 +35,7 @@ def test_generate_integers_large_range_reversed():
     assert generate_integers(10, 1) == [2, 4, 6, 8, 10]
 
 def test_generate_integers_negative_numbers():
-    assert generate_integers(-2, 2) == [2]
+    assert generate_integers(-2, -8) == []
 
 def test_generate_integers_mixed_numbers():
-    assert generate_integers(-1, 5) == [2, 4]
+    assert generate_integers(-2, 8) == [2, 4, 6, 8]

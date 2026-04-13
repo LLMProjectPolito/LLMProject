@@ -87,5 +87,5 @@ import pytest
 
 def test_invalid_planet_names():
     assert bf("Pluto", "Neptune") == ()
-    assert bf("Earth", "Xyz") == ()
+    assert bf("Earth", "X") == ()
     assert bf("Invalid", "Venus") == ()

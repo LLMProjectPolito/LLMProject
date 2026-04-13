@@ -63,15 +63,25 @@ def test_subtraction_division():
     operand = [10, 2, 3]
     assert do_algebra(operator, operand) == 2
 
-def test_multiplication_exponentiation():
-    operator = ['*', '**']
-    operand = [2, 3, 2]
-    assert do_algebra(operator, operand) == 32
-
 def test_complex_expression():
     operator = ['+', '*', '-', '//']
     operand = [2, 3, 4, 5, 2]
     assert do_algebra(operator, operand) == 7
+
+def test_multiple_additions():
+    operator = ['+', '+']
+    operand = [1, 2, 3]
+    assert do_algebra(operator, operand) == 6
+
+def test_multiple_subtractions():
+    operator = ['-', '-']
+    operand = [10, 2, 4]
+    assert do_algebra(operator, operand) == 4
+
+def test_exponentiation_multiplication():
+    operator = ['**', '*']
+    operand = [2, 3, 4]
+    assert do_algebra(operator, operand) == 72
 
 def test_large_numbers():
     operator = ['*']
@@ -83,23 +93,12 @@ def test_zero_operand():
     operand = [0, 5]
     assert do_algebra(operator, operand) == 5
 
-def test_multiple_operators():
-    operator = ['+', '+', '-']
-    operand = [1, 2, 3, 4]
-    assert do_algebra(operator, operand) == 4
-
-def test_floor_division_with_zero():
-    operator = ['//']
+def test_zero_operator():
+    operator = ['*']
     operand = [5, 0]
-    with pytest.raises(ZeroDivisionError):
-        do_algebra(operator, operand)
+    assert do_algebra(operator, operand) == 0
 
-def test_exponentiation_with_negative_base():
-    operator = ['**']
-    operand = [-2, 3]
-    assert do_algebra(operator, operand) == -8
-
-def test_exponentiation_with_zero_exponent():
-    operator = ['**']
-    operand = [5, 0]
-    assert do_algebra(operator, operand) == 1
+def test_negative_result():
+    operator = ['-']
+    operand = [2, 5]
+    assert do_algebra(operator, operand) == -3

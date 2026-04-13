@@ -45,17 +45,14 @@ def test_empty_list():
 def test_single_element_list():
     assert list_sort(["a"]) == ["a"]
 
-def test_example_case1():
+def test_even_length_list():
     assert list_sort(["aa", "a", "aaa"]) == ["aa"]
 
-def test_example_case2():
+def test_odd_length_list():
     assert list_sort(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
 def test_duplicate_elements():
     assert list_sort(["aa", "a", "aaa", "aa"]) == ["aa", "aa", "aaa"]
 
-def test_same_length_elements():
-    assert list_sort(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
-
-def test_mixed_length_elements():
-    assert list_sort(["aa", "a", "aaa", "bb", "cc"]) == ["aa", "a", "bb", "cc"]
+def test_mixed_length_list():
+    assert list_sort(["ab", "a", "aaa", "cd", "aa"]) == ["ab", "aa", "cd", "aaa"]

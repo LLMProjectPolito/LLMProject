@@ -33,9 +33,8 @@ def find_max(words):
         if unique_chars > max_unique_chars:
             max_unique_chars = unique_chars
             result = word
-        elif unique_chars == max_unique_chars:
-            if word < result:
-                result = word
+        elif unique_chars == max_unique_chars and word < result:
+            result = word
 
     return result
 

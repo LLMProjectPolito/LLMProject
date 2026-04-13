@@ -31,14 +31,14 @@ def test_specialFilter_example1():
 def test_specialFilter_example2():
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
-def test_specialFilter_empty():
+def test_specialFilter_empty_list():
     assert specialFilter([]) == 0
 
 def test_specialFilter_single_element():
     assert specialFilter([15]) == 1
 
 def test_specialFilter_all_elements_greater_than_10():
-    assert specialFilter([10, 20, 30]) == 3
+    assert specialFilter([10, 20, 30, 40, 50]) == 5
 
 def test_specialFilter_all_elements_less_than_10():
     assert specialFilter([-10, -20, -30]) == 0

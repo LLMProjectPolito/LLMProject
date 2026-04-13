@@ -61,11 +61,14 @@ def test_eat_large_numbers():
 def test_eat_large_numbers_2():
     assert eat(100, 1000, 500) == [600, 0]
 
-def test_eat_edge_case_equal_need_and_remaining():
-    assert eat(5, 5, 5) == [10, 0]
-
-def test_eat_edge_case_need_slightly_greater_than_remaining():
-    assert eat(2, 6, 4) == [6, 0]
+def test_eat_equal_need_and_remaining():
+    assert eat(3, 3, 3) == [6, 0]
 
 def test_eat_zero_need_zero_remaining():
-    assert eat(5, 0, 0) == [5, 0]
+    assert eat(0, 0, 0) == [0, 0]
+
+def test_eat_zero_eaten_zero_need_some_remaining():
+    assert eat(0, 0, 5) == [0, 5]
+
+def test_eat_some_eaten_zero_need_some_remaining():
+    assert eat(5, 0, 5) == [5, 5]

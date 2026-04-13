@@ -49,6 +49,15 @@ def test_palindrome_basic():
 def test_palindrome_empty():
     assert is_palindrome('') == True
 
+def test_palindrome_mixed_case():
+    assert is_palindrome('Racecar') == True
+
+def test_palindrome_with_spaces():
+    assert is_palindrome('A man a plan a canal Panama') == True
+
+def test_palindrome_with_punctuation():
+    assert is_palindrome('Madam, I\'m Adam.') == True
+
 def test_max_positive():
     assert get_max([1, 2, 3]) == 3
 
@@ -70,8 +79,14 @@ def test_even_odd_count_positive():
 def test_even_odd_count_zero():
     assert even_odd_count(0) == (1, 0)
 
-def test_even_odd_count_large():
+def test_even_odd_count_single_digit_even():
+    assert even_odd_count(2) == (1, 0)
+
+def test_even_odd_count_single_digit_odd():
+    assert even_odd_count(1) == (0, 1)
+
+def test_even_odd_count_large_number():
     assert even_odd_count(1234567890) == (5, 5)
 
-def test_even_odd_count_negative_large():
+def test_even_odd_count_negative_large_number():
     assert even_odd_count(-1234567890) == (5, 5)

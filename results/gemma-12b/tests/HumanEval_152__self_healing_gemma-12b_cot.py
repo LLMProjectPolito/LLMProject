@@ -18,7 +18,7 @@ def compare(game,guess):
 import pytest
 from your_module import compare  # Replace your_module
 
-def test_empty_lists():
+def test_empty_arrays():
     assert compare([], []) == []
 
 def test_correct_guesses():
@@ -45,7 +45,7 @@ def test_example_2():
 def test_large_numbers():
     assert compare([100, 200, 300], [105, 195, 305]) == [5, 5, 5]
 
-def test_unequal_length_lists():
+def test_unequal_length_arrays():
     with pytest.raises(ValueError):
         compare([1, 2], [1])
     with pytest.raises(ValueError):

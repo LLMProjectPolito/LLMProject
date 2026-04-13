@@ -61,8 +61,10 @@ def eat(number, need, remaining):
     total_eaten = number
     remaining_after_meals = remaining
     
-    if number < need:
-        remaining_after_meals = remaining - need
-        total_eaten = number
-    
-    return [total_eaten, remaining_after_meals]
+    if number == need:
+        return [total_eaten, remaining_after_meals]
+    elif number < need:
+        remaining_after_meals = remaining - number
+        return [total_eaten, remaining_after_meals]
+    else:
+        return [total_eaten, 0]

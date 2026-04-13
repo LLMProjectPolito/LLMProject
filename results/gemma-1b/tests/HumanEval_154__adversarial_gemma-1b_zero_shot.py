@@ -28,20 +28,39 @@ def cycpattern_check(a, b):
     s4 = s2
     s5 = s3
 
-    if len(s1) == len(s2):
-        if s2 in s1:
-            return True
-        else:
-            return False
-    elif len(s2) == len(s1):
-        if s1 in s2:
-            return True
-        else:
-            return False
+    if len(s1) >= len(s2):
+        for i in range(len(s2)):
+            rotated_s2 = s2[i:] + s2[:i]
+            if rotated_s2 in s1:
+                return True
     else:
-        if s1 in s2:
-            return True
-        else:
-            return False
-
+        for i in range(len(s1)):
+            rotated_s1 = s1[i:] + s1[:i]
+            if rotated_s1 in s2:
+                return True
     return False
+
+def test_cycpattern_check_basic():
+    assert cycpattern_check("abcd", "abd") == False
+    assert cycpattern_check("hello", "ell") == True
+    assert cycpattern_check("whassup", "psus") == False
+    assert cycpattern_check("abab", "baa") == True
+    assert cycpattern_check("efef", "eeff") == False
+    assert cycpattern_check("himenss", "simen") == True
+
+def test_cycpattern_check_empty_strings():
+    assert cycpattern_check("", "") == True
+    assert cycpattern_check("abc", "") == False
+    assert cycpattern_check("", "abc") == False
+
+def test_cycpattern_check_single_char():
+    assert cycpattern_check("a", "a") == True
+    assert cycpattern_check("a", "b") == False
+    assert cycpattern_check("a", "ab") == False
+
+def test_cycpattern_check_longer_words():
+    assert cycpattern_check("abcdefg", "def") == True
+    assert cycpattern_check("abcdefg", "fed") == True
+    assert cycpattern_check("abcdefg", "fgh") == True
+    assert cycpattern_check("abcdefg", "g") == True
+    assert cycpattern_check("abcdefg", "abc") == False

@@ -54,7 +54,7 @@ def test_is_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
     assert is_palindrome('A man, a plan, a canal: Panama') == True
-    assert is_palindrome('Race car') == True
+    assert is_palindrome('Racecar') == True
     assert is_palindrome('Was it a car or a cat I saw?') == True
     assert is_palindrome('Madam') == True
     assert is_palindrome('level') == True
@@ -69,12 +69,10 @@ def test_is_palindrome_empty():
 
 def test_is_palindrome_mixed_case():
     assert is_palindrome('Racecar') == True
-
-def test_is_palindrome_with_punctuation():
-    assert is_palindrome('A man, a plan, a canal: Panama') == True
+    assert is_palindrome('RaCeCaR') == True
 
 def test_is_palindrome_with_spaces():
-    assert is_palindrome('Race car') == True
+    assert is_palindrome('A man, a plan, a canal: Panama') == True
 
 def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
@@ -88,8 +86,8 @@ def test_get_max_empty():
 def test_get_max_single_element():
     assert get_max([5]) == 5
 
-def test_get_max_duplicate_elements():
-    assert get_max([1, 1, 1, 1]) == 1
+def test_get_max_negative_numbers():
+    assert get_max([-5, -2, -8]) == -2
 
 def test_find_max_basic():
     assert find_max(["name", "of", "string"]) == "string"
@@ -102,21 +100,17 @@ def test_find_max_empty():
 def test_find_max_single_word():
     assert find_max(["hello"]) == "hello"
 
-def test_find_max_equal_unique_chars():
+def test_find_max_equal_unique():
     assert find_max(["abc", "def"]) == "abc"
 
-def test_find_max_lexicographical_order():
+def test_find_max_mixed_case():
+    assert find_max(["aBc", "def"]) == "aBc"
+
+def test_find_max_with_duplicates():
+    assert find_max(["aabbcc", "abc"]) == "abc"
+
+def test_find_max_all_same_chars():
+    assert find_max(["aaaa", "bbbb"]) == "aaaa"
+
+def test_find_max_lexicographical_tie():
     assert find_max(["abc", "abd"]) == "abc"
-    assert find_max(["xyz", "xya", "xzb"]) == "xyz"
-
-def test_find_max_complex():
-    assert find_max(["apple", "banana", "orange", "grape"]) == "banana"
-    assert find_max(["zebra", "lion", "tiger", "wolf"]) == "zebra"
-    assert find_max(["cat", "dog", "bird", "fish"]) == "bird"
-
-def test_is_palindrome_edge_cases():
-    assert is_palindrome("A") == True
-    assert is_palindrome(" ") == True
-    assert is_palindrome("121") == True
-    assert is_palindrome("1221") == True
-    assert is_palindrome("ab") == False

@@ -75,25 +75,22 @@ class TestStrongestExtension:
         assert Strongest_Extension("Class", ['aA', 'bB', 'cC']) == "Class.aA"
 
     def test_negative_strength(self):
-        assert Strongest_Extension("Class", ['aaaaa', 'bbbbb', 'ccccc']) == "Class.aaaaa"
+        assert Strongest_Extension("Class", ['abc', 'ABC', 'aBc']) == "Class.ABC"
 
-    def test_zero_strength(self):
-        assert Strongest_Extension("Class", ['Aa', 'Bb', 'Cc']) == "Class.Aa"
+    def test_class_with_spaces(self):
+        assert Strongest_Extension("My Class", ['AA', 'Be', 'CC']) == "My Class.AA"
 
-    def test_class_with_special_characters(self):
-        assert Strongest_Extension("My_Class!", ['AA', 'Be', 'CC']) == "My_Class!.AA"
+    def test_extension_with_numbers(self):
+        assert Strongest_Extension("Class", ['A1', 'B2', 'C3']) == "Class.A1"
 
     def test_extension_with_special_characters(self):
-        assert Strongest_Extension("Class", ['A!A', 'B!e', 'C!C']) == "Class.A!A"
+        assert Strongest_Extension("Class", ['A!', 'B@', 'C#']) == "Class.A!"
 
     def test_long_extensions(self):
         assert Strongest_Extension("Class", ['ThisIsALongExtension', 'AnotherLongExtension']) == "Class.ThisIsALongExtension"
 
-    def test_duplicate_extensions(self):
-        assert Strongest_Extension("Class", ['AA', 'AA', 'CC']) == "Class.AA"
+    def test_class_name_with_special_characters(self):
+        assert Strongest_Extension("Class!", ['AA', 'Be', 'CC']) == "Class!.AA"
 
-    def test_numbers_in_extension(self):
-        assert Strongest_Extension("Class", ['A1A', 'B2e', 'C3C']) == "Class.A1A"
-
-    def test_empty_extension(self):
-        assert Strongest_Extension("Class", ["", "AA", "BB"]) == "Class.AA"
+    def test_class_name_with_numbers(self):
+        assert Strongest_Extension("Class123", ['AA', 'Be', 'CC']) == "Class123.AA"

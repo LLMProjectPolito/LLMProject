@@ -47,5 +47,5 @@ def test_basic_case():
 def test_lexicographical_order():
     assert find_max(["name", "enam", "game"]) == "enam"
 
-def test_all_same_length():
-    assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
+def test_all_same_char():
+    assert find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"

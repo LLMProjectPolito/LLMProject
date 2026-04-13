@@ -42,7 +42,7 @@ def test_edge_empty_operator():
     assert result == 10
 
 def test_invalid_operator():
-    """Tests with an invalid operator in the operator list."""
+    """Test with an invalid operator in the operator list."""
     operator = ['+', '%', '*']
     operand = [2, 3, 4]
     try:

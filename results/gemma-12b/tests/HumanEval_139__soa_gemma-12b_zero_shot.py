@@ -46,7 +46,3 @@ def test_special_factorial_value_error():
 def test_special_factorial_float_input():
     with pytest.raises(TypeError):
         special_factorial(2.5)
-
-def test_special_factorial_none_input():
-    with pytest.raises(TypeError):
-        special_factorial(None)

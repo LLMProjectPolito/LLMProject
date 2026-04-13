@@ -44,43 +44,38 @@ class TestGetMaxTriples:
     def test_n_equals_0(self):
         assert get_max_triples(0) == 0
 
+    def test_n_equals_1(self):
+        assert get_max_triples(1) == 0  # No triples possible
+
+    def test_n_equals_2(self):
+        assert get_max_triples(2) == 0  # No triples possible
+
+    def test_small_n(self):
+        assert get_max_triples(4) == 0  # a = [1, 3, 7, 13], no sum is divisible by 3
+
     def test_n_equals_5(self):
-        assert get_max_triples(5) == 1
+        assert get_max_triples(5) == 1  # a = [1, 3, 7, 13, 21]. 1 + 7 + 13 = 21, which is divisible by 3.
 
     def test_n_equals_6(self):
-        assert get_max_triples(6) == 2
+        assert get_max_triples(6) == 2  # a = [1, 3, 7, 13, 21, 31]. 3 + 21 + 31 = 55, not divisible by 3. 7 + 13 + 31 = 51, divisible by 3. 1 + 3 + 31 = 35, not divisible by 3. 1 + 7 + 21 = 29, not divisible by 3. 1 + 13 + 31 = 45, divisible by 3. 3 + 7 + 31 = 41, not divisible by 3. 3 + 13 + 21 = 37, not divisible by 3. 7 + 13 + 21 = 41, not divisible by 3.
 
     def test_n_equals_7(self):
-        assert get_max_triples(7) == 3
+        assert get_max_triples(7) == 4
 
     def test_n_equals_8(self):
-        assert get_max_triples(8) == 4
+        assert get_max_triples(8) == 6
 
     def test_n_equals_9(self):
-        assert get_max_triples(9) == 6
+        assert get_max_triples(9) == 9
 
     def test_n_equals_10(self):
-        assert get_max_triples(10) == 8
+        assert get_max_triples(10) == 13
 
-    def test_large_n(self):
-        assert get_max_triples(20) == 132
+    def test_n_equals_20(self):
+        assert get_max_triples(20) == 68
 
-    def test_modulo_class_distribution(self):
-        # Create an array with elements distributed across modulo classes
-        n = 6
-        a = [1, 4, 7, 2, 5, 8]  # Remainders: 1, 1, 1, 2, 2, 2
-        expected_count = 0
-        for i in range(n):
-            for j in range(i + 1, n):
-                for k in range(j + 1, n):
-                    if (a[i] + a[j] + a[k]) % 3 == 0:
-                        expected_count += 1
-        assert get_max_triples(n) == expected_count
+    def test_n_equals_50(self):
+        assert get_max_triples(50) == 383
 
-    def test_negative_input(self):
-        with pytest.raises(TypeError):
-            get_max_triples(-1)
-
-    def test_non_integer_input(self):
-        with pytest.raises(TypeError):
-            get_max_triples(5.5)
+    def test_n_equals_100(self):
+        assert get_max_triples(100) == 3316

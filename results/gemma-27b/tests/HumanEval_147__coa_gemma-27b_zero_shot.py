@@ -44,13 +44,13 @@ def get_max_triples(n):
                     count += 1
     return count
 
-def test_get_max_triples_boundary_1():
+def test_boundary_n_1():
     assert get_max_triples(1) == 0
 
-def test_get_max_triples_boundary_2():
+def test_boundary_n_2():
     assert get_max_triples(2) == 0
 
-def test_get_max_triples_boundary_3():
+def test_boundary_n_3():
     assert get_max_triples(3) == 0
 
 # Focus: Equivalence Partitioning

@@ -32,5 +32,6 @@ def order_by_points(nums):
             s += int(digit)
         return s
 
-    nums_with_index = sorted(enumerate(nums), key=lambda x: (sum_digits(x[1]), x[0]))
+    nums_with_index = list(enumerate(nums))
+    nums_with_index.sort(key=lambda x: (sum_digits(x[1]), x[0]))
     return [num for _, num in nums_with_index]

@@ -42,25 +42,22 @@ def test_even_numbers():
     assert double_the_difference([2, 4, 6]) == 0
 
 def test_mixed_numbers():
-    assert double_the_difference([1, 3, 2, 0]) == 10
+    assert double_the_difference([1, 2, 3, 4, 5]) == 1 + 9 + 25
 
 def test_mixed_positive_negative():
-    assert double_the_difference([1, -2, 3, -4, 5]) == 35
+    assert double_the_difference([1, -2, 3, -4, 5]) == 1 + 9 + 25
 
-def test_floats():
-    assert double_the_difference([1.5, 2.0, 3.7]) == 0
-
-def test_mixed_integers_floats():
-    assert double_the_difference([1, 2.5, 3, 4.0, 5]) == 35
+def test_floats_and_integers():
+    assert double_the_difference([1, 2.5, 3, 4.0, 5]) == 1 + 9 + 25
 
 def test_zeroes():
     assert double_the_difference([0, 0, 0]) == 0
 
-def test_large_numbers():
-    assert double_the_difference([1000000001, 2, 1000000003]) == 2000000009000000009
-
 def test_single_odd():
-    assert double_the_difference([5]) == 25
+    assert double_the_difference([3]) == 9
 
 def test_single_even():
     assert double_the_difference([4]) == 0
+
+def test_large_numbers():
+    assert double_the_difference([1000000001]) == 1000000002000000001

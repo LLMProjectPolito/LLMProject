@@ -33,9 +33,8 @@ def find_max(words):
         if unique_chars > max_unique_chars:
             max_unique_chars = unique_chars
             max_word = word
-        elif unique_chars == max_unique_chars:
-            if word < max_word:
-                max_word = word
+        elif unique_chars == max_unique_chars and word < max_word:
+            max_word = word
 
     return max_word
     
@@ -50,20 +49,17 @@ def test_find_max_multiple():
     assert find_max(["name", "enam", "game"]) == "enam"
     assert find_max(["aaaaaaa", "bb" ,"cc"]) == ""
     assert find_max(["a", "b", "c"]) == "a"
-    assert find_max(["abc", "def", "ghi"]) == "abc"
+    assert find_max(["abc", "ab", "a"]) == "abc"
+    
+def test_different_lengths():
+    assert find_max(["a", "bb", "ccc"]) == "ccc"
     
 def test_duplicate_max():
-    assert find_max(["a", "a", "b"]) == "a"
-    assert find_max(["a", "b", "b"]) == "b"
-    assert find_max(["a", "b", "c"]) == "a"
+    assert find_max(["a", "a", "a"]) == "a"
     
-def test_lexicographical_order():
-    assert find_max(["aaaaaaa", "bb", "cc"]) == ""
-    assert find_max(["a", "b", "c"]) == "a"
-    
-def test_edge_case_same_unique_chars():
-    assert find_max(["abc", "def", "ghi"]) == "abc"
+def test_case_sensitive():
+    assert find_max(["Name", "name"]) == "name"
     
 def test_mixed_case():
-    assert find_max(["aBc", "bC", "c"]) == "bC"
+    assert find_max(["aA", "bB"]) == "bB"
 ```

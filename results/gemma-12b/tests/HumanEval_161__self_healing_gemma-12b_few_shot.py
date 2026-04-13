@@ -57,26 +57,29 @@ class TestSolve:
 
     def test_mixed_letters_and_symbols(self):
         assert solve("#a@C") == "#A@c"
+        assert solve("a#B@c") == "A#b@C"
         assert solve("1a2B3c") == "1A2b3C"
-        assert solve("!a@B#c$") == "!A@b#C$"
 
     def test_empty_string(self):
         assert solve("") == ""
 
-    def test_single_letter(self):
-        assert solve("a") == "A"
-        assert solve("A") == "a"
-
-    def test_single_symbol(self):
-        assert solve("!") == "!"
-
-    def test_long_string(self):
-        assert solve("ThisIsALongString") == "tHISiSALONGSTRING"
-        assert solve("ThisIsALongString123") == "tHISiSALONGSTRING123"
-
     def test_string_with_spaces(self):
-        assert solve("Hello World") == "hELLO wORLD"
+        assert solve("a b c") == "A B C"
+        assert solve(" A b C ") == " a B c "
 
     def test_string_with_numbers_and_letters(self):
-        assert solve("a1b2c3d") == "A1B2C3D"
         assert solve("1a2b3c") == "1A2B3C"
+        assert solve("a1b2c3") == "A1B2C3"
+
+    def test_string_with_special_characters(self):
+        assert solve("!@#a$b%c^") == "!@#A$b%C^"
+        assert solve("a!b@c#") == "A!b@C#"
+
+    def test_long_string(self):
+        long_string = "This is a long string with some letters and numbers 1234567890"
+        expected_result = "sihT si a gnol gnirts htiw emos settral dna srebmun 0987654321"
+        assert solve(long_string) == expected_result
+
+    def test_string_with_unicode_characters(self):
+        assert solve("你好a世界") == "你好A世界"
+        assert solve("a你好世界") == "A你好世界"

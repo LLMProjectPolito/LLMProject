@@ -45,37 +45,36 @@ class TestSolve:
 
     def test_lowercase_letters(self):
         assert solve("ab") == "AB"
-        assert solve("hello") == "HELLO"
 
     def test_uppercase_letters(self):
         assert solve("AB") == "ab"
-        assert solve("WORLD") == "world"
 
     def test_mixed_case_letters(self):
         assert solve("#a@C") == "#A@c"
-        assert solve("HeLlO") == "hElLo"
+
+    def test_mixed_case_with_numbers(self):
+        assert solve("a1B2c") == "A1b2C"
+
+    def test_special_characters(self):
+        assert solve("!@#$%^") == "^%$#@!"
 
     def test_mixed_characters(self):
-        assert solve("a1b2c3") == "A1B2C3"
-        assert solve("!@#$") == "$#@!"
-
-    def test_single_letter_lowercase(self):
-        assert solve("a") == "A"
-
-    def test_single_letter_uppercase(self):
-        assert solve("A") == "a"
-
-    def test_string_with_spaces(self):
-        assert solve("hello world") == "HELLO WORLD"
-
-    def test_string_with_numbers_and_symbols(self):
-        assert solve("123!@#") == "123!@#"
+        assert solve("a1B2c!@#") == "A1b2C!@#"
 
     def test_long_string(self):
-        assert solve("This is a long string with mixed case and characters.") == "tHIS iS A LoNG sTRING wITH MiXeD cASE AND cHARACTERS."
+        assert solve("This is a long string with mixed case and numbers.") == "tHIS Is A LONG STRING wITH MIXED CASE AND NUMBERS."
 
-    def test_edge_case_all_uppercase(self):
-        assert solve("UPPERCASE") == "uppercase"
+    def test_all_lowercase_with_numbers(self):
+        assert solve("hello123world") == "HELLO123WORLD"
 
-    def test_edge_case_all_lowercase(self):
-        assert solve("lowercase") == "Lowercase"
+    def test_all_uppercase_with_numbers(self):
+        assert solve("HELLO123WORLD") == "hello123world"
+
+    def test_string_with_spaces(self):
+        assert solve("  a b c  ") == "  A B C  "
+
+    def test_string_with_unicode_characters(self):
+        assert solve("你好世界") == "界世好你"
+
+    def test_string_with_mixed_unicode_and_ascii(self):
+        assert solve("a你好b") == "A你好b"

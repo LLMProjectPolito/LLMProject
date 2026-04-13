@@ -39,8 +39,8 @@ def solve(s):
 ### SCoT Steps:
 
 ### STEP 1: REASONING
-# The function `solve(s)` takes a string `s` as input and modifies it based on the case of its characters.
-# If a character is a letter, its case is reversed. If it's not a letter, it's kept as is.
+# The function `solve(s)` takes a string `s` as input and modifies it based on the case of each character.
+# If a character is a letter, its case is reversed. If it's not a letter, it remains unchanged.
 # If the string contains no letters, the string is reversed.
 # We need to create a pytest suite to test the function with various inputs, including strings with no letters, strings with only letters, and strings with mixed characters.
 # We should cover edge cases like empty strings and strings with special characters.
@@ -67,7 +67,6 @@ def solve(s):
 # test_numbers_and_special_characters
 
 ### STEP 3: CODE
-###
 def test_empty_string():
     assert solve("") == ""
 
@@ -91,3 +90,12 @@ def test_string_with_spaces():
 
 def test_numbers_and_special_characters():
     assert solve("123!@#") == "#@!321"
+
+def test_single_letter_lowercase():
+    assert solve("a") == "A"
+
+def test_single_letter_uppercase():
+    assert solve("A") == "a"
+
+def test_string_with_mixed_characters():
+    assert solve("a1b2c3") == "A1B2C3"

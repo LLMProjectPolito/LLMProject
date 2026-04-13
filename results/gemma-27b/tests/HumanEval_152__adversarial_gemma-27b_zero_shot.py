@@ -55,8 +55,8 @@ def test_compare_all_correct():
 def test_compare_all_incorrect():
     assert compare([1, 2, 3], [4, 5, 6]) == [3, 3, 3]
 
-def test_compare_mixed():
-    assert compare([1, 2, 3, 4], [1, 5, 3, 0]) == [0, 3, 0, 4]
+def test_compare_mixed_correct_incorrect():
+    assert compare([1, 2, 3, 4], [1, 5, 3, 2]) == [0, 3, 0, 2]
 
 def test_compare_negative_numbers():
     assert compare([-1, -2, -3], [-1, -2, -4]) == [0, 0, 1]

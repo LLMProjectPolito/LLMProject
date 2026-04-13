@@ -45,22 +45,31 @@ def special_factorial(n):
         result *= factorial(i)
     return result
 
-def test_special_factorial_valid_input():
+# Tests for factorial function
+def test_factorial_zero():
+    assert factorial(0) == 1
+
+def test_factorial_one():
+    assert factorial(1) == 1
+
+def test_factorial_five():
+    assert factorial(5) == 120
+
+def test_factorial_negative():
+    with pytest.raises(TypeError):
+        factorial(-1)
+
+# Positive input tests
+def test_special_factorial_positive():
     assert special_factorial(1) == 1
     assert special_factorial(2) == 2
     assert special_factorial(3) == 12
     assert special_factorial(4) == 288
     assert special_factorial(5) == 34560
+    assert special_factorial(10) == 136288512000000000000000
+    assert special_factorial(11) == 4037913113600000000000000000
 
-def test_special_factorial_large():
-    assert special_factorial(6) == 49766400
-    # Test with a slightly larger number to check for potential overflow issues
-    # (though Python handles large integers well, it's good to test)
-    assert special_factorial(7) == 871782912000
-    assert special_factorial(8) == 17643225600000000
-    assert special_factorial(9) == 399168000000000000000
-    assert special_factorial(10) == 8717829120000000000000000
-
+# Type error tests
 def test_special_factorial_type_error():
     with pytest.raises(TypeError):
         special_factorial(1.5)
@@ -69,6 +78,7 @@ def test_special_factorial_type_error():
     with pytest.raises(TypeError):
         special_factorial([1])
 
+# Value error tests
 def test_special_factorial_value_error():
     with pytest.raises(ValueError):
         special_factorial(0)
@@ -76,9 +86,3 @@ def test_special_factorial_value_error():
         special_factorial(-1)
     with pytest.raises(ValueError):
         special_factorial(-5)
-
-def test_factorial():
-    assert factorial(0) == 1
-    assert factorial(1) == 1
-    assert factorial(5) == 120
-    assert factorial(10) == 3628800

@@ -40,15 +40,13 @@ def int_to_mini_roman(number):
             i -= 1
 
     return result
-
+    
 @pytest.mark.parametrize("num, expected", [
     (1, "i"),
     (4, "iv"),
     (9, "ix"),
-    (10, "x"),
     (40, "xl"),
     (90, "xc"),
-    (100, "c"),
     (400, "cd"),
     (900, "cm"),
     (1000, "m"),
@@ -56,25 +54,9 @@ def int_to_mini_roman(number):
     (152, "clii"),
     (426, "cdxxvi")
 ])
-def test_int_to_mini_roman(num, expected):
+def test_edge_cases(num, expected):
     assert int_to_mini_roman(num) == expected
 
-def test_edge_case_one():
-    assert int_to_mini_roman(1) == 'i'
-
-@pytest.mark.parametrize("num, expected", [
-    (1, "i"),
-    (4, "iv"),
-    (9, "ix"),
-    (40, "xl"),
-    (90, "xc"),
-    (400, "cd"),
-    (900, "cm"),
-    (1000, "m"),
-    (1994, "mcmxciv"),
-    (3, "iii"),
-    (58, "lviii"),
-    (1999, "mcmxix")
-])
-def test_edge_cases(num, expected):
+@pytest.mark.parametrize("num, expected", [(1, "i"), (3, "iii"), (4, "iv"), (9, "ix"), (10, "x"), (40, "xl"), (50, "l"), (90, "xc"), (100, "c"), (400, "cd"), (500, "d"), (900, "cm"), (1000, "m")])
+def test_edge_cases_2(num, expected):
     assert int_to_mini_roman(num) == expected

@@ -53,16 +53,25 @@ class TestSumSquares:
         assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 1 + 2 + 3 + 4**3 + 5 + 6 + 7 + 8 == 1 + 2 + 3 + 64 + 5 + 6 + 7 + 8 == 96
 
     def test_list_with_multiples_of_both_3_and_4(self):
-        assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1 + 2 + 3**2 + 4**3 + 5 + 6 + 7 + 8**3 + 9 + 10 + 11 + 12**2 == 1 + 2 + 9 + 64 + 5 + 6 + 7 + 512 + 9 + 10 + 11 + 144 == 760
+        assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1**2 + 2 + 3 + 4**3 + 5 + 6**2 + 7 + 8 + 9**2 + 10 + 11 + 12 == 1 + 2 + 3 + 64 + 5 + 36 + 7 + 8 + 81 + 10 + 11 + 12 == 230
 
     def test_list_with_negative_numbers(self):
         assert sum_squares([-1, -2, -3, -4, -5]) == (-1)**2 + (-2) + (-3)**2 + (-4)**3 + (-5) == 1 - 2 + 9 - 64 - 5 == -61
 
     def test_list_with_zeros(self):
-        assert sum_squares([0, 1, 2, 3, 4, 5]) == 0**2 + 1 + 2 + 3**2 + 4 + 5 == 0 + 1 + 2 + 9 + 4 + 5 == 21
+        assert sum_squares([0, 0, 0, 0, 0]) == 0
 
     def test_list_with_mixed_numbers(self):
-        assert sum_squares([1, -2, 3, -4, 5, -6]) == 1**2 + (-2) + 3**2 + (-4)**3 + 5 + (-6) == 1 - 2 + 9 - 64 + 5 - 6 == -57
+        assert sum_squares([1, -2, 3, -4, 5, -6]) == 1**2 + (-2) + 3**2 + (-4)**3 + 5 + (-6)**2 == 1 - 2 + 9 - 64 + 5 + 36 == -15
 
-    def test_large_numbers(self):
-        assert sum_squares([100, 200, 300, 400]) == 100**2 + 200 + 300**2 + 400**3 == 10000 + 200 + 90000 + 64000000 == 64090200
+    def test_large_list(self):
+        lst = list(range(1, 21))
+        expected_sum = 0
+        for i, num in enumerate(lst):
+            if i % 3 == 0:
+                expected_sum += num ** 2
+            elif i % 4 == 0 and i % 3 != 0:
+                expected_sum += num ** 3
+            else:
+                expected_sum += num
+        assert sum_squares(lst) == expected_sum

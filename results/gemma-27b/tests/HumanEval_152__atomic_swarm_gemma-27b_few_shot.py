@@ -46,5 +46,5 @@ def compare(game,guess):
         result.append(abs(game[i] - guess[i]))
     return result
 
-def test_empty_lists():
-    assert compare([], []) == []
+def test_negative_guess():
+    assert compare([1, 2, 3], [-1, 2, 3]) == [2, 0, 0]

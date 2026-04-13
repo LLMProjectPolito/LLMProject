@@ -32,10 +32,8 @@ def compare(game, guess):
     """
     results = []
     for i in range(len(game)):
-        score = game[i]
-        guess = guess[i]
-        if score == guess:
+        if game[i] == guess:
             results.append(0)
         else:
-            results.append(abs(score - guess))
+            results.append(abs(game[i] - guess))
     return results

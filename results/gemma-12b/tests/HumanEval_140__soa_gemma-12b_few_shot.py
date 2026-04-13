@@ -28,35 +28,32 @@ def test_leading_space():
 def test_multiple_consecutive_spaces():
     assert fix_spaces(" Example   3") == "_Example-3"
 
-def test_multiple_spaces_at_beginning():
+def test_multiple_consecutive_spaces_at_beginning():
     assert fix_spaces("   Example 4") == "-Example_4"
 
-def test_multiple_spaces_at_end():
+def test_multiple_consecutive_spaces_at_end():
     assert fix_spaces("Example 5   ") == "Example_5-"
 
-def test_multiple_spaces_mixed():
-    assert fix_spaces(" Example  6  7  ") == "_Example-6-7_"
+def test_multiple_consecutive_spaces_in_middle():
+    assert fix_spaces("Example  6  7") == "Example_6-7"
+
+def test_mixed_spaces():
+    assert fix_spaces("Example  8   9  10") == "Example_8-9_10"
 
 def test_only_spaces():
     assert fix_spaces("   ") == "-"
 
-def test_string_with_tabs():
-    assert fix_spaces("Example\t1") == "Example_1"
+def test_long_string_with_multiple_consecutive_spaces():
+    assert fix_spaces("This is a very long string with   multiple    consecutive spaces.") == "This_is_a_very_long_string_with-multiple-consecutive_spaces."
 
-def test_string_with_newlines():
-    assert fix_spaces("Example\n1") == "Example_1"
+def test_string_with_tabs_and_spaces():
+    assert fix_spaces("Example\t 1") == "Example_1"
 
-def test_string_with_mixed_whitespace():
-    assert fix_spaces("Example\t 2 \n 3") == "Example_2_3"
+def test_string_with_newlines_and_spaces():
+    assert fix_spaces("Example\n 1") == "Example_1"
 
-def test_long_string_with_consecutive_spaces():
-    assert fix_spaces("This is a very long string with   many   consecutive   spaces.") == "This_is_a_very_long_string_with-many-consecutive-spaces."
+def test_string_with_special_characters_and_spaces():
+    assert fix_spaces("!@#$%^&*() Example  1") == "!@#$%^&*()_Example-1"
 
-def test_string_with_only_consecutive_spaces():
-    assert fix_spaces("     ") == "-"
-
-def test_string_with_consecutive_spaces_and_other_chars():
-    assert fix_spaces("abc   def ghi") == "abc-def_ghi"
-
-def test_string_with_consecutive_spaces_at_start_and_end():
-    assert fix_spaces("   abc def   ") == "-abc_def-"
+def test_string_with_numbers_and_spaces():
+    assert fix_spaces("123 Example   456") == "123_Example-456"

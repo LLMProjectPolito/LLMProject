@@ -29,7 +29,7 @@ def test_max_empty():
     assert get_max([]) == None
 
 def test_max_string():
-    assert get_max(["string"]) == "string"
+    assert get_max(["name", "of", "string"]) == "string"
 
 def test_max_mixed():
     assert get_max(["a", "b", "c", "a"]) == "a"

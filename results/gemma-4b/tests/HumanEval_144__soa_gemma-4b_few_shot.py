@@ -40,40 +40,42 @@ def simplify(x, n):
 def test_simplify_positive_whole_numbers():
     assert simplify("1/5", "5/1") == True
     assert simplify("2/3", "6/1") == True
+    assert simplify("4/7", "14/1") == False
+
+def test_simplify_with_larger_numbers():
     assert simplify("10/2", "2/1") == True
-    assert simplify("1/1", "1/1") == True
+    assert simplify("12/3", "3/1") == True
+    assert simplify("15/4", "4/1") == False
 
-def test_simplify_non_whole_numbers():
-    assert simplify("1/6", "2/1") == False
-    assert simplify("7/10", "10/2") == False
-    assert simplify("1/2", "3/1") == False
-    assert simplify("5/7", "2/1") == False
+def test_simplify_with_different_denominators():
+    assert simplify("1/2", "2/3") == False
+    assert simplify("3/4", "4/5") == False
+    assert simplify("5/6", "6/7") == False
 
-def test_simplify_large_numbers():
-    assert simplify("100/10", "10/1") == True
-    assert simplify("1000/100", "10/1") == True
-    assert simplify("100/10", "100/1") == True
-    assert simplify("1000/100", "100/1") == True
+def test_simplify_with_equal_denominators():
+    assert simplify("1/2", "2/2") == False
+    assert simplify("3/4", "4/4") == False
 
-def test_simplify_equal_fractions():
-    assert simplify("1/2", "1/2") == True
-    assert simplify("5/7", "5/7") == True
+def test_simplify_with_one_as_numerator():
+    assert simplify("1/5", "5/1") == True
+    assert simplify("1/6", "6/1") == True
+    assert simplify("1/7", "7/1") == True
 
-def test_simplify_zero_denominator():
-    with pytest.raises(ZeroDivisionError):
-        simplify("1/0", "5/1")
+def test_simplify_with_one_as_denominator():
+    assert simplify("5/1", "1/5") == True
+    assert simplify("6/1", "1/6") == True
+    assert simplify("7/1", "1/7") == True
 
-def test_simplify_negative_numbers():
-    assert simplify("-1/2", "2/1") == False
-    assert simplify("1/2", "-2/1") == False
-    assert simplify("-1/2", "-2/1") == True
-
-def test_simplify_mixed_positive_negative():
-    assert simplify("1/2", "-2/1") == False
-    assert simplify("-1/2", "2/1") == False
-    assert simplify("-1/2", "-2/1") == True
+def test_simplify_with_complex_fractions():
+    assert simplify("12/18", "18/3") == True
+    assert simplify("24/36", "36/3") == True
+    assert simplify("30/45", "45/3") == True
+    assert simplify("12/18", "18/6") == False
 
 def test_simplify_edge_cases():
     assert simplify("1/1", "1/1") == True
-    assert simplify("1/1", "1/2") == False
-    assert simplify("1/2", "1/1") == False
+    assert simplify("2/1", "1/2") == True
+    assert simplify("1/2", "1/2") == False
+    assert simplify("0/1", "1/1") == True
+    assert simplify("1/0", "1/1") == False
+    assert simplify("1/1", "0/1") == False

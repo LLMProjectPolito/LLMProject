@@ -33,7 +33,7 @@ def test_sorted_list_sum_all_even():
     assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
 def test_sorted_list_sum_mixed_same_length():
-    assert sorted_list_sum(["aa", "bb", "a", "b"]) == ["aa", "bb"]
+    assert sorted_list_sum(["aa", "bb", "a", "c"]) == ["aa", "bb"]
 
 def test_sorted_list_sum_mixed_different_lengths():
     assert sorted_list_sum(["aa", "b", "ccc", "dd"]) == ["aa", "dd"]
@@ -45,4 +45,4 @@ def test_sorted_list_sum_same_length_alphabetical():
     assert sorted_list_sum(["bb", "aa", "cc"]) == ["aa", "bb", "cc"]
 
 def test_sorted_list_sum_complex():
-    assert sorted_list_sum(["abc", "a", "ab", "abcd", "abcde"]) == ["ab", "abc", "abcd"]
+    assert sorted_list_sum(["abc", "a", "ab", "abcd", "bc"]) == ["ab", "abc", "abcd"]

@@ -122,10 +122,11 @@ def bf(planet1, planet2):
     end_index = planets.index(planet2)
     
     result = []
-    for i in range(start_index, end_index):
-        result.append(planets[i])
+    for planet in planets:
+        if start_index < planets.index(planet) < end_index:
+            result.append(planet)
     
-    return tuple(result)
+    return tuple(sorted(result))
 
 def test_invalid_planet_name():
     assert bf("Pluto", "Neptune") == ()

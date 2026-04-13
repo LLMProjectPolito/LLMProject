@@ -39,3 +39,36 @@ def int_to_mini_roman(number):
             i -= 1
 
     return result
+
+def test_int_to_mini_roman_19():
+    assert int_to_mini_roman(19) == 'xix'
+
+def test_int_to_mini_roman_152():
+    assert int_to_mini_roman(152) == 'clii'
+
+def test_int_to_mini_roman_426():
+    assert int_to_mini_roman(426) == 'cdxxvi'
+
+def test_int_to_mini_roman_1():
+    assert int_to_mini_roman(1) == 'I'
+
+def test_int_to_mini_roman_10():
+    assert int_to_mini_roman(10) == 'X'
+
+def test_int_to_mini_roman_99():
+    assert int_to_mini_roman(99) == 'XCIX'
+
+def test_int_to_mini_roman_100():
+    assert int_to_mini_roman(100) == 'C'
+
+def test_int_to_mini_roman_400():
+    assert int_to_mini_roman(400) == 'CD'
+
+def test_int_to_mini_roman_500():
+    assert int_to_mini_roman(500) == 'D'
+
+def test_int_to_mini_roman_900():
+    assert int_to_mini_roman(900) == 'CM'
+
+def test_int_to_mini_roman_1000():
+    assert int_to_mini_roman(1000) == 'M'

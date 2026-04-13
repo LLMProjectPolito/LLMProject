@@ -80,10 +80,10 @@ def test_sentence_with_multiple_spaces():
     assert words_in_sentence("a  is   be  do") == "a is be do"
 
 def test_long_sentence():
-    assert words_in_sentence("This is a very long sentence with many words of varying lengths") == "is a"
+    assert words_in_sentence("This is a very long sentence with many words of varying lengths") == "is a very"
 
 def test_sentence_with_only_one_word():
-    assert words_in_sentence("prime") == "prime"
+    assert words_in_sentence("prime") == ""
 
 def test_sentence_with_same_length_words():
     assert words_in_sentence("go no so to") == "go no so to"

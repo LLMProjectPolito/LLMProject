@@ -93,4 +93,4 @@ def test_bf_adjacent_planets():
     assert bf("Mars", "Jupiter") == ("Saturn")
 
 def test_bf_far_apart_planets():
-    assert bf("Mercury", "Neptune") == ()
+    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")

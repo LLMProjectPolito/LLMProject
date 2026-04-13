@@ -41,11 +41,11 @@ def int_to_mini_roman(number):
 
     return result
     
-def test_edge_case_900():
-    assert int_to_mini_roman(900) == 'cm'
-
 def test_edge_case_one():
     assert int_to_mini_roman(1) == 'i'
+
+def test_edge_case_900():
+    assert int_to_mini_roman(900) == 'cm'
 
 def test_example_19():
     assert int_to_mini_roman(19) == 'xix'
@@ -55,15 +55,3 @@ def test_example_152():
 
 def test_example_426():
     assert int_to_mini_roman(426) == 'cdxxvi'
-
-def test_edge_case_5():
-    assert int_to_mini_roman(5) == 'v'
-
-def test_edge_case_10():
-    assert int_to_mini_roman(10) == 'x'
-
-def test_edge_case_4():
-    assert int_to_mini_roman(4) == 'iv'
-
-def test_edge_case_9():
-    assert int_to_mini_roman(9) == 'ix'

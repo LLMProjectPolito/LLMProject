@@ -32,69 +32,60 @@ def solve(s):
 
     if not has_letter:
         return s[::-1]
+    else:
+        result = ""
+        for char in s:
+            if 'a' <= char <= 'z':
+                result += char.upper()
+            elif 'A' <= char <= 'Z':
+                result += char.lower()
+            else:
+                result += char
+        return result
 
-    result = ""
-    for char in s:
-        if 'a' <= char <= 'z':
-            result += char.upper()
-        elif 'A' <= char <= 'Z':
-            result += char.lower()
-        else:
-            result += char
-    return result
+class TestSolve:
+    def test_all_lowercase(self):
+        assert solve("abc") == "ABC"
 
+    def test_all_uppercase(self):
+        assert solve("ABC") == "abc"
 
-def test_solve_all_letters_lowercase():
-    assert solve("abc") == "ABC"
+    def test_mixed_case(self):
+        assert solve("aBc") == "AbC"
 
-def test_solve_all_letters_uppercase():
-    assert solve("ABC") == "abc"
+    def test_no_letters(self):
+        assert solve("1234") == "4321"
 
-def test_solve_mixed_letters():
-    assert solve("aBc") == "AbC"
+    def test_symbols_only(self):
+        assert solve("#@$") == "#@$"
 
-def test_solve_no_letters():
-    assert solve("1234") == "4321"
+    def test_letters_and_symbols(self):
+        assert solve("#a@C") == "#A@c"
 
-def test_solve_numbers_and_symbols():
-    assert solve("#$%^") == "#$%^"
+    def test_empty_string(self):
+        assert solve("") == ""
 
-def test_solve_letters_and_symbols():
-    assert solve("#a@C") == "#A@c"
+    def test_single_lowercase_letter(self):
+        assert solve("a") == "A"
 
-def test_solve_empty_string():
-    assert solve("") == ""
+    def test_single_uppercase_letter(self):
+        assert solve("A") == "a"
 
-def test_solve_single_letter_lowercase():
-    assert solve("a") == "A"
+    def test_single_non_letter(self):
+        assert solve("1") == "1"
 
-def test_solve_single_letter_uppercase():
-    assert solve("A") == "a"
+    def test_spaces(self):
+        assert solve(" ") == " "
 
-def test_solve_single_number():
-    assert solve("1") == "1"
+    def test_long_string(self):
+        assert solve("abcdefghijklmnopqrstuvwxyz") == "ZYXWVUTSRQPONMLKJIHGFEDCBA"
 
-def test_solve_single_symbol():
-    assert solve("#") == "#"
+    def test_unicode_characters(self):
+        assert solve("你好世界") == "你好世界"
 
-def test_solve_long_string():
-    assert solve("abcdefghijklmnopqrstuvwxyz") == "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    def test_mixed_unicode_and_letters(self):
+        assert solve("你好a世界") == "你好A世界"
 
-def test_solve_long_string_mixed():
-    assert solve("aBcDeFgHiJkLmNoPqRsTuVwXyZ") == "AbCdEfGhIjKlMnOpQrStUvWxYz"
-
-def test_solve_with_spaces():
-    assert solve("hello world") == "HELLO WORLD"
-
-def test_solve_with_numbers_and_spaces():
-    assert solve("1 2 3") == "1 2 3"
-
-def test_solve_with_special_characters():
-    assert solve("!@#$%^&*()") == "!@#$%^&*()"
-
-def test_solve_unicode_characters():
-    assert solve("你好世界") == "你好世界"
-
-def test_solve_invalid_input_type():
-    with pytest.raises(TypeError):
-        solve(123)
+    def test_integer_input(self):
+        with pytest.raises(TypeError):
+            solve(123)

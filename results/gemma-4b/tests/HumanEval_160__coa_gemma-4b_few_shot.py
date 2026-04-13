@@ -32,20 +32,20 @@ import math
 # Focus: Boundary Values
 import pytest
 
-def test_do_algebra_addition():
+def test_do_algebra_positive_numbers():
     operator = ['+', '*']
     operand = [2, 3, 4, 5]
     assert do_algebra(operator, operand) == 14
 
-def test_do_algebra_subtraction():
-    operator = ['-', '*']
-    operand = [10, 2, 3, 4]
-    assert do_algebra(operator, operand) == 16
+def test_do_algebra_zero_operand():
+    operator = ['-', '+']
+    operand = [0, 5, 2]
+    assert do_algebra(operator, operand) == -3
 
 def test_do_algebra_exponentiation():
-    operator = ['**', '/']
-    operand = [2, 3, 4, 5]
-    assert do_algebra(operator, operand) == 0.25
+    operator = ['**']
+    operand = [2, 3]
+    assert do_algebra(operator, operand) == 8
 
 # Focus: Type Scenarios
 import pytest

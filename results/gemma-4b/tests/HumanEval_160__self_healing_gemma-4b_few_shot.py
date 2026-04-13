@@ -92,9 +92,9 @@ def test_exponentiation():
     assert do_algebra(operator, operand) == 16
 
 def test_mixed_operations():
-    operator = ['+', '*', '-', '**']
-    operand = [2, 3, 4, 5, 2]
-    assert do_algebra(operator, operand) == 26
+    operator = ['+', '*', '-', '**', '//']
+    operand = [2, 3, 4, 5, 6, 7]
+    assert do_algebra(operator, operand) == 13
 
 def test_single_operand():
     operator = ['+']

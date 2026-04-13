@@ -54,8 +54,6 @@ def int_to_mini_roman(number):
 def test_is_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
-    assert is_palindrome('A man, a plan, a canal: Panama') == True
-    assert is_palindrome('Racecar') == True
 
 def test_is_palindrome_empty():
     assert is_palindrome('') == True
@@ -63,11 +61,12 @@ def test_is_palindrome_empty():
     assert is_palindrome('a') == True
 
 def test_is_palindrome_mixed_case():
-    assert is_palindrome('Racecar') == True
-    assert is_palindrome('RaCeCaR') == True
+    assert is_palindrome('RaDaR') == True
+    assert is_palindrome('Hello') == False
 
-def test_is_palindrome_with_spaces():
-    assert is_palindrome('A man, a plan, a canal: Panama') == True
+def test_is_palindrome_with_punctuation():
+    assert is_palindrome('Madam, I\'m Adam') == True
+    assert is_palindrome('Was it a car or a cat I saw?') == True
 
 def test_max_positive():
     assert get_max([1, 2, 3]) == 3
@@ -119,8 +118,11 @@ def test_int_to_mini_roman_426():
 def test_int_to_mini_roman_999():
     assert int_to_mini_roman(999) == 'cmlxix'
 
-def test_int_to_mini_roman_999():
-    assert int_to_mini_roman(999) == 'cmlxix'
+def test_int_to_mini_roman_1000():
+    assert int_to_mini_roman(1000) == 'm'
 
-def test_is_palindrome_single_char():
-    assert is_palindrome('a') == True
+def test_int_to_mini_roman_8():
+    assert int_to_mini_roman(8) == 'viii'
+
+def test_int_to_mini_roman_6():
+    assert int_to_mini_roman(6) == 'vi'

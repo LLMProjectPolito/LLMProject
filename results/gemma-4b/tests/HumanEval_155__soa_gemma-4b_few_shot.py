@@ -48,7 +48,7 @@ def test_even_odd_count_single_digit_odd():
     assert even_odd_count(1) == (0, 1)
 
 def test_even_odd_count_large_number():
-    assert even_odd_count(12345678901234567890) == (45, 45)
+    assert even_odd_count(12345678901234567890) == (10, 10)
 
 def test_even_odd_count_mixed_digits():
     assert even_odd_count(1020304) == (4, 4)

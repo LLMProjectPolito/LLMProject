@@ -64,13 +64,10 @@ def test_order_by_points_complex():
     assert order_by_points([21, 12, 3, 1, 2, 10, 11]) == [1, 2, 3, 10, 11, 12, 21]
 
 def test_order_by_points_complex_case():
-    assert order_by_points([21, 12, 3, 1, 100, 2, 11]) == [1, 2, 3, 11, 12, 21, 100]
+    assert order_by_points([21, 12, 3, 1, 2, 10, 11]) == [1, 2, 3, 10, 11, 12, 21]
 
 def test_order_by_points_all_zeros():
     assert order_by_points([0, 0, 0]) == [0, 0, 0]
-
-def test_order_by_points_with_zero():
-    assert order_by_points([10, 0, 1]) == [0, 1, 10]
 
 def test_order_by_points_long_list():
     nums = list(range(100))

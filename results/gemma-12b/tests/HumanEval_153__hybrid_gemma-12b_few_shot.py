@@ -73,11 +73,11 @@ def test_strongest_extension_basic():
 def test_strongest_extension_example():
     assert Strongest_Extension("my_class", ["AA", "Be", "CC"]) == "my_class.AA"
 
-def test_strongest_extension_same_strength():
-    assert Strongest_Extension("TestClass", ["AA", "BB", "CC"]) == "TestClass.AA"
-
 def test_strongest_extension_empty_extensions():
     assert Strongest_Extension("MyClass", []) == "MyClass.None"
+
+def test_strongest_extension_same_strength():
+    assert Strongest_Extension("TestClass", ["AA", "BB", "CC"]) == "TestClass.AA"
 
 def test_strongest_extension_all_uppercase():
     assert Strongest_Extension("Class", ["AAAA", "BBB", "CCCC"]) == "Class.AAAA"
@@ -88,62 +88,50 @@ def test_strongest_extension_all_lowercase():
 def test_strongest_extension_mixed_case():
     assert Strongest_Extension("Class", ["aA", "bB", "cC"]) == "Class.aA"
 
-def test_strongest_extension_complex_names():
-    assert Strongest_Extension("MyClass", ["VeryLongExtensionName", "Short"]) == "MyClass.VeryLongExtensionName"
-
 def test_strongest_extension_with_numbers():
-    assert Strongest_Extension("Class", ["A123", "b456", "C789"]) == "Class.A123"
+    assert Strongest_Extension("Class", ["A1", "B2", "C3"]) == "Class.A1"
 
 def test_strongest_extension_with_special_characters():
-    assert Strongest_Extension("Class", ["!@#", "$%^", "&*()"]) == "Class.!@#"
+    assert Strongest_Extension("Class", ["!A", "#B", "$C"]) == "Class.!A"
 
-def test_strongest_extension_negative_strength():
-    assert Strongest_Extension("Class", ["abcdef", "ABCDEF"]) == "Class.ABCDEF"
+def test_strongest_extension_long_extensions():
+    assert Strongest_Extension("Class", ["ThisIsALongExtension", "AnotherLongExtension"]) == "Class.ThisIsALongExtension"
 
-def test_strongest_extension_zero_strength():
-    assert Strongest_Extension("Class", ["aA", "bB", "cC"]) == "Class.aA"
-
-# Suite 2 Tests
-def test_strongest_extension_basic2():
-    assert Strongest_Extension("Slices", ["SErviNGSliCes", "Cheese", "StuFfed"]) == "Slices.SErviNGSliCes"
-
-def test_strongest_extension_example2():
-    assert Strongest_Extension("my_class", ["AA", "Be", "CC"]) == "my_class.AA"
-
-def test_strongest_extension_empty_extensions2():
-    assert Strongest_Extension("MyClass", []) == "MyClass.None"
-
-def test_strongest_extension_same_strength2():
-    assert Strongest_Extension("TestClass", ["AA", "BB", "CC"]) == "TestClass.AA"
-
-def test_strongest_extension_negative_strength2():
-    assert Strongest_Extension("Class", ["abc", "DEF"]) == "Class.DEF"
-
-def test_strongest_extension_mixed_case2():
-    assert Strongest_Extension("Class", ["aBc", "DeF"]) == "Class.DeF"
-
-def test_strongest_extension_all_uppercase2():
-    assert Strongest_Extension("Class", ["ABC", "DEF"]) == "Class.ABC"
-
-def test_strongest_extension_all_lowercase2():
-    assert Strongest_Extension("Class", ["abc", "def"]) == "Class.abc"
-
-def test_strongest_extension_with_numbers2():
-    assert Strongest_Extension("Class", ["A12", "b34"]) == "Class.A12"
-
-def test_strongest_extension_with_special_characters2():
-    assert Strongest_Extension("Class", ["A!", "b?"]) == "Class.A!"
-
-def test_strongest_extension_long_extensions2():
-    assert Strongest_Extension("Class", ["Aaaaaaaaaaa", "Bbbbbbbbbb"]) == "Class.Aaaaaaaaaaa"
-
-def test_strongest_extension_equal_strength_and_length2():
+def test_strongest_extension_equal_strength_and_length():
     assert Strongest_Extension("Class", ["AA", "BB"]) == "Class.AA"
 
-def test_strongest_extension_class_with_special_characters2():
+def test_strongest_extension_negative_strength():
+    assert Strongest_Extension("Class", ["be", "aa"]) == "Class.be"
+
+# Suite 2 Tests
+def test_strongest_extension_negative_strength_suite2():
+    assert Strongest_Extension("Class", ["abc", "DEF"]) == "Class.DEF"
+
+def test_strongest_extension_mixed_case_suite2():
+    assert Strongest_Extension("Class", ["aBc", "DeF"]) == "Class.DeF"
+
+def test_strongest_extension_all_uppercase_suite2():
+    assert Strongest_Extension("Class", ["ABC", "DEF"]) == "Class.ABC"
+
+def test_strongest_extension_all_lowercase_suite2():
+    assert Strongest_Extension("Class", ["abc", "def"]) == "Class.abc"
+
+def test_strongest_extension_with_numbers_suite2():
+    assert Strongest_Extension("Class", ["A12", "b34"]) == "Class.A12"
+
+def test_strongest_extension_with_special_characters_suite2():
+    assert Strongest_Extension("Class", ["A!", "b?"]) == "Class.A!"
+
+def test_strongest_extension_long_extensions_suite2():
+    assert Strongest_Extension("Class", ["ThisIsALongExtension", "AnotherLongExtension"]) == "Class.ThisIsALongExtension"
+
+def test_strongest_extension_duplicate_extensions_suite2():
+    assert Strongest_Extension("Class", ["AA", "AA", "BB"]) == "Class.AA"
+
+def test_strongest_extension_class_with_special_characters_suite2():
     assert Strongest_Extension("My_Class!", ["AA", "BB"]) == "My_Class!.AA"
 
-# New Tests for is_palindrome
+# Palindrome Tests
 def test_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
@@ -151,7 +139,7 @@ def test_palindrome_basic():
 def test_palindrome_empty():
     assert is_palindrome('') == True
 
-# New Tests for get_max
+# Get Max Tests
 def test_max_positive():
     assert get_max([1, 2, 3]) == 3
 

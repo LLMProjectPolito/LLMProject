@@ -12,4 +12,13 @@ def simplify(x, n):
     simplify("7/10", "10/2") = False
     """
 
-# ERROR: setup_competitive_graph() got an unexpected keyword argument 'model_a'
+def simplify(x, n):
+    try:
+        numerator, denominator = map(int, x.split('/'))
+        if denominator == 0:
+            return False
+        if numerator == 0:
+            return False
+        return str(numerator / denominator) == str(int(numerator / denominator))
+    except:
+        return False

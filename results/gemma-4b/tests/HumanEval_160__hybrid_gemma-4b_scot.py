@@ -71,9 +71,9 @@ def do_algebra(operator, operand):
 # STEP 1: REASONING
 # The function `do_algebra` takes a list of operators and a list of operands and evaluates a mathematical expression.
 # The expression is built by applying the operators to the operands in sequence.
-# The function needs to handle addition, subtraction, multiplication, floor division, and exponentiation.
-# The tests should cover various combinations of operators and operands, including edge cases like empty lists or zero operands.
-# We need to test the order of operations (PEMDAS/BODMAS) implicitly through the order of operations in the function.
+# We need to test various scenarios including different operators, operand values, and operator combinations.
+# Edge cases should be considered, such as empty operator list, single operand, and different operand lengths.
+# The function should handle both positive and negative operands correctly.
 
 # STEP 2: PLAN
 # Test functions:
@@ -82,60 +82,51 @@ def do_algebra(operator, operand):
 # - test_multiplication: Tests multiplication operations.
 # - test_floor_division: Tests floor division operations.
 # - test_exponentiation: Tests exponentiation operations.
-# - test_mixed_operations: Tests a combination of all operations.
-# - test_empty_operator: Tests with an empty operator list (should return the first operand).
-# - test_empty_operand: Tests with an empty operand list (should return 0).
-# - test_single_operand: Tests with a single operand (should return the operand).
-# - test_zero_operand: Tests with a zero operand.
+# - test_mixed_operations: Tests a combination of different operations.
+# - test_empty_operator: Tests with an empty operator list.
+# - test_single_operand: Tests with a single operand.
+# - test_large_numbers: Tests with large numbers to check for potential overflow issues.
+# - test_zero_division: Tests division by zero (should handle gracefully).
 
 # STEP 3: CODE
-# pytest suite
+#
+
+### Test Suite
 def test_addition():
-    operator = ['+', '+']
-    operand = [1, 2, 3]
-    assert do_algebra(operator, operand) == 6
+    assert do_algebra(['+', '+'], [1, 2, 3]) == 6
+    assert do_algebra(['+', '*'], [1, 2, 3, 4]) == 10
 
 def test_subtraction():
-    operator = ['-', '-', '-']
-    operand = [5, 3, 2, 1]
-    assert do_algebra(operator, operand) == 3
+    assert do_algebra(['-', '-'], [1, 2, 3, 4]) == -2
+    assert do_algebra(['-', '*'], [1, 2, 3, 4]) == -2
 
 def test_multiplication():
-    operator = ['*', '*', '*']
-    operand = [2, 3, 4, 5]
-    assert do_algebra(operator, operand) == 120
+    assert do_algebra(['*', '*'], [1, 2, 3, 4]) == 24
+    assert do_algebra(['*', '+'], [1, 2, 3, 4]) == 14
 
 def test_floor_division():
-    operator = ['//', '//', '//']
-    operand = [10, 5, 2, 1]
-    assert do_algebra(operator, operand) == 2
+    assert do_algebra(['//', '//'], [1, 2, 3, 4]) == 1
+    assert do_algebra(['//', '*'], [1, 2, 3, 4]) == 0
 
 def test_exponentiation():
-    operator = ['**', '**', '**']
-    operand = [2, 3, 2, 1]
-    assert do_algebra(operator, operand) == 8
+    assert do_algebra(['**', '**'], [1, 2, 3, 4]) == 1
+    assert do_algebra(['**', '*'], [1, 2, 3, 4]) == 6
 
 def test_mixed_operations():
-    operator = ['+', '*', '-', '**', '//']
-    operand = [2, 3, 4, 5, 6, 7]
-    assert do_algebra(operator, operand) == 24
+    assert do_algebra(['+', '*', '-'], [1, 2, 3, 4, 5]) == 14
+    assert do_algebra(['*', '+', '-'], [1, 2, 3, 4, 5]) == 14
 
 def test_empty_operator():
-    operator = []
-    operand = [1, 2, 3]
-    assert do_algebra(operator, operand) == 1
-
-def test_empty_operand():
-    operator = ['+', '*']
-    operand = []
-    assert do_algebra(operator, operand) == 0
+    with pytest.raises(IndexError):
+        do_algebra([], [1, 2, 3])
 
 def test_single_operand():
-    operator = ['+']
-    operand = [5]
-    assert do_algebra(operator, operand) == 5
+    with pytest.raises(IndexError):
+        do_algebra(['+', '*'], [1])
 
-def test_zero_operand():
-    operator = ['*', '+']
-    operand = [2, 0, 3]
-    assert do_algebra(operator, operand) == 0
+def test_large_numbers():
+    assert do_algebra(['*', '*'], [1000, 1000, 1000, 1000]) == 1000000000
+
+def test_zero_division():
+    with pytest.raises(ZeroDivisionError):
+        do_algebra(['//', '//'], [1, 0, 3, 4])

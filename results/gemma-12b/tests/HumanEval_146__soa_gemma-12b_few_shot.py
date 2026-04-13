@@ -34,12 +34,11 @@ def sample_data():
         [10, 20, 30, 40, 50],
         [11, 12, 13, 14, 15],
         [91, 92, 93, 94, 95],
-        [15, 16, 17, 18, 19],
-        [101, 102, 103, 104, 105],
-        [-101, -102, -103, -104, -105],
-        [1111, 2222, 3333, 4444, 5555],
-        [1111, 2222, 3333, 4444, 5555, 6666],
-        [15, 73, 14, 15, 35, 97, 11, 22, 33, 44, 55, 66, 77, 88, 99]
+        [15, 17, 19, 21, 23],
+        [15, 17, 19, 21, 23, -15, -17, -19],
+        [15, 17, 19, 21, 23, -15, -17, -19, 101, 303, 505, 707, 909],
+        [15, 17, 19, 21, 23, -15, -17, -19, 101, 303, 505, 707, 909, 1111, 3333, 5555, 7777, 9999],
+        [15, 17, 19, 21, 23, -15, -17, -19, 101, 303, 505, 707, 909, 1111, 3333, 5555, 7777, 9999, 12345, 54321],
     ]
 
 def test_specialFilter_empty_list(sample_data):
@@ -48,7 +47,7 @@ def test_specialFilter_empty_list(sample_data):
 def test_specialFilter_no_matching_elements(sample_data):
     assert specialFilter([1, 2, 3, 4, 5]) == 0
 
-def test_specialFilter_single_matching_element(sample_data):
+def test_specialFilter_basic_case(sample_data):
     assert specialFilter([15, -73, 14, -15]) == 1
 
 def test_specialFilter_multiple_matching_elements(sample_data):
@@ -57,41 +56,26 @@ def test_specialFilter_multiple_matching_elements(sample_data):
 def test_specialFilter_all_matching_elements(sample_data):
     assert specialFilter([11, 33, 55, 77, 99]) == 5
 
-def test_specialFilter_mixed_elements(sample_data):
-    assert specialFilter([11, 22, 33, 44, 55, 66, 77, 88, 99, 10, 20, 30]) == 5
-
-def test_specialFilter_negative_numbers(sample_data):
-    assert specialFilter([-15, -73, -11, -33]) == 2
+def test_specialFilter_mixed_positive_negative(sample_data):
+    assert specialFilter([15, -73, 14, -15, 33, -2, -3, 45, 21, 109]) == 4
 
 def test_specialFilter_large_numbers(sample_data):
-    assert specialFilter([151, 353, 555, 757, 959]) == 5
+    assert specialFilter([1111, 3333, 5555, 7777, 9999]) == 5
 
-def test_specialFilter_zero_in_number(sample_data):
+def test_specialFilter_numbers_with_zeros(sample_data):
     assert specialFilter([101, 303, 505, 707, 909]) == 5
 
-def test_specialFilter_numbers_greater_than_10(sample_data):
-    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29]) == 10
+def test_specialFilter_numbers_with_leading_zeros(sample_data):
+    assert specialFilter([015, 033, 055, 077, 099]) == 0
 
-def test_specialFilter_numbers_less_than_10(sample_data):
-    assert specialFilter([1, 3, 5, 7, 9]) == 0
-
-def test_specialFilter_edge_case_1(sample_data):
-    assert specialFilter([11, 12, 13, 14, 15]) == 1
-
-def test_specialFilter_edge_case_2(sample_data):
-    assert specialFilter([91, 92, 93, 94, 95]) == 1
-
-def test_specialFilter_edge_case_3(sample_data):
-    assert specialFilter([15, 16, 17, 18, 19]) == 1
-
-def test_specialFilter_edge_case_4(sample_data):
-    assert specialFilter([101, 102, 103, 104, 105]) == 1
-
-def test_specialFilter_edge_case_5(sample_data):
-    assert specialFilter([-101, -102, -103, -104, -105]) == 1
-
-def test_specialFilter_large_numbers_and_negatives(sample_data):
-    assert specialFilter([1111, -2222, 3333, -4444, 5555]) == 2
+def test_specialFilter_negative_numbers_with_odd_digits(sample_data):
+    assert specialFilter([-15, -73, -101, -303]) == 0
 
 def test_specialFilter_complex_case(sample_data):
-    assert specialFilter([15, 73, 14, 15, 35, 97, 11, 22, 33, 44, 55, 66, 77, 88, 99]) == 7
+    assert specialFilter([15, 17, 19, 21, 23, -15, -17, -19, 101, 303, 505, 707, 909]) == 14
+
+def test_specialFilter_very_complex_case(sample_data):
+    assert specialFilter([15, 17, 19, 21, 23, -15, -17, -19, 101, 303, 505, 707, 909, 1111, 3333, 5555, 7777, 9999, 12345, 54321]) == 20
+
+def test_specialFilter_with_large_numbers_and_negative(sample_data):
+    assert specialFilter([15, 17, 19, 21, 23, -15, -17, -19, 101, 303, 505, 707, 909, 1111, 3333, 5555, 7777, 9999, 12345, 54321, 123456789]) == 20

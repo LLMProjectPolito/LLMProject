@@ -43,47 +43,36 @@ def test_simplify_basic():
     assert simplify("1/6", "2/1") == False
     assert simplify("7/10", "10/2") == False
 
-def test_simplify_same_numerator():
-    assert simplify("1/2", "2/1") == True
-    assert simplify("3/4", "4/1") == True
-
-def test_simplify_same_denominator():
-    assert simplify("1/1", "1/1") == True
-    assert simplify("2/1", "1/1") == True
+def test_simplify_same_fraction():
+    assert simplify("1/2", "1/2") == True
+    assert simplify("5/3", "5/3") == True
 
 def test_simplify_larger_numbers():
-    assert simplify("10/3", "3/2") == True
-    assert simplify("12/5", "5/4") == False
-
-def test_simplify_equal_fractions():
-    assert simplify("1/2", "1/2") == True
+    assert simplify("10/3", "3/1") == True
+    assert simplify("12/4", "4/1") == True
+    assert simplify("15/7", "7/1") == False
 
 def test_simplify_edge_case_1():
     assert simplify("1/1", "1/1") == True
 
 def test_simplify_edge_case_2():
-    assert simplify("1/2", "2/2") == True
+    assert simplify("1/1", "2/1") == False
 
 def test_simplify_edge_case_3():
-    assert simplify("2/3", "3/2") == True
+    assert simplify("2/1", "1/1") == True
 
 def test_simplify_edge_case_4():
-    assert simplify("5/7", "7/5") == True
+    assert simplify("1/2", "1/2") == True
 
 def test_simplify_edge_case_5():
-    assert simplify("1/10", "10/1") == True
+    assert simplify("1/2", "2/1") == True
 
 def test_simplify_edge_case_6():
-    assert simplify("10/1", "1/10") == False
+    assert simplify("1/3", "3/1") == True
 
 def test_simplify_edge_case_7():
-    assert simplify("1/2", "3/1") == False
+    assert simplify("1/3", "1/1") == False
 
-def test_simplify_edge_case_8():
-    assert simplify("1/3", "4/1") == False
-
-def test_simplify_edge_case_9():
-    assert simplify("1/4", "5/1") == False
-
-def test_simplify_edge_case_10():
-    assert simplify("1/5", "6/1") == False
+def test_simplify_large_numerator_denominator():
+    assert simplify("100/10", "10/1") == True
+    assert simplify("100/10", "11/1") == False

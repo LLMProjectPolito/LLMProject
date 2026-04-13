@@ -59,5 +59,5 @@ def test_large_numbers():
 def test_duplicate_numbers():
     assert order_by_points([1, 1, 1, 1]) == [1, 1, 1, 1]
 
-def test_negative_and_positive_with_same_digit_sum():
-    assert order_by_points([-1, 10, 1, -10]) == [-1, 1, -10, 10]
+def test_negative_and_positive_with_same_sum():
+    assert order_by_points([-11, 2, 11, -2]) == [-11, -2, 2, 11]

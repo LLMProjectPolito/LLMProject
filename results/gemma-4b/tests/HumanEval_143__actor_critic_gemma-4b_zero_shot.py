@@ -72,7 +72,7 @@ class TestWordsInSentence:
         assert words_in_sentence("This is a test") == "is"
 
     def test_multiple_words_all_prime(self):
-        assert words_in_sentence("let go for swimming") == "go for"
+        assert words_in_sentence("abc def ghi") == "abc def"
 
     def test_multiple_words_no_prime(self):
         assert words_in_sentence("hello world") == ""
@@ -81,28 +81,19 @@ class TestWordsInSentence:
         assert words_in_sentence("  This is a test  ") == "is"
 
     def test_sentence_with_multiple_spaces(self):
-        assert words_in_sentence("This   is  a test") == "is"
+        assert words_in_sentence("This   is  a    test") == "is"
 
     def test_sentence_with_numbers(self):
-        assert words_in_sentence("This is 123 test") == "is"
+        assert words_in_sentence("This is 123 test") == ""
 
     def test_sentence_with_special_characters(self):
-        assert words_in_sentence("This is a! test") == "is"
+        assert words_in_sentence("This is a!@# test") == ""
 
     def test_long_sentence_with_prime_words(self):
-        assert words_in_sentence("This is a very long sentence with some prime words") == "is"
+        assert words_in_sentence("This is a very long sentence with some prime words") == "is a"
 
     def test_long_sentence_with_no_prime_words(self):
         assert words_in_sentence("This is a very long sentence with no prime words") == ""
 
-    def test_prime_length_one(self):
-        assert words_in_sentence("a") == "a"
-
-    def test_prime_length_two(self):
-        assert words_in_sentence("ab") == ""
-
-    def test_prime_length_three(self):
-        assert words_in_sentence("abc") == "abc"
-
-    def test_prime_length_five(self):
-        assert words_in_sentence("hello world") == "world"
+    def test_negative_number(self):
+        assert is_prime(-5) == False

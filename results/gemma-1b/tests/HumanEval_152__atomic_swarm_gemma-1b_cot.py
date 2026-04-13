@@ -24,7 +24,7 @@ def compare(game,guess):
         if game[i] == guess:
             result.append(0)
         else:
-            result.append(abs(guess - game[i]))
+            result.append(abs(game[i] - guess))
     return result
 
 def compare(game,guess):

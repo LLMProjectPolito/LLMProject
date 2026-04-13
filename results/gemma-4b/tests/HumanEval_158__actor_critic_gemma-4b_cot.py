@@ -38,6 +38,7 @@ def find_max(words):
 
     return result
 
+
 def test_empty_list():
     assert find_max([]) == ""
 
@@ -59,23 +60,26 @@ def test_multiple_words_same_unique_chars_and_lexicographical_order_2():
 def test_words_with_duplicate_characters():
     assert find_max(["aabbcc", "abc"]) == "abc"
 
-def test_words_with_all_same_characters():
-    assert find_max(["aaaa", "bbbb"]) == "aaaa"
+def test_words_with_empty_string():
+    assert find_max(["", "abc"]) == "abc"
 
 def test_words_with_mixed_case():
-    assert find_max(["Hello", "hello"]) == "Hello"
-
-def test_words_with_numbers():
-    assert find_max(["123", "abc"]) == "abc"
+    assert find_max(["Name", "name"]) == "Name"
 
 def test_words_with_special_characters():
     assert find_max(["!@#", "abc"]) == "abc"
 
-def test_words_with_empty_string():
-    assert find_max(["", "abc"]) == "abc"
+def test_words_with_numbers():
+    assert find_max(["123", "abc"]) == "abc"
 
-def test_words_with_empty_string_and_other_words():
-    assert find_max(["", "abc", "def"]) == "abc"
+def test_words_with_mixed_characters():
+    assert find_max(["a1b2c", "abc"]) == "abc"
 
-def test_words_with_mixed_empty_and_non_empty():
-    assert find_max(["", "abc", "", "def"]) == "abc"
+def test_all_same_characters():
+    assert find_max(["aaaa", "bbbb"]) == "aaaa"
+
+def test_long_words():
+    assert find_max(["abcdefgh", "ijklmnop"]) == "abcdefgh"
+
+def test_long_words_same_unique():
+    assert find_max(["abcdefgh", "ghijklm"]) == "abcdefgh"

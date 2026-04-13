@@ -78,16 +78,10 @@ class TestSimplify:
         assert simplify("3/7", "14/3") == True
 
     def test_complex_fractions_false(self):
-        assert simplify("3/7", "15/3") == False
+        assert simplify("3/7", "15/4") == False
 
     def test_edge_case_1(self):
         assert simplify("1/1000", "1000/1") == True
 
     def test_edge_case_2(self):
         assert simplify("1/999", "999/1") == False
-
-    def test_edge_case_3(self):
-        assert simplify("2/7", "7/2") == True
-
-    def test_edge_case_4(self):
-        assert simplify("3/8", "8/3") == False

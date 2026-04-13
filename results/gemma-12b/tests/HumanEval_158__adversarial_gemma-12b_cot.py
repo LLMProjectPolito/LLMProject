@@ -48,32 +48,35 @@ class TestFindMax:
     def test_lexicographical_tie(self):
         assert find_max(["name", "enam", "game"]) == "enam"
 
-    def test_all_same_characters(self):
+    def test_repeated_characters(self):
         assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
     def test_mixed_lengths(self):
-        assert find_max(["a", "bb", "ccc", "dddd"]) == "ccc"
+        assert find_max(["a", "bb", "ccc", "dddd"]) == "dddd"
+
+    def test_all_same_unique_count(self):
+        assert find_max(["abc", "def", "ghi"]) == "abc"
+
+    def test_empty_string(self):
+        assert find_max(["", "abc", "def"]) == "abc"
+
+    def test_list_with_empty_string(self):
+        assert find_max(["abc", "", "def"]) == "abc"
 
     def test_duplicate_words(self):
         assert find_max(["abc", "abc", "def"]) == "abc"
 
-    def test_words_with_spaces(self):
-        assert find_max(["hello world", "good bye"]) == "hello world"
+    def test_special_characters(self):
+        assert find_max(["!@#", "$%^", "&*()"]) == "!@#"
 
-    def test_words_with_special_characters(self):
-        assert find_max(["!@#", "abc"]) == "!@#"
+    def test_numbers_as_strings(self):
+        assert find_max(["123", "456", "789"]) == "123"
 
-    def test_words_with_numbers(self):
-        assert find_max(["123", "abc"]) == "123"
+    def test_mixed_characters(self):
+        assert find_max(["a1b2", "c3d4", "e5f6"]) == "a1b2"
 
-    def test_words_with_unicode(self):
-        assert find_max(["你好", "世界"]) == "你好"
+    def test_long_strings(self):
+        assert find_max(["abcdefgh", "ijklmnop", "qrstuvwx"]) == "abcdefgh"
 
-    def test_single_word(self):
-        assert find_max(["single"]) == "single"
-
-    def test_same_unique_chars(self):
-        assert find_max(["abc", "def", "ghi"]) == "abc"
-
-    def test_longer_words(self):
-        assert find_max(["abcdefgh", "ijklmnop"]) == "abcdefgh"
+    def test_unicode_characters(self):
+        assert find_max(["你好世界", "こんにちは世界", "안녕하세요세계"]) == "你好世界"

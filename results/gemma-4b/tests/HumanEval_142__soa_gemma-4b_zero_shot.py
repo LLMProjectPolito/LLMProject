@@ -26,13 +26,13 @@ def sum_squares(lst):
     For lst = []  the output should be 0
     For lst = [-1,-5,2,-1,-5]  the output should be -126
     """
-    total_sum = 0
+    total = 0
     for i, num in enumerate(lst):
         if i % 3 == 0:
-            total_sum += num ** 2
+            total += num**2
         elif i % 4 == 0 and i % 3 != 0:
-            total_sum += num ** 3
-    return total_sum
+            total += num**3
+    return total
 
 def test_empty_list():
     assert sum_squares([]) == 0
@@ -65,10 +65,10 @@ def test_longer_list():
     assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 385
 
 def test_list_with_zeros():
-    assert sum_squares([0, 1, 2, 3, 4]) == 30
+    assert sum_squares([0, 1, 2, 3, 4, 5]) == 150
 
 def test_list_with_large_numbers():
-    assert sum_squares([100, 200, 300, 400]) == 240000
+    assert sum_squares([100, 200, 300, 400]) == 2400000
 
 def test_list_with_duplicate_values():
     assert sum_squares([1, 1, 1, 1]) == 4

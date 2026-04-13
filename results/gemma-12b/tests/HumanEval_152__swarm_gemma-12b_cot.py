@@ -18,13 +18,13 @@ def compare(game,guess):
 import pytest
 import math
 
+def test_empty_input():
+    """Test case for empty input lists."""
+    assert compare([], []) == []
+
 def test_compare_empty_lists():
     """Test case for empty input lists."""
     game = []
     guess = []
     expected_result = []
     assert compare(game, guess) == expected_result
-
-def test_empty_input():
-    """Test case for empty input lists."""
-    assert compare([], []) == []

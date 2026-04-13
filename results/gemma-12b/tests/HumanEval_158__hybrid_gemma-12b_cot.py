@@ -45,38 +45,59 @@ class TestFindMax:
     def test_single_word(self):
         assert find_max(["hello"]) == "hello"
 
-    def test_multiple_words_different_unique_counts(self):
+    def test_basic_case(self):
         assert find_max(["name", "of", "string"]) == "string"
 
-    def test_multiple_words_same_unique_counts_lexicographical_order(self):
+    def test_lexicographical_tie(self):
         assert find_max(["name", "enam", "game"]) == "enam"
 
-    def test_words_with_repeated_characters(self):
+    def test_all_same_characters(self):
         assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
+
+    def test_mixed_lengths(self):
+        assert find_max(["a", "bb", "ccc", "dddd"]) == "ccc"
+
+    def test_duplicate_words(self):
+        assert find_max(["abc", "abc", "def"]) == "abc"
+
+    def test_words_with_spaces(self):
+        assert find_max(["hello world", "good bye"]) == "hello world"
+
+    def test_words_with_special_characters(self):
+        assert find_max(["abc!", "def@", "ghi#"]) == "abc!"
+
+    def test_words_with_numbers(self):
+        assert find_max(["abc1", "def2", "ghi3"]) == "abc1"
+
+    def test_words_with_unicode(self):
+        assert find_max(["你好", "世界"]) == "你好"
+
+    def test_all_words_same_unique_count(self):
+        assert find_max(["abc", "def", "ghi"]) == "abc"
+
+    def test_long_words(self):
+        assert find_max(["abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnop"]) == "abcdefghijklmnopqrstuvwxyz"
+
+    def test_mixed_lengths_and_unique_counts(self):
+        assert find_max(["a", "aa", "abc", "ab"]) == "abc"
+
+    def test_complex_case(self):
+        assert find_max(["apple", "banana", "orange", "grape"]) == "orange"
 
     def test_words_with_mixed_cases(self):
         assert find_max(["Name", "name", "STRING", "string"]) == "Name"
 
-    def test_words_with_special_characters(self):
-        assert find_max(["!@#", "abc", "def"]) == "!@#"
+    def test_words_with_numbers_and_letters(self):
+        assert find_max(["a123", "b456", "c789"]) == "a123"
 
-    def test_words_with_numbers(self):
-        assert find_max(["123", "abc", "456"]) == "123"
+    def test_words_with_leading_and_trailing_spaces(self):
+        assert find_max(["  abc", "def  ", "ghi"]) == "  abc"
 
-    def test_words_with_spaces(self):
-        assert find_max(["hello world", "hello", "world"]) == "hello world"
+    def test_words_with_internal_spaces(self):
+        assert find_max(["a b c", "def", "ghi"]) == "a b c"
 
-    def test_words_with_unicode_characters(self):
-        assert find_max(["你好", "世界", "abc"]) == "你好"
+    def test_words_with_repeated_unique_chars(self):
+        assert find_max(["abcabc", "defdef", "ghighi"]) == "abcabc"
 
     def test_words_with_empty_string(self):
         assert find_max(["", "abc", "def"]) == "abc"
-
-    def test_all_words_empty(self):
-        assert find_max(["", "", ""]) == ""
-
-    def test_same_unique_count_and_lexicographical_tie(self):
-        assert find_max(["abc", "cba", "bac"]) == "abc"
-
-    def test_all_words_same_unique_count(self):
-        assert find_max(["abc", "def", "ghi"]) == "abc"

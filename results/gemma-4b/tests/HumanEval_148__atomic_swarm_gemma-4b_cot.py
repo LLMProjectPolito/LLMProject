@@ -115,13 +115,15 @@ def bf(planet1, planet2):
     if planet1 not in planets or planet2 not in planets:
         return ()
     
-    if planet1 == "Mercury" and planet2 == "Uranus":
-        return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+    if planet1 == planet2:
+        return ()
+
+    start_index = planets.index(planet1)
+    end_index = planets.index(planet2)
     
     result = []
-    for planet in planets:
-        if planet1 < planet < planet2:
-            result.append(planet)
+    for i in range(start_index, end_index):
+        result.append(planets[i])
     
     return tuple(result)
 

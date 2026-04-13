@@ -12,4 +12,52 @@ def simplify(x, n):
     simplify("7/10", "10/2") = False
     """
 
-# ERROR: setup_competitive_graph() got an unexpected keyword argument 'model_a'
+import pytest
+
+def test_simplify_true_case_1():
+    assert simplify("1/5", "5/1") == True
+
+def test_simplify_false_case_1():
+    assert simplify("1/6", "2/1") == False
+
+def test_simplify_false_case_2():
+    assert simplify("7/10", "10/2") == False
+
+def test_simplify_true_case_2():
+    assert simplify("2/3", "3/1") == True
+
+def test_simplify_true_case_3():
+    assert simplify("4/5", "5/4") == True
+
+def test_simplify_false_case_3():
+    assert simplify("1/2", "3/4") == False
+
+def test_simplify_true_case_4():
+    assert simplify("1/1", "1/1") == True
+
+def test_simplify_false_case_4():
+    assert simplify("1/3", "1/2") == False
+
+def test_simplify_true_case_5():
+    assert simplify("2/4", "4/2") == True
+
+def test_simplify_false_case_5():
+    assert simplify("3/5", "2/1") == False
+
+def test_simplify_large_numbers_true():
+    assert simplify("100/20", "20/1") == True
+
+def test_simplify_large_numbers_false():
+    assert simplify("100/21", "20/1") == False
+
+def test_simplify_with_same_fraction():
+    assert simplify("5/2", "5/2") == True
+
+def test_simplify_with_one():
+    assert simplify("1/1", "1/2") == False
+
+def test_simplify_with_whole_numbers():
+    assert simplify("2/1", "3/1") == False
+
+def test_simplify_with_different_denominators():
+    assert simplify("1/2", "1/3") == False

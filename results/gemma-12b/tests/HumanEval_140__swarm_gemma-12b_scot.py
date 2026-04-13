@@ -15,10 +15,19 @@ import pytest
 
 def test_leading_and_trailing_spaces_with_consecutive():
     """
-    Tests a string with leading and trailing spaces, and also includes a sequence of more than 2 consecutive spaces.
+    Tests a string with leading and trailing spaces, and also includes a sequence of more than 2 consecutive spaces in the middle.
+    This tests the edge case where the function needs to handle both underscore replacement for leading/trailing spaces and dash replacement for consecutive spaces.
+    """
+    text = "  hello   world  "
+    expected = "_hello-world_"
+    assert fix_spaces(text) == expected
+
+def test_leading_and_trailing_spaces_with_consecutive_2():
+    """
+    Tests a string with leading and trailing spaces, and a sequence of more than 2 consecutive spaces in the middle.
     This tests the edge case where the function needs to handle both underscore replacement for leading/trailing spaces
     and hyphen replacement for consecutive spaces.
     """
-    text = "  hello   world  "
+    text = "  hello    world  "
     expected = "_hello-world_"
     assert fix_spaces(text) == expected

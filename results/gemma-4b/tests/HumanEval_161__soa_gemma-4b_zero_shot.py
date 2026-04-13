@@ -33,8 +33,9 @@ def solve(s):
         else:
             res += char
     if not any('a' <= char <= 'z' for char in s):
-        return s[::-1]
+        return res[::-1]
     return res
+    
 
 def test_empty_string():
     assert solve("") == ""
@@ -49,31 +50,43 @@ def test_uppercase_letters():
     assert solve("AB") == "ab"
 
 def test_mixed_case_letters():
+    assert solve("aB") == "Ab"
+
+def test_letters_and_symbols():
     assert solve("#a@C") == "#A@c"
 
-def test_mixed_case_with_numbers():
-    assert solve("a1B2c3") == "A1b2C3"
+def test_letters_and_numbers():
+    assert solve("a1b2c") == "A1B2C"
 
-def test_special_characters():
-    assert solve("!@#$%^") == "^%$#@!"
+def test_all_lowercase_with_symbols():
+    assert solve("hello#world!") == "HELLO#WORLD!"
 
-def test_mixed_characters():
-    assert solve("a1B2c3!") == "A1b2C3!"
+def test_all_uppercase_with_symbols():
+    assert solve("HELLO#WORLD!") == "hello#world!"
 
-def test_long_string():
-    assert solve("This is a long string with mixed case and numbers.") == "tHIS IS A LONG STRING WITH MIXED CASE AND NUMBERS."
-
-def test_string_with_spaces():
-    assert solve("Hello World") == "hELLO wORLD"
-
-def test_string_with_unicode():
-    assert solve("你好世界") == "你好世界"
-
-def test_string_with_leading_and_trailing_spaces():
-    assert solve("  abc  ") == "  ABC  "
-
-def test_string_with_only_one_character():
+def test_single_lowercase_letter():
     assert solve("a") == "A"
 
-def test_string_with_only_one_special_character():
-    assert solve("#") == "#"
+def test_single_uppercase_letter():
+    assert solve("A") == "a"
+
+def test_mixed_single_letters():
+    assert solve("aA") == "Aa"
+
+def test_long_string_with_mixed_case():
+    assert solve("ThisIsALongStringWithMixedCase") == "tHISiSALONGSTRINGwITHMiXEDcASE"
+
+def test_string_with_only_symbols():
+    assert solve("!@#$%^") == "^%$#@!"
+
+def test_string_with_numbers_and_symbols():
+    assert solve("123!@#") == "123!@#"
+
+def test_string_with_special_characters():
+    assert solve("!@#$%^") == "^%$#@!"
+
+def test_string_with_unicode_characters():
+    assert solve("你好世界") == "世界你好"
+
+def test_string_with_mixed_unicode_and_ascii():
+    assert solve("Hello你好World") == "HELLO你好WORLD"

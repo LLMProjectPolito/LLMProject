@@ -55,10 +55,10 @@ def test_duplicate_elements():
     assert list_sort(["aa", "a", "aaa", "aa"]) == ["aa", "aa", "aaa"]
 
 def test_mixed_length_list():
-    assert list_sort(["ab", "a", "aaa", "cd", "aa"]) == ["ab", "cd", "aa", "aaa"]
+    assert list_sort(["ab", "a", "aaa", "cd", "aa"]) == ["ab", "aa", "cd", "aaa"]
 
 def test_long_list():
     assert list_sort(["a", "bb", "ccc", "dd", "e"]) == ["a", "bb", "ccc", "dd"]
 
-def test_list_with_empty_string():
-    assert list_sort(["", "a", "bb"]) == ["", "a", "bb"]
+def test_list_with_numbers():
+    assert list_sort(["1", "11", "111"]) == ["1", "11", "111"]

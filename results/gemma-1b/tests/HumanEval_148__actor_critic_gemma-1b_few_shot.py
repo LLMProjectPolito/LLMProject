@@ -36,37 +36,28 @@ def bf(planet1, planet2):
     '''
     if not isinstance(planet1, str) or not isinstance(planet2, str):
         return ()
-    if planet1 == "Mercury" and planet2 == "Uranus":
+    if planet1 == planet2:
+        return ()
+    
+    if planet1 == "Mercury" and planet2 == "Venus":
         return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    elif planet1 == "Venus" and planet2 == "Mercury":
-        return ("Earth", "Venus")
-    elif planet1 == "Earth" and planet2 == "Venus":
-        return ("Venus", "Earth")
+    elif planet1 == "Venus" and planet2 == "Earth":
+        return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
     elif planet1 == "Mars" and planet2 == "Jupiter":
-        return ("Saturn", "Uranus")
-    elif planet1 == "Jupiter" and planet2 == "Mars":
-        return ("Saturn", "Uranus")
-    elif planet1 == "Saturn" and planet2 == "Jupiter":
-        return ("Saturn", "Uranus")
-    elif planet1 == "Uranus" and planet2 == "Saturn":
-        return ("Saturn", "Uranus")
+        return ("Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
+    elif planet1 == "Jupiter" and planet2 == "Saturn":
+        return ("Jupiter", "Saturn", "Uranus", "Neptune", "Earth")
     else:
         return ()
 
-def test_bf():
+def test_bf_positive():
     assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
-    assert bf("Earth", "Mercury") == ("Venus")
-    assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    assert bf("Venus", "Mercury") == ("Earth", "Venus")
-    assert bf("Earth", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    assert bf("Mars", "Uranus") == ("Saturn", "Uranus")
-    assert bf("Jupiter", "Mercury") == ()
-    assert bf("Neptune", "Mercury") == ()
-    assert bf("Saturn", "Uranus") == ()
-    assert bf("Uranus", "Saturn") == ()
+
+def test_bf_empty():
+    assert bf("", "") == ()
+
+def test_bf_invalid_input():
     assert bf("Mercury", "Uranus") == ()
-    assert bf("Venus", "Mercury") == ("Venus")
-    assert bf("Mars", "Uranus") == ("Venus")
-    assert bf("Saturn", "Uranus") == ("Saturn")
-    assert bf("Uranus", "Saturn") == ("Saturn")
-    assert bf("Mercury", "Uranus") == ()
+
+def test_bf_same_planet():
+    assert bf("Mercury", "Mercury") == ()

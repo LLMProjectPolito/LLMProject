@@ -112,8 +112,7 @@ def test_do_algebra_with_exponentiation_and_one():
     operand = [1, 5]
     assert do_algebra(operator, operand) == 1
 
-def test_do_algebra_with_floor_division_and_zero():
-    operator = ['//']
-    operand = [5, 0]
-    with pytest.raises(ZeroDivisionError):
-        do_algebra(operator, operand)
+def test_do_algebra_negative_result():
+    operator = ['-']
+    operand = [2, 5]
+    assert do_algebra(operator, operand) == -3

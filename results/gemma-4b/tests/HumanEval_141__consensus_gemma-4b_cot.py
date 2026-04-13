@@ -91,11 +91,8 @@ def test_valid_file_name_with_mixed_case():
 def test_valid_file_name_with_numbers_and_letters():
     assert file_name_check("a123example.txt") == 'No'
 
-def test_valid_file_name_with_numbers_and_letters_at_end():
-    assert file_name_check("example123.dll") == 'No'
-
-def test_valid_file_name_with_numbers_and_letters_at_start():
-    assert file_name_check("123example.txt") == 'No'
+def test_valid_file_name_with_numbers_and_letters_and_dots():
+    assert file_name_check("a123.example.txt") == 'No'
 
 def test_valid_file_name_with_special_characters():
     assert file_name_check("example.txt!") == 'No'

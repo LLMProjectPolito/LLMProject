@@ -44,38 +44,46 @@ def simplify(x, n):
 
 ### STEP 2: PLAN
 # Test cases:
-# 1. Simple case where the product is an integer.
-# 2. Simple case where the product is not an integer.
-# 3. Cases with larger numbers.
-# 4. Cases where the denominator of x is 1.
-# 5. Cases where the denominator of n is 1.
-# 6. Cases where the numerator and denominator of x and n are equal.
+# 1. Basic case: x * n is an integer.
+# 2. x * n is not an integer.
+# 3. Simple fractions.
+# 4. Fractions with larger numbers.
+# 5. Cases where the denominator of x is a factor of the denominator of n.
+# 6. Cases where the denominator of x is not a factor of the denominator of n.
 
 ### STEP 3: CODE
-def test_simplify_integer_product():
+def test_simplify_basic_integer():
     assert simplify("1/5", "5/1") == True
-    assert simplify("2/3", "3/2") == True
-    assert simplify("4/7", "7/4") == True
 
-def test_simplify_non_integer_product():
+def test_simplify_basic_non_integer():
     assert simplify("1/6", "2/1") == False
+
+def test_simplify_complex_integer():
     assert simplify("7/10", "10/2") == False
-    assert simplify("3/4", "5/2") == False
+
+def test_simplify_simple_fractions():
+    assert simplify("1/2", "2/1") == True
+    assert simplify("2/3", "3/1") == True
+    assert simplify("3/4", "4/1") == True
+
+def test_simplify_complex_fractions():
+    assert simplify("1/2", "3/4") == False
+    assert simplify("2/3", "4/5") == False
+    assert simplify("5/6", "10/1") == False
 
 def test_simplify_large_numbers():
     assert simplify("100/10", "10/1") == True
-    assert simplify("123/45", "45/1") == True
     assert simplify("100/10", "11/1") == False
 
-def test_simplify_denominator_one():
-    assert simplify("1/5", "5/1") == True
-    assert simplify("2/1", "1/2") == True
+def test_simplify_denominator_factor():
+    assert simplify("1/2", "2/2") == True
+    assert simplify("2/3", "3/3") == True
 
-def test_simplify_equal_numerators_denominators():
-    assert simplify("1/2", "2/1") == True
-    assert simplify("2/1", "1/2") == True
+def test_simplify_denominator_not_factor():
+    assert simplify("1/2", "3/4") == False
+    assert simplify("2/3", "5/6") == False
 
-def test_simplify_complex_fractions():
-    assert simplify("12/18", "18/6") == True
-    assert simplify("15/25", "25/5") == True
-    assert simplify("15/25", "26/5") == False
+def test_simplify_edge_cases():
+    assert simplify("1/1", "1/1") == True
+    assert simplify("1/1", "2/1") == False
+    assert simplify("2/1", "1/1") == True

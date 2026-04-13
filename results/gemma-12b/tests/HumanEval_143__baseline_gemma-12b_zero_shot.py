@@ -54,6 +54,7 @@ def words_in_sentence(sentence):
     prime_words = [word for word in words if is_prime(len(word))]
     return " ".join(prime_words)
 
+
 class TestWordsInSentence:
     def test_empty_sentence(self):
         assert words_in_sentence("") == ""
@@ -71,13 +72,13 @@ class TestWordsInSentence:
         assert words_in_sentence("a be do") == "a be do"
 
     def test_mixed_prime_and_non_prime(self):
-        assert words_in_sentence("the quick brown fox jumps") == "the fox"
+        assert words_in_sentence("the quick brown fox jumps over lazy dog") == "the fox"
 
     def test_sentence_with_leading_and_trailing_spaces(self):
-        assert words_in_sentence("  hello world  ") == ""
+        assert words_in_sentence("  hello world  ") == "hello world"
 
     def test_sentence_with_multiple_spaces(self):
-        assert words_in_sentence("hello   world") == ""
+        assert words_in_sentence("hello   world") == "hello world"
 
     def test_single_word_prime_length(self):
         assert words_in_sentence("cat") == "cat"
@@ -87,7 +88,7 @@ class TestWordsInSentence:
 
     def test_long_sentence(self):
         sentence = "This is a very long sentence with many words of varying lengths"
-        expected = "is a very long sentence"
+        expected = "is a very long sentence with many words"
         assert words_in_sentence(sentence) == expected
 
     def test_sentence_with_numbers_in_words(self):

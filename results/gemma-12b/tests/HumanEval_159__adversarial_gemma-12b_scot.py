@@ -66,14 +66,14 @@ def eat(number, need, remaining):
 
 
 class TestEat:
-    def test_enough_carrots(self):
+    def test_enough_remaining(self):
         assert eat(5, 6, 10) == [11, 4]
         assert eat(4, 8, 9) == [12, 1]
         assert eat(1, 10, 10) == [11, 0]
 
-    def test_not_enough_carrots(self):
+    def test_not_enough_remaining(self):
         assert eat(2, 11, 5) == [7, 0]
-        assert eat(0, 5, 2) == [2, 0]
+        assert eat(10, 20, 5) == [15, 0]
 
     def test_zero_remaining(self):
         assert eat(5, 6, 0) == [5, 0]
@@ -81,11 +81,11 @@ class TestEat:
 
     def test_zero_need(self):
         assert eat(5, 0, 10) == [5, 10]
-        assert eat(0, 0, 10) == [0, 10]
+        assert eat(0, 0, 0) == [0, 0]
 
     def test_zero_eaten(self):
         assert eat(0, 5, 10) == [5, 5]
-        assert eat(0, 5, 2) == [2, 0]
+        assert eat(0, 0, 0) == [0, 0]
 
     def test_all_zeros(self):
         assert eat(0, 0, 0) == [0, 0]
@@ -96,11 +96,7 @@ class TestEat:
         assert eat(1000, 0, 0) == [1000, 0]
 
     def test_edge_cases(self):
-        assert eat(0, 0, 1) == [0, 1]
-        assert eat(1, 0, 0) == [1, 0]
         assert eat(1, 1, 1) == [2, 0]
-        assert eat(1, 1, 0) == [1, 0]
-
-    def test_large_numbers(self):
-        assert eat(500, 600, 700) == [1200, 100]
-        assert eat(999, 1, 1000) == [1999, 0]
+        assert eat(1000, 1, 1000) == [2000, 0]
+        assert eat(1, 1000, 1) == [1001, 0]
+        assert eat(1000, 1000, 1) == [2000, 0]

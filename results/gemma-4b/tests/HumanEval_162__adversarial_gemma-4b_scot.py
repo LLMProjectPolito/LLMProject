@@ -23,14 +23,13 @@ def string_to_md5(text):
 
 
 STEP 1: REASONING -
-The function `string_to_md5` calculates the MD5 hash of a given string. It handles the edge case of an empty input string by returning `None`. The MD5 hash is returned as a hexadecimal string.  We need to test the function with various inputs, including an empty string, a simple string, and potentially longer strings to ensure the hashing is correct. We also need to verify that the returned value is indeed a hexadecimal string.
+The function `string_to_md5` calculates the MD5 hash of a given string. It handles the edge case of an empty input string by returning `None`. The MD5 hash is returned as a hexadecimal string.  We need to test the function with various inputs, including an empty string, a simple string, and potentially longer strings to ensure the hash is calculated correctly. We also need to verify the return type is a string and that the empty string case returns `None`.
 
 STEP 2: PLAN -
 Test functions:
-1.  `test_empty_string`: Checks the behavior with an empty string input.
-2.  `test_simple_string`: Checks the hashing of a simple string.
-3.  `test_long_string`: Checks the hashing of a longer string.
-4.  `test_unicode_string`: Checks the hashing of a string containing Unicode characters.
-5.  `test_numeric_string`: Checks the hashing of a string containing only numbers.
+1.  `test_empty_string`: Checks if the function returns `None` for an empty string.
+2.  `test_simple_string`: Checks if the function returns the correct MD5 hash for a simple string.
+3.  `test_long_string`: Checks if the function returns the correct MD5 hash for a longer string.
+4.  `test_unicode_string`: Checks if the function handles unicode characters correctly.
 
 STEP 3: CODE -

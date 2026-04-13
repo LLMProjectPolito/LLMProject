@@ -19,7 +19,7 @@ def bf(planet1, planet2):
 # STEP 1: REASONING
 # The function `bf` takes two planet names as strings and returns a tuple of planets
 # located between them in terms of proximity to the sun, sorted by proximity.
-# The planets are: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune.
+# The planets are Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune.
 # The function should handle invalid planet names by returning an empty tuple.
 # The test suite needs to cover:
 # 1. Valid planet names with planet1 before planet2.
@@ -36,6 +36,8 @@ def bf(planet1, planet2):
 # - test_invalid_planet_names: Checks with invalid planet names.
 # - test_same_planet_names: Checks when planet1 and planet2 are the same.
 # - test_mercury_neptune: Checks the full range.
+# - test_mercury_mercury: Checks when both planets are Mercury.
+# - test_neptune_neptune: Checks when both planets are Neptune.
 
 # STEP 3: CODE
 import pytest
@@ -56,7 +58,7 @@ def bf(planet1, planet2):
     bf("Earth", "Mercury") ==> ("Venus")
     bf("Mercury", "Uranus") ==> ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
     '''
-    planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
+    planets = ("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
     if planet1 not in planets or planet2 not in planets:
         return ()
 
@@ -87,7 +89,13 @@ class TestBF:
         assert bf("Pluto", "Xantus") == ()
 
     def test_same_planet_names(self):
-        assert bf("Earth", "Earth") == ()
+        assert bf("Mercury", "Mercury") == ()
 
     def test_mercury_neptune(self):
         assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
+
+    def test_mercury_mercury(self):
+        assert bf("Mercury", "Mercury") == ()
+
+    def test_neptune_neptune(self):
+        assert bf("Neptune", "Neptune") == ()

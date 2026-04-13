@@ -44,21 +44,20 @@ def find_max(words):
 # STEP 1: REASONING - Analyze functional goals and constraints.
 # The function `find_max` aims to find the word with the most unique characters in a list of strings.
 # If multiple words have the same maximum number of unique characters, it should return the lexicographically smallest one.
-# Edge cases include an empty input list, a list with only one word, and a list where multiple words have the same maximum unique character count.
-# The function should handle strings with repeated characters correctly.
+# Edge cases include an empty input list, a list with only one word, and a list with multiple words having the same maximum unique character count.
+# The function should handle empty strings within the input list gracefully.
 
 # STEP 2: PLAN - List test functions names and scenarios.
 # test_empty_list: Test with an empty list.
 # test_single_word: Test with a list containing only one word.
 # test_multiple_words_different_unique_chars: Test with multiple words having different numbers of unique characters.
-# test_multiple_words_same_unique_chars_lexicographical_order: Test with multiple words having the same number of unique characters, ensuring lexicographical order is maintained.
-# test_duplicate_characters: Test with words containing duplicate characters.
-# test_empty_string: Test with an empty string in the list.
-# test_mixed_case: Test with words having mixed case.
-# test_special_characters: Test with words containing special characters.
-
+# test_multiple_words_same_unique_chars: Test with multiple words having the same number of unique characters, ensuring lexicographical order is maintained.
+# test_empty_string_in_list: Test with an empty string in the input list.
+# test_duplicate_words: Test with duplicate words in the input list.
+# test_lexicographical_order: Test with words that need to be compared lexicographically.
 
 # STEP 3: CODE - Write the high-quality pytest suite.
+###
 def test_empty_list():
     assert find_max([]) == ""
 
@@ -68,26 +67,23 @@ def test_single_word():
 def test_multiple_words_different_unique_chars():
     assert find_max(["name", "of", "string"]) == "string"
 
-def test_multiple_words_same_unique_chars_lexicographical_order():
+def test_multiple_words_same_unique_chars():
     assert find_max(["name", "enam", "game"]) == "enam"
 
-def test_duplicate_characters():
-    assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
+def test_empty_string_in_list():
+    assert find_max(["aaaaaaa", "bb", "cc", ""]) == "aaaaaaa"
 
-def test_empty_string():
-    assert find_max(["", "hello"]) == "hello"
+def test_duplicate_words():
+    assert find_max(["name", "name", "enam"]) == "enam"
+
+def test_lexicographical_order():
+    assert find_max(["abc", "bca", "cab"]) == "abc"
 
 def test_mixed_case():
-    assert find_max(["Hello", "hello"]) == "Hello"
+    assert find_max(["Name", "name"]) == "Name"
+
+def test_numbers_and_letters():
+    assert find_max(["a123", "123a"]) == "a123"
 
 def test_special_characters():
-    assert find_max(["!@#", "abc"]) == "!@#"
-
-def test_complex_case():
-    assert find_max(["abcde", "abcdf", "ab"]) == "abcde"
-
-def test_equal_unique_chars_lexicographical():
-    assert find_max(["apple", "banana", "orange"]) == "apple"
-
-def test_all_same_characters():
-    assert find_max(["aaaa", "bbbb", "cccc"]) == "aaaa"
+    assert find_max(["!@#", "#@!"]) == "!@#"

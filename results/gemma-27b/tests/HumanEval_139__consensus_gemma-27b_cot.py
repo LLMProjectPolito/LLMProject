@@ -54,19 +54,18 @@ def test_special_factorial_large():
     assert special_factorial(6) == 43545600
     assert special_factorial(7) == 62270208000
 
-def test_special_factorial_edge_case():
-    assert special_factorial(1) == 1
-
-def test_special_factorial_invalid_input():
+def test_special_factorial_zero():
     with pytest.raises(ValueError):
         special_factorial(0)
+
+def test_special_factorial_negative():
     with pytest.raises(ValueError):
         special_factorial(-1)
-    with pytest.raises(ValueError):
-        special_factorial(-5)
 
-def test_special_factorial_type_error():
+def test_special_factorial_float():
     with pytest.raises(TypeError):
-        special_factorial(1.5)
+        special_factorial(2.5)
+
+def test_special_factorial_string():
     with pytest.raises(TypeError):
         special_factorial("2")

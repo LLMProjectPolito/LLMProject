@@ -36,22 +36,25 @@ def bf(planet1, planet2):
     bf("Mercury", "Uranus") ==> ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
     '''
     planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
-    if planet1 not in planets or planet2 not in planets:
+    try:
+        idx1 = planets.index(planet1)
+        idx2 = planets.index(planet2)
+    except ValueError:
         return ()
-    
-    index1 = planets.index(planet1)
-    index2 = planets.index(planet2)
-    
-    if index1 > index2:
-        index1, index2 = index2, index1
-    
+
+    if idx1 >= idx2:
+        return ()
+
     result = []
-    for i in range(index1 + 1, index2):
+    for i in range(idx1 + 1, idx2):
         result.append(planets[i])
-    
+
     return tuple(result)
 
 def test_same_planet():
+    assert bf("Earth", "Earth") == ()
+
+def test_edge_case_same_planet():
     assert bf("Earth", "Earth") == ()
 
 def test_jupiter_neptune():
@@ -67,7 +70,4 @@ def test_invalid_planet():
     assert bf("Pluto", "Neptune") == ()
 
 def test_invalid_planet_2():
-    assert bf("Earth", "Pluto") == ()
-
-def test_adjacent_planets():
-    assert bf("Mars", "Jupiter") == ("Saturn",)
+    assert bf("Jupiter", "Pluto") == ()

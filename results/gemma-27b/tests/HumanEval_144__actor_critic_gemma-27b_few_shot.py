@@ -32,43 +32,40 @@ def simplify(x, n):
     result_num = x_num * n_num
     result_den = x_den * n_den
 
-    # Calculate GCD to simplify the fraction
     gcd = math.gcd(result_num, result_den)
-    result_num //= gcd
-    result_den //= gcd
+    simplified_num = result_num // gcd
+    simplified_den = result_den // gcd
 
-    return result_den == 1
+    return simplified_num % simplified_den == 0
 
 ### Tests (Pytest):
-def test_simplify_whole():
+def test_simplify_basic():
     assert simplify("1/5", "5/1") == True
-
-def test_simplify_not_whole():
     assert simplify("1/6", "2/1") == False
-
-def test_simplify_complex():
     assert simplify("7/10", "10/2") == False
 
-def test_simplify_gcd_needed():
-    assert simplify("2/4", "1/2") == True
+def test_simplify_whole_number_result():
+    assert simplify("2/1", "3/1") == True  # Test case where result is a whole number
+
+def test_simplify_gcd_reduction_large():
+    assert simplify("6/12", "2/1") == True  # Test with larger GCD
+
+def test_simplify_requires_gcd():
+    assert simplify("4/6", "3/1") == True # Requires GCD reduction to determine whole number
 
 def test_simplify_large_numbers():
-    assert simplify("1000/2", "2/1") == True
+    assert simplify("1000/1", "1000/1") == True
+    assert simplify("999/1", "2/1") == False
 
-def test_simplify_another_gcd():
-    assert simplify("4/6", "3/2") == True
+def test_simplify_gcd_reduction():
+    assert simplify("2/4", "1/1") == True
+    assert simplify("3/6", "1/1") == True
+    assert simplify("4/8", "2/1") == True
 
-def test_simplify_no_gcd():
-    assert simplify("1/2", "1/3") == False
+def test_simplify_non_trivial():
+    assert simplify("12/5", "5/2") == False
+    assert simplify("12/5", "10/2") == True
 
-def test_simplify_denominator_one():
+def test_simplify_edge_case():
+    assert simplify("1/2", "3/1") == False
     assert simplify("1/1", "1/1") == True
-
-def test_simplify_numerator_one():
-    assert simplify("1/2", "1/1") == False
-
-def test_simplify_both_one():
-    assert simplify("1/1", "1/1") == True
-
-def test_simplify_large_gcd():
-    assert simplify("12345/6", "6/1") == True

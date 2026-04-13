@@ -43,19 +43,24 @@ class TestSimplify:
     def test_non_whole_number_result(self):
         assert simplify("1/6", "2/1") == False
         assert simplify("7/10", "10/2") == False
-        assert simplify("1/2", "1/3") == False
+        assert simplify("1/3", "1/2") == False
 
-    def test_fraction_equal_to_one(self):
-        assert simplify("1/1", "1/1") == True
-        assert simplify("1/1", "2/2") == True
-        assert simplify("2/2", "1/1") == True
+    def test_simple_fractions(self):
+        assert simplify("1/2", "1/2") == False
+        assert simplify("1/4", "4/1") == True
+        assert simplify("1/8", "2/1") == False
 
-    def test_fraction_with_zero_numerator(self):
-        assert simplify("0/5", "5/1") == True
-        assert simplify("1/5", "0/1") == True
-        assert simplify("0/5", "0/1") == True
+    def test_larger_fractions(self):
+        assert simplify("12/5", "5/12") == True
+        assert simplify("15/7", "7/3") == True
+        assert simplify("20/3", "3/5") == False
 
-    def test_large_numbers(self):
-        assert simplify("100/1", "1/100") == True
-        assert simplify("1000/1", "1/2") == True
-        assert simplify("100/3", "1/10") == False
+    def test_fractions_with_common_factors(self):
+        assert simplify("2/4", "4/2") == True
+        assert simplify("3/6", "6/3") == True
+        assert simplify("4/8", "2/1") == True
+
+    def test_edge_case_one_whole_number(self):
+        assert simplify("2/1", "1/2") == True
+        assert simplify("5/1", "1/5") == True
+        assert simplify("1/2", "3/1") == False

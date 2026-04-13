@@ -52,6 +52,12 @@ class TestFileNameCheck:
         assert file_name_check("A.txt") == "Yes"
         assert file_name_check("a.exe") == "Yes"
         assert file_name_check("long_file_name.txt") == "Yes"
+        assert file_name_check("ex1ample.txt") == "Yes"
+        assert file_name_check("ex2ample.exe") == "Yes"
+        assert file_name_check("ex3ample.dll") == "Yes"
+        assert file_name_check("123.txt") == "Yes"
+        assert file_name_check("0.txt") == "Yes"
+        assert file_name_check("000.txt") == "Yes"
 
     def test_invalid_file_name_no_dot(self):
         assert file_name_check("example") == "No"
@@ -67,7 +73,6 @@ class TestFileNameCheck:
         assert file_name_check("1example.txt") == "No"
         assert file_name_check("_example.txt") == "No"
         assert file_name_check(" example.txt") == "No"
-        assert file_name_check("example!.txt") == "No"
 
     def test_invalid_file_name_invalid_extension(self):
         assert file_name_check("example.pdf") == "No"
@@ -78,17 +83,15 @@ class TestFileNameCheck:
         assert file_name_check("1234example.txt") == "No"
         assert file_name_check("12345example.txt") == "No"
         assert file_name_check("1111.txt") == "No"
-
-    def test_valid_file_name_with_digits(self):
-        assert file_name_check("example123.txt") == "Yes"
-        assert file_name_check("a123.txt") == "Yes"
-        assert file_name_check("file007.exe") == "Yes"
+        assert file_name_check("11111.txt") == "No"
 
     def test_edge_cases(self):
         assert file_name_check("a.txt") == "Yes"
-        assert file_name_check("A.TXT") == "Yes" # Case-insensitive
+        assert file_name_check("A.TXT") == "Yes"
+        assert file_name_check("a.EXE") == "Yes"
+        assert file_name_check("a.DLL") == "Yes"
         assert file_name_check("1.txt") == "No"
-        assert file_name_check("a.exe") == "Yes"
-        assert file_name_check("a.dll") == "Yes"
-        assert file_name_check("123.txt") == "Yes"
-        assert file_name_check("abc123def.txt") == "Yes"
+        assert file_name_check("0.txt") == "No"
+        assert file_name_check("000.txt") == "Yes"
+        assert file_name_check("0000.txt") == "No"
+        assert file_name_check("ex4ample.txt") == "No"

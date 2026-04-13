@@ -41,10 +41,10 @@ class TestSimplify:
     def test_basic_false(self):
         assert simplify("1/6", "2/1") == False
 
-    def test_different_numerators_and_denominators_false(self):
+    def test_another_false(self):
         assert simplify("7/10", "10/2") == False
 
-    def test_denominator_is_one(self):
+    def test_whole_numbers(self):
         assert simplify("1/1", "1/1") == True
 
     def test_large_numbers_true(self):
@@ -59,11 +59,28 @@ class TestSimplify:
     def test_same_denominator_different_numerator_false(self):
         assert simplify("1/4", "3/4") == False
 
-    def test_zero_numerator(self):
-        assert simplify("0/1", "1/1") == True
+    def test_numerator_one(self):
+        assert simplify("1/2", "2/1") == True
 
-    def test_both_numerators_are_zero(self):
-        assert simplify("0/1", "0/1") == True
+    def test_denominator_one(self):
+        assert simplify("2/1", "1/2") == False
 
-    def test_large_numbers_overflow_potential(self):
-        assert simplify("1000000000/2", "2/1000000000") == True
+    def test_fraction_range(self):
+        for i in range(1, 6):
+            for j in range(1, 6):
+                if i * j % (i * j) == 0:
+                    assert simplify(f"{i}/{j}", f"{j}/{i}") == True
+                else:
+                    assert simplify(f"{i}/{j}", f"{j}/{i}") == False
+
+    def test_identical_fractions(self):
+        assert simplify("1/2", "1/2") == True
+
+    def test_unsimplified_fractions(self):
+        assert simplify("2/4", "4/2") == True
+
+    def test_negative_denominator(self):
+        assert simplify("1/2", "-1/2") == False
+
+    def test_negative_numerator(self):
+        assert simplify("-1/2", "1/2") == False

@@ -70,6 +70,11 @@ def test_int_to_mini_roman_combinations():
     assert int_to_mini_roman(152) == 'clii'
     assert int_to_mini_roman(426) == 'cdxxvi'
 
+def test_int_to_mini_roman_edge_cases():
+    assert int_to_mini_roman(399) == 'cccxcix'
+    assert int_to_mini_roman(501) == 'di'
+    assert int_to_mini_roman(888) == 'dccclxxxviii'
+
 def test_int_to_mini_roman_invalid_input_less_than_1():
     with pytest.raises(IndexError):
         int_to_mini_roman(0)

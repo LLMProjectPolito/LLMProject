@@ -81,4 +81,11 @@ class TestCycpatternCheck:
         assert cycpattern_check("abcabc", "bcabc") == True
         assert cycpattern_check("abcabc", "abcabc") == True
         assert cycpattern_check("abcabc", "abcabca") == False
-        assert cycpattern_check("abcabc", "xyz") == False
+
+    def test_type_checking(self):
+        with pytest.raises(TypeError):
+            cycpattern_check(123, "abc")
+        with pytest.raises(TypeError):
+            cycpattern_check("abc", 123)
+        with pytest.raises(TypeError):
+            cycpattern_check(123, 123)

@@ -24,9 +24,9 @@ def cycpattern_check(a, b):
     """
     s = a + a
     s_rotated = b + b
-    s_rotated_rotated = b + b
-    s_rotated_rotated_rotated = b + b
-    
+    s_rotated_rotated = b + b + b
+    s_rotated_rotated_rotated = b + b + b + b
+
     if b in s:
         return True
     if b in s_rotated:
@@ -49,9 +49,9 @@ def cycpattern_check(a, b):
     """
     s = a + a
     s_rotated = b + b
-    s_rotated_rotated = b + b
-    s_rotated_rotated_rotated = b + b
-    
+    s_rotated_rotated = b + b + b
+    s_rotated_rotated_rotated = b + b + b + b
+
     if b in s:
         return True
     if b in s_rotated:

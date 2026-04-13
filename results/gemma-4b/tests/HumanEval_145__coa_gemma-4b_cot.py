@@ -49,4 +49,4 @@ def test_order_by_points_basic():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
 
 def test_order_by_points_same_sum():
-    assert order_by_points([1, 11, 2, 22]) == [1, 2, 11, 22]
+    assert order_by_points([1, 11, 12, 111]) == [1, 11, 111, 12]

@@ -1,0 +1,95 @@
+name: Gemma 4 Elite Full Foundation 🚀🏆
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/run_gemma_4_elite.yml'
+
+jobs:
+  run-gemma-4-elite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Execute Gemma 4 Elite Matrix (4 models x 18 combos x 25 tasks) 🚀📈
+        env:
+          G1: ${{ secrets.G1 }}
+          G2: ${{ secrets.G2 }}
+          OR: ${{ secrets.OR }}
+        run: |
+          git config --global user.name "Gemma Elite Runner (Antigravity)"
+          git config --global user.email "research@reply.com"
+
+          # PULSE PUSHER: commit/push every 5 minutes in background
+          (while true; do
+            sleep 300
+            echo "PULSE: Syncing partial gemma-4 results to repo..."
+            git add results/gemma-4-*/results.csv results/gemma-4-*/tests/*.py 2>/dev/null || true
+            git commit -m "PULSE: Gemma 4 Elite Progress Update (CSV + Tests) 🚀📊" && git push origin HEAD || echo "Nothing to push yet"
+          done) &
+
+          # Models: 31b, 26b, 4b, 2b
+          # Agents: baseline, atomic_swarm, swarm, coa, actor_critic, hybrid
+          # Prompts: few_shot, scot, cot
+          # Total : 4 * 6 * 3 = 72 combinations per task.
+          # 164 total tasks. We run first 25 to match 1800 experiments goal.
+          
+          python experiment_runner.py \
+            --agents \
+              baseline:gemma-4-31b:few_shot baseline:gemma-4-31b:scot baseline:gemma-4-31b:cot \
+              atomic_swarm:gemma-4-31b:few_shot atomic_swarm:gemma-4-31b:scot atomic_swarm:gemma-4-31b:cot \
+              swarm:gemma-4-31b:few_shot swarm:gemma-4-31b:scot swarm:gemma-4-31b:cot \
+              coa:gemma-4-31b:few_shot coa:gemma-4-31b:scot coa:gemma-4-31b:cot \
+              actor_critic:gemma-4-31b:few_shot actor_critic:gemma-4-31b:scot actor_critic:gemma-4-31b:cot \
+              hybrid:gemma-4-31b:few_shot hybrid:gemma-4-31b:scot hybrid:gemma-4-31b:cot \
+              baseline:gemma-4-26b:few_shot baseline:gemma-4-26b:scot baseline:gemma-4-26b:cot \
+              atomic_swarm:gemma-4-26b:few_shot atomic_swarm:gemma-4-26b:scot atomic_swarm:gemma-4-26b:cot \
+              swarm:gemma-4-26b:few_shot swarm:gemma-4-26b:scot swarm:gemma-4-26b:cot \
+              coa:gemma-4-26b:few_shot coa:gemma-4-26b:scot coa:gemma-4-26b:cot \
+              actor_critic:gemma-4-26b:few_shot actor_critic:gemma-4-26b:scot actor_critic:gemma-4-26b:cot \
+              hybrid:gemma-4-26b:few_shot hybrid:gemma-4-26b:scot hybrid:gemma-4-26b:cot \
+              baseline:gemma-4-4b:few_shot baseline:gemma-4-4b:scot baseline:gemma-4-4b:cot \
+              atomic_swarm:gemma-4-4b:few_shot atomic_swarm:gemma-4-4b:scot atomic_swarm:gemma-4-4b:cot \
+              swarm:gemma-4-4b:few_shot swarm:gemma-4-4b:scot swarm:gemma-4-4b:cot \
+              coa:gemma-4-4b:few_shot coa:gemma-4-4b:scot coa:gemma-4-4b:cot \
+              actor_critic:gemma-4-4b:few_shot actor_critic:gemma-4-4b:scot actor_critic:gemma-4-4b:cot \
+              hybrid:gemma-4-4b:few_shot hybrid:gemma-4-4b:scot hybrid:gemma-4-4b:cot \
+              baseline:gemma-4-2b:few_shot baseline:gemma-4-2b:scot baseline:gemma-4-2b:cot \
+              atomic_swarm:gemma-4-2b:few_shot atomic_swarm:gemma-4-2b:scot atomic_swarm:gemma-4-2b:cot \
+              swarm:gemma-4-2b:few_shot swarm:gemma-4-2b:scot swarm:gemma-4-2b:cot \
+              coa:gemma-4-2b:few_shot coa:gemma-4-2b:scot coa:gemma-4-2b:cot \
+              actor_critic:gemma-4-2b:few_shot actor_critic:gemma-4-2b:scot actor_critic:gemma-4-2b:cot \
+              hybrid:gemma-4-2b:few_shot hybrid:gemma-4-2b:scot hybrid:gemma-4-2b:cot \
+            --n 25 \
+            --workers 30
+
+      - name: Final Commit & Push Results 🏙️
+        if: always()
+        run: |
+          git config --global user.name "Gemma Elite Runner (Antigravity)"
+          git config --global user.email "research@reply.com"
+          
+          git add results/gemma-4-*/results.csv results/gemma-4-*/tests/*.py 2>/dev/null || true
+          
+          if git diff-index --quiet HEAD; then
+            echo "No changes to commit"
+          else
+            git commit -m "FINAL: Gemma 4 Elite Full Foundation (Full Family Performance Matrix) 🚀🏆📊"
+            git push origin HEAD
+          fi

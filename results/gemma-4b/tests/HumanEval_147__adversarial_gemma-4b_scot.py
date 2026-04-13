@@ -74,7 +74,7 @@ def get_max_triples(n):
 
 
 # STEP 3: CODE
-###
+# pytest suite
 def test_n_1():
     assert get_max_triples(1) == 0
 

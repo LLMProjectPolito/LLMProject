@@ -63,17 +63,20 @@ def test_valid_file_names():
     assert file_name_check("example.txt") == 'Yes'
     assert file_name_check("MyFile.exe") == 'Yes'
     assert file_name_check("document1.dll") == 'Yes'
-    assert file_name_check("a123.txt") == 'Yes'
-    assert file_name_check("A123.exe") == 'Yes'
+    assert file_name_check("a.txt") == 'Yes'
+    assert file_name_check("A.exe") == 'Yes'
+    assert file_name_check("file123.txt") == 'Yes'
+    assert file_name_check("fileABC.dll") == 'Yes'
 
 def test_invalid_file_names_digit_count():
     assert file_name_check("1234example.txt") == 'No'
-    assert file_name_check("example1234.dll") == 'No'
-    assert file_name_check("1234.exe") == 'No'
+    assert file_name_check("example1234.exe") == 'No'
+    assert file_name_check("1234.dll") == 'No'
 
 def test_invalid_file_names_dot_count():
     assert file_name_check("example.txt.txt") == 'No'
     assert file_name_check("exampletxt") == 'No'
+    assert file_name_check("example") == 'No'
     assert file_name_check(".txt") == 'No'
 
 def test_invalid_file_names_starts_with_digit():
@@ -85,16 +88,13 @@ def test_invalid_file_names_empty_before_dot():
 
 def test_invalid_file_names_invalid_extension():
     assert file_name_check("example.pdf") == 'No'
-    assert file_name_check("document.jpg") == 'No'
+    assert file_name_check("example.jpg") == 'No'
+    assert file_name_check("example.py") == 'No'
 
 def test_edge_cases():
-    assert file_name_check("a.txt") == 'Yes'
-    assert file_name_check("A.exe") == 'Yes'
-    assert file_name_check("abc.dll") == 'Yes'
     assert file_name_check("a1.txt") == 'Yes'
-    assert file_name_check("a12.exe") == 'Yes'
-    assert file_name_check("a123.dll") == 'Yes'
-    assert file_name_check("a1234.txt") == 'No'
-    assert file_name_check("1a.txt") == 'No'
-    assert file_name_check("example..txt") == 'No'
-    assert file_name_check("example.txt.") == 'No'
+    assert file_name_check("A1.exe") == 'Yes'
+    assert file_name_check("example.TXT") == 'No'
+    assert file_name_check("example.ExE") == 'No'
+    assert file_name_check("example.dLl") == 'No'
+    assert file_name_check("verylongfilename123.txt") == 'Yes'

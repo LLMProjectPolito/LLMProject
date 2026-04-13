@@ -58,9 +58,11 @@ def test_bf_distance():
 def test_bf_same_orbit():
     assert bf("Mercury", "Mercury") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
 
-def test_bf_empty_input():
-    assert bf("", "Mercury") == ()
+def test_bf_empty_orbit():
+    assert bf("Jupiter", "Neptune") == ()
 
 def test_bf_invalid_input():
+    assert bf(123, "Neptune") == ()
+
+def test_bf_invalid_input_2():
     assert bf("Jupiter", 123) == ()
-    assert bf("Earth", "Mercury") == ()

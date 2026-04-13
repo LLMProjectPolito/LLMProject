@@ -21,8 +21,14 @@ def specialFilter(nums):
     count = 0
     for num in nums:
         s = str(num)
-        if len(s) > 0 and int(s[0]) % 2 != 0 and int(s[-1]) % 2 != 0:
-            count += 1
+        if len(s) == 1:
+            if int(s[0]) % 2 != 0 and int(s[-1]) % 2 != 0:
+                count += 1
+        else:
+            first_digit = int(s[0])
+            last_digit = int(s[-1])
+            if first_digit % 2 != 0 and last_digit % 2 != 0:
+                count += 1
     return count
 
 def test_specialFilter_example1():
@@ -31,11 +37,11 @@ def test_specialFilter_example1():
 def test_specialFilter_example2():
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
-def test_specialFilter_empty_array():
+def test_specialFilter_empty():
     assert specialFilter([]) == 0
 
 def test_specialFilter_single_element():
-    assert specialFilter([12]) == 1
+    assert specialFilter([5]) == 1
 
-def test_specialFilter_all_same_numbers():
-    assert specialFilter([1, 1, 1, 1]) == 1
+def test_specialFilter_all_same():
+    assert specialFilter([11, 11, 11]) == 1

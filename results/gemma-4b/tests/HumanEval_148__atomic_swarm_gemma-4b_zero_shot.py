@@ -120,7 +120,7 @@ def bf(planet1, planet2):
 
     start_index = planets.index(planet1)
     end_index = planets.index(planet2)
-    
+
     result = []
     for planet in planets:
         if start_index < planets.index(planet) < end_index:

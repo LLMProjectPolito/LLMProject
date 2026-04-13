@@ -66,22 +66,17 @@ def test_order_by_points_mixed_positive_negative_data(mixed_positive_negative_da
     expected = [1, -1, 10, -10, 11, -11]
     assert order_by_points(mixed_positive_negative_data) == expected
 
-def test_order_by_points_with_zeros(mixed_positive_negative_data):
-    data = [10, -10, 0, 1, -1]
-    expected = [0, 1, -1, 10, -10]
-    assert order_by_points(data) == expected
+def test_order_by_points_with_zeros(data_with_zeros):
+    data_with_zeros = [10, 0, 1, -10, -1]
+    expected = [0, 1, 10, -1, -10]
+    assert order_by_points(data_with_zeros) == expected
 
-def test_order_by_points_same_digit_sum(data):
-    data = [12, 21, 3, 1, 4]
-    expected = [3, 1, 4, 12, 21]
-    assert order_by_points(data) == expected
+def test_order_by_points_large_numbers(large_numbers_data):
+    large_numbers_data = [123, 45, 6, 789, 10]
+    expected = [10, 6, 45, 123, 789]
+    assert order_by_points(large_numbers_data) == expected
 
-def test_order_by_points_large_numbers(data):
-    data = [123, 321, 111, 222]
-    expected = [111, 222, 123, 321]
-    assert order_by_points(data) == expected
-
-def test_order_by_points_all_negative_same_digit_sum(data):
-    data = [-12, -21, -3, -1, -4]
-    expected = [-3, -1, -4, -12, -21]
-    assert order_by_points(data) == expected
+def test_order_by_points_duplicate_sums(duplicate_sums_data):
+    duplicate_sums_data = [1, 10, 11, 2, 20]
+    expected = [1, 2, 10, 11, 20]
+    assert order_by_points(duplicate_sums_data) == expected

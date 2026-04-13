@@ -49,20 +49,59 @@ def bf(planet1, planet2):
     else:
         return (planet2, planet1)
 
-def test_bf_close():
-    assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
-
-def test_bf_distance():
+def test_bf_earth_mercury():
     assert bf("Earth", "Mercury") == ("Venus")
 
-def test_bf_same_orbit():
-    assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+def test_bf_venus_mercury():
+    assert bf("Venus", "Mercury") == ("Earth")
 
-def test_bf_empty_orbit():
+def test_bf_mercury_venus():
+    assert bf("Mercury", "Venus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+
+def test_bf_jupiter_venus():
+    assert bf("Jupiter", "Venus") == ("Saturn", "Uranus")
+
+def test_bf_saturn_venus():
+    assert bf("Saturn", "Venus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+
+def test_bf_uranus_venus():
+    assert bf("Uranus", "Venus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+
+def test_bf_neptune_mercury():
+    assert bf("Neptune", "Mercury") == ("Saturn", "Uranus")
+
+def test_bf_mars_venus():
+    assert bf("Mars", "Venus") == ("Venus")
+
+def test_bf_jupiter_venus():
+    assert bf("Jupiter", "Venus") == ("Saturn", "Uranus")
+
+def test_bf_saturn_venus():
+    assert bf("Saturn", "Venus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+
+def test_bf_uranus_venus():
+    assert bf("Uranus", "Venus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+
+def test_bf_neptune_mars():
+    assert bf("Neptune", "Mars") == ("Saturn", "Uranus")
+
+def test_bf_mars_jupiter():
+    assert bf("Mars", "Jupiter") == ("Jupiter", "Saturn")
+
+def test_bf_jupiter_mars():
+    assert bf("Jupiter", "Mars") == ("Saturn", "Uranus")
+
+def test_bf_saturn_jupiter():
+    assert bf("Saturn", "Jupiter") == ("Jupiter", "Saturn")
+
+def test_bf_uranus_neptune():
+    assert bf("Uranus", "Neptune") == ("Neptune", "Saturn", "Uranus")
+
+def test_bf_earth_mercury_invalid():
+    assert bf("Earth", "Mercury") == ()
+
+def test_bf_mercury_invalid():
     assert bf("Mercury", "Mercury") == ()
 
 def test_bf_invalid_input():
-    assert bf(123, "Jupiter") == ()
-
-def test_bf_invalid_input_2():
-    assert bf("Jupiter", 123) == ()
+    assert bf("Earth", 1) == ()

@@ -63,4 +63,4 @@ def get_max_triples(n):
                     a.append(i)
                     a.append(j)
                     a.append(k)
-    return len(set(a))
+    return len(a)

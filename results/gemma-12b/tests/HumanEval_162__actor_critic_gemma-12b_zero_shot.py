@@ -9,6 +9,7 @@ def string_to_md5(text):
 
 import pytest
 import hashlib
+import secrets
 
 def string_to_md5(text):
     """
@@ -29,42 +30,37 @@ class TestStringtoMD5:
     def test_empty_string(self):
         assert string_to_md5('') is None
 
-    def test_string_with_leading_and_trailing_spaces(self):
-        assert string_to_md5('  ') == 'da510399999999999999999999999999'
+    def test_string_with_spaces(self):
+        assert string_to_md5('  ') == 'd14a028c2a3a2bc9476102bb288234c4'
 
-    def test_string_with_punctuation(self):
-        assert string_to_md5('!@#$%^&*()') == '99499999999999999999999999999999'
+    def test_string_with_special_characters(self):
+        assert string_to_md5('!@#$%^&*()') == 'a805c549999999999999999999999999'
 
     def test_string_with_unicode_characters(self):
         assert string_to_md5('你好世界') == 'a94a8fe5ccb19ba61c4c0873d391e987'
 
     def test_string_with_numbers(self):
-        assert string_to_md5('1234567890') == 'd162b3f8d453906a9999999999999999'
+        assert string_to_md5('1234567890') == 'd1e2f3e4d5c6b7a8901234567890'
 
-    def test_string_with_newline(self):
-        assert string_to_md5("Hello\nWorld") == '9e299999999999999999999999999999'
-
-    def test_string_with_tab(self):
-        assert string_to_md5("Hello\tWorld") == '9e299999999999999999999999999999'
+    def test_string_with_mixed_characters(self):
+        assert string_to_md5('Hello123World!') == 'b10a8db164e0754105b7a99be72e3fe5'
 
     def test_long_string(self):
-        long_string = "This is a very long string to test the md5 hash function."
-        assert string_to_md5(long_string) == '9e299999999999999999999999999999'
+        long_string = secrets.token_hex(2048)
+        md5_hash = hashlib.md5(long_string.encode('utf-8')).hexdigest()
+        assert string_to_md5(long_string) == md5_hash
 
-    def test_very_long_string(self):
-        very_long_string = "A" * 2000
-        assert string_to_md5(very_long_string) == 'd162b3f8d453906a9999999999999999'
+    def test_string_with_newline_characters(self):
+        assert string_to_md5("Hello\nWorld") == '94f19999999999999999999999999999'
 
-    def test_string_with_non_bmp_characters(self):
-        assert string_to_md5('你好😊') == '9e299999999999999999999999999999'
+    def test_string_with_tab_characters(self):
+        assert string_to_md5("Hello\tWorld") == '94f19999999999999999999999999999'
 
-    def test_string_with_control_characters(self):
-        assert string_to_md5("Hello\x00World") == '9e299999999999999999999999999999'
+    def test_single_character_string(self):
+        assert string_to_md5('a') == 'ba7816bf8f01cfea414140de5dae2223'
 
-    def test_invalid_input_type(self):
-        with pytest.raises(TypeError):
-            string_to_md5(123)
+    def test_case_sensitivity(self):
+        assert string_to_md5('Hello') != string_to_md5('hello')
 
-    def test_invalid_input_type_list(self):
-        with pytest.raises(TypeError):
-            string_to_md5(['a', 'b'])
+    def test_string_with_only_whitespace(self):
+        assert string_to_md5("   \t\n") == 'e5d78999999999999999999999999999'

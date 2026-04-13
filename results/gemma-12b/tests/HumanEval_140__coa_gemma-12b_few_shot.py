@@ -35,7 +35,7 @@ def test_fix_spaces_single_space():
 def test_fix_spaces_leading_space():
     assert fix_spaces(" Example 2") == "_Example_2"
 
-def test_fix_spaces_multiple_spaces():
+def test_fix_spaces_multiple_consecutive_spaces():
     assert fix_spaces(" Example   3") == "_Example-3"
 
 # Focus: Type Scenarios

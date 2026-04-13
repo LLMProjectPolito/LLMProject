@@ -39,29 +39,28 @@ def test_cycpattern_check_rotation_at_end():
     assert cycpattern_check("abcdef", "cdefab") == True
     assert cycpattern_check("abcdef", "fabcde") == True
 
-def test_cycpattern_check_substring_overlap():
-    assert cycpattern_check("ababab", "babab") == True
-    assert cycpattern_check("ababab", "ababa") == True
+def test_cycpattern_check_longer_pattern():
+    assert cycpattern_check("thisisalongstring", "longstr") == True
+    assert cycpattern_check("thisisalongstring", "stringlong") == True
+    assert cycpattern_check("thisisalongstring", "strlongis") == True
 
 def test_cycpattern_check_no_rotation_match():
     assert cycpattern_check("abcdefg", "xyz") == False
-    assert cycpattern_check("abcdefg", "gxyza") == False
+    assert cycpattern_check("abcdefg", "bcdefgh") == False
 
-def test_cycpattern_check_long_strings():
-    long_string1 = "abcdefghijklmnopqrstuvwxyz" * 10
-    long_string2 = "uvwxyzabcdefgh"
-    assert cycpattern_check(long_string1, long_string2) == True
-
-    long_string3 = "abcdefghijklmnopqrstuvwxyz" * 10
-    long_string4 = "zyxwvu"
-    assert cycpattern_check(long_string3, long_string4) == False
+def test_cycpattern_check_overlapping_pattern():
+    assert cycpattern_check("ababab", "bababa") == True
+    assert cycpattern_check("ababab", "ababa") == True
 
 def test_cycpattern_check_special_characters():
-    assert cycpattern_check("!@#$%^", "$%#@!") == True
-    assert cycpattern_check("!@#$%^", "@!#$") == True
-    assert cycpattern_check("!@#$%^", "abc") == False
+    assert cycpattern_check("!@#$%^", "$%^!") == True
+    assert cycpattern_check("!@#$%^", "!@#$") == False
 
 def test_cycpattern_check_unicode_characters():
-    assert cycpattern_check("你好世界", "界你好世") == True
+    assert cycpattern_check("你好世界", "界世你好") == True
+    assert cycpattern_check("你好世界", "你好世") == True
     assert cycpattern_check("你好世界", "世界你好") == True
-    assert cycpattern_check("你好世界", "abc") == False
+    assert cycpattern_check("你好世界", "你好") == True
+    assert cycpattern_check("你好世界", "世界") == True
+    assert cycpattern_check("你好世界", "你好世界") == True
+    assert cycpattern_check("你好世界", "世界你好啊") == False

@@ -68,7 +68,7 @@ def test_sum_squares_negative():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
 def test_sum_squares_mixed():
-    assert sum_squares([1, 4, 9, 16, 25]) == 1 + 64 + 729 + 4096 + 625
+    assert sum_squares([1, 4, 9, 16, 25]) == 1 + 64 + 729 + 4096 + 15625
     
 def test_sum_squares_multiple_3_and_4():
     assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 1 + 8 + 27 + 64 + 125 + 216 + 343 + 512 + 729

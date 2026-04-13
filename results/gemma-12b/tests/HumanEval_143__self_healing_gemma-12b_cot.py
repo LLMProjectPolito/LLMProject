@@ -51,44 +51,59 @@ def words_in_sentence(sentence):
         * sentence contains only letters
     """
     words = sentence.split()
-    prime_words = [word for word in words if is_prime(len(word))]
-    return " ".join(prime_words)
-
+    result = []
+    for word in words:
+        if is_prime(len(word)):
+            result.append(word)
+    return " ".join(result)
 
 def test_empty_sentence():
     assert words_in_sentence("") == ""
 
 def test_no_prime_length_words():
-    assert words_in_sentence("this is a long sentence") == ""
+    assert words_in_sentence("this is a test") == ""
 
 def test_single_prime_length_word():
     assert words_in_sentence("a") == "a"
 
 def test_multiple_prime_length_words():
-    assert words_in_sentence("This is a test") == "is"
-
-def test_mixed_prime_and_non_prime_words():
     assert words_in_sentence("lets go for swimming") == "go for"
 
-def test_all_prime_length_words():
-    assert words_in_sentence("a is be do") == "a is be do"
+def test_mixed_prime_and_non_prime_words():
+    assert words_in_sentence("This is a test") == "is"
 
 def test_sentence_with_leading_and_trailing_spaces():
-    assert words_in_sentence("  a is be do  ") == "a is be do"
+    assert words_in_sentence("  This is a test  ") == "is"
 
 def test_sentence_with_multiple_spaces():
-    assert words_in_sentence("a  is   be  do") == "a is be do"
+    assert words_in_sentence("This  is   a    test") == "is"
 
-def test_long_sentence():
-    sentence = "This is a very long sentence with many words of varying lengths"
-    expected = "is a very"
-    assert words_in_sentence(sentence) == expected
+def test_sentence_with_long_prime_length_word():
+    assert words_in_sentence("This is a verylongword") == ""
 
-def test_sentence_with_only_one_word():
-    assert words_in_sentence("prime") == "prime"
+def test_sentence_with_all_prime_length_words():
+    assert words_in_sentence("a is go") == "a is go"
 
-def test_sentence_with_same_length_words():
-    assert words_in_sentence("go no so to") == "go no so to"
+def test_sentence_with_one_letter_words():
+    assert words_in_sentence("a b c d e") == "a b c d e"
 
-def test_sentence_with_numbers_in_words():
-    assert words_in_sentence("a1 b2 c3") == ""
+def test_sentence_with_two_letter_words():
+    assert words_in_sentence("go is to") == "go is to"
+
+def test_sentence_with_three_letter_words():
+    assert words_in_sentence("the cat sat") == "the cat sat"
+
+def test_sentence_with_four_letter_words():
+    assert words_in_sentence("this is it") == ""
+
+def test_sentence_with_five_letter_words():
+    assert words_in_sentence("hello world") == "hello world"
+
+def test_sentence_with_six_letter_words():
+    assert words_in_sentence("really great") == ""
+
+def test_sentence_with_seven_letter_words():
+    assert words_in_sentence("amazing stuff") == "amazing stuff"
+
+def test_sentence_with_eight_letter_words():
+    assert words_in_sentence("beautiful day") == ""

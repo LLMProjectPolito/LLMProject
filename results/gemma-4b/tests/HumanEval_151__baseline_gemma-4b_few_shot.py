@@ -46,27 +46,29 @@ def double_the_difference(lst):
 def test_is_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
-    assert is_palindrome('A man, a plan, a canal: Panama') == True
-    assert is_palindrome('Racecar') == True
 
 def test_is_palindrome_empty():
     assert is_palindrome('') == True
-    assert is_palindrome(' ') == True
-    assert is_palindrome('a') == True
 
 def test_is_palindrome_mixed_case():
-    assert is_palindrome('Madam') == True
+    assert is_palindrome('Racecar') == True
 
-def test_get_max_positive():
+def test_is_palindrome_with_spaces():
+    assert is_palindrome('A man a plan a canal Panama') == True
+
+def test_is_palindrome_with_punctuation():
+    assert is_palindrome('Madam, I\'m Adam') == True
+
+def test_max_positive():
     assert get_max([1, 2, 3]) == 3
 
-def test_get_max_empty():
+def test_max_empty():
     assert get_max([]) == None
 
-def test_get_max_negative():
+def test_max_negative():
     assert get_max([-1, -2, -3]) == -1
 
-def test_get_max_mixed():
+def test_max_mixed():
     assert get_max([-1, 2, -3, 4]) == 4
 
 def test_double_the_difference_basic():
@@ -75,7 +77,7 @@ def test_double_the_difference_basic():
 def test_double_the_difference_negative():
     assert double_the_difference([-1, -2, 0]) == 0
 
-def test_double_the_difference_mixed():
+def test_double_the_difference_positive():
     assert double_the_difference([9, -2]) == 81
 
 def test_double_the_difference_single():
@@ -84,8 +86,14 @@ def test_double_the_difference_single():
 def test_double_the_difference_empty():
     assert double_the_difference([]) == 0
 
+def test_double_the_difference_mixed():
+    assert double_the_difference([1, 2, 3, 4, 5]) == 55
+
+def test_double_the_difference_all_odd():
+    assert double_the_difference([1, 3, 5, 7]) == 84
+
 def test_double_the_difference_all_negative():
     assert double_the_difference([-1, -3, -5]) == 0
 
-def test_double_the_difference_mixed_types():
-    assert double_the_difference([1, 2.5, 3, -4]) == 1 + 9 == 10
+def test_double_the_difference_non_integers():
+    assert double_the_difference([1.5, 2, 'a']) == 4

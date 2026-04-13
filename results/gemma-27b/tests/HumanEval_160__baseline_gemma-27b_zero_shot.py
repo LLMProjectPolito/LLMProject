@@ -85,7 +85,7 @@ def test_complex_expression():
     assert do_algebra(['+', '*', '-'], [2, 3, 4, 5]) == 9
 
 def test_longer_expression():
-    assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 5]) == 1
+    assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 5]) == -1
 
 def test_zero_operand():
     assert do_algebra(['+'], [0, 5]) == 5
@@ -99,7 +99,7 @@ def test_multiple_zeros():
 def test_large_numbers():
     assert do_algebra(['+'], [1000000, 2000000]) == 3000000
 
-def test_mixed_operations():
+def test_mixed_operators():
     assert do_algebra(['*', '+', '-'], [2, 3, 4, 1]) == 7
 
 def test_division_by_one():

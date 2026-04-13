@@ -70,10 +70,13 @@ class TestOrderByPoints:
         assert order_by_points([5]) == [5]
 
     def test_complex_example(self):
-        assert order_by_points([21, 12, 3, 4, 5, 6, 7, 8, 9, 10]) == [3, 4, 5, 6, 7, 8, 9, 10, 21, 12]
+        assert order_by_points([23, 4, 15, 1, 2]) == [1, 2, 4, 15, 23]
 
     def test_negative_and_positive_same_digit_sum(self):
         assert order_by_points([-1, 1]) == [-1, 1]
+
+    def test_negative_and_positive_same_digit_sum_different_index(self):
+        assert order_by_points([1, -1]) == [1, -1]
 
 
 @pytest.mark.parametrize(
@@ -96,33 +99,43 @@ def test_order_by_points_parametrized(nums, expected):
     """Tests the order_by_points function with various inputs."""
     assert order_by_points(nums) == expected
 
-
 def test_order_by_points_negative_numbers():
     """Tests with only negative numbers."""
-    assert order_by_points([-1, -2, -3]) == [-1, -2, -3]
-
+    assert order_by_points([-1, -2, -3, -4]) == [-1, -2, -3, -4]
 
 def test_order_by_points_mixed_signs():
     """Tests with a mix of positive and negative numbers."""
     assert order_by_points([1, -1, 10, -10]) == [1, -1, 10, -10]
 
-
 def test_order_by_points_large_numbers():
     """Tests with larger numbers to ensure digit sum calculation is correct."""
     assert order_by_points([12345, 6789, 10, 1]) == [1, 10, 12345, 6789]
 
-
-def test_order_by_points_same_digit_sum_detailed():
+def test_order_by_points_same_digit_sum_index():
     """Tests cases where numbers have the same digit sum, ensuring original index is preserved."""
-    assert order_by_points([1, 2, 3, 4, 5]) == [1, 2, 3, 4, 5]
-    assert order_by_points([11, 2, 3, 4, 5]) == [2, 11, 3, 4, 5]
-    assert order_by_points([1, 11, 2, 12]) == [1, 11, 2, 12]
+    assert order_by_points([1, 2, 3, 4]) == [1, 2, 3, 4]
+    assert order_by_points([4, 1, 3, 2]) == [4, 1, 3, 2]
+
+def test_order_by_points_zero_and_positive():
+    """Tests with zero and positive numbers."""
+    assert order_by_points([0, 1, 2, 3]) == [0, 1, 2, 3]
+
+def test_order_by_points_zero_and_negative():
+    """Tests with zero and negative numbers."""
+    assert order_by_points([0, -1, -2, -3]) == [0, -1, -2, -3]
 
 
 def is_palindrome(s: str) -> bool:
     """ Checks if a string is a palindrome """
     return s == s[::-1]
 
+class TestPalindrome:
+    def test_palindrome_basic(self):
+        assert is_palindrome('radar') == True
+        assert is_palindrome('hello') == False
+
+    def test_palindrome_empty(self):
+        assert is_palindrome('') == True
 
 def get_max(arr: list[int]) -> int:
     """ Returns the maximum element in a list, or None if empty """
@@ -130,19 +143,9 @@ def get_max(arr: list[int]) -> int:
         return None
     return max(arr)
 
+class TestGetMax:
+    def test_max_positive(self):
+        assert get_max([1, 2, 3]) == 3
 
-def test_palindrome_basic():
-    assert is_palindrome('radar') == True
-    assert is_palindrome('hello') == False
-
-
-def test_palindrome_empty():
-    assert is_palindrome('') == True
-
-
-def test_max_positive():
-    assert get_max([1, 2, 3]) == 3
-
-
-def test_max_empty():
-    assert get_max([]) == None
+    def test_max_empty(self):
+        assert get_max([]) == None

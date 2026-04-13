@@ -65,7 +65,6 @@ def find_max(words):
 
 
 # STEP 3: CODE
-# pytest suite
 def test_empty_list():
     assert find_max([]) == ""
 
@@ -91,4 +90,4 @@ def test_complex_case():
     assert find_max(["apple", "banana", "orange"]) == "banana"
 
 def test_another_complex_case():
-    assert find_max(["abc", "ab", "a"]) == "abc"
+    assert find_max(["hello", "world", "python"]) == "python"

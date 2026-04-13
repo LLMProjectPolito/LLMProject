@@ -57,5 +57,5 @@ def Strongest_Extension(class_name, extensions):
 
     if strongest_extension is None:
         return f"{class_name}.None"  # Handle empty extensions list
-    
+
     return f"{class_name}.{strongest_extension}"

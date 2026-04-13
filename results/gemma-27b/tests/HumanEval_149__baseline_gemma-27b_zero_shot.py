@@ -57,11 +57,11 @@ def test_duplicates():
 def test_same_length_alphabetical():
     assert sorted_list_sum(["cb", "ab", "db"]) == ["ab", "cb", "db"]
 
-def test_longer_strings():
-    assert sorted_list_sum(["abcd", "abc", "ab"]) == ["abcd"]
+def test_longer_list():
+    assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape"]) == ["kiwi", "grape"]
 
-def test_complex_case():
-    assert sorted_list_sum(["abcde", "ab", "abcd", "a", "abc"]) == ["ab", "abcd"]
+def test_list_with_empty_string():
+    assert sorted_list_sum(["", "a", "aa"]) == ["aa"]
 
-def test_case_sensitivity():
-    assert sorted_list_sum(["AA", "aa", "bb"]) == ["AA", "aa", "bb"]
+def test_list_with_only_empty_string():
+    assert sorted_list_sum([""]) == [""]

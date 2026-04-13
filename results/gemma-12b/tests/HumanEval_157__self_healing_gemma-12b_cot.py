@@ -44,8 +44,8 @@ def test_equal_sides_not_right():
 
 def test_large_numbers():
     assert right_angle_triangle(1000, 1000, 1414) == False #approximate
-    assert right_angle_triangle(1000, 1000, 1414.21356) == True #approximate
-    assert right_angle_triangle(1000000, 1000000, 1414213.56) == True #approximate
+    assert right_angle_triangle(1000, 1000, 1414.2135623730951) == True #approximate
+    assert right_angle_triangle(1000000, 1000000, 1414213.5623730951) == True #approximate
 
 def test_float_inputs():
     assert right_angle_triangle(3.0, 4.0, 5.0) == True

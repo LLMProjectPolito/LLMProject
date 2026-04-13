@@ -63,36 +63,23 @@ def test_int_to_mini_roman_complex():
     assert int_to_mini_roman(152) == "clii"
     assert int_to_mini_roman(194) == "cxciiiiv"
     assert int_to_mini_roman(426) == "cdxxvi"
-    assert int_to_mini_roman(444) == "cdxliv"
-    assert int_to_mini_roman(499) == "cdxciiiix"
-    assert int_to_mini_roman(500) == "d"
-    assert int_to_mini_roman(501) == "di"
-    assert int_to_mini_roman(543) == "dviii"
-    assert int_to_mini_roman(599) == "dxcix"
-    assert int_to_mini_roman(600) == "dc"
+    assert int_to_mini_roman(575) == "dlvii"
     assert int_to_mini_roman(649) == "dcxlix"
-    assert int_to_mini_roman(699) == "dxcix"
-    assert int_to_mini_roman(700) == "dcc"
-    assert int_to_mini_roman(749) == "dccxlix"
-    assert int_to_mini_roman(799) == "dccxcix"
-    assert int_to_mini_roman(800) == "dccc"
-    assert int_to_mini_roman(849) == "dcccxlix"
-    assert int_to_mini_roman(899) == "dcccxcix"
-    assert int_to_mini_roman(900) == "cm"
-    assert int_to_mini_roman(949) == "cmxlix"
-    assert int_to_mini_roman(999) == "cmxcix"
-    assert int_to_mini_roman(1000) == "m"
+    assert int_to_mini_roman(767) == "dlxxvii"
+    assert int_to_mini_roman(891) == "dccciiiiii"
+    assert int_to_mini_roman(904) == "cmiv"
+    assert int_to_mini_roman(999) == "cmxciiiiii"
 
 def test_int_to_mini_roman_edge_cases():
     assert int_to_mini_roman(1) == "i"
     assert int_to_mini_roman(1000) == "m"
 
 def test_int_to_mini_roman_invalid_input():
-    with pytest.raises(TypeError):
-        int_to_mini_roman("abc")
     with pytest.raises(ValueError):
         int_to_mini_roman(0)
     with pytest.raises(ValueError):
         int_to_mini_roman(1001)
+    with pytest.raises(TypeError):
+        int_to_mini_roman("abc")
     with pytest.raises(TypeError):
         int_to_mini_roman(1.5)

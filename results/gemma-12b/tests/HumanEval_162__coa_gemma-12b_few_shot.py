@@ -22,7 +22,7 @@ def test_single_character_boundary():
     assert string_to_md5("a") == "0cc175b9c0f1b6a831c399e269772661"
 
 def test_short_string_boundary():
-    assert string_to_md5("ab") == "2bac8ff347732135f24a73cbbd39d299"
+    assert string_to_md5("ab") == "2bac8ff34773211f73a705a06f0a9f42"
 
 # Focus: Error Handling
 def test_string_to_md5_empty_string():

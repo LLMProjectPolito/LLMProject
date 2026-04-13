@@ -49,4 +49,3 @@ class TestXorY:
     def test_same_values(self):
         assert x_or_y(7, 5, 5) == 5
         assert x_or_y(4, 5, 5) == 5
-        assert x_or_y(2, 5, 5) == 5

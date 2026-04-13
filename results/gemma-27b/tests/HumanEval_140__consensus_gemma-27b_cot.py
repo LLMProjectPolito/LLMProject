@@ -50,28 +50,13 @@ def test_long_string_with_multiple_spaces():
     assert fix_spaces("This is a long string with   multiple   spaces.") == "This_is_a_long_string_with-multiple-spaces."
 
 def test_string_with_tabs():
-    assert fix_spaces("Example\t1") == "Example\t1"
-
-def test_string_with_newlines():
-    assert fix_spaces("Example\n1") == "Example\n1"
-
-def test_string_with_mixed_whitespace():
-    assert fix_spaces("Example \t  \n1") == "Example\t-1"
-
-def test_consecutive_spaces_and_leading():
-    assert fix_spaces("  Example 1") == "-Example_1"
-
-def test_consecutive_spaces_and_trailing():
-    assert fix_spaces("Example 1  ") == "Example_1-"
-
-def test_long_string_with_multiple_spaces_2():
-    assert fix_spaces("This is a long string with   multiple    spaces.") == "This_is_a_long_string_with-multiple-spaces."
-
-def test_string_with_tabs_2():
     assert fix_spaces("Example\t1") == "Example_1"
 
-def test_string_with_newlines_2():
+def test_string_with_newlines():
     assert fix_spaces("Example\n1") == "Example_1"
 
-def test_mixed_spaces_2():
-    assert fix_spaces("Example  1 2   3") == "Example-1_2-3"
+def test_string_with_carriage_returns():
+    assert fix_spaces("Example\r1") == "Example_1"
+
+def test_string_with_mixed_whitespace():
+    assert fix_spaces("Example \t  \n1") == "Example-1"

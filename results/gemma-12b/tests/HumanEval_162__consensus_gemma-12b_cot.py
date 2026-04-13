@@ -40,7 +40,7 @@ class TestStringtoMD5:
         assert string_to_md5("!@#$%^&*()") == '9f86d081884c7d659a2feaa0c55ad015'
 
     def test_string_with_unicode_characters(self):
-        assert string_to_md5("你好世界") == 'b10a8db1092e3cd9d8b8e254990bb623'
+        assert string_to_md5("你好世界") == 'b10a8db164e0754105b7a99be72e3fe5'
 
     def test_long_string(self):
         long_string = "This is a very long string to test the md5 hash function."

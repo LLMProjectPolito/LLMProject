@@ -112,5 +112,5 @@ def test_do_algebra_exponentiation():
 
 def test_do_algebra_mixed():
     assert do_algebra(['+', '*', '-'], [2, 3, 4, 5]) == 9
-    assert do_algebra(['*', '+', '-'], [1, 2, 3, 4, 5]) == 14
-    assert do_algebra(['//', '*', '**'], [10, 2, 3, 2]) == 20
+    assert do_algebra(['*', '+', '-', '**'], [2, 3, 4, 5, 2]) == 14
+    assert do_algebra(['//', '+', '*'], [10, 2, 5, 3]) == 13

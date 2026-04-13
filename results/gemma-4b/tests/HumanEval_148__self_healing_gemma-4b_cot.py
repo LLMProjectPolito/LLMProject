@@ -71,26 +71,23 @@ def test_bf_saturn_uranus():
 def test_bf_uranus_neptune():
     assert bf("Uranus", "Neptune") == ("Saturn", "Jupiter", "Mars", "Earth", "Venus")
 
-def test_bf_mercury_mercury():
-    assert bf("Mercury", "Mercury") == ()
+def test_bf_mercury_neptune():
+    assert bf("Mercury", "Neptune") == ()
 
-def test_bf_neptune_neptune():
-    assert bf("Neptune", "Neptune") == ()
+def test_bf_jupiter_mercury():
+    assert bf("Jupiter", "Mercury") == ()
 
 def test_bf_invalid_planet1():
     assert bf("Pluto", "Neptune") == ()
 
 def test_bf_invalid_planet2():
-    assert bf("Jupiter", "Pluto") == ()
+    assert bf("Earth", "Pluto") == ()
 
-def test_bf_empty_orbit():
+def test_bf_same_planet():
     assert bf("Earth", "Earth") == ()
 
-def test_bf_adjacent_planets():
-    assert bf("Venus", "Earth") == ("Mars")
+def test_bf_empty_string():
+    assert bf("", "Earth") == ()
 
-def test_bf_same_planet_names():
-    assert bf("Earth", "Earth") == ()
-
-def test_bf_different_order():
-    assert bf("Neptune", "Jupiter") == ("Saturn", "Uranus", "Venus", "Earth", "Mars")
+def test_bf_empty_string2():
+    assert bf("Earth", "") == ()

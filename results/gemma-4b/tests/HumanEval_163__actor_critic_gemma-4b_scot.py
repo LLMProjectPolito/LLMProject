@@ -66,11 +66,11 @@ def test_generate_integers_reverse():
 def test_generate_integers_no_even():
     assert generate_integers(1, 3) == []
 
-def test_generate_integers_single_digit_even():
+def test_generate_integers_single_digit():
     assert generate_integers(2, 2) == [2]
-
-def test_generate_integers_single_digit_odd():
     assert generate_integers(7, 7) == []
+    assert generate_integers(8, 8) == [8]
+    assert generate_integers(2, 2) == [2]
 
 def test_generate_integers_a_greater_than_b():
     assert generate_integers(8, 2) == [2, 4, 6, 8]
@@ -83,3 +83,4 @@ def test_generate_integers_mixed_digits():
     assert generate_integers(20, 24) == [2, 4]
     assert generate_integers(12, 16) == [2, 4, 6]
     assert generate_integers(1, 5) == [2, 4]
+    assert generate_integers(1, 1) == []

@@ -43,19 +43,16 @@ def test_empty_list():
     assert sorted_list_sum([]) == []
 
 def test_all_odd_length():
-    assert sorted_list_sum(["a", "b", "c"]) == []
+    assert sorted_list_sum(["aa", "a", "aaa"]) == []
 
 def test_all_even_length():
-    assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
+    assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
 
 def test_mixed_odd_even():
-    assert sorted_list_sum(["aa", "a", "aaa", "cd"]) == ["aa", "cd"]
+    assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
-def test_duplicate_even_length():
-    assert sorted_list_sum(["aa", "aa", "bb", "bb"]) == ["aa", "aa", "bb", "bb"]
-
-def test_duplicate_odd_even():
-    assert sorted_list_sum(["aa", "a", "aaa", "aa", "cd"]) == ["aa", "aa", "cd"]
+def test_duplicates():
+    assert sorted_list_sum(["aa", "aa", "a"]) == ["aa", "aa"]
 
 def test_same_length_different_chars():
     assert sorted_list_sum(["ab", "ac", "ad"]) == ["ab", "ac", "ad"]
@@ -63,14 +60,20 @@ def test_same_length_different_chars():
 def test_same_length_same_chars():
     assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
-def test_complex_case():
-    assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape"]) == ["banana", "orange"]
-
 def test_single_element_even():
-    assert sorted_list_sum(["hello"]) == ["hello"]
+    assert sorted_list_sum(["aa"]) == ["aa"]
 
 def test_single_element_odd():
-    assert sorted_list_sum(["world"]) == []
+    assert sorted_list_sum(["a"]) == []
 
-def test_mixed_with_duplicates_and_same_length():
-    assert sorted_list_sum(["abc", "def", "abc", "ghi", "def"]) == ["abc", "abc", "def", "def"]
+def test_complex_case():
+    assert sorted_list_sum(["abc", "def", "ghi", "jkl", "mno", "pqr"]) == ["jkl"]
+
+def test_another_complex_case():
+    assert sorted_list_sum(["apple", "banana", "orange", "grape", "kiwi"]) == ["banana", "orange"]
+
+def test_long_list():
+    assert sorted_list_sum(["aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh", "ii", "jj"]) == ["aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh", "ii", "jj"]
+
+def test_list_with_empty_string():
+    assert sorted_list_sum(["", "aa", "bb", ""]) == ["", "", "aa", "bb"]

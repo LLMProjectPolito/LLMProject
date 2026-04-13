@@ -64,4 +64,4 @@ def test_compare_different_lengths():
 
 def test_compare_different_lengths_reversed():
     with pytest.raises(IndexError):
-        compare([1, 2, 3], [1, 2, 3])
+        compare([1, 2], [1, 2, 3])

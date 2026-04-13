@@ -34,7 +34,7 @@ def compare(game,guess):
     """
     result = []
     for i in range(len(game)):
-        result.append(abs(game[i] - guess[i]))
+        result.append(abs(guess[i] - game[i]))
     return result
 
 def test_compare_empty():
@@ -49,11 +49,14 @@ def test_compare_one_off():
 def test_compare_multiple_off():
     assert compare([1, 2, 3], [1, 2, 5]) == [0, 0, 2]
 
-def test_compare_negative_numbers():
-    assert compare([-1, 2, -3], [-1, 2, -3]) == [0, 0, 0]
+def test_compare_negative_off():
+    assert compare([1, 2, 3], [1, 2, -1]) == [0, 0, 2]
 
-def test_compare_mixed_numbers():
-    assert compare([1, -2, 3], [1, -2, 3]) == [0, 0, 0]
+def test_compare_mixed_off():
+    assert compare([1, 2, 3], [1, 2, -1]) == [0, 0, 2]
+
+def test_compare_longer_lists():
+    assert compare([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]) == [0, 0, 0, 0, 0]
 
 def test_compare_different_lengths():
     with pytest.raises(IndexError):
@@ -67,9 +70,6 @@ def test_compare_example_2():
 
 def test_compare_all_off():
     assert compare([1, 2, 3], [5, 6, 7]) == [4, 4, 4]
-
-def test_compare_large_numbers():
-    assert compare([1000, 2000, 3000], [1000, 2000, 3000]) == [0, 0, 0]
 
 def test_compare_zero_values():
     assert compare([0, 0, 0], [0, 0, 0]) == [0, 0, 0]

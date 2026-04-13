@@ -55,8 +55,11 @@ def test_no_letters_special():
 def test_mixed_case_letters():
     assert solve("aB") == "Ab"
 
-def test_mixed_characters():
-    assert solve("#a@C1") == "#A@c1"
+def test_mixed_letters_and_numbers():
+    assert solve("a1B2") == "A1b2"
+
+def test_mixed_letters_and_special():
+    assert solve("#a@C") == "#A@c"
 
 def test_all_lowercase():
     assert solve("abc") == "ABC"
@@ -67,10 +70,7 @@ def test_all_uppercase():
 def test_string_with_spaces():
     assert solve("a b c") == "A B C"
 
-def test_string_with_unicode():
-    assert solve("aéiou") == "AÉIOU"
-
 def test_long_string():
-    long_string = "a" * 1000 + "1" * 1000
-    expected_string = "A" * 1000 + "1" * 1000
+    long_string = "a" * 1000 + "1" * 1000 + "A" * 1000
+    expected_string = "A" * 1000 + "1" * 1000 + "a" * 1000
     assert solve(long_string) == expected_string

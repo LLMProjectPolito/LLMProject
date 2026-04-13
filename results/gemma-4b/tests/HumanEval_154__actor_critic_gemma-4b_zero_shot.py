@@ -22,15 +22,14 @@ def cycpattern_check(a , b):
     cycpattern_check("himenss","simen") => True
 
     """
-    if not b:
-        return True
-    if b in a or any(rotation in a for rotation in rotate(b)):
+    if b in a or any(rotation in a for rotation in rotations(b)):
         return True
     else:
         return False
 
-def rotate(s):
-    return s[1:] + s[0]
+def rotations(s):
+    """Helper function to generate all rotations of a string."""
+    return [s[i:] + s[:i] for i in range(len(s))]
 
 def test_cycpattern_check_basic():
     assert cycpattern_check("abcd","abd") == False
@@ -46,37 +45,38 @@ def test_cycpattern_check_empty_b():
 
 def test_cycpattern_check_empty_a():
     assert cycpattern_check("", "abd") == False
+    assert cycpattern_check("", "") == True
 
-def test_cycpattern_check_same_word():
+def test_cycpattern_check_same_string():
     assert cycpattern_check("hello", "hello") == True
     assert cycpattern_check("abab", "abab") == True
 
 def test_cycpattern_check_substring_at_end():
     assert cycpattern_check("abcdef", "def") == True
-    assert cycpattern_check("abcdef", "cdef") == True
-    assert cycpattern_check("abcdef", "bcdef") == True
+    assert cycpattern_check("abcdef", "ef") == True
 
-def test_cycpattern_check_substring_in_middle():
-    assert cycpattern_check("abcdef", "cdef") == True
-    assert cycpattern_check("abcdef", "bcdef") == True
+def test_cycpattern_check_substring_at_beginning():
+    assert cycpattern_check("abcdef", "abc") == True
+    assert cycpattern_check("abcdef", "ab") == True
 
 def test_cycpattern_check_no_match():
     assert cycpattern_check("abcdef", "xyz") == False
-    assert cycpattern_check("abcdef", "abce") == False
+    assert cycpattern_check("abcdef", "abcdex") == False
 
-def test_cycpattern_check_long_words():
-    assert cycpattern_check("abcdefghijk", "ijk") == True
-    assert cycpattern_check("abcdefghijk", "ghijk") == True
-    assert cycpattern_check("abcdefghijk", "abcdefghijk") == True
+def test_cycpattern_check_long_strings():
+    assert cycpattern_check("abcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcba") == False
+    assert cycpattern_check("abcdefghijklmnopqrstuvwxyz", "abc") == True
 
-def test_cycpattern_check_overlapping_rotations():
-    assert cycpattern_check("abababa", "aba") == True
-    assert cycpattern_check("abababa", "bab") == True
+def test_cycpattern_check_repeated_characters():
+    assert cycpattern_check("aaaaa", "aa") == True
+    assert cycpattern_check("aaaaa", "aaa") == True
+    assert cycpattern_check("aaaaa", "aaaa") == True
+    assert cycpattern_check("aaaaa", "aaaaa") == True
+    assert cycpattern_check("aaaaa", "a") == True
+    assert cycpattern_check("aaaaa", "b") == False
 
 def test_cycpattern_check_special_characters():
     assert cycpattern_check("!@#$%^", "!@#") == True
-    assert cycpattern_check("!@#$%^", "$%^!") == True
-
-def test_cycpattern_check_numbers():
-    assert cycpattern_check("123456", "345") == True
-    assert cycpattern_check("123456", "654") == True
+    assert cycpattern_check("!@#$%^", "$%^") == True
+    assert cycpattern_check("!@#$%^", "!@#$%^") == True
+    assert cycpattern_check("!@#$%^", "abc") == False

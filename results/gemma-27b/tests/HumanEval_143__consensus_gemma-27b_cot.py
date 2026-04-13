@@ -90,50 +90,8 @@ def test_long_sentence_with_mixed_prime_and_non_prime_words():
 def test_sentence_with_only_prime_length_words():
     assert words_in_sentence("go no so") == "go no so"
 
-def test_sentence_with_numbers_and_letters():
-    assert words_in_sentence("123 abc 45 def") == "abc def"
-
-def test_sentence_with_special_characters():
-    assert words_in_sentence("hello! world?") == "hello world"
-
-def test_words_in_sentence_example_1():
-    assert words_in_sentence("This is a test") == "is"
-
-def test_words_in_sentence_example_2():
-    assert words_in_sentence("lets go for swimming") == "go for"
-
-def test_words_in_sentence_all_prime():
-    assert words_in_sentence("is are was") == "is are was"
-
-def test_words_in_sentence_all_non_prime():
-    assert words_in_sentence("this that those") == ""
-
-def test_words_in_sentence_mixed():
-    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the quick fox over"
-
 def test_words_in_sentence_long_sentence():
-    assert words_in_sentence("a very long sentence with some prime words like two five seven eleven") == "two five seven eleven"
-
-def test_words_in_sentence_with_leading_and_trailing_spaces():
-    assert words_in_sentence("  is a test  ") == "is"
-
-def test_words_in_sentence_multiple_spaces():
-    assert words_in_sentence("is   a    test") == "is test"
-
-def test_words_in_sentence_prime_at_start_and_end():
-    assert words_in_sentence("is a test are") == "is are"
-
-def test_words_in_sentence_no_prime_length_words():
-    assert words_in_sentence("This is a test") == "is"
-
-def test_words_in_sentence_single_prime_word():
-    assert words_in_sentence("two") == "two"
-
-def test_words_in_sentence_single_non_prime_word():
-    assert words_in_sentence("one") == ""
-
-def test_words_in_sentence_long_sentence():
-    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the over the"
+    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the quick fox over the dog"
 
 def test_words_in_sentence_sentence_with_multiple_spaces():
     assert words_in_sentence("  hello   world  ") == "hello world"
@@ -143,3 +101,9 @@ def test_words_in_sentence_sentence_with_leading_and_trailing_spaces():
 
 def test_words_in_sentence_sentence_with_only_spaces():
     assert words_in_sentence("   ") == ""
+
+def test_words_in_sentence_example_1():
+    assert words_in_sentence("This is a test") == "is"
+
+def test_words_in_sentence_example_2():
+    assert words_in_sentence("lets go for swimming") == "go for"

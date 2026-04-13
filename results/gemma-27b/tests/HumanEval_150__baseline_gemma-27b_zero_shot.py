@@ -20,7 +20,7 @@ def x_or_y(n, x, y):
     for x_or_y(15, 8, 5) == 5
     
     """
-    if n <= 1:
+    if n < 2:
         return y
     for i in range(2, int(n**0.5) + 1):
         if n % i == 0:
@@ -28,7 +28,7 @@ def x_or_y(n, x, y):
     return x
 
 def is_prime(n):
-    if n <= 1:
+    if n < 2:
         return False
     for i in range(2, int(n**0.5) + 1):
         if n % i == 0:
@@ -61,15 +61,14 @@ class TestXorY:
         assert x_or_y(18, 17, 18) == 18
 
     def test_edge_cases(self):
-        assert x_or_y(1, 10, 20) == 20
-        assert x_or_y(0, 10, 20) == 20
-        assert x_or_y(-1, 10, 20) == 20
+        assert x_or_y(1, 1, 2) == 2
+        assert x_or_y(0, 3, 4) == 4
         assert x_or_y(2, 0, 0) == 0
-        assert x_or_y(4, 0, 0) == 0
-        assert x_or_y(1, 0, 0) == 0
+        assert x_or_y(-1, 5, 6) == 6
+        assert x_or_y(-7, 7, 8) == 8
 
-    def test_large_numbers(self):
-        assert x_or_y(1000000007, 1, 2) == 1  # Prime
-        assert x_or_y(1000000008, 1, 2) == 2  # Not prime
-        assert x_or_y(999999999, 3, 4) == 4
-        assert x_or_y(1000000009, 5, 6) == 5
+    def test_large_prime(self):
+        assert x_or_y(7919, 1000, 2000) == 1000
+
+    def test_large_non_prime(self):
+        assert x_or_y(7920, 1000, 2000) == 2000

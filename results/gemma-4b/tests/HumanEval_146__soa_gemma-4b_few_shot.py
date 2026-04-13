@@ -69,10 +69,10 @@ def test_edge_case_1():
     assert specialFilter([111, 131, 151, 171, 191]) == 5
 
 def test_edge_case_2():
-    assert specialFilter([11, 13, 15, 17, 19]) == 0
+    assert specialFilter([1111, 1311, 1511, 1711, 1911]) == 0
 
 def test_edge_case_3():
-    assert specialFilter([1111, 1333, 1555, 1777, 1999]) == 5
+    assert specialFilter([11111, 13111, 15111, 17111, 19111]) == 0
 
 def test_mixed_edge_case():
-    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65, 67, 69, 71, 73, 75, 77, 79, 81, 83, 85, 87, 89, 91, 93, 95, 97, 99]) == 0
+    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29]) == 1

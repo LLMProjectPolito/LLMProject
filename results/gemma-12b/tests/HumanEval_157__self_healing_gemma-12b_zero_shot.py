@@ -31,21 +31,23 @@ def test_zero_length_side():
     assert right_angle_triangle(0, 4, 5) == False
     assert right_angle_triangle(3, 0, 5) == False
     assert right_angle_triangle(3, 4, 0) == False
+    assert right_angle_triangle(0, 0, 0) == False
 
 def test_negative_length_side():
     assert right_angle_triangle(-3, 4, 5) == False
     assert right_angle_triangle(3, -4, 5) == False
     assert right_angle_triangle(3, 4, -5) == False
+    assert right_angle_triangle(-3, -4, -5) == False
 
-def test_equal_sides():
+def test_equal_sides_not_right():
     assert right_angle_triangle(5, 5, 5) == False
-    assert right_angle_triangle(5, 5, 7) == False
 
 def test_large_numbers():
     assert right_angle_triangle(1000, 1000, 1414) == False #approximate
-    assert right_angle_triangle(1000, 1000, 1414.2135623730951) == True #approximate
+    assert right_angle_triangle(1000, 1000, 1414.21356) == True #approximate
+    assert right_angle_triangle(1000000, 1000000, 1414213.56) == True #approximate
 
 def test_float_inputs():
     assert right_angle_triangle(3.0, 4.0, 5.0) == True
     assert right_angle_triangle(1.0, 2.0, 3.0) == False
-    assert right_angle_triangle(3.1, 4.1, 5.1) == False
+    assert right_angle_triangle(0.5, 1.2, 1.3) == True

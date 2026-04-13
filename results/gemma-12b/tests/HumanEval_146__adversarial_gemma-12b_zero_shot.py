@@ -30,21 +30,32 @@ def sample_data():
         [11, 22, 33, 44, 55],
         [1, 3, 5, 7, 9],
         [2, 4, 6, 8, 10],
-        [123, 321, 543, 789],
+        [12, 34, 56, 78, 90],
         [10, 20, 30, 40, 50],
         [111, 222, 333, 444, 555],
         [101, 202, 303, 404, 505],
+        [11, 13, 15, 17, 19],
+        [31, 33, 35, 37, 39],
+        [51, 53, 55, 57, 59],
+        [71, 73, 75, 77, 79],
+        [91, 93, 95, 97, 99],
         [],
-        [15, 15, 15, 15],
-        [-15, -15, -15, -15],
-        [15, -15, 15, -15],
-        [15.0, -15.0],
-        [15.5, -15.5],
-        [151, -151, 153, -153],
-        [1011, 1101, 1013, 1301],
-        [100, 200, 300, 400, 500],
-        [1001, 2002, 3003, 4004, 5005],
-        [1000, 2000, 3000, 4000, 5000]
+        [10],
+        [11],
+        [101],
+        [111],
+        [15, 15, 15],
+        [-15, -15, -15],
+        [15, -15, 15],
+        [101, 103, 105, 107, 109],
+        [111, 113, 115, 117, 119],
+        [151, 153, 155, 157, 159],
+        [171, 173, 175, 177, 179],
+        [191, 193, 195, 197, 199],
+        [11, 12, 13, 14, 15],
+        [16, 17, 18, 19, 20],
+        [101, 102, 103, 104, 105],
+        [106, 107, 108, 109, 110],
     ]
 
 def test_specialFilter_empty_list(sample_data):
@@ -53,42 +64,47 @@ def test_specialFilter_empty_list(sample_data):
 def test_specialFilter_no_matches(sample_data):
     assert specialFilter([2, 4, 6, 8, 10]) == 0
 
-def test_specialFilter_single_match(sample_data):
+def test_specialFilter_all_matches(sample_data):
+    assert specialFilter([11, 13, 15, 17, 19]) == 5
+
+def test_specialFilter_mixed_list(sample_data):
     assert specialFilter([15, -73, 14, -15]) == 1
 
-def test_specialFilter_multiple_matches(sample_data):
+def test_specialFilter_example_2(sample_data):
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
-def test_specialFilter_all_matches(sample_data):
-    assert specialFilter([11, 33, 55, 77, 99]) == 5
+def test_specialFilter_single_element_greater_than_10_and_odd_digits(sample_data):
+    assert specialFilter([111]) == 1
 
-def test_specialFilter_mixed_positive_negative(sample_data):
-    assert specialFilter([15, -73, 14, -15]) == 1
+def test_specialFilter_single_element_less_than_10(sample_data):
+    assert specialFilter([11]) == 0
+
+def test_specialFilter_single_element_greater_than_10_but_not_odd_digits(sample_data):
+    assert specialFilter([101]) == 0
+
+def test_specialFilter_negative_numbers(sample_data):
+    assert specialFilter([-15, -15, -15]) == 0
+
+def test_specialFilter_mixed_positive_and_negative(sample_data):
+    assert specialFilter([15, -15, 15]) == 0
 
 def test_specialFilter_large_numbers(sample_data):
-    assert specialFilter([123, 321, 543, 789]) == 4
-
-def test_specialFilter_numbers_with_zeros(sample_data):
-    assert specialFilter([101, 202, 303, 404, 505]) == 5
+    assert specialFilter([101, 103, 105, 107, 109]) == 5
 
 def test_specialFilter_numbers_with_leading_zeros(sample_data):
-    assert specialFilter([1001, 2002, 3003, 4004, 5005]) == 5
+    assert specialFilter([011, 013, 015]) == 0
 
-def test_specialFilter_decimal_numbers(sample_data):
-    assert specialFilter([15.0, -15.0]) == 0
-    assert specialFilter([15.5, -15.5]) == 0
+def test_specialFilter_numbers_with_multiple_odd_digits(sample_data):
+    assert specialFilter([111, 113, 115, 117, 119]) == 5
 
-def test_specialFilter_negative_numbers_with_odd_digits(sample_data):
-    assert specialFilter([-15, -15, -15, -15]) == 4
+def test_specialFilter_numbers_with_odd_and_even_digits(sample_data):
+    assert specialFilter([11, 12, 13, 14, 15]) == 0
+
+def test_specialFilter_numbers_with_large_values(sample_data):
+    assert specialFilter([1111111111, 3333333333, 5555555555]) == 0
 
 def test_specialFilter_edge_case_1(sample_data):
-    assert specialFilter([151, -151, 153, -153]) == 4
+    assert specialFilter([101, 102, 103, 104, 105]) == 0
 
 def test_specialFilter_edge_case_2(sample_data):
-    assert specialFilter([1011, 1101, 1013, 1301]) == 0
-
-def test_specialFilter_numbers_ending_in_zero(sample_data):
-    assert specialFilter([100, 200, 300, 400, 500]) == 0
-
-def test_specialFilter_large_numbers_ending_in_zero(sample_data):
-    assert specialFilter([1000, 2000, 3000, 4000, 5000]) == 0
+    assert specialFilter([106, 107, 108, 109, 110]) == 0

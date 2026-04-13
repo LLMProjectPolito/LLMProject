@@ -24,35 +24,34 @@ def is_prime(n):
 class TestXorY:
     def test_prime_returns_x(self):
         assert x_or_y(7, 34, 12) == 34
-        assert x_or_y(2, 10, 20) == 10
-        assert x_or_y(5, 100, 50) == 100
-        assert x_or_y(11, 5, 10) == 5
+        assert x_or_y(2, 100, 200) == 100
+        assert x_or_y(5, 50, 60) == 50
+        assert x_or_y(11, 111, 112) == 111
 
     def test_non_prime_returns_y(self):
         assert x_or_y(15, 8, 5) == 5
         assert x_or_y(4, 1, 2) == 2
-        assert x_or_y(6, 10, 20) == 20
-        assert x_or_y(9, 5, 10) == 10
-        assert x_or_y(10, 1, 2) == 2
+        assert x_or_y(6, 3, 4) == 4
+        assert x_or_y(9, 7, 8) == 8
+        assert x_or_y(10, 9, 10) == 10
 
     def test_edge_cases(self):
-        assert x_or_y(1, 5, 10) == 10  # 1 is not prime
+        assert x_or_y(1, 10, 20) == 20  # 1 is not prime
         assert x_or_y(0, 5, 10) == 10  # 0 is not prime
-        assert x_or_y(-5, 5, 10) == 10 # Negative numbers are not prime
-        assert x_or_y(2, 5, 5) == 5 # Prime number, should return x
-        assert x_or_y(3, 5, 5) == 5 # Prime number, should return x
+        assert x_or_y(-5, 15, 25) == 25 # Negative numbers are not prime
 
     def test_large_prime(self):
-        assert x_or_y(101, 1000, 500) == 1000
+        assert x_or_y(101, 200, 300) == 200
 
     def test_large_non_prime(self):
-        assert x_or_y(100, 1000, 500) == 500
+        assert x_or_y(100, 400, 500) == 500
 
     def test_x_and_y_equal(self):
         assert x_or_y(7, 5, 5) == 5
-        assert x_or_y(4, 5, 5) == 5
+        assert x_or_y(4, 10, 10) == 10
 
-    def test_zero_input(self):
-        assert x_or_y(0, 0, 0) == 0
-        assert x_or_y(1, 0, 0) == 0
-        assert x_or_y(2, 0, 0) == 0
+    def test_n_is_prime_x_is_negative(self):
+        assert x_or_y(7, -34, 12) == -34
+
+    def test_n_is_not_prime_y_is_negative(self):
+        assert x_or_y(15, 8, -5) == -5

@@ -56,4 +56,4 @@ def test_duplicate_even_length():
     assert sorted_list_sum(["aa", "ab", "aa", "cd"]) == ["aa", "aa", "ab", "cd"]
 
 def test_same_length_different_chars():
-    assert sorted_list_sum(["abc", "def", "ghi"]) == ["abc", "def", "ghi"]
+    assert sorted_list_sum(["ab", "ac", "ba", "bc"]) == ["ab", "ba", "ac", "bc"]

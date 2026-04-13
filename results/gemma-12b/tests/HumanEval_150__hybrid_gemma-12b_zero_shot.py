@@ -31,35 +31,38 @@ class TestXorY:
 
     def test_non_prime_returns_y(self):
         assert x_or_y(15, 8, 5) == 5
-        assert x_or_y(4, 10, 20) == 20
+        assert x_or_y(4, 1, 2) == 2
         assert x_or_y(6, "hello", "world") == "world"
-        assert x_or_y(9, True, False) == False
-        assert x_or_y(10, None, "something") == "something"
+        assert x_or_y(9, 7.89, 9.10) == 9.10
+        assert x_or_y(10, (1,2), (3,4)) == (3,4)
 
     def test_edge_cases(self):
         assert x_or_y(1, 5, 10) == 10  # 1 is not prime
         assert x_or_y(0, 1, 2) == 2  # 0 is not prime
         assert x_or_y(-5, 3, 7) == 7 # Negative numbers are not prime
-        assert x_or_y(23, 10, 20) == 10
-
-    def test_large_prime(self):
-        assert x_or_y(997, 100, 200) == 100
-
-    def test_large_non_prime(self):
-        assert x_or_y(1000, 1, 2) == 2
+        assert x_or_y(23, None, "test") == "test"
+        assert x_or_y(29, True, False) == True
 
     def test_type_handling(self):
-        assert x_or_y(7, 3.14, 2.71) == 3.14
-        assert x_or_y(10, [1, 2, 3], (4, 5, 6)) == (4, 5, 6)
+        assert x_or_y(7, 34.5, 12) == 34.5
+        assert x_or_y(7, 34, 12.5) == 34
+        assert x_or_y(15, "string", 5) == 5
+        assert x_or_y(15, 5, "string") == "string"
+
+    def test_large_numbers(self):
+        assert x_or_y(1000000007, 100, 200) == 100 # Prime
+        assert x_or_y(1000000000, 100, 200) == 200 # Not prime
 
     def test_mixed_types(self):
-        assert x_or_y(5, 10, "test") == "test"
-        assert x_or_y(4, "test", 10) == 10
+        assert x_or_y(7, 10, "test") == 10
+        assert x_or_y(15, "test", 10) == 10
+        assert x_or_y(2, 10, 10.0) == 10
+        assert x_or_y(3, 10.0, 10) == 10.0
 
     def test_zero_x_y(self):
         assert x_or_y(7, 0, 0) == 0
-        assert x_or_y(10, 0, 0) == 0
+        assert x_or_y(8, 0, 0) == 0
 
     def test_negative_x_y(self):
         assert x_or_y(7, -1, -2) == -1
-        assert x_or_y(10, -1, -2) == -2
+        assert x_or_y(8, -1, -2) == -2

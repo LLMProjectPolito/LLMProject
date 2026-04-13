@@ -25,18 +25,18 @@ def find_max(words):
     if not words:
         return ""
 
-    max_unique_chars = -1
-    result = ""
+    max_unique = -1
+    max_word = ""
 
     for word in words:
         unique_chars = len(set(word))
-        if unique_chars > max_unique_chars:
-            max_unique_chars = unique_chars
-            result = word
-        elif unique_chars == max_unique_chars and word < result:
-            result = word
+        if unique_chars > max_unique:
+            max_unique = unique_chars
+            max_word = word
+        elif unique_chars == max_unique and word < max_word:
+            max_word = word
 
-    return result
+    return max_word
 
 def test_empty_list():
     assert find_max([]) == ""
@@ -50,7 +50,7 @@ def test_multiple_words_different_unique_counts():
 def test_multiple_words_same_unique_counts_lexicographical():
     assert find_max(["name", "enam", "game"]) == "enam"
 
-def test_all_words_same_unique_counts():
+def test_all_words_same_unique_count():
     assert find_max(["abc", "bac", "cab"]) == "abc"
 
 def test_words_with_repeated_characters():
@@ -71,20 +71,21 @@ def test_long_words():
 def test_words_with_empty_string():
     assert find_max(["", "abc"]) == "abc"
 
-def test_words_with_only_one_unique_char():
-    assert find_max(["aaaa", "bbbb", "cccc"]) == "aaaa"
+def test_multiple_empty_strings():
+    assert find_max(["", "", ""]) == ""
 
 def test_words_with_unicode_characters():
     assert find_max(["你好", "世界"]) == "世界"
 
-def test_lexicographical_tiebreaker():
-    assert find_max(["zebra", "apple", "banana"]) == "apple"
+def test_words_with_mixed_unicode_and_ascii():
+    assert find_max(["hello", "你好"]) == "hello"
 
-def test_complex_case():
-    assert find_max(["abcde", "abcdf", "abcdeff"]) == "abcdf"
+def test_large_list_of_words():
+    words = ["word" + str(i) for i in range(100)]
+    assert find_max(words) == "word0"
 
-def test_words_with_spaces():
-    assert find_max(["hello world", "hello"]) == "hello world"
+def test_words_with_same_length_but_different_unique_chars():
+    assert find_max(["abcd", "abcc"]) == "abcd"
 
 def test_empty_strings():
     assert find_max(["", "", ""]) == ""
@@ -95,5 +96,14 @@ def test_mixed_empty_and_nonempty():
 def test_duplicate_words():
     assert find_max(["abc", "abc", "def"]) == "abc"
 
-def test_all_same_word():
-    assert find_max(["test", "test", "test"]) == "test"
+def test_lexicographical_tiebreaker():
+    assert find_max(["zabc", "aabc"]) == "aabc"
+
+def test_long_string_with_many_unique_chars():
+    assert find_max(["abcdefghijk", "abc"]) == "abcdefghijk"
+
+def test_string_with_all_unique_chars():
+    assert find_max(["abcdefg", "abc"]) == "abcdefg"
+
+def test_words_with_spaces():
+    assert find_max(["hello world", "hello"]) == "hello world"

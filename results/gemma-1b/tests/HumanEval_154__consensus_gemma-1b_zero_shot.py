@@ -24,8 +24,8 @@ def cycpattern_check(a, b):
     """
     if len(b) == 0:
         return True
-    for i in range(1, len(b)):
-        rotated_b = b[i:] + b[:i]
+    for i in range(1, len(b) + 1):
+        rotated_b = b[i-1:] + b[:i-1]
         if rotated_b in a:
             return True
     return False
@@ -46,7 +46,6 @@ def test_cycpattern_check_single_char():
 
 def test_cycpattern_check_same_string():
     assert cycpattern_check("a","a") == True
-    assert cycpattern_check("a","b") == False
 
 def test_cycpattern_check_different_strings():
     assert cycpattern_check("abc","def") == False

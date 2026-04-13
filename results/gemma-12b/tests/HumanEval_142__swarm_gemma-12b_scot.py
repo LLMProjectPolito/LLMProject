@@ -17,11 +17,5 @@ import pytest
 import math
 
 def test_sum_squares_empty_list():
-    """Test case for an empty list."""
-    lst = []
-    expected_sum = 0
-    assert sum_squares(lst) == expected_sum
-
-def test_sum_squares_empty_list_alternative():
     """Test with an empty list to ensure it returns 0."""
     assert sum_squares([]) == 0

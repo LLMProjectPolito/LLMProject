@@ -11,4 +11,20 @@ def fix_spaces(text):
     fix_spaces(" Example   3") == "_Example-3"
     """
 
-# ERROR: setup_competitive_graph() got an unexpected keyword argument 'model_a'
+def fix_spaces(text):
+    """
+    Given a string text, replace all spaces in it with underscores, 
+    and if a string has more than 2 consecutive spaces, 
+    then replace all consecutive spaces with - 
+    """
+    result = ""
+    count = 0
+    for char in text:
+        if char == ' ':
+            count += 1
+        else:
+            if count > 2:
+                result += '-'
+                count = 0
+            result += char
+    return result

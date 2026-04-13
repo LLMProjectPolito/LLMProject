@@ -69,17 +69,21 @@ def test_is_palindrome_basic():
 def test_is_palindrome_empty():
     assert is_palindrome('') == True
 
-def test_is_palindrome_mixed_case():
-    assert is_palindrome('Racecar') == True
-
 def test_is_palindrome_with_spaces():
-    assert is_palindrome('A man a plan a canal Panama') == True
+    assert is_palindrome('A man, a plan, a canal: Panama') == True
+    # Spaces are removed before checking for palindrome.
 
 def test_is_palindrome_with_punctuation():
     assert is_palindrome('Madam, I\'m Adam.') == True
+    # Punctuation is removed before checking for palindrome.
+
+def test_is_palindrome_case_insensitive():
+    assert is_palindrome('Racecar') == True
+    # The string is converted to lowercase before checking for palindrome.
 
 def test_is_palindrome_non_palindrome():
-    assert is_palindrome('world') == False
+    assert is_palindrome('Python') == False
+    # The string is converted to lowercase before checking for palindrome.
 
 def test_max_positive():
     assert get_max([1, 2, 3]) == 3
@@ -93,20 +97,28 @@ def test_max_negative():
 def test_max_mixed():
     assert get_max([-1, 2, -3, 4]) == 4
 
-def test_strongest_extension_basic():
+def test_max_duplicate():
+    assert get_max([1, 1, 1, 1]) == 1
+
+def test_Strongest_Extension_basic():
     assert Strongest_Extension('Slices', ['SErviNGSliCes', 'Cheese', 'StuFfed']) == 'Slices.SErviNGSliCes'
+    # The first extension with the maximum strength is chosen.
 
-def test_strongest_extension_same_strength():
+def test_Strongest_Extension_same_strength():
     assert Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
+    # The first extension with the maximum strength is chosen.
 
-def test_strongest_extension_empty_extensions():
+def test_Strongest_Extension_empty_extensions():
     assert Strongest_Extension('my_class', []) == 'my_class.None'
 
-def test_strongest_extension_all_uppercase():
-    assert Strongest_Extension('Class', ['ABC', 'DEF', 'GHI']) == 'Class.ABC'
+def test_Strongest_Extension_all_uppercase():
+    assert Strongest_Extension('my_class', ['ABC', 'DEF']) == 'my_class.ABC'
 
-def test_strongest_extension_all_lowercase():
-    assert Strongest_Extension('Class', ['abc', 'def', 'ghi']) == 'Class.abc'
+def test_Strongest_Extension_all_lowercase():
+    assert Strongest_Extension('my_class', ['abc', 'def']) == 'my_class.abc'
 
-def test_strongest_extension_mixed_case_and_numbers():
-    assert Strongest_Extension('Test', ['tEsT', '123', 'abc']) == 'Test.tEsT'
+def test_Strongest_Extension_mixed_case():
+    assert Strongest_Extension('my_class', ['aBc', 'DeF']) == 'my_class.aBc'
+
+def test_Strongest_Extension_with_numbers():
+    assert Strongest_Extension('my_class', ['A1', 'B2']) == 'my_class.A1'

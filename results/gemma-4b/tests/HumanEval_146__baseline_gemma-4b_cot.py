@@ -25,7 +25,7 @@ def specialFilter(nums):
             if len(num_str) > 0:
                 first_digit = int(num_str[0])
                 last_digit = int(num_str[-1])
-                if first_digit % 2 != 0 and last_digit % 2 != 0:
+                if (first_digit % 2 != 0 and last_digit % 2 != 0):
                     count += 1
     return count
 
@@ -69,4 +69,4 @@ def test_specialFilter_duplicate_numbers():
     assert specialFilter([15, 15, 15]) == 1
 
 def test_specialFilter_mixed_positive_and_negative_numbers():
-    assert specialFilter([-15, 15, -33, 45]) == 2
+    assert specialFilter([-15, 15, -33, 33]) == 2

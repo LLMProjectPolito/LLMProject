@@ -57,41 +57,36 @@ def test_simplify_large_numbers():
     assert simplify("999/1", "1/999") == True
 
 def test_simplify_relatively_prime():
-    assert simplify("1/2", "2/1") == False
-    assert simplify("3/4", "4/3") == False
-    assert simplify("5/6", "6/5") == False
+    assert simplify("2/3", "5/7") == False
+    assert simplify("3/4", "7/8") == False
+
+def test_simplify_edge_cases():
+    assert simplify("1/1", "2/1") == True
+    assert simplify("2/1", "1/1") == True
+    assert simplify("1/2", "2/1") == True
+    assert simplify("1/100", "100/1") == True
+    assert simplify("100/1", "1/100") == True
+    assert simplify("1/1000", "1000/1") == True
+    assert simplify("2/1", "1/2") == True
+
+def test_simplify_different_magnitudes():
+    assert simplify("10/1", "1/100") == False
+    assert simplify("1/100", "10/1") == False
+    assert simplify("100/1", "1/10") == False
+    assert simplify("1/10", "100/1") == False
 
 def test_simplify_same_fraction():
     assert simplify("2/3", "2/3") == True
     assert simplify("5/7", "5/7") == True
 
-def test_simplify_one_as_numerator():
-    assert simplify("1/7", "7/1") == True
-    assert simplify("1/8", "8/1") == True
-    assert simplify("1/9", "9/1") == True
-
-def test_simplify_one_as_denominator():
-    assert simplify("2/1", "1/2") == True
-    assert simplify("3/1", "1/3") == True
-    assert simplify("4/1", "1/4") == True
-
-def test_simplify_complex_fractions():
-    assert simplify("11/12", "12/11") == True
-    assert simplify("13/15", "15/13") == True
-    assert simplify("17/18", "18/17") == True
-    assert simplify("11/13", "13/11") == True
-    assert simplify("17/19", "19/17") == True
-    assert simplify("23/29", "29/23") == True
-
 def test_simplify_different_fractions_whole():
     assert simplify("4/2", "1/2") == True
     assert simplify("6/3", "2/1") == True
 
-def test_simplify_edge_cases():
-    assert simplify("1/1000", "1000/1") == True
-    assert simplify("1000/1", "1/1000") == True
-    assert simplify("2/1", "1/2") == True
-    assert simplify("1/2", "2/1") == True
+def test_simplify_complex_fractions():
+    assert simplify("11/13", "13/11") == True
+    assert simplify("17/19", "19/17") == True
+    assert simplify("23/29", "29/23") == True
 
 def test_simplify_mixed_results():
     assert simplify("1/4", "4/1") == True
@@ -115,10 +110,10 @@ def test_palindrome_empty():
     assert is_palindrome('') == True
 
 def test_palindrome_with_spaces():
-    assert is_palindrome('race car') == False  # Spaces matter
+    assert is_palindrome('race car') == False
 
 def test_palindrome_with_case():
-    assert is_palindrome('Racecar') == False # Case matters
+    assert is_palindrome('Racecar') == False
 
 def get_max(arr: list[int]) -> int:
     """ Returns the maximum element in a list, or None if empty """

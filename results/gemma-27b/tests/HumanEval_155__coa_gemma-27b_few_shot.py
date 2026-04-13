@@ -18,10 +18,16 @@ def test_even_odd_count_zero():
     assert even_odd_count(0) == (1, 0)
 
 def test_even_odd_count_negative_single_digit():
-    assert even_odd_count(-5) == (0, 1)
+    assert even_odd_count(-2) == (1, 0)
 
 def test_even_odd_count_positive_single_digit():
-    assert even_odd_count(8) == (1, 0)
+    assert even_odd_count(5) == (0, 1)
+
+def test_even_odd_count_max_int():
+    assert even_odd_count(2147483647) == (5, 4)
+
+def test_even_odd_count_min_int():
+    assert even_odd_count(-2147483648) == (1, 9)
 
 # Focus: Negative Numbers
 import pytest

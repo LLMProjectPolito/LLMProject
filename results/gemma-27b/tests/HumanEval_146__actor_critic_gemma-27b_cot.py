@@ -10,101 +10,77 @@ def specialFilter(nums):
 
 import pytest
 
+# A "special" number is defined as a number greater than 10 where the first and last digits are odd (1, 3, 5, 7, or 9).
+# Negative numbers are not considered "special" even if their absolute value is.
+
 def test_empty_list():
-    """Test with an empty list."""
     assert specialFilter([]) == 0
 
 def test_no_special_numbers():
-    """Test with a list containing no special numbers."""
     assert specialFilter([2, 4, 6, 8, 10, 12]) == 0
 
 def test_single_special_number():
-    """Test with a list containing a single special number."""
     assert specialFilter([15]) == 1
 
 def test_multiple_special_numbers():
-    """Test with a list containing multiple special numbers."""
     assert specialFilter([15, 37, 59, 71, 93]) == 5
 
 def test_mixed_numbers():
-    """Test with a list containing both special and non-special numbers."""
     assert specialFilter([15, -73, 14, -15]) == 1
 
 def test_more_mixed_numbers():
-    """Test with a more complex mix of numbers."""
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
 def test_negative_numbers():
-    """Test with a list of negative numbers."""
     assert specialFilter([-15, -37, -59, -71, -93]) == 0
 
+def test_negative_numbers_with_even_first_digit():
+    assert specialFilter([-23]) == 0
+
+def test_zero():
+    assert specialFilter([0]) == 0
+
 def test_large_numbers():
-    """Test with large numbers."""
     assert specialFilter([111, 333, 555, 777, 999]) == 5
 
-def test_large_numbers_mixed_special():
-    """Test with a mix of large numbers, some special and some not."""
+def test_large_numbers_mixed():
     assert specialFilter([111, 222, 333, 444, 555]) == 3
 
 def test_edge_case_11():
-    """Test with the edge case 11."""
     assert specialFilter([11]) == 0
 
 def test_edge_case_99():
-    """Test with the edge case 99."""
     assert specialFilter([99]) == 1
 
 def test_edge_case_101():
-    """Test with the edge case 101."""
     assert specialFilter([101]) == 0
 
-def test_edge_case_1001():
-    """Test with the edge case 1001."""
-    assert specialFilter([1001]) == 0
+def test_edge_case_131():
+    assert specialFilter([131]) == 1
 
-def test_zero_as_input():
-    """Test with zero as input."""
-    assert specialFilter([0]) == 0
+def test_leading_zeros():
+    assert specialFilter([15, 07, 09]) == 1
 
-def test_special_number_sum_of_digits_multiple_of_3():
-    """Test with a number where the sum of digits is a multiple of 3."""
-    assert specialFilter([123]) == 1
+def test_leading_zeros_mixed():
+    assert specialFilter([011, 013, 015]) == 0
 
-def test_float_input():
-    """Test with float input, expecting a TypeError."""
+def test_invalid_input_string():
     with pytest.raises(TypeError):
-        specialFilter([15.5])
+        specialFilter(['015'])
 
-def test_string_input():
-    """Test with string input, expecting a TypeError."""
+def test_invalid_input_mixed():
     with pytest.raises(TypeError):
-        specialFilter(["15"])
+        specialFilter([15, '23', 37])
 
-def test_none_input():
-    """Test with None input, expecting a TypeError."""
+def test_invalid_input_none():
     with pytest.raises(TypeError):
-        specialFilter([None])
+        specialFilter([15, None, 37])
 
-def test_bool_input():
-    """Test with boolean input, expecting a TypeError."""
-    with pytest.raises(TypeError):
-        specialFilter([True])
+def test_large_number_special():
+    assert specialFilter([123456789]) == 1
 
-def test_dict_input():
-    """Test with dictionary input, expecting a TypeError."""
-    with pytest.raises(TypeError):
-        specialFilter([{"a": 1}])
+def test_large_number_not_special():
+    assert specialFilter([123456788]) == 0
 
-def test_empty_string_input():
-    """Test with an empty string as input, expecting a TypeError."""
-    with pytest.raises(TypeError):
-        specialFilter([""])
-
-def test_large_number_boundary():
-    """Test with a large number close to the maximum integer size."""
-    assert specialFilter([1999999999]) == 1
-
-def test_large_list():
-    """Test with a very large list."""
-    large_list = [i for i in range(1000)]
-    assert specialFilter(large_list) == 50
+def test_negative_special_absolute():
+    assert specialFilter([-15]) == 0

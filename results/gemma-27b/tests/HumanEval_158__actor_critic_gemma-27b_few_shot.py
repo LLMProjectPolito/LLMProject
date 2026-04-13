@@ -10,40 +10,24 @@ def find_max(words):
     find_max(["aaaaaaa", "bb" ,"cc"]) == ""aaaaaaa"
     """
 
+import pytest
+
 def find_max(words):
     """Write a function that accepts a list of strings.
     The list contains different words. Return the word with maximum number
     of unique characters. If multiple strings have maximum number of unique
     characters, return the one which comes first in lexicographical order.
 
-    Args:
-        words: A list of strings.
-
-    Returns:
-        The word with the maximum number of unique characters, or the
-        lexicographically smallest word if multiple words have the same
-        maximum number of unique characters.  Returns an empty string if the input list is empty.
-
-    Raises:
-        TypeError: if input is not a list or if list contains non-string elements
-
-    Examples:
-        find_max(["name", "of", "string"]) == "string"
-        find_max(["name", "enam", "game"]) == "enam"
-        find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
-        find_max(["", "", ""]) == ""
-        find_max(["abc", "a1b2c", "ab"]) == "a1b2c"
+    find_max(["name", "of", "string"]) == "string"
+    find_max(["name", "enam", "game"]) == "enam"
+    find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
     """
-    if not isinstance(words, list):
-        raise TypeError("Input must be a list.")
-    for word in words:
-        if not isinstance(word, str):
-            raise TypeError("List elements must be strings.")
-
+    if words is None:
+        raise TypeError("Input cannot be None")
     if not words:
         return ""
 
-    max_unique = 0
+    max_unique = -1
     max_word = ""
 
     for word in words:
@@ -52,12 +36,13 @@ def find_max(words):
             max_unique = unique_chars
             max_word = word
         elif unique_chars == max_unique:
-            # Lexicographical comparison: word < max_word means word comes earlier
+            # If unique character counts are equal, choose the lexicographically smaller word
             if word < max_word:
                 max_word = word
 
     return max_word
-import pytest
+
+### Tests (Pytest):
 
 def test_find_max_basic():
     assert find_max(["name", "of", "string"]) == "string"
@@ -68,31 +53,36 @@ def test_find_max_same_unique_chars():
 def test_find_max_all_same_char():
     assert find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
 
-def test_find_max_empty_list():
+def test_find_max_with_empty_list():
     assert find_max([]) == ""
 
-def test_find_max_empty_strings():
+def test_find_max_all_empty_strings():
     assert find_max(["", "", ""]) == ""
 
-def test_find_max_special_chars():
-    assert find_max(["abc", "a1b2c", "ab"]) == "a1b2c"
+def test_find_max_same_length_different_unique():
+    assert find_max(["abc", "abd", "abe"]) == "abc"
 
-def test_find_max_mixed_lengths():
-    assert find_max(["a", "aa", "aaa", "aaaa"]) == "aaaa"
+def test_find_max_reverse_lexicographical():
+    assert find_max(["zebra", "yacht", "xerox"]) == "xerox"
 
-def test_find_max_numbers_and_letters():
-    assert find_max(["123", "abc", "a1b"]) == "123"
-
-def test_find_max_with_duplicate_words():
-    assert find_max(["abc", "abc", "def"]) == "abc"
-
-def test_find_max_type_error():
+def test_find_max_none_input():
     with pytest.raises(TypeError):
-        find_max("not a list")
+        find_max(None)
 
-def test_find_max_type_error_element():
-    with pytest.raises(TypeError):
-        find_max([1, 2, 3])
+# New tests based on review
+def test_find_max_single_word():
+    assert find_max(["hello"]) == "hello"
+
+def test_find_max_with_special_chars():
+    assert find_max(["abc!", "def$", "ghi#"]) == "abc!"
+
+def test_find_max_with_numbers():
+    assert find_max(["abc1", "def2", "ghi3"]) == "abc1"
 
 def test_find_max_case_sensitivity():
-    assert find_max(["aBc", "AbC", "abc"]) == "AbC"
+    assert find_max(["Name", "name"]) == "Name"  # Assuming case-sensitive
+
+def test_find_max_long_strings():
+    long_string1 = "a" * 1000
+    long_string2 = "abcdefghijklmnopqrstuvwxyz"
+    assert find_max([long_string1, long_string2]) == long_string2

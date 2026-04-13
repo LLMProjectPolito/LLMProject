@@ -41,9 +41,7 @@ def file_name_check(file_name):
         return 'No'
 
     parts = file_name.split('.')
-    if not parts[0]:
-        return 'No'
-    if not parts[0][0].isalpha():
+    if not parts[0] or not parts[0][0].isalpha():
         return 'No'
 
     if parts[1] not in ['txt', 'exe', 'dll']:
@@ -67,10 +65,16 @@ def test_empty_before_dot():
     assert file_name_check(".txt") == 'No'
 
 def test_digit_before_dot():
-    assert file_name_check("1.txt") == 'No'
+    assert file_name_check("1example.txt") == 'No'
 
 def test_invalid_extension():
     assert file_name_check("example.pdf") == 'No'
+
+def test_too_many_digits():
+    assert file_name_check("123example.txt") == 'No'
+
+def test_too_many_digits_2():
+    assert file_name_check("1234example.txt") == 'No'
 
 def test_valid_file_name_with_uppercase():
     assert file_name_check("Example.txt") == 'Yes'
@@ -79,25 +83,13 @@ def test_valid_file_name_with_mixed_case():
     assert file_name_check("ExAmple.txt") == 'Yes'
 
 def test_valid_file_name_with_numbers_and_letters():
-    assert file_name_check("a123b.txt") == 'Yes'
+    assert file_name_check("example123.txt") == 'No'
 
-def test_valid_file_name_with_many_digits():
-    assert file_name_check("a12345b.txt") == 'No'
+def test_valid_file_name_with_numbers_and_letters_2():
+    assert file_name_check("ExAmple123.txt") == 'No'
 
-def test_valid_file_name_with_exe():
-    assert file_name_check("example.exe") == 'Yes'
+def test_valid_file_name_with_special_characters():
+    assert file_name_check("example.txt") == 'Yes'
 
-def test_valid_file_name_with_dll():
-    assert file_name_check("example.dll") == 'Yes'
-
-def test_invalid_file_name_starts_with_digit():
-    assert file_name_check("1example.txt") == 'No'
-
-def test_invalid_file_name_ends_with_digit():
-    assert file_name_check("example.1txt") == 'No'
-
-def test_invalid_file_name_contains_multiple_digits():
-    assert file_name_check("a123.txt") == 'No'
-
-def test_invalid_file_name_with_special_characters():
-    assert file_name_check("example!.txt") == 'No'
+def test_valid_file_name_with_special_characters_2():
+    assert file_name_check("example.txt!") == 'No'

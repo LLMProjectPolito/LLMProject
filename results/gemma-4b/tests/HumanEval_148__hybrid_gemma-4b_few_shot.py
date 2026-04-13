@@ -66,7 +66,7 @@ def test_is_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
     assert is_palindrome('A man, a plan, a canal: Panama') == True
-    assert is_palindrome('Racecar') == True
+    assert is_palindrome('Race car') == True
     assert is_palindrome('Was it a car or a cat I saw?') == True
 
 def test_is_palindrome_empty():
@@ -74,11 +74,13 @@ def test_is_palindrome_empty():
     assert is_palindrome(' ') == True
     assert is_palindrome('a') == True
 
-def test_is_palindrome_mixed_case():
+def test_is_palindrome_case_insensitive():
     assert is_palindrome('RaceCar') == True
+    assert is_palindrome('RaCeCaR') == True
 
-def test_is_palindrome_with_punctuation():
-    assert is_palindrome("Madam, I'm Adam.") == True
+def test_is_palindrome_with_non_alphanumeric():
+    assert is_palindrome('12321') == True
+    assert is_palindrome('Madam, I\'m Adam') == True
 
 def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
@@ -92,7 +94,7 @@ def test_get_max_empty():
 def test_get_max_single_element():
     assert get_max([5]) == 5
 
-def test_get_max_negative_and_positive():
+def test_get_max_mixed_positive_negative():
     assert get_max([-1, 2, -3, 4]) == 4
 
 def test_bf_jupiter_neptune():
@@ -120,7 +122,7 @@ def test_bf_same_planet():
     assert bf("Earth", "Earth") == ()
 
 def test_bf_adjacent_planets():
-    assert bf("Earth", "Mars") == ("Venus")
+    assert bf("Mars", "Jupiter") == ("Earth", "Venus", "Saturn")
 
 ### Problem:
 def is_palindrome(s: str) -> bool:
@@ -134,40 +136,10 @@ def test_is_palindrome_basic():
 def test_is_palindrome_empty():
     assert is_palindrome('') == True
 
-def test_is_palindrome_single_char():
-    assert is_palindrome('a') == True
+def test_is_palindrome_case_insensitive():
+    assert is_palindrome('RaceCar') == True
+    assert is_palindrome('RaCeCaR') == True
 
-def test_is_palindrome_mixed_case():
-    assert is_palindrome('Racecar') == True
-
-def test_is_palindrome_with_punctuation():
-    assert is_palindrome("Madam, I'm Adam.") == True
-
-def test_is_palindrome_with_spaces():
-    assert is_palindrome("A man, a plan, a canal: Panama") == True
-
-def test_is_palindrome_non_palindrome():
-    assert is_palindrome("hello") == False
-
-### Problem:
-def get_max(arr: list[int]) -> int:
-    """ Returns the maximum element in a list, or None if empty """
-
-### Tests (Pytest):
-def test_get_max_positive():
-    assert get_max([1, 2, 3]) == 3
-
-def test_get_max_empty():
-    assert get_max([]) == None
-
-def test_get_max_single_element():
-    assert get_max([5]) == 5
-
-def test_get_max_negative_and_positive():
-    assert get_max([-1, 2, -3, 4]) == 4
-
-def test_get_max_all_negative():
-    assert get_max([-1, -2, -3]) == -1
-
-def test_get_max_duplicate_elements():
-    assert get_max([1, 1, 1, 1]) == 1
+def test_is_palindrome_with_non_alphanumeric():
+    assert is_palindrome('12321') == True
+    assert is_palindrome('Madam, I\'m Adam') == True

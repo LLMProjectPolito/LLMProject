@@ -39,3 +39,9 @@ def test_specialFilter_single_element():
 
 def test_specialFilter_all_same_numbers():
     assert specialFilter([1, 1, 1, 1]) == 1
+
+def test_specialFilter_negative_numbers():
+    assert specialFilter([-15, -73, -14, -15]) == 1
+
+def test_specialFilter_mixed_numbers():
+    assert specialFilter([-2, 3, -5, 7]) == 2

@@ -25,9 +25,12 @@ def sum_squares(lst):
     For lst = [1,2,3] the output should be 6
     For lst = []  the output should be 0
     For lst = [-1,-5,2,-1,-5]  the output should be -126
+    The function will raise a TypeError if the input list contains non-integer values.
     """
     new_lst = []
     for i, num in enumerate(lst):
+        if not isinstance(num, int):
+            raise TypeError("Input list must contain only integers.")
         if i % 3 == 0:
             new_lst.append(num**2)
         elif i % 4 == 0 and i % 3 != 0:
@@ -45,29 +48,37 @@ def test_example_1():
 def test_example_2():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
-def test_list_with_zeroes():
-    assert sum_squares([0, 0, 0, 0, 0, 0]) == 0
+def test_list_with_multiples_of_3_and_4():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 605
+
+def test_list_with_negative_numbers():
+    assert sum_squares([-1, -2, -3, -4, -5]) == -65
+
+def test_list_with_zeros():
+    assert sum_squares([0, 0, 0, 0]) == 0
+
+def test_large_numbers():
+    assert sum_squares([100, 200, 300]) == 140000
 
 def test_single_element_list():
     assert sum_squares([5]) == 5
 
-def test_single_element_multiple_of_3():
-    assert sum_squares([5, 5, 5]) == 5 + 5 + 25
+def test_single_element_index_multiple_of_3():
+    assert sum_squares([3]) == 9
 
-def test_single_element_multiple_of_4():
-    assert sum_squares([5, 5, 5, 5]) == 5 + 5 + 5 + 125
+def test_single_element_index_multiple_of_4():
+    assert sum_squares([4]) == 64
 
-def test_list_length_multiple_of_3_and_4():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1 + 2 + 9 + 64 + 5 + 36 + 7 + 512 + 81 + 10 + 11 + 144
-
-def test_negative_and_positive_numbers():
-    assert sum_squares([-1, 2, -3, 4, -5, 6]) == 1 + 2 + 9 + 64 + 25 + 36
-
-def test_multiple_of_3_and_4_index():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1 + 2 + 9 + 64 + 5 + 36 + 7 + 512 + 81 + 10 + 11 + 144
-
-def test_large_numbers():
-    assert sum_squares([100, 200, 300, 400]) == 10000 + 200 + 90000 + 64000000
+def test_type_error():
+    with pytest.raises(TypeError) as excinfo:
+        sum_squares([1, 2.5, '3'])
+    assert str(excinfo.value) == "Input list must contain only integers."
 
 def test_index_multiple_of_both_3_and_4():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1 + 2 + 9 + 64 + 5 + 36 + 7 + 512 + 81 + 10 + 11 + 144
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 605
+
+def test_interaction_squaring_and_cubing():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 460
+
+def test_multiple_interactions():
+    assert sum_squares([3, 4, 6, 8, 9, 12]) == 1465

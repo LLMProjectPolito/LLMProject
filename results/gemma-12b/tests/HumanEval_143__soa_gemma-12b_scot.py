@@ -84,22 +84,19 @@ class TestWordsInSentence:
         assert words_in_sentence("a bb ccc dddd eeeee") == "a"
 
     def test_sentence_with_long_words(self):
-        assert words_in_sentence("abcdefghijklmnopqrstuvwxyz abcdefghijklmnop abcdefghijklmno") == ""
+        assert words_in_sentence("abcdefghijklmnopqrstuvwxyz abcdefghij") == "abcdefghijklmnopqrstuvwxyz"
 
     def test_sentence_with_short_words(self):
         assert words_in_sentence("a b c d e") == "a b c d e"
 
     def test_sentence_with_mixed_length_words(self):
-        assert words_in_sentence("a bb c d efg hijk lmnop") == "a c"
+        assert words_in_sentence("a bb c d efg") == "a c"
 
     def test_sentence_with_same_length_words(self):
-        assert words_in_sentence("aa bb cc dd ee") == ""
+        assert words_in_sentence("aa bb cc dd") == ""
 
-    def test_sentence_with_prime_length_words_at_start(self):
-        assert words_in_sentence("go for lets") == "go for lets"
+    def test_sentence_with_prime_length_words_at_start_and_end(self):
+        assert words_in_sentence("go for swimming") == "go for"
 
-    def test_sentence_with_prime_length_words_at_end(self):
-        assert words_in_sentence("this is a go") == "go"
-
-    def test_sentence_with_only_one_prime_word(self):
-        assert words_in_sentence("this is a test world") == "is"
+    def test_sentence_with_non_prime_length_words_at_start_and_end(self):
+        assert words_in_sentence("the quick fox") == ""

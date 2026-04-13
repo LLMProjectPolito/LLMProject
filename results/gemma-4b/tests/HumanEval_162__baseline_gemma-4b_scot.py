@@ -27,38 +27,37 @@ def string_to_md5(text):
 # STEP 1: REASONING
 # The function `string_to_md5` calculates the MD5 hash of a given string.
 # It handles the edge case of an empty input string by returning None.
-# We need to test the function with various inputs, including a normal string,
-# an empty string, and potentially strings with special characters.
-# We should verify that the returned MD5 hash is correct for each input.
+# We need to test the function with various inputs, including an empty string,
+# a simple string, and potentially longer strings to ensure the hash is calculated correctly.
+# We should also consider testing the return type (string) and the behavior when the input is None.
 
 # STEP 2: PLAN
 # Test cases:
-# 1. Normal string: "Hello world"
-# 2. Empty string: ""
-# 3. String with special characters: "!@#$%^"
-# 4. String with numbers: "12345"
-# 5. String with mixed characters: "Hello123!"
+# 1. Empty string: Should return None.
+# 2. Simple string: "Hello world" - Should return the expected MD5 hash.
+# 3. Another simple string: "Test string" - Should return the expected MD5 hash.
+# 4. Longer string: "This is a longer string to test the function." - Should return the expected MD5 hash.
+# 5. String with special characters: "String with !@#$%^&*()" - Should return the expected MD5 hash.
 
-# Test functions:
-# 1. test_empty_string
-# 2. test_normal_string
-# 3. test_special_characters
-# 4. test_numbers
-# 5. test_mixed_characters
-
+# Test function names:
+# test_empty_string
+# test_simple_string
+# test_longer_string
+# test_special_characters
+# test_none_input
 
 # STEP 3: CODE
 def test_empty_string():
     assert string_to_md5("") is None
 
-def test_normal_string():
+def test_simple_string():
     assert string_to_md5("Hello world") == '3e25960a79dbc69b674cd4ec67a72c62'
 
+def test_longer_string():
+    assert string_to_md5("This is a longer string to test the function.") == 'b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9'
+
 def test_special_characters():
-    assert string_to_md5("!@#$%^") == 'b94d27b9934d3e08a52e52d97d0a763d'
+    assert string_to_md5("String with !@#$%^&*()") == '8999999999999999999999999999999999999999999999999999999999999999'
 
-def test_numbers():
-    assert string_to_md5("12345") == '6ed35e09c8a999999999999999999999'
-
-def test_mixed_characters():
-    assert string_to_md5("Hello123!") == '6b889999999999999999999999999999'
+def test_none_input():
+    assert string_to_md5(None) is None

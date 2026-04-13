@@ -42,6 +42,7 @@ def words_in_sentence(sentence):
         * 1 <= len(sentence) <= 100
         * sentence contains only letters
     """
+    words = sentence.split()
     def is_prime(n):
         if n <= 1:
             return False
@@ -50,7 +51,6 @@ def words_in_sentence(sentence):
                 return False
         return True
 
-    words = sentence.split()
     result = []
     for word in words:
         if is_prime(len(word)):

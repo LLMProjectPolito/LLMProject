@@ -16,14 +16,11 @@ def even_odd_count(num):
     """
     even_count = 0
     odd_count = 0
-    num = abs(num)
-    if num == 0:
-        return (1, 0)
-    while num > 0:
-        digit = num % 10
+    num_str = str(abs(num))
+    for digit in num_str:
+        digit = int(digit)
         if digit % 2 == 0:
             even_count += 1
         else:
             odd_count += 1
-        num //= 10
     return (even_count, odd_count)

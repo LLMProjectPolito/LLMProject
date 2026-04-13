@@ -44,19 +44,19 @@ def sorted_list_sum(lst):
 def test_empty_list():
     assert sorted_list_sum([]) == []
 
-def test_all_odd_lengths():
-    assert sorted_list_sum(["a", "abc", "def"]) == []
+def test_list_with_only_odd_length_strings():
+    assert sorted_list_sum(["a", "abc", ""]) == []
 
-def test_single_even_length():
-    assert sorted_list_sum(["aa"]) == ["aa"]
+def test_list_with_only_even_length_strings():
+    assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
-def test_mixed_lengths_boundary():
+def test_list_with_mixed_length_strings():
     assert sorted_list_sum(["a", "aa", "aaa", "aaaa"]) == ["aa", "aaaa"]
 
-def test_duplicate_even_lengths():
-    assert sorted_list_sum(["aa", "bb", "aa"]) == ["aa", "aa", "bb"]
+def test_list_with_duplicate_even_length_strings():
+    assert sorted_list_sum(["aa", "aa", "bb"]) == ["aa", "aa", "bb"]
 
-def test_same_length_alphabetical():
+def test_list_with_same_length_strings_different_alphabetical_order():
     assert sorted_list_sum(["cb", "ab"]) == ["ab", "cb"]
 
 # Focus: Equivalence Partitioning
@@ -77,23 +77,21 @@ def sorted_list_sum(lst):
     assert list_sort(["aa", "a", "aaa"]) => ["aa"]
     assert list_sort(["ab", "a", "aaa", "cd"]) => ["ab", "cd"]
     """
-    even_length_strings = [s for s in lst if len(s) % 2 == 0]
-    even_length_strings.sort(key=lambda s: (len(s), s))
-    return even_length_strings
+    new_lst = [s for s in lst if len(s) % 2 == 0]
+    new_lst.sort(key=lambda s: (len(s), s))
+    return new_lst
 
-@pytest.mark.parametrize("lst, expected", [
-    (["aa", "a", "aaa"], ["aa"]),
-    (["ab", "a", "aaa", "cd"], ["ab", "cd"]),
-    (["abc", "def", "ghi"], []),
-    (["abcd", "efgh", "ijkl"], ["abcd", "efgh", "ijkl"]),
-    (["bb", "aa", "dd", "cc"], ["aa", "bb", "cc", "dd"]),
-    (["", "a", "aa"], ["aa"]),
-    ([], []),
-    (["aaaa", "bbbb", "cccc"], ["aaaa", "bbbb", "cccc"]),
-    (["aaaa", "bbbb", "cccc", "aa"], ["aa", "aaaa", "bbbb", "cccc"])
-])
-def test_equivalence_partitioning(lst, expected):
-    assert sorted_list_sum(lst) == expected
+def test_equivalence_partitioning_even_lengths():
+    """Test case with only even length strings."""
+    assert sorted_list_sum(["aa", "bb", "cc", "dd"]) == ["aa", "bb", "cc", "dd"]
+
+def test_equivalence_partitioning_odd_lengths():
+    """Test case with only odd length strings."""
+    assert sorted_list_sum(["a", "b", "c", "d"]) == []
+
+def test_equivalence_partitioning_mixed_lengths():
+    """Test case with a mix of even and odd length strings."""
+    assert sorted_list_sum(["aa", "a", "aaa", "bb", "b"]) == ["aa", "bb"]
 
 # Focus: Logic Branches
 import pytest

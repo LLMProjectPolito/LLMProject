@@ -20,8 +20,7 @@ def even_odd_count(num):
     even_count = 0
     odd_count = 0
     for digit in str(abs(num)):
-        digit = int(digit)
-        if digit % 2 == 0:
+        if int(digit) % 2 == 0:
             even_count += 1
         else:
             odd_count += 1
@@ -44,6 +43,3 @@ def test_negative_odd():
 
 def test_mixed_positive():
     assert even_odd_count(12345) == (2, 3)
-
-def test_mixed_negative():
-    assert even_odd_count(-12345) == (2, 3)

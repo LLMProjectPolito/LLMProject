@@ -42,10 +42,10 @@ def test_empty_list():
 def test_single_element_list():
     assert list_sort(["a"]) == ["a"]
 
-def test_example_case1():
+def test_example_case_1():
     assert list_sort(["aa", "a", "aaa"]) == ["aa"]
 
-def test_example_case2():
+def test_example_case_2():
     assert list_sort(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
 def test_duplicate_elements():

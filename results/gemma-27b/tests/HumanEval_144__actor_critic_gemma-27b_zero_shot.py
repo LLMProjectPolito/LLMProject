@@ -27,88 +27,66 @@ def simplify(x, n):
     simplify("1/6", "2/1") = False
     simplify("7/10", "10/2") = False
     """
-    x_num, x_den = map(int, x.split('/'))
-    n_num, n_den = map(int, n.split('/'))
+    try:
+        x_num, x_den = map(int, x.split('/'))
+        n_num, n_den = map(int, n.split('/'))
+    except ValueError:
+        return False
+
+    if x_den == 0 or n_den == 0:
+        return False
 
     result_num = x_num * n_num
     result_den = x_den * n_den
 
-    return result_num % result_den == 0
+    gcd = math.gcd(result_num, result_den)
+    simplified_num = result_num // gcd
+    simplified_den = result_den // gcd
 
-def gcd(a, b):
-    """Calculate the greatest common divisor of a and b."""
-    while(b):
-        a, b = b, a % b
-    return a
+    return simplified_num % simplified_den == 0
 
-def simplify_with_gcd(x, n):
-    """Simplifies fractions using GCD before multiplication."""
-    x_num, x_den = map(int, x.split('/'))
-    n_num, n_den = map(int, n.split('/'))
-
-    common_divisor = gcd(x_num, x_den)
-    x_num //= common_divisor
-    x_den //= common_divisor
-
-    common_divisor = gcd(n_num, n_den)
-    n_num //= common_divisor
-    n_den //= common_divisor
-
-    result_num = x_num * n_num
-    result_den = x_den * n_den
-
-    return result_num % result_den == 0
-
-def test_basic_cases():
+def test_simplify_true_case1():
     assert simplify("1/5", "5/1") == True
-    assert simplify("2/3", "3/2") == True
-    assert simplify("1/1", "1/1") == True
-    assert simplify("4/2", "1/2") == True
 
-def test_false_cases():
+def test_simplify_false_case1():
     assert simplify("1/6", "2/1") == False
+
+def test_simplify_false_case2():
     assert simplify("7/10", "10/2") == False
-    assert simplify("1/3", "1/2") == False
-    assert simplify("2/5", "1/3") == False
 
-def test_reciprocal_cases():
-    assert simplify("5/1", "1/5") == True
-    assert simplify("2/1", "1/2") == True
+def test_simplify_true_case2():
+    assert simplify("2/3", "3/1") == True
 
-def test_fractions_that_simplify_to_whole_numbers():
-    assert simplify("2/4", "2/1") == True
-    assert simplify("6/3", "1/2") == True
-    assert simplify("9/3", "1/3") == True
+def test_simplify_true_case3():
+    assert simplify("4/5", "5/4") == True
 
-def test_large_numbers():
-    assert simplify("1000/1", "1/1000") == True
-    assert simplify("1000/2", "2/1000") == True
-    assert simplify("1000/3", "3/1000") == False
-    assert simplify("10000/5", "5/10000") == True
-    assert simplify("10000/7", "7/10000") == False
+def test_simplify_false_case3():
+    assert simplify("1/2", "1/3") == False
 
-def test_overflow_potential():
-    assert simplify("999999999/1", "1/999999999") == True
-    assert simplify("999999999/2", "2/999999999") == False
-    assert simplify("1234567890/1", "1/1234567890") == True
-    assert simplify("1234567890/2", "2/1234567890") == False
+def test_simplify_true_case4():
+    assert simplify("6/4", "4/6") == True
 
-def test_gcd_simplification():
-    assert simplify_with_gcd("2/4", "2/1") == True
-    assert simplify_with_gcd("6/3", "1/2") == True
-    assert simplify_with_gcd("9/3", "1/3") == True
-    assert simplify_with_gcd("10/2", "3/1") == True
+def test_simplify_true_case5():
+    assert simplify("1/1", "1/1") == True
 
-def test_gcd_large_numbers():
-    assert simplify_with_gcd("1000/200", "1/1") == True
-    assert simplify_with_gcd("123456/1234", "1/1") == True
+def test_simplify_true_case6():
+    assert simplify("100/10", "10/1") == True
 
-def test_input_validation():
-    with pytest.raises(ValueError):
-        simplify("1/a", "1/1")
-    with pytest.raises(ValueError):
-        simplify("1/1", "1/b")
-    with pytest.raises(ValueError):
-        simplify("1", "1/1")
-    with pytest.raises(ValueError):
-        simplify("1/1", "1")
+def test_simplify_false_case4():
+    assert simplify("101/10", "10/1") == False
+
+def test_simplify_false_case5():
+    assert simplify("2/5", "5/4") == False
+
+def test_simplify_zero_numerator():
+    assert simplify("0/5", "5/1") == True
+
+def test_simplify_large_numbers():
+    assert simplify("1000/10", "100/1") == True
+    assert simplify("1001/10", "10/1") == False
+
+def test_simplify_invalid_input_non_numeric():
+    assert simplify("a/2", "2/1") == False
+
+def test_simplify_invalid_input_zero_denominator():
+    assert simplify("1/0", "2/1") == False

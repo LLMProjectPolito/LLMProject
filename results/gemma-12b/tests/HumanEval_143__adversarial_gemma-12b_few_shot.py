@@ -22,15 +22,6 @@ def words_in_sentence(sentence):
 
 import pytest
 
-def is_prime(n):
-    """Helper function to check if a number is prime."""
-    if n <= 1:
-        return False
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0:
-            return False
-    return True
-
 def words_in_sentence(sentence):
     """
     You are given a string representing a sentence,
@@ -51,44 +42,51 @@ def words_in_sentence(sentence):
         * 1 <= len(sentence) <= 100
         * sentence contains only letters
     """
+    def is_prime(n):
+        if n <= 1:
+            return False
+        for i in range(2, int(n**0.5) + 1):
+            if n % i == 0:
+                return False
+        return True
+
     words = sentence.split()
     prime_words = [word for word in words if is_prime(len(word))]
     return " ".join(prime_words)
 
 
-class TestWordsInSentence:
-    def test_basic_case(self):
-        assert words_in_sentence("This is a test") == "is"
+def test_words_in_sentence_example1():
+    assert words_in_sentence("This is a test") == "is"
 
-    def test_another_basic_case(self):
-        assert words_in_sentence("lets go for swimming") == "go for"
+def test_words_in_sentence_example2():
+    assert words_in_sentence("lets go for swimming") == "go for"
 
-    def test_empty_sentence(self):
-        assert words_in_sentence("") == ""
+def test_words_in_sentence_empty():
+    assert words_in_sentence("") == ""
 
-    def test_no_prime_length_words(self):
-        assert words_in_sentence("hello world") == ""
+def test_words_in_sentence_no_primes():
+    assert words_in_sentence("hello world") == ""
 
-    def test_all_prime_length_words(self):
-        assert words_in_sentence("a is be do") == "a is be do"
+def test_words_in_sentence_all_primes():
+    assert words_in_sentence("a bb ccc dddd") == "a bb ccc"
 
-    def test_mixed_prime_and_non_prime(self):
-        assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the fox"
+def test_words_in_sentence_leading_trailing_spaces():
+    assert words_in_sentence("  a bb ccc dddd  ") == "a bb ccc"
 
-    def test_sentence_with_leading_and_trailing_spaces(self):
-        assert words_in_sentence("  hello world  ") == "world"
+def test_words_in_sentence_multiple_spaces():
+    assert words_in_sentence("a  bb   ccc") == "a bb ccc"
 
-    def test_sentence_with_multiple_spaces(self):
-        assert words_in_sentence("hello   world") == "world"
+def test_words_in_sentence_single_prime():
+    assert words_in_sentence("a b c d e") == "a"
 
-    def test_sentence_with_single_prime_word(self):
-        assert words_in_sentence("a b c d e") == "a"
+def test_words_in_sentence_long_sentence():
+    assert words_in_sentence("This is a very long sentence with some prime length words") == "is a very long sentence"
 
-    def test_sentence_with_long_prime_length_words(self):
-        assert words_in_sentence("this is a very long prime word") == "is a"
+def test_words_in_sentence_prime_at_end():
+    assert words_in_sentence("hello world a") == "a"
 
-    def test_sentence_with_numbers_in_words(self):
-        assert words_in_sentence("word1 word2 word3") == "" #Numbers are not letters
+def test_words_in_sentence_prime_at_beginning():
+    assert words_in_sentence("a hello world") == "a"
 
-    def test_sentence_with_special_characters(self):
-        assert words_in_sentence("word! word@ word#") == "" #Special characters are not letters
+def test_words_in_sentence_mixed_case():
+    assert words_in_sentence("This Is A Test") == "Is A"

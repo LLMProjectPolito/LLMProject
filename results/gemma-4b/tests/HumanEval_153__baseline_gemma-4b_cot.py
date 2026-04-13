@@ -81,8 +81,8 @@ def test_extension_with_all_lowercase():
 def test_extension_with_empty_string():
     assert Strongest_Extension("my_class", [""]) == "my_class."
 
-def test_class_name_with_numbers():
-    assert Strongest_Extension("123class", ["AA"]) == "123class.AA"
-
 def test_class_name_with_special_characters():
-    assert Strongest_Extension("class!", ["AA"]) == "class!.AA"
+    assert Strongest_Extension("my_class!", ["AA"]) == "my_class!.AA"
+
+def test_class_name_with_numbers():
+    assert Strongest_Extension("my_class1", ["AA"]) == "my_class1.AA"

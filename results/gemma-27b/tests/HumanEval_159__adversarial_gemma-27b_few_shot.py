@@ -85,10 +85,19 @@ def test_eat_enough_remaining():
     assert eat(5, 6, 6) == [11, 0]
 
 def test_eat_exactly_enough():
-    assert eat(5, 6, 1) == [6, 0]
+    assert eat(5, 5, 5) == [10, 0]
 
 def test_eat_empty_remaining():
     assert eat(5, 6, 0) == [5, 0]
+
+def test_eat_zero_initial():
+    assert eat(0, 5, 10) == [5, 5]
+
+def test_eat_zero_need():
+    assert eat(10, 0, 5) == [10, 5]
+
+def test_eat_zero_remaining():
+    assert eat(10, 5, 0) == [10, 0]
 
 def test_eat_large_numbers():
     assert eat(500, 500, 1000) == [1000, 500]
@@ -96,16 +105,7 @@ def test_eat_large_numbers():
 def test_eat_large_need():
     assert eat(100, 1000, 500) == [600, 0]
 
-def test_eat_zero_initial():
-    assert eat(0, 5, 10) == [5, 5]
-
-def test_eat_zero_remaining():
-    assert eat(5, 5, 0) == [5, 0]
-
-def test_eat_zero_need_zero_remaining():
-    assert eat(5, 0, 0) == [5, 0]
-
-def test_eat_max_values():
+def test_eat_max_constraints():
     assert eat(1000, 1000, 1000) == [2000, 0]
 
 def test_eat_need_equals_remaining():

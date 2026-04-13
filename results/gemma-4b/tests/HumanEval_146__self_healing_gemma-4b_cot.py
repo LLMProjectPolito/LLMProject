@@ -53,17 +53,15 @@ def test_large_numbers():
 def test_numbers_with_zero():
     assert specialFilter([101, 202, 303]) == 0
 
-def test_all_odd_numbers():
-    assert specialFilter([11, 13, 15, 17, 19]) == 0
+def test_all_odd_digits():
+    assert specialFilter([111, 333, 555]) == 0
 
-def test_all_even_numbers_greater_than_10():
-    assert specialFilter([12, 14, 16, 18, 20]) == 0
+def test_all_even_digits():
+    assert specialFilter([222, 444, 666]) == 0
 
-def test_complex_case():
-    assert specialFilter([111, 131, 151, 171, 191, 212, 333, 353, 373, 393]) == 2
-
-def test_duplicate_numbers():
-    assert specialFilter([15, 15, 15]) == 1
-
-def test_mixed_signs_and_values():
-    assert specialFilter([-15, 15, -33, 33]) == 2
+def test_edge_cases():
+    assert specialFilter([11, 13, 15, 17, 19]) == 5
+    assert specialFilter([19, 17, 15, 13, 11]) == 5
+    assert specialFilter([11111, 13333, 15555, 17777, 19999]) == 5
+    assert specialFilter([91, 73, 55, 37, 19]) == 5
+    assert specialFilter([99, 77, 55, 33, 11]) == 0

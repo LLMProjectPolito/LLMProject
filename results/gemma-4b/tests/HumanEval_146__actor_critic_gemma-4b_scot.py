@@ -63,7 +63,7 @@ def test_specialFilter_negative_numbers():
     assert specialFilter([-15, -21, -33, -45, -55, -67, -79, -81, -93]) == 5
 
 def test_specialFilter_mixed_numbers():
-    assert specialFilter([15, -73, 14, -15, 21, -33, 45, -55, 67, -79]) == 4
+    assert specialFilter([15, -73, 14, -15, 21, -33, 45, -55, 67, -79, 81, -93]) == 4
 
 def test_specialFilter_numbers_less_than_10():
     assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 0
@@ -81,4 +81,4 @@ def test_specialFilter_single_digit_negative():
     assert specialFilter([-1, -3, -5, -7, -9]) == 0
 
 def test_specialFilter_complex_case():
-    assert specialFilter([15, -73, 14, -15, 21, -33, 45, -55, 67, -79, 101, -101]) == 4
+    assert specialFilter([15, -73, 14, -15, 21, -33, 45, -55, 67, -79, 81, -93, 111, 222, 333]) == 4

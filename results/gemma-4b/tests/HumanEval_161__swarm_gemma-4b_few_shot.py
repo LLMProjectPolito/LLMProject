@@ -23,9 +23,3 @@ def solve(s):
 
 def test_solve_no_letters():
     assert solve("1234") == "4321"
-
-def test_solve_no_letters_2():
-    assert solve("1234") == "4321"
-
-def test_solve_no_letters_3():
-    assert solve("1234") == "4321"

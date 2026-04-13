@@ -43,18 +43,16 @@ def file_name_check(file_name):
         if char.isdigit():
             digits += 1
     
-    dot_count = file_name.count('.')
+    dot_count = prefix.count('.')
     
     if digits > 3 or dot_count != 1:
         return 'No'
     
-    if not prefix:
+    if not prefix or not 'a' <= prefix[0] <= 'z' or not 'A' <= prefix[0] <= 'Z':
         return 'No'
     
-    if not 'a' <= prefix[0] <= 'z' and not 'A' <= prefix[0] <= 'Z':
-        return 'No'
-    
-    if suffix not in ['txt', 'exe', 'dll']:
+    valid_suffixes = ['txt', 'exe', 'dll']
+    if suffix not in valid_suffixes:
         return 'No'
     
     return 'Yes'
@@ -69,10 +67,10 @@ def test_valid_file_name_with_more_than_three_digits():
     assert file_name_check("example1234.txt") == 'No'
 
 def test_no_dot():
-    assert file_name_check("example.txt") == 'No'
+    assert file_name_check("example") == 'No'
 
 def test_multiple_dots():
-    assert file_name_check("example.a.txt") == 'No'
+    assert file_name_check("example..txt") == 'No'
 
 def test_starts_with_digit():
     assert file_name_check("1example.txt") == 'No'
@@ -80,29 +78,32 @@ def test_starts_with_digit():
 def test_empty_prefix():
     assert file_name_check(".txt") == 'No'
 
-def test_suffix_not_allowed():
+def test_prefix_with_numbers():
+    assert file_name_check("123example.txt") == 'No'
+
+def test_invalid_suffix():
     assert file_name_check("example.pdf") == 'No'
 
-def test_valid_file_name_with_uppercase():
-    assert file_name_check("Example.txt") == 'Yes'
+def test_invalid_suffix_with_numbers():
+    assert file_name_check("example.123") == 'No'
 
-def test_valid_file_name_with_mixed_case():
-    assert file_name_check("ExAmple.txt") == 'Yes'
+def test_prefix_with_special_characters():
+    assert file_name_check("example!@#.txt") == 'No'
 
-def test_valid_file_name_with_numbers_and_letters():
-    assert file_name_check("example123.txt") == 'Yes'
+def test_prefix_with_underscore():
+    assert file_name_check("example_name.txt") == 'No'
 
-def test_valid_file_name_with_numbers_and_letters_and_uppercase():
-    assert file_name_check("ExAmple123.txt") == 'Yes'
+def test_prefix_with_hyphen():
+    assert file_name_check("example-name.txt") == 'No'
 
-def test_invalid_prefix_character():
-    assert file_name_check("!example.txt") == 'No'
+def test_prefix_with_space():
+    assert file_name_check("example name.txt") == 'No'
 
-def test_invalid_prefix_character_uppercase():
-    assert file_name_check("1Example.txt") == 'No'
+def test_empty_suffix():
+    assert file_name_check("example.") == 'No'
 
-def test_valid_file_name_with_special_characters():
-    assert file_name_check("example.txt") == 'Yes'
+def test_suffix_with_numbers():
+    assert file_name_check("example.123") == 'No'
 
-def test_valid_file_name_with_special_characters_and_numbers():
-    assert file_name_check("example123.txt") == 'Yes'
+def test_long_file_name():
+    assert file_name_check("a" * 200 + ".txt") == 'No'

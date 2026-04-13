@@ -53,26 +53,26 @@ class TestSimplify:
     def test_large_numbers_false(self):
         assert simplify("100/3", "3/100") == False
 
-    def test_mixed_numbers_true(self):
+    def test_same_numerator_different_denominator_true(self):
         assert simplify("2/3", "3/2") == True
 
-    def test_mixed_numbers_false(self):
-        assert simplify("2/5", "5/3") == False
+    def test_different_numerator_same_denominator_false(self):
+        assert simplify("2/5", "3/5") == False
 
-    def test_same_numerator_different_denominator(self):
-        assert simplify("1/2", "2/1") == True
+    def test_numerator_1(self):
+        assert simplify("1/2", "4/1") == True
 
-    def test_different_numerator_same_denominator(self):
-        assert simplify("1/2", "3/2") == False
+    def test_denominator_1(self):
+        assert simplify("5/1", "1/2") == False
+
+    def test_mixed_numbers_as_fractions(self):
+        assert simplify("3/4", "8/3") == False
 
     def test_edge_case_1(self):
-        assert simplify("1/1000", "1000/1") == True
+        assert simplify("1/2", "1/2") == True
 
     def test_edge_case_2(self):
-        assert simplify("1/999", "999/1") == False
+        assert simplify("2/4", "4/2") == True
 
     def test_edge_case_3(self):
-        assert simplify("2/7", "7/2") == True
-
-    def test_edge_case_4(self):
-        assert simplify("3/11", "11/3") == False
+        assert simplify("3/6", "6/3") == True

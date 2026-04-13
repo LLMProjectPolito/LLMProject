@@ -74,34 +74,42 @@ def test_is_palindrome_basic():
 def test_is_palindrome_empty():
     assert is_palindrome('') == True
 
-def test_get_max_positive():
+def test_is_palindrome_case_insensitive():
+    assert is_palindrome('Racecar') == True
+
+def test_is_palindrome_with_spaces():
+    assert is_palindrome('A man a plan a canal Panama') == False
+
+def test_max_positive():
     assert get_max([1, 2, 3]) == 3
 
-def test_get_max_empty():
+def test_max_empty():
     assert get_max([]) == None
+
+def test_max_negative():
+    assert get_max([-1, -2, -3]) == -1
+
+def test_max_mixed():
+    assert get_max([-1, 2, -3, 4]) == 4
 
 def test_file_name_check_valid():
     assert file_name_check("example.txt") == 'Yes'
-    assert file_name_check("test.dll") == 'Yes'
-    assert file_name_check("valid_name.txt") == 'Yes'
+    assert file_name_check("my_file.dll") == 'Yes'
+    assert file_name_check("document.exe") == 'Yes'
 
 def test_file_name_check_invalid_digits():
     assert file_name_check("123example.txt") == 'No'
-    assert file_name_check("abc123.txt") == 'No'
+    assert file_name_check("abc123def.txt") == 'No'
 
 def test_file_name_check_invalid_dot():
-    assert file_name_check("example.") == 'No'
-    assert file_name_check("example..txt") == 'No'
+    assert file_name_check("example.txt.bak") == 'No'
+    assert file_name_check("example.txt,bak") == 'No'
 
 def test_file_name_check_invalid_before_dot():
     assert file_name_check("1example.txt") == 'No'
-    assert file_name_check("1example") == 'No'
-    assert file_name_check("1") == 'No'
+    assert file_name_check("abc.txt") == 'No'
+    assert file_name_check("!example.txt") == 'No'
 
 def test_file_name_check_invalid_after_dot():
     assert file_name_check("example.pdf") == 'No'
     assert file_name_check("example.jpg") == 'No'
-
-def test_file_name_check_invalid_name():
-    assert file_name_check("example.txt.txt") == 'No'
-    assert file_name_check("example.txt ") == 'No'

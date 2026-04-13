@@ -76,20 +76,17 @@ class TestWordsInSentence:
     def test_multiple_words_no_prime(self):
         assert words_in_sentence("abcd efgh ijkl") == ""
 
-    def test_sentence_with_leading_and_trailing_spaces(self):
-        assert words_in_sentence("  This is a test  ") == "is"
+    def test_sentence_with_prime_words(self):
+        assert words_in_sentence("lets go for swimming") == "go for"
 
-    def test_sentence_with_multiple_spaces(self):
-        assert words_in_sentence("This   is  a    test") == "is"
+    def test_sentence_with_mixed_prime_and_non_prime(self):
+        assert words_in_sentence("hello world python") == "world python"
 
-    def test_prime_length_words_at_start_and_end(self):
-        assert words_in_sentence("abc def ghi") == "abc def"
+    def test_sentence_with_long_words(self):
+        assert words_in_sentence("a very long sentence") == "very long"
 
-    def test_long_sentence_with_prime_words(self):
-        assert words_in_sentence("This is a very long sentence with some prime words") == "is"
+    def test_sentence_with_numbers(self):
+        assert words_in_sentence("one two three") == "two three"
 
-    def test_sentence_with_only_non_prime_words(self):
-        assert words_in_sentence("abcdefghijklm") == ""
-
-    def test_sentence_with_mixed_prime_and_non_prime_words(self):
-        assert words_in_sentence("apple banana cherry date") == "banana"
+    def test_sentence_with_special_characters(self):
+        assert words_in_sentence("a! b@ c#") == "b@ c#"

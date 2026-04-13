@@ -47,19 +47,17 @@ def test_simplify_true():
 def test_simplify_false():
     assert simplify("1/6", "2/1") == False
     assert simplify("7/10", "10/2") == False
-    assert simplify("3/4", "5/1") == False
     assert simplify("1/2", "3/1") == False
+    assert simplify("5/7", "10/1") == False
 
 def test_simplify_edge_cases():
     assert simplify("1/1", "1/1") == True
-    assert simplify("1/1", "2/1") == False
-    assert simplify("2/1", "1/1") == True
+    assert simplify("1/1", "1/2") == False
+    assert simplify("1/2", "1/1") == False
     assert simplify("100/1", "1/1") == True
     assert simplify("1/100", "1/1") == False
-    assert simplify("1/2", "1/2") == True
-    assert simplify("1/2", "1/3") == False
-
-def test_simplify_large_numbers():
-    assert simplify("1000/100", "100/1") == True
-    assert simplify("1000/101", "100/1") == False
-    assert simplify("123456789/987654321", "10/1") == False
+    assert simplify("1/1", "1/100") == False
+    assert simplify("100/1", "100/1") == True
+    assert simplify("100/100", "1/1") == True
+    assert simplify("1/1000", "1000/1") == True
+    assert simplify("1000/1", "1/1000") == True

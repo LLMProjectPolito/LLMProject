@@ -27,7 +27,7 @@ def test_long_string():
     assert isinstance(result, str)
     assert len(result) == 32
 
-def test_long_string_large():
+def test_very_long_string():
     long_string = "a" * 100000
     expected_md5 = hashlib.md5(long_string.encode()).hexdigest()
     assert string_to_md5(long_string) == expected_md5

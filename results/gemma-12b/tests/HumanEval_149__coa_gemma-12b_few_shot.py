@@ -47,4 +47,4 @@ def test_all_odd_length_strings():
     assert sorted_list_sum(["a", "bc", "def"]) == []
 
 def test_mixed_odd_even_length_strings():
-    assert sorted_list_sum(["aa", "a", "aaa", "bb", "c"]) == ["aa", "bb", "c"]
+    assert sorted_list_sum(["aa", "a", "aaa", "bb", "c"]) == ["aa", "bb", "aaa"]

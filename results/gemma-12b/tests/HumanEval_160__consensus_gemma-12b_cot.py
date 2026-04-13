@@ -45,8 +45,8 @@ def test_multiplication():
 
 def test_floor_division():
     operator = ['//']
-    operand = [8, 2]
-    assert do_algebra(operator, operand) == 4
+    operand = [10, 2]
+    assert do_algebra(operator, operand) == 5
 
 def test_exponentiation():
     operator = ['**']
@@ -60,51 +60,46 @@ def test_addition_multiplication():
 
 def test_subtraction_division():
     operator = ['-', '//']
-    operand = [10, 2, 5]
-    assert do_algebra(operator, operand) == 0
+    operand = [10, 2, 3]
+    assert do_algebra(operator, operand) == 2
 
 def test_multiplication_exponentiation():
     operator = ['*', '**']
     operand = [2, 3, 2]
-    assert do_algebra(operator, operand) == 36
+    assert do_algebra(operator, operand) == 32
 
 def test_complex_expression():
     operator = ['+', '*', '-', '//']
     operand = [2, 3, 4, 5, 2]
     assert do_algebra(operator, operand) == 7
 
-def test_long_expression():
-    operator = ['+', '*', '-', '//', '**']
-    operand = [1, 2, 3, 4, 5, 2]
-    assert do_algebra(operator, operand) == 27
+def test_large_numbers():
+    operator = ['*']
+    operand = [1000, 2000]
+    assert do_algebra(operator, operand) == 2000000
 
 def test_zero_operand():
     operator = ['+']
-    operand = [0, 0]
-    assert do_algebra(operator, operand) == 0
+    operand = [0, 5]
+    assert do_algebra(operator, operand) == 5
 
-def test_large_numbers():
-    operator = ['*']
-    operand = [1000, 1000]
-    assert do_algebra(operator, operand) == 1000000
+def test_multiple_operators():
+    operator = ['+', '-', '*', '//']
+    operand = [1, 2, 3, 4, 5]
+    assert do_algebra(operator, operand) == -1
 
-def test_mixed_operators():
-    operator = ['+', '-', '*', '//', '**']
-    operand = [1, 2, 3, 4, 5, 6]
-    assert do_algebra(operator, operand) == 17
+def test_exponentiation_with_zero():
+    operator = ['**']
+    operand = [5, 0]
+    assert do_algebra(operator, operand) == 1
 
-def test_single_operand_list():
-    operator = ['+']
-    operand = [5, 5]
-    assert do_algebra(operator, operand) == 10
+def test_floor_division_with_zero():
+    operator = ['//']
+    operand = [5, 0]
+    with pytest.raises(ZeroDivisionError):
+        do_algebra(operator, operand)
 
 def test_negative_result():
     operator = ['-']
     operand = [2, 5]
     assert do_algebra(operator, operand) == -3
-
-def test_floor_division_zero():
-    operator = ['//']
-    operand = [5, 0]
-    with pytest.raises(ZeroDivisionError):
-        do_algebra(operator, operand)

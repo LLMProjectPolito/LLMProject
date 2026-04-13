@@ -60,6 +60,9 @@ def test_max_positive():
 def test_max_empty():
     assert get_max([]) == None
 
+def test_sorted_list_sum_empty():
+    assert sorted_list_sum([]) == []
+
 def test_sorted_list_sum_basic():
     assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
 
@@ -72,8 +75,5 @@ def test_sorted_list_sum_duplicates():
 def test_sorted_list_sum_same_length():
     assert sorted_list_sum(["abc", "def", "ghi"]) == ["abc", "def", "ghi"]
 
-def test_sorted_list_sum_empty_input():
-    assert sorted_list_sum([]) == []
-
-def test_sorted_list_sum_all_odd():
-    assert sorted_list_sum(["abc", "def", "ghi"]) == []
+def test_sorted_list_sum_longer():
+    assert sorted_list_sum(["abcdef", "ghi", "jklm"]) == ["abcdef", "ghi", "jklm"]

@@ -56,20 +56,15 @@ def test_invalid_file_name_invalid_extension():
     assert file_name_check("MyFile.jpg") == "No"
     assert file_name_check("AnotherFile.png") == "No"
 
-def test_invalid_file_name_starts_with_special_character():
-    assert file_name_check("!example.txt") == "No"
-    assert file_name_check("@MyFile.exe") == "No"
-    assert file_name_check("#AnotherFile.dll") == "No"
+def test_invalid_file_name_starts_with_special_char():
+    assert file_name_check("_example.txt") == "No"
+    assert file_name_check("!MyFile.exe") == "No"
+    assert file_name_check("@AnotherFile.dll") == "No"
 
 def test_invalid_file_name_empty_string():
     assert file_name_check("") == "No"
 
-def test_valid_file_name_with_uppercase():
-    assert file_name_check("Example.txt") == "Yes"
-    assert file_name_check("MYFILE.exe") == "Yes"
-    assert file_name_check("ANOTHERFILE.dll") == "Yes"
-
-def test_valid_file_name_with_mixed_case():
-    assert file_name_check("ExAmPlE.txt") == "Yes"
-    assert file_name_check("MyFiLe.exe") == "Yes"
-    assert file_name_check("AnOtHeRfIlE.dll") == "Yes"
+def test_invalid_file_name_extension_uppercase():
+    assert file_name_check("example.TXT") == "No"
+    assert file_name_check("MyFile.EXE") == "No"
+    assert file_name_check("AnotherFile.DLL") == "No"

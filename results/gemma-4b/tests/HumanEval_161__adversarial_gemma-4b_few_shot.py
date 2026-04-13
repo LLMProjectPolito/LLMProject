@@ -52,29 +52,30 @@ def test_is_palindrome_basic():
     assert is_palindrome('hello') == False
     assert is_palindrome('') == True
     assert is_palindrome('A man, a plan, a canal: Panama') == True
-    assert is_palindrome('Race car') == True
+    assert is_palindrome('Racecar') == True
     assert is_palindrome('Was it a car or a cat I saw?') == True
 
 def test_is_palindrome_case_insensitive():
     assert is_palindrome('RaDaR') == True
-    assert is_palindrome('Hello') == False
+    assert is_palindrome('RaceCar') == True
 
-def test_is_palindrome_with_spaces():
-    assert is_palindrome('race car') == False
+def test_is_palindrome_with_spaces_and_punctuation():
+    assert is_palindrome('A man, a plan, a canal: Panama') == True
+    assert is_palindrome('Racecar!') == True
 
 def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
     assert get_max([3, 2, 1]) == 3
     assert get_max([1, 3, 2]) == 3
+    assert get_max([-1, -2, -3]) == -1
 
 def test_get_max_empty():
     assert get_max([]) == None
 
-def test_get_max_negative():
-    assert get_max([-1, -2, -3]) == -1
-    assert get_max([-1, -2, 3]) == 3
+def test_get_max_single_element():
+    assert get_max([5]) == 5
 
-def test_get_max_mixed():
+def test_get_max_negative_and_positive():
     assert get_max([-1, 2, -3, 4]) == 4
 
 def test_solve_no_letters():
@@ -87,16 +88,19 @@ def test_solve_uppercase():
     assert solve("#a@C") == "#A@c"
 
 def test_solve_mixed_case():
-    assert solve("HeLlo") == "HELlo"
+    assert solve("HeLlo") == "hELLO"
 
-def test_solve_with_symbols():
-    assert solve("!@#$") == "$#@!"
+def test_solve_with_spaces():
+    assert solve("Hello World") == "dLoRw OlleH"
+
+def test_solve_with_punctuation():
+    assert solve("Hello, World!") == "!dlroW ,olleH"
 
 def test_solve_empty_string():
     assert solve("") == ""
 
-def test_solve_complex_string():
-    assert solve("aBcDeFg") == "AbCdEfG"
+def test_solve_special_characters():
+    assert solve("!@#$%^") == "^%$#@!"
 
-def test_solve_string_with_spaces():
-    assert solve("  a b c  ") == "  C B A  "
+def test_solve_mixed_characters():
+    assert solve("a1b2c3d") == "D3C2B1a"

@@ -20,8 +20,6 @@ def words_in_sentence(sentence):
         * sentence contains only letters
     """
 
-import pytest
-
 def is_prime(n):
     if n <= 1:
         return False
@@ -80,6 +78,3 @@ def test_words_in_sentence_leading_and_trailing_spaces():
 
 def test_words_in_sentence_multiple_spaces():
     assert words_in_sentence("a  b   c") == "a b c"
-
-def test_words_in_sentence_long_sentence():
-    assert words_in_sentence("This is a very long sentence with many words of varying lengths to test the function thoroughly") == "is a very long sentence with many words to test the function"

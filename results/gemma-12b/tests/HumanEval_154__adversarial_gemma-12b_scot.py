@@ -43,9 +43,6 @@ class TestCycpatterCheck:
     def test_rotation_true(self):
         assert cycpattern_check("abab", "baa") == True
 
-    def test_rotation_false(self):
-        assert cycpattern_check("whassup", "psus") == False
-
     def test_empty_a(self):
         assert cycpattern_check("", "abc") == False
 
@@ -65,4 +62,10 @@ class TestCycpatterCheck:
         assert cycpattern_check("abcabc", "bca") == True
 
     def test_complex_rotation(self):
-        assert cycpattern_check("efef", "eeff") == False
+        assert cycpattern_check("xyzabc", "cab") == True
+
+    def test_special_characters(self):
+        assert cycpattern_check("!@#abc", "#abc") == True
+
+    def test_unicode_characters(self):
+        assert cycpattern_check("你好世界", "界世") == True

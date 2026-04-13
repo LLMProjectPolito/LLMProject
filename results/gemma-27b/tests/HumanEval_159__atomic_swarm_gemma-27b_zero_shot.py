@@ -71,8 +71,8 @@ def eat(number, need, remaining):
     """
     eaten = min(need, remaining)
     total_eaten = number + eaten
-    left = remaining - eaten
-    return [total_eaten, left]
+    remaining_carrots = remaining - eaten
+    return [total_eaten, remaining_carrots]
 
-def test_remaining_zero():
+def test_remaining_is_zero():
     assert eat(5, 6, 0) == [5, 0]

@@ -100,10 +100,11 @@ class TestWordsInSentence:
     def test_sentence_with_only_spaces(self):
         assert words_in_sentence("   ") == ""
 
-    def test_sentence_with_numbers(self):
-        with pytest.raises(TypeError):
-            words_in_sentence("123 abc")
+    def test_sentence_with_prime_and_non_prime_adjacent(self):
+        assert words_in_sentence("two three five") == "two five"
 
-    def test_sentence_with_special_characters(self):
-        with pytest.raises(TypeError):
-            words_in_sentence("hello! world?")
+    def test_sentence_with_same_word_multiple_times(self):
+        assert words_in_sentence("two two three") == "two two"
+
+    def test_sentence_with_long_prime_word(self):
+        assert words_in_sentence("programming is fun") == "programming"

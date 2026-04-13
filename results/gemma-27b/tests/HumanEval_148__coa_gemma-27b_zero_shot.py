@@ -45,15 +45,12 @@ def test_invalid_planet_names_3():
 import pytest
 
 def test_order_of_planets_jupiter_neptune():
-    from your_module import bf  # Replace your_module
     assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
 
 def test_order_of_planets_earth_mercury():
-    from your_module import bf  # Replace your_module
     assert bf("Earth", "Mercury") == ("Venus",)
 
 def test_order_of_planets_mercury_uranus():
-    from your_module import bf  # Replace your_module
     assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
 
 # Focus: Edge Cases (same planet, planets at extremes)
@@ -78,13 +75,13 @@ def bf(planet1, planet2):
     planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
     if planet1 not in planets or planet2 not in planets:
         return ()
-
+    
     index1 = planets.index(planet1)
     index2 = planets.index(planet2)
-
+    
     start = min(index1, index2) + 1
     end = max(index1, index2)
-
+    
     between_planets = tuple(planets[start:end])
     return between_planets
 

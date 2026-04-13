@@ -14,13 +14,29 @@ def int_to_mini_roman(number):
 import pytest
 from your_module import int_to_mini_roman  # Replace your_module
 
-def test_numbers_1_to_999():
+def test_single_digit_conversions():
     assert int_to_mini_roman(1) == 'i'
+    assert int_to_mini_roman(2) == 'ii'
+    assert int_to_mini_roman(3) == 'iii'
+    assert int_to_mini_roman(4) == 'iiii'
+    assert int_to_mini_roman(5) == 'v'
+    assert int_to_mini_roman(6) == 'vi'
+    assert int_to_mini_roman(7) == 'vii'
+    assert int_to_mini_roman(8) == 'viii'
+    assert int_to_mini_roman(9) == 'ix'
+
+def test_tens_conversions():
+    assert int_to_mini_roman(10) == 'x'
+    assert int_to_mini_roman(20) == 'xx'
+    assert int_to_mini_roman(30) == 'xxx'
+    assert int_to_mini_roman(40) == 'xxxx'
     assert int_to_mini_roman(50) == 'l'
-    assert int_to_mini_roman(123) == 'ccxxxi'
-    assert int_to_mini_roman(789) == 'ddccclxxxix'
-    assert int_to_mini_roman(999) == 'dcccxcix'
-    assert int_to_mini_roman(998) == 'dcccxcviiii'
+    assert int_to_mini_roman(60) == 'lx'
+    assert int_to_mini_roman(70) == 'lxx'
+    assert int_to_mini_roman(80) == 'lxxx'
+    assert int_to_mini_roman(90) == 'lxxxx'
+
+def test_hundreds_conversions():
     assert int_to_mini_roman(100) == 'c'
     assert int_to_mini_roman(200) == 'cc'
     assert int_to_mini_roman(300) == 'ccc'
@@ -30,23 +46,35 @@ def test_numbers_1_to_999():
     assert int_to_mini_roman(700) == 'dcc'
     assert int_to_mini_roman(800) == 'dccc'
     assert int_to_mini_roman(900) == 'dcccc'
+
+def test_edge_case_conversions():
+    assert int_to_mini_roman(399) == 'ccccxcii'
+    assert int_to_mini_roman(400) == 'cccc'
+    assert int_to_mini_roman(499) == 'ccccxcii'
+    assert int_to_mini_roman(500) == 'd'
+    assert int_to_mini_roman(501) == 'diiii'
+    assert int_to_mini_roman(899) == 'dcccxcii'
+    assert int_to_mini_roman(900) == 'dcccc'
+    assert int_to_mini_roman(999) == 'dcccxcix'
+    assert int_to_mini_roman(1000) == 'm'
+
+def test_mixed_value_conversions():
     assert int_to_mini_roman(15) == 'xv'
     assert int_to_mini_roman(27) == 'xxvii'
-    assert int_to_mini_roman(142) == 'cxlii'
-    assert int_to_mini_roman(456) == 'cdlvii'
-    assert int_to_mini_roman(999) == 'dcccxcix'
-
-
-def test_edge_cases_and_zero():
-    assert int_to_mini_roman(1) == 'i'
-    assert int_to_mini_roman(999) == 'dcccxcix'
-    assert int_to_mini_roman(0) == '' # Explicitly test zero.  The function should return an empty string.
-
+    assert int_to_mini_roman(142) == 'ccxlii'
+    assert int_to_mini_roman(456) == 'cdlvvi'
+    assert int_to_mini_roman(149) == 'ccxcii'
+    assert int_to_mini_roman(488) == 'ccccxxxviii'
+    assert int_to_mini_roman(941) == 'dcccxcix'
 
 def test_invalid_input():
     with pytest.raises(ValueError):
         int_to_mini_roman(0)
     with pytest.raises(ValueError):
-        int_to_mini_roman(1000)
-    with pytest.raises(ValueError):
         int_to_mini_roman(-1)
+    with pytest.raises(ValueError):
+        int_to_mini_roman(1001)
+
+def test_zero_input():
+    with pytest.raises(ValueError):
+        int_to_mini_roman(0)

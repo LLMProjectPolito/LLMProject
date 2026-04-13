@@ -60,8 +60,8 @@ def test_single_even_length_string():
 def test_single_odd_length_string():
     assert sorted_list_sum(["a"]) == []
 
-def test_longer_list_with_mixed_lengths():
-    assert sorted_list_sum(["aa", "ab", "abc", "a", "cd", "efg", "aaa"]) == ["aa", "ab", "cd", "efg"]
+def test_longer_list_with_various_lengths():
+    assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape"]) == ["banana", "orange"]
 
 def test_list_with_empty_string():
-    assert sorted_list_sum(["", "aa", ""]) == ["","aa"]
+    assert sorted_list_sum(["", "aa", ""]) == ["aa"]

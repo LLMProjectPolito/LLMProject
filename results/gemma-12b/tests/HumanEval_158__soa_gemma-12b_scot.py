@@ -29,11 +29,11 @@ def find_max(words):
     result = ""
 
     for word in words:
-        unique_count = len(set(word))
-        if unique_count > max_unique_count:
-            max_unique_count = unique_count
+        unique_chars = len(set(word))
+        if unique_chars > max_unique_count:
+            max_unique_count = unique_chars
             result = word
-        elif unique_count == max_unique_count and word < result:
+        elif unique_chars == max_unique_count and word < result:
             result = word
 
     return result
@@ -53,7 +53,7 @@ class TestFindMax:
         assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
     def test_mixed_lengths(self):
-        assert find_max(["a", "aa", "aaa", "aaaa"]) == "a"
+        assert find_max(["a", "aa", "aaa", "aaaa"]) == "aaaa"
 
     def test_all_same_unique_count(self):
         assert find_max(["abc", "bca", "cab"]) == "abc"

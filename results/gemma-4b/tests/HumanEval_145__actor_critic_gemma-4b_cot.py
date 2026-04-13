@@ -52,16 +52,10 @@ def test_order_by_points_single_element():
     assert order_by_points([5]) == [5]
 
 def test_order_by_points_large_numbers():
-    assert order_by_points([123, 45, 678, 9]) == [9, 45, 123, 678]
+    assert order_by_points([123, 45, 6, 789]) == [6, 45, 123, 789]
 
 def test_order_by_points_zero_sum():
     assert order_by_points([0, 0, 0]) == [0, 0, 0]
 
 def test_order_by_points_negative_zero_sum():
     assert order_by_points([-1, 0, -2]) == [-1, -2, 0]
-
-def test_order_by_points_with_zeros():
-    assert order_by_points([10, 20, 30, 1, 2, 3]) == [1, 2, 3, 10, 20, 30]
-
-def test_order_by_points_complex_sums():
-    assert order_by_points([12, 21, 3, 101, 11]) == [3, 11, 12, 21, 101]

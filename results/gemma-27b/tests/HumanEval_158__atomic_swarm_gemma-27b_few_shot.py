@@ -16,7 +16,7 @@ import math
 def test_basic():
     assert find_max(["name", "of", "string"]) == "string"
 
-def test_empty_list():
+def test_edge():
     assert find_max([]) == ""
 
 def test_empty_list():

@@ -30,15 +30,15 @@ def right_angle_triangle(a, b, c):
 
 def test_right_angle_triangle_positive():
     assert right_angle_triangle(3, 4, 5) == True
+
+def test_right_angle_triangle_negative():
     assert right_angle_triangle(1, 2, 3) == False
-    assert right_angle_triangle(5, 12, 13) == True
 
 def test_right_angle_triangle_zero():
     assert right_angle_triangle(0, 4, 5) == False
-    assert right_angle_triangle(3, 0, 5) == False
-    assert right_angle_triangle(5, 0, 4) == False
 
-def test_right_angle_triangle_negative():
-    assert right_angle_triangle(-3, 4, 5) == False
-    assert right_angle_triangle(3, -4, 5) == False
-    assert right_angle_triangle(5, -4, 3) == False
+def test_right_angle_triangle_invalid_sides():
+    assert right_angle_triangle(1, 2, 4) == False
+
+def test_right_angle_triangle_triangle_with_zero():
+    assert right_angle_triangle(0, 0, 0) == False

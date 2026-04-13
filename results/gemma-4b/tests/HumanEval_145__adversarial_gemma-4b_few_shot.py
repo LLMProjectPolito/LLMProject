@@ -63,35 +63,48 @@ def test_is_palindrome_empty():
     assert is_palindrome(' ') == True
     assert is_palindrome('a') == True
 
+def test_is_palindrome_mixed_case():
+    assert is_palindrome('Racecar') == True
+    assert is_palindrome('RaCeCaR') == True
+
+def test_is_palindrome_with_punctuation():
+    assert is_palindrome('A man, a plan, a canal: Panama') == True
+    assert is_palindrome('Madam, I\'m Adam') == True
+
 def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
     assert get_max([3, 2, 1]) == 3
     assert get_max([1, 3, 2]) == 3
 
+def test_get_max_negative():
+    assert get_max([-1, -2, -3]) == -1
+    assert get_max([-3, -2, -1]) == -1
+
+def test_get_max_mixed():
+    assert get_max([-1, 2, -3]) == 2
+    assert get_max([1, -2, 3]) == 3
+
 def test_get_max_empty():
     assert get_max([]) == None
 
-def test_get_max_negative():
-    assert get_max([-1, -2, -3]) == -1
-    assert get_max([-1, -2, 3]) == 3
-
-def test_get_max_mixed():
-    assert get_max([-1, 2, -3, 4]) == 4
-    assert get_max([1, -2, 3, -4]) == 3
-
 def test_order_by_points_empty():
     assert order_by_points([]) == []
+
+def test_order_by_points_single():
+    assert order_by_points([1]) == [1]
 
 def test_order_by_points_basic():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
 
 def test_order_by_points_negative():
-    assert order_by_points([-1, 11, -11, 1]) == [-1, -11, 1, 11]
+    assert order_by_points([-1, -11, -12, 1, 11]) == [-1, -11, -12, 1, 11]
 
 def test_order_by_points_mixed():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
-    assert order_by_points([12, 21, 3, 11]) == [3, 11, 12, 21]
-    assert order_by_points([1, 10, 100, 1000]) == [1, 10, 100, 1000]
-    assert order_by_points([1000, 100, 10, 1]) == [1, 10, 100, 1000]
-    assert order_by_points([1, 11, 2, 21]) == [1, 2, 11, 21]
-    assert order_by_points([1, 11, 2, 21, 11]) == [1, 2, 11, 11, 21]
+
+def test_order_by_points_duplicate_sums():
+    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+    assert order_by_points([1, 1, 11, 11]) == [1, 1, 11, 11]
+
+def test_order_by_points_complex():
+    assert order_by_points([12, 21, 3, 1, 11, 121]) == [1, 3, 11, 12, 21, 121]

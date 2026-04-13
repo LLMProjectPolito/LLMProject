@@ -8,7 +8,6 @@ def specialFilter(nums):
     specialFilter([33, -2, -3, 45, 21, 109]) => 2
     """
 
-```python
 import pytest
 
 def specialFilter(nums):
@@ -37,198 +36,21 @@ def test_single_element_not_greater_than_10_and_odd():
 
 def test_multiple_elements_greater_than_10_and_odd():
     assert specialFilter([15, -73, 14, -15]) == 1
+
+def test_multiple_elements_not_greater_than_10_and_odd():
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
-    assert specialFilter([1, 2, 3, 4, 5]) == 0
-    assert specialFilter([11, 22, 33, 44, 55]) == 0
-    assert specialFilter([1, 11, 111]) == 1
-    assert specialFilter([1, 11, 111, 1111]) == 1
-    assert specialFilter([1, 11, 111, 1111, 11111]) == 1
-    assert specialFilter([1, 11, 111, 1111, 111111]) == 1
-    assert specialFilter([1, 11, 111, 1111, 11111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 11111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 11111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 1111, 1111111111111]) == 0
-    assert specialFilter([1, 11, 111, 111
+
+def test_all_elements_greater_than_10_and_odd():
+    assert specialFilter([15, -73, 14, -15, 33, -2, -3, 45, 21, 109]) == 2
+
+def test_all_elements_not_greater_than_10_and_odd():
+    assert specialFilter([15, -73, 14, -15, 33, -2, -3, 45, 21, 109]) == 0
+
+def test_negative_numbers():
+    assert specialFilter([-15, -73, -14, -15]) == 1
+
+def test_zero():
+    assert specialFilter([0]) == 0
+
+def test_large_numbers():
+    assert specialFilter([1000000, -1000000]) == 1

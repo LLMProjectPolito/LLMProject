@@ -17,41 +17,31 @@ def get_max_triples(n):
 import pytest
 from your_module import get_max_triples  # Replace your_module
 
-def test_get_max_triples_n_negative():
-    assert get_max_triples(-1) == 0
+def test_get_max_triples_n_0():
+    assert get_max_triples(0) == 0  # Edge case: n = 0, no triples possible
 
-def test_get_max_triples_n_equals_0():
-    assert get_max_triples(0) == 0
+@pytest.mark.parametrize("n", [1, 2])
+def test_get_max_triples_n_less_than_3(n):
+    assert get_max_triples(n) == 0  # Edge cases: n = 1, 2, no triples possible
 
-def test_get_max_triples_n_equals_1():
-    assert get_max_triples(1) == 0
+def test_get_max_triples_n_3():
+    assert get_max_triples(3) == 0  # Edge case: n = 3, no triples possible
 
-def test_get_max_triples_n_equals_2():
-    assert get_max_triples(2) == 0
+@pytest.mark.parametrize("n", [5, 6, 7])
+def test_get_max_triples_n_range(n):
+    assert get_max_triples(n) == n - 4  # Tests for n = 5, 6, 7
 
-def test_get_max_triples_n_equals_3():
-    assert get_max_triples(3) == 0
+@pytest.mark.parametrize("n", [10, 15])
+def test_get_max_triples_n_larger_range(n):
+    assert get_max_triples(n) == (n * (n - 1) * (n - 2)) // 6  # Tests for n = 10, 15
 
-def test_get_max_triples_n_equals_4():
-    assert get_max_triples(4) == 0
+def test_get_max_triples_large_n():
+    assert get_max_triples(100) == 1617  # Large n test to check for performance/overflow
 
-def test_get_max_triples_n_equals_5():
-    assert get_max_triples(5) == 1
+def test_get_max_triples_negative_n():
+    with pytest.raises(TypeError):
+        get_max_triples(-5)  # Test for negative input
 
-def test_get_max_triples_n_equals_6():
-    assert get_max_triples(6) == 2
-
-def test_get_max_triples_n_equals_7():
-    assert get_max_triples(7) == 3
-
-def test_get_max_triples_n_equals_10():
-    assert get_max_triples(10) == 10
-
-def test_get_max_triples_n_equals_15():
-    assert get_max_triples(15) == 45
-
-def test_get_max_triples_n_equals_20():
-    assert get_max_triples(20) == 114
-
-def test_get_max_triples_n_equals_100():
-    assert get_max_triples(100) == 3316
+def test_get_max_triples_non_integer_n():
+    with pytest.raises(TypeError):
+        get_max_triples(3.14)  # Test for non-integer input

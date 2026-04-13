@@ -38,27 +38,37 @@ def fix_spaces(text):
             count = 0
     return result
 
-### SCoT Steps:
-
 ### STEP 1: REASONING
-# The function `fix_spaces` aims to replace spaces in a string with underscores,
-# but if there are more than two consecutive spaces, it replaces them with hyphens.
-# We need to test various scenarios including:
-# 1. No spaces in the input string.
-# 2. Single space in the input string.
-# 3. Multiple spaces in the input string.
-# 4. More than two consecutive spaces in the input string.
-# 5. Leading and trailing spaces.
+# The function `fix_spaces` takes a string as input and modifies it according to the following rules:
+# 1. Replace all spaces with underscores.
+# 2. If there are more than two consecutive spaces, replace them with hyphens.
+# We need to create a pytest suite to test these rules with various input strings, including edge cases like empty strings, strings with no spaces, strings with single spaces, strings with multiple spaces, and strings with more than two consecutive spaces.
 
 ### STEP 2: PLAN
+# Test cases:
+# 1. Empty string: ""
+# 2. String with no spaces: "Example"
+# 3. String with single space: "Example 1"
+# 4. String with multiple spaces: " Example 2"
+# 5. String with more than two consecutive spaces: " Example   3"
+# 6. String with leading and trailing spaces: "  Example  "
+# 7. String with mixed spaces: "Hello World"
+# 8. String with only spaces: "   "
+
 # Test functions:
-# - test_no_spaces: Tests the case where the input string has no spaces.
-# - test_single_space: Tests the case where the input string has a single space.
-# - test_multiple_spaces: Tests the case where the input string has multiple spaces.
-# - test_more_than_two_spaces: Tests the case where the input string has more than two consecutive spaces.
-# - test_leading_trailing_spaces: Tests the case where the input string has leading and trailing spaces.
+# 1. test_empty_string
+# 2. test_no_spaces
+# 3. test_single_space
+# 4. test_multiple_spaces
+# 5. test_more_than_two_spaces
+# 6. test_leading_trailing_spaces
+# 7. test_mixed_spaces
+# 8. test_only_spaces
 
 ### STEP 3: CODE
+def test_empty_string():
+    assert fix_spaces("") == ""
+
 def test_no_spaces():
     assert fix_spaces("Example") == "Example"
 
@@ -72,13 +82,10 @@ def test_more_than_two_spaces():
     assert fix_spaces(" Example   3") == "_Example-3"
 
 def test_leading_trailing_spaces():
-    assert fix_spaces("  Hello World  ") == "_Hello_World_"
-
-def test_empty_string():
-    assert fix_spaces("") == ""
-
-def test_multiple_consecutive_spaces():
-    assert fix_spaces("This   has    many   spaces") == "This---has---many---spaces"
+    assert fix_spaces("  Example  ") == "_Example_"
 
 def test_mixed_spaces():
-    assert fix_spaces("  a b  c ") == "_a_b_c_"
+    assert fix_spaces("Hello World") == "Hello_World"
+
+def test_only_spaces():
+    assert fix_spaces("   ") == "--"

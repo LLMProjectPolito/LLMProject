@@ -36,15 +36,27 @@ def double_the_difference(lst):
 
 def test_double_the_difference_positive():
     assert double_the_difference([1, 2, 3]) == 10
-    assert double_the_difference([-1, -2, 0]) == 0
+    assert double_the_difference([1, 3, 2, 0]) == 10
     assert double_the_difference([9, -2]) == 81
     assert double_the_difference([0]) == 0
 
 def test_double_the_difference_empty():
     assert double_the_difference([]) == 0
 
-def test_double_the_difference_mixed():
-    assert double_the_difference([1, 2, 3, 4, 5]) == 1 + 9 + 16 = 26
-    assert double_the_difference([2, 4, 6]) == 4 + 16 = 20
-    assert double_the_difference([1, 3, 5]) == 1 + 9 = 10
-    assert double_the_difference([1, 2, 3, 4, 5, 6]) == 1 + 9 + 16 + 25 = 51
+def test_double_the_difference_negative_numbers():
+    assert double_the_difference([-1, -2, -3]) == 1
+    assert double_the_difference([-1, 2, -3]) == 1
+    assert double_the_difference([1, -2, 3]) == 1
+
+def test_double_the_difference_mixed_numbers():
+    assert double_the_difference([1, 2, -3, 4]) == 1 + 9 + 16
+    assert double_the_difference([1, 2, -3, 0]) == 1 + 9 + 0
+    assert double_the_difference([1, 2, -3, 4, 5]) == 1 + 9 + 16
+    assert double_the_difference([1, 2, -3, 4, 5, 6]) == 1 + 9 + 16
+    assert double_the_difference([1, 2, -3, 4, 5, 6, 7]) == 1 + 9 + 16
+    assert double_the_difference([1, 2, -3, 4, 5, 6, 7, 8]) == 1 + 9 + 16
+    assert double_the_difference([1, 2, -3, 4, 5, 6, 7, 8, 9]) == 1 + 9 + 16
+    assert double_the_difference([1, 2, -3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 9 + 16
+    assert double_the_difference([1, 2, -3, 4, 5, 6, 7, 8, 9, 10, 11]) == 1 + 9 + 16
+    assert double_the_difference([1, 2, -3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1 + 9 + 16
+    assert double_the_difference([]) == 0

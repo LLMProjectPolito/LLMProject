@@ -21,10 +21,14 @@ def generate_integers(a, b):
     generate_integers(10, 14) => []
     """
     result = []
-    for num in range(a, b + 1):
-        s = str(num)
+    for i in range(a, b + 1):
+        s = str(i)
+        even_digits = ""
         for digit in s:
-            if int(digit) % 2 == 0:
-                result.append(num)
-                break
+            digit = int(digit)
+            if digit % 2 == 0:
+                even_digits += digit
+        if even_digits:
+            result.append(int(even_digits))
+    result.sort()
     return result

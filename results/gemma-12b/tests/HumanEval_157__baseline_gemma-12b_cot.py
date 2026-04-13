@@ -35,10 +35,10 @@ class TestRightAngleTriangle:
 
     def test_invalid_right_triangle(self):
         assert right_angle_triangle(1, 2, 3) == False
-        assert right_angle_triangle(4, 5, 6) == False
-        assert right_angle_triangle(1, 1, 1) == False
         assert right_angle_triangle(2, 3, 4) == False
-        assert right_angle_triangle(10, 11, 12) == False
+        assert right_angle_triangle(1, 1, 1) == False
+        assert right_angle_triangle(13, 14, 15) == False
+        assert right_angle_triangle(4, 5, 6) == False
 
     def test_zero_length_side(self):
         assert right_angle_triangle(0, 4, 5) == False

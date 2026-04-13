@@ -88,5 +88,8 @@ def test_mixed_operations():
 def test_complex_expression():
     assert do_algebra(['*', '+', '//'], [10, 2, 3, 4]) == 14
 
-def test_exponentiation_complex():
-    assert do_algebra(['+', '**', '-'], [2, 3, 4, 5]) == 11
+def test_exponentiation_with_addition():
+    assert do_algebra(['**', '+'], [2, 3, 4]) == 16
+
+def test_large_numbers():
+    assert do_algebra(['*', '**'], [2, 3, 2]) == 64

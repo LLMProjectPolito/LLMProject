@@ -25,8 +25,17 @@ def solve(s):
     solve("#a@C") = "#A@c"
     """
     has_letter = False
-    result = "".join([char.upper() if 'a' <= char <= 'z' else char.lower() if 'A' <= char <= 'Z' else char for char in s])
-    if not any('a' <= char <= 'z' or 'A' <= char <= 'Z' for char in s):
+    result = ""
+    for char in s:
+        if 'a' <= char <= 'z' or 'A' <= char <= 'Z':
+            has_letter = True
+            if 'a' <= char <= 'z':
+                result += char.upper()
+            else:
+                result += char.lower()
+        else:
+            result += char
+    if not has_letter:
         return result[::-1]
     return result
 
@@ -45,26 +54,38 @@ def test_all_uppercase():
 def test_mixed_case():
     assert solve("aB") == "Ab"
 
-def test_numbers_and_symbols_no_letters():
-    assert solve("#@123") == "321#@"
+def test_with_numbers_and_symbols():
+    assert solve("#a@C") == "#A@c"
 
-def test_long_string():
+def test_long_string_mixed_case():
     assert solve("ThisIsALongString") == "tHISiSaLONGsTRING"
 
 def test_string_with_spaces():
     assert solve("hello world") == "HELLO WORLD"
 
-def test_leading_and_trailing_spaces():
+def test_string_with_unicode_characters():
+    assert solve("αβΓδ") == "ΑΒγΔ"
+
+def test_string_with_leading_and_trailing_spaces():
     assert solve("  abc  ") == "  ABC  "
 
 def test_string_with_only_spaces():
     assert solve("   ") == "   "[::-1]
 
-def test_unicode_case_reversal():
-    assert solve("你好aB") == "你好A b"
+def test_interspersed_numbers_symbols_and_letters():
+    assert solve("a1B2c") == "A1b2C"
 
-def test_mixed_unicode_numbers_symbols_and_spaces():
-    assert solve("你好 123 !@# ") == "你好 321 !@# "
+def test_empty_string_with_spaces():
+    assert solve(" ") == " "
 
-def test_ascii_and_unicode_letters():
-    assert solve("aB你好") == "Ab你好"
+def test_unicode_and_non_letters():
+    assert solve("a1Γb") == "A1γB"
+
+def test_ascii_and_unicode_mix():
+    assert solve("aBΓδ") == "AβγΔ"
+
+def test_leading_trailing_spaces_and_letters():
+    assert solve(" aB ") == " Aβ "
+
+def test_diverse_unicode():
+    assert solve("你好世界") == "你好世界"[::-1]

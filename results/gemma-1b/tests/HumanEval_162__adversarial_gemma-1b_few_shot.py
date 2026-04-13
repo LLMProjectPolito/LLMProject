@@ -28,10 +28,10 @@ def test_string_to_md5_empty():
     assert string_to_md5('') is None
 
 def test_string_to_md5_single_char():
-    assert string_to_md5('a') == '7f4a9c1e9d9c7f6e6b647112d7f6e6b'
+    assert string_to_md5('a') == '7f4a9c1e9d9f99c6999c6d7f7e6a5b4c'
 
 def test_string_to_md5_numbers():
-    assert string_to_md5('12345') == 'a698d3f8998d3f8998d3f8998d3f8998'
+    assert string_to_md5('12345') == '7f4a9c1e9d9f99c6999c6d7f7e6a5b4c'
 
 def test_string_to_md5_mixed_characters():
-    assert string_to_md5('Hello!@#') == '7f4a9c1e9d9c7f6e6b647112d7f6e6b'
+    assert string_to_md5('Hello! World') == '7f4a9c1e9d9f99c6999c6d7f7e6a5b4c'

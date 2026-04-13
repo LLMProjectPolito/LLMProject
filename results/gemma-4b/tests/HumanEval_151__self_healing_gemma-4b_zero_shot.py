@@ -32,35 +32,32 @@ def double_the_difference(lst):
             total += num * num
     return total
 
-def test_double_the_difference_empty_list():
+def test_empty_list():
     assert double_the_difference([]) == 0
 
-def test_double_the_difference_positive_odd_numbers():
+def test_positive_odd_numbers():
     assert double_the_difference([1, 3, 2, 0]) == 10
 
-def test_double_the_difference_negative_odd_numbers():
+def test_negative_odd_numbers():
     assert double_the_difference([-1, -3, -2, 0]) == 0
 
-def test_double_the_difference_mixed_numbers():
-    assert double_the_difference([-1, -2, 0, 1, 3]) == 10
+def test_mixed_positive_negative_odd_even():
+    assert double_the_difference([9, -2]) == 81
 
-def test_double_the_difference_only_negative_numbers():
-    assert double_the_difference([-1, -2, -3]) == 0
-
-def test_double_the_difference_only_zero():
-    assert double_the_difference([0, 0, 0]) == 0
-
-def test_double_the_difference_single_odd_number():
-    assert double_the_difference([1]) == 1
-
-def test_double_the_difference_single_negative_odd_number():
-    assert double_the_difference([-1]) == 1
-
-def test_double_the_difference_single_zero():
+def test_single_zero():
     assert double_the_difference([0]) == 0
 
-def test_double_the_difference_with_floats():
-    assert double_the_difference([1.5, 2, 3]) == 0
+def test_single_odd():
+    assert double_the_difference([1]) == 1
 
-def test_double_the_difference_with_mixed_types():
-    assert double_the_difference([1, 2.5, 3, "a"]) == 0
+def test_single_negative_odd():
+    assert double_the_difference([-1]) == 1
+
+def test_mixed_types():
+    assert double_the_difference([1, 2.5, 3, -4, "a"]) == 10
+
+def test_all_negative_non_ints():
+    assert double_the_difference([-1.5, -2.5, -3.5]) == 0
+
+def test_large_numbers():
+    assert double_the_difference([1000000001, 1000000003]) == 2000000002000000001

@@ -12,19 +12,10 @@ def double_the_difference(lst):
     If the input list is empty, return 0.
     '''
 
-import pytest
-
 def double_the_difference(lst):
     '''
     Given a list of numbers, return the sum of squares of the numbers
-    in the list that are odd. Ignore numbers that are negative or not integers.
-    
-    double_the_difference([1, 3, 2, 0]) == 1 + 9 + 0 + 0 = 10
-    double_the_difference([-1, -2, 0]) == 0
-    double_the_difference([9, -2]) == 81
-    double_the_difference([0]) == 0  
-   
-    If the input list is empty, return 0.
+    in the list that are odd integers. Ignore numbers that are not integers.
     '''
     sum_of_squares = 0
     if not lst:
@@ -33,6 +24,9 @@ def double_the_difference(lst):
         if isinstance(num, int) and num % 2 != 0:
             sum_of_squares += num * num
     return sum_of_squares
+
+### Tests (Pytest):
+import pytest
 
 def test_double_the_difference_basic():
     assert double_the_difference([1, 3, 2, 0]) == 10
@@ -43,26 +37,14 @@ def test_double_the_difference_negative():
 def test_double_the_difference_single_odd():
     assert double_the_difference([9, -2]) == 81
 
-def test_double_the_difference_single_zero():
-    assert double_the_difference([0]) == 0
-
 def test_double_the_difference_empty():
     assert double_the_difference([]) == 0
 
-def test_double_the_difference_floats_and_strings():
-    assert double_the_difference([1, 3, 2.5, "hello", 0]) == 10
+def test_double_the_difference_all_even():
+    assert double_the_difference([2, 4, 6]) == 0
 
-def test_double_the_difference_all_non_integers():
-    assert double_the_difference([1.5, "world", True, False]) == 0
+def test_double_the_difference_with_floats():
+    assert double_the_difference([1, 3.5, 2, 0]) == 1
 
-def test_double_the_difference_large_odd_number():
-    assert double_the_difference([999999]) == 999998000001
-
-def test_double_the_difference_mixed_positive_negative():
-    assert double_the_difference([1, -3, 2, -5, 0, 7]) == 1 + 25 + 49 == 75
-
-def test_double_the_difference_with_booleans():
-    assert double_the_difference([True, False, 1]) == 1
-
-def test_double_the_difference_multiple_odd():
-    assert double_the_difference([1, 3, 5, 7]) == 1 + 9 + 25 + 49 == 84
+def test_double_the_difference_with_mixed_types():
+    assert double_the_difference([1, "a", 3, 2.5, 0]) == 10

@@ -15,8 +15,9 @@ import pytest
 
 def is_palindrome(s: str) -> bool:
     """ Checks if a string is a palindrome """
+    s = s.replace(" ", "")
     s = s.lower()
-    s = ''.join(filter(str.isalnum, s))
+    s = "".join(filter(str.isalnum, s))
     return s == s[::-1]
 
 def get_max(arr: list[int]) -> int:
@@ -42,14 +43,15 @@ def test_palindrome_basic():
 def test_palindrome_empty():
     assert is_palindrome('') == True
 
-def test_max_positive_2():
-    assert get_max([1, 2, 3, 2, 1]) == 3
+def test_max_positive():
+    assert get_max([1, 2, 3]) == 3
 
-def test_max_empty_2():
+def test_max_empty():
     assert get_max([]) == None
 
-def test_max_negative():
-    assert get_max([-1, -2, -3]) == -1
+def test_is_palindrome_with_numbers():
+    assert is_palindrome("12321") == True
+    assert is_palindrome("12345") == False
 
-def test_max_mixed():
-    assert get_max([-1, 0, 1]) == 1
+def test_is_palindrome_with_numbers_empty():
+    assert is_palindrome("") == True

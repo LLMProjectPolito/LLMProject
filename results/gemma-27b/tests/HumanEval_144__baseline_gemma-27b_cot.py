@@ -53,10 +53,10 @@ def test_simplify_false_case3():
     assert simplify("1/2", "1/3") == False
 
 def test_simplify_large_numbers_true():
-    assert simplify("100/10", "10/1") == True
+    assert simplify("100/20", "2/1") == True
 
 def test_simplify_large_numbers_false():
-    assert simplify("101/10", "10/1") == False
+    assert simplify("100/21", "2/1") == False
 
 def test_simplify_same_fraction():
     assert simplify("2/2", "2/2") == True
@@ -71,10 +71,7 @@ def test_simplify_mixed_case():
     assert simplify("3/4", "4/3") == False
 
 def test_simplify_edge_case1():
-    assert simplify("1/1", "1/1") == True
+    assert simplify("1/100", "100/1") == True
 
 def test_simplify_edge_case2():
-    assert simplify("1/2", "2/1") == True
-
-def test_simplify_edge_case3():
-    assert simplify("2/1", "1/2") == True
+    assert simplify("1/101", "100/1") == False

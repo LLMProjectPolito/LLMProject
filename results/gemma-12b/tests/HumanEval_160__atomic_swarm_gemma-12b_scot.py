@@ -31,7 +31,7 @@ import math
 def test_basic():
     operator = ['+', '*', '-']
     operand = [2, 3, 4, 5]
-    assert do_algebra(operator, operand) == 9
+    assert 9 == do_algebra(operator, operand)
 
 def test_edge_empty_operator():
     """Test with an empty operator list and two operands."""

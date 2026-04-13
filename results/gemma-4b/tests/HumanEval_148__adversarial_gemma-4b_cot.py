@@ -68,9 +68,9 @@ def test_bf_same_planet():
 
 def test_bf_adjacent_planets():
     assert bf("Earth", "Mars") == ("Venus")
-    assert bf("Mars", "Jupiter") == ("Saturn")
+    assert bf("Mars", "Jupiter") == ("Venus", "Earth", "Saturn")
 
 def test_bf_edge_cases():
     assert bf("Mercury", "Mercury") == ()
     assert bf("Neptune", "Neptune") == ()
-    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
+    assert bf("Venus", "Venus") == ()

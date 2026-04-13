@@ -18,79 +18,47 @@ def compare(game,guess):
 import pytest
 from your_module import compare  # Replace your_module
 
-def test_compare_correct_guesses():
-    """Test case where all guesses are correct."""
-    game = [1, 2, 3, 4, 5, 1]
-    guess = [1, 2, 3, 4, 5, 1]
-    expected = [0, 0, 0, 0, 0, 0]
-    assert compare(game, guess) == expected
+def test_empty_arrays():
+    assert compare([], []) == []
 
-def test_compare_incorrect_guesses():
-    """Test case where some guesses are incorrect."""
-    game = [1, 2, 3, 4, 5, 1]
-    guess = [1, 2, 3, 4, 2, -2]
-    expected = [0, 0, 0, 0, 3, 3]
-    assert compare(game, guess) == expected
+def test_single_element_arrays():
+    assert compare([1], [1]) == [0]
+    assert compare([1], [2]) == [1]
 
-def test_compare_all_incorrect_guesses():
-    """Test case where all guesses are incorrect."""
-    game = [0, 5, 0, 0, 0, 4]
-    guess = [4, 1, 1, 0, 0, -2]
-    expected = [4, 4, 1, 0, 0, 6]
-    assert compare(game, guess) == expected
+def test_correct_guesses():
+    assert compare([1, 2, 3], [1, 2, 3]) == [0, 0, 0]
 
-def test_compare_empty_arrays():
-    """Test case with empty arrays."""
-    game = []
-    guess = []
-    expected = []
-    assert compare(game, guess) == expected
+def test_incorrect_guesses():
+    assert compare([1, 2, 3], [4, 5, 6]) == [3, 3, 3]
 
-def test_compare_single_element_arrays():
-    """Test case with single element arrays."""
-    game = [5]
-    guess = [6]
-    expected = [1]
-    assert compare(game, guess) == expected
+def test_mixed_guesses():
+    assert compare([1, 2, 3, 4], [1, 5, 3, 2]) == [0, 3, 0, 2]
 
-def test_compare_single_element_correct():
-    """Test case with single element arrays, correct guess."""
-    game = [5]
-    guess = [5]
-    expected = [0]
-    assert compare(game, guess) == expected
+def test_zero_scores():
+    assert compare([0, 0, 0], [1, 2, 3]) == [1, 2, 3]
 
-def test_compare_negative_scores():
-    """Test case with negative scores."""
-    game = [-1, -2, -3]
-    guess = [-1, -2, 0]
-    expected = [0, 0, 3]
-    assert compare(game, guess) == expected
+def test_negative_scores():
+    assert compare([-1, -2, -3], [-1, -2, -4]) == [0, 0, 1]
 
-def test_compare_mixed_scores():
-    """Test case with mixed positive and negative scores."""
-    game = [-1, 2, -3, 4]
-    guess = [-1, 1, -3, 5]
-    expected = [0, 2, 0, 1]
-    assert compare(game, guess) == expected
+def test_negative_guesses():
+    assert compare([1, 2, 3], [-1, -2, -3]) == [2, 4, 6]
 
-def test_compare_large_numbers():
-    """Test case with large numbers to check for overflow issues."""
-    game = [1000000, 2000000]
-    guess = [1000000, 2000001]
-    expected = [0, 1]
-    assert compare(game, guess) == expected
+def test_mixed_positive_negative():
+    assert compare([1, -2, 3], [1, -1, 4]) == [0, 1, 1]
 
-def test_compare_different_lengths():
-    """Test case to ensure the function handles different lengths gracefully (should raise an error)."""
-    game = [1, 2, 3]
-    guess = [1, 2]
+def test_example_1():
+    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
+
+def test_example_2():
+    assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
+
+def test_large_numbers():
+    assert compare([100, 200, 300], [105, 195, 305]) == [5, 5, 5]
+
+def test_equal_length():
     with pytest.raises(ValueError):
-        compare(game, guess)
+        compare([1, 2], [1])
 
-def test_compare_invalid_input_types():
-    """Test case to ensure the function handles invalid input types gracefully (should raise an error)."""
-    game = [1, 2, 3]
-    guess = ["a", 2, 3]
+def test_different_types():
     with pytest.raises(TypeError):
-        compare(game, guess)
+        compare([1, 2], ["a", "b"])

@@ -33,6 +33,7 @@ def test_zero_input():
 
 def test_invalid_input_type():
     with pytest.raises(TypeError):
-        special_factorial(1.5)
+        special_factorial(3.14)
+
     with pytest.raises(TypeError):
         special_factorial("abc")

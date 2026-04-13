@@ -39,7 +39,7 @@ def special_factorial(n):
             return result
 
     result = 1
-    for i in range(1, n + 1):
+    for i in range(n, 0, -1):
         result *= factorial(i)
     return result
 
@@ -51,21 +51,18 @@ def test_special_factorial_positive():
     assert special_factorial(5) == 34560
 
 def test_special_factorial_large():
-    assert special_factorial(6) == 43545600
-    assert special_factorial(7) == 62270208000
+    assert special_factorial(6) == 497664000
 
-def test_special_factorial_zero():
+def test_special_factorial_invalid_input():
     with pytest.raises(ValueError):
         special_factorial(0)
-
-def test_special_factorial_negative():
     with pytest.raises(ValueError):
         special_factorial(-1)
+    with pytest.raises(ValueError):
+        special_factorial(-5)
 
-def test_special_factorial_float():
+def test_special_factorial_type_error():
     with pytest.raises(TypeError):
-        special_factorial(2.5)
-
-def test_special_factorial_string():
+        special_factorial(1.5)
     with pytest.raises(TypeError):
-        special_factorial("2")
+        special_factorial("a")

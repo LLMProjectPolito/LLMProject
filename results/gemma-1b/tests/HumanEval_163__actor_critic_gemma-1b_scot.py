@@ -46,14 +46,14 @@ def test_generate_integers_all_even():
     assert generate_integers(10, 14) == []
 
 def test_generate_integers_with_zero():
-    assert generate_integers(0, 10) == [0, 2, 4, 6, 8]
-    assert generate_integers(10, 0) == [0, 2, 4, 6, 8]
+    assert generate_integers(0, 1) == [0]
+    assert generate_integers(1, 2) == [1]
+    assert generate_integers(2, 3) == [2]
 
 def test_generate_integers_large_numbers():
     assert generate_integers(1000, 1005) == [1000, 1002, 1004, 1006]
 
-def test_generate_integers_edge_cases():
-    assert generate_integers(1, 1) == []
-    assert generate_integers(1, 2) == [2]
-    assert generate_integers(2, 1) == []
-    assert generate_integers(1, 10) == [2, 4, 6, 8]
+def test_generate_integers_with_negative_numbers():
+    assert generate_integers(-2, 2) == [-2, 0, 2]
+    assert generate_integers(2, -2) == [2]
+    assert generate_integers(-2, -2) == []

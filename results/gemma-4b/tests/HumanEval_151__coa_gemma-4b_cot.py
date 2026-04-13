@@ -22,14 +22,11 @@ import pytest
 def test_double_the_difference_positive_odd():
     assert double_the_difference([1, 3, 2, 0]) == 10
 
-def test_double_the_difference_negative_and_zero():
+def test_double_the_difference_negative_odd():
     assert double_the_difference([-1, -2, 0]) == 0
 
-def test_double_the_difference_positive_only():
+def test_double_the_difference_positive_odd_only():
     assert double_the_difference([9, -2]) == 81
-
-def test_double_the_difference_zero_list():
-    assert double_the_difference([0]) == 0
 
 # Focus: Type Scenarios
 import pytest
@@ -54,3 +51,15 @@ def test_double_the_difference_all_positive_odd():
 
 def test_double_the_difference_mixed_positive_and_negative():
     assert double_the_difference([1, -2, 3, -4, 5]) == 35
+
+def test_double_the_difference_all_negative_odd():
+    assert double_the_difference([-1, -3, -5]) == 35
+
+def test_double_the_difference_no_odd_numbers():
+    assert double_the_difference([2, 4, 6]) == 0
+
+def test_double_the_difference_with_zero():
+    assert double_the_difference([1, 0, 3]) == 10
+
+def test_double_the_difference_with_zero_and_negative():
+    assert double_the_difference([-1, 0, 1]) == 2

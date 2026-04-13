@@ -70,4 +70,4 @@ def test_get_max_triples():
     assert get_max_triples(140) == 28
     assert get_max_triples(145) == 29
     assert get_max_triples(150) == 30
-    print("All tests passed")
+    print("All tests passed!")

@@ -39,7 +39,7 @@ def test_negative_scores_and_guesses():
     assert compare([-1, -2, -3], [-1, -2, -4]) == [0, 0, 1]
 
 def test_large_numbers():
-    assert compare([100, 200, 300], [100, 205, 300]) == [0, 5, 0]
+    assert compare([100, 200, 300], [100, 150, 300]) == [0, 50, 0]
     assert compare([1000, 2000, 3000], [1000, 2001, 3000]) == [0, 1, 0]
 
 def test_zero_scores():
@@ -51,19 +51,23 @@ def test_zero_guesses():
 def test_equal_length_arrays():
     with pytest.raises(ValueError):
         compare([1, 2], [1])
-
     with pytest.raises(ValueError):
         compare([1], [1, 2])
+
+def test_different_data_types():
+    with pytest.raises(TypeError):
+        compare([1, 2], ["a", "b"])
+
+def test_non_numeric_values():
+    with pytest.raises(TypeError):
+        compare([1, "a"], [1, 2])
 
 def test_invalid_input_types():
     with pytest.raises(TypeError):
         compare([1, 2], "abc")
-
     with pytest.raises(TypeError):
         compare("abc", [1, 2])
-
     with pytest.raises(TypeError):
         compare([1, 2], [1, "a"])
-
     with pytest.raises(TypeError):
         compare([1, "a"], [1, 2])

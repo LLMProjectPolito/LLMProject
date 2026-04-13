@@ -63,7 +63,6 @@ def test_strongest_extension():
     assert strongest_extension() == "ghi"
     assert strongest_extension() == "jkl"
     assert strongest_extension() == "mno"
-    assert strongest_extension() == "pqr"
     assert strongest_extension() == "stu"
     assert strongest_extension() == "vwx"
     assert strongest_extension() == "yza"

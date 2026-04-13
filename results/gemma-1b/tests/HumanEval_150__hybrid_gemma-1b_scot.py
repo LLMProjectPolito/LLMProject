@@ -75,25 +75,3 @@ def test_x_or_y_prime():
     assert x_or_y(19, 19, 19) == 19
     assert x_or_y(20, 20, 20) == 20
     print("All tests passed!")
-
-def test_x_or_y_edge_cases():
-    assert x_or_y(2, 2, 2) == 2
-    assert x_or_y(3, 3, 3) == 3
-    assert x_or_y(4, 4, 4) == 4
-    assert x_or_y(5, 5, 5) == 5
-    assert x_or_y(6, 6, 6) == 6
-    assert x_or_y(7, 7, 7) == 7
-    assert x_or_y(8, 8, 8) == 8
-    assert x_or_y(9, 9, 9) == 9
-    assert x_or_y(10, 10, 10) == 10
-    assert x_or_y(11, 11, 11) == 11
-    assert x_or_y(12, 12, 12) == 12
-    assert x_or_y(13, 13, 13) == 13
-    assert x_or_y(14, 14, 14) == 14
-    assert x_or_y(15, 15, 15) == 15
-    assert x_or_y(16, 16, 16) == 16
-    assert x_or_y(17, 17, 17) == 17
-    assert x_or_y(18, 18, 18) == 18
-    assert x_or_y(19, 19, 19) == 19
-    assert x_or_y(20, 20, 20) == 20
-    print("All tests passed!")

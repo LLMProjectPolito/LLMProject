@@ -56,7 +56,7 @@ def test_compare_negative_numbers():
     assert compare([-1, -2, -3], [-1, -2, -3]) == [0, 0, 0]
 
 def test_compare_negative_and_positive():
-    assert compare([1, -2, 3], [4, -5, 6]) == [3, 7, 3]
+    assert compare([1, -2, 3], [1, 2, 3]) == [0, 1, 0]
 
 def test_compare_different_lengths():
     with pytest.raises(IndexError):

@@ -48,7 +48,10 @@ def file_name_check(file_name):
     if digits > 3 or dot_count != 1:
         return 'No'
     
-    if not prefix or not 'a' <= prefix[0] <= 'z' or not 'A' <= prefix[0] <= 'Z':
+    if not prefix:
+        return 'No'
+    
+    if not 'a' <= prefix[0] <= 'z' and not 'A' <= prefix[0] <= 'Z':
         return 'No'
     
     if suffix not in ['txt', 'exe', 'dll']:
@@ -71,32 +74,35 @@ def test_no_dot():
 def test_multiple_dots():
     assert file_name_check("example.a.txt") == 'No'
 
-def test_prefix_not_letter():
+def test_starts_with_digit():
     assert file_name_check("1example.txt") == 'No'
 
-def test_prefix_empty():
-    assert file_name_check(".example.txt") == 'No'
+def test_starts_with_symbol():
+    assert file_name_check("!example.txt") == 'No'
 
-def test_suffix_invalid():
+def test_suffix_not_allowed():
     assert file_name_check("example.pdf") == 'No'
 
-def test_suffix_valid():
-    assert file_name_check("example.dll") == 'Yes'
+def test_empty_prefix():
+    assert file_name_check(".txt") == 'No'
 
-def test_mixed_case_prefix():
-    assert file_name_check("Example.txt") == 'Yes'
+def test_empty_suffix():
+    assert file_name_check("example.") == 'No'
+
+def test_long_prefix():
+    assert file_name_check("a" * 10 + ".txt") == 'No'
+
+def test_prefix_with_only_digits():
+    assert file_name_check("123.txt") == 'No'
+
+def test_suffix_with_spaces():
+    assert file_name_check("example. txt") == 'No'
 
 def test_file_name_with_leading_and_trailing_spaces():
     assert file_name_check("  example.txt  ") == 'Yes'
 
-def test_file_name_with_only_digits():
-    assert file_name_check("123.txt") == 'No'
-
-def test_file_name_with_digit_and_letter():
-    assert file_name_check("1example.txt") == 'No'
+def test_file_name_with_only_spaces():
+    assert file_name_check("   ") == 'No'
 
 def test_file_name_with_special_characters():
-    assert file_name_check("example!.txt") == 'No'
-
-def test_file_name_with_unicode_characters():
-    assert file_name_check("éxample.txt") == 'No'
+    assert file_name_check("example!@#.txt") == 'No'

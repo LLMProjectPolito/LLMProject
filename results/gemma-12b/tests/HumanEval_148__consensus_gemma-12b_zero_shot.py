@@ -62,12 +62,3 @@ def test_bf_empty_range():
 
 def test_bf_all_planets():
     assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
-
-def test_bf_case_insensitive():
-    assert bf("mercury", "neptune") == ("venus", "earth", "mars", "jupiter", "saturn", "uranus")
-
-def test_bf_with_spaces():
-    assert bf(" Mercury", "Neptune") == ()
-
-def test_bf_with_special_characters():
-    assert bf("Mercury!", "Neptune") == ()

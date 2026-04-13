@@ -91,7 +91,7 @@ class TestDoAlgebra:
         assert do_algebra(['-'], [5, 2]) == 3
 
     def test_multiplication(self):
-        assert do_algebra(['*'], [4, 3]) == 12
+        assert do_algebra(['*'], [4, 5]) == 20
 
     def test_floor_division(self):
         assert do_algebra(['//'], [10, 2]) == 5
@@ -120,7 +120,7 @@ class TestDoAlgebra:
 
     def test_invalid_operator_length(self):
         with pytest.raises(ValueError):
-            do_algebra(['+', '-'], [1, 2, 3])
+            do_algebra(['+', '+'], [1, 2, 3])
 
     def test_invalid_operand_length(self):
         with pytest.raises(ValueError):

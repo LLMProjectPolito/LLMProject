@@ -94,12 +94,12 @@ def test_exponentiation():
 def test_mixed_operations():
     operator = ['+', '*', '-', '**']
     operand = [2, 3, 4, 5, 2]
-    assert do_algebra(operator, operand) == 24
+    assert do_algebra(operator, operand) == 26
 
 def test_complex_expression():
     operator = ['+', '*', '//', '-', '**']
     operand = [10, 2, 3, 4, 5, 2]
-    assert do_algebra(operator, operand) == 16
+    assert do_algebra(operator, operand) == 26
 
 def test_single_operand():
     operator = ['+']
@@ -128,5 +128,10 @@ def test_zero_operand():
 
 def test_negative_result():
     operator = ['-', '**']
-    operand = [5, -2, 2]
-    assert do_algebra(operator, operand) == -1
+    operand = [5, 2, 2]
+    assert do_algebra(operator, operand) == -9
+
+def test_floor_division_negative_result():
+    operator = ['//', '**']
+    operand = [10, -2, 5, 2]
+    assert do_algebra(operator, operand) == -4

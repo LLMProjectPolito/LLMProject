@@ -33,7 +33,7 @@ def test_negative_numbers():
     assert specialFilter([-11, -13, -15, -17, -19]) == 0
 
 def test_zero_and_positive_numbers():
-    assert specialFilter([0, 11, 13, 15, 17, 19]) == 6
+    assert specialFilter([0, 11, 13, 15, 17, 19]) == 5
 
 def test_large_numbers():
     assert specialFilter([111, 133, 155, 177, 199]) == 5

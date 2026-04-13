@@ -43,6 +43,3 @@ def test_negative_numbers_with_same_digit_sum_2():
 
 def test_empty_list():
     assert order_by_points([]) == []
-
-def test_example_case():
-    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]

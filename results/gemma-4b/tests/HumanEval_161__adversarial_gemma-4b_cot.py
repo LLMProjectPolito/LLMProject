@@ -73,4 +73,4 @@ def test_string_with_numbers_and_symbols():
     assert solve("123!@#") == "321!@#"
 
 def test_string_with_special_characters():
-    assert solve("!@#$%") == "$%@#!@#"
+    assert solve("!@#$%") == "$%@#!@$"

@@ -49,15 +49,11 @@ def sample_data():
         (0, 0, 0),
         (10, 5, 2),
         (5, 10, 2),
-        (10, 10, 10),
-        (10, 10, 0),
-        (0, 10, 0),
-        (1000, 0, 1000),
-        (0, 1000, 0),
         (1, 1, 1),
         (1, 1, 0),
         (0, 1, 0),
-        (999, 999, 999),
+        (1000, 0, 1000),
+        (0, 1000, 0),
     ]
 
 def test_eat_sufficient_carrots(sample_data):
@@ -66,6 +62,10 @@ def test_eat_sufficient_carrots(sample_data):
         if need <= remaining:
             expected_eaten = number + need
             expected_remaining = remaining - need
+            assert eat(number, need, remaining) == [expected_eaten, expected_remaining]
+        else:
+            expected_eaten = number + remaining
+            expected_remaining = 0
             assert eat(number, need, remaining) == [expected_eaten, expected_remaining]
 
 def test_eat_insufficient_carrots(sample_data):
@@ -76,49 +76,44 @@ def test_eat_insufficient_carrots(sample_data):
             expected_remaining = 0
             assert eat(number, need, remaining) == [expected_eaten, expected_remaining]
 
-def test_eat_zero_need(sample_data):
-    """Tests cases where the need is zero."""
-    for number, need, remaining in sample_data:
-        if need == 0:
-            expected_eaten = number
-            expected_remaining = remaining
-            assert eat(number, need, remaining) == [expected_eaten, expected_remaining]
-
-def test_eat_zero_remaining(sample_data):
-    """Tests cases where there are no carrots remaining."""
-    for number, need, remaining in sample_data:
-        if remaining == 0:
-            expected_eaten = number
-            expected_remaining = 0
-            assert eat(number, need, remaining) == [expected_eaten, expected_remaining]
-
 def test_eat_edge_cases(sample_data):
-    """Tests edge cases like maximum values and zero values."""
+    """Tests edge cases like zero values and maximum values."""
     for number, need, remaining in sample_data:
+        if number == 1000 and need == 1 and remaining == 1:
+            assert eat(number, need, remaining) == [1001, 0]
+        if number == 0 and need == 1000 and remaining == 1000:
+            assert eat(number, need, remaining) == [1000, 0]
         if number == 1000 and need == 1000 and remaining == 1000:
             assert eat(number, need, remaining) == [2000, 0]
+        if number == 500 and need == 500 and remaining == 500:
+            assert eat(number, need, remaining) == [1000, 0]
         if number == 0 and need == 0 and remaining == 0:
             assert eat(number, need, remaining) == [0, 0]
+        if number == 10 and need == 5 and remaining == 2:
+            assert eat(number, need, remaining) == [12, 0]
+        if number == 5 and need == 10 and remaining == 2:
+            assert eat(number, need, remaining) == [7, 0]
+        if number == 1 and need == 1 and remaining == 1:
+            assert eat(number, need, remaining) == [2, 0]
+        if number == 1 and need == 1 and remaining == 0:
+            assert eat(number, need, remaining) == [1, 0]
+        if number == 0 and need == 1 and remaining == 0:
+            assert eat(number, need, remaining) == [0, 0]
+        if number == 1000 and need == 0 and remaining == 1000:
+            assert eat(number, need, remaining) == [1000, 1000]
+        if number == 0 and need == 1000 and remaining == 0:
+            assert eat(number, need, remaining) == [0, 0]
 
-def test_eat_large_numbers(sample_data):
-    """Tests with larger numbers to ensure no overflow issues."""
-    for number, need, remaining in sample_data:
-        if number == 999 and need == 999 and remaining == 999:
-            assert eat(number, need, remaining) == [2997, 0]
-
-def test_eat_negative_input_raises_error():
-    """Tests that negative inputs raise a ValueError."""
-    with pytest.raises(ValueError):
-        eat(-1, 5, 10)
-    with pytest.raises(ValueError):
-        eat(5, -1, 10)
-    with pytest.raises(ValueError):
-        eat(5, 5, -1)
-
-def test_eat_non_integer_input_raises_error():
-    """Tests that non-integer inputs raise a TypeError."""
+def test_eat_invalid_input():
+    """Tests cases with invalid input (negative values)."""
     with pytest.raises(TypeError):
-        eat(1.5, 5, 10)
+        eat(-1, 5, 10)
+    with pytest.raises(TypeError):
+        eat(5, -1, 10)
+    with pytest.raises(TypeError):
+        eat(5, 5, -1)
+    with pytest.raises(TypeError):
+        eat(5.5, 5, 10)
     with pytest.raises(TypeError):
         eat(5, 5.5, 10)
     with pytest.raises(TypeError):

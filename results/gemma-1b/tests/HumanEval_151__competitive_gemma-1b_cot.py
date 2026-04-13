@@ -12,4 +12,9 @@ def double_the_difference(lst):
     If the input list is empty, return 0.
     '''
 
-# ERROR: setup_competitive_graph() got an unexpected keyword argument 'model_a'
+def double_the_difference(lst):
+    total = 0
+    for num in lst:
+        if isinstance(num, int) and num % 2 != 0:
+            total += num * num
+    return total

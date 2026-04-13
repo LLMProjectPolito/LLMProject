@@ -75,8 +75,11 @@ def test_edge_case_max_int():
     guess = [-2**31]
     assert compare(game, guess) == [2**31 + 1]
 
-def test_edge_case_large_numbers():
-    assert compare([1000, 2000, 3000], [1001, 1999, 3000]) == [1, 1, 0]
+def test_large_numbers():
+    assert compare([1000, 2000, 3000], [1000, 2001, 2999]) == [0, 1, 1]
+
+def test_edge_case_large_difference():
+    assert compare([100], [-100]) == [200]
 
 def test_edge_case_identical_negative_numbers():
     assert compare([-5, -5, -5], [-5, -5, -5]) == [0, 0, 0]
@@ -84,8 +87,8 @@ def test_edge_case_identical_negative_numbers():
 def test_edge_case_one_correct_many_incorrect():
     assert compare([1, 2, 3, 4, 5], [1, 7, 3, 9, 5]) == [0, 5, 0, 5, 0]
 
-def test_edge_case_large_difference():
-    assert compare([100], [-100]) == [200]
+def test_edge_case_alternating_correct_incorrect():
+    assert compare([1, 2, 3, 4, 5], [1, 3, 1, 5, 1]) == [0, 1, 2, 1, 4]
 
 @pytest.mark.parametrize("game, guess, expected", [
     ([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]),

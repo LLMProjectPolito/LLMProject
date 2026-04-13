@@ -56,6 +56,29 @@ def file_name_check(file_name):
 def test_edge_case_many_digits_before_dot():
     assert file_name_check("1234example.txt") == "No"
 
-@pytest.mark.parametrize("file_name", ["a.1234"])
-def test_file_name_check_four_digits(file_name):
-    assert file_name_check(file_name) == 'No'
+def test_valid_file_name():
+    assert file_name_check("example.txt") == "Yes"
+
+def test_invalid_file_name_starts_with_digit():
+    assert file_name_check("1example.dll") == "No"
+
+def test_invalid_file_name_no_dot():
+    assert file_name_check("exampletxt") == "No"
+
+def test_invalid_file_name_multiple_dots():
+    assert file_name_check("example.txt.txt") == "No"
+
+def test_invalid_file_name_empty_before_dot():
+    assert file_name_check(".txt") == "No"
+
+def test_invalid_file_name_invalid_extension():
+    assert file_name_check("example.pdf") == "No"
+
+def test_valid_file_name_with_digits():
+    assert file_name_check("example12.txt") == "Yes"
+
+def test_valid_file_name_with_uppercase():
+    assert file_name_check("Example.txt") == "Yes"
+
+def test_invalid_file_name_more_than_three_digits():
+    assert file_name_check("example1234.txt") == "No"

@@ -66,4 +66,4 @@ def test_double_the_difference_all_negative():
     assert double_the_difference([-1, -3, -5]) == 0
 
 def test_double_the_difference_mixed_types():
-    assert double_the_difference([1, 2, "a", 3.5, 4]) == 1
+    assert double_the_difference([1, 2.5, "3", -4, 5]) == 1 + 25

@@ -20,13 +20,13 @@ def test_string_with_spaces():
     assert string_to_md5("  test  ") == "e5e9fa1ba31ecd1ae84f75caaa474f3a6"
 
 def test_string_with_special_characters():
-    assert string_to_md5("!@#$%^") == "96f99919961999999999999999999999"
+    assert string_to_md5("!@#$%^") == "96f99919961c99999999999999999999"
 
 def test_string_with_numbers():
     assert string_to_md5("12345") == "5994471abb01112afcc18159f6cc74b4"
 
 def test_long_string():
-    long_string = "This is a very long string to test the function." * 10
+    long_string = "This is a very long string to test the md5 function." * 10
     assert string_to_md5(long_string) == 'f9999999999999999999999999999999'
 
 def test_unicode_string():

@@ -75,24 +75,29 @@ def test_example_1():
 def test_example_2():
     assert words_in_sentence("lets go for swimming") == "go for"
 
-def test_multiple_prime_words():
-    assert words_in_sentence("two three five seven") == "two three five seven"
-
-def test_mixed_prime_and_non_prime():
-    assert words_in_sentence("one two three four five") == "two three five"
-
-def test_sentence_with_leading_and_trailing_spaces():
-    assert words_in_sentence("  hello world  ") == "hello world"
-
-def test_sentence_with_multiple_spaces():
-    assert words_in_sentence("hello   world") == "hello world"
-
-def test_long_sentence():
-    sentence = "This is a very long sentence with some prime and non prime words"
-    assert words_in_sentence(sentence) == "This very long some"
+def test_all_prime_words():
+    assert words_in_sentence("is are was") == "is are was"
 
 def test_all_non_prime_words():
-    assert words_in_sentence("one two four six eight") == ""
+    assert words_in_sentence("a an the") == ""
 
-def test_sentence_with_only_prime_length_words():
-    assert words_in_sentence("two three five seven eleven") == "two three five seven eleven"
+def test_mixed_prime_and_non_prime():
+    assert words_in_sentence("This is a test sentence") == "is"
+
+def test_long_sentence():
+    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the over dog"
+
+def test_sentence_with_leading_and_trailing_spaces():
+    assert words_in_sentence("  This is a test  ") == "is"
+
+def test_sentence_with_multiple_spaces():
+    assert words_in_sentence("This  is   a    test") == "is"
+
+def test_sentence_with_prime_and_composite_length_words():
+    assert words_in_sentence("two three four five") == "three five"
+
+def test_sentence_with_only_one_word_length_2():
+    assert words_in_sentence("to") == ""
+
+def test_sentence_with_only_one_word_length_3():
+    assert words_in_sentence("cat") == "cat"

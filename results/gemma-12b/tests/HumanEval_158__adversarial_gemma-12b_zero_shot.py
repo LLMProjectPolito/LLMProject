@@ -56,32 +56,31 @@ class TestFindMax:
     def test_mixed_lengths(self):
         assert find_max(["a", "aa", "aaa", "aaaa"]) == "a"
 
-    def test_all_same_length_different_unique(self):
-        assert find_max(["abc", "abd", "abe"]) == "abc"
+    def test_all_same_unique_chars(self):
+        assert find_max(["abc", "cba", "bac"]) == "abc"
 
-    def test_all_same_length_same_unique(self):
-        assert find_max(["abc", "def", "ghi"]) == "abc"
+    def test_numbers_and_symbols(self):
+        assert find_max(["123", "abc", "1234"]) == "1234"
 
-    def test_list_with_empty_string(self):
-        assert find_max(["", "abc", "def"]) == "abc"
-
-    def test_list_with_only_empty_string(self):
-        assert find_max([""]) == ""
-
-    def test_list_with_duplicates(self):
-        assert find_max(["abc", "abc", "def"]) == "abc"
-
-    def test_list_with_special_characters(self):
+    def test_special_characters(self):
         assert find_max(["!@#", "$%^", "&*()"]) == "!@#"
 
-    def test_list_with_numbers(self):
-        assert find_max(["123", "456", "789"]) == "123"
-
-    def test_list_with_mixed_characters(self):
-        assert find_max(["a1b2", "c3d4", "e5f6"]) == "a1b2"
-
-    def test_long_strings(self):
-        assert find_max(["abcdefghijklmnopqrstuvwxyz", "1234567890"]) == "abcdefghijklmnopqrstuvwxyz"
+    def test_mixed_case(self):
+        assert find_max(["aBc", "AbC", "abc"]) == "AbC"
 
     def test_unicode_characters(self):
-        assert find_max(["你好世界", "こんにちは世界"]) == "你好世界"
+        assert find_max(["你好", "世界", "你好世界"]) == "你好世界"
+
+    def test_long_strings(self):
+        long_string1 = "abcdefghijklmnopqrstuvwxyz"
+        long_string2 = "zyxwvutsrqponmlkjihgfedcba"
+        assert find_max([long_string1, long_string2]) == long_string1
+
+    def test_duplicate_words(self):
+        assert find_max(["abc", "abc", "def"]) == "abc"
+
+    def test_single_word(self):
+        assert find_max(["hello"]) == "hello"
+
+    def test_words_with_spaces(self):
+        assert find_max(["hello world", "hello", "world"]) == "hello world"

@@ -36,50 +36,56 @@ def sum_squares(lst):
 
 ### SCoT Steps:
 
-# STEP 1: REASONING - Analyze functional goals and constraints.
-# The function `sum_squares` calculates a sum based on the elements of a list, applying different transformations based on the index.
-# The transformations are:
-#   - If the index is a multiple of 3, the element is squared.
-#   - If the index is a multiple of 4 and not a multiple of 3, the element is cubed.
-#   - Otherwise, the element remains unchanged.
-# The function returns the sum of the transformed elements.
-# We need to test various scenarios including empty lists, lists with single elements, lists with multiple elements, and cases where indices are multiples of 3, 4, or both.
+### STEP 1: REASONING
+# The function `sum_squares` calculates a sum based on the index of each element in a list.
+# It squares elements at multiples of 3 and cubes elements at multiples of 4 (but not 3).
+# The function should handle empty lists and lists with negative numbers correctly.
+# We need to test various scenarios including empty lists, lists with positive and negative numbers, and lists with different indices that satisfy the multiple of 3 and 4 conditions.
 
-# STEP 2: PLAN - List test functions names and scenarios.
-# test_empty_list
-# test_single_element_multiple_of_3
-# test_single_element_multiple_of_4
-# test_multiple_elements_no_multiples
-# test_multiple_elements_multiple_of_3
-# test_multiple_elements_multiple_of_4
-# test_multiple_elements_multiple_of_3_and_4
-# test_negative_numbers
-# test_mixed_positive_and_negative
+### STEP 2: PLAN
+# Test cases:
+# 1. Empty list: [] - Expected output: 0
+# 2. List with positive numbers and multiples of 3: [1, 2, 3] - Expected output: 6
+# 3. List with positive numbers and multiples of 4: [1, 2, 3, 4] - Expected output: 100
+# 4. List with positive numbers and multiples of both 3 and 4: [1, 2, 3, 4, 5, 6] - Expected output: 165
+# 5. List with negative numbers: [-1, -5, 2, -1, -5] - Expected output: -126
+# 6. List with mixed positive and negative numbers and multiples of 3 and 4: [1, -2, 3, -4, 5, -6] - Expected output: 140
+# 7. List with only multiples of 3: [3, 6, 9] - Expected output: 99
+# 8. List with only multiples of 4: [4, 8, 12] - Expected output: 364
+# 9. List with a single element: [5] - Expected output: 25
+# 10. List with a single element that is a multiple of 3: [3] - Expected output: 9
+# 11. List with a single element that is a multiple of 4: [4] - Expected output: 64
 
-# STEP 3: CODE - Write the high-quality pytest suite.
+### STEP 3: CODE
 def test_empty_list():
     assert sum_squares([]) == 0
+
+def test_positive_multiples_of_3():
+    assert sum_squares([1, 2, 3]) == 6
+
+def test_positive_multiples_of_4():
+    assert sum_squares([1, 2, 3, 4]) == 100
+
+def test_positive_multiples_of_3_and_4():
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 165
+
+def test_negative_numbers():
+    assert sum_squares([-1, -5, 2, -1, -5]) == -126
+
+def test_mixed_positive_negative_multiples():
+    assert sum_squares([1, -2, 3, -4, 5, -6]) == 140
+
+def test_only_multiples_of_3():
+    assert sum_squares([3, 6, 9]) == 99
+
+def test_only_multiples_of_4():
+    assert sum_squares([4, 8, 12]) == 364
+
+def test_single_element():
+    assert sum_squares([5]) == 25
 
 def test_single_element_multiple_of_3():
     assert sum_squares([3]) == 9
 
 def test_single_element_multiple_of_4():
     assert sum_squares([4]) == 64
-
-def test_multiple_elements_no_multiples():
-    assert sum_squares([1, 2, 3]) == 6
-
-def test_multiple_elements_multiple_of_3():
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 4 + 9 + 64 + 25 + 36
-
-def test_multiple_elements_multiple_of_4():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 1 + 8 + 27 + 64 + 125 + 216 + 343 + 512
-
-def test_multiple_elements_multiple_of_3_and_4():
-    assert sum_squares([3, 4, 6, 8, 9, 12]) == 9 + 64 + 36 + 512 + 81 + 1296
-
-def test_negative_numbers():
-    assert sum_squares([-1, -5, 2, -1, -5]) == -1 + (-5)**3 + 2**2 + (-1)**3 + (-5)**3
-
-def test_mixed_positive_and_negative():
-    assert sum_squares([1, -2, 3, -4, 5, -6]) == 1 + (-2)**3 + 3**2 + (-4)**3 + 5**2 + (-6)**3

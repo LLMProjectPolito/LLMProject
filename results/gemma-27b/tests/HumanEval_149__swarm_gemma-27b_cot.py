@@ -63,26 +63,35 @@ def test_edge_case_long_strings():
 def test_edge_case_long_strings_mixed():
     assert sorted_list_sum(["abcdef", "ghi", "mnopqr"]) == ["abcdef", "ghijkl"]
 
+def test_edge_case_long_strings_with_empty():
+    assert sorted_list_sum(["abcdef", "", "ghijkl"]) == ["", "abcdef", "ghijkl"]
+
+def test_edge_case_all_even_lengths_reverse_order():
+    assert sorted_list_sum(["zz", "yy", "xx"]) == ["xx", "yy", "zz"]
+
+def test_edge_case_long_string_and_short_string():
+    assert sorted_list_sum(["abcdef", "ab"]) == ["ab", "abcdef"]
+
+def test_edge_case_long_string_and_short_string_same_char():
+    assert sorted_list_sum(["aaaaaa", "aa"]) == ["aa", "aaaaaa"]
+
 def test_edge_case_with_numbers_as_strings():
     assert sorted_list_sum(["12", "3", "456"]) == ["12"]
 
-def test_edge_case_special_characters():
-    assert sorted_list_sum(["!@#", "abc", "def"]) == ["!@#", "abc", "def"]
+def test_edge_case_with_special_characters():
+    assert sorted_list_sum(["!@#$", "abc", "def"]) == ["!@#$", "abc", "def"]
 
-def test_edge_case_mixed_case():
-    assert sorted_list_sum(["aA", "bb", "Cc"]) == ["aA", "bb", "Cc"]
-
-def test_edge_case_unicode_characters():
+def test_edge_case_with_unicode_characters():
     assert sorted_list_sum(["你好", "世界"]) == []
 
-def test_edge_case_long_even_string():
-    assert sorted_list_sum(["abcdefgh"]) == ["abcdefgh"]
+def test_edge_case_with_mixed_unicode_and_ascii():
+    assert sorted_list_sum(["你好", "ab", "cd"]) == ["ab", "cd"]
 
-def test_edge_case_long_odd_string():
-    assert sorted_list_sum(["abcdefghi"]) == []
+def test_edge_case_very_long_even_string():
+    assert sorted_list_sum(["a" * 100]) == ["a" * 100]
 
-def test_edge_case_empty_string_and_odd_string():
-    assert sorted_list_sum(["", "a"]) == []
+def test_edge_case_very_long_odd_string():
+    assert sorted_list_sum(["a" * 101]) == []
 
-def test_edge_case_empty_string_and_even_string():
-    assert sorted_list_sum(["", "aa"]) == [""]
+def test_edge_case_list_with_only_empty_strings():
+    assert sorted_list_sum(["", "", ""]) == ["", "", ""]

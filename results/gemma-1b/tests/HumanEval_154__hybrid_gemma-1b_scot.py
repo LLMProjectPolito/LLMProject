@@ -11,11 +11,18 @@ def cycpattern_check(a , b):
     """
 
 import pytest
-from typing import List
 
-def cycpattern_check(a: str, b: str) -> bool:
+def cycpattern_check(a, b):
     """
     Checks if the second word or any of its rotations is a substring of the first word.
+
+    Args:
+        a: The first word (string).
+        b: The second word (string).
+
+    Returns:
+        True if the second word or any of its rotations is a substring of the first word,
+        False otherwise.
     """
     if len(a) == 0 or len(b) == 0:
         return False
@@ -37,6 +44,7 @@ def cycpattern_check(a: str, b: str) -> bool:
     return False
 
 
+# Test cases
 def test_cycpattern_check():
     assert cycpattern_check("abcd", "abd") == False
     assert cycpattern_check("hello", "ell") == True
@@ -45,5 +53,4 @@ def test_cycpattern_check():
     assert cycpattern_check("efef", "eeff") == False
     assert cycpattern_check("himenss", "simen") == True
 
-    # Add more test cases here to cover various scenarios
     print("All test cases passed!")

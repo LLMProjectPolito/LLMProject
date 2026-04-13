@@ -52,4 +52,5 @@ def test_same_planet():
 
 def test_edge_cases():
     assert bf("Mercury", "Venus") == ()
-    assert bf("Neptune", "Uranus") == ()
+    assert bf("Venus", "Mercury") == ()
+    assert bf("Neptune", "Uranus") == ("Saturn", "Jupiter", "Mars", "Earth", "Venus", "Mercury")

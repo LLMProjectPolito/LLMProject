@@ -38,21 +38,18 @@ def find_max(words):
 
     return max_word
 
-import sys
-def test_find_max_empty_list():
+# Test Cases
+def test_empty_list():
     assert find_max([]) == ""
 
-def test_find_max_single_word():
+def test_single_word():
     assert find_max(["hello"]) == "hello"
 
-def test_find_max_multiple_words():
-    assert find_max(["name", "of", "string"]) == "string"
+def test_multiple_words_same_max():
+    assert find_max(["abc", "def", "ghi"]) == "abc"
 
-def test_find_max_same_unique_chars():
-    assert find_max(["aaaaaaa", "bb", "cc"]) == "bb"
+def test_words_different_counts():
+    assert find_max(["a", "aa", "aaa"]) == "aaa"
 
-def test_find_max_lexicographical_order():
-    assert find_max(["name", "enam", "game"]) == "enam"
-
-def test_find_max_with_numbers():
-    assert find_max(["123", "456", "789"]) == "123"
+def test_words_with_repeated_characters():
+    assert find_max(["aabbcc", "abc", "aabbcc"]) == "aabbcc"

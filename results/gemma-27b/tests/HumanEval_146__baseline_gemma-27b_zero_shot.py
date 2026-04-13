@@ -53,8 +53,8 @@ def test_large_numbers():
 def test_numbers_with_even_digits():
     assert specialFilter([12, 34, 56, 78, 90]) == 0
 
-def test_numbers_less_than_or_equal_to_10():
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 0
+def test_numbers_close_to_10():
+    assert specialFilter([11, 13, 15, 17, 19]) == 5
 
 def test_example_1():
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
@@ -62,11 +62,17 @@ def test_example_1():
 def test_example_2():
     assert specialFilter([15, -73, 14, -15]) == 1
 
-def test_mixed_positive_negative():
-    assert specialFilter([11, -13, 14, -15, 17, -19]) == 4
+def test_zero():
+    assert specialFilter([0]) == 0
 
-def test_numbers_starting_with_zero():
-    assert specialFilter([01, 03, 05, 07, 09]) == 0
+def test_ten():
+    assert specialFilter([10]) == 0
 
-def test_numbers_with_leading_zeros_string():
-    assert specialFilter(['011', '013', '015']) == 0
+def test_eleven():
+    assert specialFilter([11]) == 1
+
+def test_large_negative_number():
+    assert specialFilter([-123456789]) == 0
+
+def test_large_positive_number():
+    assert specialFilter([123456789]) == 0

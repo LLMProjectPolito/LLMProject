@@ -22,21 +22,10 @@ def cycpattern_check(a, b):
     cycpattern_check("himenss","simen") => True
 
     """
-    if len(a) == 0 or len(b) == 0:
+    if len(a) < len(b):
         return False
-
-    if len(a) == 1 and len(b) == 1:
-        return a.lower() in b.lower()
-
-    if len(a) == 1:
-        return b.lower() in a.lower()
-
-    if len(b) == 1:
-        return a.lower() in b.lower()
-
-    for i in range(1, len(b)):
+    for i in range(len(b)):
         rotated_b = b[i:] + b[:i]
         if rotated_b in a:
             return True
-
     return False

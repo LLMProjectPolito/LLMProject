@@ -47,7 +47,7 @@ def test_string_with_newlines():
     assert fix_spaces("Example\n1") == "Example_1"
 
 def test_string_with_mixed_whitespace():
-    assert fix_spaces("Example\t 2 \n 3 ") == "Example_2\n_3_"
+    assert fix_spaces("Example\t 2 \n 3") == "Example_2_3"
 
 def test_long_string_with_consecutive_spaces():
     assert fix_spaces("This is a very long string with   many   consecutive spaces.") == "This_is_a_very_long_string_with-many-consecutive_spaces."
@@ -55,5 +55,5 @@ def test_long_string_with_consecutive_spaces():
 def test_string_with_only_consecutive_spaces():
     assert fix_spaces("     ") == "-"
 
-def test_string_with_consecutive_spaces_at_start_and_end():
-    assert fix_spaces("   Example   ") == "-Example-"
+def test_string_with_consecutive_spaces_and_single_spaces():
+    assert fix_spaces("Example   1 2   3") == "Example-1_2-3"

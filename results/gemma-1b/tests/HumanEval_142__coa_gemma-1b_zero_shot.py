@@ -35,6 +35,8 @@ def sum_squares(lst):
             total += num ** 2
         elif i % 4 == 0 and i % 3 != 0:
             total += num ** 3
+        else:
+            pass
     return total
 
 # Focus: Type Scenarios
@@ -55,8 +57,6 @@ def sum_squares(lst):
             total += num ** 2
         elif i % 4 == 0 and i % 3 != 0:
             total += num ** 3
-        else:
-            pass
     return total
 
 # Focus: Logic Branches

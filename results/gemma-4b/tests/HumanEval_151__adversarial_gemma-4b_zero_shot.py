@@ -47,20 +47,17 @@ def test_negative_numbers():
 def test_positive_and_negative_numbers():
     assert double_the_difference([9, -2]) == 81
 
-def test_zero_and_odd_numbers():
-    assert double_the_difference([0, 1, 3]) == 10
-
-def test_only_zero():
+def test_zero_list():
     assert double_the_difference([0]) == 0
 
-def test_large_numbers():
-    assert double_the_difference([1001, 1003]) == 2006005
-
 def test_list_with_non_integers():
-    assert double_the_difference([1.5, 2, 3]) == 9
+    assert double_the_difference([1.5, 3, "a", 5]) == 35
 
-def test_list_with_negative_non_integers():
-    assert double_the_difference([-1.5, 2, -3]) == 0
+def test_list_with_negative_and_non_integers():
+    assert double_the_difference([-1, -2.5, 0, "b"]) == 0
 
-def test_list_with_mixed_types_and_odd_numbers():
-    assert double_the_difference([1, "a", 3, 2.5, -1]) == 10
+def test_large_numbers():
+    assert double_the_difference([1001, 2003]) == 1002005
+
+def test_all_negative_odd():
+    assert double_the_difference([-1, -3, -5]) == 35

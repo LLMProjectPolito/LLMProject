@@ -20,6 +20,7 @@ def words_in_sentence(sentence):
         * sentence contains only letters
     """
 
+```python
 import pytest
 
 def words_in_sentence(sentence):
@@ -39,13 +40,13 @@ def words_in_sentence(sentence):
     return " ".join(result)
 
 @pytest.mark.parametrize(
-    "sentence, expected_output",
+    "sentence, expected",
     [
         ("This is a test", "is"),
         ("lets go for swimming", "go for"),
         ("hello world", "hello"),
         ("a b c d e", "a"),
-        ("123456789", "123456789"),
+        ("12345", "12345"),
         ("abc", "abc"),
         ("1", "1"),
         ("2", "2"),
@@ -129,13 +130,13 @@ def words_in_sentence(sentence):
     return " ".join(result)
 
 @pytest.mark.parametrize(
-    "sentence, expected_output",
+    "sentence, expected",
     [
         ("This is a test", "is"),
         ("lets go for swimming", "go for"),
         ("hello world", "hello"),
         ("a b c d e", "a"),
-        ("123456789", "123456789"),
+        ("12345", "12345"),
         ("abc", "abc"),
         ("1", "1"),
         ("2", "2"),
@@ -200,13 +201,13 @@ def words_in_sentence(sentence):
     ]
 
 @pytest.mark.parametrize(
-    "sentence, expected_output",
+    "sentence, expected",
     [
         ("This is a test", "is"),
         ("lets go for swimming", "go for"),
         ("hello world", "hello"),
         ("a b c d e", "a"),
-        ("123456789", "123456789"),
+        ("12345", "12345"),
         ("abc", "abc"),
         ("1", "1"),
         ("2", "2"),
@@ -246,45 +247,4 @@ def words_in_sentence(sentence):
         ("36", "36"),
         ("37", "37"),
         ("38", "38"),
-        ("39", "39"),
-        ("40", "40"),
-        ("41", "41"),
-        ("42", "42"),
-        ("43", "43"),
-        ("44", "44"),
-        ("45", "45"),
-        ("46", "46"),
-        ("47", "47"),
-        ("48", "48"),
-        ("49", "49"),
-        ("50", "50"),
-        ("51", "51"),
-        ("52", "52"),
-        ("53", "53"),
-        ("54", "54"),
-        ("55", "55"),
-        ("56", "56"),
-        ("57", "57"),
-        ("58", "58"),
-        ("59", "59"),
-        ("60", "60")
-    ]
-
-Suite 2:
-import pytest
-
-def words_in_sentence(sentence):
-    words = sentence.split()
-    def is_prime(n):
-        if n < 2:
-            return False
-        for i in range(2, int(n**0.5) + 1):
-            if n % i == 0:
-                return False
-        return True
-
-    result = []
-    for word in words:
-        if is_prime(len(word)):
-            result.append(word)
-    return " ".join(result)
+        ("39", "39

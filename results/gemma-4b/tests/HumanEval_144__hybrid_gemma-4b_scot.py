@@ -34,54 +34,38 @@ def simplify(x, n):
     return product.is_integer()
 
 
-### SCoT Steps:
-
-# STEP 1: REASONING
-# The function `simplify(x, n)` checks if the product of two fractions, represented as strings, is a whole number.
-# It needs to handle different denominators and ensure that the result of the multiplication is an integer.
-# The function should return True if the product is an integer and False otherwise.
-# We need to test various scenarios including cases where the denominators are the same, different, and where the product is an integer or not.
-
-# STEP 2: PLAN
-# Test functions:
-# - test_same_denominator: Tests cases where the denominators of x and n are the same.
-# - test_different_denominator: Tests cases where the denominators of x and n are different.
-# - test_integer_result: Tests cases where the product of x and n is an integer.
-# - test_non_integer_result: Tests cases where the product of x and n is not an integer.
-# - test_edge_cases: Tests edge cases like simple fractions and cases that might expose potential errors.
-
-# STEP 3: CODE
-#
-
-### SCoT Steps:
-# STEP 1: REASONING - Analyze functional goals and constraints.
-# STEP 2: PLAN - List test functions names and scenarios.
-# STEP 3: CODE - Write the high-quality pytest suite.
-
-def test_same_denominator():
+def test_basic_positive_integers():
     assert simplify("1/5", "5/1") == True
-    assert simplify("2/3", "3/1") == True
+    assert simplify("5/1", "1/5") == True
     assert simplify("1/2", "2/1") == True
+    assert simplify("2/1", "1/2") == True
 
-def test_different_denominator():
-    assert simplify("1/5", "5/1") == True
-    assert simplify("1/6", "2/1") == False
-    assert simplify("7/10", "10/2") == False
-    assert simplify("3/4", "4/5") == False
-
-def test_integer_result():
+def test_result_is_integer():
     assert simplify("1/2", "2/1") == True
-    assert simplify("2/3", "3/1") == True
-    assert simplify("4/5", "5/1") == True
+    assert simplify("2/1", "1/2") == True
+    assert simplify("1/1", "1/1") == True
+    assert simplify("10/2", "2/1") == True
 
-def test_non_integer_result():
-    assert simplify("1/2", "2/2") == False
-    assert simplify("3/4", "4/3") == False
-    assert simplify("5/6", "6/2") == False
+def test_result_is_not_integer():
+    assert simplify("1/3", "3/1") == False
+    assert simplify("3/1", "1/3") == False
+    assert simplify("1/4", "4/1") == False
+    assert simplify("2/3", "3/1") == False
+
+def test_larger_numbers():
+    assert simplify("10/2", "2/1") == True
+    assert simplify("5/1", "1/5") == True
+    assert simplify("100/10", "10/1") == True
+    assert simplify("10/10", "10/1") == True
 
 def test_edge_cases():
     assert simplify("1/1", "1/1") == True
-    assert simplify("1/2", "1/1") == False
-    assert simplify("1/1", "1/2") == False
-    assert simplify("1/1", "2/1") == True
-    assert simplify("2/1", "1/1") == True
+    assert simplify("1/2", "1/1") == True
+    assert simplify("1/1", "2/1") == False
+    assert simplify("2/2", "1/1") == True
+
+def test_common_factors():
+    assert simplify("4/6", "2/3") == True
+    assert simplify("6/4", "3/2") == True
+    assert simplify("12/18", "2/3") == True
+    assert simplify("18/12", "3/2") == True

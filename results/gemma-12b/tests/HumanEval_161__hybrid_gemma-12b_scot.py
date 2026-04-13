@@ -50,35 +50,11 @@ class TestSolve:
     def test_only_lowercase(self):
         assert solve("ab") == "AB"
 
-    def test_only_uppercase(self):
-        assert solve("AB") == "ab"
-
-    def test_mixed_letters_and_nonletters(self):
+    def test_mixed_letters_special(self):
         assert solve("#a@C") == "#A@c"
 
     def test_empty_string(self):
         assert solve("") == ""
-
-    def test_special_characters_and_spaces(self):
-        assert solve("!@ #$%^") == "^%$# @!"
-
-    def test_mixed_case_and_nonletters(self):
-        assert solve("aBc12") == "AbC12"
-
-    def test_unicode_characters(self):
-        assert solve("你好世界") == "界世好你"
-
-    def test_numbers_and_unicode(self):
-        assert solve("12你好") == "好你21"
-
-    def test_single_letter(self):
-        assert solve("a") == "A"
-
-    def test_single_number(self):
-        assert solve("1") == "1"
-
-    def test_mixed_letters_special(self):
-        assert solve("#a@C") == "#A@c"
 
     def test_only_uppercase(self):
         assert solve("ABC") == "abc"
@@ -87,13 +63,19 @@ class TestSolve:
         assert solve("a1B2c") == "A1b2C"
 
     def test_with_spaces(self):
-        assert solve("hello world") == "olleh dlrow"
+        assert solve("hello world") == "HELLO WORLD"
 
     def test_with_unicode(self):
-        assert solve("你好世界") == "界世好你"
+        assert solve("你好世界") == "你好世界"
 
     def test_only_special_characters(self):
         assert solve("!@#$%^") == "!@#$%^"
 
-    def test_no_letters(self):
-        assert solve("123!@#") == "#@!321"
+    def test_no_letters_special_numbers(self):
+        assert solve("!1@2#3") == "3#2@1!"
+
+    def test_only_special(self):
+        assert solve("!@#$%^") == "!@#$%^"
+
+    def test_mixed_all(self):
+        assert solve("1a#B@c2") == "2A#b@C1"

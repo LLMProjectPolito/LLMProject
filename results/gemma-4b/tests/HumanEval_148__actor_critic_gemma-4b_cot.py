@@ -41,13 +41,7 @@ def bf(planet1, planet2):
     except ValueError:
         return ()
 
-    if planet1 == planet2:
-        return ()
-
     if idx1 >= idx2:
-        return ()
-
-    if idx1 == 0 and idx2 == len(planets) - 1:
         return ()
 
     result = []
@@ -77,11 +71,8 @@ def test_bf_saturn_uranus():
 def test_bf_uranus_neptune():
     assert bf("Uranus", "Neptune") == ("Saturn", "Jupiter", "Mars", "Earth", "Venus")
 
-def test_bf_mercury_mercury():
-    assert bf("Mercury", "Mercury") == ()
-
-def test_bf_neptune_neptune():
-    assert bf("Neptune", "Neptune") == ()
+def test_bf_neptune_mercury():
+    assert bf("Neptune", "Mercury") == ()
 
 def test_bf_invalid_planet1():
     assert bf("Pluto", "Neptune") == ()
@@ -89,23 +80,20 @@ def test_bf_invalid_planet1():
 def test_bf_invalid_planet2():
     assert bf("Jupiter", "Pluto") == ()
 
-def test_bf_same_planet1_planet2():
+def test_bf_same_planet():
     assert bf("Earth", "Earth") == ()
 
-def test_bf_jupiter_jupiter():
-    assert bf("Jupiter", "Jupiter") == ()
+def test_bf_adjacent_planets():
+    assert bf("Mars", "Jupiter") == ("Saturn")
 
-def test_bf_empty_string_planet1():
+def test_bf_far_apart_planets():
+    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
+
+def test_bf_empty_string():
     assert bf("", "Neptune") == ()
 
-def test_bf_empty_string_planet2():
-    assert bf("Jupiter", "") == ()
+def test_bf_none_planet1():
+    assert bf(None, "Neptune") == ()
 
-def test_bf_empty_string_both():
-    assert bf("", "") == ()
-
-def test_bf_adjacent_planets():
-    assert bf("Earth", "Mars") == ()
-
-def test_bf_first_and_last_planets():
-    assert bf("Mercury", "Neptune") == ()
+def test_bf_none_planet2():
+    assert bf("Jupiter", None) == ()

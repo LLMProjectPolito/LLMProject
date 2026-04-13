@@ -56,14 +56,15 @@ def sum_squares(lst):
 
 def test_sum_squares():
     """
-    Tests the sum_squares function.
+    This function tests the sum_squares function with various inputs.
     """
     assert sum_squares([1, 2, 3]) == 6
     assert sum_squares([]) == 0
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
-    assert sum_squares([1, 2, 3, 4, 5]) == 15
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == 210
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7]) == 210
+    assert sum_squares([1, 2, 3, 4, 5]) == 55
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 55
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7]) == 55
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 55
     print("All tests passed!")
 
 if __name__ == '__main__':

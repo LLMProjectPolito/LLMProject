@@ -39,38 +39,73 @@ def get_max_triples(n):
                     count += 1
     return count
 
-# Test Cases
-class TestGetMaxTriples:
+# Optimized Solution (O(n^2))
+def get_max_triples_optimized(n):
+    a = [i * i - i + 1 for i in range(1, n + 1)]
+    rem0 = 0
+    rem1 = 0
+    rem2 = 0
+    for x in a:
+        if x % 3 == 0:
+            rem0 += 1
+        elif x % 3 == 1:
+            rem1 += 1
+        else:
+            rem2 += 1
+    
+    ans = 0
+    ans += rem0 * (rem0 - 1) * (rem0 - 2) // 6
+    ans += rem1 * (rem1 - 1) * (rem1 - 2) // 6
+    ans += rem2 * (rem2 - 1) * (rem2 - 2) // 6
+    ans += rem0 * rem1 * rem2
+    return ans
 
-    def test_get_max_triples_example(self):
-        assert get_max_triples(5) == 1
+def test_get_max_triples_example():
+    assert get_max_triples_optimized(5) == 1
+    assert get_max_triples(5) == 1
 
-    @pytest.mark.parametrize("n", [1, 2, 3, 4])
-    def test_get_max_triples_small_inputs(self, n):
-        assert get_max_triples(n) == 0
+def test_get_max_triples_small_values():
+    assert get_max_triples_optimized(4) == 0
+    assert get_max_triples(4) == 0
 
-    def test_get_max_triples_key_values(self):
-        assert get_max_triples(6) == 20
-        assert get_max_triples(10) == 120
-        assert get_max_triples(15) == 455
+def test_get_max_triples_larger_values():
+    assert get_max_triples_optimized(6) == 20
+    assert get_max_triples(6) == 20
+    assert get_max_triples_optimized(7) == 35
+    assert get_max_triples(7) == 35
+    assert get_max_triples_optimized(8) == 56
+    assert get_max_triples(8) == 56
+    assert get_max_triples_optimized(9) == 84
+    assert get_max_triples(9) == 84
+    assert get_max_triples_optimized(10) == 120
+    assert get_max_triples(10) == 120
+    assert get_max_triples_optimized(11) == 165
+    assert get_max_triples(11) == 165
+    assert get_max_triples_optimized(12) == 220
+    assert get_max_triples(12) == 220
+    assert get_max_triples_optimized(13) == 286
+    assert get_max_triples(13) == 286
+    assert get_max_triples_optimized(14) == 364
+    assert get_max_triples(14) == 364
+    assert get_max_triples_optimized(15) == 455
+    assert get_max_triples(15) == 455
 
-    def test_get_max_triples_larger_input(self):
-        assert get_max_triples(20) == 1140
-        assert get_max_triples(30) == 4060
+def test_get_max_triples_large_n():
+    assert get_max_triples_optimized(100) == 161700
+    assert get_max_triples(100) == 161700
 
-    def test_get_max_triples_edge_case(self):
-        assert get_max_triples(0) == 0
+def test_get_max_triples_16():
+    assert get_max_triples_optimized(16) == 560
+    assert get_max_triples(16) == 560
 
-    def test_get_max_triples_negative_input(self):
-        with pytest.raises(TypeError):
-            get_max_triples(-1)
+def test_get_max_triples_17():
+    assert get_max_triples_optimized(17) == 680
+    assert get_max_triples(17) == 680
 
-    def test_get_max_triples_large_input(self):
-        assert get_max_triples(50) == 19600
-        assert get_max_triples(100) == 161700
+def test_get_max_triples_multiple_of_3():
+    assert get_max_triples_optimized(30) == 4060
+    assert get_max_triples(30) == 4060
 
-    def test_get_max_triples_remainder_pattern(self):
-        # Test case where a has a predictable distribution of remainders when divided by 3
-        # n = 9 results in a = [1, 3, 7, 13, 21, 31, 43, 57, 73]
-        # Remainders mod 3: [1, 0, 1, 1, 0, 1, 1, 0, 1]
-        assert get_max_triples(9) == 84
+def test_get_max_triples_1000():
+    assert get_max_triples_optimized(1000) == 166667000
+    assert get_max_triples(1000) == 166667000

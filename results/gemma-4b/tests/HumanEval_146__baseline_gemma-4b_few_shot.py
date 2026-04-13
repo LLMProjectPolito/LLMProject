@@ -12,9 +12,8 @@ import pytest
 
 def is_palindrome(s: str) -> bool:
     """ Checks if a string is a palindrome """
-    s = s.lower()
-    new_string = ''.join(filter(str.isalnum, s))
-    return new_string == new_string[::-1]
+    s = ''.join(filter(str.isalnum, s)).lower()
+    return s == s[::-1]
 
 def get_max(arr: list[int]) -> int:
     """ Returns the maximum element in a list, or None if empty """
@@ -51,23 +50,20 @@ def test_max_positive():
 def test_max_empty():
     assert get_max([]) == None
 
-def test_specialFilter_example1():
+def test_specialFilter_empty():
+    assert specialFilter([]) == 0
+
+def test_specialFilter_basic1():
     assert specialFilter([15, -73, 14, -15]) == 1
 
-def test_specialFilter_example2():
+def test_specialFilter_basic2():
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
 def test_specialFilter_no_match():
-    assert specialFilter([12, 14, 16]) == 0
+    assert specialFilter([12, 14, 16, 18]) == 0
 
 def test_specialFilter_all_match():
     assert specialFilter([11, 13, 15, 17, 19]) == 5
 
 def test_specialFilter_mixed():
-    assert specialFilter([11, 13, 12, 15, 17, 19, 21]) == 4
-
-def test_specialFilter_negative_numbers():
-    assert specialFilter([-11, -13, -15, -17, -19]) == 0
-
-def test_specialFilter_zero():
-    assert specialFilter([11, 0, 13, 15]) == 2
+    assert specialFilter([11, 13, 12, 15, 17, 18, 19]) == 3

@@ -13,7 +13,7 @@ def cycpattern_check(a , b):
 import pytest
 import math
 
-def test_cycpattern_check_positive():
+def test_basic():
     assert cycpattern_check("hello","ell") == True
 
 def test_empty_first_word():

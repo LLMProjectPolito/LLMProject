@@ -57,23 +57,26 @@ def test_duplicate_even_length():
 def test_duplicate_odd_even():
     assert sorted_list_sum(["aa", "a", "aaa", "aa", "cd"]) == ["aa", "aa", "cd"]
 
-def test_same_length_different_chars():
-    assert sorted_list_sum(["ab", "ac", "ad"]) == ["ab", "ac", "ad"]
-
-def test_same_length_same_chars():
-    assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
-
-def test_single_element_even():
+def test_single_even_length():
     assert sorted_list_sum(["aa"]) == ["aa"]
 
-def test_single_element_odd():
+def test_single_odd_length():
     assert sorted_list_sum(["a"]) == []
+
+def test_longer_strings():
+    assert sorted_list_sum(["abcdef", "abc", "ab"]) == ["ab", "abcdef"]
+
+def test_strings_with_same_length_different_alphabetical_order():
+    assert sorted_list_sum(["ab", "ac", "ba", "bc"]) == ["ab", "ac", "ba", "bc"]
 
 def test_complex_case():
     assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape"]) == ["banana", "orange"]
 
-def test_another_complex_case():
-    assert sorted_list_sum(["abc", "def", "ghi", "jkl", "mno"]) == ["abc", "def", "ghi", "jkl", "mno"]
+def test_edge_case_empty_string():
+    assert sorted_list_sum(["", "aa", "bb"]) == ["", "aa", "bb"]
 
-def test_mixed_case_with_duplicates():
-    assert sorted_list_sum(["aa", "ab", "a", "bb", "ba"]) == ["aa", "bb"]
+def test_empty_strings_only():
+    assert sorted_list_sum(["", "", ""]) == ["", "", ""]
+
+def test_mixed_empty_odd():
+    assert sorted_list_sum(["", "a", ""]) == ["", ""]

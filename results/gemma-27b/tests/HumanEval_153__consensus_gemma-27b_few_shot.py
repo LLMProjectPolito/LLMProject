@@ -56,22 +56,26 @@ def Strongest_Extension(class_name, extensions):
 
     return f"{class_name}.{strongest_extension}"
 
-@pytest.mark.parametrize("class_name, extensions, expected", [
-    ("Slices", ['SErviNGSliCes', 'Cheese', 'StuFfed'], "Slices.SErviNGSliCes"),
-    ("my_class", ['AA', 'Be', 'CC'], "my_class.AA"),
-    ("TestClass", ['ExtensionA', 'extensionB', 'ExtensionC'], "TestClass.ExtensionA"),
-    ("Example", ['abc', 'ABC', 'aBc'], "Example.ABC"),
-    ("Class1", ['ext1', 'Ext2', 'eXt3'], "Class1.Ext2"),
-    ("Empty", [], "Empty.None"),
-    ("Single", ['OnlyExtension'], "Single.OnlyExtension"),
-    ("MixedCase", ['MiXeDCase', 'mixedcase', 'MIXEDCASE'], "MixedCase.MIXEDCASE"),
-    ("Numbers", ['123', 'A1B', 'a1b'], "Numbers.A1B"),
-    ("Symbols", ['!@#', 'A!B', 'a!b'], "Symbols.A!B"),
-    ("LongNames", ['VeryLongExtensionName', 'Short'], "LongNames.VeryLongExtensionName"),
-    ("EqualStrength", ['AB', 'Cd', 'EF'], "EqualStrength.AB"),
-    ("NegativeStrength", ['abc', 'def', 'ghi'], "NegativeStrength.abc"),
-    ("ZeroStrength", ['aB', 'Cd', 'eF'], "ZeroStrength.aB"),
-])
+@pytest.mark.parametrize(
+    "class_name, extensions, expected",
+    [
+        ("Slices", ['SErviNGSliCes', 'Cheese', 'StuFfed'], "Slices.SErviNGSliCes"),
+        ("my_class", ['AA', 'Be', 'CC'], "my_class.AA"),
+        ("TestClass", ['ExtensionA', 'extensionB', 'ExtensionC'], "TestClass.ExtensionA"),
+        ("Example", ['abc', 'ABC', 'aBc'], "Example.ABC"),
+        ("Class1", ['ext1', 'Ext2', 'eXt3'], "Class1.Ext2"),
+        ("Empty", [], "Empty.None"),
+        ("Single", ['OnlyExtension'], "Single.OnlyExtension"),
+        ("MixedCase", ['MiXeDCase', 'mixedcase', 'MIXEDCASE'], "MixedCase.MIXEDCASE"),
+        ("Numbers", ['123', 'A12', 'a12'], "Numbers.A12"),
+        ("Symbols", ['!@#', 'A!@', 'a@#'], "Numbers.A!@"),
+        ("LongNames", ['VeryLongExtensionName', 'Short'], "LongNames.VeryLongExtensionName"),
+        ("EqualStrength", ['AB', 'Cd', 'EF'], "EqualStrength.AB"),
+        ("NegativeStrength", ['abc', 'def', 'ghi'], "NegativeStrength.abc"),
+        ("ZeroStrength", ['aB', 'Cd', 'eF'], "ZeroStrength.aB"),
+        ("ClassWithSpace", "Class With Space", ['Extension1', 'Extension2'], "Class With Space.Extension1"),
+    ],
+)
 def test_strongest_extension(class_name, extensions, expected):
     if not extensions:
         assert Strongest_Extension(class_name, extensions) == f"{class_name}.None"

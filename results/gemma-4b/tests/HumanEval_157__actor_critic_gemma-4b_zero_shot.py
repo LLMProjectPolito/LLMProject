@@ -38,20 +38,20 @@ def test_right_angle_triangle_invalid():
     assert right_angle_triangle(4, 5, 6) == False
 
 def test_right_angle_triangle_edge_cases():
-    assert right_angle_triangle(1, 1, 1.4142135623730951) == True
+    assert right_angle_triangle(1, 1, 1.41421356237) == True
     assert right_angle_triangle(0, 0, 0) == True
     assert right_angle_triangle(1, 0, 1) == False
     assert right_angle_triangle(1, 1, 0) == False
-    assert right_angle_triangle(1, 1, 1.9999999999999998) == False
+    assert right_angle_triangle(1, 1, 1.99999999999) == False
     assert right_angle_triangle(1, 2, 2.23606797749979) == True
     assert right_angle_triangle(2, 1, 2.23606797749979) == True
 
 def test_right_angle_triangle_large_numbers():
-    assert right_angle_triangle(1000, 1000, 141421356.23730951) == True
-    assert right_angle_triangle(1000, 1000, 141421356.23730949) == False
+    assert right_angle_triangle(1000, 1000, 141421356.237) == True
+    assert right_angle_triangle(1000, 1000, 141421356.236) == False
 
 def test_right_angle_triangle_float_inputs():
     assert right_angle_triangle(3.0, 4.0, 5.0) == True
     assert right_angle_triangle(1.5, 2.0, 2.5) == True
     assert right_angle_triangle(1.0, 1.0, 1.41421356) == True
-    assert right_angle_triangle(1.0, 1.0, 1.41421355) == False
+    assert right_angle_triangle(1.0, 1.0, 1.41421357) == False

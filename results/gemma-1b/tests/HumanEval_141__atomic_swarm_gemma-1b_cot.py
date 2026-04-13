@@ -31,33 +31,36 @@ def file_name_check(file_name):
     file_name_check("example.txt") # => 'Yes'
     file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
-    if len(file_name) > 3:
+    if not isinstance(file_name, str):
         return 'No'
-    if file_name.count('.') == 0:
+
+    if len(file_name) <= 3:
         return 'No'
-    if not file_name[:1].isalpha():
+
+    if not file_name.startswith('.'):
         return 'No'
-    if not file_name[1:].islower():
+
+    if len(file_name) > 1 and not file_name[1:].islower():
         return 'No'
-    if file_name[1:].startswith('a') and file_name[1:].endswith('z'):
+
+    if file_name.endswith(".txt") or file_name.endswith(".exe") or file_name.endswith(".dll"):
         return 'Yes'
-    if file_name[1:].startswith('A') and file_name[1:].endswith('Z'):
-        return 'Yes'
+
     return 'No'
 
 def test_file_name_check():
     assert file_name_check("example.txt") == 'Yes'
     assert file_name_check("1example.dll") == 'No'
-    assert file_name_check("example.txt.txt") == 'No'
-    assert file_name_check("example.txt.txt.txt") == 'No'
-    assert file_name_check("example.txt.txt.txt.txt") == 'No'
-    assert file_name_check("example.txt.txt.txt.txt.txt") == 'No'
-    assert file_name_check("example.txt.txt.txt.txt.txt.txt") == 'No'
-    assert file_name_check("example.txt.txt.txt.txt.txt.txt.txt.txt") == 'No'
-    assert file_name_check("example.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt") == 'No'
-    assert file_name_check("example.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt") == 'No'
-    assert file_name_check("example.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt") == 'No'
-    assert file_name_check("example.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt.txt") == 'No'
+    assert file_name_check("a.txt") == 'No'
+    assert file_name_check("1a.txt") == 'No'
+    assert file_name_check("1a.txt.txt") == 'No'
+    assert file_name_check("1a.txt.txt.txt") == 'No'
+    assert file_name_check("1a.txt.txt.txt.txt") == 'No'
+    assert file_name_check("") == 'No'
+    assert file_name_check("1") == 'No'
+    assert file_name_check("a.txt") == 'No'
+    assert file_name_check("A.txt") == 'No'
+    assert file_name_check("1A.txt") == 'No'
 
 def file_name_check(file_name):
     """Create a function which takes a string representing a file's name, and returns

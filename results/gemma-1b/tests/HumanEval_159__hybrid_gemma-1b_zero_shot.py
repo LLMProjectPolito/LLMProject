@@ -30,7 +30,6 @@ def eat(number, need, remaining):
     """
 
 import pytest
-import sys
 
 def eat(number, need, remaining):
     """
@@ -67,6 +66,8 @@ def eat(number, need, remaining):
         remaining_after_meals = remaining - need
     return [total_eaten, remaining_after_meals]
 
+import pytest
+
 def test_eat_example_1():
     assert eat(5, 6, 10) == [11, 4]
 
@@ -85,5 +86,5 @@ def test_eat_empty():
 def test_eat_large_number():
     assert eat(1000, 5, 10) == [105, 5]
 
-def test_eat_need_zero():
-    assert eat(5, 0, 10) == [11, 0]
+def test_eat_small_number():
+    assert eat(5, 2, 7) == [7, 0]

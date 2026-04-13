@@ -67,17 +67,14 @@ def test_x_or_y_edge_cases():
     assert x_or_y(1, 3, 4) == 4
     assert x_or_y(-5, 5, 10) == 10
     assert x_or_y(-2, 1, 2) == 2
-    assert x_or_y(2, -1, -2) == -1
-    assert x_or_y(3, -3, -4) == -3
+    assert x_or_y(2, -1, 0) == -1
+    assert x_or_y(3, 0, -1) == 0
 
 def test_x_or_y_type_handling():
-    assert x_or_y(7, 34.5, 12) == 34.5
-    assert x_or_y(7, "hello", "world") == "hello"
-    assert x_or_y(7, [1, 2], [3, 4]) == [1, 2]
-    assert x_or_y(7, {"a": 1}, {"b": 2}) == {"a": 1}
+    assert x_or_y(7, 3.14, 2.71) == 3.14
+    assert x_or_y(4, "hello", "world") == "world"
+    assert x_or_y(5, [1, 2], (3, 4)) == [1, 2]
     with pytest.raises(TypeError):
-        x_or_y(7, 34, 12.5)
+        x_or_y("abc", 1, 2)
     with pytest.raises(TypeError):
-        x_or_y(7, "34", 12)
-    with pytest.raises(TypeError):
-        x_or_y("7", 34, 12)
+        x_or_y(7, 1, "def")

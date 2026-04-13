@@ -41,19 +41,23 @@ class TestGenerateIntegers:
         assert generate_integers(10, 14) == []
 
     def test_single_even_number(self):
+        assert generate_integers(1, 3) == []
         assert generate_integers(2, 3) == [2]
 
     def test_multiple_even_numbers(self):
-        assert generate_integers(4, 10) == [4, 6, 8, 10]
+        assert generate_integers(2, 6) == [2, 4, 6]
 
     def test_a_equals_b_even(self):
-        assert generate_integers(4, 4) == [4]
+        assert generate_integers(2, 2) == [2]
 
     def test_a_equals_b_odd(self):
-        assert generate_integers(5, 5) == []
+        assert generate_integers(1, 1) == []
 
     def test_edge_case_1(self):
-        assert generate_integers(1, 2) == [2]
+        assert generate_integers(1, 3) == []
 
     def test_edge_case_2(self):
-        assert generate_integers(1, 3) == [2]
+        assert generate_integers(2, 2) == [2]
+
+    def test_large_range(self):
+        assert generate_integers(1, 20) == [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]

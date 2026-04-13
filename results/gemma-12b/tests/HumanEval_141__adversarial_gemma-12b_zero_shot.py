@@ -85,12 +85,5 @@ class TestFileNameCheck:
         assert file_name_check("1234example.txt") == "No"
         assert file_name_check("11111.txt") == "No"
 
-    def test_file_name_with_digits_and_letters(self):
-        assert file_name_check("ex1ample.txt") == "Yes"
-        assert file_name_check("ex23ample.exe") == "Yes"
-        assert file_name_check("1ex23ample.txt") == "No"
-
-    def test_file_name_with_special_characters(self):
-        assert file_name_check("example!.txt") == "No"
-        assert file_name_check("example_.txt") == "No"
-        assert file_name_check("example#.txt") == "No"
+    def test_invalid_file_name_all_digits(self):
+        assert file_name_check("123.txt") == "No"

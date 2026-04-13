@@ -31,17 +31,20 @@ def test_specialFilter_empty():
 def test_specialFilter_single():
     assert specialFilter([15]) == 1
 
-def test_specialFilter_all_odd():
+def test_specialFilter_positive():
     assert specialFilter([15, -73, 14, -15]) == 1
 
-def test_specialFilter_all_even():
-    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
+def test_specialFilter_negative():
+    assert specialFilter([-73, 14, -15]) == 1
 
 def test_specialFilter_mixed():
-    assert specialFilter([15, -73, 14, -15, 33, -2, -3, 45, 21, 109]) == 2
+    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
-def test_specialFilter_negative():
-    assert specialFilter([-15, -73, -14, -15]) == 1
+def test_specialFilter_all_same():
+    assert specialFilter([11, 11, 11]) == 1
 
-def test_specialFilter_zero():
-    assert specialFilter([0]) == 0
+def test_specialFilter_all_same_odd():
+    assert specialFilter([11, 11, 11]) == 1
+
+def test_specialFilter_all_same_even():
+    assert specialFilter([11, 11, 11]) == 0

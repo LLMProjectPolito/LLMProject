@@ -30,11 +30,11 @@ def test_double_the_difference_boundary_zero_and_positive():
 def test_empty_list():
     assert double_the_difference([]) == 0
 
-def test_list_with_negative_and_non_integer():
-    assert double_the_difference([-1, -2, 0, 1.5]) == 1
+def test_mixed_types():
+    assert double_the_difference([1, 3, 2, 0, "a", 1.5]) == 10
 
-def test_list_with_only_even_numbers():
-    assert double_the_difference([2, 4, 6]) == 0
+def test_negative_and_non_integer():
+    assert double_the_difference([-1, -2, 0, 3.5]) == 0
 
 # Focus: Logic Branches
 def test_empty_list():

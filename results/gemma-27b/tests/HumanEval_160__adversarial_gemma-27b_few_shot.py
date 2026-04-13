@@ -83,54 +83,51 @@ def do_algebra(operator, operand):
     return result
 
 # Pytest tests
-def test_algebra_basic():
+def test_do_algebra_basic():
     assert do_algebra(['+', '*', '-'], [2, 3, 4, 5]) == 9
 
-def test_algebra_addition():
+def test_do_algebra_addition():
     assert do_algebra(['+'], [1, 2]) == 3
 
-def test_algebra_subtraction():
+def test_do_algebra_subtraction():
     assert do_algebra(['-'], [5, 2]) == 3
 
-def test_algebra_multiplication():
+def test_do_algebra_multiplication():
     assert do_algebra(['*'], [2, 3]) == 6
 
-def test_algebra_division():
+def test_do_algebra_division():
     assert do_algebra(['//'], [10, 2]) == 5
 
-def test_algebra_exponentiation():
+def test_do_algebra_exponentiation():
     assert do_algebra(['**'], [2, 3]) == 8
 
-def test_algebra_complex():
-    assert do_algebra(['+', '*', '-', '//', '**'], [1, 2, 3, 4, 5]) == 1
+def test_do_algebra_complex():
+    assert do_algebra(['+', '*', '-', '//', '**'], [1, 2, 3, 4, 5]) == 1 + (2 * 3) - (4 // 5)
 
-def test_algebra_long_chain():
-    assert do_algebra(['+', '+', '+', '+'], [1, 2, 3, 4, 5]) == 15
-
-def test_algebra_zero_division():
-    with pytest.raises(ZeroDivisionError):
-        do_algebra(['//'], [5, 0])
-
-def test_algebra_empty_operator():
+def test_do_algebra_empty_operator():
     with pytest.raises(ValueError):
         do_algebra([], [1, 2])
 
-def test_algebra_empty_operand():
+def test_do_algebra_empty_operand():
     with pytest.raises(ValueError):
         do_algebra(['+'], [])
 
-def test_algebra_invalid_operator():
-    with pytest.raises(ValueError):
-        do_algebra(['%'], [1, 2])
-
-def test_algebra_operator_length_mismatch():
+def test_do_algebra_invalid_length():
     with pytest.raises(ValueError):
         do_algebra(['+', '*'], [1, 2, 3])
 
-def test_algebra_operand_length_too_short():
-    with pytest.raises(ValueError):
-        do_algebra(['+'], [1])
-
-def test_algebra_negative_operand():
+def test_do_algebra_negative_operand():
     with pytest.raises(ValueError):
         do_algebra(['+'], [-1, 2])
+
+def test_do_algebra_division_by_zero():
+    with pytest.raises(ZeroDivisionError):
+        do_algebra(['//'], [10, 0])
+
+def test_do_algebra_invalid_operator():
+    with pytest.raises(ValueError):
+        do_algebra(['$'], [1, 2])
+
+def test_do_algebra_operand_length_one():
+    with pytest.raises(ValueError):
+        do_algebra(['+'], [1])

@@ -32,8 +32,9 @@ def fix_spaces(text):
         else:
             if count > 2:
                 result += '-'
-                count = 0
-            result += char
+            else:
+                result += char
+            count = 0
     return result
 
 def test_fix_spaces_empty():

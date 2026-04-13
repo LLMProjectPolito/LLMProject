@@ -39,11 +39,8 @@ class TestSimplify:
     def test_basic_false(self):
         assert simplify("1/6", "2/1") == False
 
-    def test_example_3_false(self):
+    def test_another_false(self):
         assert simplify("7/10", "10/2") == False
-
-    def test_whole_number_true(self):
-        assert simplify("1/1", "1/1") == True
 
     def test_large_numbers_true(self):
         assert simplify("100/2", "2/100") == True
@@ -51,35 +48,29 @@ class TestSimplify:
     def test_large_numbers_false(self):
         assert simplify("100/3", "3/100") == False
 
-    def test_different_denominators_true(self):
-        assert simplify("1/2", "2/1") == True
-
-    def test_different_denominators_false(self):
-        assert simplify("1/3", "2/1") == False
-
-    def test_large_denominator_simplifies_to_whole(self):
+    def test_numerator_and_denominator_are_inverses(self):
         assert simplify("1/1000", "1000/1") == True
 
-    def test_large_denominator_does_not_simplify_to_whole(self):
-        assert simplify("1/7", "7/1") == True
+    def test_fractions_resulting_in_denominator_not_one(self):
+        assert simplify("2/5", "5/2") == False
 
-    def test_non_simplifying_fractions(self):
-        assert simplify("2/3", "4/5") == False
-        assert simplify("3/4", "5/6") == False
-        assert simplify("1/2", "4/1") == False
-        assert simplify("4/1", "1/2") == False
+    def test_fractions_resulting_in_denominator_one(self):
+        assert simplify("2/10", "10/2") == True
 
-    def test_fractions_simplifying_to_one(self):
+    def test_very_different_magnitudes_true(self):
+        assert simplify("1/1000000", "1000000/1") == True
+
+    def test_very_different_magnitudes_false(self):
+        assert simplify("1/1000000", "2/1") == False
+
+    def test_x_equals_one_over_one(self):
+        assert simplify("1/1", "2/2") == True
+
+    def test_n_equals_one_over_one(self):
         assert simplify("2/2", "1/1") == True
 
-    def test_zero_numerator(self):
+    def test_identical_fractions_true(self):
+        assert simplify("1/2", "1/2") == False
+
+    def test_zero_numerator_false(self):
         assert simplify("0/1", "1/1") == False
-
-    def test_very_large_whole_number_result(self):
-        assert simplify("1000000/2", "2/1000000") == True
-
-    def test_non_simplifying_fractions_consolidated(self):
-        assert simplify("2/3", "4/5") == False
-        assert simplify("3/4", "5/6") == False
-        assert simplify("1/2", "4/1") == False
-        assert simplify("4/1", "1/2") == False

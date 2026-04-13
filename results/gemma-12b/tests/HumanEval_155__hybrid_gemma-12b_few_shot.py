@@ -16,66 +16,73 @@ class TestEvenOddCount:
     """
 
     def test_positive_integer(self):
-        """Tests with a positive integer."""
+        """Tests with positive integers."""
         assert even_odd_count(123) == (1, 2)
         assert even_odd_count(124) == (2, 1)
-        assert even_odd_count(123456) == (3, 3)
+        assert even_odd_count(2468) == (4, 0)
         assert even_odd_count(13579) == (0, 5)
-        assert even_odd_count(24680) == (5, 0)
         assert even_odd_count(1234567890) == (5, 5)
+        assert even_odd_count(123456) == (3, 3)
+        assert even_odd_count(24680) == (5, 0)
+        assert even_odd_count(12345678901234567890) == (5, 10)
+        assert even_odd_count(2468013579) == (5, 5)
 
     def test_negative_integer(self):
-        """Tests with a negative integer."""
+        """Tests with negative integers."""
         assert even_odd_count(-12) == (1, 1)
         assert even_odd_count(-13) == (0, 2)
-        assert even_odd_count(-24) == (2, 1)
+        assert even_odd_count(-24) == (2, 0)
         assert even_odd_count(-12345) == (1, 4)
         assert even_odd_count(-2468) == (4, 0)
-        assert even_odd_count(-13579) == (0, 5)
         assert even_odd_count(-1234567890) == (5, 5)
 
     def test_zero(self):
         """Tests with zero."""
         assert even_odd_count(0) == (1, 0)
 
-    def test_single_digit_even(self):
-        """Tests with a single-digit even number."""
-        assert even_odd_count(2) == (1, 0)
-        assert even_odd_count(4) == (1, 0)
-        assert even_odd_count(6) == (1, 0)
-        assert even_odd_count(8) == (1, 0)
+    def test_single_digit(self):
+        """Tests with single-digit numbers (even and odd)."""
         assert even_odd_count(0) == (1, 0)
-
-    def test_single_digit_odd(self):
-        """Tests with a single-digit odd number."""
         assert even_odd_count(1) == (0, 1)
+        assert even_odd_count(2) == (1, 0)
         assert even_odd_count(3) == (0, 1)
+        assert even_odd_count(4) == (1, 0)
         assert even_odd_count(5) == (0, 1)
+        assert even_odd_count(6) == (1, 0)
         assert even_odd_count(7) == (0, 1)
+        assert even_odd_count(8) == (1, 0)
         assert even_odd_count(9) == (0, 1)
 
-    def test_large_number(self):
-        """Tests with a large number."""
-        assert even_odd_count(1234567890) == (5, 5)
-        assert even_odd_count(2468013579) == (5, 5)
-        assert even_odd_count(12345678901234567890) == (5, 10)
-
-    def test_number_with_leading_zeros(self):
-        """Tests with a number that might be interpreted as having leading zeros (though the function shouldn't be affected)."""
-        assert even_odd_count(102) == (1, 2)
-        assert even_odd_count(204) == (2, 1)
+    def test_number_with_repeated_digits(self):
+        """Tests with numbers containing repeated digits."""
+        assert even_odd_count(112233) == (2, 3)
+        assert even_odd_count(2222) == (4, 0)
+        assert even_odd_count(1111) == (0, 4)
 
     def test_edge_cases(self):
         """Tests some edge cases."""
+        assert even_odd_count(10) == (1, 1)
+        assert even_odd_count(21) == (1, 1)
+        assert even_odd_count(101) == (1, 2)
+        assert even_odd_count(202) == (2, 1)
         assert even_odd_count(11) == (0, 2)
         assert even_odd_count(22) == (2, 0)
         assert even_odd_count(121) == (1, 2)
         assert even_odd_count(212) == (2, 1)
-        assert even_odd_count(123456789) == (4, 5)
-        assert even_odd_count(987654321) == (5, 4)
+        assert even_odd_count(1000) == (3, 1)
+        assert even_odd_count(2000) == (4, 0)
+        assert even_odd_count(102) == (1, 2)
+        assert even_odd_count(204) == (2, 1)
 
-    def test_number_with_repeated_digits(self):
-        """Tests with a number containing repeated digits."""
-        assert even_odd_count(112233) == (2, 3)
-        assert even_odd_count(2222) == (4, 0)
-        assert even_odd_count(1111) == (0, 4)
+    def test_palindrome(self):
+        """Tests the is_palindrome function."""
+        assert is_palindrome('radar') == True
+        assert is_palindrome('hello') == False
+        assert is_palindrome('') == True
+
+    def test_get_max(self):
+        """Tests the get_max function."""
+        assert get_max([1, 2, 3]) == 3
+        assert get_max([]) == None
+        assert get_max([5, 2, 8, 1]) == 8
+        assert get_max([-1, -5, -2]) == -1

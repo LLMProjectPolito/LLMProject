@@ -70,38 +70,38 @@ def do_algebra(operator, operand):
     (['+', '*', '-'], [2, 3, 4, 5], 9),
     (['+', '-', '*'], [1, 2, 3, 4], 3),
     (['*', '+', '/'], [2, 3, 4, 2], 7),
-    (['**', '-', '+'], [2, 3, 4, 5], 13),
-    (['//', '+', '*'], [10, 2, 3, 4], 14),
-    (['+'], [1, 2], 3),
-    (['-'], [5, 3], 2),
-    (['*'], [2, 4], 8),
-    (['//'], [10, 5], 2),
-    (['**'], [2, 3], 8),
+    (['+', '+', '+'], [1, 2, 3, 4], 10),
+    (['-', '-', '-'], [5, 2, 3, 1], 1),
+    (['*', '*', '*'], [2, 2, 2, 2], 16),
+    (['//', '//', '//'], [10, 2, 2, 2], 2),
+    (['**', '**', '**'], [2, 2, 2, 2], 16),
+    (['+', '*', '**'], [2, 3, 2, 2], 20),
+    (['-', '/', '+'], [10, 2, 5, 3], 11),
+    (['+', '-', '+', '-'], [1, 2, 3, 4, 5], -3),
+    (['*', '/', '+', '-'], [2, 4, 2, 1, 3], 2),
+    (['**', '+', '-', '*'], [2, 3, 1, 2, 4], 1),
+    (['//', '*', '+', '**'], [10, 2, 3, 2, 2], 13),
     (['+', '+'], [1, 2, 3], 6),
     (['-', '-'], [5, 2, 1], 2),
     (['*', '*'], [2, 3, 4], 24),
-    (['//', '//'], [20, 5, 2], 2),
-    (['**', '**'], [2, 2, 2], 16),
-    (['+', '*', '-', '//', '**'], [1, 2, 3, 4, 2], -1),
-    (['-','*','+'], [10,2,5,3], 13),
-    (['+','-','*'], [5,2,3,4], 11),
+    (['//', '//'], [10, 2, 2], 2),
+    (['**', '**'], [2, 2, 3], 16),
 ])
 def test_do_algebra(operator, operand, expected):
     assert do_algebra(operator, operand) == expected
 
-@pytest.mark.parametrize("operand", [
-    [1, 2],
-    [2, 3, 4],
-    [5, 6, 7, 8],
-])
-def test_operand_non_negative(operand):
-    assert all(x >= 0 for x in operand)
-
-@pytest.mark.parametrize("operator, operand", [
-    (['+'], [1]),  # Invalid operand length
-    (['+'], []),  # Invalid operand length
-    ([], [1, 2]),  # Invalid operator length
-])
-def test_invalid_input(operator, operand):
+def test_do_algebra_empty_operator():
     with pytest.raises(IndexError):
-        do_algebra(operator, operand)
+        do_algebra([], [1, 2])
+
+def test_do_algebra_empty_operand():
+    with pytest.raises(IndexError):
+        do_algebra(['+'], [])
+
+def test_do_algebra_invalid_operator():
+    with pytest.raises(KeyError):
+        do_algebra(['%'], [1, 2])
+
+def test_do_algebra_zero_division():
+    with pytest.raises(ZeroDivisionError):
+        do_algebra(['//'], [1, 0])

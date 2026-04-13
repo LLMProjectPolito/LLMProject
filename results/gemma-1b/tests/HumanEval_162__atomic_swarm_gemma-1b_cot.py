@@ -19,8 +19,10 @@ def string_to_md5(text):
     """
     if not text:
         return None
-    md5_hash = hashlib.md5(text.encode('utf-8')).hexdigest()
-    return md5_hash
+    md5_hash = 0
+    for char in text:
+        md5_hash = (md5_hash * 31 + ord(char)) % 2**32
+    return str(md5_hash)
 
 def string_to_md5(text):
     """
@@ -45,5 +47,7 @@ def string_to_md5(text):
     """
     if not text:
         return None
-    md5_hash = hashlib.md5(text.encode('utf-8')).hexdigest()
-    return md5_hash
+    md5_hash = 0
+    for char in text:
+        md5_hash = (md5_hash * 31 + ord(char)) % 2**32
+    return str(md5_hash)

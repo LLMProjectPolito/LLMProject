@@ -76,7 +76,7 @@ def test_multiplication_only():
     assert do_algebra(['*'], [4, 3]) == 12
 
 def test_floor_division_only():
-    assert do_algebra(['//'], [10, 3]) == 3
+    assert do_algebra(['//'], [10, 2]) == 5
 
 def test_exponentiation_only():
     assert do_algebra(['**'], [2, 3]) == 8
@@ -84,8 +84,11 @@ def test_exponentiation_only():
 def test_mixed_operations():
     assert do_algebra(['+', '*', '-'], [2, 3, 4, 5]) == 9
 
+def test_mixed_operations_with_exponentiation():
+    assert do_algebra(['+', '**', '-'], [2, 3, 2, 1]) == 7
+
 def test_long_expression():
-    assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 5, 2]) == 1
+    assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 2, 3]) == 1
 
 def test_zero_operand():
     assert do_algebra(['+'], [5, 0]) == 5
@@ -94,10 +97,8 @@ def test_large_numbers():
     assert do_algebra(['*'], [1000, 1000]) == 1000000
 
 def test_edge_case_division():
-    assert do_algebra(['//'], [7, 2]) == 3
+    assert do_algebra(['//'], [10, 1]) == 10
 
 def test_edge_case_exponentiation():
-    assert do_algebra(['**'], [0, 5]) == 0
-
-def test_minimum_length():
-    assert do_algebra(['+'], [1, 2]) == 3
+    assert do_algebra(['**'], [0, 2]) == 0
+    assert do_algebra(['**'], [1, 5]) == 1

@@ -53,6 +53,6 @@ def test_right_angle_triangle_large_values():
     assert right_angle_triangle(1000, 1000, 1414) == True
     assert right_angle_triangle(1, 1, 1.4142135623730951) == True
 
-def test_right_angle_triangle_decimal_values():
+def test_right_angle_triangle_floating_point_values():
     assert right_angle_triangle(3.0, 4.0, 5.0) == True
     assert right_angle_triangle(1.5, 2.0, 2.5) == False

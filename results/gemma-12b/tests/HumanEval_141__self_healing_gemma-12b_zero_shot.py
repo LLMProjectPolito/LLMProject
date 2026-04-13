@@ -28,7 +28,7 @@ def test_valid_file_name():
 
 def test_invalid_file_name_too_many_digits():
     assert file_name_check("1234example.txt") == "No"
-    assert file_name_check("1234567890.txt") == "No"
+    assert file_name_check("12345.txt") == "No"
 
 def test_invalid_file_name_no_dot():
     assert file_name_check("example") == "No"
@@ -52,15 +52,15 @@ def test_invalid_file_name_invalid_extension():
     assert file_name_check("example.pdf") == "No"
     assert file_name_check("example.jpg") == "No"
     assert file_name_check("example.dat") == "No"
-    assert file_name_check("example.txt1") == "No"
+    assert file_name_check("example.") == "No"
 
 def test_invalid_file_name_empty_extension():
     assert file_name_check("example.") == "No"
 
 def test_file_name_with_spaces():
     assert file_name_check("example .txt") == "No"
-    assert file_name_check("example. txt") == "No"
     assert file_name_check(" example.txt") == "No"
+    assert file_name_check("example.txt ") == "No"
 
 def test_file_name_with_special_characters():
     assert file_name_check("example@.txt") == "No"

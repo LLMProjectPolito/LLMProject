@@ -42,10 +42,6 @@ def get_max_triples(n):
                     count += 1
     return count
 
-def calculate_a(n):
-    """Calculates the array 'a' used in get_max_triples."""
-    return [(i * i - i + 1) for i in range(1, n + 1)]
-
 
 @pytest.mark.parametrize("n, expected", [
     (1, 0),
@@ -58,24 +54,23 @@ def calculate_a(n):
     (8, 4),
     (9, 6),
     (10, 8),
-    (20, 135)
+    (20, 135),
 ])
 def test_get_max_triples(n, expected):
-    """Tests get_max_triples with various inputs."""
+    """Tests for get_max_triples with various inputs."""
     assert get_max_triples(n) == expected
 
 
-def test_get_max_triples_zero():
+def test_get_max_triples_zero_count():
     """Tests a case where the answer is 0."""
     assert get_max_triples(3) == 0
 
-def test_get_max_triples_larger_number():
+def test_get_max_triples_larger_count():
     """Tests a case where the answer is a larger number."""
     assert get_max_triples(10) == 8
 
-def test_get_max_triples_with_precalculated_array():
-    """Tests get_max_triples with a precalculated array."""
-    a = calculate_a(5)
-    # Manually calculate the expected value for n=5
-    expected = 1
-    assert get_max_triples(5) == expected
+# Negative test (although problem statement specifies positive integer)
+def test_get_max_triples_invalid_input():
+    """Tests with invalid input (negative integer)."""
+    with pytest.raises(TypeError):  # Or ValueError, depending on desired behavior
+        get_max_triples(-1)

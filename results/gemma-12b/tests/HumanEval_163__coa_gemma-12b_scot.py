@@ -24,7 +24,7 @@ def test_boundary_adjacent_even():
 def test_boundary_odd_to_even():
     assert generate_integers(1, 2) == [2]
 
-# Focus: Type Scenarios
+# Focus: Logic Branches
 def test_generate_integers_ascending():
     assert generate_integers(2, 8) == [2, 4, 6, 8]
 
@@ -34,7 +34,7 @@ def test_generate_integers_descending():
 def test_generate_integers_no_even():
     assert generate_integers(10, 14) == []
 
-# Focus: Logic Branches
+# Focus: Type Scenarios
 def test_generate_integers_ascending():
     assert generate_integers(2, 8) == [2, 4, 6, 8]
 

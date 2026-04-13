@@ -10,6 +10,7 @@ def x_or_y(n, x, y):
     """
 
 import pytest
+import math
 
 def x_or_y(n, x, y):
     """A simple program which should return the value of x if n is 
@@ -36,3 +37,6 @@ def test_x_or_y_prime():
 
 def test_x_or_y_composite():
     assert x_or_y(15, 8, 5) == 5
+
+def test_x_or_y_edge_case():
+    assert x_or_y(2, 34, 12) == 34

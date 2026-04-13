@@ -1,10 +1,13 @@
 import re
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 from radon.complexity import cc_visit
 from radon.metrics import mi_visit
 from difflib import SequenceMatcher
+from src.utils.coverage_parser import parse_coverage
+from src.utils.diversity import analyze_test_diversity
 from src.utils.mutation_check import calculate_mutation_score
 
 def run_tests(source_code: str, test_code: str) -> dict:
@@ -15,6 +18,7 @@ def run_tests(source_code: str, test_code: str) -> dict:
         tmp = Path(tmpdir)
         src_file  = tmp / "solution.py"
         test_file = tmp / "test_solution.py"
+        cov_json_file = tmp / "coverage.json"
 
         src_file.write_text(source_code, encoding="utf-8")
         
@@ -26,8 +30,11 @@ def run_tests(source_code: str, test_code: str) -> dict:
 
         try:
             result = subprocess.run(
-                ["python", "-m", "pytest", str(test_file), "--tb=no", "-q", "--color=no", 
-                 f"--cov={tmp}", "--cov-branch", "--cov-report=term-missing"],
+                [
+                    sys.executable, "-m", "pytest", str(test_file), "--tb=no", "-q", "--color=no",
+                    f"--cov={tmp}", "--cov-branch", "--cov-report=term-missing",
+                    f"--cov-report=json:{cov_json_file}"
+                ],
                 capture_output=True, text=True, cwd=tmpdir,
                 timeout=60
             )
@@ -37,7 +44,10 @@ def run_tests(source_code: str, test_code: str) -> dict:
                 "passed": 0, "failed": 0, "errors": 1, "total": 0,
                 "functional_correctness": 0, "line_coverage": 0, "branch_coverage": 0,
                 "mutation_score": 0, "complexity_cc": 0, "maintainability_mi": 0,
-                "bloat_ratio": 0, "similarity_score": 0, "raw_output": "TIMEOUT: Pytest took > 60s"
+                "bloat_ratio": 0, "similarity_score": 0,
+                "unique_inputs_count": 0, "edge_case_count": 0, "test_type_count": 0,
+                "duplication_ratio": 1.0, "diversity_score": 0,
+                "raw_output": "TIMEOUT: Pytest took > 60s"
             }
 
         try:
@@ -52,11 +62,12 @@ def run_tests(source_code: str, test_code: str) -> dict:
         except:
             avg_cc, mi_score, bloat_ratio = 0, 0, 0
 
-    raw = result.stdout + result.stderr
+        raw = result.stdout + result.stderr
+        line_cov, branch_cov = parse_coverage(cov_json_file, raw)
+
     passed, failed, errors = _parse_summary(raw)
     total = passed + failed + errors
-    
-    line_cov, branch_cov = _parse_coverage(raw)
+    diversity = analyze_test_diversity(clean_code)
     
     return {
         "passed": passed,
@@ -71,6 +82,11 @@ def run_tests(source_code: str, test_code: str) -> dict:
         "maintainability_mi": round(mi_score, 2),
         "bloat_ratio": bloat_ratio,
         "similarity_score": round(SequenceMatcher(None, source_code, clean_code).ratio(), 3),
+        "unique_inputs_count": diversity["unique_inputs_count"],
+        "edge_case_count": diversity["edge_case_count"],
+        "test_type_count": diversity["test_type_count"],
+        "duplication_ratio": diversity["duplication_ratio"],
+        "diversity_score": diversity["diversity_score"],
         "raw_output": raw[:500] + "..." if len(raw) > 500 else raw
     }
 
@@ -87,18 +103,3 @@ def _parse_summary(output: str) -> tuple[int, int, int]:
     m = re.search(r"(\d+) failed", output); failed = int(m.group(1)) if m else 0
     m = re.search(r"(\d+) error", output); errors = int(m.group(1)) if m else 0
     return passed, failed, errors
-
-def _parse_coverage(output: str) -> tuple[float | None, float | None]:
-    # Look for the last row starting with TOTAL
-    lines = output.splitlines()
-    total_line = next((l for l in reversed(lines) if l.startswith("TOTAL")), None)
-    if not total_line:
-        return None, None
-    
-    # Extract all percentages
-    percentages = re.findall(r"(\d+)%", total_line)
-    if len(percentages) >= 2:
-        return float(percentages[-2]), float(percentages[-1])
-    elif len(percentages) == 1:
-        return float(percentages[0]), None
-    return None, None

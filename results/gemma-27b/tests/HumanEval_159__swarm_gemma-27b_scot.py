@@ -31,10 +31,6 @@ def eat(number, need, remaining):
 
 import pytest
 
-def test_eat_edge_case_zero_remaining():
-    """Test case for when there are no remaining carrots."""
-    assert eat(5, 6, 0) == [5, 0]
-
 def test_eat_example_1():
     """Test case for example 1."""
     assert eat(5, 6, 10) == [11, 4]
@@ -50,3 +46,7 @@ def test_eat_example_3():
 def test_eat_example_4():
     """Test case for example 4."""
     assert eat(2, 11, 5) == [7, 0]
+
+def test_eat_edge_case_zero_remaining():
+    """Test case for when there are no remaining carrots."""
+    assert eat(5, 6, 0) == [5, 0]

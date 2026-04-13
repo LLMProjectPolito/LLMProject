@@ -26,14 +26,14 @@ def test_even_odd_count_zero():
 # Focus: Type Scenarios
 import pytest
 
-def test_even_odd_count_even_dominant():
+def test_even_odd_count_positive_even():
     assert even_odd_count(2468) == (4, 0)
 
-def test_even_odd_count_odd_dominant():
+def test_even_odd_count_positive_odd():
     assert even_odd_count(13579) == (0, 5)
 
-def test_even_odd_count_equal():
-    assert even_odd_count(1234) == (2, 2)
+def test_even_odd_count_negative_even():
+    assert even_odd_count(-2468) == (4, 0)
 
 # Focus: Logic Branches
 import pytest

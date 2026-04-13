@@ -40,31 +40,29 @@ def simplify(x, n):
 def test_simplify_positive_whole_numbers():
     assert simplify("1/5", "5/1") == True
     assert simplify("2/3", "6/1") == True
-    assert simplify("10/2", "2/1") == True
+    assert simplify("4/7", "14/1") == True
+    assert simplify("10/11", "11/1") == True
 
 def test_simplify_non_whole_numbers():
     assert simplify("1/6", "2/1") == False
     assert simplify("7/10", "10/2") == False
     assert simplify("3/4", "5/1") == False
+    assert simplify("1/2", "3/1") == False
 
-def test_simplify_large_numbers():
-    assert simplify("100/10", "10/1") == True
-    assert simplify("1000/100", "10/1") == True
-    assert simplify("100/10", "100/1") == False
-
-def test_simplify_equal_numbers():
+def test_simplify_equal_fractions():
     assert simplify("1/1", "1/1") == True
     assert simplify("2/2", "2/2") == True
+    assert simplify("5/5", "5/5") == True
 
-def test_simplify_one_is_one():
-    assert simplify("1/5", "1/5") == True
-    assert simplify("5/1", "1/1") == True
+def test_simplify_large_numbers():
+    assert simplify("100/101", "101/1") == True
+    assert simplify("123/456", "456/123") == True
+    assert simplify("100/101", "100/1") == False
 
-def test_simplify_zero_denominator():
-    with pytest.raises(ZeroDivisionError):
-        simplify("1/0", "5/1")
-
-def test_simplify_negative_numbers():
-    assert simplify("-1/5", "5/1") == False
-    assert simplify("1/5", "-5/1") == False
-    assert simplify("-1/5", "-5/1") == True
+def test_simplify_edge_cases():
+    assert simplify("1/1", "1/2") == False
+    assert simplify("1/2", "1/1") == False
+    assert simplify("1/3", "2/1") == False
+    assert simplify("2/3", "1/1") == False
+    assert simplify("1/1", "2/1") == False
+    assert simplify("2/1", "1/1") == True

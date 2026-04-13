@@ -20,12 +20,12 @@ def find_max(words):
 
     find_max(["name", "of", "string"]) == "string"
     find_max(["name", "enam", "game"]) == "enam"
-    find_max(["aaaaaaa", "bb" ,"cc"]) == ""aaaaaaa"
+    find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
     """
     if not words:
         return ""
 
-    max_unique = 0
+    max_unique = -1
     result = ""
 
     for word in words:
@@ -37,6 +37,7 @@ def find_max(words):
             result = word
 
     return result
+
 
 def test_empty_list():
     assert find_max([]) == ""
@@ -60,22 +61,19 @@ def test_multiple_words_same_unique_chars_and_lexicographical_order_3():
     assert find_max(["xyz", "abc", "def"]) == "abc"
 
 def test_mixed_case():
-    assert find_max(["Name", "enam", "Game"]) == "enam"
+    assert find_max(["Name", "enam", "GAME"]) == "enam"
 
 def test_numbers_and_letters():
-    assert find_max(["a123", "b456", "c789"]) == "a123"
+    assert find_max(["a1b2", "c3d4", "e5f6"]) == "a1b2"
 
 def test_special_characters():
     assert find_max(["!@#", "$%^", "&*()"]) == "!@#"
 
 def test_duplicate_characters():
-    assert find_max(["aabbcc", "abc"]) == "abc"
-
-def test_all_same_characters():
-    assert find_max(["aaaa", "bbbb"]) == "aaaa"
+    assert find_max(["aabbcc", "def", "ghi"]) == "aabbcc"
 
 def test_empty_string():
-    assert find_max([""]) == ""
+    assert find_max(["", "abc", "def"]) == "abc"
 
-def test_mixed_empty_and_non_empty():
-    assert find_max(["", "abc", ""]) == "abc"
+def test_all_empty_strings():
+    assert find_max(["", "", ""]) == ""

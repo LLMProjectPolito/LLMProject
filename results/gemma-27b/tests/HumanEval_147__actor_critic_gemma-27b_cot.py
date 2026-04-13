@@ -39,20 +39,12 @@ def get_max_triples(n):
                     count += 1
     return count
 
-# Edge Cases
+def test_get_max_triples_n_0():
+    assert get_max_triples(0) == 0
+
 def test_get_max_triples_negative_n():
     with pytest.raises(ValueError):
         get_max_triples(-1)
-
-# Small Values & Redundancy Removed
-def test_get_max_triples_n_less_than_3():
-    assert get_max_triples(0) == 0
-    assert get_max_triples(1) == 0
-    assert get_max_triples(2) == 0
-
-# Specific Values
-def test_get_max_triples_n_4():
-    assert get_max_triples(4) == 0
 
 def test_get_max_triples_example():
     assert get_max_triples(5) == 1
@@ -72,9 +64,28 @@ def test_get_max_triples_n_9():
 def test_get_max_triples_n_10():
     assert get_max_triples(10) == 120
 
-# Larger Values (Test Coverage)
-def test_get_max_triples_n_15():
-    assert get_max_triples(15) == 455
-
 def test_get_max_triples_n_20():
-    assert get_max_triples(20) == 1330
+    assert get_max_triples(20) == 1140
+
+def test_get_max_triples_n_50():
+    assert get_max_triples(50) == 20825
+
+def test_get_max_triples_n_100():
+    assert get_max_triples(100) == 161700
+
+def test_get_max_triples_n_200():
+    assert get_max_triples(200) == 1292800
+
+def test_get_max_triples_modulo():
+    a = [1, 3, 7, 13, 21]
+    assert (a[0] + a[1] + a[2]) % 3 == 0
+    assert (a[0] + a[1] + a[3]) % 3 != 0
+    assert (a[0] + a[2] + a[4]) % 3 == 0
+
+def test_get_max_triples_non_negative():
+    assert get_max_triples(1) == 0
+    assert get_max_triples(2) == 0
+    assert get_max_triples(3) == 0
+    assert get_max_triples(4) == 0
+    assert get_max_triples(5) == 1
+    assert get_max_triples(6) == 20

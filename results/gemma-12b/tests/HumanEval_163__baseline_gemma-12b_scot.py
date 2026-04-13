@@ -12,27 +12,21 @@ def generate_integers(a, b):
 
 # STEP 1: REASONING
 # The function `generate_integers(a, b)` aims to return a list of even integers between two given integers 'a' and 'b', sorted in ascending order.
-# The function should handle cases where a > b, and return an empty list if there are no even numbers in the range.
-# The test suite needs to cover various scenarios, including:
-# - a < b, with even numbers in the range
-# - a > b, with even numbers in the range
-# - a and b are the same, and it's an even number
-# - a and b are the same, and it's an odd number
-# - No even numbers in the range
-# - Edge cases with small and large numbers.
-# - Negative inputs (should not happen based on the prompt, but good to check)
+# The function should handle cases where a > b, and cases where there are no even numbers between a and b.
+# The function should only return even numbers.
+# The function should return an empty list if no even numbers are found.
 
 # STEP 2: PLAN
 # Test functions:
-# - test_ascending_even_numbers: a < b, with even numbers in the range
-# - test_descending_even_numbers: a > b, with even numbers in the range
-# - test_same_even_number: a and b are the same, and it's an even number
-# - test_same_odd_number: a and b are the same, and it's an odd number
-# - test_no_even_numbers: No even numbers in the range
-# - test_edge_case_small_numbers: Small numbers, both even
-# - test_edge_case_large_numbers: Large numbers, both even
-# - test_edge_case_one_even_one_odd: One even, one odd
-# - test_negative_inputs: Negative inputs (although not specified, good to check)
+# - test_ascending_order: Checks if the returned list is in ascending order when a < b.
+# - test_descending_order: Checks if the returned list is in ascending order when a > b.
+# - test_no_even_numbers: Checks if an empty list is returned when there are no even numbers between a and b.
+# - test_single_even_number: Checks if a list containing a single even number is returned when there is only one even number between a and b.
+# - test_multiple_even_numbers: Checks if a list containing multiple even numbers is returned when there are multiple even numbers between a and b.
+# - test_a_is_even: Checks if the function correctly includes 'a' when 'a' is even.
+# - test_b_is_even: Checks if the function correctly includes 'b' when 'b' is even.
+# - test_a_and_b_are_even: Checks if the function correctly includes both 'a' and 'b' when both are even.
+# - test_negative_input: Checks if the function handles negative inputs gracefully (although the prompt specifies positive integers, it's good to check).
 
 # STEP 3: CODE
 import pytest
@@ -56,29 +50,29 @@ def generate_integers(a, b):
     return result
 
 class TestGenerateIntegers:
-    def test_ascending_even_numbers(self):
+    def test_ascending_order(self):
         assert generate_integers(2, 8) == [2, 4, 6, 8]
 
-    def test_descending_even_numbers(self):
+    def test_descending_order(self):
         assert generate_integers(8, 2) == [2, 4, 6, 8]
-
-    def test_same_even_number(self):
-        assert generate_integers(4, 4) == [4]
-
-    def test_same_odd_number(self):
-        assert generate_integers(5, 5) == []
 
     def test_no_even_numbers(self):
         assert generate_integers(10, 14) == []
 
-    def test_edge_case_small_numbers(self):
-        assert generate_integers(0, 2) == [0, 2]
+    def test_single_even_number(self):
+        assert generate_integers(2, 3) == [2]
 
-    def test_edge_case_large_numbers(self):
-        assert generate_integers(1000, 1008) == [1000, 1002, 1004, 1006, 1008]
+    def test_multiple_even_numbers(self):
+        assert generate_integers(4, 10) == [4, 6, 8, 10]
 
-    def test_edge_case_one_even_one_odd(self):
-        assert generate_integers(1, 3) == [2]
+    def test_a_is_even(self):
+        assert generate_integers(4, 8) == [4, 6, 8]
 
-    def test_negative_inputs(self):
-        assert generate_integers(-2, 2) == [-2, 0, 2]
+    def test_b_is_even(self):
+        assert generate_integers(2, 6) == [2, 4, 6]
+
+    def test_a_and_b_are_even(self):
+        assert generate_integers(2, 8) == [2, 4, 6, 8]
+
+    def test_negative_input(self):
+        assert generate_integers(-2, 2) == [0, 2]

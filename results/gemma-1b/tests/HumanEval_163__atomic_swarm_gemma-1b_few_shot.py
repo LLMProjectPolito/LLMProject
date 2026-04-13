@@ -28,8 +28,8 @@ def generate_integers(a, b):
         s = str(num)
         for digit in s:
             if int(digit) % 2 == 0:
-                result.append(num)
-                break
+                result.append(int(digit))
+    result.sort()
     return result
 
 def generate_integers(a, b):
@@ -65,5 +65,6 @@ def generate_integers(a, b):
         s = str(i)
         even_digits = [digit for digit in s if int(digit) % 2 == 0]
         even_digits.sort()
-        result.extend(even_digits)
+        if even_digits:
+            result.append(even_digits[0])
     return result

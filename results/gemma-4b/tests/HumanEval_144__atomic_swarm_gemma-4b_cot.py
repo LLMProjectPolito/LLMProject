@@ -37,13 +37,17 @@ def simplify(x, n):
     num_x, den_x = map(int, x.split('/'))
     num_n, den_n = map(int, n.split('/'))
 
-    product = (num_x * num_n) / (den_x * den_n)
+    product_num = num_x * num_n
+    product_den = den_x * den_n
 
-    return product.is_integer()
-
+    if product_num % product_den == 0:
+        return True
+    else:
+        return False
 
 def test_edge_zero_numerator():
     assert simplify("0/5", "5/1") == True
+    assert simplify("0/6", "2/1") == False
 
 import pytest
 

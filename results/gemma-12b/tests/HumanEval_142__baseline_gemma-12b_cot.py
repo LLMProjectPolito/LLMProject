@@ -48,8 +48,8 @@ def test_list_with_negative_numbers():
 def test_list_with_mixed_positive_and_negative_numbers():
     """Test case for a list with mixed positive and negative numbers."""
     lst = [-1, -5, 2, -1, -5]
-    expected = 1 + 125 + 4 + 1 + 125
-    assert sum_squares(lst) == 256
+    expected = 1 + (-125) + 4 + 1 + (-125)
+    assert sum_squares(lst) == -244
 
 def test_list_with_zeros():
     """Test case for a list with zeros."""

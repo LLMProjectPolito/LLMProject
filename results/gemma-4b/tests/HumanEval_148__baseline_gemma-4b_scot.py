@@ -86,14 +86,23 @@ def test_bf_neptune_mercury():
 def test_bf_adjacent_planets():
     assert bf("Venus", "Earth") == ()
 
-def test_bf_jupiter_jupiter():
-    assert bf("Jupiter", "Jupiter") == ()
+def test_bf_mercury_venus():
+    assert bf("Mercury", "Venus") == ("Earth")
 
-def test_bf_mercury_mercury():
-    assert bf("Mercury", "Mercury") == ()
+def test_bf_venus_earth():
+    assert bf("Venus", "Earth") == ("Mercury")
 
-def test_bf_empty_input():
-    assert bf("", "Neptune") == ()
+def test_bf_earth_mars():
+    assert bf("Earth", "Mars") == ("Venus", "Mercury")
 
-def test_bf_empty_input_2():
-    assert bf("Jupiter", "") == ()
+def test_bf_mars_jupiter():
+    assert bf("Mars", "Jupiter") == ("Earth", "Venus", "Mercury")
+
+def test_bf_jupiter_saturn():
+    assert bf("Jupiter", "Saturn") == ("Mars", "Earth", "Venus", "Mercury")
+
+def test_bf_saturn_uranus():
+    assert bf("Saturn", "Uranus") == ("Jupiter", "Mars", "Earth", "Venus", "Mercury")
+
+def test_bf_uranus_neptune():
+    assert bf("Uranus", "Neptune") == ("Saturn", "Jupiter", "Mars", "Earth", "Venus", "Mercury")

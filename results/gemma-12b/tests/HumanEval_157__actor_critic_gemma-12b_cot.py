@@ -11,7 +11,6 @@ def right_angle_triangle(a, b, c):
     '''
 
 import pytest
-import math
 
 def right_angle_triangle(a, b, c):
     '''
@@ -19,19 +18,11 @@ def right_angle_triangle(a, b, c):
     sides form a right-angled triangle, False otherwise.
     A right-angled triangle is a triangle in which one angle is right angle or 
     90 degree.
-    Side lengths must be positive.
     Example:
     right_angle_triangle(3, 4, 5) == True
     right_angle_triangle(1, 2, 3) == False
     '''
-    if not all(isinstance(side, (int, float)) for side in [a, b, c]):
-        raise TypeError("Sides must be numbers.")
-    if any(side <= 0 for side in [a, b, c]):
-        raise ValueError("Sides must be positive.")
-
     sides = sorted([a, b, c])
-    if sides[0] + sides[1] <= sides[2]:
-        return False
     return sides[0]**2 + sides[1]**2 == sides[2]**2
 
 def test_right_angle_triangle_valid():
@@ -43,39 +34,33 @@ def test_right_angle_triangle_valid():
 def test_right_angle_triangle_invalid():
     assert right_angle_triangle(1, 2, 3) == False
     assert right_angle_triangle(2, 3, 4) == False
-    assert right_angle_triangle(1, 1, 1) == False
-    assert right_angle_triangle(4, 4, 5) == False
-
-def test_right_angle_triangle_edge_cases():
-    assert right_angle_triangle(0, 0, 0) == False
-    assert right_angle_triangle(1, 0, 1) == False
-    assert right_angle_triangle(0, 1, 1) == False
-    assert right_angle_triangle(1, 1, 0) == False
-    assert right_angle_triangle(0, 0, 1) == False
-
-def test_right_angle_triangle_float_values():
-    assert math.isclose(right_angle_triangle(3.0, 4.0, 5.0), True)
-    assert right_angle_triangle(1.0, 2.0, 3.0) == False
-    assert math.isclose(right_angle_triangle(0.5, 0.75, 1.0), True)
-    assert math.isclose(right_angle_triangle(0.001, 0.002, 0.0029), True)
-
-def test_right_angle_triangle_large_values():
-    assert math.isclose(right_angle_triangle(1000, 1000, 1414.21356), True)
-    assert right_angle_triangle(1000, 1001, 1002) == False
-
-def test_right_angle_triangle_isosceles():
-    assert right_angle_triangle(5, 5, 5 * math.sqrt(2)) == True
 
 def test_right_angle_triangle_negative_values():
-    with pytest.raises(TypeError):
-        right_angle_triangle(-3, 4, 5)
-    with pytest.raises(TypeError):
-        right_angle_triangle(3, -4, 5)
-    with pytest.raises(TypeError):
-        right_angle_triangle(3, 4, -5)
+    assert right_angle_triangle(-3, 4, 5) == False
+    assert right_angle_triangle(3, -4, 5) == False
+    assert right_angle_triangle(3, 4, -5) == False
+
+def test_right_angle_triangle_zero_values():
+    assert right_angle_triangle(0, 0, 0) == False
+
+def test_right_angle_triangle_equal_sides_not_right():
+    assert right_angle_triangle(2, 2, 3) == False
+    assert right_angle_triangle(5, 5, 8) == False
+
+def test_right_angle_triangle_float_values():
+    rel_tolerance = 1e-5
+    assert right_angle_triangle(3.0, 4.0, 5.0) == True
+    assert right_angle_triangle(1.0, 2.0, 3.0) == False
+    assert right_angle_triangle(0.5, 0.75, 1.0) == True
+    assert right_angle_triangle(1.0, 1.0, pytest.approx(1.41421, rel=rel_tolerance)) == True
+
+def test_right_angle_triangle_large_values():
+    rel_tolerance = 1e-5
+    assert right_angle_triangle(1000, 1000, pytest.approx(1414.21356, rel=rel_tolerance)) == True
+    assert right_angle_triangle(1000000, 1000000, pytest.approx(1414213.56, rel=rel_tolerance)) == True
+    assert right_angle_triangle(1000, 1000, 1414) == False
 
 def test_right_angle_triangle_invalid_triangle():
     assert right_angle_triangle(1, 2, 5) == False
-    assert right_angle_triangle(1, 2, 3) == False
-    assert right_angle_triangle(2, 2, 3) == False
-    assert right_angle_triangle(2, 3, 4) == False
+    assert right_angle_triangle(1, 1, 3) == False
+    assert right_angle_triangle(2, 2, 4) == False

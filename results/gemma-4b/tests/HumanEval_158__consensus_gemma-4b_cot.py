@@ -72,10 +72,10 @@ def test_duplicate_words():
     assert find_max(["hello", "hello"]) == "hello"
 
 def test_long_words():
-    assert find_max(["abcdefgh", "ijklmno"]) == "abcdefgh"
+    assert find_max(["abcdefgh", "ijklmnop"]) == "abcdefgh"
 
-def test_words_with_same_unique_chars_and_lexicographical_order_4():
-    assert find_max(["apple", "banana", "orange"]) == "apple"
+def test_complex_case():
+    assert find_max(["apple", "banana", "orange", "grape"]) == "banana"
 
-def test_words_with_same_unique_chars_and_lexicographical_order_5():
-    assert find_max(["zebra", "lion", "tiger"]) == "lion"
+def test_all_same_characters():
+    assert find_max(["aaaa", "bbbb", "cccc"]) == "aaaa"

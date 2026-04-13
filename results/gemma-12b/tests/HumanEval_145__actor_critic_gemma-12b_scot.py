@@ -12,32 +12,55 @@ def order_by_points(nums):
     """
 
 import pytest
-from your_module import order_by_points  # Replace your_module
+from your_module import order_by_points, digit_sum  # Replace your_module
+
+def test_digit_sum():
+    assert digit_sum(123) == 6
+    assert digit_sum(-123) == 6
+    assert digit_sum(0) == 0
+    assert digit_sum(10) == 1
+    assert digit_sum(999) == 27
+    assert digit_sum(123456789) == 45
+    assert digit_sum(10000) == 1
+
+def test_empty_input():
+    assert order_by_points([]) == []
+
+# def test_zeros_and_negatives():  # Removed as redundant
+#     assert order_by_points([0, -1, 1]) == [0, -1, 1]
+#     assert order_by_points([0, 0, 0]) == [0, 0, 0]
+#     assert order_by_points([0, -1, 1, -2, 2]) == [0, -1, 1, -2, 2]
+
+def test_same_digit_sum():
+    assert order_by_points([12, 3]) == [3, 12]
+    assert order_by_points([21, 3]) == [3, 21]
+    assert order_by_points([12, 21, 3]) == [3, 12, 21]
+    assert order_by_points([12, 3, 3]) == [3, 3, 12]  # Preserves original order
+
+def test_large_numbers():
+    assert order_by_points([123456789, 10]) == [10, 123456789]
+    assert order_by_points([1000000000, 1]) == [1, 1000000000]
+
+def test_duplicate_numbers():
+    assert order_by_points([1, 1, 2, 2]) == [1, 1, 2, 2]
+    assert order_by_points([2, 2, 1, 1]) == [1, 1, 2, 2]
+    assert order_by_points([1, 2, 1, 2]) == [1, 1, 2, 2]
 
 @pytest.mark.parametrize("nums, expected", [
-    ([], []),  # Test with an empty list
-    ([5], [5]),  # Test with a single positive number
-    ([1, 2, 3], [1, 2, 3]),  # Test with a sorted list of positive numbers
-    ([-1, -2, -3], [-1, -2, -3]),  # Test with a sorted list of negative numbers
-    ([1, -2, 3, -4], [1, -2, 3, -4]),  # Test with a mix of positive and negative numbers
-    ([11, 2, 1, 10], [1, 2, 11, 10]),  # Test with different digit sums
-    ([1, 11, -1, -11, -12], [-1, -11, 1, -12, 11]),  # Test with a mix of positive and negative numbers and different digit sums
-    ([0, 1, -1], [0, 1, -1]),  # Test with zero and positive/negative numbers
-    ([123, 45, 6], [6, 45, 123]),  # Test with different digit sums
-    ([111, 222, 333], [111, 222, 333]),  # Test with equal digit sums
-    ([10, -10, 1, -1], [1, -1, 10, -10]),  # Test with digit sums of 1
-    ([10, 1, 100], [1, 10, 100]),  # Test with equal digit sums but different numbers
-    ([-1, -10, -100], [-1, -10, -100]),  # Test with only negative numbers and equal digit sums
-    ([0, 0, 1, -1], [0, 0, 1, -1]),  # Test with multiple zeroes
-    ([123456789, 10], [10, 123456789]),  # Test with large numbers
-    ([1, 2, 3], [1, 2, 3]), # Test already sorted list - should not modify
-    ([3, 2, 1], [1, 2, 3]), # Test already sorted list - should modify
-    ([11, 22, 33], [11, 22, 33]), # Test with duplicate numbers with same digit sum
-    ([1, -1], [1, -1]), # Test with numbers that have the same digit sum but different signs
-    ([0, 0, 0], [0, 0, 0]), # Test with all zeroes
-    ([0, 1], [0, 1]), # Test with zero and a positive number
-    ([-1, 0], [0, -1]), # Test with zero and a negative number
+    ([], []),
+    ([5], [5]),
+    ([1, 2, 3], [1, 2, 3]),
+    ([-1, -2, -3], [-1, -2, -3]),
+    ([1, -2, 3, -4], [1, -2, 3, -4]),
+    ([11, 2, 1, 10], [1, 2, 11, 10]),
+    ([1, 11, -1, -11, -12], [-1, -11, 1, -12, 11]),
+    ([0, 1, -1], [0, 1, -1]),
+    ([123, 45, 6], [6, 45, 123]),
+    ([10, 1, 100, 1000], [1, 10, 100, 1000]),
+    ([11, 111, 1111], [11, 111, 1111]),
+    ([-11, 11], [ -11, 11]),
+    ([1, 10, 100], [1, 10, 100]), # Same digit sum, different lengths
+    ([1000000000, 1], [1, 1000000000]), # Large and small numbers
 ])
 def test_order_by_points(nums, expected):
-    """Test cases for order_by_points function."""
     assert order_by_points(nums) == expected

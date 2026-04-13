@@ -22,8 +22,8 @@ def cycpattern_check(a , b):
     cycpattern_check("himenss","simen") => True
 
     """
-    if not b:
-        return True  # Empty string is always a substring
+    if len(b) > len(a):
+        return False
 
     for i in range(len(b)):
         rotated_b = b[i:] + b[:i]
@@ -34,35 +34,41 @@ def cycpattern_check(a , b):
 
 
 def test_empty_strings():
-    assert cycpattern_check("", "") == True
-    assert cycpattern_check("abc", "") == True
-    assert cycpattern_check("", "abc") == False
+    assert cycpattern_check("", "") == False
 
 def test_b_longer_than_a():
     assert cycpattern_check("abc", "abcd") == False
 
 def test_b_is_substring_of_a():
     assert cycpattern_check("hello", "ell") == True
-    assert cycpattern_check("abcdef", "bcd") == True
 
-def test_rotation_needed():
-    assert cycpattern_check("abcd", "abd") == False
-    assert cycpattern_check("abab", "baa") == True
-    assert cycpattern_check("himenss", "simen") == True
+def test_rotation_is_substring_of_a():
+    assert cycpattern_check("waterbottle", "erbottlewat") == True
 
 def test_no_match():
-    assert cycpattern_check("whassup", "psus") == False
-    assert cycpattern_check("efef", "eeff") == False
+    assert cycpattern_check("abcd", "abd") == False
 
-def test_a_and_b_same():
+def test_identical_strings():
     assert cycpattern_check("hello", "hello") == True
 
-def test_a_contains_b_multiple_times():
-    assert cycpattern_check("ababab", "ab") == True
+def test_repeating_patterns():
+    assert cycpattern_check("ababab", "aba") == True
+    assert cycpattern_check("ababab", "bab") == True
 
-def test_b_is_a():
-    assert cycpattern_check("abc", "abc") == True
+def test_edge_case_1():
+    assert cycpattern_check("abab", "baa") == True
 
-def test_case_sensitivity():
-    assert cycpattern_check("Hello", "ell") == False
-    assert cycpattern_check("hello", "Ell") == False
+def test_edge_case_2():
+    assert cycpattern_check("efef", "eeff") == False
+
+def test_edge_case_3():
+    assert cycpattern_check("himenss", "simen") == True
+
+def test_another_no_match():
+    assert cycpattern_check("whassup", "psus") == False
+
+def test_b_at_end():
+    assert cycpattern_check("abcdef", "def") == True
+
+def test_b_at_beginning():
+    assert cycpattern_check("abcdef", "abc") == True

@@ -45,23 +45,21 @@ def Strongest_Extension(class_name, extensions):
     Example:
     for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
     """
-    strongest_extension = None
+    strongest_extension = ""
     max_strength = float('-inf')
-
     for extension in extensions:
-        cap_count = sum(1 for char in extension if char.isupper())
-        sm_count = sum(1 for char in extension if char.islower())
-        
-        if sm_count == 0:
-            strength = float('inf')
-        else:
-            strength = cap_count - sm_count
-        
+        cap = 0
+        sm = 0
+        for char in extension:
+            if char.isupper():
+                cap += 1
+            elif char.islower():
+                sm += 1
+        strength = cap - sm
         if strength > max_strength:
             max_strength = strength
             strongest_extension = extension
-
     return f"{class_name}.{strongest_extension}"
 
 def test_empty_extensions_list():
-    assert Strongest_Extension("MyClass", []) == "MyClass.None"
+    assert Strongest_Extension("MyClass", []) == "MyClass."

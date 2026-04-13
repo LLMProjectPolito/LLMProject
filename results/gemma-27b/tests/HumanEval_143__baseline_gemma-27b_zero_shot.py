@@ -76,16 +76,16 @@ def test_words_in_sentence_all_prime_length_words():
     assert words_in_sentence("is a") == "is a"
 
 def test_words_in_sentence_mixed_length_words():
-    assert words_in_sentence("this is a test sentence") == "is a"
+    assert words_in_sentence("this is a long sentence") == "is a"
 
-def test_words_in_sentence_long_sentence():
-    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the quick fox over the dog"
-
-def test_words_in_sentence_sentence_with_one_word():
+def test_words_in_sentence_single_word_prime_length():
     assert words_in_sentence("two") == "two"
 
-def test_words_in_sentence_sentence_with_one_word_not_prime():
-    assert words_in_sentence("one") == ""
+def test_words_in_sentence_single_word_non_prime_length():
+    assert words_in_sentence("three") == ""
 
-def test_words_in_sentence_sentence_with_numbers():
-    assert words_in_sentence("123 abc 4567") == "abc"
+def test_words_in_sentence_long_sentence():
+    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the fox the dog"
+
+def test_words_in_sentence_sentence_with_duplicates():
+    assert words_in_sentence("is is is") == "is is is"

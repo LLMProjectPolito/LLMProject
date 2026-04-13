@@ -36,14 +36,14 @@ def order_by_points(nums):
 def test_edge_case_empty_list():
     assert order_by_points([]) == []
 
-def test_single_element_positive():
-    assert order_by_points([5]) == [5]
-
-def test_single_element_negative():
-    assert order_by_points([-5]) == [-5]
-
-def test_duplicate_sums_different_indices():
+def test_example_case():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
 
-def test_duplicate_sums_same_indices():
-    assert order_by_points([1, 11, -1, -11]) == [1, 11, -1, -11]
+def test_negative_numbers():
+    assert order_by_points([-1, -11, -12, 1, 11]) == [-1, -11, -12, 1, 11]
+
+def test_mixed_positive_negative():
+    assert order_by_points([1, -1, 11, -11]) == [-1, -11, 1, 11]
+
+def test_duplicate_sums():
+    assert order_by_points([1, 11, 2, 20]) == [1, 11, 2, 20]

@@ -53,34 +53,43 @@ def do_algebra(operator, operand):
 
     """
     if len(operand) != 2:
-        raise ValueError("Operand list must contain exactly two elements.")
+        raise ValueError("Operand must be a list of two integers.")
     
-    if operator == ' '+'':
-        return operand[0] + operand[1]
-    elif operator == '-':
-        return operand[0] - operand[1]
-    elif operator == '*':
-        return operand[0] * operand[1]
-    elif operator == '//':
-        if operand[1] == 0:
-            raise ZeroDivisionError("Division by zero")
-        return operand[0] // operand[1]
-    elif operator == '**':
-        return operand[0] ** operand[1]
-    else:
-        return 0  # Default value for unknown operators
+    op1 = operand[0]
+    op2 = operand[1]
 
-def test_do_algebra_basic():
+    if operator == '+':
+        return op1 + op2
+    elif operator == '-':
+        return op1 - op2
+    elif operator == '*':
+        return op1 * op2
+    elif operator == '//':
+        return op1 // op2
+    elif operator == '**':
+        return op1 ** op2
+    else:
+        return None  # Or raise an exception for invalid operator
+
+
+def test_do_algebra():
     assert do_algebra('+ 2 3') == 5
     assert do_algebra('- 2 3') == 1
     assert do_algebra('* 2 3') == 6
     assert do_algebra('/') 2 3 == 1
     assert do_algebra('2 ** 3') == 8
-
-def test_do_algebra_empty():
-    assert do_algebra('1') == 1
-    assert do_algebra('') == 1
-    assert do_algebra('+ 1') == 1
-    assert do_algebra('- 1') == -1
-    assert do_algebra('* 1') == 1
-    assert do_algebra('/') 1 == 1
+    assert do_algebra('2 + 3 * 4') == 9
+    assert do_algebra('2 - 3 * 4') == 1
+    assert do_algebra('2 + 3 / 4') == 1.5
+    assert do_algebra('2 / 3') == 0.6666666666666666
+    assert do_algebra('2 ** 3') == 8
+    assert do_algebra('2 + 3 * 4') == 14
+    assert do_algebra('2 - 3 * 4') == -14
+    assert do_algebra('2 + 3 / 4') == 1.25
+    assert do_algebra('2 / 3') == 0.6666666666666666
+    
+    # Test with empty list
+    assert do_algebra('+ 1') == None
+    assert do_algebra('- 1') == None
+    assert do_algebra('1') == None
+    assert do_algebra('') == None

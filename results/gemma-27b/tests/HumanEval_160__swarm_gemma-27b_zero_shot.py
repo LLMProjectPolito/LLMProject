@@ -28,10 +28,7 @@ def do_algebra(operator, operand):
 import pytest
 
 def test_empty_operator_list_with_two_operands():
-    """
-    Test case for an edge case where the operator list is empty, but the operand list has two elements.
-    This should return the first operand.
-    """
+    """Test case for an empty operator list with only two operands."""
     def do_algebra(operator, operand):
         """
         Given two lists operator, and operand. The first list has basic algebra operations, and 
@@ -58,9 +55,22 @@ def test_empty_operator_list_with_two_operands():
 
         """
         result = operand[0]
+        for i in range(len(operator)):
+            if operator[i] == '+':
+                result += operand[i+1]
+            elif operator[i] == '-':
+                result -= operand[i+1]
+            elif operator[i] == '*':
+                result *= operand[i+1]
+            elif operator[i] == '//':
+                result //= operand[i+1]
+            elif operator[i] == '**':
+                result **= operand[i+1]
         return result
     
-    assert do_algebra([], [5, 10]) == 5
+    operator = []
+    operand = [5, 2]
+    assert do_algebra(operator, operand) == 5
 
 def test_empty_operator_list():
     """Test case for an empty operator list with two operands."""

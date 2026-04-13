@@ -35,8 +35,10 @@ def test_special_factorial_type_error():
         special_factorial("a")
     with pytest.raises(TypeError):
         special_factorial(1.5)
+    with pytest.raises(TypeError):
+        special_factorial([1,2,3])
 
-def test_special_factorial_negative_input():
+def test_special_factorial_negative():
     with pytest.raises(ValueError):
         special_factorial(-1)
     with pytest.raises(ValueError):

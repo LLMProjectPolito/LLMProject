@@ -30,16 +30,15 @@ def cycpattern_check(a, b):
     s5 = s3
 
     if len(s1) >= len(s2):
-        if s2 in s1:
-            return True
+        for i in range(len(s2)):
+            rotated_s2 = s2[i:] + s2[:i]
+            if rotated_s2 in s1:
+                return True
     else:
-        if s1 in s2:
-            return True
-    
-    for i in range(1, len(s2)):
-        rotated_s2 = s2[i:] + s2[:i]
-        if rotated_s2 in s1:
-            return True
+        for i in range(len(s1)):
+            rotated_s1 = s1[i:] + s1[:i]
+            if rotated_s1 in s2:
+                return True
     return False
 
 def cycpattern_check(a, b):

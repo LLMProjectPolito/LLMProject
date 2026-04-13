@@ -13,39 +13,6 @@ def fix_spaces(text):
 
 import pytest
 
-def fix_spaces(text):
-    if not text:
-        return ""
-
-    result = ""
-    space_count = 0
-    for char in text:
-        if char.isspace():
-            space_count += 1
-            if space_count == 1:
-                result += "_"
-            elif space_count == 2:
-                result += "_"
-            elif space_count >= 3:
-                result += "-"
-        else:
-            result += char
-            space_count = 0
-
-    if result.endswith("_"):
-        result = result[:-1]
-    if result.startswith("_"):
-        result = result[1:]
-    if result.endswith("-"):
-        result = result[:-1]
-    if result.startswith("-"):
-        result = result[1:]
-
-    if all(c.isspace() for c in text):
-        return "-"
-
-    return result
-
 def test_no_spaces():
     assert fix_spaces("Example") == "Example"
 
@@ -94,11 +61,8 @@ def test_string_with_mixed_whitespace():
 def test_string_with_only_consecutive_spaces():
     assert fix_spaces("     ") == "-"
 
-def test_string_with_consecutive_spaces_and_text():
-    assert fix_spaces("   text   ") == "-text-"
-
 def test_string_with_three_consecutive_spaces():
-    assert fix_spaces("Example 1 2 3") == "Example_1_2_3"
+    assert fix_spaces("Example 1 2  3") == "Example_1_2__3"
 
 def test_string_with_four_consecutive_spaces():
-    assert fix_spaces("Example 1    2 3") == "Example_1-2_3"
+    assert fix_spaces("Example 1 2   3") == "Example_1_2-3"

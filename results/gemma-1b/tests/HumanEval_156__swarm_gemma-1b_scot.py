@@ -40,8 +40,6 @@ def int_to_mini_roman(number):
 
     return result
 
-import pytest
-
 def test_int_to_mini_roman_19():
     assert int_to_mini_roman(19) == 'xix'
 
@@ -54,20 +52,11 @@ def test_int_to_mini_roman_426():
 def test_int_to_mini_roman_1():
     assert int_to_mini_roman(1) == 'I'
 
-def test_int_to_mini_roman_9():
-    assert int_to_mini_roman(9) == 'IX'
+def test_int_to_mini_roman_10():
+    assert int_to_mini_roman(10) == 'X'
 
-def test_int_to_mini_roman_40():
-    assert int_to_mini_roman(40) == 'XL'
-
-def test_int_to_mini_roman_50():
-    assert int_to_mini_roman(50) == 'L'
-
-def test_int_to_mini_roman_90():
-    assert int_to_mini_roman(90) == 'XC'
-
-def test_int_to_mini_roman_100():
-    assert int_to_mini_roman(100) == 'C'
+def test_int_to_mini_roman_99():
+    assert int_to_mini_roman(99) == 'XCIX'
 
 def test_int_to_mini_roman_400():
     assert int_to_mini_roman(400) == 'CD'
@@ -82,6 +71,7 @@ def test_int_to_mini_roman_1000():
     assert int_to_mini_roman(1000) == 'M'
 
 import pytest
+
 def int_to_mini_roman(number):
     """
     Given a positive integer, obtain its roman numeral equivalent as a string,

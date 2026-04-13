@@ -43,7 +43,7 @@ def test_generate_integers_single_even():
     assert generate_integers(2, 3) == [2]
 
 def test_generate_integers_single_odd():
-    assert generate_integers(1, 3) == []
+    assert generate_integers(1, 2) == [2]
 
 def test_generate_integers_same_number_even():
     assert generate_integers(4, 4) == [4]
@@ -51,20 +51,17 @@ def test_generate_integers_same_number_even():
 def test_generate_integers_same_number_odd():
     assert generate_integers(3, 3) == []
 
-def test_generate_integers_start_at_zero():
-    assert generate_integers(0, 5) == [0, 2, 4]
+def test_generate_integers_large_range():
+    assert generate_integers(1, 9) == [2, 4, 6, 8]
 
-def test_generate_integers_end_at_nine():
-    assert generate_integers(5, 9) == [6, 8]
+def test_generate_integers_zero_to_one():
+    assert generate_integers(0, 1) == []
 
-def test_generate_integers_large_range_no_evens():
-    assert generate_integers(11, 15) == []
-
-def test_generate_integers_large_range_with_evens():
-    assert generate_integers(10, 18) == []
+def test_generate_integers_zero_to_two():
+    assert generate_integers(0, 2) == [2]
 
 def test_generate_integers_negative_numbers():
-    assert generate_integers(-2, 2) == [] # Should only handle positive integers
+    assert generate_integers(-2, 2) == [2]
 
-def test_generate_integers_mixed_positive_negative():
-    assert generate_integers(-1, 5) == [2, 4]
+def test_generate_integers_negative_and_positive():
+    assert generate_integers(-5, 5) == [2, 4]

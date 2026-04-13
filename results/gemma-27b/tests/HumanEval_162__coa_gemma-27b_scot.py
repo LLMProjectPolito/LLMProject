@@ -43,7 +43,7 @@ def test_valid_string_input_different_string():
     assert string_to_md5("This is a test") == "5994471abb01112afcc18159f6cc74b4"
 
 def test_valid_string_input_with_numbers():
-    assert string_to_md5("string123") == "967a9a8f999999999999999999999999"
+    assert string_to_md5("string123") == "967a9a99999999999999999999999999"
 
 # Focus: Error Handling/Invalid Input Types
 import pytest
@@ -66,4 +66,8 @@ def test_string_to_md5_invalid_input_type_int():
 
 def test_string_to_md5_invalid_input_type_list():
     with pytest.raises(TypeError):
-        string_to_md5([1, 2, 3])
+        string_to_md5(['a', 'b'])
+
+def test_string_to_md5_invalid_input_type_none():
+    with pytest.raises(TypeError):
+        string_to_md5(None)

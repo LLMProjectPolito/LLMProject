@@ -23,14 +23,6 @@ def words_in_sentence(sentence):
 import pytest
 import math
 
-def is_prime(n):
-    if n <= 1:
-        return False
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0:
-            return False
-    return True
-
 def words_in_sentence(sentence):
     """
     You are given a string representing a sentence,
@@ -58,6 +50,14 @@ def words_in_sentence(sentence):
             result.append(word)
     return " ".join(result)
 
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
+
 def test_empty_sentence():
     assert words_in_sentence("") == ""
 
@@ -70,14 +70,11 @@ def test_single_prime_length_word():
 def test_multiple_prime_length_words():
     assert words_in_sentence("This is a test") == "is"
 
-def test_mixed_prime_and_non_prime_words():
-    assert words_in_sentence("lets go for swimming") == "go for"
-
 def test_sentence_with_only_prime_length_words():
-    assert words_in_sentence("prime prime prime") == "prime prime prime"
+    assert words_in_sentence("go for") == "go for"
 
-def test_all_non_prime_lengths():
-    assert words_in_sentence("This is a test") == ""
+def test_sentence_with_mixed_prime_and_non_prime_length_words():
+    assert words_in_sentence("This is a test sentence") == "is a"
 
 def test_single_non_prime_word():
     assert words_in_sentence("abc") == ""

@@ -51,20 +51,14 @@ def test_all_even_length():
 def test_mixed_odd_even():
     assert sorted_list_sum(["aa", "a", "aaa", "cd"]) == ["aa", "cd"]
 
-def test_duplicate_even_length():
-    assert sorted_list_sum(["aa", "aa", "bb", "bb"]) == ["aa", "aa", "bb", "bb"]
-
-def test_duplicate_odd_even():
-    assert sorted_list_sum(["aa", "a", "aaa", "aa", "cd"]) == ["aa", "aa", "cd"]
+def test_duplicates():
+    assert sorted_list_sum(["aa", "aa", "a"]) == ["aa", "aa"]
 
 def test_same_length_different_chars():
-    assert sorted_list_sum(["ab", "ac", "ad"]) == ["ab", "ac", "ad"]
+    assert sorted_list_sum(["ab", "ac", "bc"]) == ["ab", "bc"]
 
 def test_same_length_same_chars():
     assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
-
-def test_complex_case():
-    assert sorted_list_sum(["abc", "def", "ghi", "jkl", "mno", "pqr"]) == ["jkl"]
 
 def test_single_element_even():
     assert sorted_list_sum(["aa"]) == ["aa"]
@@ -72,8 +66,11 @@ def test_single_element_even():
 def test_single_element_odd():
     assert sorted_list_sum(["a"]) == []
 
-def test_mixed_with_duplicates_and_same_length():
-    assert sorted_list_sum(["aa", "a", "aaa", "aa", "cd", "ab", "cd"]) == ["aa", "aa", "ab", "cd", "cd"]
+def test_complex_case():
+    assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape"]) == ["banana", "orange"]
 
 def test_another_complex_case():
-    assert sorted_list_sum(["apple", "banana", "orange", "grape", "kiwi"]) == ["banana", "orange"]
+    assert sorted_list_sum(["abc", "def", "ghi", "jkl", "mno"]) == ["abc", "def", "ghi", "jkl", "mno"]
+
+def test_mixed_with_duplicates_and_same_length():
+    assert sorted_list_sum(["aa", "bb", "aa", "cc", "bb"]) == ["aa", "aa", "bb", "bb", "cc"]

@@ -49,5 +49,3 @@ def test_x_or_y_edge_cases():
     assert x_or_y(8, 34, 12) == 12
     assert x_or_y(9, 34, 12) == 12
     assert x_or_y(10, 34, 12) == 12
-    assert x_or_y(12, 34, 12) == 34
-    assert x_or_y(14, 34, 12) == 12

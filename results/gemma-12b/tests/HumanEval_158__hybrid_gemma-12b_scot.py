@@ -49,33 +49,31 @@ class TestFindMax:
 
     def test_multiple_words_different_unique_chars(self):
         assert find_max(["name", "of", "string"]) == "string"
+        assert find_max(["apple", "banana", "kiwi"]) == "banana"
 
     def test_multiple_words_same_unique_chars_lexicographical(self):
         assert find_max(["name", "enam", "game"]) == "enam"
+        assert find_max(["abc", "bca", "cab"]) == "abc"
 
     def test_words_with_repeated_chars(self):
-        assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
+        assert find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
+        assert find_max(["aabbcc", "abc"]) == "abc"
 
     def test_empty_string_in_list(self):
-        assert find_max(["", "abc", "def"]) == "abc"
+        assert find_max(["", "hello"]) == "hello"
+        assert find_max(["hello", ""]) == "hello"
 
-    def test_mixed_lengths_and_uniques(self):
-        assert find_max(["abc", "ab", "a", "abcd"]) == "abcd"
-
-    def test_all_same_word(self):
-        assert find_max(["hello", "hello", "hello"]) == "hello"
-
-    def test_list_with_numbers_and_letters(self):
-        assert find_max(["a1b2", "abc", "a1"]) == "abc"
-
-    def test_all_same_length_strings(self):
-        assert find_max(["abc", "def", "ghi"]) == "abc"
+    def test_mixed_empty_and_nonempty_strings(self):
+        assert find_max(["", "a", "aa", "aaa"]) == "aaa"
+        assert find_max(["a", "", "aa"]) == "aa"
 
     def test_all_same_unique_chars(self):
         assert find_max(["abc", "def", "ghi"]) == "abc"
+        assert find_max(["aaa", "bbb", "ccc"]) == "aaa"
 
-    def test_list_with_only_empty_strings(self):
-        assert find_max(["", "", ""]) == ""
+    def test_long_strings(self):
+        assert find_max(["abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnop"]) == "abcdefghijklmnopqrstuvwxyz"
+        assert find_max(["longstring", "short"]) == "longstring"
 
-    def test_mixed_empty_and_long_strings(self):
-        assert find_max(["", "abcdefghijklmnopqrstuvwxyz"]) == "abcdefghijklmnopqrstuvwxyz"
+    def test_unicode_strings(self):
+        assert find_max(["你好世界", "你好"]) == "你好世界"

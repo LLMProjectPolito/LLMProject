@@ -25,7 +25,7 @@ def test_digit_sum_calculation_negative_numbers():
     assert order_by_points([-1, -11, -2, -22]) == [-1, -2, -11, -22]
 
 def test_digit_sum_calculation_mixed_numbers():
-    assert order_by_points([1, -11, 2, -22, 11]) == [1, -11, 2, -22, 11]
+    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
 
 # Focus: Empty/Null Input
 import pytest

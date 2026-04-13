@@ -101,7 +101,7 @@ def test_eat_basic4():
     assert eat(2, 11, 5) == [7, 0]
 
 def test_eat_not_enough():
-    assert eat(10, 5, 3) == [15, 0]
+    assert eat(5, 10, 3) == [15, 0]
 
 def test_eat_zero_need():
     assert eat(5, 0, 10) == [5, 5]

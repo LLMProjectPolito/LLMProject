@@ -56,20 +56,29 @@ def test_large_numbers():
 def test_mixed_types():
     assert double_the_difference([1, 2.5, 3, -4]) == 10
 
-def test_all_negative_odd():
+def test_only_negative_odd():
     assert double_the_difference([-1, -3]) == 10
+
+def test_only_negative_even():
+    assert double_the_difference([-2, -4]) == 0
 
 def test_single_odd_number():
     assert double_the_difference([5]) == 25
 
 def test_single_negative_odd_number():
-    assert double_the_difference([-5]) == 25
+    assert double_the_difference([-1]) == 1
 
-def test_list_with_zeros_and_odds():
-    assert double_the_difference([1, 0, 3, 0, 5]) == 35
+def test_single_negative_even_number():
+    assert double_the_difference([-2]) == 0
 
-def test_list_with_only_zeros():
-    assert double_the_difference([0, 0, 0]) == 0
+def test_duplicate_odd_numbers():
+    assert double_the_difference([1, 1, 1]) == 3
 
-def test_list_with_negative_and_zeros():
-    assert double_the_difference([-1, 0, -2, 0]) == 0
+def test_duplicate_negative_odd_numbers():
+    assert double_the_difference([-1, -1, -1]) == 3
+
+def test_duplicate_positive_and_negative_odd_numbers():
+    assert double_the_difference([1, -1]) == 2
+
+def test_complex_list():
+    assert double_the_difference([2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 9 + 25 + 49 + 64 + 81 == 229

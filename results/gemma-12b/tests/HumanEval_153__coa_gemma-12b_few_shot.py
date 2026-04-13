@@ -49,4 +49,4 @@ def test_strongest_extension_negative():
     assert Strongest_Extension("Slices", ["SErviNGSliCes", "Cheese", "StuFfed"]) == "Slices.SErviNGSliCes"
 
 def test_strongest_extension_equal_strength():
-    assert Strongest_Extension("BaseClass", ["A", "a", "B"]) == "BaseClass.A"
+    assert Strongest_Extension("BaseClass", ["ExtensionA", "extensionB", "ExtensionC"]) == "BaseClass.ExtensionA"

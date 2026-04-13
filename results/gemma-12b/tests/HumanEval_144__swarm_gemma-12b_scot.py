@@ -17,9 +17,3 @@ import math
 
 def test_multiply_one_by_one():
     assert simplify("1/1", "1/1") == True
-
-def test_multiply_by_one():
-    assert simplify("2/3", "1/1") == True
-    assert simplify("1/1", "2/3") == True
-    assert simplify("10/11", "1/1") == True
-    assert simplify("1/1", "10/11") == True

@@ -11,83 +11,51 @@ def specialFilter(nums):
 import pytest
 from your_module import specialFilter  # Replace your_module
 
-def test_empty_list():
-    assert specialFilter([]) == 0
+def is_odd_digit(digit):
+    return digit in '13579'
 
-def test_no_matching_numbers():
-    assert specialFilter([1, 2, 3, 4, 5]) == 0
+def special_filter_criteria(num):
+    num_str = str(abs(num))
+    return len(num_str) > 0 and is_odd_digit(num_str[0]) and is_odd_digit(num_str[-1])
 
-def test_single_matching_number():
-    assert specialFilter([15]) == 1
+@pytest.mark.parametrize("nums, expected", [
+    ([], 0),
+    ([1, 2, 3, 4, 5], 0),
+    ([15], 1),
+    ([33, -2, -3, 45, 21, 109], 2),
+    ([15, -73, 14, -15], 1),
+    ([13579], 1),
+    ([13579, 123, 456, 789], 1),
+    ([15, 015], 1),  # Handles leading zeros as intended
+    ([150, 350], 0),
+    ([105], 0), # Zero handling test
+    ([-15, -33], 1), # Negative number edge case
+    ([111, 333, 555, 777, 999], 0),
+    ([101, 303, 505, 707, 909], 0),
+])
+def test_special_filter(nums, expected):
+    assert specialFilter(nums) == expected
 
-def test_multiple_matching_numbers():
-    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
+def test_is_odd_digit():
+    assert is_odd_digit('7') == True
+    assert is_odd_digit('0') == False
+    assert is_odd_digit('2') == False
+    assert is_odd_digit('9') == True
 
-def test_mixed_positive_and_negative_numbers():
-    assert specialFilter([15, -73, 14, -15]) == 1
+def test_floating_point_input():
+    assert specialFilter([15.99999]) == 1
 
-def test_numbers_greater_than_10_odd_ends():
-    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29]) == 10
-
-def test_numbers_less_than_10_odd_ends():
-    assert specialFilter([1, 3, 5, 7, 9]) == 0
-
-def test_negative_numbers_odd_ends():
-    assert specialFilter([-11, -13, -15, -17, -19]) == 0
-
-def test_zero_odd_ends():
-    assert specialFilter([0]) == 0
-
-def test_large_numbers_odd_ends():
-    assert specialFilter([13579]) == 1
-
-def test_large_numbers_with_other_numbers_odd_ends():
-    assert specialFilter([13579, 123, 456, 789]) == 1
-
-def test_numbers_with_leading_zeros_odd_ends():
-    assert specialFilter([15, 15]) == 1
-
-def test_numbers_with_trailing_zeros_odd_ends():
-    assert specialFilter([150, 350]) == 0
-
-def test_numbers_with_mixed_odd_even_digits_odd_ends():
-    assert specialFilter([21, 43, 65, 87, 109]) == 1
-
-def test_all_numbers_same_odd_ends():
-    assert specialFilter([33, 33, 33, 33]) == 1
-
-def test_edge_case_1_odd_ends():
-    assert specialFilter([111, 12, 333, 44, 555]) == 3
-
-def test_edge_case_2_odd_ends():
-    assert specialFilter([101, 11, 12, 13, 14, 15]) == 1
-
-def test_large_number_odd_ends():
-    assert specialFilter([9999999999]) == 1
-
-def test_numbers_with_only_even_digits():
-    assert specialFilter([24, 46, 68, 82]) == 0
-
-def test_duplicates_and_unique_numbers():
-    assert specialFilter([15, 15, 21]) == 1
-
-def test_all_negative_numbers_odd_ends():
-    assert specialFilter([-11, -33, -55, -77, -99]) == 0
-
-def test_no_numbers_meet_criteria_non_empty_list():
-    assert specialFilter([2, 4, 6, 8, 10]) == 0
-
-def test_max_integer_odd_ends():
-    assert specialFilter([2147483647]) == 1
-
-def test_invalid_input_float():
+def test_mixed_data_types():
     with pytest.raises(TypeError):
-        specialFilter([15.5])
+        specialFilter([15, "abc", 33])
 
-def test_invalid_input_list():
+def test_none_input():
     with pytest.raises(TypeError):
-        specialFilter([[1, 2], 3])
+        specialFilter(None)
 
-def test_invalid_input_none():
+def test_duplicates():
+    assert specialFilter([15, 15, 33, 33]) == 2
+
+def test_invalid_input():
     with pytest.raises(TypeError):
-        specialFilter([None])
+        specialFilter([15, 15.5, 33])

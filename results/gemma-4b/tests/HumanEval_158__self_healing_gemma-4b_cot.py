@@ -25,7 +25,7 @@ def find_max(words):
     if not words:
         return ""
 
-    max_unique = 0
+    max_unique = -1
     result = ""
 
     for word in words:
@@ -37,6 +37,7 @@ def find_max(words):
             result = word
 
     return result
+
 
 def test_empty_list():
     assert find_max([]) == ""
@@ -65,14 +66,17 @@ def test_numbers_and_letters():
 def test_special_characters():
     assert find_max(["!@#", "abc"]) == "!@#"
 
-def test_duplicate_characters():
-    assert find_max(["aabbcc", "abc"]) == "abc"
-
-def test_all_same_characters():
-    assert find_max(["aaaa", "bbbb"]) == "aaaa"
-
 def test_empty_string():
     assert find_max(["", "abc"]) == "abc"
 
-def test_mixed_empty_and_non_empty():
-    assert find_max(["", "hello", ""]) == "hello"
+def test_duplicate_words():
+    assert find_max(["hello", "hello"]) == "hello"
+
+def test_long_words():
+    assert find_max(["abcdefgh", "ijklmno"]) == "abcdefgh"
+
+def test_complex_case():
+    assert find_max(["apple", "banana", "orange", "grape"]) == "banana"
+
+def test_all_same_characters():
+    assert find_max(["aaaa", "bbbb", "cccc"]) == "aaaa"

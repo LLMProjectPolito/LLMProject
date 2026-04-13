@@ -62,19 +62,19 @@ def test_empty_sentence():
     assert words_in_sentence("") == ""
 
 def test_single_word_prime():
-    assert words_in_sentence("test") == "test"
+    assert words_in_sentence("abc") == "abc"
 
 def test_single_word_non_prime():
-    assert words_in_sentence("hello") == ""
+    assert words_in_sentence("abcd") == ""
 
 def test_multiple_words_some_prime():
     assert words_in_sentence("This is a test") == "is"
 
 def test_multiple_words_all_prime():
-    assert words_in_sentence("let go for swimming") == "go for"
+    assert words_in_sentence("abc def ghi") == "abc def"
 
 def test_multiple_words_no_prime():
-    assert words_in_sentence("This is a test sentence") == ""
+    assert words_in_sentence("abcd efgh ijkl") == ""
 
 def test_sentence_with_leading_and_trailing_spaces():
     assert words_in_sentence("  This is a test  ") == "is"
@@ -83,19 +83,22 @@ def test_sentence_with_multiple_spaces_between_words():
     assert words_in_sentence("This   is  a    test") == "is"
 
 def test_sentence_with_only_prime_length_words():
-    assert words_in_sentence("one two three") == "one two three"
+    assert words_in_sentence("a b c d") == "a b c"
+
+def test_sentence_with_only_non_prime_length_words():
+    assert words_in_sentence("abcde fghij klmno") == ""
 
 def test_sentence_with_mixed_prime_and_non_prime_words():
-    assert words_in_sentence("apple banana cherry date") == "banana cherry"
+    assert words_in_sentence("This is a test sentence") == "is a"
 
 def test_sentence_with_long_words():
-    assert words_in_sentence("supercalifragilisticexpialidocious") == ""
+    assert words_in_sentence("This is a verylongword") == "is a"
 
 def test_sentence_with_short_words():
-    assert words_in_sentence("a b c d e") == "b c d e"
+    assert words_in_sentence("a b c d e f") == "a b c d e"
 
-def test_sentence_with_prime_length_words_and_empty_string():
-    assert words_in_sentence("prime") == "prime"
+def test_sentence_with_prime_length_words_at_the_end():
+    assert words_in_sentence("This is a test abcdef") == "is a"
 
-def test_sentence_with_non_prime_length_words_and_empty_string():
-    assert words_in_sentence("notprime") == ""
+def test_sentence_with_non_prime_length_words_at_the_end():
+    assert words_in_sentence("This is a test abc") == "is a"

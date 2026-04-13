@@ -52,4 +52,4 @@ def Strongest_Extension(class_name, extensions):
             max_strength = strength
             strongest_extension = extension
 
-    return strongest_extension
+    return f"{class_name}.{strongest_extension}"

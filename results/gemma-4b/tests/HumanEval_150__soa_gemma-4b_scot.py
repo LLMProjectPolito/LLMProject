@@ -20,32 +20,26 @@ def x_or_y(n, x, y):
     for x_or_y(15, 8, 5) == 5
     
     """
-    def is_prime(n):
-        if n <= 1:
-            return False
-        for i in range(2, int(n**0.5) + 1):
-            if n % i == 0:
-                return False
-        return True
-
-    if is_prime(n):
-        return x
-    else:
+    if n == 1:
         return y
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return y
+    return x
 
 def test_x_or_y_prime():
     assert x_or_y(7, 34, 12) == 34
-    assert x_or_y(11, 22, 33) == 22
-    assert x_or_y(13, 42, 10) == 42
-    assert x_or_y(17, 55, 66) == 55
-    assert x_or_y(19, 77, 88) == 77
+    assert x_or_y(11, 22, 1) == 22
+    assert x_or_y(13, 100, 5) == 100
+    assert x_or_y(17, 99, 1) == 99
+    assert x_or_y(19, 88, 2) == 88
 
 def test_x_or_y_not_prime():
     assert x_or_y(15, 8, 5) == 5
-    assert x_or_y(20, 1, 2) == 1
-    assert x_or_y(21, 99, 10) == 10
-    assert x_or_y(25, 100, 20) == 20
-    assert x_or_y(28, 10, 20) == 20
+    assert x_or_y(20, 1, 10) == 10
+    assert x_or_y(21, 7, 21) == 21
+    assert x_or_y(22, 3, 1) == 1
+    assert x_or_y(25, 4, 25) == 25
 
 def test_x_or_y_edge_cases():
     assert x_or_y(1, 34, 12) == 12

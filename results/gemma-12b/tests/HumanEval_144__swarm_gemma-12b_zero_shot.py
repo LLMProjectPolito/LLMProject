@@ -20,6 +20,3 @@ def test_simplify_large_numbers_1():
 
 def test_simplify_large_numbers_2():
     assert simplify("1000000/1", "1/1000000") == True
-
-def test_simplify_large_numbers_3():
-    assert simplify("1000000/1", "1/1000000") == True

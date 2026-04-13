@@ -61,16 +61,18 @@ def test_is_palindrome_basic():
     assert is_palindrome('civic') == True
     assert is_palindrome('kayak') == True
     assert is_palindrome('hannah') == True
-    assert is_palindrome('step on no pets') == True
-    assert is_palindrome('Amore, Roma') == True
+    assert is_palindrome('bob') == True
+    assert is_palindrome('a') == True
+    assert is_palindrome('aa') == True
+    assert is_palindrome('ab') == False
 
 
 def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
     assert get_max([3, 2, 1]) == 3
     assert get_max([1, 3, 2]) == 3
-    assert get_max([-1, 0, 1]) == 1
     assert get_max([5, 5, 5]) == 5
+    assert get_max([-1, 0, 1]) == 1
 
 def test_get_max_empty():
     assert get_max([]) == None
@@ -83,20 +85,18 @@ def test_even_odd_count_positive():
     assert even_odd_count(123) == (1, 2)
     assert even_odd_count(123456) == (3, 3)
     assert even_odd_count(12345) == (2, 3)
-    assert even_odd_count(1234) == (2, 2)
-    assert even_odd_count(123) == (1, 2)
+    assert even_odd_count(2468) == (4, 0)
+    assert even_odd_count(13579) == (0, 5)
 
 def test_even_odd_count_negative():
     assert even_odd_count(-12) == (1, 1)
-    assert even_odd_count(-123) == (1, 2)
-    assert even_odd_count(-123456) == (3, 3)
-    assert even_odd_count(-12345) == (2, 3)
+    assert even_odd_count(-2468) == (4, 0)
+    assert even_odd_count(-13579) == (0, 5)
     assert even_odd_count(-123) == (1, 2)
 
 def test_even_odd_count_zero():
     assert even_odd_count(0) == (1, 0)
-    assert even_odd_count(1000) == (3, 1)
 
 def test_even_odd_count_mixed():
-    assert even_odd_count(-1234567890) == (5, 5)
-    assert even_odd_count(1234567890) == (5, 5)
+    assert even_odd_count(10203) == (2, 2)
+    assert even_odd_count(-10203) == (2, 2)

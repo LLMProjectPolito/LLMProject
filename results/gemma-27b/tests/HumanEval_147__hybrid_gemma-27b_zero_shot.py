@@ -67,6 +67,7 @@ def get_max_triples(n):
     (25, 231),
     (100, 161700),
     (50, 19600),
+    (30, 4060)
 ])
 def test_get_max_triples(n, expected):
     assert get_max_triples(n) == expected
@@ -77,10 +78,7 @@ def test_invalid_input(n):
         get_max_triples(n)
 
 def test_large_n():
-    assert get_max_triples(30) == 4060
-    assert get_max_triples(40) == 98800
-    assert get_max_triples(50) == 19600
-    assert get_max_triples(100) == 161700
+    assert get_max_triples(1000) == 166167000
 
 def test_get_max_triples_example():
     assert get_max_triples(5) == 1

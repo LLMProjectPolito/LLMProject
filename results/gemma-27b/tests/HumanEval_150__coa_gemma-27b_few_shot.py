@@ -26,20 +26,18 @@ def is_prime(n):
 
 def test_x_or_y_prime():
     assert x_or_y(7, 34, 12) == 34
-    assert x_or_y(2, 100, 0) == 100
-    assert x_or_y(13, 5, 1) == 5
-    assert x_or_y(29, 99, 1) == 99
+    assert x_or_y(11, 1, 2) == 1
+    assert x_or_y(2, 5, 6) == 5
 
 def test_x_or_y_not_prime():
     assert x_or_y(15, 8, 5) == 5
-    assert x_or_y(4, 1, 2) == 2
-    assert x_or_y(9, 0, 10) == 10
-    assert x_or_y(1, 7, 8) == 8
+    assert x_or_y(4, 9, 10) == 10
+    assert x_or_y(1, 11, 12) == 12
 
 def test_x_or_y_edge_cases():
     assert x_or_y(0, 1, 2) == 2
     assert x_or_y(1, 3, 4) == 4
-    assert x_or_y(2, 5, 6) == 5
+    assert x_or_y(2, 7, 8) == 7
 
 # Focus: Value Assignment Logic
 import pytest

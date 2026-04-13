@@ -36,45 +36,42 @@ def generate_integers(a, b):
 
 ### STEP 1: REASONING
 # The function `generate_integers(a, b)` should return a list of even digits between `a` and `b` (inclusive), sorted in ascending order.
-# We need to test various scenarios including:
-# 1.  `a` and `b` are equal.
-# 2.  `a` is less than `b`.
-# 3.  `a` is greater than `b`.
-# 4.  No even digits exist between `a` and `b`.
-# 5.  The range contains only even digits.
-# 6.  The range contains a mix of even and odd digits.
-# 7.  Edge cases: `a` and `b` are small numbers.
+# We need to test various scenarios:
+# 1.  When a and b are consecutive and contain even digits.
+# 2.  When a and b are consecutive and do not contain even digits.
+# 3.  When a and b are not consecutive and contain even digits.
+# 4.  When a and b are not consecutive and do not contain even digits.
+# 5.  When a > b (should return an empty list).
+# 6.  When a == b (should return an empty list if no even digits are present, otherwise the digit itself).
 
 ### STEP 2: PLAN
 # Test functions:
-# - test_generate_integers_equal
-# - test_generate_integers_a_less_than_b
-# - test_generate_integers_a_greater_than_b
-# - test_generate_integers_no_even_digits
-# - test_generate_integers_only_even_digits
-# - test_generate_integers_mix_even_odd
-# - test_generate_integers_edge_cases
+# - test_consecutive_even: Tests consecutive numbers with even digits.
+# - test_consecutive_no_even: Tests consecutive numbers with no even digits.
+# - test_non_consecutive_even: Tests non-consecutive numbers with even digits.
+# - test_non_consecutive_no_even: Tests non-consecutive numbers with no even digits.
+# - test_a_greater_than_b: Tests when a is greater than b.
+# - test_a_equals_b_even: Tests when a and b are equal and have even digits.
+# - test_a_equals_b_no_even: Tests when a and b are equal and have no even digits.
 
 ### STEP 3: CODE
-def test_generate_integers_equal():
-    assert generate_integers(2, 2) == [2]
-
-def test_generate_integers_a_less_than_b():
+def test_consecutive_even():
     assert generate_integers(2, 8) == [2, 4, 6, 8]
 
-def test_generate_integers_a_greater_than_b():
-    assert generate_integers(8, 2) == [2, 4, 6, 8]
+def test_consecutive_no_even():
+    assert generate_integers(1, 3) == []
 
-def test_generate_integers_no_even_digits():
+def test_non_consecutive_even():
     assert generate_integers(10, 14) == []
 
-def test_generate_integers_only_even_digits():
-    assert generate_integers(2, 6) == [2, 4, 6]
+def test_non_consecutive_no_even():
+    assert generate_integers(1, 5) == []
 
-def test_generate_integers_mix_even_odd():
-    assert generate_integers(1, 5) == [2, 4]
+def test_a_greater_than_b():
+    assert generate_integers(8, 2) == [2, 4, 6, 8]
 
-def test_generate_integers_edge_cases():
-    assert generate_integers(0, 1) == []
-    assert generate_integers(2, 4) == [2, 4]
-    assert generate_integers(4, 2) == [2, 4]
+def test_a_equals_b_even():
+    assert generate_integers(2, 2) == [2]
+
+def test_a_equals_b_no_even():
+    assert generate_integers(1, 1) == []

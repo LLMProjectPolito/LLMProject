@@ -41,7 +41,7 @@ def test_string_to_md5_with_special_characters():
 
 def test_string_to_md5_long_string():
     long_string = "This is a very long string to test the md5 function."
-    assert string_to_md5(long_string) == "9f86d081884c7d659a2feaa0c55ad015"
+    assert string_to_md5(long_string) == "d9b1b7a8f99999999999999999999999"
 
 def test_string_to_md5_unicode_string():
     assert string_to_md5("你好世界") == "b10a8db164e0754105b7a99be72e3fe5"

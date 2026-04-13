@@ -29,13 +29,13 @@ def test_x_or_y_zero():
 import pytest
 
 def test_x_or_y_non_prime():
-    assert x_or_y(15, 34, 12) == 12
+    assert x_or_y(8, 34, 12) == 12
 
 def test_x_or_y_prime():
     assert x_or_y(7, 34, 12) == 34
 
 def test_x_or_y_another_non_prime():
-    assert x_or_y(20, 8, 5) == 5
+    assert x_or_y(9, 8, 5) == 5
 
 # Focus: Logic Branches
 import pytest

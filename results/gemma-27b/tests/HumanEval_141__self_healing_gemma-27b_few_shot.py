@@ -28,26 +28,28 @@ def file_name_check(file_name):
     file_name_check("example.txt") # => 'Yes'
     file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
-    digit_count = 0
-    for char in file_name:
-        if char.isdigit():
-            digit_count += 1
-
-    if digit_count > 3:
+    if not file_name:
         return "No"
 
     if file_name.count('.') != 1:
         return "No"
 
     parts = file_name.split('.')
-    if len(parts[0]) == 0:
+    if not parts[0]:
         return "No"
 
     if not parts[0][0].isalpha():
         return "No"
 
-    extension = parts[1].lower()
-    if extension not in ['txt', 'exe', 'dll']:
+    if parts[1] not in ['txt', 'exe', 'dll']:
+        return "No"
+
+    digit_count = 0
+    for char in file_name:
+        if char.isdigit():
+            digit_count += 1
+
+    if digit_count > 3:
         return "No"
 
     return "Yes"

@@ -49,11 +49,16 @@ def even_odd_count(num):
     """
     even = 0
     odd = 0
-    for digit in str(abs(num)):
-        if int(digit) % 2 == 0:
+    num = abs(num)
+    if num == 0:
+        return (1, 0)
+    while num > 0:
+        digit = num % 10
+        if digit % 2 == 0:
             even += 1
         else:
             odd += 1
+        num //= 10
     return (even, odd)
 
 def test_negative_zero():

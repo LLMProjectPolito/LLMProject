@@ -55,24 +55,16 @@ def test_compare_negative_off():
 def test_compare_mixed_off():
     assert compare([1, 2, 3], [1, 2, -1]) == [0, 0, 2]
 
-def test_compare_longer_lists():
-    assert compare([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]) == [0, 0, 0, 0, 0]
+def test_compare_example_1():
+    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
+
+def test_compare_example_2():
+    assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
 
 def test_compare_different_lengths():
     with pytest.raises(IndexError):
         compare([1, 2, 3], [1, 2])
 
-def test_compare_zero_values():
-    assert compare([0, 0, 0], [0, 0, 0]) == [0, 0, 0]
-
-def test_compare_zero_and_positive():
-    assert compare([0, 1, 2], [0, 1, 2]) == [0, 0, 0]
-
-def test_compare_negative_and_positive():
-    assert compare([1, 2, 3], [1, 2, 3]) == [0, 0, 0]
-
-def test_compare_complex_example_1():
-    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
-
-def test_compare_complex_example_2():
-    assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
+def test_compare_different_lengths_2():
+    with pytest.raises(IndexError):
+        compare([1, 2], [1, 2, 3])

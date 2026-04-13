@@ -41,7 +41,10 @@ def file_name_check(file_name):
     if not parts[0][0].isalpha():
         return 'No'
     
-    if parts[1] not in ['txt', 'exe', 'dll']:
+    if not parts[1]:
+        return 'No'
+    
+    if parts[1].lower() not in ['txt', 'exe', 'dll']:
         return 'No'
     
     return 'Yes'

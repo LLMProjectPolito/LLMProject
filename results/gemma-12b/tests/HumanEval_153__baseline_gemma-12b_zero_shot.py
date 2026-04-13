@@ -90,4 +90,4 @@ class TestStrongestExtension:
         assert Strongest_Extension("TestClass", ['ThisIsALongExtension', 'Short']) == "TestClass.ThisIsALongExtension"
 
     def test_multiple_same_strength_first_wins(self):
-        assert Strongest_Extension("TestClass", ["AA", "BB", "CC", "DD"]) == "TestClass.AA"
+        assert Strongest_Extension("TestClass", ["AA", "AA", "BB"]) == "TestClass.AA"

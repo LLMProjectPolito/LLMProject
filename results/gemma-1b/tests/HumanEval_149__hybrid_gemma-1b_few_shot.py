@@ -21,6 +21,18 @@ def list_sort(lst):
     """ Sorts a list of strings by length of each word, and returns the sorted list. """
     return sorted(lst, key=lambda x: (len(x), x))
 
+def is_palindrome(s: str) -> bool:
+    """ Checks if a string is a palindrome """
+
+def get_max(arr: list[int]) -> int:
+    """ Returns the maximum element in a list, or None if empty """
+
+def test_max_positive():
+    assert get_max([1, 2, 3]) == 3
+
+def test_max_empty():
+    assert get_max([]) == None
+
 def test_list_sort_positive():
     assert list_sort(["aa", "a", "aaa"]) == ["aa"]
 
@@ -39,29 +51,9 @@ def test_list_sort_mixed_lengths():
 def test_list_sort_same_length_words():
     assert list_sort(["aa", "a", "aaa"]) == ["aa", "a", "aaa"]
 
-def test_list_sort_empty_string_list():
-    assert list_sort([]) == []
+def test_is_palindrome_basic():
+    assert is_palindrome('radar') == True
+    assert is_palindrome('hello') == False
 
-def test_list_sort_mixed_string_list():
-    assert list_sort(["a", "b", "c", "d"]) == ["a", "b", "c", "d"]
-
-def test_list_sort_with_numbers():
-    assert list_sort(["1", "2", "3", "1"]) == ["1", "2", "3", "1"]
-
-def test_list_sort_with_mixed_types():
-    assert list_sort(["1", "2", "3", "1.5"]) == ["1", "1.5", "2", "3"]
-
-def test_list_sort_with_duplicates():
-    assert list_sort(["aa", "a", "aaa", "aa"]) == ["aa", "a", "aaa", "aa"]
-
-def test_list_sort_empty_string_list():
-    assert list_sort([]) == []
-
-def test_list_sort_empty_string_list_with_numbers():
-    assert list_sort([]) == []
-
-def test_list_sort_empty_string_list_with_mixed_types():
-    assert list_sort([]) == []
-
-def test_list_sort_with_special_characters():
-    assert list_sort(["!@#", "a", "b"]) == ["!@#", "a", "b"]
+def test_is_palindrome_empty():
+    assert is_palindrome('') == True

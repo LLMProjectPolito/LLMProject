@@ -39,6 +39,36 @@ def test_generate_integers_descending():
 def test_generate_integers_no_even_digits():
     assert generate_integers(10, 14) == []
 
+def test_generate_integers_single_even_digit():
+    assert generate_integers(2, 2) == [2]
+
+def test_generate_integers_single_odd_digit():
+    assert generate_integers(1, 1) == []
+
+def test_generate_integers_mixed_digits():
+    assert generate_integers(1, 6) == [2, 4, 6]
+
+def test_generate_integers_large_range():
+    assert generate_integers(1, 9) == [2, 4, 6, 8]
+
+def test_generate_integers_same_numbers():
+    assert generate_integers(5, 5) == []
+
+def test_generate_integers_zero_to_one():
+    assert generate_integers(0, 1) == []
+
+def test_generate_integers_zero_to_two():
+    assert generate_integers(0, 2) == [2]
+
+def test_generate_integers_negative_numbers():
+    assert generate_integers(-2, -1) == []
+
+def test_generate_integers_negative_and_positive():
+    assert generate_integers(-1, 2) == [2]
+
+def test_generate_integers_empty_range():
+    assert generate_integers(5, 4) == []
+
 def test_generate_integers_single_digit_range():
     assert generate_integers(1, 3) == [2]
 
@@ -57,26 +87,5 @@ def test_generate_integers_large_range():
 def test_generate_integers_empty_range():
     assert generate_integers(15, 16) == []
 
-def test_generate_integers_negative_numbers():
-    assert generate_integers(-2, -1) == []
-
-def test_generate_integers_single_even_digit():
-    assert generate_integers(2, 2) == [2]
-
-def test_generate_integers_single_odd_digit():
-    assert generate_integers(1, 1) == []
-
-def test_generate_integers_mixed_digits():
-    assert generate_integers(1, 6) == [2, 4, 6]
-
-def test_generate_integers_same_numbers():
-    assert generate_integers(5, 5) == []
-
-def test_generate_integers_zero_to_one():
-    assert generate_integers(0, 1) == []
-
-def test_generate_integers_zero_to_two():
-    assert generate_integers(0, 2) == [2]
-
-def test_generate_integers_negative_and_positive():
+def test_generate_integers_mixed_numbers():
     assert generate_integers(-1, 2) == [2]

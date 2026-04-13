@@ -22,11 +22,7 @@ def get_max(arr: list[int]) -> int:
     """ Returns the maximum element in a list, or None if empty """
     if not arr:
         return None
-    max_val = arr[0]
-    for x in arr:
-        if x > max_val:
-            max_val = x
-    return max_val
+    return max(arr)
 
 def test_max_positive():
     assert get_max([1, 2, 3]) == 3

@@ -43,10 +43,10 @@ class TestSpecialFilter:
         assert specialFilter([11, 33, 55, 77, 99, 111, 333, 555, 777, 999]) == 10
 
     def test_negative_numbers(self):
-        assert specialFilter([-11, -33, -55, -77, -99, -111, -333, -555, -777, -999]) == 0
+        assert specialFilter([-11, -33, -55, -77, -99]) == 0
 
     def test_mixed_positive_and_negative(self):
-        assert specialFilter([11, -33, 55, -77, 99, -111, 333, -555, 777, -999]) == 1
+        assert specialFilter([-11, 33, -55, 77, -99]) == 1
 
     def test_numbers_greater_than_10(self):
         assert specialFilter([11, 12, 13, 14, 15]) == 1
@@ -54,8 +54,11 @@ class TestSpecialFilter:
     def test_numbers_less_than_10(self):
         assert specialFilter([1, 3, 5, 7, 9]) == 0
 
-    def test_zero_and_negative_numbers(self):
-        assert specialFilter([0, -1, -3, -5, -7, -9]) == 0
+    def test_zero_and_positive(self):
+        assert specialFilter([0, 11, 33]) == 2
+
+    def test_zero_and_negative(self):
+        assert specialFilter([0, -11, -33]) == 0
 
     def test_large_numbers(self):
         assert specialFilter([13579, 98765, 12345, 54321]) == 1
@@ -66,11 +69,14 @@ class TestSpecialFilter:
     def test_duplicate_numbers(self):
         assert specialFilter([15, 15, 15, 15]) == 4
 
-    def test_numbers_with_different_signs(self):
-        assert specialFilter([15, -15, 15, -15]) == 2
+    def test_single_number(self):
+        assert specialFilter([15]) == 1
 
-    def test_edge_case_1(self):
-        assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29]) == 0
+    def test_single_number_not_matching(self):
+        assert specialFilter([14]) == 0
 
-    def test_edge_case_2(self):
-        assert specialFilter([31, 33, 35, 37, 39]) == 0
+    def test_numbers_with_decimal_part(self):
+        assert specialFilter([15.5, 33.3, 55.5, 77.7, 99.9]) == 0
+
+    def test_numbers_with_negative_decimal_part(self):
+        assert specialFilter([-15.5, -33.3, -55.5, -77.7, -99.9]) == 0

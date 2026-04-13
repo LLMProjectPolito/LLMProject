@@ -58,5 +58,8 @@ def test_float_inputs():
     assert right_angle_triangle(0.5, 1.2, 1.4) == False
 
 def test_edge_cases():
-    assert right_angle_triangle(1, 1, 1.41421356) == True
-    assert right_angle_triangle(1, 1, 1.41421357) == False
+    assert right_angle_triangle(1, 1, 1.41421356237) == True
+    assert right_angle_triangle(1, 1, 1.4142135623730951) == True
+    assert right_angle_triangle(1, 1, 1.414213562373095) == True
+    assert right_angle_triangle(1, 1, 1.41421356237309512) == True
+    assert right_angle_triangle(1, 1, 1.414213562373095123) == True

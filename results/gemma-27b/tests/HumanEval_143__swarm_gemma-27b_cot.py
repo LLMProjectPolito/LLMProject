@@ -76,7 +76,7 @@ def test_mixed_sentence():
     assert words_in_sentence("This is a test") == "is"
 
 def test_long_sentence():
-    assert words_in_sentence("lets go for swimming") == "go for"
+    assert words_in_sentence("lets go for swimming and running") == "go for"
 
 def test_sentence_with_leading_and_trailing_spaces():
     assert words_in_sentence("  hello world  ") == "hello world"
@@ -84,26 +84,24 @@ def test_sentence_with_leading_and_trailing_spaces():
 def test_sentence_with_multiple_spaces_between_words():
     assert words_in_sentence("hello   world") == "hello world"
 
-def test_sentence_with_prime_and_non_prime_lengths():
-    assert words_in_sentence("two three four five") == "two five"
+def test_sentence_with_single_character_words():
+    assert words_in_sentence("a b c d e") == "a b c d e"
+
+def test_sentence_with_prime_and_non_prime_length_words():
+    assert words_in_sentence("one two three four five") == "one three five"
+
+def test_edge_case_sentence_with_long_word():
+    assert words_in_sentence("abcdefghijk") == ""
 
 def test_sentence_with_single_prime_length_word():
     assert words_in_sentence("two") == "two"
 
 def test_sentence_with_single_non_prime_length_word():
-    assert words_in_sentence("four") == ""
-
-def test_sentence_with_word_length_one():
-    assert words_in_sentence("a b c") == "a b c"
-
-def test_sentence_with_word_length_zero():
-    assert words_in_sentence(" ") == ""
-
-def test_sentence_with_long_word():
-    assert words_in_sentence("abcdefghijk") == "abcdefghijk"
+    assert words_in_sentence("one") == ""
 
 def test_sentence_with_repeated_prime_length_words():
     assert words_in_sentence("is is is") == "is is is"
 
-def test_sentence_with_prime_and_non_prime_lengths_complex():
-    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the fox the dog"
+def test_sentence_with_special_characters():
+    with pytest.raises(TypeError):
+        words_in_sentence("hello! world?")

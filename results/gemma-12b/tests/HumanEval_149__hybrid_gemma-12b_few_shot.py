@@ -47,54 +47,43 @@ def get_max(arr: list[int]) -> int:
     return max(arr)
 
 
-@pytest.mark.parametrize(
-    "input_list, expected_output",
-    [
-        (["aa", "a", "aaa"], ["aa"]),
-        (["ab", "a", "aaa", "cd"], ["ab", "cd"]),
-        (["aa", "bb", "cc"], ["aa", "bb", "cc"]),
-        (["a", "b", "c"], []),
-        (["aa", "aa", "bb"], ["aa", "aa", "bb"]),
-        (["abc", "ab", "abcd", "a"], ["ab"]),
-        (["abc", "ab", "abcd", "a", "aba"], ["ab"]),
-        (["", "a", "aa"], [""]),
-        (["a", "aa", ""], ["", "aa"]),
-        (["abc", "def", "ghi"], []),
-        (["abc", "def", "ghi", "jkl"], ["abc", "def", "ghi", "jkl"]),
-        (["abc", "def", "ghi", "jkl", "mno"], ["abc", "def", "ghi", "jkl"]),
-        (["abc", "def", "ghi", "jkl", "mno", "pqr"], ["abc", "def", "ghi", "jkl", "mno"]),
-        (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu"], ["abc", "def", "ghi", "jkl", "mno"]),
-        (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx"], ["abc", "def", "ghi", "jkl", "mno"]),
-        (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz"], ["abc", "def", "ghi", "jkl", "mno"]),
-        (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz", "aaa"], ["abc", "def", "ghi", "jkl", "mno"]),
-        (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz", "aaa", "bbb"], ["abc", "def", "ghi", "jkl", "mno"]),
-    ],
-)
+@pytest.mark.parametrize("input_list, expected_output", [
+    (["aa", "a", "aaa"], ["aa"]),
+    (["ab", "a", "aaa", "cd"], ["ab", "cd"]),
+    (["aa", "bb", "cc"], ["aa", "bb", "cc"]),
+    (["a", "b", "c"], []),
+    (["aa", "aa", "bb"], ["aa", "aa", "bb"]),
+    (["abc", "ab", "abcd", "a"], ["ab"]),
+    (["abc", "ab", "abcd", "a", "aba"], ["ab"]),
+    (["", "a", "aa"], [""]),
+    (["a", "aa", ""], ["", "aa"]),
+    (["abc", "def", "ghi"], []),
+    (["abc", "def", "ghi", "jkl"], ["abc", "def", "ghi", "jkl"]),
+    (["abc", "def", "ghi", "jkl", "mno"], ["abc", "def", "ghi", "jkl"]),
+    (["abc", "def", "ghi", "jkl", "mno", "pqr"], ["abc", "def", "ghi", "jkl", "mno"]),
+    (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu"], ["abc", "def", "ghi", "jkl", "mno"]),
+    (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx"], ["abc", "def", "ghi", "jkl", "mno"]),
+    (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz"], ["abc", "def", "ghi", "jkl", "mno"]),
+    (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz", "aaa"], ["abc", "def", "ghi", "jkl", "mno"]),
+    (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz", "aaa", "bbb"], ["abc", "def", "ghi", "jkl", "mno"]),
+])
 def test_sorted_list_sum(input_list, expected_output):
     assert sorted_list_sum(input_list) == expected_output
 
-
-def test_empty_list():
+def test_sorted_list_sum_empty():
     assert sorted_list_sum([]) == []
 
-def test_all_odd_length():
+def test_sorted_list_sum_all_odd():
     assert sorted_list_sum(["a", "b", "c"]) == []
 
-def test_same_length():
+def test_sorted_list_sum_same_length():
     assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
-def test_same_length_alphabetical():
+def test_sorted_list_sum_same_length_alphabetical():
     assert sorted_list_sum(["bb", "aa", "cc"]) == ["aa", "bb", "cc"]
 
-def test_mixed_lengths_and_alphabetical():
+def test_sorted_list_sum_mixed_lengths_and_alphabetical():
     assert sorted_list_sum(["abc", "ab", "abcd", "a", "aba"]) == ["ab"]
-
-def test_empty_string():
-    assert sorted_list_sum([""]) == [""]
-
-def test_multiple_empty_strings():
-    assert sorted_list_sum(["", "", ""]) == ["", "", ""]
-
 
 def test_palindrome_basic():
     assert is_palindrome('radar') == True
@@ -108,9 +97,3 @@ def test_max_positive():
 
 def test_max_empty():
     assert get_max([]) == None
-
-def test_max_negative():
-    assert get_max([-1, -2, -3]) == -1
-
-def test_max_mixed():
-    assert get_max([-1, 2, -3, 4]) == 4

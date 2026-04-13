@@ -29,8 +29,7 @@ def generate_integers(a, b):
     for num in range(a, b + 1):
         s = str(num)
         for digit in s:
-            digit = int(digit)
-            if digit % 2 == 0:
+            if int(digit) % 2 == 0:
                 result.append(num)
                 break
     return result

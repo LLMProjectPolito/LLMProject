@@ -36,8 +36,8 @@ def Strongest_Extension(class_name, extensions):
     Example:
     for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
     """
-    strongest_extension = ""
     max_strength = float('-inf')
+    strongest_extension = ""
     for extension in extensions:
         cap_count = 0
         sm_count = 0
@@ -75,22 +75,22 @@ class TestStrongestExtension:
         assert Strongest_Extension("TestClass", ['AA', 'BB', 'CC']) == "TestClass.AA"
 
     def test_negative_strength(self):
-        assert Strongest_Extension("TestClass", ['abc', 'def', 'ghi']) == "TestClass.abc"
+        assert Strongest_Extension("TestClass", ['abc', 'ABC', 'aBc']) == "TestClass.ABC"
 
     def test_class_name_with_special_chars(self):
         assert Strongest_Extension("My_Class!", ['AA', 'Be', 'CC']) == "My_Class!.AA"
 
-    def test_extension_with_special_chars(self):
-        assert Strongest_Extension("TestClass", ['A!A', 'B!e', 'C!C']) == "TestClass.A!A"
-
-    def test_long_extensions(self):
-        assert Strongest_Extension("TestClass", ['ThisIsALongExtension', 'AnotherLongExtension']) == "TestClass.ThisIsALongExtension"
-
-    def test_numbers_in_extensions(self):
+    def test_extension_with_numbers(self):
         assert Strongest_Extension("TestClass", ['123', 'ABC', 'def']) == "TestClass.ABC"
 
-    def test_empty_string_extension(self):
-        assert Strongest_Extension("TestClass", ['', 'AA', 'BB']) == "TestClass.AA"
+    def test_extension_with_symbols(self):
+        assert Strongest_Extension("TestClass", ['!@#', 'ABC', 'def']) == "TestClass.ABC"
 
-    def test_multiple_extensions_same_strength(self):
-        assert Strongest_Extension("TestClass", ['AA', 'BB', 'CC', 'DD']) == "TestClass.AA"
+    def test_long_extensions(self):
+        assert Strongest_Extension("TestClass", ['ThisIsALongExtension', 'Short']) == "TestClass.ThisIsALongExtension"
+
+    def test_multiple_same_strength_first_wins(self):
+        assert Strongest_Extension("TestClass", ['AA', 'AA', 'BB']) == "TestClass.AA"
+
+    def test_empty_extension_string(self):
+        assert Strongest_Extension("TestClass", ["", "AA", "BB"]) == "TestClass.AA"

@@ -59,7 +59,9 @@ class TestCycpatterCheck:
         assert cycpattern_check("a", "") == True
         assert cycpattern_check("", "") == True
         assert cycpattern_check("abc", "xyz") == False
+        assert cycpattern_check("abc", "abx") == False
         assert cycpattern_check("abc", "bcx") == False
+        assert cycpattern_check("abc", "cxa") == False
 
     def test_edge_cases(self):
         assert cycpattern_check("a", "a") == True

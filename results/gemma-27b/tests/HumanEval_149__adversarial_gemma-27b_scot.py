@@ -40,28 +40,29 @@ def test_empty_list():
     assert sorted_list_sum([]) == []
 
 def test_all_odd_lengths():
-    assert sorted_list_sum(["a", "abc", ""]) == []
+    assert sorted_list_sum(["a", "abc", "de"]) == []
 
 def test_all_even_lengths():
     assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
 def test_mixed_lengths():
-    assert sorted_list_sum(["a", "aa", "aaa", "bb"]) == ["aa", "bb"]
+    assert sorted_list_sum(["aa", "a", "aaa", "cd"]) == ["aa", "cd"]
 
 def test_duplicate_strings():
-    assert sorted_list_sum(["aa", "aa", "bb"]) == ["aa", "aa", "bb"]
+    assert sorted_list_sum(["aa", "bb", "aa", "cc"]) == ["aa", "aa", "bb", "cc"]
 
 def test_same_length_strings():
-    assert sorted_list_sum(["ab", "ac", "aa"]) == ["aa", "ab", "ac"]
+    assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
 
-def test_example_1():
-    assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
-
-def test_example_2():
-    assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
+def test_mixed_case_strings():
+    assert sorted_list_sum(["aA", "aa", "Aa"]) == ["aa", "aA", "Aa"]
 
 def test_long_strings():
-    assert sorted_list_sum(["abcdef", "abc", "ab"]) == ["ab", "abcdef"]
+    assert sorted_list_sum(["abcdef", "ghijkl", "mnopqr"]) == ["abcdef", "ghijkl", "mnopqr"]
 
 def test_special_characters():
-    assert sorted_list_sum(["!@#", "$%^", "abc"]) == ["!@#", "$%^"]
+    assert sorted_list_sum(["!@#$", "%^&*"]) == ["!@#$", "%^&*"]
+
+def test_example_cases():
+    assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
+    assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]

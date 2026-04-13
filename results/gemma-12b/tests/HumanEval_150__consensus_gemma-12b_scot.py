@@ -24,36 +24,31 @@ def is_prime(n):
 class TestXorY:
     def test_prime_returns_x(self):
         assert x_or_y(7, 34, 12) == 34
-        assert x_or_y(2, 100, 200) == 100
-        assert x_or_y(5, 50, 60) == 50
-        assert x_or_y(11, 111, 112) == 111
+        assert x_or_y(2, 10, 20) == 10
+        assert x_or_y(5, 100, 50) == 100
+        assert x_or_y(11, 5, 10) == 5
+        assert x_or_y(13, 15, 25) == 15
 
     def test_non_prime_returns_y(self):
         assert x_or_y(15, 8, 5) == 5
-        assert x_or_y(4, 1, 2) == 2
-        assert x_or_y(6, 3, 4) == 4
-        assert x_or_y(9, 7, 8) == 8
-        assert x_or_y(10, 9, 10) == 10
+        assert x_or_y(4, 10, 20) == 20
+        assert x_or_y(6, 100, 50) == 50
+        assert x_or_y(9, 5, 10) == 10
+        assert x_or_y(10, 15, 25) == 25
 
     def test_edge_cases(self):
         assert x_or_y(1, 10, 20) == 20  # 1 is not prime
-        assert x_or_y(0, 5, 10) == 10  # 0 is not prime
-        assert x_or_y(-5, 15, 25) == 25 # Negative numbers are not prime
+        assert x_or_y(0, 10, 20) == 20  # 0 is not prime
+        assert x_or_y(-5, 10, 20) == 20 # Negative numbers are not prime
+        assert x_or_y(2, 5, 5) == 5 # Prime, but x and y are the same
+        assert x_or_y(3, 5, 5) == 5 # Prime, but x and y are the same
 
     def test_large_prime(self):
-        assert x_or_y(101, 1010, 1011) == 1010
+        assert x_or_y(101, 1000, 500) == 1000
 
     def test_large_non_prime(self):
-        assert x_or_y(100, 200, 201) == 201
+        assert x_or_y(100, 1000, 500) == 500
 
-    def test_x_and_y_equal(self):
+    def test_x_and_y_same(self):
         assert x_or_y(7, 5, 5) == 5
-        assert x_or_y(4, 10, 10) == 10
-
-    def test_zero_input(self):
-        assert x_or_y(0, 0, 0) == 0
-        assert x_or_y(1, 0, 0) == 0
-
-    def test_negative_n(self):
-        assert x_or_y(-1, 1, 2) == 2
-        assert x_or_y(-2, 3, 4) == 4
+        assert x_or_y(10, 5, 5) == 5

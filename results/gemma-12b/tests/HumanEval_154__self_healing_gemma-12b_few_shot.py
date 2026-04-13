@@ -69,8 +69,23 @@ class TestCycpatterCheck:
 
     def test_long_string_cases(self):
         long_string = "abcdefghijklmnopqrstuvwxyz"
-        assert cycpattern_check(long_string, "def") == True
         assert cycpattern_check(long_string, "xyz") == True
         assert cycpattern_check(long_string, "zyx") == True
         assert cycpattern_check(long_string, "abc") == True
-        assert cycpattern_check(long_string, "zyxw") == False
+        assert cycpattern_check(long_string, "def") == True
+        assert cycpattern_check(long_string, "nopqr") == True
+        assert cycpattern_check(long_string, "stuvwx") == True
+        assert cycpattern_check(long_string, "uvwxyz") == True
+        assert cycpattern_check(long_string, "abcdef") == True
+        assert cycpattern_check(long_string, "ghijkl") == True
+        assert cycpattern_check(long_string, "mnopqr") == True
+        assert cycpattern_check(long_string, "abcdefg") == True
+        assert cycpattern_check(long_string, "zyxwv") == True
+        assert cycpattern_check(long_string, "abcdefgh") == True
+        assert cycpattern_check(long_string, "zyxwvu") == True
+        assert cycpattern_check(long_string, "abcdefghi") == True
+        assert cycpattern_check(long_string, "zyxwvu") == True
+        assert cycpattern_check(long_string, "abcdefghij") == True
+        assert cycpattern_check(long_string, "zyxwvu") == True
+        assert cycpattern_check(long_string, "zyxwvuts") == True
+        assert cycpattern_check(long_string, "zyxwvutu") == False

@@ -58,10 +58,10 @@ def test_int_to_mini_roman_intermediate():
     assert int_to_mini_roman(99) == "xciix"
     assert int_to_mini_roman(100) == "c"
 
-def test_int_to_mini_roman_complex():
+def test_int_to_mini_roman_advanced():
     assert int_to_mini_roman(141) == "cxl"
     assert int_to_mini_roman(152) == "clii"
-    assert int_to_mini_roman(194) == "cxciiiiv"
+    assert int_to_mini_roman(199) == "xciiiix"
     assert int_to_mini_roman(200) == "cc"
     assert int_to_mini_roman(345) == "cccxlv"
     assert int_to_mini_roman(426) == "cdxxvi"
@@ -70,13 +70,13 @@ def test_int_to_mini_roman_complex():
     assert int_to_mini_roman(799) == "dccxcix"
     assert int_to_mini_roman(842) == "dcccxl"
     assert int_to_mini_roman(911) == "cmi"
-    assert int_to_mini_roman(954) == "cmliv"
+    assert int_to_mini_roman(954) == "cmxliv"
+    assert int_to_mini_roman(999) == "cmxciiiix"
+    assert int_to_mini_roman(1000) == "m"
 
 def test_int_to_mini_roman_edge_cases():
     assert int_to_mini_roman(1) == "i"
     assert int_to_mini_roman(1000) == "m"
-    assert int_to_mini_roman(100) == "c"
-    assert int_to_mini_roman(500) == "d"
 
 def test_int_to_mini_roman_invalid_input():
     with pytest.raises(ValueError):

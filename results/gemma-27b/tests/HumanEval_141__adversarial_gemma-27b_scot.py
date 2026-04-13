@@ -51,38 +51,44 @@ def file_name_check(file_name):
     return 'Yes'
 
 
-def test_valid_file_name():
+def test_valid_filename():
     assert file_name_check("example.txt") == 'Yes'
 
-def test_invalid_start_digit():
-    assert file_name_check("1example.dll") == 'No'
-
-def test_invalid_dot_count_zero():
-    assert file_name_check("exampletxt") == 'No'
-
-def test_invalid_dot_count_multiple():
-    assert file_name_check("example.txt.dll") == 'No'
-
-def test_invalid_extension():
-    assert file_name_check("example.pdf") == 'No'
-
-def test_invalid_extension_case():
-    assert file_name_check("example.TXT") == 'No'
-
-def test_invalid_prefix_empty():
-    assert file_name_check(".txt") == 'No'
-
-def test_invalid_digit_count_over():
+def test_too_many_digits():
     assert file_name_check("1234example.txt") == 'No'
 
-def test_valid_digit_count_max():
-    assert file_name_check("123example.txt") == 'Yes'
+def test_no_dot():
+    assert file_name_check("exampletxt") == 'No'
 
-def test_empty_string():
+def test_multiple_dots():
+    assert file_name_check("example.txt.backup") == 'No'
+
+def test_empty_before_dot():
+    assert file_name_check(".txt") == 'No'
+
+def test_starts_with_digit():
+    assert file_name_check("1example.dll") == 'No'
+
+def test_invalid_extension():
+    assert file_name_check("example.jpg") == 'No'
+
+def test_valid_extension_lowercase():
+    assert file_name_check("example.txt") == 'Yes'
+
+def test_valid_extension_uppercase():
+    assert file_name_check("example.EXE") == 'No'
+
+def test_empty_filename():
     assert file_name_check("") == 'No'
 
-def test_valid_file_name_uppercase():
-    assert file_name_check("Example.txt") == 'Yes'
+def test_filename_with_spaces():
+    assert file_name_check("example file.txt") == 'No'
 
-def test_valid_file_name_mixedcase():
-    assert file_name_check("ExAmPlE.txt") == 'Yes'
+def test_filename_with_special_characters():
+    assert file_name_check("!example.txt") == 'No'
+
+def test_filename_with_special_characters_after_dot():
+    assert file_name_check("example.txt!") == 'No'
+
+def test_three_digits():
+    assert file_name_check("123example.txt") == 'Yes'

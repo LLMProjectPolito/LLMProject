@@ -43,16 +43,16 @@ def test_empty_list():
     assert sorted_list_sum([]) == []
 
 def test_all_odd_length():
-    assert sorted_list_sum(["aa", "a", "aaa"]) == []
+    assert sorted_list_sum(["a", "b", "c"]) == []
 
 def test_all_even_length():
-    assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
+    assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
 def test_mixed_odd_even():
-    assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
+    assert sorted_list_sum(["aa", "a", "aaa", "cd"]) == ["aa", "cd"]
 
 def test_duplicates():
-    assert sorted_list_sum(["aa", "ab", "aa", "cd"]) == ["aa", "aa", "ab", "cd"]
+    assert sorted_list_sum(["aa", "aa", "a"]) == ["aa", "aa"]
 
 def test_same_length_different_chars():
     assert sorted_list_sum(["ab", "ac", "ba", "bc"]) == ["ab", "ac", "ba", "bc"]
@@ -60,17 +60,20 @@ def test_same_length_different_chars():
 def test_same_length_same_chars():
     assert sorted_list_sum(["aa", "bb", "cc", "dd"]) == ["aa", "bb", "cc", "dd"]
 
-def test_single_element_even():
-    assert sorted_list_sum(["aa"]) == ["aa"]
+def test_complex_case():
+    assert sorted_list_sum(["abc", "def", "ghi", "jkl", "mno", "pqr"]) == ["jkl"]
+
+def test_single_element():
+    assert sorted_list_sum(["abcde"]) == ["abcde"]
 
 def test_single_element_odd():
-    assert sorted_list_sum(["a"]) == []
+    assert sorted_list_sum(["abc"]) == []
 
-def test_complex_case():
-    assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape"]) == ["banana", "orange"]
+def test_single_element_even():
+    assert sorted_list_sum(["aaaa"]) == ["aaaa"]
+
+def test_more_duplicates():
+    assert sorted_list_sum(["aa", "aa", "bb", "bb", "cc"]) == ["aa", "aa", "bb", "bb", "cc"]
 
 def test_another_complex_case():
-    assert sorted_list_sum(["abc", "def", "ghi", "jkl", "mno"]) == ["abc", "def", "ghi", "jkl", "mno"]
-
-def test_mixed_case_with_duplicates():
-    assert sorted_list_sum(["aa", "ab", "aa", "bc", "ab"]) == ["aa", "aa", "ab", "ab", "bc"]
+    assert sorted_list_sum(["apple", "banana", "orange", "grape", "kiwi"]) == ["banana", "orange"]

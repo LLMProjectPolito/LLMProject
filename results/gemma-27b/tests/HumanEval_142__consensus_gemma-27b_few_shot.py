@@ -63,7 +63,7 @@ def test_list_with_decimal_numbers():
 
 def test_list_with_strings():
     with pytest.raises(TypeError):
-        sum_squares([1, "2", 3])
+        sum_squares([1, "a", 3])
 
 def test_list_with_boolean_values():
     with pytest.raises(TypeError):
@@ -77,7 +77,7 @@ def test_list_multiple_of_3_and_4():
     assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 714
 
 def test_list_only_multiples_of_3():
-    assert sum_squares([3, 6, 9, 12]) == 306
+    assert sum_squares([3, 6, 9, 12]) == 270
 
 def test_list_only_multiples_of_4():
-    assert sum_squares([4, 8, 12, 16]) == 1080
+    assert sum_squares([4, 8, 12, 16]) == 1000

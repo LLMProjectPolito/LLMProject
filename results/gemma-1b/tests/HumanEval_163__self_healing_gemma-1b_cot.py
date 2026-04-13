@@ -25,10 +25,9 @@ def generate_integers(a, b):
     result = []
     for num in range(a, b + 1):
         s = str(num)
-        for digit in s:
-            if int(digit) % 2 == 0:
-                result.append(num)
-                break
+        even_digits = [digit for digit in s if int(digit) % 2 == 0]
+        even_digits.sort()
+        result.extend(even_digits)
     return result
 
 def test_generate_integers_2_8():
@@ -49,5 +48,5 @@ def test_generate_integers_2_1():
 def test_generate_integers_1_3():
     assert generate_integers(1, 3) == [2]
 
-def test_generate_integers_3_2():
-    assert generate_integers(3, 2) == [2]
+def test_generate_integers_3_1():
+    assert generate_integers(3, 1) == [2]

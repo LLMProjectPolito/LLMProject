@@ -64,5 +64,5 @@ def test_mixed_case_and_numbers():
 def test_longer_string():
     assert solve("abcdefg") == "gfedcba"
 
-def test_string_with_spaces():
-    assert solve("hello world") == "dlrow olleh"
+def test_string_with_only_numbers():
+    assert solve("12345") == "54321"

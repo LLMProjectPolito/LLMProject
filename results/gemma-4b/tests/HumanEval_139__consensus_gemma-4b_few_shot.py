@@ -58,4 +58,4 @@ def test_special_factorial_negative_integer():
 
 def test_special_factorial_large_integer():
     assert special_factorial(15) == 13076743680000000000
-    assert special_factorial(20) == 24329020081766400000
+    assert special_factorial(20) == 2432902008176640000

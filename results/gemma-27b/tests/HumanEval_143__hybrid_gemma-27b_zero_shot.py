@@ -71,55 +71,74 @@ class TestWordsInSentence:
         assert words_in_sentence("a") == ""
         assert words_in_sentence("test") == ""
 
-    def test_multiple_words_some_prime(self):
+    def test_example_1(self):
         assert words_in_sentence("This is a test") == "is"
 
-    def test_multiple_words_all_prime(self):
-        assert words_in_sentence("go for") == "go for"
+    def test_example_2(self):
+        assert words_in_sentence("lets go for swimming") == "go for"
 
-    def test_multiple_words_none_prime(self):
-        assert words_in_sentence("hello world test") == ""
+    def test_all_prime_words(self):
+        assert words_in_sentence("is are was") == "is are was"
 
-    def test_mixed_case(self):
-        assert words_in_sentence("Is a Test") == "Is Test"
+    def test_all_non_prime_words(self):
+        assert words_in_sentence("a an the") == ""
+        assert words_in_sentence("hello world test example") == ""
 
-    def test_long_sentence(self):
-        assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the over dog"
-
-    def test_sentence_with_numbers(self):
-        with pytest.raises(TypeError):
-            words_in_sentence("123 abc")
-
-    def test_sentence_with_symbols(self):
-        with pytest.raises(TypeError):
-            words_in_sentence("hello! world?")
+    def test_mixed_prime_and_non_prime(self):
+        assert words_in_sentence("hello is a world") == "is"
+        assert words_in_sentence("hello world is test") == "is"
 
     def test_sentence_with_leading_and_trailing_spaces(self):
-        assert words_in_sentence("  This is a test  ") == "is"
+        assert words_in_sentence("  is a test  ") == "is"
 
     def test_sentence_with_multiple_spaces(self):
-        assert words_in_sentence("This  is   a    test") == "is"
+        assert words_in_sentence("is   a    test") == "is"
 
-    def test_prime_word_at_start(self):
-        assert words_in_sentence("go to the store") == "go to"
-
-    def test_prime_word_at_end(self):
-        assert words_in_sentence("go to the end") == "go end"
-
-    def test_sentence_with_only_prime_length_words(self):
-        assert words_in_sentence("go no so") == "go no so"
+    def test_long_sentence(self):
+        assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "quick"
+        sentence = "This is a very long sentence with some prime words like go and to"
+        assert words_in_sentence(sentence) == "go to"
 
     def test_sentence_with_long_prime_word(self):
         assert words_in_sentence("programming is fun") == "programming"
 
     def test_sentence_with_long_non_prime_word(self):
-        assert words_in_sentence("supercalifragilisticexpialidocious is fun") == "is fun"
+        assert words_in_sentence("abcdefghijk is fun") == "is"
 
-    def test_sentence_with_repeated_prime_words(self):
-        assert words_in_sentence("go go go") == "go go go"
+    def test_sentence_with_numbers_and_letters(self):
+        assert words_in_sentence("123 is a test") == "is"
+
+    def test_sentence_with_special_characters(self):
+        assert words_in_sentence("is a test!") == "is"
+
+    def test_sentence_with_uppercase_and_lowercase(self):
+        assert words_in_sentence("Is a Test") == "Is"
+
+    def test_sentence_with_repeated_words(self):
+        assert words_in_sentence("is is is") == "is is is"
 
     def test_sentence_with_prime_and_composite_length_words(self):
         assert words_in_sentence("two three four five") == "three five"
 
-    def test_sentence_with_repeated_words(self):
+    def test_multiple_prime_words(self):
+        assert words_in_sentence("is a go to") == "is go to"
+
+    def test_sentence_with_only_prime_length_words(self):
+        assert words_in_sentence("is it a go") == "is it go"
+
+    def test_sentence_with_numbers_as_words(self):
+        # Although the prompt says only letters, test this edge case
+        assert words_in_sentence("1 2 3 4 5") == "2 3 5"
+
+    def test_sentence_with_special_characters(self):
+        # Although the prompt says only letters, test this edge case
+        assert words_in_sentence("hello! world? is.") == "is"
+
+    def test_prime_word_at_start(self):
+        assert words_in_sentence("go for swimming") == "go"
+
+    def test_prime_word_at_end(self):
+        assert words_in_sentence("swimming go for") == "go"
+
+    def test_sentence_with_repeated_prime_words(self):
         assert words_in_sentence("is is is") == "is is is"

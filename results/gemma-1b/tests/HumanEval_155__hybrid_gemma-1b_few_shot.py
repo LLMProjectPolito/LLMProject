@@ -66,239 +66,284 @@ def merge_suites():
 merged_suite = merge_suites()
 
 # Run the tests
-def test_merge_suites():
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert merged_suite == [is_palindrome('radar'), is_palindrome('hello'), is_palindrome('')]
-    assert merged_suite == [get_max([1, 2, 3]), even_odd_count(-12), get_max([1, 2, 3])]
-    assert
+def test_merged_suite():
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        get_max([1, 2, 3]),
+        even_odd_count(-12),
+        get_max([1, 2, 3])
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        get_max([1, 2, 3]),
+        even_odd_count(-12),
+        get_max([1, 2, 3])
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome('')
+    ]
+
+    assert merged_suite == [
+        is_palindrome('radar'),
+        is_palindrome('hello'),
+        is_palindrome

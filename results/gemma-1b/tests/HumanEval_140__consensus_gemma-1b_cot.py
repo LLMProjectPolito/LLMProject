@@ -61,16 +61,13 @@ def test_fix_spaces_with_multiple_spaces_at_end():
     assert fix_spaces("Example   ") == "_Example-"
     
 def test_fix_spaces_with_mixed_spaces():
-    assert fix_spaces("Example  1 2") == "_Example-1-2"
+    assert fix_spaces("Example -1") == "_Example-"
     
-def test_fix_spaces_with_numbers():
-    assert fix_spaces("Example 123") == "Example_123"
+def test_fix_spaces_with_underscores():
+    assert fix_spaces("Under_1") == "Under_1"
     
-def test_fix_spaces_empty_string_with_numbers():
-    assert fix_spaces("") == ""
+def test_fix_spaces_with_hyphens():
+    assert fix_spaces("Example-1") == "Example-1"
     
-def test_fix_spaces_single_space_with_numbers():
-    assert fix_spaces("1") == "1"
-    
-def test_fix_spaces_multiple_spaces_at_start_with_numbers():
-    assert fix_spaces("1 2") == "1 2"
+def test_fix_spaces_with_mixed_spaces_and_underscores():
+    assert fix_spaces("Example-1 2") == "Example-1-2"

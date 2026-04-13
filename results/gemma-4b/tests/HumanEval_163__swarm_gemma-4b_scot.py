@@ -39,20 +39,20 @@ def test_edge_case():
     assert generate_integers(5, 5) == []
     assert generate_integers(7, 7) == []
 
-def test_consecutive_even():
-    assert generate_integers(2, 3) == [2]
-
-def test_range_with_even_digits():
+def test_basic_case():
     assert generate_integers(2, 8) == [2, 4, 6, 8]
 
-def test_range_with_no_even_digits():
-    assert generate_integers(10, 14) == []
-
-def test_reverse_range_with_even_digits():
+def test_reverse_range():
     assert generate_integers(8, 2) == [2, 4, 6, 8]
+
+def test_no_even_digits():
+    assert generate_integers(10, 14) == []
 
 def test_single_digit_even():
     assert generate_integers(2, 2) == [2]
 
 def test_single_digit_odd():
     assert generate_integers(1, 1) == []
+
+def test_larger_range():
+    assert generate_integers(100, 110) == [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106, 108]

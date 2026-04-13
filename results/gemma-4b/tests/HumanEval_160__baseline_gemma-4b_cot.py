@@ -94,7 +94,7 @@ def test_exponentiation():
 def test_mixed_operations():
     operator = ['+', '*', '-', '**']
     operand = [2, 3, 4, 5, 2]
-    assert do_algebra(operator, operand) == 24
+    assert do_algebra(operator, operand) == 26
 
 def test_single_operand():
     operator = ['+']

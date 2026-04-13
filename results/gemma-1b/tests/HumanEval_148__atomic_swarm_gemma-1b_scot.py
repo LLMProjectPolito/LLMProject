@@ -63,11 +63,15 @@ def bf(planet1, planet2):
         "Neptune": 30.0
     }
     
-    planet1_orbit = orbits1[planet1]
-    planet2_orbit = orbits2[planet2]
+    planet_pairs = []
+    for p1 in orbits1:
+        for p2 in orbits2:
+            if abs(p1 - p2) <= 1:
+                planet_pairs.append((p1, p2))
     
-    result = tuple(sorted((planet1, planet2)))
-    return result
+    planet_pairs.sort(key=lambda x: (x[0], x[1]))
+    
+    return tuple(sorted(planet_pairs, key=lambda x: (x[0], x[1])))
 
 def bf(planet1, planet2):
     '''

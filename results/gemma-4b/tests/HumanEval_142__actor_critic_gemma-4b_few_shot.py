@@ -44,13 +44,13 @@ def test_sum_squares_negative():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
 def test_sum_squares_mixed():
-    assert sum_squares([1, -2, 3, -4, 5]) == 1 + (-2)**2 + 3**2 + (-4)**3 + 5**2 == 1 + 4 + 9 + (-64) + 25 == 1 + 4 + 9 - 64 + 25 == -25
+    assert sum_squares([1, 4, 9, 16, 25]) == 1 + 64 + 81 + 256 + 625
 
 def test_sum_squares_multiple_3():
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 4 + 9 + 64 + 25 + 36 == 1 + 4 + 9 + 64 + 25 + 36 == 149
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 4 + 9 + 16 + 25 + 36
 
 def test_sum_squares_multiple_4():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 8 + 27 + 64 + 125 + 216 + 343 + 512 + 729 + 1000 == 3096
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 1 + 8 + 27 + 64 + 125 + 216 + 343 + 512
 
-def test_sum_squares_no_multiples():
-    assert sum_squares([1, 2, 4, 5, 7, 8, 10]) == 1 + 2 + 5 + 7 + 8 + 10 == 33
+def test_sum_squares_mixed_multiples():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 4 + 9 + 64 + 125 + 216 + 343 + 512 + 81 + 1000

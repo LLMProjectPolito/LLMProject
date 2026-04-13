@@ -45,6 +45,21 @@ def test_bf_invalid_planet2():
 def test_bf_invalid_planets():
     assert bf("Pluto", "Eris") == ()
 
+def test_bf_planet1_before_planet2():
+    assert bf("Venus", "Earth") == ("Mercury",)
+
+def test_bf_planet1_and_planet2_same():
+    assert bf("Mercury", "Mercury") == ()
+
+def test_bf_empty_range():
+    assert bf("Mercury", "Venus") == ("Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
+
+def test_bf_planet1_last_planet2_first():
+    assert bf("Neptune", "Mercury") == ("Uranus", "Saturn", "Jupiter", "Mars", "Earth", "Venus")
+
+def test_bf_planet1_first_planet2_last():
+    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
+
 def test_bf_planet1_first():
     assert bf("Mercury", "Mercury") == ()
 
@@ -57,8 +72,14 @@ def test_bf_planet1_last():
 def test_bf_planet2_first():
     assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
 
-def test_bf_empty_range():
-    assert bf("Mercury", "Venus") == ("Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
-
 def test_bf_all_planets():
     assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
+
+def test_bf_case_insensitive():
+    assert bf("mercury", "neptune") == ("venus", "earth", "mars", "jupiter", "saturn", "uranus")
+
+def test_bf_with_spaces():
+    assert bf(" Mercury", "Neptune") == ()
+
+def test_bf_with_special_characters():
+    assert bf("Mercury!", "Neptune") == ()

@@ -45,29 +45,29 @@ def test_fix_spaces_basic():
 def test_fix_spaces_with_multiple_spaces():
     assert fix_spaces("Example   ") == "_Example-3"
     
-def test_fix_spaces_no_spaces():
-    assert fix_spaces("No spaces") == "No spaces"
-    
 def test_fix_spaces_empty_string():
     assert fix_spaces("") == ""
     
-def test_fix_spaces_with_only_spaces():
-    assert fix_spaces("   ") == ""
-    
-def test_fix_spaces_mixed_spaces_and_numbers():
-    assert fix_spaces("1 2 3") == "1_2_3"
+def test_fix_spaces_single_space():
+    assert fix_spaces(" ") == " "
     
 def test_fix_spaces_with_leading_and_trailing_spaces():
+    assert fix_spaces("  Example ") == "_Example_"
+    
+def test_fix_spaces_with_multiple_spaces_at_start():
     assert fix_spaces("  Example  ") == "_Example_"
     
-def test_fix_spaces_with_multiple_hyphens():
-    assert fix_spaces("Example-1") == "_Example-"
+def test_fix_spaces_with_multiple_spaces_at_end():
+    assert fix_spaces("Example   ") == "_Example-"
     
-def test_fix_spaces_with_multiple_underscores():
-    assert fix_spaces("Example_1") == "Example_1"
+def test_fix_spaces_with_mixed_spaces():
+    assert fix_spaces("Example -1") == "_Example-"
+    
+def test_fix_spaces_with_numbers():
+    assert fix_spaces("1 2 3") == "1_2_3"
     
 def test_fix_spaces_with_special_characters():
-    assert fix_spaces("Example!@#") == "_Example!"
+    assert fix_spaces("!@#$%^") == "!@#$%^"
     
-def test_fix_spaces_with_unicode_characters():
-    assert fix_spaces("Example ு") == "_Example"
+def test_fix_spaces_with_unicode():
+    assert fix_spaces("你好世界") == "你好世界"

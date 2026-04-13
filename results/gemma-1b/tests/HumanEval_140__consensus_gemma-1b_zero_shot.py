@@ -42,21 +42,41 @@ def test_fix_spaces_basic():
     assert fix_spaces(" Example 2") == "_Example_2"
     assert fix_spaces(" Example   3") == "_Example-3"
     
-def test_fix_spaces_multiple_spaces():
-    assert fix_spaces("Example 1 2") == "Example_1_2"
-    assert fix_spaces("Example 1 2 3") == "Example_1_2_3"
+def test_fix_spaces_with_multiple_spaces():
+    assert fix_spaces("Example   ") == "_Example-3"
     
 def test_fix_spaces_empty_string():
     assert fix_spaces("") == ""
     
-def test_fix_spaces_no_spaces():
-    assert fix_spaces("No spaces") == "No spaces"
+def test_fix_spaces_single_space():
+    assert fix_spaces(" ") == " "
     
-def test_fix_spaces_with_underscores():
-    assert fix_spaces("Under_score") == "Under_score"
+def test_fix_spaces_with_leading_and_trailing_spaces():
+    assert fix_spaces("  Example ") == "_Example_"
     
-def test_fix_spaces_with_hyphens():
-    assert fix_spaces("Hyphen_test") == "Hyphen_test"
+def test_fix_spaces_with_mixed_spaces():
+    assert fix_spaces("Example 123") == "Example_123"
+    
+def test_fix_spaces_with_numbers():
+    assert fix_spaces("123 Example") == "123_Example"
+    
+def test_fix_spaces_with_multiple_spaces_at_start():
+    assert fix_spaces("  Example  ") == "_Example_"
+    
+def test_fix_spaces_with_multiple_spaces_at_end():
+    assert fix_spaces("Example   ") == "_Example-"
+    
+def test_fix_spaces_with_mixed_spaces_at_middle():
+    assert fix_spaces("Example -1") == "_Example-"
+    
+def test_fix_spaces_with_multiple_spaces_at_middle_and_end():
+    assert fix_spaces("Example -1 -2") == "_Example-1-2"
+    
+def test_fix_spaces_with_leading_and_trailing_spaces_and_mixed():
+    assert fix_spaces("  Example  ") == "_Example_"
+    
+def test_fix_spaces_with_leading_and_trailing_spaces_and_mixed():
+    assert fix_spaces("  Example  ") == "_Example_"
     
 def test_fix_spaces_with_mixed_spaces_and_underscores():
-    assert fix_spaces("Mixed_spaces_underscores") == "Mixed_spaces_underscores"
+    assert fix_spaces("Example 123") == "Example_123"

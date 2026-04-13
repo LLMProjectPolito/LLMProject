@@ -57,6 +57,7 @@ def is_prime(n):
             return False
     return True
 
+# Test suite
 def test_empty_sentence():
     assert words_in_sentence("") == ""
 
@@ -81,23 +82,47 @@ def test_sentence_with_leading_and_trailing_spaces():
 def test_sentence_with_multiple_spaces_between_words():
     assert words_in_sentence("This   is  a    test") == "is"
 
-def test_sentence_with_only_spaces():
-    assert words_in_sentence("   ") == ""
-
-def test_long_sentence_with_some_prime_words():
-    assert words_in_sentence("This is a very long sentence with some prime words") == "is"
-
-def test_sentence_with_prime_length_words_at_the_beginning():
-    assert words_in_sentence("abc def ghi jkl") == "abc def"
-
-def test_sentence_with_prime_length_words_at_the_end():
-    assert words_in_sentence("jkl abc def ghi") == "def ghi"
-
-def test_sentence_with_mixed_prime_and_non_prime_words():
-    assert words_in_sentence("hello world python") == "world python"
-
-def test_sentence_with_prime_length_words_adjacent():
+def test_sentence_with_only_prime_length_words():
     assert words_in_sentence("abc def ghi") == "abc def"
 
-def test_sentence_with_non_prime_length_words_adjacent():
-    assert words_in_sentence("abc abcd ghi") == "abc ghi"
+def test_sentence_with_only_non_prime_length_words():
+    assert words_in_sentence("abcd efgh ijkl") == ""
+
+def test_sentence_with_mixed_prime_and_non_prime_words():
+    assert words_in_sentence("This is a test abc def") == "is a"
+
+def test_long_sentence():
+    assert words_in_sentence("This is a very long sentence with many words") == "is a"
+
+def test_sentence_with_numbers_as_words():
+    assert words_in_sentence("123 abc 456 def") == "abc"
+
+def test_sentence_with_special_characters():
+    assert words_in_sentence("This is a test!") == ""
+
+def test_prime_number_1():
+    assert words_in_sentence("a") == "a"
+
+def test_prime_number_2():
+    assert words_in_sentence("ab") == ""
+
+def test_prime_number_3():
+    assert words_in_sentence("abc") == "abc"
+
+def test_prime_number_5():
+    assert words_in_sentence("hello") == ""
+
+def test_prime_number_7():
+    assert words_in_sentence("world") == ""
+
+def test_all_non_prime():
+    assert words_in_sentence("abcdefghijklm") == ""
+
+def test_is_prime_0():
+    assert is_prime(0) == False
+
+def test_is_prime_1():
+    assert is_prime(1) == False
+
+def test_is_prime_2():
+    assert is_prime(2) == True

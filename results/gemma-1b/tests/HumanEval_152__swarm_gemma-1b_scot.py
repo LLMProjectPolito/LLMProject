@@ -32,13 +32,13 @@ def compare(game, guess):
     compare([1,2,3,4,5,1],[1,2,3,4,2,-2]) -> [0,0,0,0,3,3]
     compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) -> [4,4,1,0,0,6]
     """
-    results = []
+    score = 0
     for i in range(len(game)):
-        if game[i] == guess:
-            results.append(0)
+        if game[i] == guess[i]:
+            score += 1
         else:
-            results.append(abs(guess - game[i]))
-    return results
+            score -= 1
+    return [score]
 
 import pytest
 
@@ -57,10 +57,10 @@ def compare(game, guess):
     compare([1,2,3,4,5,1],[1,2,3,4,2,-2]) -> [0,0,0,0,3,3]
     compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) -> [4,4,1,0,0,6]
     """
-    results = []
+    score = 0
     for i in range(len(game)):
-        if game[i] == guess:
-            results.append(0)
+        if game[i] == guess[i]:
+            score += 1
         else:
-            results.append(abs(guess - game[i]))
-    return results
+            score -= 1
+    return [score]

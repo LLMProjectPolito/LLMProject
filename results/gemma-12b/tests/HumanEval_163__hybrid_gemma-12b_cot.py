@@ -43,38 +43,41 @@ class TestGenerateIntegers:
     def test_single_even_number(self):
         assert generate_integers(2, 2) == [2]
 
+    def test_same_number_even(self):
+        assert generate_integers(4, 4) == [4]
+
     def test_same_number_odd(self):
-        assert generate_integers(1, 1) == []
+        assert generate_integers(5, 5) == []
+
+    def test_start_at_zero(self):
+        assert generate_integers(0, 4) == [0, 2, 4]
+
+    def test_end_at_zero(self):
+        assert generate_integers(4, 0) == [0, 2, 4]
+
+    def test_a_equals_b_zero(self):
+        assert generate_integers(0, 0) == [0]
+
+    def test_a_equals_b_positive(self):
+        assert generate_integers(6, 6) == [6]
+
+    def test_edge_case_1(self):
+        assert generate_integers(1, 3) == [2]
+
+    def test_edge_case_2(self):
+        assert generate_integers(3, 1) == [2]
 
     def test_negative_input(self):
         with pytest.raises(TypeError):
             generate_integers(-2, 8)
-        with pytest.raises(TypeError):
-            generate_integers(2, -8)
-        with pytest.raises(TypeError):
-            generate_integers(-2, -8)
 
-    def test_zero_input(self):
-        with pytest.raises(ValueError):
-            generate_integers(0, 8)
-        with pytest.raises(ValueError):
-            generate_integers(8, 0)
-        with pytest.raises(ValueError):
-            generate_integers(0, 0)
+    def test_float_input(self):
+        with pytest.raises(TypeError):
+            generate_integers(2.5, 8)
+
+    def test_string_input(self):
+        with pytest.raises(TypeError):
+            generate_integers("2", "8")
 
     def test_large_numbers(self):
         assert generate_integers(100, 110) == [100, 102, 104, 106, 108, 110]
-
-    def test_edge_case_start_at_zero(self):
-        with pytest.raises(ValueError):
-            generate_integers(0, 10)
-
-    def test_edge_case_end_at_zero(self):
-        with pytest.raises(ValueError):
-            generate_integers(10, 0)
-
-    def test_mixed_even_and_odd(self):
-        assert generate_integers(3, 7) == []
-
-    def test_start_and_end_even(self):
-        assert generate_integers(4, 10) == [4, 6, 8, 10]

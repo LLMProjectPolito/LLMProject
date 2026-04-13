@@ -38,27 +38,20 @@ def rotate(s):
 def test_empty_b():
     assert cycpattern_check("abcd", "") == True
 
-### SCoT Steps:
-# STEP 1: REASONING - The function checks if a word (b) or any of its rotations is a substring of another word (a). The edge case is when b is an empty string, which should not cause errors and should return True if a contains an empty string. Also, consider cases where b is a substring of a but not at the beginning.
-# STEP 2: PLAN - Test function name: test_cycpattern_check_empty_b. Scenario: Test with an empty string as the second word.
-# STEP 3: CODE - Write the high-quality pytest suite.
-def test_cycpattern_check_empty_b():
-    assert cycpattern_check("abcd", "") == True
-
-def test_cycpattern_check_basic_true():
+def test_basic_true():
     assert cycpattern_check("hello", "ell") == True
 
-def test_cycpattern_check_basic_false():
+def test_basic_false():
     assert cycpattern_check("abcd", "abd") == False
 
-def test_cycpattern_check_rotation_true():
-    assert cycpattern_check("whassup", "psus") == False
-
-def test_cycpattern_check_rotation_true_2():
+def test_rotation_true():
     assert cycpattern_check("abab", "baa") == True
 
-def test_cycpattern_check_rotation_false():
+def test_rotation_false():
     assert cycpattern_check("efef", "eeff") == False
 
-def test_cycpattern_check_rotation_true_3():
+def test_complex_true():
     assert cycpattern_check("himenss", "simen") == True
+
+def test_complex_false():
+    assert cycpattern_check("whassup", "psus") == False

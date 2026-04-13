@@ -60,9 +60,17 @@ def eat(number, need, remaining):
 
     Have fun :)
     """
-    total_eaten = number + remaining
-    remaining_after_meal = max(0, total_eaten - need)
-    return [total_eaten, remaining_after_meal]
+    total_eaten = number
+    remaining_carrots = remaining
+    
+    if remaining_carrots >= need:
+        total_eaten += need
+        remaining_carrots -= need
+    else:
+        total_eaten += remaining_carrots
+        remaining_carrots = 0
+    
+    return [total_eaten, remaining_carrots]
 
 
 def test_enough_remaining():
@@ -78,31 +86,40 @@ def test_zero_need():
     assert eat(5, 0, 10) == [5, 10]
 
 def test_zero_eaten():
-    assert eat(0, 10, 10) == [10, 0]
+    assert eat(0, 5, 10) == [5, 5]
 
 def test_edge_case_equal_need_remaining():
     assert eat(2, 5, 5) == [7, 0]
 
 def test_large_numbers():
-    assert eat(500, 600, 1000) == [1500, 0]
+    assert eat(500, 600, 1000) == [1100, 400]
 
 def test_all_zeros():
     assert eat(0, 0, 0) == [0, 0]
 
 def test_need_greater_than_max():
-    assert eat(100, 1001, 500) == [600, 0]
+    assert eat(100, 1100, 500) == [600, 0]
 
 def test_remaining_greater_than_max():
-    assert eat(100, 100, 1001) == [1100, 0]
+    assert eat(100, 100, 1100) == [200, 1000]
 
-def test_edge_case_max_values():
-    assert eat(1000, 1000, 1000) == [2000, 0]
+def test_zero_remaining_suite2():
+    assert eat(1, 10, 0) == [1, 0]
 
-def test_edge_case_min_values():
+def test_zero_need_suite2():
+    assert eat(5, 0, 10) == [5, 10]
+
+def test_zero_eaten_suite2():
+    assert eat(0, 6, 10) == [6, 4]
+
+def test_all_zeros_suite2():
     assert eat(0, 0, 0) == [0, 0]
 
-def test_large_numbers_2():
-    assert eat(500, 600, 700) == [1100, 100]
+def test_large_numbers_suite2():
+    assert eat(500, 600, 1000) == [1100, 400]
 
-def test_equal_need_remaining_2():
-    assert eat(2, 5, 5) == [7, 0]
+def test_edge_cases_suite2():
+    assert eat(1000, 1000, 1000) == [2000, 0]
+    assert eat(0, 0, 1000) == [0, 1000]
+    assert eat(1000, 0, 0) == [1000, 0]
+    assert eat(0, 1000, 0) == [0, 0]

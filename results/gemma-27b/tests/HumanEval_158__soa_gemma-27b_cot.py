@@ -63,22 +63,16 @@ def test_words_with_empty_string():
     assert find_max(["", "abc"]) == "abc"
 
 def test_words_with_empty_string_and_same_unique_chars():
-    assert find_max(["", "ab", "ba"]) == ""
+    assert find_max(["", "ab", "cd"]) == "ab"
+
+def test_words_with_special_characters():
+    assert find_max(["!@#", "abc"]) == "!@"
 
 def test_long_words():
     assert find_max(["abcdefghijklmnopqrstuvwxyz", "abc"]) == "abcdefghijklmnopqrstuvwxyz"
-
-def test_words_with_special_characters():
-    assert find_max(["!@#$", "abc"]) == "!@#$"
 
 def test_words_with_numbers():
     assert find_max(["12345", "abc"]) == "12345"
 
 def test_words_with_mixed_characters():
     assert find_max(["a1b2c", "abc"]) == "a1b2c"
-
-def test_duplicate_words():
-    assert find_max(["abc", "abc", "def"]) == "abc"
-
-def test_lexicographical_tiebreaker():
-    assert find_max(["z", "a"]) == "a"

@@ -30,7 +30,7 @@ def get_max_triples(n):
         a = [1, 3, 7, 13, 21]
         The only valid triple is (1, 7, 13).
     """
-    a = [i*i - i + 1 for i in range(1, n + 1)]
+    a = [i * i - i + 1 for i in range(1, n + 1)]
     count = 0
     for i in range(n):
         for j in range(i + 1, n):
@@ -39,32 +39,32 @@ def get_max_triples(n):
                     count += 1
     return count
 
-def test_get_max_triples_n_1():
+def test_get_max_triples_n1():
     assert get_max_triples(1) == 0
 
-def test_get_max_triples_n_2():
+def test_get_max_triples_n2():
     assert get_max_triples(2) == 0
 
-def test_get_max_triples_n_3():
+def test_get_max_triples_n3():
     assert get_max_triples(3) == 0
 
-def test_get_max_triples_n_4():
+def test_get_max_triples_n4():
     assert get_max_triples(4) == 0
 
-def test_get_max_triples_n_5():
+def test_get_max_triples_n5():
     assert get_max_triples(5) == 1
 
-def test_get_max_triples_n_6():
+def test_get_max_triples_n6():
     assert get_max_triples(6) == 1
 
-def test_get_max_triples_n_7():
+def test_get_max_triples_n7():
     assert get_max_triples(7) == 2
 
-def test_get_max_triples_n_8():
-    assert get_max_triples(8) == 3
+def test_get_max_triples_n8():
+    assert get_max_triples(8) == 2
 
-def test_get_max_triples_n_9():
-    assert get_max_triples(9) == 4
+def test_get_max_triples_n9():
+    assert get_max_triples(9) == 3
 
-def test_get_max_triples_n_10():
-    assert get_max_triples(10) == 5
+def test_get_max_triples_n10():
+    assert get_max_triples(10) == 4

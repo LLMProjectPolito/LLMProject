@@ -62,22 +62,23 @@ def test_file_name_check_valid():
 
 def test_file_name_check_invalid_digit_count():
     assert file_name_check("1234example.txt") == "No"
-    assert file_name_check("example1234.exe") == "No"
+    assert file_name_check("example1234.dll") == "No"
+    assert file_name_check("123example123.exe") == "No"
 
 def test_file_name_check_invalid_dot_count():
     assert file_name_check("example.txt.txt") == "No"
     assert file_name_check("exampletxt") == "No"
+    assert file_name_check(".txt") == "No"
 
-def test_file_name_check_invalid_prefix():
-    assert file_name_check("1example.txt") == "No"
-    assert file_name_check("!example.dll") == "No"
-
-def test_file_name_check_invalid_suffix():
+def test_file_name_check_invalid_extension():
     assert file_name_check("example.pdf") == "No"
     assert file_name_check("example.jpg") == "No"
+    assert file_name_check("example.py") == "No"
 
-def test_file_name_check_empty_prefix():
-    assert file_name_check(".txt") == "No"
+def test_file_name_check_invalid_start_character():
+    assert file_name_check("1example.txt") == "No"
+    assert file_name_check("2AnotherExample.exe") == "No"
+    assert file_name_check("!file123.dll") == "No"
 
 # Focus: Invalid Input Handling
 import pytest

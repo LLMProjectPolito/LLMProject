@@ -41,9 +41,7 @@ def test_string_with_unicode():
     assert string_to_md5('你好世界') == '3e25960a79dbc69b674cd4ec67a72c62'
 
 def test_long_string():
-    long_text = "This is a very long string to test the function."
-    expected_md5 = "3e25960a79dbc69b674cd4ec67a72c62"
-    assert string_to_md5(long_text) == expected_md5
+    assert string_to_md5('This is a very long string to test the function.') == '3e25960a79dbc69b674cd4ec67a72c62'
 
-def test_string_with_numbers_and_special_chars():
+def test_string_with_numbers_and_symbols():
     assert string_to_md5('123.456') == '3e25960a79dbc69b674cd4ec67a72c62'

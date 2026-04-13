@@ -62,41 +62,39 @@ def bf(planet1, planet2):
 
 # STEP 2: PLAN
 # Test cases:
-# 1. Valid planets, intermediate order: bf("Jupiter", "Neptune")
-# 2. Valid planets, reverse order: bf("Neptune", "Jupiter")
-# 3. Valid planets, adjacent order: bf("Earth", "Mercury")
-# 4. Valid planets, starting from Mercury: bf("Mercury", "Uranus")
-# 5. Invalid planet name: bf("Jupiter", "Pluto")
-# 6. Invalid planet name: bf("Pluto", "Neptune")
-# 7. Same planet names: bf("Earth", "Earth")
-# 8. Planets at the ends: bf("Mercury", "Neptune")
-# 9. Planets close to the sun: bf("Venus", "Earth")
+# 1. Valid input, planets in correct order: ("Saturn", "Uranus")
+# 2. Valid input, planets in reverse order: ()
+# 3. Valid input, planets adjacent: ("Venus")
+# 4. Valid input, planets far apart: ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+# 5. Invalid planet name: ()
+# 6. Invalid planet name for both: ()
+# 7. planet1 is invalid: ()
+# 8. planet2 is invalid: ()
+
+# Test function names:
+# test_bf_valid_order, test_bf_reverse_order, test_bf_adjacent, test_bf_far_apart, test_bf_invalid_planet, test_bf_both_invalid, test_bf_planet1_invalid, test_bf_planet2_invalid
 
 # STEP 3: CODE
-###
-def test_valid_intermediate():
+def test_bf_valid_order():
     assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
 
-def test_valid_reverse():
-    assert bf("Neptune", "Jupiter") == ("Saturn", "Uranus")
-
-def test_valid_adjacent():
+def test_bf_reverse_order():
     assert bf("Earth", "Mercury") == ("Venus")
 
-def test_valid_starting_mercury():
+def test_bf_adjacent():
     assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
 
-def test_invalid_planet_name_1():
+def test_bf_far_apart():
+    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
+
+def test_bf_invalid_planet():
     assert bf("Jupiter", "Pluto") == ()
 
-def test_invalid_planet_name_2():
+def test_bf_both_invalid():
+    assert bf("Pluto", "Uranus") == ()
+
+def test_bf_planet1_invalid():
     assert bf("Pluto", "Neptune") == ()
 
-def test_same_planet_names():
-    assert bf("Earth", "Earth") == ()
-
-def test_planets_at_the_ends():
-    assert bf("Mercury", "Neptune") == ()
-
-def test_planets_close_to_sun():
-    assert bf("Venus", "Earth") == ("Mercury",)
+def test_bf_planet2_invalid():
+    assert bf("Mercury", "Pluto") == ()

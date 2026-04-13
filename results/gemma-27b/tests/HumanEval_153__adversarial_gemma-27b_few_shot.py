@@ -76,7 +76,7 @@ def test_strongest_extension_all_uppercase():
     assert Strongest_Extension('Class', ['ABC', 'DEF', 'GHI']) == 'Class.ABC'
 
 def test_strongest_extension_mixed_case():
-    assert Strongest_Extension('Class', ['aBc', 'DeF', 'gHi']) == 'Class.DeF'
+    assert Strongest_Extension('Class', ['aBc', 'DeF', 'gHi']) == 'Class.aBc'
 
 def test_strongest_extension_single_extension():
     assert Strongest_Extension('Class', ['Extension']) == 'Class.Extension'

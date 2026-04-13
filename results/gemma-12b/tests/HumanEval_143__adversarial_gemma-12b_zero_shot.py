@@ -24,7 +24,6 @@ import pytest
 from your_module import words_in_sentence  # Replace your_module
 
 def is_prime(n):
-    """Helper function to check if a number is prime."""
     if n <= 1:
         return False
     for i in range(2, int(n**0.5) + 1):
@@ -38,43 +37,39 @@ def test_empty_sentence():
 def test_no_prime_length_words():
     assert words_in_sentence("this is not a prime") == ""
 
-def test_example_1():
+def test_single_prime_length_word():
+    assert words_in_sentence("a") == "a"
+
+def test_multiple_prime_length_words():
     assert words_in_sentence("This is a test") == "is"
 
-def test_example_2():
+def test_mixed_prime_and_non_prime_words():
     assert words_in_sentence("lets go for swimming") == "go for"
 
-def test_single_prime_word():
-    assert words_in_sentence("a b c d") == "a"
-
-def test_multiple_prime_words():
-    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the fox the"
-
-def test_mixed_prime_and_non_prime():
-    assert words_in_sentence("one two three four five six seven eight nine ten") == "one two five seven"
+def test_all_words_prime_length():
+    assert words_in_sentence("I am here") == "I am"
 
 def test_sentence_with_leading_and_trailing_spaces():
-    assert words_in_sentence("  hello world  ") == "hello world"
+    assert words_in_sentence("  This is a test  ") == "is"
 
 def test_sentence_with_multiple_spaces():
-    assert words_in_sentence("hello   world") == "hello world"
-
-def test_sentence_with_only_spaces():
-    assert words_in_sentence("   ") == ""
+    assert words_in_sentence("This  is   a    test") == "is"
 
 def test_long_sentence():
-    sentence = "This is a very long sentence with many words of varying lengths some of which are prime and some are not"
-    expected = "is a very long sentence with many words of varying lengths some of which are prime and some are not"
+    sentence = "This is a very long sentence with some words of prime and non-prime lengths"
+    expected = "is a very long sentence with some words of prime"
     assert words_in_sentence(sentence) == expected
 
-def test_prime_length_at_start_and_end():
-    assert words_in_sentence("a quick fox") == "a fox"
+def test_sentence_with_only_one_word():
+    assert words_in_sentence("prime") == "prime"
 
-def test_all_words_prime():
-    assert words_in_sentence("a is be do go") == "a is be do go"
+def test_sentence_with_same_length_words():
+    assert words_in_sentence("one two three four five") == "one two three five"
 
-def test_non_ascii_characters():
-    assert words_in_sentence("café is a test") == "is a"
+def test_sentence_with_special_characters_not_allowed():
+    with pytest.raises(TypeError):
+        words_in_sentence("This is a test!")
 
-def test_numbers_in_sentence():
-    assert words_in_sentence("123 abc 45 def 789") == "abc def"
+def test_sentence_with_numbers_not_allowed():
+    with pytest.raises(TypeError):
+        words_in_sentence("This is 1 test")

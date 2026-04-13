@@ -41,20 +41,20 @@ def solve(s):
 
     return result
 
-# Pytest suite
-def test_solve_empty():
+# Pytest Suite
+def test_solve_empty_string():
     assert solve("") == ""
 
 def test_solve_no_letters():
     assert solve("1234") == "4321"
 
-def test_solve_lowercase():
+def test_solve_lowercase_letters():
     assert solve("ab") == "AB"
 
-def test_solve_mixed_case():
+def test_solve_mixed_case_letters():
     assert solve("aB") == "Ab"
 
-def test_solve_with_symbols():
+def test_solve_with_special_characters():
     assert solve("#a@C") == "#A@c"
 
 def test_solve_with_numbers_and_letters():
@@ -63,20 +63,14 @@ def test_solve_with_numbers_and_letters():
 def test_solve_with_spaces():
     assert solve("hello world") == "HELLO WORLD"
 
-def test_solve_with_special_characters():
-    assert solve("!@#$%^") == "!@#$%^"
+def test_solve_with_only_special_characters():
+    assert solve("!@#$%^") == "^%$#@!"
 
 def test_solve_long_string():
-    assert solve("This is a long string with some letters.") == "tHIS IS A LONG STRING WITH SOME LETTERS."
-
-def test_solve_only_symbols():
-    assert solve("!@#$") == "!@#$"
-
-def test_solve_numbers_and_symbols():
-    assert solve("123!@#") == "#@!321"
+    assert solve("This is a long string with some letters and numbers 123.") == "tHIS IS A LONG STRING WITH SOME LETTERS AND NUMBERS 123."
 
 def test_solve_unicode_characters():
     assert solve("你好世界") == "你好世界" # Should not modify unicode characters
 
 def test_solve_mixed_unicode_and_ascii():
-    assert solve("a1你好b2") == "A1你好B2"
+    assert solve("a你好b") == "A你好B"
