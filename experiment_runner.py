@@ -121,13 +121,26 @@ def run_experiment(agents, n, overrides={}, start=0, workers=50, results_dir: Pa
     problems = sorted(DATA_DIR.glob("*.json"), key=lambda x: int(re.search(r"(\d+)", x.name).group(1)) if re.search(r"(\d+)", x.name) else 0)[start:start+n]
     problems = [json.loads(p.read_text(encoding="utf-8")) for p in problems]
     
+    def is_already_done(task_id, config_label, csv_path):
+        if not csv_path.exists(): return False
+        try:
+            with open(csv_path, 'r', encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                return any(row.get('task_id') == task_id and row.get('config_label') == config_label for row in reader)
+        except: return False
+
     def run_task(prob, agent_full):
         base_agent = agent_full.split(":")[0]; o = overrides.get(agent_full, {})
         model_slug = o.get("model", "default")
+        label = o.get("_label", "default")
         target_dir = results_dir / model_slug
-        (target_dir / "tests").mkdir(parents=True, exist_ok=True)
         csv_path = target_dir / "results.csv"
 
+        if is_already_done(prob["task_id"], label, csv_path):
+            print(f"   [SKIP] {prob['task_id']} x {agent_full}", flush=True)
+            return
+
+        (target_dir / "tests").mkdir(parents=True, exist_ok=True)
         test_code, usage = safe_invoke(AGENT_FNS[base_agent], prob["prompt"], o)
         save_test_file(target_dir / "tests", prob["task_id"], agent_full, test_code, prob["prompt"])
 
@@ -135,8 +148,9 @@ def run_experiment(agents, n, overrides={}, start=0, workers=50, results_dir: Pa
             m = generation_failure_metrics(usage["generation_error_message"])
         else:
             m = run_tests(prob["prompt"] + prob["canonical_solution"], test_code)
+        
         res = {
-            "task_id": prob["task_id"], "agent": base_agent, "config_label": o.get("_label", "default"),
+            "task_id": prob["task_id"], "agent": base_agent, "config_label": label,
             "passed": m["passed"], "failed": m["failed"], "errors": m["errors"], "total": m["total"],
             "functional_correctness": m["functional_correctness"], "line_coverage": m["line_coverage"],
             "branch_coverage": m["branch_coverage"], "mutation_score": m.get("mutation_score", 0),
@@ -155,8 +169,13 @@ def run_experiment(agents, n, overrides={}, start=0, workers=50, results_dir: Pa
             pd.DataFrame([res]).to_csv(csv_path, mode='a', index=False, header=not csv_path.exists())
             print(f"   [DONE] {prob['task_id']} x {agent_full}", flush=True)
 
+    # SHUFFLE WORK: Mischiamo i task per evitare ingorghi su un singolo modello o task
+    import random
+    work_items = [(p, a) for p in problems for a in agents]
+    random.shuffle(work_items)
+
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
-        futures = {executor.submit(run_task, p, a): (p, a) for p in problems for a in agents}
+        futures = {executor.submit(run_task, p, a): (p, a) for p, a in work_items}
         for f in concurrent.futures.as_completed(futures):
             try: f.result(timeout=300)
             except Exception as e: print(f"   [TIMEOUT/ERROR] {e}", flush=True)
