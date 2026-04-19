@@ -17,11 +17,8 @@ import math
 def test_fix_spaces():
     assert fix_spaces(" Example   3") == "_Example-3"
 
-def test_fix_spaces_extreme():
+def test_empty_input():
     assert fix_spaces("") == ""
-    assert fix_spaces("  ") == "__"
-    assert fix_spaces("   ") == "-"
-    assert fix_spaces("          ") == "-"
 
-def test_fix_spaces_two_spaces():
+def test_fix_spaces_boundary_two_spaces():
     assert fix_spaces("  ") == "__"

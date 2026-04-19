@@ -1,0 +1,57 @@
+
+def x_or_y(n, x, y):
+    """A simple program which should return the value of x if n is 
+    a prime number and should return the value of y otherwise.
+
+    Examples:
+    for x_or_y(7, 34, 12) == 34
+    for x_or_y(15, 8, 5) == 5
+    
+    """
+
+import pytest
+import math
+
+
+# Focus: Boundary Values
+def test_x_or_y_boundary_smallest_prime():
+    # 2 is the smallest prime number
+    assert x_or_y(2, 10, 20) == 10
+
+def test_x_or_y_boundary_below_prime():
+    # 1 is the boundary just below the first prime and is not prime
+    assert x_or_y(1, 10, 20) == 20
+
+def test_x_or_y_boundary_non_positive():
+    # 0 and negative numbers are not prime
+    assert x_or_y(0, 10, 20) == 20
+    assert x_or_y(-7, 10, 20) == 20
+
+# Focus: Logic Branches
+def test_x_or_y_prime():
+    # Branch: n is a prime number
+    assert x_or_y(7, 34, 12) == 34
+    assert x_or_y(2, 10, 20) == 10
+
+def test_x_or_y_not_prime():
+    # Branch: n is not a prime number
+    assert x_or_y(15, 8, 5) == 5
+    assert x_or_y(1, 10, 20) == 20
+    assert x_or_y(4, 10, 20) == 20
+
+# Focus: Type Scenarios
+import pytest
+
+def test_x_or_y_non_integer_n():
+    # Testing behavior when n is a float (should typically be treated as non-prime)
+    assert x_or_y(7.0, 10, 20) == 20
+
+def test_x_or_y_invalid_n_type():
+    # Testing behavior when n is a string, which should raise a TypeError during primality check
+    with pytest.raises(TypeError):
+        x_or_y("7", 10, 20)
+
+def test_x_or_y_diverse_return_types():
+    # Testing that x and y can be of any type (strings, lists, etc.) and are returned correctly
+    assert x_or_y(7, "prime_val", "not_prime_val") == "prime_val"
+    assert x_or_y(4, [1, 2], [3, 4]) == [3, 4]

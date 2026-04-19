@@ -18,11 +18,11 @@ import math
 
 # Focus: Boundary Values
 def test_special_factorial_boundary_min():
-    # Minimum valid input according to n > 0
+    # The smallest valid input according to n > 0
     assert special_factorial(1) == 1
 
 def test_special_factorial_boundary_small():
-    # Smallest value above the minimum boundary
+    # The next boundary value to ensure the sequence product starts correctly
     assert special_factorial(2) == 2
 
 # Focus: Type Scenarios
@@ -41,14 +41,16 @@ def test_special_factorial_none():
         special_factorial(None)
 
 # Focus: Logic Branches
-def test_special_factorial_base_case():
+import pytest
+
+def test_special_factorial_boundary():
     # Tests the smallest valid input branch (n=1)
     assert special_factorial(1) == 1
 
-def test_special_factorial_small_iteration():
-    # Tests the branch where the loop/recursion executes for a small number of steps
+def test_special_factorial_small_branch():
+    # Tests the logic for a small integer where n > 1
     assert special_factorial(2) == 2
 
-def test_special_factorial_general_case():
-    # Tests the branch for larger n to ensure cumulative multiplication logic is correct
+def test_special_factorial_standard_branch():
+    # Tests the logic for a standard integer case
     assert special_factorial(4) == 288

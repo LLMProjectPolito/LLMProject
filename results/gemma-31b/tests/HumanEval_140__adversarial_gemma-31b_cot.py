@@ -13,8 +13,8 @@ def fix_spaces(text):
 
 import pytest
 
-@pytest.mark.parametrize("input_text, expected", [
-    # Basic cases from the problem description
+@pytest.mark.parametrize("input_text, expected_output", [
+    # Docstring examples
     ("Example", "Example"),
     ("Example 1", "Example_1"),
     (" Example 2", "_Example_2"),
@@ -25,58 +25,55 @@ import pytest
     ("Hello", "Hello"),
     ("Hello World", "Hello_World"),
     
-    # Edge cases: Space counts
-    (" ", "_"),           # 1 space -> _
-    ("  ", "__"),         # 2 spaces -> __
-    ("   ", "-"),         # 3 spaces -> -
-    ("    ", "-"),        # 4 spaces -> -
-    ("     ", "-"),       # 5 spaces -> -
+    # Edge cases: Single and Double Spaces
+    (" ", "_"),
+    ("  ", "__"),
+    ("a b", "a_b"),
+    ("a  b", "a__b"),
     
-    # Mixed space sequences
-    ("a b", "a_b"),               # Single space
-    ("a  b", "a__b"),             # Double space
-    ("a   b", "a-b"),             # Triple space
-    ("a    b", "a-b"),            # Quadruple space
-    ("a b  c   d    e", "a_b__c-d-e"), # Mixed 1, 2, 3, 4
+    # Edge cases: More than 2 consecutive spaces (3+)
+    ("   ", "-"),
+    ("    ", "-"),
+    ("a   b", "a-b"),
+    ("a    b", "a-b"),
+    
+    # Mixed space lengths
+    ("a b  c   d    e", "a_b__c-d-e"),
+    ("  abc   def  ghi    jkl ", "__abc-def__ghi-jkl_"),
+    ("   a   b   ", "-a-b-"),
+    ("  a  b  ", "__a__b__"),
+    (" a b ", "_a_b_"),
     
     # Leading and Trailing spaces
-    ("  a", "__a"),               # Leading double
-    ("   a", "-a"),               # Leading triple
-    ("a  ", "a__"),               # Trailing double
-    ("a   ", "a-"),               # Trailing triple
-    ("  a  ", "__a__"),           # Leading and trailing double
-    ("   a   ", "-a-"),           # Leading and trailing triple
+    ("   leading", "-leading"),
+    ("trailing   ", "trailing-"),
+    ("  both  ", "__both__"),
+    ("   both   ", "-both-"),
     
     # Complex combinations
-    ("  a   b  c    d ", "__a-b__c-d_"),
-    ("   ", "-"),                 # Only spaces (3)
-    ("  ", "__"),                 # Only spaces (2)
-    (" ", "_"),                   # Only spaces (1)
-    
-    # Non-space characters and whitespace
-    ("a\tb", "a\tb"),             # Tabs should not be treated as spaces
-    ("a\na", "a\na"),             # Newlines should not be treated as spaces
-    (" a b ", "_a_b_"),           # Simple wrap
+    ("One space, two  spaces, three   spaces, four    spaces", 
+     "One_space,_two__spaces,_three-spaces,_four-spaces"),
+    ("   Multiple   groups   of   spaces   ", "-Multiple-groups-of-spaces-"),
 ])
-def test_fix_spaces(input_text, expected):
+def test_fix_spaces(input_text, expected_output):
     """
-    Tests the fix_spaces function against various edge cases.
-    Logic:
-    - 1 space -> '_'
-    - 2 spaces -> '__'
-    - 3 or more spaces -> '-'
+    Tests the fix_spaces function against various scenarios:
+    - No spaces
+    - Single spaces (should become _)
+    - Double spaces (should become __ as they are not 'more than 2')
+    - 3 or more spaces (should become -)
+    - Mixed combinations of space lengths
+    - Leading and trailing spaces
     """
-    assert fix_spaces(input_text) == expected
+    assert fix_spaces(input_text) == expected_output
 
-def test_fix_spaces_large_input():
-    """Test with a larger string to ensure performance and consistency."""
-    input_text = "word " * 100 + "   " + "word " * 100
-    # 100 groups of "word " (1 space) + 1 group of 3 spaces + 100 groups of "word "
-    # Result: 100 * "word_" + "-" + 100 * "word_"
-    expected = "word_" * 100 + "-" + "word_" * 100
-    assert fix_spaces(input_text) == expected
-
-def test_fix_spaces_no_mutation():
-    """Ensure the function handles strings without spaces correctly."""
-    text = "NoSpacesHere123!"
-    assert fix_spaces(text) == text
+def test_fix_spaces_non_string():
+    """
+    Test how the function handles non-string inputs.
+    Depending on implementation, it should either raise a TypeError 
+    or handle it gracefully.
+    """
+    with pytest.raises(TypeError):
+        fix_spaces(None)
+    with pytest.raises(TypeError):
+        fix_spaces(123)

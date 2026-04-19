@@ -23,6 +23,6 @@ def test_special_factorial_one():
 
 import pytest
 
-def test_special_factorial_wrong_type():
-    with pytest.raises(TypeError):
-        special_factorial("4")
+def test_special_factorial_invalid_boundary():
+    with pytest.raises(ValueError):
+        special_factorial(0)

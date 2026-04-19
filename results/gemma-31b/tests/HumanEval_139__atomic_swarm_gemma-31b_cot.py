@@ -15,7 +15,7 @@ def special_factorial(n):
 import pytest
 import math
 
-def test_special_factorial():
+def test_basic():
     assert special_factorial(4) == 288
 
 def test_special_factorial_one():

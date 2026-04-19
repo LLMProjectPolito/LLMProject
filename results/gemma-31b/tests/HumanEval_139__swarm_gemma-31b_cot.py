@@ -15,6 +15,6 @@ def special_factorial(n):
 import pytest
 import math
 
-def test_special_factorial_boundary_one():
-    """Tests the smallest valid input n=1, where the result should be 1! = 1."""
+def test_special_factorial_minimal_input():
+    """Test the special_factorial with the smallest valid input n=1."""
     assert special_factorial(1) == 1

@@ -14,8 +14,8 @@ def fix_spaces(text):
 import pytest
 import math
 
-def test_fix_spaces_mixed_consecutive():
-    assert fix_spaces("a  b   c    d") == "a__b-c-d"
+def test_fix_spaces_boundary_mixing():
+    assert fix_spaces("  a   b  ") == "__a-b__"
 
 def test_fix_spaces_boundary():
     assert fix_spaces("a  b   c") == "a__b-c"

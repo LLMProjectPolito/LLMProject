@@ -13,84 +13,81 @@ def fix_spaces(text):
 
 import pytest
 
-# Note: fix_spaces is assumed to be defined in the environment.
+# The function fix_spaces is assumed to be defined elsewhere.
 
-@pytest.mark.parametrize("input_text, expected", [
-    # --- Basic Cases ---
+@pytest.mark.parametrize("input_text, expected_output", [
+    # --- Basic & No Space Scenarios ---
     ("Example", "Example"),                # No spaces
-    ("Example 1", "Example_1"),            # Single space middle
-    (" Example 2", "_Example_2"),          # Single space leading
-    ("Example 2 ", "Example_2_"),          # Single space trailing
-    ("A B C", "A_B_C"),                    # Multiple single spaces
+    ("Example 1", "Example_1"),            # Single space -> underscore
+    ("Example  1", "Example__1"),          # Double space -> two underscores
     
-    # --- Boundary Case: Exactly 2 spaces ---
-    # Rule: 2 spaces -> __
-    ("Two  Spaces", "Two__Spaces"),        # Two spaces middle
-    ("  Two", "__Two"),                    # Two spaces leading
-    ("Two  ", "Two__"),                    # Two spaces trailing
-    ("  a  ", "__a__"),                    # Leading and trailing 2 spaces
+    # --- Rule B: 3 or more consecutive spaces -> single hyphen ---
+    ("Example   1", "Example-1"),          # Exactly 3 spaces
+    ("Example    1", "Example-1"),         # 4 spaces
+    ("Example     1", "Example-1"),        # 5 spaces
+    ("Example          1", "Example-1"),   # Many spaces
     
-    # --- Case: More than 2 spaces (3+) ---
-    # Rule: 3+ spaces -> -
-    ("Three   Spaces", "Three-Spaces"),    # Exactly 3
-    ("Four    Spaces", "Four-Spaces"),     # Exactly 4
-    ("Many      Spaces", "Many-Spaces"),   # Many spaces
-    ("   Three", "-Three"),                # Leading 3+
-    ("Three   ", "Three-"),                # Trailing 3+
-    ("   a   ", "-a-"),                    # Leading and trailing 3+ spaces
+    # --- Positional Scenarios (Leading/Trailing) ---
+    (" Example", "_Example"),              # Leading single
+    ("  Example", "__Example"),            # Leading double
+    ("   Example", "-Example"),            # Leading triple
+    ("Example ", "Example_"),              # Trailing single
+    ("Example  ", "Example__"),            # Trailing double
+    ("Example   ", "Example-"),            # Trailing triple
     
-    # --- Mixed Complexity ---
-    (" Example   3", "_Example-3"),        # Mixed single and triple
-    (" a  b   c    d", "_a__b-c-d"),       # Mixed 1, 2, 3, 4 spaces
-    ("  a   b  c ", "__a-b__c_"),          # Leading/Trailing mixed (2, 3, 2, 1)
-    (" a  b   c ", "_a__b-c_"),            # Complex mix
-    ("1 2   3 4   5", "1_2-3_4-5"),        # Alternating patterns
+    # --- Mixed Patterns ---
+    (" Example   3", "_Example-3"),        # Mixed 1 and 3
+    (" a  b   c    d", "_a__b-c-d"),       # 1, 2, 3, 4 spaces respectively
+    ("  hello   world  ", "__hello-world__"), # 2 leading, 3 middle, 2 trailing
+    ("one  two   three four", "one__two-three_four"), # 2, 3, 1 spaces
+    (" A  B   C    D ", "_A__B-C-D_"),     # Mixed: 1, 2, 3, 4, 1
     
-    # --- Edge Cases: Only Spaces / Empty ---
+    # --- Edge Cases ---
     ("", ""),                              # Empty string
-    (" ", "_"),                            # Only 1 space
-    ("  ", "__"),                          # Only 2 spaces
-    ("   ", "-"),                          # Only 3 spaces
-    ("    ", "-"),                         # Only 4 spaces
+    (" ", "_"),                            # Single space only
+    ("  ", "__"),                          # Double space only
+    ("   ", "-"),                          # Triple space only
+    ("    ", "-"),                         # Multiple spaces only
 ])
-def test_fix_spaces_parametrized(input_text, expected):
+def test_fix_spaces_parametrized(input_text, expected_output):
     """
-    Comprehensive test of the fix_spaces logic covering the 1, 2, and 3+ 
-    space replacement rules across various positions and combinations.
+    Comprehensive test for the core logic of fix_spaces, covering 
+    single, double, and triple+ space replacement rules.
     """
+    assert fix_spaces(input_text) == expected_output
+
+def test_fix_spaces_whitespace_handling():
+    """
+    Ensure that only literal space characters ' ' are replaced.
+    Tabs, newlines, and other whitespace should remain untouched.
+    """
+    # Test purely non-space whitespace
+    assert fix_spaces("Example\t1\n2") == "Example\t1\n2"
+    # Test spaces mixed with other whitespace
+    assert fix_spaces(" \n\t ") == "_\n\t_"
+
+def test_fix_spaces_large_input():
+    """
+    Stress test with a larger string containing alternating patterns 
+    to ensure performance and correctness at scale.
+    """
+    input_text = "word " * 100 + "   " + "word " * 100
+    # 100 single spaces (each becomes _), one block of 3 (becomes -), 100 single spaces
+    expected = ("word_" * 100) + "-" + ("word_" * 100)
     assert fix_spaces(input_text) == expected
+
+def test_fix_spaces_type_stability():
+    """
+    Verify that the function consistently returns a string for valid string inputs.
+    """
+    assert isinstance(fix_spaces("test"), str)
+    assert isinstance(fix_spaces("   "), str)
+    assert isinstance(fix_spaces(""), str)
 
 def test_fix_spaces_idempotency():
     """
-    Verify that running the function on its own output does not change the result.
-    Since underscores and hyphens are not spaces, they should not be processed.
+    Verify that characters already representing the 'fixed' state 
+    (underscores and dashes) are not altered by the function.
     """
-    original = "  Hello   World  "
-    first_pass = fix_spaces(original)
-    second_pass = fix_spaces(first_pass)
-    assert first_pass == second_pass
-
-def test_fix_spaces_non_space_whitespace():
-    """
-    Verify that the function only targets the space character ' ' 
-    and ignores other whitespace like tabs or newlines.
-    """
-    text_with_tab = "Example\t1"
-    text_with_newline = "Example\n1"
-    assert fix_spaces(text_with_tab) == "Example\t1"
-    assert fix_spaces(text_with_newline) == "Example\n1"
-
-def test_fix_spaces_large_gap():
-    """
-    Ensure that an extremely large number of consecutive spaces 
-    is collapsed into a single hyphen.
-    """
-    large_gap = "Word" + (" " * 100) + "Word"
-    assert fix_spaces(large_gap) == "Word-Word"
-
-def test_fix_spaces_no_mutation():
-    """
-    Ensure that strings containing no space characters remain entirely unchanged.
-    """
-    text = "NoSpacesHere123!@#$"
+    text = "Already_Fixed-Example"
     assert fix_spaces(text) == text

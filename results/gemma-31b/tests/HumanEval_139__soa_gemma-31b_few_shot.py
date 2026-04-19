@@ -16,7 +16,7 @@ import pytest
 import math
 
 def calculate_expected_brazilian(n):
-    """Helper to calculate the expected Brazilian factorial."""
+    """Helper function to calculate the expected Brazilian factorial."""
     result = 1
     for i in range(1, n + 1):
         result *= math.factorial(i)
@@ -30,33 +30,29 @@ def calculate_expected_brazilian(n):
     (5, 34560),
     (6, 24883200),
 ])
-def test_special_factorial_known_values(n, expected):
-    """Test the function with known small values."""
+def test_special_factorial_small_values(n, expected):
+    """Test the function with small known values."""
     assert special_factorial(n) == expected
 
-@pytest.mark.parametrize("n", [10, 15, 20])
-def test_special_factorial_large_values(n):
-    """Test the function against a reference implementation for larger values."""
-    assert special_factorial(n) == calculate_expected_brazilian(n)
+def test_special_factorial_large_value():
+    """Test the function with a larger value to ensure correctness and handle large integers."""
+    n = 10
+    expected = calculate_expected_brazilian(n)
+    assert special_factorial(n) == expected
 
-def test_special_factorial_minimum_input():
-    """Test the smallest valid input n=1."""
-    assert special_factorial(1) == 1
+def test_special_factorial_consistency():
+    """Test that special_factorial(n) == special_factorial(n-1) * factorial(n)."""
+    n = 7
+    assert special_factorial(n) == special_factorial(n - 1) * math.factorial(n)
 
-def test_special_factorial_type_error():
-    """Test that the function handles non-integer inputs if applicable."""
-    with pytest.raises(TypeError):
-        special_factorial("4")
-
-def test_special_factorial_negative_or_zero():
+@pytest.mark.parametrize("invalid_input", [0, -1, -10])
+def test_special_factorial_invalid_inputs(invalid_input):
     """
-    Test behavior for n <= 0. 
-    Depending on implementation, this might raise a ValueError or return a specific value.
-    Assuming the constraint n > 0 is strictly enforced.
+    Test how the function handles inputs not meeting the n > 0 constraint.
+    Depending on implementation, it might raise an error or return a specific value.
+    Assuming standard factorial behavior or a ValueError for n <= 0.
     """
-    with pytest.raises((ValueError, AssertionError, IndexError)):
-        # This assumes the function validates n > 0
-        # If the function doesn't validate, this test may fail.
-        # However, for a comprehensive suite, we check boundary constraints.
-        if special_factorial(0) is not None:
-            pass # Adjust based on actual implementation behavior
+    with pytest.raises((ValueError, TypeError, IndexError)):
+        # This test assumes the implementation validates n > 0
+        # If the implementation doesn't validate, this test may need adjustment
+        special_factorial(invalid_input)

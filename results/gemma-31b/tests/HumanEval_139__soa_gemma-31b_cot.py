@@ -13,6 +13,7 @@ def special_factorial(n):
     """
 
 import pytest
+import math
 
 @pytest.mark.parametrize("n, expected", [
     (1, 1),
@@ -23,30 +24,37 @@ import pytest
     (6, 24883200),
 ])
 def test_special_factorial_valid_inputs(n, expected):
-    """Test the special_factorial function with various positive integers."""
+    """Test the special_factorial function with valid positive integers."""
     assert special_factorial(n) == expected
 
 def test_special_factorial_large_value():
-    """Test with a slightly larger value to ensure integer handling."""
+    """Test with a slightly larger value to ensure correctness of the product chain."""
     # 7! = 5040. 5040 * 24883200 = 125411328000
     assert special_factorial(7) == 125411328000
 
+def test_special_factorial_mathematical_consistency():
+    """Verify that special_factorial(n) == n! * special_factorial(n-1) for n > 1."""
+    n = 10
+    # Calculate expected using math.factorial
+    expected = 1
+    for i in range(1, n + 1):
+        expected *= math.factorial(i)
+    
+    assert special_factorial(n) == expected
+
 def test_special_factorial_type_error():
-    """Test that the function handles non-integer inputs if applicable, 
-    or simply verify it raises an error for invalid types."""
+    """Test how the function handles non-integer inputs if applicable."""
     with pytest.raises(TypeError):
-        special_factorial("4")
+        special_factorial("5")
     with pytest.raises(TypeError):
-        special_factorial(4.5)
+        special_factorial(5.5)
 
 def test_special_factorial_negative_or_zero():
     """
-    The problem states n > 0. Depending on implementation, 
-    it should either raise an error or handle it gracefully.
+    The problem defines n > 0. 
+    Depending on implementation, this should either raise an error or return a specific value.
+    Assuming it should raise a ValueError for n <= 0.
     """
-    # Assuming the implementation follows the constraint n > 0 strictly
-    # and might raise a ValueError or return None/0 for n <= 0.
-    # If the implementation doesn't handle it, this test might need adjustment.
     with pytest.raises((ValueError, AssertionError)):
         special_factorial(0)
     with pytest.raises((ValueError, AssertionError)):

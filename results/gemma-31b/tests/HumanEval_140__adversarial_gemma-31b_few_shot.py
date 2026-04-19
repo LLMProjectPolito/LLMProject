@@ -13,55 +13,53 @@ def fix_spaces(text):
 
 import pytest
 
-def test_fix_spaces_provided_examples():
-    """Tests the examples explicitly provided in the docstring."""
+def test_fix_spaces_examples():
+    """Verify the examples provided in the docstring."""
     assert fix_spaces("Example") == "Example"
     assert fix_spaces("Example 1") == "Example_1"
     assert fix_spaces(" Example 2") == "_Example_2"
     assert fix_spaces(" Example   3") == "_Example-3"
 
-def test_fix_spaces_no_spaces():
-    """Tests strings that contain no spaces at all."""
-    assert fix_spaces("") == ""
-    assert fix_spaces("HelloWorld") == "HelloWorld"
-    assert fix_spaces("12345") == "12345"
-
-def test_fix_spaces_single_space():
-    """Tests that single spaces are always replaced by underscores."""
-    assert fix_spaces("a b") == "a_b"
-    assert fix_spaces(" a") == "_a"
-    assert fix_spaces("a ") == "a_"
-    assert fix_spaces(" ") == "_"
-
-def test_fix_spaces_double_space():
+def test_fix_spaces_boundary_two_spaces():
     """
-    Tests the boundary condition of exactly 2 spaces.
-    According to the rules: 'more than 2' triggers '-', 
-    so 2 spaces should be treated as individual spaces -> '__'.
+    Test the boundary condition: 'more than 2 consecutive spaces'.
+    Exactly 2 spaces should be replaced by two underscores, NOT a hyphen.
     """
-    assert fix_spaces("a  b") == "a__b"
+    assert fix_spaces("Example  2") == "Example__2"
     assert fix_spaces("  ") == "__"
 
-def test_fix_spaces_triple_plus_space():
-    """Tests that 3 or more consecutive spaces are replaced by a single hyphen."""
-    assert fix_spaces("a   b") == "a-b"        # Exactly 3
-    assert fix_spaces("a    b") == "a-b"       # 4 spaces
-    assert fix_spaces("a          b") == "a-b" # Many spaces
-    assert fix_spaces("   ") == "-"            # Only 3 spaces
+def test_fix_spaces_boundary_three_plus_spaces():
+    """
+    Test the boundary condition: 3 or more spaces should be replaced by a single hyphen.
+    """
+    assert fix_spaces("Example   3") == "Example-3"
+    assert fix_spaces("Example    4") == "Example-4"
+    assert fix_spaces("Example     5") == "Example-5"
+    assert fix_spaces("   ") == "-"
 
 def test_fix_spaces_mixed_sequences():
-    """Tests complex strings with mixed counts of consecutive spaces."""
-    # 1 space (_), 2 spaces (__), 3 spaces (-)
-    assert fix_spaces("a b  c   d") == "a_b__c-d"
-    # 4 spaces (-), 1 space (_), 2 spaces (__)
-    assert fix_spaces("a    b c  d") == "a-b_c__d"
-    # Leading and trailing mixed
-    assert fix_spaces("   hello  world  ") == "-hello__world__"
+    """Test strings containing a mix of single, double, and triple+ spaces."""
+    # 1 space -> _, 2 spaces -> __, 3 spaces -> -
+    assert fix_spaces("a b  c   d    e") == "a_b__c-d-e"
+    assert fix_spaces("  a   b  c ") == "__a-b__c_"
+
+def test_fix_spaces_edges():
+    """Test empty strings and strings with no spaces."""
+    assert fix_spaces("") == ""
+    assert fix_spaces("NoSpacesHere") == "NoSpacesHere"
+    assert fix_spaces("12345") == "12345"
+
+def test_fix_spaces_positioning():
+    """Test spaces at the very beginning and very end of the string."""
+    assert fix_spaces(" leading") == "_leading"
+    assert fix_spaces("trailing ") == "trailing_"
+    assert fix_spaces("   both   ") == "-both-"
+    assert fix_spaces("  both  ") == "__both__"
 
 def test_fix_spaces_non_space_whitespace():
     """
-    Ensures that only actual space characters ' ' are replaced, 
-    not tabs or newlines (unless the requirement implies all whitespace).
+    Ensure that only actual space characters ' ' are replaced, 
+    not tabs or newlines (unless the requirement defines 'spaces' as all whitespace).
     """
-    assert fix_spaces("a\tb") == "a\tb"
-    assert fix_spaces("a\nb") == "a\nb"
+    assert fix_spaces("Tab\tTest") == "Tab\tTest"
+    assert fix_spaces("Newline\nTest") == "Newline\nTest"

@@ -32,8 +32,6 @@ def special_factorial(n):
         raise ValueError("Input must be greater than 0")
     
     result = 1
-    current_factorial = 1
     for i in range(1, n + 1):
-        current_factorial *= i
-        result *= current_factorial
+        result *= math.factorial(i)
     return result

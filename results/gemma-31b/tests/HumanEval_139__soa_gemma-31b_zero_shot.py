@@ -15,6 +15,13 @@ def special_factorial(n):
 import pytest
 import math
 
+def calculate_expected_brazilian(n):
+    """Helper to calculate the expected value for testing."""
+    result = 1
+    for i in range(1, n + 1):
+        result *= math.factorial(i)
+    return result
+
 @pytest.mark.parametrize("n, expected", [
     (1, 1),
     (2, 2),
@@ -23,29 +30,36 @@ import math
     (5, 34560),
     (6, 24883200),
 ])
-def test_special_factorial_values(n, expected):
-    """Test the special_factorial function with known correct values."""
+def test_special_factorial_known_values(n, expected):
+    """Test the function with known small values of n."""
     assert special_factorial(n) == expected
 
 def test_special_factorial_large_value():
-    """Test with a larger value to ensure correctness of the product sequence."""
-    # For n=7: 7! * 6! * 5! * 4! * 3! * 2! * 1!
-    # 5040 * 720 * 120 * 24 * 6 * 2 * 1 = 125,411,328,000
-    assert special_factorial(7) == 125411328000
-
-def test_special_factorial_mathematical_property():
-    """Test the property: special_factorial(n) = n! * special_factorial(n-1)."""
+    """Test the function with a larger value to ensure correctness and handle large integers."""
     n = 10
-    assert special_factorial(n) == math.factorial(n) * special_factorial(n - 1)
+    expected = calculate_expected_brazilian(n)
+    assert special_factorial(n) == expected
 
-@pytest.mark.parametrize("invalid_input", [0, -1, -10])
-def test_special_factorial_invalid_inputs(invalid_input):
+def test_special_factorial_consistency():
+    """Test that special_factorial(n) == special_factorial(n-1) * n!"""
+    n = 7
+    assert special_factorial(n) == special_factorial(n - 1) * math.factorial(n)
+
+@pytest.mark.parametrize("invalid_n", [0, -1, -10])
+def test_special_factorial_invalid_input(invalid_n):
     """
     Test how the function handles inputs not meeting the n > 0 constraint.
     Depending on implementation, it might raise a ValueError or return a specific value.
-    Assuming standard mathematical constraints for factorials.
+    Assuming standard mathematical constraints, we check for potential errors.
     """
-    with pytest.raises((ValueError, TypeError, RecursionError)):
+    with pytest.raises((ValueError, TypeError, IndexError)):
         # This test assumes the function should fail for n <= 0
-        # If the function is designed to return 1 for n=0, this test should be adjusted.
-        special_factorial(invalid_input)
+        # If the function is designed to return 1 or 0, this test should be adjusted.
+        special_factorial(invalid_n)
+
+def test_special_factorial_type_error():
+    """Test that the function raises a TypeError for non-integer inputs."""
+    with pytest.raises(TypeError):
+        special_factorial("4")
+    with pytest.raises(TypeError):
+        special_factorial(4.5)

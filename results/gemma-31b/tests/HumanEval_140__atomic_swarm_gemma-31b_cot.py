@@ -15,13 +15,10 @@ import pytest
 import math
 
 def test_fix_spaces():
-    assert fix_spaces("Hello world   test") == "Hello_world-test"
+    assert fix_spaces("Hello World   Test") == "Hello_World-Test"
 
-def test_empty():
+def test_empty_input():
     assert fix_spaces("") == ""
 
-import pytest
-
-def test_fix_spaces_wrong_type():
-    with pytest.raises(TypeError):
-        fix_spaces(None)
+def test_fix_spaces_boundary_two_spaces():
+    assert fix_spaces("  ") == "__"

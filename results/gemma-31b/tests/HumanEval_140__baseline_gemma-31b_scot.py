@@ -14,39 +14,48 @@ def fix_spaces(text):
 import pytest
 
 @pytest.mark.parametrize("input_text, expected", [
-    # Basic cases
+    # Basic cases from docstring
     ("Example", "Example"),
     ("Example 1", "Example_1"),
     (" Example 2", "_Example_2"),
-    ("Example 2 ", "Example_2_"),
+    (" Example   3", "_Example-3"),
     
-    # Boundary case: Exactly 2 spaces (Should be underscores because 2 is not > 2)
-    ("Example  2", "Example__2"),
-    ("  Example", "__Example"),
-    
-    # More than 2 spaces (Should be hyphen)
-    ("Example   3", "Example-3"),
-    ("Example    4", "Example-4"),
-    ("Example     5", "Example-5"),
-    ("   Example", "-Example"),
-    ("Example   ", "Example-"),
-    
-    # Edge cases: Empty and Space-only
+    # Edge Case: No spaces
+    ("Pytest", "Pytest"),
     ("", ""),
+    
+    # Edge Case: Exactly 1 space
+    ("a b", "a_b"),
+    
+    # Edge Case: Exactly 2 spaces (Not "more than 2", so should be underscores)
+    ("a  b", "a__b"),
+    
+    # Edge Case: More than 2 spaces (3, 4, 5...)
+    ("a   b", "a-b"),
+    ("a    b", "a-b"),
+    ("a     b", "a-b"),
+    
+    # Edge Case: Leading and Trailing spaces
+    (" hello", "_hello"),
+    ("hello ", "hello_"),
+    ("   hello", "-hello"),
+    ("hello   ", "hello-"),
+    ("  hello", "__hello"),
+    ("hello  ", "hello__"),
+    
+    # Edge Case: Mixed space lengths
+    ("a b  c   d    e", "a_b__c-d-e"),
+    ("   a  b   ", "-a__b-"),
+    
+    # Edge Case: Only spaces
     (" ", "_"),
     ("  ", "__"),
     ("   ", "-"),
     ("    ", "-"),
-    
-    # Mixed cases
-    (" Example   3", "_Example-3"),
-    (" a  b   c    d ", "_a__b-c-d_"),
-    ("Hello   World  Test", "Hello-World__Test"),
-    ("   Leading and Trailing   ", "-Leading_and_Trailing-"),
 ])
 def test_fix_spaces(input_text, expected):
     """
-    Tests the fix_spaces function against various scenarios including 
-    single, double, and triple+ spaces.
+    Tests the fix_spaces function against various space configurations
+    to ensure correct replacement of spaces with underscores or hyphens.
     """
     assert fix_spaces(input_text) == expected

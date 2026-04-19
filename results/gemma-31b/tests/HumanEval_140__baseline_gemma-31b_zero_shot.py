@@ -24,25 +24,26 @@ import pytest
     ("", ""),
     ("NoSpacesHere", "NoSpacesHere"),
     
-    # Testing the "more than 2" threshold (2 spaces vs 3 spaces)
-    ("Two spaces", "Two_spaces"),
-    ("Two  spaces", "Two__spaces"), # Exactly 2: should be underscores
-    ("Three   spaces", "Three-spaces"), # 3: more than 2, should be hyphen
-    ("Four    spaces", "Four-spaces"), # 4: more than 2, should be hyphen
-    ("Many       spaces", "Many-spaces"), # Many: more than 2, should be hyphen
+    # Single spaces in various positions
+    (" ", "_"),
+    ("Hello World", "Hello_World"),
+    (" Hello", "_Hello"),
+    ("Hello ", "Hello_"),
     
-    # Leading and Trailing spaces
-    (" leading", "_leading"),
-    ("  leading", "__leading"),
-    ("   leading", "-leading"),
-    ("trailing ", "trailing_"),
-    ("trailing  ", "trailing__"),
-    ("trailing   ", "trailing-"),
+    # Exactly 2 spaces (Should be underscores because it's not MORE than 2)
+    ("  ", "__"),
+    ("Two  Spaces", "Two__Spaces"),
     
-    # Mixed combinations
-    (" a  b   c    d ", "_a__b-c-d_"),
-    ("   start and end   ", "-start_and_end-"),
-    ("multiple   groups   of spaces", "multiple-groups-of_spaces"),
+    # More than 2 spaces (3 or more should become a single hyphen)
+    ("   ", "-"),
+    ("Four    Spaces", "Four-Spaces"),
+    ("Five     Spaces", "Five-Spaces"),
+    
+    # Mixed scenarios
+    (" a  b   c    d", "_a__b-c-d"),
+    ("   Leading and Trailing   ", "-Leading_and_Trailing-"),
+    ("Multiple   sets of    spaces", "Multiple-sets_of-spaces"),
+    ("One space, two  spaces, three   spaces", "One_space,_two__spaces,_three-spaces"),
 ])
 def test_fix_spaces(input_text, expected):
     assert fix_spaces(input_text) == expected

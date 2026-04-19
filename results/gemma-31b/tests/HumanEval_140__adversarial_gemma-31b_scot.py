@@ -13,70 +13,65 @@ def fix_spaces(text):
 
 import pytest
 
-# The function fix_spaces is provided by the environment; we are testing it.
+# The function fix_spaces is already defined in the environment.
+# We are writing the test suite to detect bugs in its implementation.
 
 @pytest.mark.parametrize("input_text, expected", [
-    # Basic cases from docstring
+    # Provided Examples
     ("Example", "Example"),
     ("Example 1", "Example_1"),
     (" Example 2", "_Example_2"),
     (" Example   3", "_Example-3"),
     
-    # No spaces
+    # Edge Case: No spaces
+    ("HelloWorld", "HelloWorld"),
     ("", ""),
-    ("Python", "Python"),
-    ("12345", "12345"),
     
-    # Single spaces (should be underscores)
-    (" ", "_"),
-    ("a b", "a_b"),
-    (" a ", "_a_"),
-    ("a b c", "a_b_c"),
-    
-    # Double spaces (Boundary: NOT more than 2, so should be underscores)
+    # Edge Case: Exactly 2 spaces (Should be __ because it's not > 2)
+    ("Two  Spaces", "Two__Spaces"),
     ("  ", "__"),
-    ("a  b", "a__b"),
-    ("  a", "__a"),
-    ("a  ", "a__"),
     
-    # Triple spaces (Boundary: more than 2, should be hyphen)
+    # Edge Case: More than 2 spaces (3, 4, 5...)
+    ("Three   Spaces", "Three-Spaces"),
+    ("Four    Spaces", "Four-Spaces"),
+    ("Many       Spaces", "Many-Spaces"),
     ("   ", "-"),
-    ("a   b", "a-b"),
-    ("   a", "-a"),
-    ("a   ", "a-"),
     
-    # More than triple spaces (should still be a single hyphen)
-    ("    ", "-"),
-    ("a    b", "a-b"),
-    ("a     b", "a-b"),
-    ("a          b", "a-b"),
+    # Edge Case: Leading and Trailing
+    (" Leading", "_Leading"),
+    ("Trailing ", "Trailing_"),
+    ("  Leading", "__Leading"),
+    ("   Leading", "-Leading"),
+    ("Trailing  ", "Trailing__"),
+    ("Trailing   ", "Trailing-"),
     
-    # Mixed scenarios
-    ("a b  c   d    e", "a_b__c-d-e"),
-    ("  a   b  c ", "__a-b__c_"),
-    ("   a  b ", "-a__b_"),
-    ("a b  c   d", "a_b__c-d"),
+    # Complex Mixtures
+    (" a  b   c    d", "_a__b-c-d"),
+    ("   start  middle   end  ", "-start__middle-end__"),
+    ("1 2  3   4    5", "1_2__3-4-5"),
 ])
 def test_fix_spaces_logic(input_text, expected):
     """
-    Tests the fix_spaces function against various space configurations
-    to ensure correct replacement of single, double, and 3+ spaces.
+    Tests the fix_spaces function against various scenarios including
+    single spaces, double spaces, and 3+ consecutive spaces.
     """
     assert fix_spaces(input_text) == expected
 
 def test_fix_spaces_type_stability():
     """
-    Ensure the function returns a string even for empty inputs.
+    Ensure the function returns a string and handles non-standard 
+    but valid string characters.
     """
-    result = fix_spaces("")
+    result = fix_spaces("Special! @#$   Spaces")
     assert isinstance(result, str)
+    assert result == "Special!_@#$-Spaces"
 
-def test_fix_spaces_non_space_whitespace():
+def test_fix_spaces_large_input():
     """
-    The requirement specifically mentions 'spaces'. 
-    Tabs or newlines should generally be left alone unless specified.
+    Test the function with a larger string to ensure no performance 
+    bottlenecks or recursion depth issues.
     """
-    # If the function is strictly for ' ', \t should remain \t
-    text = "Example\t1"
-    # We assume only ' ' is targeted based on the prompt
-    assert fix_spaces(text) == "Example\t1"
+    large_input = "word " * 1000 + "   " + "word"
+    # 1000 single spaces -> 1000 underscores, then one sequence of 3 spaces -> hyphen
+    expected = "word_" * 1000 + "-word"
+    assert fix_spaces(large_input) == expected

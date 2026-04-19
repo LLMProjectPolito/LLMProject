@@ -14,34 +14,41 @@ def fix_spaces(text):
 import pytest
 
 @pytest.mark.parametrize("input_text, expected", [
-    # Provided examples
+    # Basic cases from docstring
     ("Example", "Example"),
     ("Example 1", "Example_1"),
     (" Example 2", "_Example_2"),
     (" Example   3", "_Example-3"),
     
-    # Edge cases: Number of spaces
-    ("", ""),                          # Empty string
-    (" ", "_"),                        # Single space
-    ("  ", "__"),                      # Exactly 2 spaces (not more than 2)
-    ("   ", "-"),                      # Exactly 3 spaces (more than 2)
-    ("    ", "-"),                     # More than 3 spaces
+    # Edge cases: Empty and No spaces
+    ("", ""),
+    ("NoSpacesHere", "NoSpacesHere"),
     
-    # Position of spaces
-    ("Leading space", "_Leading_space"),
-    ("Trailing space ", "Trailing_space_"),
-    ("  Both  ", "__Both__"),          # 2 spaces at start and end
-    ("   Both   ", "-Both-"),          # 3 spaces at start and end
+    # Single space cases
+    (" ", "_"),
+    ("a b", "a_b"),
+    (" a", "_a"),
+    ("a ", "a_"),
     
-    # Mixed sequences
-    ("a b  c   d    e", "a_b__c-d-e"), # 1, 2, 3, 4 spaces respectively
-    ("   a b  c   ", "-a_b__c-"),      # Mixed leading, middle, trailing
-    ("   ", "-"),                      # Only 3 spaces
-    ("  ", "__"),                      # Only 2 spaces
+    # Two consecutive spaces (should be underscores because it's not MORE than 2)
+    ("  ", "__"),
+    ("a  b", "a__b"),
+    ("  a", "__a"),
+    ("a  ", "a__"),
     
-    # Non-space whitespace (should remain unchanged as per "replace all spaces")
-    ("Example\t1", "Example\t1"),
-    ("Example\n1", "Example\n1"),
+    # Three or more consecutive spaces (should be hyphen)
+    ("   ", "-"),
+    ("    ", "-"),
+    ("a   b", "a-b"),
+    ("a    b", "a-b"),
+    ("   a", "-a"),
+    ("a   ", "a-"),
+    
+    # Mixed scenarios
+    (" a  b   c    d ", "_a__b-c-d_"),
+    ("Hello World  Test   Case", "Hello_World__Test-Case"),
+    ("   Multiple   Spaces   Here   ", "-Multiple-Spaces-Here-"),
+    ("1 2  3   4    5", "1_2__3-4-5"),
 ])
 def test_fix_spaces(input_text, expected):
     assert fix_spaces(input_text) == expected

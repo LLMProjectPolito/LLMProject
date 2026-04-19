@@ -19,12 +19,14 @@ import pytest
 @pytest.mark.parametrize("file_name, expected", [
     # Valid cases
     ("example.txt", "Yes"),
-    ("Example.exe", "Yes"),
-    ("my_file1.dll", "Yes"),
-    ("test123.txt", "Yes"),
-    ("a.exe", "Yes"),
-    ("file.dll", "Yes"),
-    ("valid-name_12.txt", "Yes"),
+    ("test.exe", "Yes"),
+    ("library.dll", "Yes"),
+    ("A.txt", "Yes"),
+    ("file1.exe", "Yes"),
+    ("file12.dll", "Yes"),
+    ("file123.txt", "Yes"),
+    ("a1b2c3.exe", "Yes"),
+    ("MyFile.dll", "Yes"),
     
     # Invalid: More than three digits
     ("file1234.txt", "No"),
@@ -32,29 +34,25 @@ import pytest
     ("a1b2c3d4.dll", "No"),
     
     # Invalid: Dot count
-    ("exampletxt", "No"),          # No dot
-    ("example.txt.bak", "No"),     # Too many dots
-    ("example..txt", "No"),        # Too many dots
+    ("exampletxt", "No"),        # Zero dots
+    ("example.txt.txt", "No"),   # Two dots
+    ("example..txt", "No"),      # Two dots
+    ("...", "No"),               # Three dots
     
-    # Invalid: Substring before dot
-    (".txt", "No"),                # Empty before dot
-    ("1example.dll", "No"),        # Starts with digit
-    ("_example.txt", "No"),        # Starts with special char
-    ("!file.exe", "No"),           # Starts with special char
+    # Invalid: Substring before dot (empty or doesn't start with letter)
+    (".txt", "No"),              # Empty before dot
+    ("1example.txt", "No"),      # Starts with digit
+    ("_example.exe", "No"),      # Starts with underscore
+    (" example.dll", "No"),      # Starts with space
+    ("!file.txt", "No"),         # Starts with special char
     
-    # Invalid: Substring after dot
-    ("example.pdf", "No"),         # Wrong extension
-    ("example.png", "No"),         # Wrong extension
-    ("example.", "No"),            # Empty extension
-    ("example.txt1", "No"),        # Extension contains digit
-    ("example.TXT", "No"),         # Case sensitivity check (prompt specifies lowercase list)
-    ("example.ex", "No"),          # Partial match
-    
-    # Edge cases
-    ("", "No"),                    # Empty string
-    (" .txt", "No"),               # Starts with space
-    ("a123.txt", "Yes"),           # Exactly 3 digits, starts with letter
-    ("a1234.txt", "No"),           # 4 digits, starts with letter
+    # Invalid: Substring after dot (wrong extension)
+    ("example.pdf", "No"),       # Not in allowed list
+    ("example.py", "No"),        # Not in allowed list
+    ("example.tx", "No"),        # Partial match
+    ("example.txt1", "No"),      # Extra char in extension
+    ("example.", "No"),          # Empty after dot
+    ("example.EXE", "No"),       # Case sensitivity check (usually extensions are case sensitive unless specified)
 ])
 def test_file_name_check(file_name, expected):
     assert file_name_check(file_name) == expected

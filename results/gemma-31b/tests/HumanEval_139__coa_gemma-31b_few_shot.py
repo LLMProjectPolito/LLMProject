@@ -23,34 +23,34 @@ def test_special_factorial_boundary_one():
 def test_special_factorial_boundary_two():
     assert special_factorial(2) == 2
 
+def test_special_factorial_boundary_three():
+    assert special_factorial(3) == 12
+
 # Focus: Type Scenarios
 import pytest
 
-def test_special_factorial_float_type():
+def test_special_factorial_float():
     with pytest.raises(TypeError):
         special_factorial(4.5)
 
-def test_special_factorial_string_type():
+def test_special_factorial_string():
     with pytest.raises(TypeError):
-        special_factorial("5")
+        special_factorial("4")
 
-def test_special_factorial_none_type():
+def test_special_factorial_none():
     with pytest.raises(TypeError):
         special_factorial(None)
 
 # Focus: Logic Branches
-import pytest
-
-def test_special_factorial_boundary():
-    # Test the smallest valid input (n=1)
+def test_special_factorial_base_case():
+    # Tests the smallest valid input branch (n=1)
     assert special_factorial(1) == 1
 
-def test_special_factorial_small_value():
-    # Test the smallest case with multiple factorial terms (n=2)
-    # 2! * 1! = 2 * 1 = 2
-    assert special_factorial(2) == 2
+def test_special_factorial_logic_accumulation():
+    # Tests the logic for small integers to ensure product accumulation is correct
+    assert special_factorial(2) == 2  # 2! * 1! = 2 * 1
+    assert special_factorial(3) == 12 # 3! * 2! * 1! = 6 * 2 * 1
 
-def test_special_factorial_general_case():
-    # Test a standard case to verify the cumulative product logic (n=4)
-    # 4! * 3! * 2! * 1! = 24 * 6 * 2 * 1 = 288
-    assert special_factorial(4) == 288
+def test_special_factorial_example_branch():
+    # Tests the logic against the provided example case
+    assert special_factorial(4) == 288 # 24 * 6 * 2 * 1

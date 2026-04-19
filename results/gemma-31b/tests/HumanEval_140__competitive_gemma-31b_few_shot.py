@@ -14,35 +14,23 @@ def fix_spaces(text):
 import pytest
 
 @pytest.mark.parametrize("input_text, expected", [
-    # Provided examples
     ("Example", "Example"),
     ("Example 1", "Example_1"),
     (" Example 2", "_Example_2"),
     (" Example   3", "_Example-3"),
-    
-    # Edge cases: Empty and whitespace only
     ("", ""),
     (" ", "_"),
     ("  ", "__"),
     ("   ", "-"),
     ("    ", "-"),
-    ("     ", "-"),
-    
-    # Consecutive spaces logic
-    ("a b", "a_b"),
-    ("a  b", "a__b"),
-    ("a   b", "a-b"),
-    ("a    b", "a-b"),
-    
-    # Mixed spacing
-    (" a  b   c    d ", "_a__b-c-d_"),
-    ("Hello World  Test   Case", "Hello_World__Test-Case"),
-    ("   Leading", "-Leading"),
-    ("Trailing   ", "Trailing-"),
-    
-    # Non-space whitespace (should remain unchanged based on "spaces" requirement)
-    ("Example\t1", "Example\t1"),
-    ("Example\n1", "Example\n1"),
+    ("a b  c   d    e", "a_b__c-d-e"),
+    ("   a   b   ", "-a-b-"),
+    ("hello world", "hello_world"),
+    ("hello  world", "hello__world"),
+    ("hello   world", "hello-world"),
+    ("multiple   spaces  and    more", "multiple-spaces__and-more"),
+    ("   ", "-"),
+    ("  ", "__"),
 ])
 def test_fix_spaces(input_text, expected):
     assert fix_spaces(input_text) == expected

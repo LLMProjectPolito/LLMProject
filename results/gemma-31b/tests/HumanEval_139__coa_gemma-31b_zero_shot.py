@@ -17,16 +17,17 @@ import math
 
 
 # Focus: Boundary Values
-import pytest
-
 def test_special_factorial_boundary_min():
-    # Minimum valid input n = 1
+    # Minimum valid input according to n > 0
     assert special_factorial(1) == 1
 
 def test_special_factorial_boundary_small():
-    # Smallest input that involves a product of multiple factorials (n = 2)
-    # 2! * 1! = 2 * 1 = 2
+    # Smallest value that involves a product of multiple factorials
     assert special_factorial(2) == 2
+
+def test_special_factorial_boundary_three():
+    # Next boundary step to ensure sequence accumulation
+    assert special_factorial(3) == 12
 
 # Focus: Type Scenarios
 import pytest
@@ -47,14 +48,15 @@ def test_special_factorial_none():
 import pytest
 
 def test_special_factorial_boundary():
-    # Tests the smallest valid input branch (n=1)
+    # Test the smallest valid input (n=1)
     assert special_factorial(1) == 1
 
-def test_special_factorial_small_integer():
-    # Tests the logic for small integers where n > 1
-    assert special_factorial(2) == 2  # 2! * 1! = 2 * 1
-    assert special_factorial(3) == 12 # 3! * 2! * 1! = 6 * 2 * 1
+def test_special_factorial_small_branch():
+    # Test the first case where the product loop runs more than once (n=2)
+    # 2! * 1! = 2 * 1 = 2
+    assert special_factorial(2) == 2
 
-def test_special_factorial_example_case():
-    # Tests the logic for the provided example case
-    assert special_factorial(4) == 288 # 4! * 3! * 2! * 1! = 24 * 6 * 2 * 1
+def test_special_factorial_general_branch():
+    # Test a standard case to ensure the multiplicative logic holds for n > 2
+    # 4! * 3! * 2! * 1! = 24 * 6 * 2 * 1 = 288
+    assert special_factorial(4) == 288

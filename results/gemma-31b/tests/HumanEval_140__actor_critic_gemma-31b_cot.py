@@ -23,36 +23,45 @@ import pytest
     # Edge Case: Empty string
     ("", ""),
     
-    # Edge Case: Single space
+    # Edge Case: Single space (should be underscore)
     (" ", "_"),
     
-    # Edge Case: Exactly two spaces (Not "more than 2", so should be underscores)
+    # Edge Case: Two consecutive spaces (not > 2, so should be underscores)
     ("  ", "__"),
-    ("a  b", "a__b"),
     
-    # Edge Case: More than two spaces (3, 4, 5...)
+    # Edge Case: Three consecutive spaces (is > 2, should be dash)
     ("   ", "-"),
-    ("    ", "-"),
-    ("a   b", "a-b"),
-    ("a    b", "a-b"),
-    ("a     b", "a-b"),
     
-    # Edge Case: Leading and trailing spaces
+    # Edge Case: More than three consecutive spaces (should be dash)
+    ("    ", "-"),
+    ("     ", "-"),
+    
+    # Mixed cases: combinations of 1, 2, and 3+ spaces
+    ("a b", "a_b"),             # 1 space
+    ("a  b", "a__b"),           # 2 spaces
+    ("a   b", "a-b"),           # 3 spaces
+    ("a    b", "a-b"),          # 4 spaces
+    ("a b  c   d    e", "a_b__c-d-e"), # 1, 2, 3, 4 spaces
+    
+    # Leading and trailing spaces
     (" a", "_a"),
     ("a ", "a_"),
     ("  a", "__a"),
-    ("a  ", "a__"),
     ("   a", "-a"),
+    ("a  ", "a__"),
     ("a   ", "a-"),
     
-    # Complex mixed cases
-    (" a  b   c    d e", "_a__b-c-d_e"),
-    ("Hello World  Test   Case    Final", "Hello_World__Test-Case-Final"),
-    ("   Leading and trailing   ", "-Leading_and_trailing-"),
+    # Complex mixed string
+    ("  Hello   World  Pytest   ", "__Hello-World__Pytest-"),
     
-    # Non-space characters and special characters
-    ("!@# $ %  ^ &   *()", "!@#_$_%__^_&_-*()"),
-    ("123 456  789   0", "123_456__789-0"),
+    # Strings with no spaces
+    ("Python", "Python"),
+    ("12345", "12345"),
+    ("!@#$%^&*()", "!@#$%^&*()"),
+    
+    # Strings with other whitespace (should remain unchanged as the prompt specifies "spaces")
+    ("Hello\tWorld", "Hello\tWorld"),
+    ("Hello\nWorld", "Hello\nWorld"),
 ])
 def test_fix_spaces(input_text, expected):
     """

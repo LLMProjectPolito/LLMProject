@@ -17,6 +17,8 @@ import math
 
 def calculate_expected_special_factorial(n):
     """Helper function to calculate the expected Brazilian factorial."""
+    if n <= 0:
+        return None  # Specification says n > 0
     result = 1
     for i in range(1, n + 1):
         result *= math.factorial(i)
@@ -28,19 +30,20 @@ def calculate_expected_special_factorial(n):
     (3, 12),
     (4, 288),
     (5, 34560),
+    (6, 24883200),
 ])
 def test_special_factorial_basic_cases(n, expected):
-    """Test the function with small, known values."""
+    """Test the function with standard positive integers as per the definition."""
     assert special_factorial(n) == expected
 
 def test_special_factorial_large_value():
-    """Test the function with a larger integer to ensure it handles growth."""
-    n = 10
+    """Test the function with a larger integer to ensure it handles large numbers (Python's arbitrary precision)."""
+    n = 15
     expected = calculate_expected_special_factorial(n)
     assert special_factorial(n) == expected
 
 def test_special_factorial_boundary_one():
-    """Test the minimum valid input according to the docstring (n > 0)."""
+    """Test the smallest valid input according to the constraint n > 0."""
     assert special_factorial(1) == 1
 
 @pytest.mark.parametrize("invalid_input", [
@@ -51,35 +54,34 @@ def test_special_factorial_boundary_one():
 def test_special_factorial_non_positive_integers(invalid_input):
     """
     Test how the function handles non-positive integers.
-    Depending on implementation, it might raise an error or return a specific value.
-    Since the docstring specifies n > 0, we check for stability or expected exceptions.
+    Depending on implementation, it should either raise an error or handle it gracefully.
     """
     try:
         result = special_factorial(invalid_input)
-        # If it doesn't raise an error, we check if the result is logically consistent 
-        # (e.g., returning 1 or 0), but usually, this should be handled as an error.
+        # If it doesn't raise an exception, we check if the result is logically consistent 
+        # (e.g., returning 1 for n=0 is common in factorial implementations, but n > 0 is specified).
+        # We primarily want to ensure it doesn't enter an infinite loop.
         assert isinstance(result, int)
-    except (ValueError, TypeError):
-        # These are acceptable ways to handle invalid input
+    except (ValueError, AssertionError):
+        # Raising an error for n <= 0 is also acceptable behavior given the constraint n > 0.
         pass
 
 @pytest.mark.parametrize("wrong_type", [
-    "4", 
     4.5, 
-    None, 
-    [], 
-    {}
+    "4", 
+    [4], 
+    None
 ])
-def test_special_factorial_type_errors(wrong_type):
-    """Test the function with invalid types to ensure it doesn't crash silently."""
-    with pytest.raises((TypeError, ValueError)):
+def test_special_factorial_type_safety(wrong_type):
+    """Test the function with invalid types to ensure it raises a TypeError."""
+    with pytest.raises(TypeError):
         special_factorial(wrong_type)
 
-def test_special_factorial_performance_and_precision():
-    """
-    Test with a moderately large number to ensure Python's arbitrary precision 
-    integers are working and the loop is efficient.
-    """
-    n = 20
-    expected = calculate_expected_special_factorial(n)
-    assert special_factorial(n) == expected
+def test_special_factorial_performance():
+    """Ensure the function completes in a reasonable time for a moderately large n."""
+    import time
+    start_time = time.time()
+    special_factorial(50)
+    end_time = time.time()
+    # The calculation for n=50 should be nearly instantaneous in Python
+    assert end_time - start_time < 1.0

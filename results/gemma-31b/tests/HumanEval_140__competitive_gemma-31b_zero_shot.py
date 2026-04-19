@@ -14,35 +14,26 @@ def fix_spaces(text):
 import pytest
 
 @pytest.mark.parametrize("input_text, expected", [
-    # Basic cases from docstring
     ("Example", "Example"),
     ("Example 1", "Example_1"),
     (" Example 2", "_Example_2"),
     (" Example   3", "_Example-3"),
-    
-    # Edge cases: Empty and no spaces
     ("", ""),
-    ("NoSpacesHere", "NoSpacesHere"),
-    
-    # Single and double spaces (should be underscores)
-    ("single space", "single_space"),
-    ("double  space", "double__space"),
-    ("  leading", "__leading"),
-    ("trailing  ", "trailing__"),
-    
-    # More than 2 consecutive spaces (should be hyphen)
-    ("triple   space", "triple-space"),
-    ("quadruple    space", "quadruple-space"),
-    ("many       spaces", "many-spaces"),
-    ("   leading_triple", "-leading_triple"),
-    ("trailing_triple   ", "trailing_triple-"),
-    
-    # Mixed scenarios
-    (" a  b   c    d ", "_a__b-c-d_"),
-    ("one space, two  spaces, three   spaces", "one_space,_two__spaces,_three-spaces"),
-    ("   ", "-"),
-    ("  ", "__"),
     (" ", "_"),
+    ("  ", "__"),
+    ("   ", "-"),
+    ("    ", "-"),
+    ("a b", "a_b"),
+    ("a  b", "a__b"),
+    ("a   b", "a-b"),
+    ("a    b", "a-b"),
+    ("  a  ", "__a__"),
+    ("   a   ", "-a-"),
+    ("a b  c   d    e", "a_b__c-d-e"),
+    ("   leading", "-leading"),
+    ("trailing   ", "trailing-"),
+    ("multiple   spaces   here", "multiple-spaces-here"),
+    ("mixed 1  2   3 4", "mixed_1__2-3_4"),
 ])
 def test_fix_spaces(input_text, expected):
     assert fix_spaces(input_text) == expected

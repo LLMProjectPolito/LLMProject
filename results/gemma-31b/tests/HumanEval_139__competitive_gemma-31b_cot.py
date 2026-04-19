@@ -13,6 +13,7 @@ def special_factorial(n):
     """
 
 import pytest
+import math
 
 @pytest.mark.parametrize("n, expected", [
     (1, 1),
@@ -23,20 +24,37 @@ import pytest
     (6, 24883200),
 ])
 def test_special_factorial_positive_integers(n, expected):
-    """Test the special factorial with various positive integers."""
+    """Test the function with various positive integers including the provided example."""
     assert special_factorial(n) == expected
 
 def test_special_factorial_large_value():
-    """Test with a larger value to ensure integer handling."""
-    # 7! = 5040. 5040 * 24883200 = 125411328000
-    assert special_factorial(7) == 125411328000
+    """Test with a larger value to ensure correctness and handle large integers."""
+    n = 10
+    # Calculation: 10! * 9! * 8! * 7! * 6! * 5! * 4! * 3! * 2! * 1!
+    expected = 1
+    for i in range(1, n + 1):
+        expected *= math.factorial(i)
+    assert special_factorial(n) == expected
 
-def test_special_factorial_type_error():
-    """Test that non-integer inputs raise a TypeError (if implementation allows)."""
-    with pytest.raises(TypeError):
-        special_factorial("4")
+def test_special_factorial_minimum_input():
+    """Test the boundary condition where n = 1."""
+    assert special_factorial(1) == 1
 
-def test_special_factorial_float_input():
-    """Test that float inputs raise a TypeError or are handled."""
+@pytest.mark.parametrize("invalid_input", [0, -1, -10])
+def test_special_factorial_non_positive_integers(invalid_input):
+    """
+    Test how the function handles inputs not meeting the n > 0 constraint.
+    Depending on implementation, this might raise an error or return a specific value.
+    Since the docstring specifies n > 0, we check for potential exceptions.
+    """
+    with pytest.raises((ValueError, TypeError, IndexError)):
+        # This assumes the implementation validates input or fails naturally
+        # If the function doesn't validate, this test might need adjustment
+        # based on the actual implementation's behavior.
+        special_factorial(invalid_input)
+
+@pytest.mark.parametrize("invalid_type", [3.5, "4", None, []])
+def test_special_factorial_invalid_types(invalid_type):
+    """Test the function with non-integer inputs."""
     with pytest.raises(TypeError):
-        special_factorial(4.5)
+        special_factorial(invalid_type)

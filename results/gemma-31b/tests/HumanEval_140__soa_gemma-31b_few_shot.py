@@ -27,14 +27,15 @@ import pytest
     # Single space cases
     (" ", "_"),
     ("a b", "a_b"),
-    (" a", "_a"),
-    ("a ", "a_"),
+    (" a ", "_a_"),
     
-    # Exactly two spaces (Not "more than 2", so should be underscores)
+    # Exactly two spaces (should be underscores because it's not MORE than 2)
     ("  ", "__"),
     ("a  b", "a__b"),
+    ("  a", "__a"),
+    ("a  ", "a__"),
     
-    # More than two spaces (3 or more)
+    # More than two spaces (should be hyphen)
     ("   ", "-"),
     ("    ", "-"),
     ("a   b", "a-b"),
@@ -42,13 +43,16 @@ import pytest
     ("   a", "-a"),
     ("a   ", "a-"),
     
-    # Mixed scenarios
-    (" a  b   c    d ", "_a__b-c-d_"),
-    ("  a   b  c ", "__a-b__c_"),
-    ("one space,  two spaces,   three spaces", "one_space,___two_spaces,_-three_spaces"),
+    # Mixed sequences
+    ("a b  c   d    e", "a_b__c-d-e"),
+    ("  a   b  c    d ", "__a-b__c-d_"),
     ("   ", "-"),
     ("  ", "__"),
     (" ", "_"),
+    
+    # Complex combinations
+    ("Hello World  Test   Case    Final", "Hello_World__Test-Case-Final"),
+    ("   Leading and trailing   ", "-Leading_and_trailing-"),
 ])
 def test_fix_spaces(input_text, expected):
     assert fix_spaces(input_text) == expected

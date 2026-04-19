@@ -24,9 +24,14 @@ def special_factorial(n):
     The function will receive an integer as input and should return the special
     factorial of this integer.
     """
-    result = 1
-    current_factorial = 1
+    if not isinstance(n, int):
+        raise TypeError("Input must be an integer")
+    if n <= 0:
+        raise ValueError("Input must be greater than 0")
+
+    total_prod = 1
+    current_fact = 1
     for i in range(1, n + 1):
-        current_factorial *= i
-        result *= current_factorial
-    return result
+        current_fact *= i
+        total_prod *= current_fact
+    return total_prod

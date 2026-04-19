@@ -17,14 +17,10 @@ import math
 def test_fix_spaces():
     assert fix_spaces(" Example   3") == "_Example-3"
 
-def test_edge_cases():
+def test_empty():
     assert fix_spaces("") == ""
-    assert fix_spaces("  ") == "__"
-    assert fix_spaces("   ") == "-"
-    assert fix_spaces("     ") == "-"
 
-def test_fix_spaces_boundary_cases():
+def test_fix_spaces_boundaries():
     assert fix_spaces("") == ""
     assert fix_spaces("  ") == "__"
     assert fix_spaces("   ") == "-"
-    assert fix_spaces("    ") == "-"

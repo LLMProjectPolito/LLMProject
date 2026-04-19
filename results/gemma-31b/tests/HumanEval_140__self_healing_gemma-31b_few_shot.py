@@ -24,7 +24,4 @@ def fix_spaces(text):
     fix_spaces(" Example 2") == "_Example_2"
     fix_spaces(" Example   3") == "_Example-3"
     """
-    # Replace sequences of 3 or more spaces with a single hyphen
-    text = re.sub(r' {3,}', '-', text)
-    # Replace all remaining single or double spaces with underscores
-    return text.replace(' ', '_')
+    return re.sub(r" +", lambda m: "-" if len(m.group(0)) > 2 else m.group(0).replace(" ", "_"), text)

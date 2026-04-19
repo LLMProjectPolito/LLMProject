@@ -20,82 +20,86 @@ def fix_spaces(text):
     and if a string has more than 2 consecutive spaces, 
     then replace all consecutive spaces with - 
     """
-    # First, handle the cases with more than 2 consecutive spaces
-    # We use a regex to find 3 or more spaces and replace them with a single hyphen
-    text = re.sub(r' {3,}', '-', text)
-    # Then, replace all remaining single or double spaces with underscores
-    text = text.replace(' ', '_')
-    return text
+    # Replace 3 or more spaces with a single hyphen
+    res = re.sub(r' {3,}', '-', text)
+    # Replace remaining single or double spaces with underscores
+    res = res.replace(' ', '_')
+    return res
 
-@pytest.mark.parametrize("input_text, expected", [
-    # Basic examples
+@pytest.mark.parametrize("input_text, expected_output", [
+    # Provided examples
     ("Example", "Example"),
     ("Example 1", "Example_1"),
     (" Example 2", "_Example_2"),
     (" Example   3", "_Example-3"),
     
-    # Edge cases: Empty and No Spaces
+    # Edge Cases: Empty and No Spaces
     ("", ""),
     ("NoSpacesHere", "NoSpacesHere"),
+    ("Pytest", "Pytest"),
     ("12345", "12345"),
     
-    # Boundary testing for consecutive spaces (1 or 2 -> _, 3+ -> -)
-    (" ", "_"),               # 1 space
-    ("  ", "__"),             # 2 spaces
-    ("   ", "-"),             # 3 spaces
-    ("    ", "-"),            # 4 spaces
-    ("     ", "-"),           # 5 spaces
+    # Single and Double Spaces (Should be underscores)
+    (" ", "_"),
+    ("  ", "__"),
+    ("Word Word", "Word_Word"),
+    ("Word  Word", "Word__Word"),
+    ("A B", "A_B"),
+    ("A  B", "A__B"),
     
-    # Positional testing (Start, Middle, End)
-    ("   Start", "-Start"),            # Leading > 2
-    ("End   ", "End-"),                # Trailing > 2
-    ("  Both  ", "__Both__"),          # Leading/Trailing exactly 2
-    ("   Both   ", "-Both-"),          # Leading/Trailing > 2
+    # Three or more spaces (Should be a single hyphen)
+    ("   ", "-"),
+    ("    ", "-"),
+    ("Word   Word", "Word-Word"),
+    ("Word    Word", "Word-Word"),
+    ("Word     Word", "Word-Word"),
+    ("A   B", "A-B"),
+    ("A     B", "A-B"),
+    ("A          B", "A-B"),
     
-    # Mixed spacing scenarios
-    ("a b  c   d    e", "a_b__c-d-e"), # 1, 2, 3, 4 spaces respectively
-    ("  A   B  C    D", "__A-B__C-D"), # 2, 3, 2, 4 spaces
-    ("Hello World  How   Are    You", "Hello_World__How-Are-You"),
-    ("   Multiple   clusters   of spaces   ", "-Multiple-clusters-of_spaces-"),
-    ("   1  2   3 4    5", "-1__2-3_4-5"),
-    (" a b c ", "_a_b_c_"),
-    ("  a  b  ", "__a__b__"),
+    # Mixed scenarios
+    (" a  b   c    d ", "_a__b-c-d_"),
+    ("Start   Mid  End", "Start-Mid__End"),
+    ("   Leading", "-Leading"),
+    ("Trailing   ", "Trailing-"),
+    ("   Both   ", "-Both-"),
+    ("  A   B  C    D ", "__A-B__C-D_"),
+    ("   Leading spaces", "-Leading_spaces"),
+    ("Trailing spaces   ", "Trailing_spaces-"),
+    ("Multiple   blocks   of   spaces", "Multiple-blocks-of-spaces"),
+    ("One space, two  spaces, three   spaces", "One_space,_two__spaces,_three-spaces"),
+    
+    # Non-space whitespace (should remain untouched)
+    ("Tab\tSpace", "Tab\tSpace"),
+    ("Newline\nSpace", "Newline\nSpace"),
+    
+    # Special characters, numbers, and complex strings
+    ("Hello World!  How are   you?", "Hello_World!__How_are-you?"),
+    ("1 2  3   4    5", "1_2__3-4-5"),
+    ("The quick brown  fox    jumps over the lazy   dog", 
+     "The_quick_brown__fox-jumps_over_the_lazy-dog"),
 ])
-def test_fix_spaces(input_text, expected):
-    """
-    Comprehensive test suite covering:
-    1. Basic replacements (single space to underscore).
-    2. Threshold testing (2 spaces vs 3 spaces).
-    3. Positional testing (start, middle, end of string).
-    4. String boundaries (empty strings, no spaces).
-    5. Multiple mixed clusters of spaces.
-    """
-    assert fix_spaces(input_text) == expected
-
-def test_fix_spaces_non_space_whitespace():
-    """
-    Ensure that only literal spaces are replaced, 
-    not tabs or newlines, as per the problem description.
-    """
-    text = "Tab\tSpace Space\nNewline"
-    # \t remains \t, \n remains \n, " " becomes _
-    expected = "Tab\tSpace_Space\nNewline"
-    assert fix_spaces(text) == expected
+def test_fix_spaces(input_text, expected_output):
+    """Tests various space configurations to ensure correct replacement logic."""
+    assert fix_spaces(input_text) == expected_output
 
 def test_fix_spaces_idempotency():
     """
-    Check if running the function again on its output changes the result.
-    Since the output contains '_' and '-', and the function only looks for ' ',
-    it should be idempotent.
+    Verify that applying the function twice doesn't change the result 
+    since underscores and hyphens are not spaces.
     """
-    input_text = "Example   with   many   spaces"
-    first_pass = fix_spaces(input_text)
-    second_pass = fix_spaces(first_pass)
-    assert first_pass == second_pass
+    text = "  Mixed   spacing  test    here "
+    first_pass = fix_spaces(text)
+    assert fix_spaces(first_pass) == first_pass
 
 def test_fix_spaces_large_input():
-    """Test with a larger string containing many variations of spaces."""
-    input_text = "One " + " " * 1 + "Two " + " " * 2 + "Three " + " " * 3 + "Four " + " " * 10 + "Five"
-    # One_Two__Three-Four-Five
-    expected = "One_Two__Three-Four-Five"
-    assert fix_spaces(input_text) == expected
+    """Test with a very large number of consecutive spaces."""
+    large_spaces = " " * 1000
+    assert fix_spaces(large_spaces) == "-"
+
+def test_fix_spaces_non_string_input():
+    """Verify that the function raises a TypeError when non-string input is provided."""
+    with pytest.raises(TypeError):
+        fix_spaces(None)
+    with pytest.raises(TypeError):
+        fix_spaces(123)

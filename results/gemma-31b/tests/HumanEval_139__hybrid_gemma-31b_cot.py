@@ -15,60 +15,71 @@ def special_factorial(n):
 import pytest
 import math
 
-@pytest.mark.parametrize("n, expected", [
-    (1, 1),            # 1! = 1
-    (2, 2),            # 2! * 1! = 2 * 1 = 2
-    (3, 12),           # 3! * 2! * 1! = 6 * 2 * 1 = 12
-    (4, 288),          # 4! * 3! * 2! * 1! = 24 * 6 * 2 * 1 = 288
-    (5, 34560),        # 5! * 288 = 120 * 288 = 34560
-    (6, 24883200),     # 6! * 34560 = 720 * 34560 = 24883200
-])
-def test_special_factorial_valid_integers(n, expected):
-    """Test the Brazilian factorial with standard positive integers."""
-    assert special_factorial(n) == expected
-
-def test_special_factorial_large_value():
-    """Test the function with a larger value to ensure it handles growth correctly."""
-    n = 10
-    expected = 1
+def calculate_expected_special_factorial(n):
+    """Helper function to compute the Brazilian factorial for test verification."""
+    result = 1
     for i in range(1, n + 1):
-        expected *= math.factorial(i)
-    
+        result *= math.factorial(i)
+    return result
+
+@pytest.mark.parametrize("n, expected", [
+    (1, 1),               # 1! = 1
+    (2, 2),               # 2! * 1! = 2
+    (3, 12),              # 3! * 2! * 1! = 12
+    (4, 288),             # 4! * 3! * 2! * 1! = 288
+    (5, 34560),           # 5! * 288 = 34560
+    (6, 24883200),        # 6! * 34560 = 24883200
+])
+def test_special_factorial_known_values(n, expected):
+    """Test the function with known small Brazilian factorial values."""
     assert special_factorial(n) == expected
 
-def test_special_factorial_recurrence_relation():
+def test_special_factorial_large_value_verification():
+    """Test a larger value using the helper function to ensure precision."""
+    n = 10
+    expected = calculate_expected_special_factorial(n)
+    assert special_factorial(n) == expected
+
+def test_special_factorial_mathematical_property():
     """
-    Test the mathematical relationship: 
-    special_factorial(n) = special_factorial(n-1) * n!
-    This ensures consistency across a range of values.
+    Test the recursive property: special_factorial(n) = special_factorial(n-1) * n!
+    This verifies consistency across a range of values.
     """
-    for n in range(2, 15):
+    for n in range(2, 21):
         assert special_factorial(n) == special_factorial(n - 1) * math.factorial(n)
 
+def test_special_factorial_type_consistency():
+    """Ensure the function returns an integer for valid inputs."""
+    assert isinstance(special_factorial(1), int)
+    assert isinstance(special_factorial(10), int)
+
 @pytest.mark.parametrize("invalid_input", [
-    0, 
-    -1, 
-    -10
+    0,       # Boundary case: n must be > 0
+    -1,      # Negative integer
+    -10,     # Large negative integer
 ])
 def test_special_factorial_non_positive_integers(invalid_input):
-    """Test that the function raises an error for n <= 0 as per requirements."""
+    """Test that non-positive integers raise an appropriate error."""
     with pytest.raises((ValueError, AssertionError)):
         special_factorial(invalid_input)
 
-@pytest.mark.parametrize("bad_type", [
-    4.5, 
-    "4", 
-    [4], 
-    None
+@pytest.mark.parametrize("type_error_input", [
+    "5",            # String
+    5.0,            # Float
+    [5],            # List
+    None,           # NoneType
 ])
-def test_special_factorial_type_errors(bad_type):
-    """Test that the function raises TypeError when input is not an integer."""
-    with pytest.raises(TypeError):
-        special_factorial(bad_type)
+def test_special_factorial_type_errors(type_error_input):
+    """Test that invalid data types raise a TypeError or ValueError."""
+    with pytest.raises((TypeError, ValueError)):
+        special_factorial(type_error_input)
 
-def test_special_factorial_idempotency():
-    """Ensure that calling the function multiple times with the same input yields the same result."""
-    n = 4
-    result1 = special_factorial(n)
-    result2 = special_factorial(n)
-    assert result1 == result2 == 288
+def test_special_factorial_large_n_properties():
+    """
+    Test with a relatively large n to ensure Python's arbitrary precision 
+    integers are handled and basic mathematical properties hold.
+    """
+    n = 25
+    result = special_factorial(n)
+    assert result > 0
+    assert result % math.factorial(n) == 0

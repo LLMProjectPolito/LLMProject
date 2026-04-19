@@ -20,52 +20,46 @@ import pytest
     (" Example 2", "_Example_2"),
     (" Example   3", "_Example-3"),
     
-    # Edge cases: Empty and No Spaces
+    # Edge cases: Empty and No spaces
     ("", ""),
-    ("Hello", "Hello"),
-    ("HelloWorld", "HelloWorld"),
+    ("NoSpacesHere", "NoSpacesHere"),
     
-    # Edge cases: Single and Double spaces (should be underscores)
+    # Single space cases
     (" ", "_"),
-    ("  ", "__"),
     ("a b", "a_b"),
-    ("a  b", "a__b"),
+    (" a", "_a"),
+    ("a ", "a_"),
     
-    # Edge cases: More than 2 spaces (should be a single dash)
+    # Two consecutive spaces (should be underscores as it's not > 2)
+    ("  ", "__"),
+    ("a  b", "a__b"),
+    ("  a", "__a"),
+    ("a  ", "a__"),
+    
+    # Three or more consecutive spaces (should be replaced by a single '-')
     ("   ", "-"),
     ("    ", "-"),
+    ("     ", "-"),
     ("a   b", "a-b"),
     ("a    b", "a-b"),
-    ("a     b", "a-b"),
+    ("   a", "-a"),
+    ("a   ", "a-"),
     
-    # Mixed scenarios
-    (" a  b   c    d ", "_a__b-c-d_"),
-    ("  leading", "__leading"),
-    ("   leading", "-leading"),
-    ("trailing  ", "trailing__"),
-    ("trailing   ", "trailing-"),
-    ("multiple   blocks   of spaces", "multiple-blocks-of spaces"), # Wait, "of spaces" has 1 space -> "of_spaces"
-    ("multiple   blocks   of spaces", "multiple-blocks-of_spaces"),
+    # Mixed space sequences
+    ("a b  c   d    e", "a_b__c-d-e"),
+    ("  a   b  c ", "__a-b__c_"),
+    ("   a   b   ", "-a-b-"),
     
-    # Complex string
-    ("The  quick brown   fox jumps    over the lazy dog", 
-     "The__quick_brown-fox_jumps-over_the_lazy_dog"),
+    # Strings with other characters
+    ("Hello World!", "Hello_World!"),
+    ("123   456  789 0", "123-456__789_0"),
+    ("Special @#$   Chars", "Special_@#$-Chars"),
 ])
 def test_fix_spaces(input_text, expected):
     """
     Tests the fix_spaces function based on the following rules:
     1. Single spaces are replaced by underscores.
-    2. Two consecutive spaces are replaced by two underscores (since 2 is not > 2).
-    3. Three or more consecutive spaces are replaced by a single dash.
+    2. Two consecutive spaces are replaced by two underscores.
+    3. Three or more consecutive spaces are replaced by a single hyphen.
     """
     assert fix_spaces(input_text) == expected
-
-def test_fix_spaces_non_space_whitespace():
-    """
-    Verify that only actual space characters ' ' are replaced, 
-    not tabs or newlines, unless the function is intended to handle all whitespace.
-    Based on the prompt 'replace all spaces', we assume only ' '.
-    """
-    # If the function only targets ' ', tabs should remain.
-    assert fix_spaces("Example\t1") == "Example\t1"
-    assert fix_spaces("Example\n1") == "Example\n1"

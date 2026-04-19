@@ -20,39 +20,43 @@ import pytest
     # Valid cases
     ("example.txt", "Yes"),
     ("Example.exe", "Yes"),
-    ("file1.dll", "Yes"),
-    ("f1i2l3e.txt", "Yes"),
-    ("a.exe", "Yes"),
-    ("myFile123.dll", "Yes"),
-    ("Test_File.txt", "Yes"),
+    ("test.dll", "Yes"),
+    ("file1.txt", "Yes"),
+    ("file12.exe", "Yes"),
+    ("file123.dll", "Yes"),
+    ("a1b2c3.txt", "Yes"),
+    ("MyFile_123.exe", "Yes"),
+    ("A.dll", "Yes"),
     
     # Invalid: More than three digits
     ("file1234.txt", "No"),
     ("1234.exe", "No"),
     ("a1b2c3d4.dll", "No"),
+    ("123456789.txt", "No"),
     
     # Invalid: Dot count
     ("exampletxt", "No"),
     ("example.txt.bak", "No"),
-    ("my.file.txt", "No"),
+    ("example..txt", "No"),
     ("...", "No"),
     
     # Invalid: Substring before dot
     (".txt", "No"),
-    ("1example.dll", "No"),
+    ("1example.txt", "No"),
     ("2.exe", "No"),
-    ("_example.txt", "No"),
+    ("_example.dll", "No"),
     (" example.txt", "No"),
     ("!file.exe", "No"),
     
     # Invalid: Substring after dot
-    ("example.jpg", "No"),
     ("example.pdf", "No"),
-    ("example.txt1", "No"),
+    ("example.jpg", "No"),
+    ("example.py", "No"),
     ("example.", "No"),
-    ("example.TXT", "No"), # Case sensitivity check based on provided list
-    ("example.ex", "No"),
-    ("example.dlls", "No"),
+    ("example.txt1", "No"),
+    ("example.TXT", "No"), # Assuming case-sensitivity based on the provided list
+    ("example.EXE", "No"),
+    ("example.DLL", "No"),
 ])
 def test_file_name_check(file_name, expected):
     assert file_name_check(file_name) == expected

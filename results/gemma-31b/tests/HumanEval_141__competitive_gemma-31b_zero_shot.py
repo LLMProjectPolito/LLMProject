@@ -24,33 +24,39 @@ import pytest
     ("File1.txt", "Yes"),
     ("File12.exe", "Yes"),
     ("File123.dll", "Yes"),
-    ("a1b2c3.txt", "Yes"),
-    ("A.exe", "Yes"),
-    ("MyFile_123.dll", "Yes"),
+    ("A.txt", "Yes"),
+    ("MyFile_123.txt", "Yes"),
+    ("MixedCase.EXE", "No"), # Extension must be exactly 'exe'
     
     # Invalid: Too many digits
     ("file1234.txt", "No"),
-    ("f1i2l3e4.exe", "No"),
-    ("1234.dll", "No"),
+    ("1234file.exe", "No"),
+    ("12.345.dll", "No"), # Also fails dot check, but primarily digits
     
     # Invalid: Dot conditions
-    ("exampletxt", "No"),        # No dot
-    ("example.txt.txt", "No"),   # More than one dot
-    ("example..txt", "No"),      # More than one dot
+    ("exampletxt", "No"),       # No dot
+    ("example.txt.txt", "No"),  # More than one dot
+    (".txt", "No"),             # Empty before dot
+    ("example.", "No"),         # Empty after dot
     
-    # Invalid: Before the dot
-    (".txt", "No"),              # Empty before dot
-    ("1example.txt", "No"),      # Starts with digit
-    ("_example.exe", "No"),      # Starts with non-latin letter
-    (" example.dll", "No"),      # Starts with space
+    # Invalid: Start character
+    ("1example.txt", "No"),     # Starts with digit
+    ("_example.txt", "No"),     # Starts with underscore
+    (" example.txt", "No"),     # Starts with space
+    ("!example.exe", "No"),     # Starts with special char
     
-    # Invalid: After the dot (Extensions)
-    ("example.pdf", "No"),       # Wrong extension
-    ("example.png", "No"),       # Wrong extension
-    ("example.", "No"),          # Empty extension
-    ("example.txt1", "No"),      # Extension contains digit
-    ("example.TXT", "No"),       # Case sensitivity check (assuming strict match)
-    ("example.ex", "No"),        # Partial match
+    # Invalid: Extension
+    ("example.pdf", "No"),
+    ("example.jpg", "No"),
+    ("example.py", "No"),
+    ("example.txt1", "No"),
+    ("example.ex", "No"),
+    
+    # Edge cases
+    ("", "No"),                 # Empty string
+    ("a.txt", "Yes"),           # Minimum valid length
+    ("a123.txt", "Yes"),        # Max digits, valid start
+    ("1a23.txt", "No"),         # Max digits, invalid start
 ])
 def test_file_name_check(file_name, expected):
     assert file_name_check(file_name) == expected

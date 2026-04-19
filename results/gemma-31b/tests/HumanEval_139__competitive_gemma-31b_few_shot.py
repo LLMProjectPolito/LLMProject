@@ -13,7 +13,6 @@ def special_factorial(n):
     """
 
 import pytest
-import math
 
 @pytest.mark.parametrize("n, expected", [
     (1, 1),
@@ -23,21 +22,16 @@ import math
     (5, 34560),
     (6, 24883200),
 ])
-def test_special_factorial_valid_inputs(n, expected):
-    """Test the special_factorial function with valid positive integers."""
+def test_special_factorial_positive_integers(n, expected):
+    """Test the special factorial with a range of valid positive integers."""
     assert special_factorial(n) == expected
 
-def test_special_factorial_docstring_example():
-    """Verify the specific example provided in the docstring."""
+def test_special_factorial_example():
+    """Test the specific example provided in the docstring."""
     assert special_factorial(4) == 288
 
 def test_special_factorial_large_value():
-    """Test with a larger value to ensure correctness of the product sequence."""
+    """Test with a slightly larger value to ensure correctness of the product chain."""
     # 7! * 6! * 5! * 4! * 3! * 2! * 1!
-    # 5040 * 720 * 120 * 24 * 6 * 2 * 1 = 125411328000
+    # 5040 * 24883200 = 125411328000
     assert special_factorial(7) == 125411328000
-
-def test_special_factorial_mathematical_consistency():
-    """Verify that special_factorial(n) == special_factorial(n-1) * math.factorial(n)."""
-    n = 10
-    assert special_factorial(n) == special_factorial(n - 1) * math.factorial(n)

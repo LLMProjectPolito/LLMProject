@@ -19,54 +19,39 @@ import pytest
 @pytest.mark.parametrize("file_name, expected", [
     # Valid cases
     ("example.txt", "Yes"),
-    ("a.exe", "Yes"),
+    ("example.exe", "Yes"),
+    ("example.dll", "Yes"),
+    ("a.txt", "Yes"),
+    ("A.dll", "Yes"),
+    ("file1.txt", "Yes"),
+    ("file12.exe", "Yes"),
     ("file123.dll", "Yes"),
-    ("MyFile.txt", "Yes"),
-    ("a1b2c3.exe", "Yes"),
-    ("Test.dll", "Yes"),
-    ("v1.0.txt", "No"), # This should be No because it has two dots
+    ("f1i2l3.txt", "Yes"),
+    ("MyFile_12.txt", "Yes"),
+    
+    # Invalid: Too many digits (> 3)
+    ("file1234.txt", "No"),
+    ("f1i2l3u4.exe", "No"),
+    ("1234.dll", "No"),
+    
+    # Invalid: Dot conditions (exactly one dot)
+    ("filename", "No"),            # No dot
+    ("file.name.txt", "No"),       # More than one dot
+    ("file..txt", "No"),           # More than one dot
+    
+    # Invalid: Prefix conditions
+    (".txt", "No"),                # Empty prefix
+    ("1example.dll", "No"),        # Starts with digit
+    ("_example.txt", "No"),        # Starts with special character
+    (" example.exe", "No"),        # Starts with space
+    
+    # Invalid: Extension conditions
+    ("file.pdf", "No"),            # Not in ['txt', 'exe', 'dll']
+    ("file.png", "No"),            # Not in ['txt', 'exe', 'dll']
+    ("file.", "No"),               # Empty extension
+    ("file.txt1", "No"),           # Extension contains digit/wrong string
+    ("file.TXT", "No"),            # Case sensitivity check (assuming strict match)
+    ("file.Exe", "No"),            # Case sensitivity check
 ])
-def test_file_name_check_valid(file_name, expected):
+def test_file_name_check(file_name, expected):
     assert file_name_check(file_name) == expected
-
-@pytest.mark.parametrize("file_name", [
-    "file1234.txt",    # 4 digits
-    "1234.exe",        # 4 digits
-    "a1b2c3d4.dll",    # 4 digits
-    "12345.txt",       # 5 digits
-])
-def test_file_name_check_too_many_digits(file_name):
-    assert file_name_check(file_name) == "No"
-
-@pytest.mark.parametrize("file_name", [
-    "exampletxt",      # No dot
-    "example.txt.txt", # Two dots
-    "example..txt",    # Two dots
-    "...",            # Three dots
-])
-def test_file_name_check_dot_count(file_name):
-    assert file_name_check(file_name) == "No"
-
-@pytest.mark.parametrize("file_name", [
-    ".txt",            # Empty before dot
-    "1example.txt",    # Starts with digit
-    "_example.txt",    # Starts with underscore
-    " example.txt",    # Starts with space
-    "!example.exe",    # Starts with special char
-])
-def test_file_name_check_invalid_prefix(file_name):
-    assert file_name_check(file_name) == "No"
-
-@pytest.mark.parametrize("file_name", [
-    "example.pdf",     # Invalid extension
-    "example.tx",      # Invalid extension (too short)
-    "example.txt1",    # Invalid extension (too long/contains digit)
-    "example.",        # Empty extension
-    "example.exee",    # Invalid extension
-    "example.dll ",    # Trailing space
-])
-def test_file_name_check_invalid_extension(file_name):
-    assert file_name_check(file_name) == "No"
-
-def test_file_name_check_empty_string():
-    assert file_name_check("") == "No"

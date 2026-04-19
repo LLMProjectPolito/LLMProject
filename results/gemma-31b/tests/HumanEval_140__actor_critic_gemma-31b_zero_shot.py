@@ -21,14 +21,15 @@ def fix_spaces(text):
     """
     import re
     # Replace 3 or more spaces with '-'
-    # Then replace remaining single or double spaces with '_'
-    # We use a regex that finds 3+ spaces first, then handles the rest.
+    # Then replace remaining single spaces with '_'
+    # We use a regex with a lookahead or a specific order to ensure 
+    # that sequences of 3+ are handled before single/double spaces.
     
-    # This regex finds sequences of 3 or more spaces
-    res = re.sub(r' {3,}', '-', text)
-    # This replaces remaining spaces with underscores
-    res = res.replace(' ', '_')
-    return res
+    # First, handle the 3+ spaces case
+    text = re.sub(r' {3,}', '-', text)
+    # Then, handle the remaining spaces (1 or 2)
+    text = text.replace(' ', '_')
+    return text
 
 @pytest.mark.parametrize("input_text, expected", [
     # Provided examples
@@ -40,28 +41,32 @@ def fix_spaces(text):
     # Edge Case: Empty string
     ("", ""),
     
-    # Edge Case: No spaces
-    ("HelloWorld", "HelloWorld"),
-    
     # Edge Case: Only spaces
-    (" ", "_"),            # 1 space -> _
-    ("  ", "__"),          # 2 spaces -> __ (not more than 2)
-    ("   ", "-"),          # 3 spaces -> -
-    ("    ", "-"),         # 4 spaces -> -
-    ("     ", "-"),        # 5 spaces -> -
+    (" ", "_"),
+    ("  ", "__"),
+    ("   ", "-"),
+    ("    ", "-"),
+    
+    # Edge Case: Exactly 2 spaces (should be underscores, as 2 is not > 2)
+    ("Hello  World", "Hello__World"),
+    
+    # Edge Case: Exactly 3 spaces (should be hyphen)
+    ("Hello   World", "Hello-World"),
+    
+    # Edge Case: More than 3 spaces (should be hyphen)
+    ("Hello    World", "Hello-World"),
+    ("Hello     World", "Hello-World"),
     
     # Edge Case: Leading and Trailing spaces
-    ("  start", "__start"),
-    ("end  ", "end__"),
-    ("   both   ", "-both-"),
+    ("   Leading", "-Leading"),
+    ("Trailing   ", "Trailing-"),
+    ("  Both  ", "__Both__"),
+    ("   Both   ", "-Both-"),
     
-    # Edge Case: Mixed space counts
-    ("a b  c   d    e", "a_b__c-d-e"),
-    ("   1  2   3 4    5  6", "-1__2-3_4-5__6"),
-    
-    # Edge Case: Non-space whitespace (should remain untouched based on prompt)
-    ("Example\t1", "Example\t1"),
-    ("Example\n1", "Example\n1"),
+    # Complex mixed cases
+    (" a b  c   d    e ", "_a_b__c-d-e_"),
+    ("Multiple   spaces and  two spaces", "Multiple-spaces_and__two_spaces"),
+    ("   Three   and    Four   ", "-Three-and-Four-"),
 ])
 def test_fix_spaces(input_text, expected):
     assert fix_spaces(input_text) == expected

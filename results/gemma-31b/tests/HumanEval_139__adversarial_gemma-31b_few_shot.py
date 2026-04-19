@@ -15,41 +15,57 @@ def special_factorial(n):
 import pytest
 
 def test_special_factorial_basic():
-    """Tests the example provided in the docstring and basic small integers."""
-    assert special_factorial(1) == 1        # 1! = 1
-    assert special_factorial(2) == 2        # 2! * 1! = 2 * 1 = 2
-    assert special_factorial(3) == 12       # 3! * 2! * 1! = 6 * 2 * 1 = 12
-    assert special_factorial(4) == 288      # 4! * 3! * 2! * 1! = 24 * 6 * 2 * 1 = 288
+    """Test standard positive integers including the provided example."""
+    assert special_factorial(1) == 1      # 1! = 1
+    assert special_factorial(2) == 2      # 2! * 1! = 2 * 1 = 2
+    assert special_factorial(3) == 12     # 3! * 2! * 1! = 6 * 2 * 1 = 12
+    assert special_factorial(4) == 288    # 4! * 3! * 2! * 1! = 24 * 6 * 2 * 1 = 288
+    assert special_factorial(5) == 34560  # 120 * 288 = 34560
 
-def test_special_factorial_larger_value():
-    """Tests a slightly larger value to ensure the product accumulates correctly."""
-    # 5! * 4! * 3! * 2! * 1! = 120 * 288 = 34560
-    assert special_factorial(5) == 34560
+@pytest.mark.parametrize("n, expected", [
+    (1, 1),
+    (2, 2),
+    (3, 12),
+    (4, 288),
+    (5, 34560),
+])
+def test_special_factorial_parametrized(n, expected):
+    """Parametrized test to ensure consistency across multiple valid inputs."""
+    assert special_factorial(n) == expected
 
-@pytest.mark.parametrize("invalid_input", [0, -1, -10])
-def test_special_factorial_non_positive_integers(invalid_input):
+def test_special_factorial_zero():
     """
     The docstring specifies n > 0. 
-    Depending on implementation, this should either raise a ValueError 
-    or handle it gracefully. A robust implementation should not enter an infinite loop.
+    Depending on implementation, n=0 should either raise a ValueError 
+    or return a mathematically defined identity (usually 1).
     """
+    # If the function is strict about n > 0:
     with pytest.raises((ValueError, AssertionError)):
-        special_factorial(invalid_input)
+        special_factorial(0)
 
-@pytest.mark.parametrize("wrong_type", [3.5, "5", [5], None])
-def test_special_factorial_type_safety(wrong_type):
-    """Ensures the function handles non-integer types by raising a TypeError."""
+def test_special_factorial_negative():
+    """Test that negative integers are handled gracefully (should raise error)."""
+    with pytest.raises((ValueError, AssertionError)):
+        special_factorial(-1)
+    with pytest.raises((ValueError, AssertionError)):
+        special_factorial(-10)
+
+def test_special_factorial_invalid_types():
+    """Test that non-integer inputs raise a TypeError."""
     with pytest.raises(TypeError):
-        special_factorial(wrong_type)
+        special_factorial(3.5)
+    with pytest.raises(TypeError):
+        special_factorial("5")
+    with pytest.raises(TypeError):
+        special_factorial(None)
 
-def test_special_factorial_performance_large_n():
+def test_special_factorial_large_value():
     """
-    Tests that the function can handle a moderately large n without crashing.
-    Python handles arbitrary precision integers, so we check for completion.
+    Test a larger value to ensure no integer overflow 
+    (Python handles arbitrarily large integers, but we check for stability).
     """
-    try:
-        result = special_factorial(20)
-        assert isinstance(result, int)
-        assert result > 0
-    except RecursionError:
-        pytest.fail("special_factorial raised RecursionError; consider an iterative approach.")
+    # special_factorial(10) is a very large number
+    # 10! * 9! * ... * 1!
+    result = special_factorial(10)
+    assert isinstance(result, int)
+    assert result > 0

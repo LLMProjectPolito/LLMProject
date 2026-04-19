@@ -21,38 +21,37 @@ import pytest
     ("example.txt", "Yes"),
     ("test.exe", "Yes"),
     ("library.dll", "Yes"),
-    ("a.txt", "Yes"),
-    ("File1.txt", "Yes"),
-    ("File12.exe", "Yes"),
-    ("File123.dll", "Yes"),
-    ("MyFile1a2b3.txt", "Yes"),
-    ("UppercaseStart.exe", "Yes"),
+    ("A.txt", "Yes"),
+    ("file1.txt", "Yes"),
+    ("file12.exe", "Yes"),
+    ("file123.dll", "Yes"),
+    ("myFile1a2b3.txt", "Yes"),
+    ("UpperStart.exe", "Yes"),
     
     # Invalid: Too many digits
     ("file1234.txt", "No"),
-    ("1234file.exe", "No"),
-    ("f1i2l3e4.dll", "No"),
+    ("f1i2l3e4.exe", "No"),
+    ("1234.dll", "No"),
     
-    # Invalid: Dot count
-    ("exampletxt", "No"),
-    ("example.test.txt", "No"),
-    ("example..txt", "No"),
+    # Invalid: Dot constraints
+    ("exampletxt", "No"),          # No dot
+    ("example.test.txt", "No"),    # More than one dot
+    ("example.", "No"),            # Dot at end
+    (".txt", "No"),                # Dot at start
     
     # Invalid: Substring before dot
-    (".txt", "No"),
-    ("1example.txt", "No"),
-    ("2.exe", "No"),
-    ("_example.dll", "No"),
-    ("!file.txt", "No"),
+    ("1example.dll", "No"),        # Starts with digit
+    ("_example.txt", "No"),        # Starts with special char
+    (" example.exe", "No"),        # Starts with space
+    (".exe", "No"),                # Empty before dot
     
     # Invalid: Substring after dot
-    ("example.pdf", "No"),
-    ("example.png", "No"),
-    ("example.txt1", "No"),
-    ("example.", "No"),
-    ("example.TXT", "No"), # Assuming case-sensitive based on provided list
-    ("example.EXE", "No"),
-    ("example.DLL", "No"),
+    ("example.jpg", "No"),         # Wrong extension
+    ("example.pdf", "No"),         # Wrong extension
+    ("example.txt1", "No"),        # Extension too long
+    ("example.tx", "No"),          # Extension too short
+    ("example.TXT", "No"),         # Case sensitivity check (assuming strict match)
+    ("example.exe ", "No"),        # Trailing space in extension
 ])
 def test_file_name_check(file_name, expected):
     assert file_name_check(file_name) == expected

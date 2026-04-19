@@ -23,51 +23,37 @@ import pytest
     # Edge cases: Empty and No spaces
     ("", ""),
     ("NoSpacesHere", "NoSpacesHere"),
+    ("   ", "-"), # 3 spaces -> -
     
-    # Single spaces in various positions
+    # Single space cases
     (" ", "_"),
-    ("  ", "__"), # Exactly 2 spaces: not "more than 2", so replaced by underscores
-    (" a b c ", "_a_b_c_"),
+    ("a b", "a_b"),
+    (" a", "_a"),
+    ("a ", "a_"),
     
-    # More than 2 consecutive spaces (3+)
+    # Double space cases (Not more than 2, so should be underscores)
+    ("  ", "__"),
+    ("a  b", "a__b"),
+    ("  a", "__a"),
+    ("a  ", "a__"),
+    
+    # More than 2 spaces cases (3 or more -> -)
     ("   ", "-"),
     ("    ", "-"),
-    ("Hello   World", "Hello-World"),
-    ("Hello    World", "Hello-World"),
-    ("   Leading", "-Leading"),
-    ("Trailing   ", "Trailing-"),
+    ("a   b", "a-b"),
+    ("a    b", "a-b"),
+    ("   a", "-a"),
+    ("a   ", "a-"),
     
-    # Mixed space counts
-    ("a b  c   d    e", "a_b__c-d-e"),
-    ("  a   b  c    d ", "__a-b__c-d_"),
+    # Mixed cases
+    (" a  b   c    d", "_a__b-c-d"),
+    ("  a   b  c", "__a-b__c"),
+    ("one space,  two spaces,   three spaces,    four spaces", 
+     "one_space,___two_spaces,_-three_spaces,_-four_spaces"),
     
     # Special characters and numbers
-    ("123 456   789", "123_456-789"),
-    ("! @  #   $", "!_@__#- $"), # Wait, " ! @  #   $" -> "!_@__#- $" is wrong. 
-    # Let's re-evaluate: " ! @  #   $" 
-    # ' ' (1) -> '_'
-    # ' ' (1) -> '_'
-    # '  ' (2) -> '__'
-    # '   ' (3) -> '-'
-    # Result: "_!_@__#- $" (if there is a space at the end)
-    
-    ("! @  #   $", "!_@__#- $"), # This was a mental check, let's use a cleaner one:
-    ("A B  C   D", "A_B__C-D"),
+    ("123 456", "123_456"),
+    ("! @  #   $", "!_@__#-"),
 ])
 def test_fix_spaces(input_text, expected):
     assert fix_spaces(input_text) == expected
-
-def test_fix_spaces_long_string():
-    """Test with a longer string containing various space patterns."""
-    text = "The  quick brown   fox jumps    over the lazy   dog"
-    # "The  " (2) -> "The__"
-    # " quick " (1, 1) -> "_quick_"
-    # " brown   " (1, 3) -> "_brown-"
-    # " fox " (1, 1) -> "_fox_"
-    # " jumps    " (1, 4) -> "_jumps-"
-    # " over " (1, 1) -> "_over_"
-    # " the " (1, 1) -> "_the_"
-    # " lazy   " (1, 3) -> "_lazy-"
-    # " dog" (1) -> "_dog"
-    expected = "The__quick_brown-fox_jumps-over_the_lazy-dog"
-    assert fix_spaces(text) == expected

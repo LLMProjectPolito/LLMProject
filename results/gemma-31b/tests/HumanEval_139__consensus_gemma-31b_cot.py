@@ -23,33 +23,37 @@ import math
     (5, 34560),
     (6, 24883200),
 ])
-def test_special_factorial_known_values(n, expected):
-    """Test the special_factorial with known valid positive integers."""
+def test_special_factorial_values(n, expected):
+    """Test the special_factorial function with known basic values."""
     assert special_factorial(n) == expected
 
-def test_special_factorial_large_value():
-    """Test with a larger value to ensure correctness and handle large integers."""
-    n = 10
-    expected = 1
-    for i in range(1, n + 1):
-        expected *= math.factorial(i)
-    assert special_factorial(n) == expected
+def test_special_factorial_large_values():
+    """Test larger values to ensure correctness and handle Python's arbitrary precision integers."""
+    # 7! * 6! * ... * 1! = 125411328000
+    assert special_factorial(7) == 125411328000
+    # 10! * 9! * ... * 1!
+    assert special_factorial(10) == 665860658410473652224000000
 
-def test_special_factorial_mathematical_property():
-    """Verify the property: special_factorial(n) = n! * special_factorial(n-1)"""
-    for n in range(2, 11):
-        assert special_factorial(n) == math.factorial(n) * special_factorial(n - 1)
+def test_special_factorial_mathematical_consistency():
+    """Verify the result against a manual iterative calculation of factorials for a range."""
+    for n in range(1, 11):
+        expected = 1
+        for i in range(1, n + 1):
+            expected *= math.factorial(i)
+        assert special_factorial(n) == expected
 
 def test_special_factorial_type_error():
-    """Test that non-integer inputs raise appropriate errors."""
+    """Test that non-integer inputs raise a TypeError."""
+    with pytest.raises(TypeError):
+        special_factorial(3.5)
     with pytest.raises(TypeError):
         special_factorial("4")
-    with pytest.raises(TypeError):
-        special_factorial(4.5)
 
 def test_special_factorial_invalid_range():
-    """Test behavior for n <= 0 as the specification requires n > 0."""
-    with pytest.raises((ValueError, AssertionError, IndexError)):
+    """Test that inputs <= 0 raise a ValueError."""
+    with pytest.raises(ValueError):
         special_factorial(0)
-    with pytest.raises((ValueError, AssertionError, IndexError)):
+    with pytest.raises(ValueError):
         special_factorial(-1)
+    with pytest.raises(ValueError):
+        special_factorial(-10)

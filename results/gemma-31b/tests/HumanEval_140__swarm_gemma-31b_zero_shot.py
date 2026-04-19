@@ -12,11 +12,12 @@ def fix_spaces(text):
     """
 
 import pytest
+import math
 
 @pytest.mark.parametrize("input_str, expected", [
+    ("  a  b   c    d ", "__a__b-c-d_"),
+    ("  a   b  c    d ", "__a-b__c-d_"),
     ("  a   b  ", "__a-b__"),
-    ("  a   b    c ", "__a-b-c_"),
-    ("  a   b    c  ", "__a-b-c__"),
 ])
-def test_fix_spaces_boundaries(input_str, expected):
+def test_fix_spaces_boundary_conditions(input_str, expected):
     assert fix_spaces(input_str) == expected

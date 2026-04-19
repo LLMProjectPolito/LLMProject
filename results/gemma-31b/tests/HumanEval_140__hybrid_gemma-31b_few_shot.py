@@ -13,46 +13,43 @@ def fix_spaces(text):
 
 import pytest
 
-# Assuming fix_spaces is imported from your module
-# from your_module import fix_spaces
-
-@pytest.mark.parametrize("input_text, expected, scenario", [
-    # --- No Spaces ---
-    ("Example", "Example", "no spaces"),
-    ("", "", "empty string"),
-    ("12345", "12345", "numeric string"),
-
-    # --- Single Space (1 -> _) ---
-    ("Example 1", "Example_1", "single space middle"),
-    (" Example 2", "_Example_2", "single space leading"),
-    ("Example 2 ", "Example_2_", "single space trailing"),
-    (" ", "_", "single space only"),
-
-    # --- Double Space (2 -> __) ---
-    ("Example  2", "Example__2", "double space middle"),
-    ("  Example", "__Example", "double space leading"),
-    ("Example  ", "Example__", "double space trailing"),
-    ("  ", "__", "double space only"),
-
-    # --- Three or More Spaces (3+ -> -) ---
-    ("Example   3", "Example-3", "three spaces"),
-    ("Example    4", "Example-4", "four spaces"),
-    ("Example       5", "Example-5", "many spaces"),
-    ("   ", "-", "three spaces only"),
-    ("    ", "-", "four spaces only"),
-    ("   Leading", "-Leading", "leading 3+ spaces"),
-    ("Trailing   ", "Trailing-", "trailing 3+ spaces"),
-
+@pytest.mark.parametrize("input_text, expected", [
+    # --- No Spaces / Empty ---
+    ("", ""),
+    ("Example", "Example"),
+    ("Python123", "Python123"),
+    
+    # --- Single Spaces (1 space -> _) ---
+    (" ", "_"),
+    ("A B", "A_B"),
+    (" Example", "_Example"),
+    ("Example ", "Example_"),
+    ("A B C", "A_B_C"),
+    
+    # --- Double Spaces (2 spaces -> __) ---
+    ("  ", "__"),
+    ("A  B", "A__B"),
+    ("  Example", "__Example"),
+    ("Example  ", "Example__"),
+    
+    # --- Multiple Spaces (3+ spaces -> -) ---
+    ("   ", "-"),
+    ("    ", "-"),
+    ("     ", "-"),
+    ("A   B", "A-B"),
+    ("A    B", "A-B"),
+    ("   Example", "-Example"),
+    ("Example   ", "Example-"),
+    
     # --- Mixed Patterns ---
-    ("A B  C   D    E", "A_B__C-D-E", "mixed 1, 2, 3, 4 spaces"),
-    ("  Hello   World  ", "__Hello-World__", "mixed leading/trailing"),
-    ("  A   B  ", "__A-B__", "mixed double and triple"),
-    ("Hello   World   Pytest", "Hello-World-Pytest", "multiple triple blocks"),
-    ("Mixed 1  2   3    4", "Mixed_1__2-3-4", "mixed numeric sequence"),
-    ("  Start and end  ", "__Start_and_end__", "mixed internal single"),
-    ("   Start and end   ", "-Start_and_end-", "mixed internal single with 3+ edges"),
+    ("A B  C   D", "A_B__C-D"),
+    ("   A  B C   ", "-A__B_C-"),
+    ("Hello   World  Test Space", "Hello-World__Test_Space"),
+    ("  hello   world  !", "__hello-world__!"),
+    ("   leading and   trailing   ", "-leading_and-trailing-"),
+    ("A B  C   D    E", "A_B__C-D-E"),
 ])
-def test_fix_spaces_comprehensive(input_text, expected, scenario):
+def test_fix_spaces(input_text, expected):
     """
     Comprehensive test suite for fix_spaces.
     Rules:
@@ -60,4 +57,4 @@ def test_fix_spaces_comprehensive(input_text, expected, scenario):
     - 2 spaces -> '__'
     - 3+ spaces -> '-'
     """
-    assert fix_spaces(input_text) == expected, f"Failed on scenario: {scenario}"
+    assert fix_spaces(input_text) == expected

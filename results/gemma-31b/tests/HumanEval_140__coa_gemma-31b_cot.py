@@ -16,45 +16,53 @@ import math
 
 
 # Focus: Boundary Values
-def test_fix_spaces_empty():
+def test_fix_spaces_boundary_two_spaces():
+    # Boundary: Exactly 2 spaces (should be underscores, as it's not > 2)
+    assert fix_spaces("a  b") == "a__b"
+
+def test_fix_spaces_boundary_three_spaces():
+    # Boundary: Exactly 3 spaces (should be hyphen, as it is > 2)
+    assert fix_spaces("a   b") == "a-b"
+
+def test_fix_spaces_boundary_empty():
+    # Boundary: Empty string
     assert fix_spaces("") == ""
-
-def test_fix_spaces_two_consecutive():
-    # Boundary: 2 spaces is not "more than 2", should be replaced by underscores
-    assert fix_spaces("  ") == "__"
-
-def test_fix_spaces_three_consecutive():
-    # Boundary: 3 spaces is "more than 2", should be replaced by a hyphen
-    assert fix_spaces("   ") == "-"
 
 # Focus: Logic Branches
-def test_fix_spaces_no_spaces():
-    assert fix_spaces("Example") == "Example"
+import pytest
 
-def test_fix_spaces_standard_underscores():
-    assert fix_spaces("Example 1") == "Example_1"
-    assert fix_spaces("Example  2") == "Example__2"
+def test_fix_spaces_underscores():
+    # Branch: 1 or 2 consecutive spaces should be replaced by underscores
+    assert fix_spaces("Hello World") == "Hello_World"
+    assert fix_spaces("Hello  World") == "Hello__World"
+    assert fix_spaces("  ") == "__"
 
-def test_fix_spaces_consecutive_hyphen():
-    assert fix_spaces("Example   3") == "Example-3"
-    assert fix_spaces("Example    4") == "Example-4"
+def test_fix_spaces_hyphens():
+    # Branch: More than 2 consecutive spaces should be replaced by a single hyphen
+    assert fix_spaces("Hello   World") == "Hello-World"
+    assert fix_spaces("Hello    World") == "Hello-World"
+    assert fix_spaces("   ") == "-"
+
+def test_fix_spaces_mixed_branches():
+    # Branch: Mixed cases of single/double and triple+ spaces
+    assert fix_spaces(" a  b   c    d ") == "_a__b-c-d_"
 
 # Focus: Edge Cases
-def test_fix_spaces_boundary_counts():
+import pytest
+
+def test_fix_spaces_empty_and_no_spaces():
     assert fix_spaces("") == ""
-    assert fix_spaces(" ") == "_"
+    assert fix_spaces("NoSpaces") == "NoSpaces"
+
+def test_fix_spaces_boundary_consecutive():
+    # Exactly 2 spaces should be underscores (not more than 2)
     assert fix_spaces("  ") == "__"
+    # 3 spaces should be a hyphen
     assert fix_spaces("   ") == "-"
+    # 4 spaces should be a hyphen
     assert fix_spaces("    ") == "-"
 
-def test_fix_spaces_positional_edges():
-    assert fix_spaces("   leading") == "-leading"
-    assert fix_spaces("trailing   ") == "trailing-"
-    assert fix_spaces("  both  ") == "__both__"
-    assert fix_spaces("   both   ") == "-both-"
-
-def test_fix_spaces_only_spaces():
-    assert fix_spaces(" ") == "_"
-    assert fix_spaces("  ") == "__"
-    assert fix_spaces("   ") == "-"
-    assert fix_spaces("     ") == "-"
+def test_fix_spaces_extreme_positions():
+    # Spaces at start, end, and mixed lengths
+    assert fix_spaces("  start and end  ") == "__start_and_end__"
+    assert fix_spaces("   leading and trailing   ") == "-leading_and_trailing-"

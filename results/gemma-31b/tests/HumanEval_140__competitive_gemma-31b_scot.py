@@ -18,32 +18,17 @@ import pytest
     ("Example 1", "Example_1"),
     (" Example 2", "_Example_2"),
     (" Example   3", "_Example-3"),
-    ("Two  spaces", "Two__spaces"),
-    ("Three   spaces", "Three-spaces"),
-    ("Four    spaces", "Four-spaces"),
     ("", ""),
     (" ", "_"),
     ("  ", "__"),
     ("   ", "-"),
     ("    ", "-"),
-    (" a b  c   d    e", "_a_b__c-d-e"),
-    ("Leading   space", "-Leading_space"), # Wait, "Leading   space" -> "-Leading_space" is wrong. 
-    # "Leading   space" has 3 spaces. 3 > 2, so "   " becomes "-". Result: "Leading-space"
-    ("Leading   space", "Leading-space"),
-    ("Trailing space  ", "Trailing_space__"),
-    ("Trailing space   ", "Trailing_space-"),
-    ("Mixed  and   spaces", "Mixed__and-spaces"),
+    ("a b  c   d    e", "a_b__c-d-e"),
+    ("   leading", "-leading"),
+    ("trailing   ", "trailing-"),
+    ("multiple   groups   of   spaces", "multiple-groups-of-spaces"),
+    ("two  spaces", "two__spaces"),
+    ("one space", "one_space"),
 ])
 def test_fix_spaces(input_text, expected):
     assert fix_spaces(input_text) == expected
-
-def test_fix_spaces_only_spaces():
-    assert fix_spaces(" ") == "_"
-    assert fix_spaces("  ") == "__"
-    assert fix_spaces("   ") == "-"
-    assert fix_spaces("    ") == "-"
-
-def test_fix_spaces_no_spaces():
-    assert fix_spaces("HelloWorld") == "HelloWorld"
-    assert fix_spaces("12345") == "12345"
-    assert fix_spaces("!@#$%") == "!@#$%"

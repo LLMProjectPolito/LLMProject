@@ -18,9 +18,11 @@ import math
 
 # Focus: Boundary Values
 def test_special_factorial_boundary_min():
+    # The smallest valid input according to n > 0
     assert special_factorial(1) == 1
 
 def test_special_factorial_boundary_small():
+    # The next smallest integer to verify the sequence start
     assert special_factorial(2) == 2
 
 # Focus: Type Scenarios
@@ -28,11 +30,11 @@ import pytest
 
 def test_special_factorial_float():
     with pytest.raises(TypeError):
-        special_factorial(3.5)
+        special_factorial(4.5)
 
 def test_special_factorial_string():
     with pytest.raises(TypeError):
-        special_factorial("5")
+        special_factorial("4")
 
 def test_special_factorial_none():
     with pytest.raises(TypeError):
@@ -46,9 +48,11 @@ def test_special_factorial_base_case():
     assert special_factorial(1) == 1
 
 def test_special_factorial_small_branch():
-    # Tests the logic for a small integer where the product loop runs minimally
-    assert special_factorial(2) == 2  # 2! * 1! = 2 * 1
+    # Tests the branch where n is small but greater than 1 (n=2)
+    # 2! * 1! = 2 * 1 = 2
+    assert special_factorial(2) == 2
 
 def test_special_factorial_general_branch():
-    # Tests the general logic branch for larger integers
-    assert special_factorial(4) == 288  # 4! * 3! * 2! * 1! = 24 * 6 * 2 * 1
+    # Tests the general iterative branch (n=4)
+    # 4! * 3! * 2! * 1! = 24 * 6 * 2 * 1 = 288
+    assert special_factorial(4) == 288
