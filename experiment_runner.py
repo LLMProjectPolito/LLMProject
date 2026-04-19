@@ -121,12 +121,12 @@ def run_experiment(agents, n, overrides={}, start=0, workers=50, results_dir: Pa
     problems = sorted(DATA_DIR.glob("*.json"), key=lambda x: int(re.search(r"(\d+)", x.name).group(1)) if re.search(r"(\d+)", x.name) else 0)[start:start+n]
     problems = [json.loads(p.read_text(encoding="utf-8")) for p in problems]
     
-    def is_already_done(task_id, config_label, csv_path):
+    def is_already_done(task_id, config_label, base_agent, csv_path):
         if not csv_path.exists(): return False
         try:
             with open(csv_path, 'r', encoding='utf-8') as f:
                 reader = csv.DictReader(f)
-                return any(row.get('task_id') == task_id and row.get('config_label') == config_label for row in reader)
+                return any(row.get('task_id') == task_id and row.get('config_label') == config_label and row.get('agent') == base_agent for row in reader)
         except: return False
 
     def run_task(prob, agent_full):
@@ -136,7 +136,7 @@ def run_experiment(agents, n, overrides={}, start=0, workers=50, results_dir: Pa
         target_dir = results_dir / model_slug
         csv_path = target_dir / "results.csv"
 
-        if is_already_done(prob["task_id"], label, csv_path):
+        if is_already_done(prob["task_id"], label, base_agent, csv_path):
             print(f"   [SKIP] {prob['task_id']} x {agent_full}", flush=True)
             return
 
@@ -190,6 +190,11 @@ def main():
 
     if "tsunami" in args.agents:
         m = ['gemma-1b', 'gemma-4b', 'gemma-12b', 'gemma-27b']
+        p = ['zero_shot', 'cot', 'scot', 'few_shot']
+        a = ['baseline', 'actor_critic', 'adversarial', 'competitive', 'hybrid', 'coa', 'soa', 'swarm', 'consensus', 'self_healing', 'atomic_swarm']
+        requested = [f"{ag}:{mo}:{pr}" for mo in m for pr in p for ag in a]
+    elif "gemma_31b_test" in args.agents:
+        m = ['gemma-31b']
         p = ['zero_shot', 'cot', 'scot', 'few_shot']
         a = ['baseline', 'actor_critic', 'adversarial', 'competitive', 'hybrid', 'coa', 'soa', 'swarm', 'consensus', 'self_healing', 'atomic_swarm']
         requested = [f"{ag}:{mo}:{pr}" for mo in m for pr in p for ag in a]
