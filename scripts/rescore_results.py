@@ -41,6 +41,10 @@ METRIC_COLUMNS = [
     "prompt_tokens",
     "completion_tokens",
     "total_tokens",
+    "generation_status",
+    "generation_error_type",
+    "generation_error_message",
+    "generation_attempts",
 ]
 
 

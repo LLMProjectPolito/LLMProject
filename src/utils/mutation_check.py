@@ -156,6 +156,19 @@ def _calculate_mutation_score_regex(source_code: str, test_code: str) -> float:
         test_file = tmp / "test_mutant.py"
         test_file.write_text(f"from mutant import *\n\n{test_code}", encoding="utf-8")
 
+        source_file = tmp / "mutant.py"
+        source_file.write_text(source_code, encoding="utf-8")
+        
+        # Pre-test: if the test suite already fails on unmodified code, it's invalid
+        res_initial = subprocess.run(
+            [sys.executable, "-m", "pytest", str(test_file), "-q"],
+            capture_output=True,
+            text=True,
+            cwd=tmpdir,
+        )
+        if res_initial.returncode != 0:
+            return 0.0
+
         for mutated_code in mutants:
             source_file = tmp / "mutant.py"
             source_file.write_text(mutated_code, encoding="utf-8")

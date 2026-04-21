@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 
-MODEL_ORDER = ["gemma-4b", "gemma-27b", "gemma-12b", "gemma-1b"]
+MODEL_ORDER = ["gemma-31b", "gemma-27b", "gemma-12b", "gemma-4b", "gemma-1b"]
 PROMPT_ORDER = ["zero_shot", "cot", "scot", "few_shot"]
 PROMPT_LABELS = ["Zero-shot", "CoT", "SCoT", "Few-shot"]
 
@@ -81,9 +81,14 @@ def _plot_model_dashboard(df, output_path):
 
 
 def _plot_metric_heatmap(df, value_column, title, output_path, cmap, value_format):
+    import math
     models = _ordered_models(df)
-    fig, axes = plt.subplots(2, 2, figsize=(20, 14))
-    axes = axes.flatten()
+    n_models = len(models)
+    cols = 2 if n_models <= 4 else 3
+    rows = math.ceil(n_models / cols)
+    
+    fig, axes = plt.subplots(rows, cols, figsize=(cols*10, rows*7))
+    axes = np.array(axes).flatten()
 
     series = pd.to_numeric(df[value_column], errors="coerce")
     vmax = float(series.max()) if series.notna().any() else 1.0
@@ -134,8 +139,10 @@ def _plot_metric_heatmap(df, value_column, title, output_path, cmap, value_forma
         ax.set_visible(False)
 
     fig.suptitle(title, fontsize=20, fontweight="bold", y=0.97)
-    fig.colorbar(images[0], ax=axes.tolist(), fraction=0.025, pad=0.02)
-    plt.tight_layout(rect=[0, 0, 1, 0.95])
+    plt.tight_layout(rect=[0, 0, 0.92, 0.95])
+    cbar_ax = fig.add_axes([0.93, 0.15, 0.02, 0.7])
+    fig.colorbar(images[0], cax=cbar_ax)
+    
     fig.savefig(output_path, dpi=150, bbox_inches="tight")
     plt.close(fig)
 
