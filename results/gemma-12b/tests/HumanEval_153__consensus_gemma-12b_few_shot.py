@@ -36,8 +36,8 @@ def Strongest_Extension(class_name, extensions):
     Example:
     for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
     """
-    max_strength = float('-inf')
     strongest_extension = ""
+    max_strength = float('-inf')
     for extension in extensions:
         cap_count = 0
         sm_count = 0
@@ -69,9 +69,9 @@ class TestStrongestExtension:
         assert Strongest_Extension("TestClass", ['aaaa', 'bbbb', 'cccc']) == "TestClass.aaaa"
 
     def test_mixed_case(self):
-        assert Strongest_Extension("TestClass", ['aA', 'bB', 'cC']) == "TestClass.aA"
+        assert Strongest_Extension("TestClass", ['aA', 'Bb', 'Cc']) == "TestClass.aA"
 
-    def test_same_strength(self):
+    def test_equal_strength(self):
         assert Strongest_Extension("TestClass", ['AA', 'BB', 'CC']) == "TestClass.AA"
 
     def test_negative_strength(self):
@@ -86,8 +86,11 @@ class TestStrongestExtension:
     def test_long_extensions(self):
         assert Strongest_Extension("TestClass", ['ThisIsALongExtension', 'AnotherLongExtension']) == "TestClass.ThisIsALongExtension"
 
+    def test_same_strength_different_lengths(self):
+        assert Strongest_Extension("TestClass", ['AA', 'A']) == "TestClass.AA"
+
     def test_numbers_in_extension(self):
-        assert Strongest_Extension("TestClass", ['123', 'ABC', 'def']) == "TestClass.ABC"
+        assert Strongest_Extension("TestClass", ['A1A', 'B2B', 'C3C']) == "TestClass.A1A"
 
     def test_extension_with_spaces(self):
         assert Strongest_Extension("TestClass", ['A B', 'C D']) == "TestClass.A B"

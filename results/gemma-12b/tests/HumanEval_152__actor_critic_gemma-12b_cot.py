@@ -32,6 +32,12 @@ def compare(game,guess):
     compare([1,2,3,4,5,1],[1,2,3,4,2,-2]) -> [0,0,0,0,3,3]
     compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) -> [4,4,1,0,0,6]
     """
+    if len(game) != len(guess):
+        raise ValueError("The lists must be of equal length.")
+
+    if not all(isinstance(x, (int, float)) for x in game) or not all(isinstance(x, (int, float)) for x in guess):
+        raise TypeError("Both lists must contain only numbers.")
+
     result = []
     for i in range(len(game)):
         if game[i] == guess[i]:
@@ -44,13 +50,10 @@ def test_compare_correct_guesses():
     assert compare([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]) == [0, 0, 0, 0, 0]
 
 def test_compare_incorrect_guesses():
-    assert compare([1, 2, 3, 4, 5], [5, 4, 3, 2, 1]) == [4, 2, 0, 2, 4]
+    assert compare([1, 2, 3, 4, 5], [6, 7, 8, 9, 10]) == [5, 5, 5, 5, 5]
 
 def test_compare_mixed_guesses():
-    assert compare([1, 2, 3, 4, 5], [1, 2, 4, 4, 2]) == [0, 0, 1, 0, 3]
-
-def test_compare_with_zeros():
-    assert compare([0, 5, 0, 0, 0], [0, 5, 0, 0, 0]) == [0, 0, 0, 0, 0]
+    assert compare([1, 2, 3, 4, 5], [1, 2, 8, 4, 2]) == [0, 0, 5, 0, 3]
 
 def test_compare_with_negative_numbers():
     assert compare([-1, -2, -3], [-1, -2, -4]) == [0, 0, 1]
@@ -68,12 +71,23 @@ def test_compare_single_element_lists():
 def test_compare_large_numbers():
     assert compare([1000, 2000], [1000, 2001]) == [0, 1]
 
-def test_compare_all_guesses_far_off():
-    assert compare([1, 2, 3], [10, 20, 30]) == [9, 18, 27]
+def test_compare_example_1():
+    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
 
-def test_compare_one_list_empty():
-    with pytest.raises(IndexError):
-        compare([1, 2, 3], [])
+def test_compare_example_2():
+    assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
 
-def test_compare_floating_point_numbers():
-    assert compare([1.0, 2.5, 3.0], [1.0, 2.6, 3.0]) == [0, 0.1, 0]
+def test_compare_unequal_length_lists():
+    with pytest.raises(ValueError):
+        compare([1, 2, 3], [1, 2])
+
+def test_compare_non_numeric_input():
+    with pytest.raises(TypeError):
+        compare([1, 2, 3], ["a", "b", "c"])
+
+def test_compare_all_guesses_significantly_off():
+    assert compare([1, 2, 3], [100, 200, 300]) == [99, 198, 297]
+
+def test_compare_single_element_lists_different_types():
+    with pytest.raises(TypeError):
+        compare([1], [1.0])

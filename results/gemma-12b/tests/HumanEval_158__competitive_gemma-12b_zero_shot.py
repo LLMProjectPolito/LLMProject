@@ -72,8 +72,5 @@ class TestFindMax:
     def test_numbers_as_strings(self):
         assert find_max(["123", "12", "1"]) == "123"
 
-    def test_empty_string(self):
-        assert find_max(["", "abc", "def"]) == "abc"
-
-    def test_multiple_empty_strings(self):
-        assert find_max(["", "", ""]) == ""
+    def test_mixed_characters(self):
+        assert find_max(["a1b2", "a1", "b2"]) == "a1b2"

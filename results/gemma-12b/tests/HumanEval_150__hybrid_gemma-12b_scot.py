@@ -34,35 +34,42 @@ def x_or_y(n, x, y):
     else:
         return y
 
-def test_prime_returns_x():
-    assert x_or_y(7, 34, 12) == 34
+class TestXorY:
+    def test_prime_returns_x(self):
+        assert x_or_y(7, 34, 12) == 34
 
-def test_non_prime_returns_y():
-    assert x_or_y(15, 8, 5) == 5
+    def test_non_prime_returns_y(self):
+        assert x_or_y(15, 8, 5) == 5
 
-def test_n_is_1_returns_y():
-    assert x_or_y(1, 10, 20) == 20
+    def test_n_is_1_returns_y(self):
+        assert x_or_y(1, 10, 20) == 20
 
-def test_n_is_2_returns_x():
-    assert x_or_y(2, "hello", "world") == "hello"
+    def test_n_is_2_returns_x(self):
+        assert x_or_y(2, 100, 200) == 100
 
-def test_x_and_y_are_strings():
-    assert x_or_y(5, "apple", "banana") == "apple"
-    assert x_or_y(6, "apple", "banana") == "banana"
+    def test_x_and_y_are_strings(self):
+        assert x_or_y(5, "hello", "world") == "hello"
+        assert x_or_y(6, "hello", "world") == "world"
 
-def test_x_is_float_y_is_int():
-    assert x_or_y(7, 3.14, 5) == 3.14
-    assert x_or_y(8, 3.14, 5) == 5
+    def test_x_is_float_y_is_int(self):
+        assert x_or_y(7, 3.14, 5) == 3.14
+        assert x_or_y(8, 3.14, 5) == 5
 
-def test_x_is_int_y_is_float():
-    assert x_or_y(7, 5, 3.14) == 5
-    assert x_or_y(8, 5, 3.14) == 3.14
+    def test_x_is_int_y_is_float(self):
+        assert x_or_y(7, 5, 3.14) == 5
+        assert x_or_y(8, 5, 3.14) == 3.14
 
-def test_negative_n_returns_y():
-    assert x_or_y(-5, 1, 2) == 2
+    def test_negative_n_returns_y(self):
+        assert x_or_y(-5, 1, 2) == 2
 
-def test_large_prime_returns_x():
-    assert x_or_y(101, "prime", "not prime") == "prime"
+    def test_large_prime_returns_x(self):
+        assert x_or_y(101, "prime", "not prime") == "prime"
 
-def test_large_non_prime_returns_y():
-    assert x_or_y(100, "prime", "not prime") == "not prime"
+    def test_large_non_prime_returns_y(self):
+        assert x_or_y(100, "prime", "not prime") == "not prime"
+
+    def test_prime_returns_x_string_args(self):
+        assert x_or_y(7, "a", "b") == "a"
+
+    def test_non_prime_returns_y_string_args(self):
+        assert x_or_y(8, "a", "b") == "b"

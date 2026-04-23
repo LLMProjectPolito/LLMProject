@@ -34,7 +34,10 @@ def compare(game,guess):
     """
     result = []
     for i in range(len(game)):
-        result.append(abs(game[i] - guess[i]))
+        if game[i] == guess[i]:
+            result.append(0)
+        else:
+            result.append(abs(game[i] - guess[i]))
     return result
 
 def test_compare_example1():
@@ -59,7 +62,7 @@ def test_compare_all_incorrect():
     assert compare([1, 2, 3], [4, 5, 6]) == [3, 3, 3]
 
 def test_compare_mixed_correct_incorrect():
-    assert compare([1, 2, 3, 4], [1, 5, 3, 0]) == [0, 3, 0, 4]
+    assert compare([1, 2, 3, 4], [1, 5, 3, 2]) == [0, 3, 0, 2]
 
 def test_compare_negative_numbers():
     assert compare([-1, -2, -3], [-1, -2, -4]) == [0, 0, 1]
@@ -68,4 +71,7 @@ def test_compare_zero_values():
     assert compare([0, 0, 0], [1, 2, 3]) == [1, 2, 3]
 
 def test_compare_large_numbers():
-    assert compare([1000, 2000, 3000], [1001, 1999, 3000]) == [1, 1, 0]
+    assert compare([1000, 2000], [1000, 2001]) == [0, 1]
+
+def test_compare_different_signs():
+    assert compare([10, -5], [-10, 5]) == [20, 10]

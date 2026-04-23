@@ -23,14 +23,14 @@ def test_boundary_value_3():
     assert specialFilter([1, 3, 5, 7, 9]) == 0
 
 # Focus: Type Scenarios
-def test_empty_list():
+def test_specialFilter_empty_list():
     assert specialFilter([]) == 0
 
-def test_no_matching_numbers():
+def test_specialFilter_no_matching_numbers():
     assert specialFilter([1, 2, 3, 4, 5]) == 0
 
-def test_mixed_list_with_matches():
-    assert specialFilter([15, -73, 14, -15, 35, 22, 91]) == 3
+def test_specialFilter_mixed_types():
+    assert specialFilter([15, -73, 14, -15, "abc"]) == 1
 
 # Focus: Logic Branches
 def test_specialFilter_empty_list():

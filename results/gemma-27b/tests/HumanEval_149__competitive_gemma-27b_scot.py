@@ -24,28 +24,31 @@ def test_all_odd_lengths():
     assert sorted_list_sum(["a", "abc", "def"]) == []
 
 def test_all_even_lengths():
-    assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
+    assert sorted_list_sum(["aa", "bb", "cc"]) == sorted(["aa", "bb", "cc"])
 
 def test_mixed_lengths():
     assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
 
 def test_mixed_lengths_2():
-    assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
+    assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == sorted(["ab", "cd"])
 
 def test_duplicates():
-    assert sorted_list_sum(["aa", "aa", "bb", "cc", "a"]) == ["aa", "aa", "bb", "cc"]
+    assert sorted_list_sum(["aa", "aa", "bb", "cc", "a"]) == sorted(["aa", "aa", "bb", "cc"])
 
 def test_same_length_alphabetical():
-    assert sorted_list_sum(["cb", "ab", "cd", "ad"]) == ["ab", "ad", "cb", "cd"]
+    assert sorted_list_sum(["cb", "ab", "cd", "ac"]) == sorted(["ab", "ac", "cb", "cd"])
 
-def test_longer_list():
-    assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape", "a"]) == ["apple", "banana", "grape", "kiwi", "orange"]
+def test_long_strings():
+    assert sorted_list_sum(["abcdef", "abc", "abcd", "abcde"]) == sorted(["abcd", "abcde", "abcdef"])
 
-def test_list_with_empty_string():
-    assert sorted_list_sum(["", "a", "aa"]) == ["aa"]
+def test_long_strings_with_odd():
+    assert sorted_list_sum(["abcdef", "abc", "abcd", "abcde", "a"]) == sorted(["abcd", "abcde", "abcdef"])
 
-def test_list_with_only_empty_string():
-    assert sorted_list_sum([""]) == []
+def test_edge_case_single_even():
+    assert sorted_list_sum(["aa"]) == ["aa"]
 
-def test_list_with_odd_and_even_and_duplicates():
-    assert sorted_list_sum(["abc", "ab", "a", "ab", "abcd", "abcde"]) == ["ab", "ab"]
+def test_edge_case_single_odd():
+    assert sorted_list_sum(["a"]) == []
+
+def test_complex_case():
+    assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape", "pear"]) == sorted(["apple", "grape", "kiwi", "orange", "banana", "pear"])

@@ -56,13 +56,23 @@ def test_negative_numbers():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
 def test_mixed_positive_and_negative():
-    assert sum_squares([1, -2, 3, -4, 5]) == 1 + 4 + 9 + (-64) + 25
+    assert sum_squares([1, -2, 3, -4, 5]) == 31
 
 def test_large_numbers():
-    assert sum_squares([10, 20, 30, 40]) == 100 + 400 + 900 + 6400
-
-def test_zero_values():
-    assert sum_squares([0, 1, 2, 3]) == 0 + 1 + 4 + 9
+    assert sum_squares([100, 200, 300]) == 10000 + 80000 + 270000
 
 def test_multiple_multiples_of_3_and_4():
     assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 4 + 9 + 64 + 25 + 36 + 49 + 512 + 81 + 100
+
+def test_zero_values():
+    assert sum_squares([0, 1, 2, 3]) == 14
+
+def test_long_list():
+    long_list = list(range(1, 11))
+    expected_sum = 0
+    for i, num in enumerate(long_list):
+        if i % 3 == 0:
+            expected_sum += num**2
+        elif i % 4 == 0 and i % 3 != 0:
+            expected_sum += num**3
+    assert sum_squares(long_list) == expected_sum

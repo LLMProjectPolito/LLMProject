@@ -58,13 +58,13 @@ def test_mixed_positive():
     assert even_odd_count(123456) == (3, 3)
 
 def test_mixed_negative():
-    assert even_odd_count(-24681357) == (4, 4)
+    assert even_odd_count(-123456) == (3, 3)
 
 def test_leading_zeros():
     assert even_odd_count(100) == (2, 1)
 
-def test_number_with_zeroes():
-    assert even_odd_count(10203) == (2, 3)
+def test_negative_leading_zeros():
+    assert even_odd_count(-100) == (2, 1)
 
 def test_max_int():
     assert even_odd_count(2147483647) == (4, 6)

@@ -42,7 +42,7 @@ def test_only_spaces():
     assert fix_spaces("   ") == "-"
 
 def test_long_string_with_multiple_consecutive_spaces():
-    assert fix_spaces("This is a  very   long string with    multiple     consecutive spaces.") == "This_is_a-very--long_string_with---multiple-----consecutive_spaces."
+    assert fix_spaces("This is a  very   long string with    multiple     consecutive spaces.") == "This_is_a-very--long_string_with-multiple---consecutive_spaces."
 
 def test_string_with_tabs():
     assert fix_spaces("Example\t1") == "Example_1"

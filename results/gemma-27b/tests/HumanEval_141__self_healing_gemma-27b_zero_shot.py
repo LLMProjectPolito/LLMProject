@@ -41,12 +41,15 @@ def file_name_check(file_name):
     if not parts[0][0].isalpha():
         return "No"
 
-    digit_count = sum(c.isdigit() for c in file_name)
-    if digit_count > 3:
+    if parts[1] not in ['txt', 'exe', 'dll']:
         return "No"
 
-    extension = parts[1]
-    if extension not in ['txt', 'exe', 'dll']:
+    digit_count = 0
+    for char in file_name:
+        if char.isdigit():
+            digit_count += 1
+
+    if digit_count > 3:
         return "No"
 
     return "Yes"

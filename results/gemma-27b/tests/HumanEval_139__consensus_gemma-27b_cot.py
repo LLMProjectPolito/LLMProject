@@ -69,3 +69,20 @@ def test_special_factorial_float():
 def test_special_factorial_string():
     with pytest.raises(TypeError):
         special_factorial("2")
+
+def test_special_factorial_edge_case():
+    assert special_factorial(1) == 1
+
+def test_special_factorial_invalid_input():
+    with pytest.raises(ValueError):
+        special_factorial(0)
+    with pytest.raises(ValueError):
+        special_factorial(-1)
+    with pytest.raises(ValueError):
+        special_factorial(-5)
+
+def test_special_factorial_type_error():
+    with pytest.raises(TypeError):
+        special_factorial(1.5)
+    with pytest.raises(TypeError):
+        special_factorial("2")

@@ -44,10 +44,13 @@ def test_fix_spaces_only_spaces():
     assert fix_spaces("   ") == "-"
 
 def test_fix_spaces_long_string_with_multiple_spaces():
-    assert fix_spaces("This is a long string with   multiple    spaces.") == "This_is_a_long_string_with-multiple-spaces."
+    assert fix_spaces("This is a long string with   multiple   spaces.") == "This_is_a_long_string_with-multiple-spaces."
 
 def test_fix_spaces_string_with_tabs():
     assert fix_spaces("Example\t1") == "Example\t1"
 
 def test_fix_spaces_string_with_newlines():
     assert fix_spaces("Example\n1") == "Example\n1"
+
+def test_fix_spaces_string_with_mixed_whitespace():
+    assert fix_spaces("Example \t  \n1") == "Example\t-1"

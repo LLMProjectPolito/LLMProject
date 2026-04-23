@@ -69,19 +69,19 @@ def test_operand_value_range_large():
 
 # Focus: Expression Complexity
 def test_expression_complexity_simple():
-    """Tests a simple expression with minimal complexity."""
+    """Tests a simple expression with few operations."""
     operator = ['+']
     operand = [2, 3]
     assert do_algebra(operator, operand) == 5
 
-def test_expression_complexity_multiple_operations():
+def test_expression_complexity_multiple():
     """Tests an expression with multiple operations."""
     operator = ['+', '*', '-']
     operand = [2, 3, 4, 5]
     assert do_algebra(operator, operand) == 9
 
 def test_expression_complexity_exponentiation():
-    """Tests an expression involving exponentiation."""
+    """Tests an expression with exponentiation."""
     operator = ['**']
     operand = [2, 3]
     assert do_algebra(operator, operand) == 8

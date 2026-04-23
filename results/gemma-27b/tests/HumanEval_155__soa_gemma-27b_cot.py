@@ -40,13 +40,13 @@ def test_even_odd_count_large_number():
     assert even_odd_count(1234567890) == (5, 5)
 
 def test_even_odd_count_negative_large_number():
-    assert even_odd_count(-9876543210) == (5, 5)
+    assert even_odd_count(-1234567890) == (5, 5)
 
-def test_even_odd_count_with_leading_zeroes():
+def test_even_odd_count_with_leading_zeros():
     assert even_odd_count(102) == (2, 1)
 
-def test_even_odd_count_all_zeroes():
+def test_even_odd_count_all_zeros():
     assert even_odd_count(000) == (3, 0)
 
-def test_even_odd_count_negative_with_leading_zeroes():
-    assert even_odd_count(-102) == (2, 1)
+def test_even_odd_count_negative_with_leading_zeros():
+    assert even_odd_count(-002) == (1, 1)

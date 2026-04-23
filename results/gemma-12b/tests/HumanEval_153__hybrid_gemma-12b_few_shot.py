@@ -51,7 +51,7 @@ def Strongest_Extension(class_name, extensions):
     if strongest_extension:
         return f"{class_name}.{strongest_extension}"
     else:
-        return f"{class_name}.None"  # Handle the case where extensions is empty
+        return f"{class_name}."
 
 
 def is_palindrome(s: str) -> bool:
@@ -66,7 +66,6 @@ def get_max(arr: list[int]) -> int:
     return max(arr)
 
 
-# Suite 1 Tests
 def test_strongest_extension_basic():
     assert Strongest_Extension("Slices", ["SErviNGSliCes", "Cheese", "StuFfed"]) == "Slices.SErviNGSliCes"
 
@@ -74,7 +73,7 @@ def test_strongest_extension_example():
     assert Strongest_Extension("my_class", ["AA", "Be", "CC"]) == "my_class.AA"
 
 def test_strongest_extension_empty_extensions():
-    assert Strongest_Extension("MyClass", []) == "MyClass.None"
+    assert Strongest_Extension("MyClass", []) == "MyClass."
 
 def test_strongest_extension_same_strength():
     assert Strongest_Extension("TestClass", ["AA", "BB", "CC"]) == "TestClass.AA"
@@ -95,43 +94,17 @@ def test_strongest_extension_with_special_characters():
     assert Strongest_Extension("Class", ["!A", "#B", "$C"]) == "Class.!A"
 
 def test_strongest_extension_long_extensions():
-    assert Strongest_Extension("Class", ["ThisIsALongExtension", "AnotherLongExtension"]) == "Class.ThisIsALongExtension"
+    assert Strongest_Extension("Class", ["VeryLongExtension1", "Short"]) == "Class.VeryLongExtension1"
 
-def test_strongest_extension_equal_strength_and_length():
-    assert Strongest_Extension("Class", ["AA", "BB"]) == "Class.AA"
-
-def test_strongest_extension_negative_strength():
-    assert Strongest_Extension("Class", ["be", "aa"]) == "Class.be"
-
-# Suite 2 Tests
-def test_strongest_extension_negative_strength_suite2():
-    assert Strongest_Extension("Class", ["abc", "DEF"]) == "Class.DEF"
-
-def test_strongest_extension_mixed_case_suite2():
-    assert Strongest_Extension("Class", ["aBc", "DeF"]) == "Class.DeF"
-
-def test_strongest_extension_all_uppercase_suite2():
-    assert Strongest_Extension("Class", ["ABC", "DEF"]) == "Class.ABC"
-
-def test_strongest_extension_all_lowercase_suite2():
-    assert Strongest_Extension("Class", ["abc", "def"]) == "Class.abc"
-
-def test_strongest_extension_with_numbers_suite2():
-    assert Strongest_Extension("Class", ["A12", "b34"]) == "Class.A12"
-
-def test_strongest_extension_with_special_characters_suite2():
-    assert Strongest_Extension("Class", ["A!", "b?"]) == "Class.A!"
-
-def test_strongest_extension_long_extensions_suite2():
-    assert Strongest_Extension("Class", ["ThisIsALongExtension", "AnotherLongExtension"]) == "Class.ThisIsALongExtension"
-
-def test_strongest_extension_duplicate_extensions_suite2():
+def test_strongest_extension_duplicate_extensions():
     assert Strongest_Extension("Class", ["AA", "AA", "BB"]) == "Class.AA"
 
-def test_strongest_extension_class_with_special_characters_suite2():
-    assert Strongest_Extension("My_Class!", ["AA", "BB"]) == "My_Class!.AA"
+def test_strongest_extension_negative_strength():
+    assert Strongest_Extension("Class", ["be", "AA"]) == "Class.AA"
 
-# Palindrome Tests
+def test_strongest_extension_zero_strength():
+    assert Strongest_Extension("Class", ["Aa", "aA"]) == "Class.Aa"
+
 def test_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
@@ -139,7 +112,6 @@ def test_palindrome_basic():
 def test_palindrome_empty():
     assert is_palindrome('') == True
 
-# Get Max Tests
 def test_max_positive():
     assert get_max([1, 2, 3]) == 3
 

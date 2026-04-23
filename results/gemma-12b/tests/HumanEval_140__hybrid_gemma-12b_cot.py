@@ -53,7 +53,7 @@ def test_multiple_spaces_at_end():
     assert fix_spaces("Example 5   ") == "Example_5-"
 
 def test_mixed_spaces():
-    assert fix_spaces("Example  6   7") == "Example-6_7"
+    assert fix_spaces("Example  6   7") == "Example--6_7"
 
 def test_only_spaces():
     assert fix_spaces("   ") == "-"
@@ -79,31 +79,35 @@ def test_string_with_unicode_characters():
 def test_string_with_numbers_and_spaces():
     assert fix_spaces("1 2 3   4") == "1_2_3-4"
 
-def test_consecutive_spaces_at_start():
-    assert fix_spaces("  Example 4") == "-Example_4"
+def test_trailing_space():
+    assert fix_spaces("Example 3 ") == "Example_3_"
 
-def test_consecutive_spaces_at_end():
-    assert fix_spaces("Example 5  ") == "Example_5-"
+def test_multiple_spaces():
+    assert fix_spaces("Example   4") == "Example-4"
 
-def test_consecutive_spaces_in_middle():
-    assert fix_spaces("Example  6  7") == "Example-6_7"
+def test_consecutive_spaces():
+    assert fix_spaces("Example    5") == "Example-5"
 
 def test_mixed_spaces_2():
-    assert fix_spaces(" Example   8_9  ") == "_Example-8_9-"
+    assert fix_spaces(" Example  6 ") == "_Example-6"
 
-def test_many_consecutive_spaces():
-    assert fix_spaces("  Example     10") == "-Example-------10"
+def test_multiple_consecutive_spaces_2():
+    assert fix_spaces("Example     7") == "Example-7"
 
-def test_special_characters_2():
-    assert fix_spaces("!@#$%^ Example &*()") == "_!@#$%^Example_&*()"
+def test_string_with_only_spaces_2():
+    assert fix_spaces("   ") == "-"
 
-def test_numbers_and_spaces_2():
-    assert fix_spaces("123  456   789") == "123-456_789"
+def test_string_with_more_than_three_consecutive_spaces():
+    assert fix_spaces("Example    8") == "Example-8"
 
-def test_unicode_characters_2():
-    assert fix_spaces("你好 世界  ") == "你好_世界-"
+def test_string_with_leading_and_trailing_spaces():
+    assert fix_spaces("  Example 9  ") == "-Example_9-"
 
-def test_long_string_with_many_spaces_2():
-    long_string = "This is a very long string with many spaces.   It has more than two consecutive spaces in several places.  Let's see if it works correctly.     "
-    expected_result = "_This_is_a_very_long_string_with_many_spaces.-It_has_more_than_two_consecutive_spaces_in_several_places.-Let's_see_if_it_works_correctly-------"
-    assert fix_spaces(long_string) == expected_result
+def test_string_with_special_characters_2():
+    assert fix_spaces("Example!@#$%^&*()") == "Example!@#$%^&_()*"
+
+def test_string_with_numbers_and_spaces_2():
+    assert fix_spaces("1 2 3 4 5") == "1_2_3_4_5"
+
+def test_string_with_tabs_and_spaces_2():
+    assert fix_spaces("Example\t1") == "Example_1"

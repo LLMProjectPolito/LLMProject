@@ -59,8 +59,8 @@ def test_is_palindrome_basic():
     assert is_palindrome('Madam') == True
     assert is_palindrome('level') == True
     assert is_palindrome('rotor') == True
-    assert is_palindrome('stats') == True
     assert is_palindrome('noon') == True
+    assert is_palindrome('stats') == True
 
 def test_is_palindrome_empty():
     assert is_palindrome('') == True
@@ -73,6 +73,9 @@ def test_is_palindrome_mixed_case():
 
 def test_is_palindrome_with_spaces():
     assert is_palindrome('A man, a plan, a canal: Panama') == True
+
+def test_is_palindrome_with_punctuation():
+    assert is_palindrome('Was it a car or a cat I saw?') == True
 
 def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
@@ -104,7 +107,7 @@ def test_find_max_equal_unique():
     assert find_max(["abc", "def"]) == "abc"
 
 def test_find_max_mixed_case():
-    assert find_max(["aBc", "def"]) == "aBc"
+    assert find_max(["AbCd", "EfGh"]) == "AbCd"
 
 def test_find_max_with_duplicates():
     assert find_max(["aabbcc", "abc"]) == "abc"

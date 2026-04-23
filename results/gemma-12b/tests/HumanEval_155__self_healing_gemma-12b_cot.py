@@ -41,16 +41,24 @@ def test_negative_large_number():
     assert even_odd_count(-1234567890) == (5, 5)
 
 def test_number_with_repeating_digits():
-    assert even_odd_count(22221111) == (4, 4)
+    assert even_odd_count(222333) == (3, 3)
 
 def test_empty_input():
     with pytest.raises(TypeError):
-        even_odd_count(None)
+        even_odd_count("")
 
 def test_float_input():
     with pytest.raises(TypeError):
-        even_odd_count(12.34)
+        even_odd_count(1.23)
 
 def test_string_input():
     with pytest.raises(TypeError):
-        even_odd_count("1234")
+        even_odd_count("123")
+
+def test_boolean_input():
+    with pytest.raises(TypeError):
+        even_odd_count(True)
+
+def test_none_input():
+    with pytest.raises(TypeError):
+        even_odd_count(None)

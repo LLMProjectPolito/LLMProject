@@ -35,7 +35,7 @@ def test_multiples_of_4():
     assert sum_squares([1, 2, 3, 4, 5, 6]) == 130
 
 def test_multiples_of_both():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 274
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 278
 
 def test_large_numbers():
     assert sum_squares([10, 20, 30, 40]) == 3000
@@ -53,7 +53,10 @@ def test_list_with_only_positive_numbers():
     assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 385
 
 def test_list_with_only_negative_numbers():
-    assert sum_squares([-1, -2, -3, -4, -5, -6, -7, -8, -9, -10]) == -1710
+    assert sum_squares([-1, -2, -3, -4, -5, -6, -7, -8, -9, -10]) == -1265
 
 def test_complex_list():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]) == 1186
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]) == 1030
+
+def test_another_complex_list():
+    assert sum_squares([-2, 4, -6, 8, -10, 12, -14, 16, -18, 20]) == -100

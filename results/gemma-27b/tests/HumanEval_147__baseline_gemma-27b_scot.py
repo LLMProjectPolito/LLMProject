@@ -58,16 +58,16 @@ def test_n_equals_6():
     assert get_max_triples(6) == 4
 
 def test_n_equals_7():
-    assert get_max_triples(7) == 9
+    assert get_max_triples(7) == 8
 
 def test_n_equals_8():
-    assert get_max_triples(8) == 16
+    assert get_max_triples(8) == 13
 
 def test_n_equals_9():
-    assert get_max_triples(9) == 28
+    assert get_max_triples(9) == 21
 
 def test_n_equals_10():
-    assert get_max_triples(10) == 45
+    assert get_max_triples(10) == 30
 
 def test_large_n():
     assert get_max_triples(100) == 161700

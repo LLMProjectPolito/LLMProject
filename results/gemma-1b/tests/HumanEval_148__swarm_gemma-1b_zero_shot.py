@@ -43,23 +43,23 @@ def bf(planet1, planet2):
         return ()
     
     orbits1 = {
-        "Mercury": 0.397,
+        "Mercury": 0.387,
         "Venus": 0.723,
         "Earth": 1.000,
         "Mars": 1.524,
         "Jupiter": 5.206,
         "Saturn": 9.534,
-        "Uranus": 19.196,
+        "Uranus": 19.186,
         "Neptune": 30.067
     }
     orbits2 = {
-        "Mercury": 0.397,
+        "Mercury": 0.387,
         "Venus": 0.723,
         "Earth": 1.000,
         "Mars": 1.524,
         "Jupiter": 5.206,
-        "Saturn": 9.537,
-        "Uranus": 19.196,
+        "Saturn": 9.534,
+        "Uranus": 19.186,
         "Neptune": 30.067
     }
     
@@ -93,23 +93,23 @@ def bf(planet1, planet2):
         return ()
     
     orbits1 = {
-        "Mercury": 0.397,
+        "Mercury": 0.387,
         "Venus": 0.723,
         "Earth": 1.000,
         "Mars": 1.524,
         "Jupiter": 5.206,
         "Saturn": 9.534,
-        "Uranus": 19.196,
+        "Uranus": 19.186,
         "Neptune": 30.067
     }
     orbits2 = {
-        "Mercury": 0.397,
+        "Mercury": 0.387,
         "Venus": 0.723,
         "Earth": 1.000,
         "Mars": 1.524,
         "Jupiter": 5.206,
-        "Saturn": 9.537,
-        "Uranus": 19.196,
+        "Saturn": 9.534,
+        "Uranus": 19.186,
         "Neptune": 30.067
     }
     

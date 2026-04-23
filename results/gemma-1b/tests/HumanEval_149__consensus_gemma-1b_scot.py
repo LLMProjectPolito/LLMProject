@@ -39,20 +39,20 @@ def list_sort(lst):
     new_list.sort(key=lambda x: (len(x), x))
     return new_list
 
-def test_empty_list():
+def test_list_sort_empty():
     assert list_sort([]) == []
 
-def test_single_element_list():
+def test_list_sort_single():
     assert list_sort(["a"]) == ["a"]
 
-def test_example_case1():
+def test_list_sort_even_length():
     assert list_sort(["aa", "a", "aaa"]) == ["aa"]
 
-def test_example_case2():
+def test_list_sort_odd_length():
     assert list_sort(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
-def test_duplicate_elements():
+def test_list_sort_duplicates():
     assert list_sort(["aa", "a", "aaa", "aa"]) == ["aa", "aa", "aaa"]
 
-def test_same_length_elements():
-    assert list_sort(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
+def test_list_sort_mixed_length():
+    assert list_sort(["ab", "a", "aaa", "cd", "aa"]) == ["ab", "aa", "cd", "aaa"]

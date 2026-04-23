@@ -60,6 +60,3 @@ def test_long_words():
 
 def test_words_with_identical_unique_chars_and_length():
     assert find_max(["abc", "xyz"]) == "abc"
-
-def test_words_with_identical_unique_chars_and_length_2():
-    assert find_max(["def", "ghi"]) == "def"

@@ -42,16 +42,25 @@ def test_mixed_types():
     assert double_the_difference([1, 2.0, "a", 3]) == 1 + 9
 
 def test_large_numbers():
-    assert double_the_difference([1001, 1003]) == 1001**2 + 1003**2
+    assert double_the_difference([1001, 1003]) == 1002001 + 1006009
 
-def test_single_odd_number():
+def test_all_even():
+    assert double_the_difference([2, 4, 6]) == 0
+
+def test_single_odd():
     assert double_the_difference([7]) == 49
 
-def test_multiple_odd_numbers():
+def test_multiple_odd():
     assert double_the_difference([1, 3, 5, 7, 9]) == 1 + 9 + 25 + 49 + 81
 
-def test_all_even_numbers():
-    assert double_the_difference([2, 4, 6, 8]) == 0
+def test_example_1():
+    assert double_the_difference([1, 3, 2, 0]) == 10
 
-def test_negative_and_even():
-    assert double_the_difference([-2, -4, -6]) == 0
+def test_example_2():
+    assert double_the_difference([-1, -2, 0]) == 0
+
+def test_example_3():
+    assert double_the_difference([9, -2]) == 81
+
+def test_example_4():
+    assert double_the_difference([0]) == 0

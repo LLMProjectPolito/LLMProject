@@ -93,4 +93,4 @@ def test_find_max_multiple_same_unique():
     assert find_max(["abc", "def", "ghi"]) == "abc"
 
 def test_find_max_mixed_case():
-    assert find_max(["aBc", "def", "AbC"]) == "aBc"
+    assert find_max(["aBc", "def", "GhI"]) == "aBc"

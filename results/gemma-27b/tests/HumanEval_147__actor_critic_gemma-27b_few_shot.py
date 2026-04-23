@@ -30,6 +30,9 @@ def get_max_triples(n):
         a = [1, 3, 7, 13, 21]
         The only valid triple is (1, 7, 13).
     """
+    if n < 0:
+        raise ValueError("Input n must be a non-negative integer.")
+
     a = [i * i - i + 1 for i in range(1, n + 1)]
     count = 0
     for i in range(n):
@@ -39,28 +42,43 @@ def get_max_triples(n):
                     count += 1
     return count
 
-# Base Cases
-def test_get_max_triples_base_cases():
-    assert get_max_triples(0) == 0
+# Test cases for small values
+def test_get_max_triples_small():
     assert get_max_triples(1) == 0
     assert get_max_triples(2) == 0
     assert get_max_triples(3) == 0
-
-# Small Values
-def test_get_max_triples_small_values():
     assert get_max_triples(4) == 0
     assert get_max_triples(5) == 1
+
+# Test cases for medium values
+def test_get_max_triples_medium():
     assert get_max_triples(6) == 20
     assert get_max_triples(7) == 35
     assert get_max_triples(8) == 56
     assert get_max_triples(9) == 84
     assert get_max_triples(10) == 120
 
-# Larger Values
-def test_get_max_triples_larger_values():
+# Test cases for larger values
+def test_get_max_triples_large():
     assert get_max_triples(11) == 165
     assert get_max_triples(12) == 220
     assert get_max_triples(15) == 455
     assert get_max_triples(20) == 1140
-    assert get_max_triples(50) == 19600  # Added larger value
-    assert get_max_triples(100) == 161700 # Added larger value
+
+# Edge case: zero
+def test_get_max_triples_0():
+    assert get_max_triples(0) == 0
+
+# Edge case: negative input
+def test_get_max_triples_negative():
+    with pytest.raises(ValueError):
+        get_max_triples(-1)
+
+# Formula verification (small n)
+def test_get_max_triples_formula():
+    # For n=5, a = [1, 3, 7, 13, 21].  The only triple summing to a multiple of 3 is (1, 7, 13).
+    assert get_max_triples(5) == 1
+
+# Test with a range of numbers
+def test_get_max_triples_range():
+    assert get_max_triples(range(1, 5)) == 0

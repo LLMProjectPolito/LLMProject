@@ -58,16 +58,11 @@ def test_int_to_mini_roman_complex_cases():
     assert int_to_mini_roman(999) == 'cmxcix'
 
 # Focus: Type Scenarios
-def test_type_scenario_valid_integer():
+def test_type_scenario_positive_integer():
     assert isinstance(int_to_mini_roman(19), str)
 
-def test_type_scenario_valid_integer_large():
+def test_type_scenario_large_number():
     assert isinstance(int_to_mini_roman(999), str)
 
-def test_type_scenario_invalid_input_not_integer():
-    try:
-        int_to_mini_roman("abc")
-    except TypeError:
-        assert True
-    else:
-        assert False
+def test_type_scenario_minimum_number():
+    assert isinstance(int_to_mini_roman(1), str)

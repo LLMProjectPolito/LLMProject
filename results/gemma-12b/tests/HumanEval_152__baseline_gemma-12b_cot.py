@@ -48,12 +48,6 @@ def test_compare_single_element_lists():
     assert compare([5], [5]) == [0]
     assert compare([5], [6]) == [1]
 
-def test_compare_different_data_types():
-    with pytest.raises(TypeError):
-        compare([1, 2, 3], [1, "a", 3])
-    with pytest.raises(TypeError):
-        compare([1, 2, 3], [1, 2, 3.5])
-    with pytest.raises(TypeError):
-        compare([1, 2, 3], [1, 2, 3, 4])
-    with pytest.raises(TypeError):
-        compare([1, 2, 3], [1, 2])
+def test_compare_different_lengths():
+    with pytest.raises(ValueError):
+        compare([1, 2], [1])

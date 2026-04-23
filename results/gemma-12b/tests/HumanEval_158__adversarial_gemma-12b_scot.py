@@ -38,6 +38,7 @@ def find_max(words):
 
     return result
 
+
 class TestFindMax:
     def test_empty_list(self):
         assert find_max([]) is None
@@ -48,20 +49,25 @@ class TestFindMax:
     def test_multiple_words_different_unique_chars(self):
         assert find_max(["name", "of", "string"]) == "string"
 
-    def test_multiple_words_same_unique_chars_lexicographical(self):
+    def test_multiple_words_same_unique_chars(self):
         assert find_max(["name", "enam", "game"]) == "enam"
 
+    def test_words_with_duplicates(self):
+        assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
+
     def test_empty_string_in_list(self):
-        assert find_max(["", "abc"]) == "abc"
+        assert find_max(["name", "", "string"]) == "string"
 
-    def test_list_with_empty_and_non_empty_strings(self):
-        assert find_max(["", "abc", "def"]) == "abc"
+    def test_mixed_empty_and_nonempty(self):
+        assert find_max(["", "abc", ""]) == "abc"
 
-    def test_duplicate_words(self):
-        assert find_max(["abc", "abc", "def"]) == "abc"
+    def test_all_empty_strings(self):
+        assert find_max(["", "", ""]) == ""
 
-    def test_words_with_special_characters(self):
-        assert find_max(["abc!", "abc?", "abc."]) == "abc!"
+    def test_long_strings(self):
+        long_string1 = "abcdefghijklmnopqrstuvwxyz"
+        long_string2 = "zyxwvutsrqponmlkjihgfedcba"
+        assert find_max([long_string1, long_string2]) == long_string1
 
-    def test_words_with_unicode_characters(self):
+    def test_unicode_characters(self):
         assert find_max(["你好", "世界", "你好世界"]) == "你好世界"

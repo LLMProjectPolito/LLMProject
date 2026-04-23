@@ -42,21 +42,25 @@ class TestSortedListSum:
 
     def test_all_odd_lengths(self):
         assert sorted_list_sum(["a", "aaa", "abc"]) == []
+        assert sorted_list_sum(["a", "abc", "def"]) == []
 
     def test_all_even_lengths(self):
         assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
     def test_mixed_lengths(self):
         assert sorted_list_sum(["aa", "a", "aaa", "bb"]) == ["aa", "bb"]
+        assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
     def test_mixed_lengths_with_duplicates(self):
         assert sorted_list_sum(["aa", "a", "aaa", "bb", "aa"]) == ["aa", "aa", "bb"]
 
     def test_same_length_alphabetical(self):
         assert sorted_list_sum(["ab", "ac", "aa"]) == ["aa", "ab", "ac"]
+        assert sorted_list_sum(["cb", "ab", "db"]) == ["ab", "cb", "db"]
 
     def test_longer_strings(self):
         assert sorted_list_sum(["abcd", "abc", "ab", "a"]) == ["ab", "abcd"]
+        assert sorted_list_sum(["abcdef", "abc", "defgh", "a"]) == ["abcdef", "defgh"]
 
     def test_longer_strings_with_duplicates(self):
         assert sorted_list_sum(["abcd", "abc", "ab", "a", "abcd"]) == ["ab", "abcd", "abcd"]
@@ -79,15 +83,6 @@ class TestSortedListSum:
     def test_numbers_as_strings(self):
         assert sorted_list_sum(["12", "1", "123", "124"]) == ["12", "124"]
 
-    def test_example_1(self):
-        assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
-
-    def test_example_2(self):
-        assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
-
-    def test_longer_strings(self):
-        assert sorted_list_sum(["abcdef", "abc", "defgh", "a"]) == ["abcdef", "defgh"]
-
     def test_strings_with_spaces(self):
         assert sorted_list_sum(["aa bb", "a", "ccc dd"]) == ["aa bb"]
 
@@ -95,7 +90,15 @@ class TestSortedListSum:
         assert sorted_list_sum(["a!", "bb@", "c#d"]) == ["bb@"]
 
     def test_large_list(self):
-        large_list = [str(i) * (i % 2 + 1) for i in range(100)]
-        expected_result = [s for s in large_list if len(s) % 2 == 0]
-        expected_result.sort(key=lambda s: (len(s), s))
+        large_list = ["a" * i for i in range(1, 21)]
+        expected_result = ["a" * i for i in range(2, 21, 2)]
         assert sorted_list_sum(large_list) == expected_result
+
+    def test_list_with_only_empty_string(self):
+        assert sorted_list_sum([""]) == []
+
+    def test_example_1(self):
+        assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
+
+    def test_example_2(self):
+        assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]

@@ -15,5 +15,5 @@ def double_the_difference(lst):
 import pytest
 import math
 
-def test_non_integer_list():
-    assert double_the_difference([1.5, 2.7, 3.1]) == 0
+def test_list_with_only_zero():
+    assert double_the_difference([0]) == 0

@@ -59,14 +59,17 @@ def test_specialFilter_example_1():
 def test_specialFilter_example_2():
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
-def test_specialFilter_all_greater_than_10_and_odd_digits():
+def test_specialFilter_all_greater_than_10_and_matching():
     assert specialFilter([111, 131, 151, 171, 191]) == 5
 
-def test_specialFilter_all_less_than_10_and_odd_digits():
+def test_specialFilter_some_greater_than_10_and_matching():
+    assert specialFilter([11, 13, 15, 12, 14]) == 2
+
+def test_specialFilter_edge_case_single_digit_greater_than_10():
     assert specialFilter([11, 13, 15, 17, 19]) == 0
 
-def test_specialFilter_mixed_odd_and_even_digits():
-    assert specialFilter([12, 13, 14, 15, 16]) == 1
+def test_specialFilter_edge_case_single_digit_less_than_10():
+    assert specialFilter([1, 2, 3, 4, 5]) == 0
 
 def test_specialFilter_with_zero_as_first_digit():
     assert specialFilter([015, 22, 33, 44, 55]) == 0
@@ -79,6 +82,3 @@ def test_specialFilter_with_negative_first_digit():
 
 def test_specialFilter_with_negative_last_digit():
     assert specialFilter([15, 22, -33, 44, 55]) == 0
-
-def test_specialFilter_with_negative_and_odd_digits():
-    assert specialFilter([-15, 22, -33, 45, 21, 109]) == 2

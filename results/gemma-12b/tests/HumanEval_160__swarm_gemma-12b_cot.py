@@ -34,8 +34,8 @@ def test_do_algebra_exponentiation_with_zero_base():
     operand = [0, 2]
     assert do_algebra(operator, operand) == 0
 
-def test_do_algebra_exponentiation_with_zero_operand():
-    """Test exponentiation with zero operand."""
+def test_do_algebra_exponentiation_with_zero_exponent():
+    """Test exponentiation with zero as the exponent."""
     operator = ['**']
     operand = [2, 0]
     assert do_algebra(operator, operand) == 1

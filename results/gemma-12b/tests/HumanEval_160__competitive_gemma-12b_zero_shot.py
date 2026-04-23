@@ -108,19 +108,17 @@ class TestDoAlgebra:
         operand = [0, 0]
         assert do_algebra(operator, operand) == 0
 
-    def test_multiple_operations(self):
-        operator = ['+', '*', '//', '**']
-        operand = [2, 3, 4, 5, 2]
-        assert do_algebra(operator, operand) == 28
+    def test_mixed_operators(self):
+        operator = ['+', '-', '*', '//', '**']
+        operand = [1, 2, 3, 4, 5]
+        assert do_algebra(operator, operand) == 1 + 2 - 3 * 4 // 5 ** 2
 
-    def test_single_operand_list(self):
-        with pytest.raises(IndexError):
-            operator = ['+']
-            operand = [2]
-            do_algebra(operator, operand)
+    def test_single_operator(self):
+        operator = ['+']
+        operand = [1, 1]
+        assert do_algebra(operator, operand) == 2
 
-    def test_empty_operator_list(self):
-        with pytest.raises(IndexError):
-            operator = []
-            operand = [2, 3]
-            do_algebra(operator, operand)
+    def test_negative_result(self):
+        operator = ['-']
+        operand = [1, 2]
+        assert do_algebra(operator, operand) == -1

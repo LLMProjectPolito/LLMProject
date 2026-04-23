@@ -20,7 +20,7 @@ def find_max(words):
 
     find_max(["name", "of", "string"]) == "string"
     find_max(["name", "enam", "game"]) == "enam"
-    find_max(["aaaaaaa", "bb" ,"cc"]) == ""aaaaaaa"
+    find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
     """
     if not words:
         return ""
@@ -80,8 +80,5 @@ def test_duplicate_words():
 def test_long_words():
     assert find_max(["abcdefgh", "ijklmnop", "qrstuvwxyz"]) == "abcdefgh"
 
-def test_words_with_same_unique_chars_and_length():
-    assert find_max(["abc", "def", "ghi"]) == "abc"
-
-def test_words_with_same_unique_chars_and_length_2():
-    assert find_max(["xyz", "abc", "def"]) == "abc"
+def test_words_with_repeating_characters():
+    assert find_max(["aabbcc", "def", "ghi"]) == "aabbcc"

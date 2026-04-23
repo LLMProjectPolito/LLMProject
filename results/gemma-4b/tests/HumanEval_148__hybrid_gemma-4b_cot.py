@@ -50,47 +50,32 @@ def bf(planet1, planet2):
 
     return tuple(result)
 
-def test_bf_jupiter_neptune():
+def test_bf_valid_input():
     assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
-
-def test_bf_earth_mercury():
     assert bf("Earth", "Mercury") == ("Venus")
-
-def test_bf_mercury_uranus():
     assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-
-def test_bf_venus_earth():
     assert bf("Venus", "Earth") == ("Mars")
-
-def test_bf_mars_jupiter():
     assert bf("Mars", "Jupiter") == ("Saturn")
 
-def test_bf_saturn_neptune():
-    assert bf("Saturn", "Neptune") == ("Uranus")
-
-def test_bf_uranus_neptune():
-    assert bf("Uranus", "Neptune") == ()
-
-def test_bf_mercury_mercury():
-    assert bf("Mercury", "Mercury") == ()
-
-def test_bf_neptune_neptune():
-    assert bf("Neptune", "Neptune") == ()
-
-def test_bf_invalid_planet1():
-    assert bf("Pluto", "Neptune") == ()
-
-def test_bf_invalid_planet2():
+def test_bf_invalid_input():
     assert bf("Jupiter", "Pluto") == ()
-
-def test_bf_invalid_both_planets():
+    assert bf("Earth", "Pluto") == ()
+    assert bf("Pluto", "Earth") == ()
     assert bf("Pluto", "Pluto") == ()
 
-def test_bf_same_planets():
+def test_bf_same_planet():
     assert bf("Earth", "Earth") == ()
 
 def test_bf_adjacent_planets():
-    assert bf("Mars", "Jupiter") == ("Saturn")
+    assert bf("Earth", "Mars") == ("Venus")
+    assert bf("Mars", "Earth") == ("Venus")
 
-def test_bf_far_apart_planets():
+def test_bf_edge_cases():
+    assert bf("Mercury", "Mercury") == ()
+    assert bf("Neptune", "Neptune") == ()
     assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
+
+def test_bf_empty_string():
+    assert bf("", "Earth") == ()
+    assert bf("Earth", "") == ()
+    assert bf("", "") == ()

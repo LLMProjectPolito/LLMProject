@@ -50,11 +50,11 @@ def test_x_or_y_boundary_edge_case():
     assert x_or_y(0, 5, 10) == 10
 
 # Focus: Type Scenarios
-def test_x_or_y_prime_n():
+def test_prime_returns_x():
     assert x_or_y(7, 34, 12) == 34
 
-def test_x_or_y_non_prime_n():
+def test_non_prime_returns_y():
     assert x_or_y(15, 8, 5) == 5
 
-def test_x_or_y_n_is_one():
+def test_edge_case_one_returns_y():
     assert x_or_y(1, 10, 20) == 20

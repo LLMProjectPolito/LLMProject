@@ -33,7 +33,7 @@ def compare(game,guess):
     compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) -> [4,4,1,0,0,6]
     """
     if len(game) != len(guess):
-        raise ValueError("Lists must be of equal length")
+        raise ValueError("Game and guess lists must have the same length.")
     result = []
     for i in range(len(game)):
         if game[i] == guess[i]:
@@ -42,18 +42,6 @@ def compare(game,guess):
             result.append(abs(game[i] - guess[i]))
     return result
 
-def is_palindrome(s: str) -> bool:
-    """ Checks if a string is a palindrome """
-    s = s.lower()
-    return s == s[::-1]
-
-def get_max(arr: list[int]) -> int:
-    """ Returns the maximum element in a list, or None if empty """
-    if not arr:
-        return None
-    return max(arr)
-
-
 class TestCompare:
     def test_correct_guesses(self):
         assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 5, 1]) == [0, 0, 0, 0, 0, 0]
@@ -61,7 +49,7 @@ class TestCompare:
     def test_mixed_guesses(self):
         assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
 
-    def test_all_incorrect_guesses(self):
+    def test_incorrect_guesses(self):
         assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
 
     def test_empty_lists(self):
@@ -77,18 +65,25 @@ class TestCompare:
         assert compare([-1, -2, -3], [-1, -2, -4]) == [0, 0, 1]
 
     def test_zero_values(self):
-        assert compare([0, 0, 0], [1, 2, 3]) == [1, 2, 3]
+        assert compare([0, 0, 0], [0, 1, 0]) == [0, 1, 0]
 
     def test_large_numbers(self):
         assert compare([1000, 2000, 3000], [1000, 2001, 3000]) == [0, 1, 0]
 
-    def test_all_negative_incorrect(self):
-        assert compare([-1, -2, -3], [-4, -5, -6]) == [3, 3, 3]
-
-    def test_different_lengths_raises_error(self):
+    def test_different_lengths(self):
         with pytest.raises(ValueError):
             compare([1, 2, 3], [1, 2])
 
+def is_palindrome(s: str) -> bool:
+    """ Checks if a string is a palindrome """
+    processed_string = ''.join(filter(str.isalnum, s)).lower()
+    return processed_string == processed_string[::-1]
+
+def get_max(arr: list[int]) -> int:
+    """ Returns the maximum element in a list, or None if empty """
+    if not arr:
+        return None
+    return max(arr)
 
 class TestPalindrome:
     def test_palindrome_basic(self):
@@ -98,11 +93,11 @@ class TestPalindrome:
     def test_palindrome_empty(self):
         assert is_palindrome('') == True
 
-    def test_palindrome_case_insensitive(self):
-        assert is_palindrome('Racecar') == True
-
     def test_palindrome_with_spaces(self):
-        assert is_palindrome('A man, a plan, a canal: Panama') == False # Spaces are not ignored
+        assert is_palindrome("A man, a plan, a canal: Panama") == True
+
+    def test_palindrome_with_punctuation(self):
+        assert is_palindrome("Madam, I'm Adam.") == True
 
 class TestGetMax:
     def test_max_positive(self):

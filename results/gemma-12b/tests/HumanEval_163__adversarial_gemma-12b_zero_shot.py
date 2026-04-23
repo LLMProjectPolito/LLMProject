@@ -50,25 +50,22 @@ class TestGenerateIntegers:
         assert generate_integers(1, 6) == [2, 4, 6]
 
     def test_start_even_end_odd(self):
-        assert generate_integers(6, 7) == [6]
+        assert generate_integers(6, 1) == [2, 4, 6]
 
-    def test_large_range(self):
-        assert generate_integers(1, 20) == [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+    def test_large_numbers(self):
+        assert generate_integers(100, 110) == [100, 102, 104, 106, 108, 110]
 
     def test_same_number_odd(self):
         assert generate_integers(1, 1) == []
 
-    def test_same_number_even(self):
-        assert generate_integers(2, 2) == [2]
-
-    def test_negative_input_raises_error(self):
+    def test_negative_input(self):
         with pytest.raises(TypeError):
             generate_integers(-2, 8)
 
-    def test_non_integer_input_raises_error(self):
+    def test_float_input(self):
         with pytest.raises(TypeError):
             generate_integers(2.5, 8)
 
-    def test_mixed_input_raises_error(self):
+    def test_string_input(self):
         with pytest.raises(TypeError):
-            generate_integers(2, 8.5)
+            generate_integers("2", "8")

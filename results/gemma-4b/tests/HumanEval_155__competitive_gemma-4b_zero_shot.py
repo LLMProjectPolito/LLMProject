@@ -46,7 +46,7 @@ def test_even_odd_count_all_odd():
     assert even_odd_count(13579) == (0, 5)
 
 def test_even_odd_count_mixed():
-    assert even_odd_count(123456789) == (4, 5)
+    assert even_odd_count(1234567890) == (5, 5)
 
 def test_even_odd_count_single_digit_even():
     assert even_odd_count(2) == (1, 0)

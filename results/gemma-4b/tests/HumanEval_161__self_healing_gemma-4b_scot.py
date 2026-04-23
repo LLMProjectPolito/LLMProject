@@ -52,16 +52,16 @@ def test_mixed_case_letters():
     assert solve("#a@C") == "#A@c"
 
 def test_mixed_case_with_numbers():
-    assert solve("a1B2c") == "A1b2C"
+    assert solve("a1B2c3") == "A1b2C3"
 
 def test_special_characters():
     assert solve("!@#$%^") == "^%$#@!"
 
 def test_mixed_characters():
-    assert solve("a1B2c!@#") == "A1b2C!@#"
+    assert solve("a1B2c3!") == "A1b2C3!"
 
 def test_long_string():
-    assert solve("This is a long string with mixed case and numbers.") == "tHIS iS A LoNg sTRING wITH mIXEd cASE AnD nUMBERs."
+    assert solve("This is a long string with mixed case and numbers.") == "tHIS Is A LONG STRING wITH MIXED CASE AND NUMBERS."
 
 def test_string_with_spaces():
     assert solve("Hello World") == "hELLO wORLD"

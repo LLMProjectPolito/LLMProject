@@ -43,11 +43,17 @@ def words_in_sentence(sentence):
         * sentence contains only letters
     """
     def is_prime(n):
-        if n < 2:
+        if n <= 1:
             return False
-        for i in range(2, int(n**0.5) + 1):
-            if n % i == 0:
+        if n <= 3:
+            return True
+        if n % 2 == 0 or n % 3 == 0:
+            return False
+        i = 5
+        while i * i <= n:
+            if n % i == 0 or n % (i + 2) == 0:
                 return False
+            i += 6
         return True
 
     words = sentence.split()
@@ -57,29 +63,20 @@ def words_in_sentence(sentence):
 def test_empty_sentence():
     assert words_in_sentence("") == ""
 
-def test_no_prime_length_words():
+def test_no_prime_words():
     assert words_in_sentence("this is a test") == ""
 
-def test_only_prime_length_words():
-    assert words_in_sentence("is a") == "is a"
+def test_all_prime_words():
+    assert words_in_sentence("is are") == "is are"
 
-def test_mixed_prime_and_non_prime_length_words():
+def test_mixed_words():
     assert words_in_sentence("This is a test") == "is"
 
-def test_single_prime_length_word():
-    assert words_in_sentence("go") == "go"
+def test_single_character_words():
+    assert words_in_sentence("a b c d e f g") == "a b c e f g"
 
-def test_single_non_prime_length_word():
-    assert words_in_sentence("test") == ""
+def test_long_sentence():
+    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the fox the dog"
 
-def test_leading_and_trailing_spaces():
+def test_sentence_with_leading_and_trailing_spaces():
     assert words_in_sentence("  This is a test  ") == "is"
-
-def test_multiple_spaces_between_words():
-    assert words_in_sentence("This  is   a    test") == "is"
-
-def test_example_1():
-    assert words_in_sentence("This is a test") == "is"
-
-def test_example_2():
-    assert words_in_sentence("lets go for swimming") == "go for"

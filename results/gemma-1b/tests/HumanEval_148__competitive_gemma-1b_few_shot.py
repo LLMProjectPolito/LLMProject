@@ -45,7 +45,7 @@ def bf(planet1, planet2):
         "Earth": 1.0,
         "Mars": 1.5,
         "Jupiter": 5.2,
-        "Saturn": 9.4,
+        "Saturn": 9.5,
         "Uranus": 19.0,
         "Neptune": 30.0
     }
@@ -55,7 +55,7 @@ def bf(planet1, planet2):
         "Earth": 1.0,
         "Mars": 1.5,
         "Jupiter": 5.2,
-        "Saturn": 9.4,
+        "Saturn": 9.5,
         "Uranus": 19.0,
         "Neptune": 30.0
     }

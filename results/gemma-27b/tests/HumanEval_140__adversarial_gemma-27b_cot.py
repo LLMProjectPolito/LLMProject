@@ -23,7 +23,7 @@ def test_leading_space():
     assert fix_spaces(" Example 2") == "_Example_2"
 
 def test_multiple_spaces():
-    assert fix_spaces("Example   3") == "_Example-3"
+    assert fix_spaces("Example   3") == "Example-3"
 
 def test_trailing_space():
     assert fix_spaces("Example 4 ") == "Example_4_"

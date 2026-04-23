@@ -58,14 +58,14 @@ def test_compare_negative_numbers():
     assert compare([-1, -2, -3], [-1, -2, -3]) == [0, 0, 0]
     assert compare([-1, -2, -3], [-4, -1, -2]) == [3, 1, 1]
 
-def test_compare_mixed_numbers():
-    assert compare([1, -2, 3], [1, 2, 3]) == [0, 0, 0]
-    assert compare([1, -2, 3], [4, 2, 3]) == [3, 0, 0]
+def test_compare_mixed_positive_negative():
+    assert compare([1, -2, 3], [1, -2, 3]) == [0, 0, 0]
+    assert compare([1, -2, 3], [4, -1, 2]) == [3, 1, 1]
 
 def test_compare_zero_values():
     assert compare([0, 0, 0], [0, 0, 0]) == [0, 0, 0]
-    assert compare([0, 0, 0], [1, 1, 1]) == [1, 1, 1]
+    assert compare([0, 0, 0], [1, 2, 3]) == [1, 2, 3]
 
 def test_compare_large_numbers():
     assert compare([1000, 2000, 3000], [1000, 2000, 3000]) == [0, 0, 0]
-    assert compare([1000, 2000, 3000], [1001, 2002, 3003]) == [1, 2, 3]
+    assert compare([1000, 2000, 3000], [1001, 1999, 2999]) == [1, 1, 1]

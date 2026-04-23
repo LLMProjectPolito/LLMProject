@@ -48,10 +48,17 @@ def do_algebra(operator, operand):
 
     Note:
         The length of operator list is equal to the length of operand list minus one.
-        Operand is a list of of non-negative integers.
+        Operand is a list of non-negative integers.
         Operator list has at least one operator, and operand list has at least two operands.
 
+    Raises:
+        ValueError: If any operand is negative.
+        ZeroDivisionError: If a division by zero is attempted.
     """
+    for num in operand:
+        if num < 0:
+            raise ValueError("Operands must be non-negative integers.")
+
     result = operand[0]
     for i in range(len(operator)):
         if operator[i] == '+':
@@ -61,6 +68,8 @@ def do_algebra(operator, operand):
         elif operator[i] == '*':
             result *= operand[i+1]
         elif operator[i] == '//':
+            if operand[i+1] == 0:
+                raise ZeroDivisionError("Division by zero.")
             result //= operand[i+1]
         elif operator[i] == '**':
             result **= operand[i+1]
@@ -86,7 +95,8 @@ def test_algebra_exponentiation():
     assert do_algebra(['**'], [2, 3]) == 8
 
 def test_algebra_complex():
-    assert do_algebra(['+', '*', '-', '//', '**'], [1, 2, 3, 4, 5]) == 1 + (2 * 3) - (4 // 5)
+    # 1 + (2 * 3) - (4 // 5) = 1 + 6 - 0 = 7
+    assert do_algebra(['+', '*', '-', '//'], [1, 2, 3, 4, 5]) == 7
 
 def test_algebra_long_chain():
     assert do_algebra(['+', '+', '+', '+'], [1, 2, 3, 4, 5]) == 15
@@ -98,4 +108,36 @@ def test_algebra_large_numbers():
     assert do_algebra(['*'], [1000, 1000]) == 1000000
 
 def test_algebra_mixed_operators():
+    # This test now asserts a specific value
     assert do_algebra(['+', '*', '-', '//'], [10, 2, 3, 6]) == 10 + (2 * 3) - (6 // 2)
+
+# New tests based on review
+def test_algebra_division_by_zero():
+    with pytest.raises(ZeroDivisionError):
+        do_algebra(['//'], [5, 0])
+
+def test_algebra_exponentiation_by_zero():
+    assert do_algebra(['**'], [5, 0]) == 1
+
+def test_algebra_zero_to_zero():
+    assert do_algebra(['**'], [0, 0]) == 1
+
+def test_algebra_left_to_right_precedence():
+    # 1 - 2 * 3 + 4 = (1 - 2) * 3 + 4 = -3 + 4 = 1
+    assert do_algebra(['-', '*', '+'], [1, 2, 3, 4]) == 1
+
+def test_algebra_negative_numbers():
+    with pytest.raises(ValueError):
+        do_algebra(['+', '-'], [-1, 2])
+
+def test_algebra_multiple_divisions():
+    assert do_algebra(['//', '//'], [20, 2, 5]) == 2
+
+def test_algebra_precedence_multiplication_addition():
+    assert do_algebra(['*', '+'], [2, 3, 4]) == (2 * 3) + 4
+
+def test_algebra_precedence_exponentiation_addition():
+    assert do_algebra(['**', '+'], [2, 3, 2]) == (2 ** 3) + 2
+
+def test_algebra_precedence_exponentiation_multiplication():
+    assert do_algebra(['**', '*'], [2, 3, 2]) == (2 ** 3) * 2

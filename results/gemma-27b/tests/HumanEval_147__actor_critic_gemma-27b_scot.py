@@ -39,35 +39,44 @@ def get_max_triples(n):
                     count += 1
     return count
 
-def test_n_base_case():
-    assert get_max_triples(3) == 0
+@pytest.mark.parametrize(
+    "n, expected",
+    [
+        (0, 0),
+        (1, 0),
+        (2, 0),
+        (3, 0),
+    ],
+)
+def test_n_small(n, expected):
+    assert get_max_triples(n) == expected
 
-def test_n_large_input():
-    assert get_max_triples(500) == 20708333
-
-def test_n_five_example_case():
+def test_n_equals_five():
     assert get_max_triples(5) == 1
 
-def test_n_six_example_case():
+def test_n_equals_six_remainder():
     assert get_max_triples(6) == 7
 
-def test_n_modulo_equal_distribution():
-    # Test case where remainders are approximately equally distributed
-    assert get_max_triples(300) == 9139100
+def test_n_equals_seven():
+    assert get_max_triples(7) == 15
 
-def test_n_modulo_dominant_remainder():
-    # Test case where most elements have a remainder of 0 when divided by 3
-    # Create a list where most elements are divisible by 3
-    n = 300
-    assert get_max_triples(n) == 9139100
+def test_n_equals_eight():
+    assert get_max_triples(8) == 26
 
-def test_negative_input():
-    with pytest.raises(TypeError):
-        get_max_triples(-1)
+def test_n_equals_ten():
+    assert get_max_triples(10) == 55
 
-def test_non_integer_input():
-    with pytest.raises(TypeError):
-        get_max_triples(3.14)
+def test_n_equals_200():
+    assert get_max_triples(200) == 13466700
 
-# Note: The function has O(n^3) complexity, which limits the practical size of n for testing.
-# Larger values of n will result in significantly longer test execution times.
+def test_n_equals_100():
+    assert get_max_triples(100) == 16170000
+
+def test_n_equals_500():
+    assert get_max_triples(500) == 20416667000
+
+def test_invalid_input_negative():
+    assert get_max_triples(-1) == 0
+
+def test_invalid_input_non_integer():
+    assert get_max_triples(3.14) == 0

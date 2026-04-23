@@ -30,7 +30,6 @@ def generate_integers(a, b):
                 s.add(digit)
     return sorted(list(s))
 
-
 def test_generate_integers_2_8():
     assert generate_integers(2, 8) == [2, 4, 6, 8]
 
@@ -54,45 +53,3 @@ def test_generate_integers_3_2():
 
 def test_generate_integers_2_3():
     assert generate_integers(2, 3) == [2]
-
-def test_generate_integers_2_4():
-    assert generate_integers(2, 4) == [2]
-
-def test_generate_integers_4_2():
-    assert generate_integers(4, 2) == [2]
-
-def test_generate_integers_4_3():
-    assert generate_integers(4, 3) == [2]
-
-def test_generate_integers_5_2():
-    assert generate_integers(5, 2) == [2]
-
-def test_generate_integers_6_2():
-    assert generate_integers(6, 2) == [2]
-
-def test_generate_integers_7_2():
-    assert generate_integers(7, 2) == [2]
-
-def test_generate_integers_8_2():
-    assert generate_integers(8, 2) == [2]
-
-def test_generate_integers_8_3():
-    assert generate_integers(8, 3) == []
-
-def test_generate_integers_1_4():
-    assert generate_integers(1, 4) == [2]
-
-def test_generate_integers_5_4():
-    assert generate_integers(5, 4) == [2]
-
-def test_generate_integers_6_4():
-    assert generate_integers(6, 4) == [2]
-
-def test_generate_integers_7_4():
-    assert generate_integers(7, 4) == [2]
-
-def test_generate_integers_9_4():
-    assert generate_integers(9, 4) == []
-
-def test_generate_integers_10_14():
-    assert generate_integers(10, 14) == []

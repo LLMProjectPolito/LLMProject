@@ -29,16 +29,22 @@ def cycpattern_check(a , b):
         return False
 
 def rotations(s):
-    """Helper function to generate all rotations of a string."""
-    return [s[i:] + s[:i] for i in range(len(s))]
+    rotations = []
+    for i in range(len(s)):
+        rotations.append(s[i:] + s[:i])
+    return rotations
 
-def test_empty_b():
-    assert cycpattern_check("abcd", "") == True
-
-def test_empty_string():
-    assert cycpattern_check("abc", "") == True
-    assert cycpattern_check("", "abc") == False
-    assert cycpattern_check("", "") == True
-
+@pytest.mark.parametrize("a, b", [
+    ("abcd", "abd"),
+    ("hello", "ell"),
+    ("whassup", "psus"),
+    ("abab", "baa"),
+    ("efef", "eeff"),
+    ("himenss","simen"),
+    ("abc", "cab"),
+    ("abc", "bca"),
+    ("abc", "acb"),
+    ("abc", "cba")
+])
 def test_cycpattern_check_edge_case(a, b):
     assert cycpattern_check(a, b) == True

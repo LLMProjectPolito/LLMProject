@@ -34,22 +34,16 @@ def test_zero():
     assert double_the_difference([0]) == 0
 
 def test_zero_and_odd():
-    assert double_the_difference([0, 1, 3]) == 1 + 9 == 10
+    assert double_the_difference([0, 1]) == 1
 
 def test_zero_and_even():
-    assert double_the_difference([0, 2, 4]) == 0
+    assert double_the_difference([0, 2]) == 0
 
-def test_floats():
-    assert double_the_difference([1.5, 2.0, 3.5]) == 0
-
-def test_strings():
-    assert double_the_difference(["a", "b", "c"]) == 0
-
-def test_mixed_types():
-    assert double_the_difference([1, 2, "a", 3.5, 5]) == 1 + 25 == 26
+def test_mixed_numbers():
+    assert double_the_difference([1, 3, 2, 0, -1, -2]) == 1 + 9 == 10
 
 def test_large_numbers():
-    assert double_the_difference([1001, 1003]) == 1001**2 + 1003**2 == 1002001 + 1006009 == 2008010
+    assert double_the_difference([9, 21, 3]) == 81 + 441 + 9 == 531
 
 def test_single_odd_number():
     assert double_the_difference([7]) == 49
@@ -57,8 +51,17 @@ def test_single_odd_number():
 def test_single_even_number():
     assert double_the_difference([4]) == 0
 
-def test_multiple_odd_numbers():
-    assert double_the_difference([1, 3, 5, 7, 9]) == 1 + 9 + 25 + 49 + 81 == 165
+def test_single_negative_number():
+    assert double_the_difference([-5]) == 0
 
-def test_all_negative_and_non_integer():
-    assert double_the_difference([-1.5, "-2", -3]) == 0
+def test_floats_and_strings():
+    assert double_the_difference([1.5, "a", 3]) == 9
+
+def test_all_floats():
+    assert double_the_difference([1.0, 3.0]) == 0
+
+def test_all_strings():
+    assert double_the_difference(["a", "b", "c"]) == 0
+
+def test_mixed_types():
+    assert double_the_difference([1, 2.5, "hello", 3]) == 9

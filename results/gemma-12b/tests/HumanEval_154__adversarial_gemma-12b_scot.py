@@ -24,7 +24,7 @@ def cycpattern_check(a , b):
     """
     if not b:
         return True
-    if len(b) > len(a):
+    if not a:
         return False
 
     for i in range(len(b)):
@@ -34,38 +34,32 @@ def cycpattern_check(a , b):
     return False
 
 class TestCycpatterCheck:
-    def test_basic_true(self):
+    def test_basic_match(self):
         assert cycpattern_check("hello", "ell") == True
 
-    def test_basic_false(self):
-        assert cycpattern_check("abcd", "abd") == False
-
-    def test_rotation_true(self):
+    def test_rotation_match(self):
         assert cycpattern_check("abab", "baa") == True
 
-    def test_empty_a(self):
-        assert cycpattern_check("", "abc") == False
+    def test_no_match(self):
+        assert cycpattern_check("whassup", "psus") == False
 
     def test_empty_b(self):
-        assert cycpattern_check("abc", "") == True
+        assert cycpattern_check("hello", "") == True
+
+    def test_empty_a(self):
+        assert cycpattern_check("", "ell") == False
 
     def test_both_empty(self):
         assert cycpattern_check("", "") == True
 
-    def test_identical_strings(self):
-        assert cycpattern_check("abc", "abc") == True
-
     def test_b_longer_than_a(self):
-        assert cycpattern_check("abc", "abcd") == False
+        assert cycpattern_check("abc", "abcdef") == False
 
     def test_overlapping_rotation(self):
         assert cycpattern_check("abcabc", "bca") == True
 
-    def test_complex_rotation(self):
-        assert cycpattern_check("xyzabc", "cab") == True
+    def test_case_sensitive(self):
+        assert cycpattern_check("hello", "Hello") == False
 
-    def test_special_characters(self):
-        assert cycpattern_check("!@#abc", "#abc") == True
-
-    def test_unicode_characters(self):
-        assert cycpattern_check("你好世界", "界世") == True
+    def test_repeated_characters(self):
+        assert cycpattern_check("efef", "eeff") == False

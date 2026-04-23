@@ -39,8 +39,8 @@ def special_factorial(n):
 def test_special_factorial_positive():
     assert special_factorial(4) == 288
 
-def test_special_factorial_zero():
-    assert special_factorial(0) is None
+def test_special_factorial_empty():
+    assert special_factorial([]) is None
 
 def test_special_factorial_one():
     assert special_factorial(1) == 1
@@ -57,6 +57,12 @@ def test_max_positive():
 
 def test_max_empty():
     assert get_max([]) == None
+
+def test_max_negative():
+    assert get_max([-1, -2, -3]) == -1
+
+def test_max_zero():
+    assert get_max([0, 1, 2]) == 2
 
 def test_get_max_empty():
     assert get_max([]) == None

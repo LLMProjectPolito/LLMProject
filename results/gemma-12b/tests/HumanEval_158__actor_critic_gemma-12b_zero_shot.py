@@ -22,19 +22,22 @@ def test_single_word():
 def test_multiple_words_different_unique_chars():
     assert find_max(["name", "of", "string"]) == "string"
 
-def test_multiple_words_same_unique_chars_lexicographical():
-    assert find_max(["name", "enam", "game"]) == "enam"
+def test_multiple_words_same_unique_chars():
+    assert find_max(["name", "enam", "game"]) == "name"  # First word with max unique chars
 
-def test_words_with_repeated_chars():
+def test_numbers_as_strings_with_leading_zeros():
+    assert find_max(["001", "123"]) == "001"
+
+def test_mixed_case_and_unicode():
+    assert find_max(["你好abc", "ABC"]) == "你好abc"
+
+def test_words_with_repeated_characters():
     assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
-
-def test_words_with_same_unique_chars_and_lexicographical_order():
-    assert find_max(["abc", "bca", "cab"]) == "bca"
 
 def test_words_with_special_characters():
     assert find_max(["!@#", "abc", "123"]) == "!@#"
 
-def test_words_with_alphanumeric_characters():
+def test_words_with_mixed_characters():
     assert find_max(["a1b2", "c3d4", "e5f6"]) == "a1b2"
 
 def test_words_with_unicode_characters():
@@ -49,14 +52,14 @@ def test_words_with_all_empty_strings():
 def test_words_with_numbers_as_strings():
     assert find_max(["123", "456", "789"]) == "123"
 
-def test_words_with_mixed_empty_and_non_empty():
-    assert find_max(["", "abc", ""]) == "abc"
+def test_numbers_vs_strings():
+    assert find_max(["123", "abc"]) == "123"
 
-def test_words_with_none_values():
-    assert find_max(["abc", None, "def"]) == "abc"
+def test_case_sensitivity():
+    assert find_max(["abc", "ABC"]) == "abc"
 
-def test_words_with_mixed_data_types():
-    assert find_max(["abc", 123, "def"]) == "abc"
+def test_words_with_long_strings():
+    assert find_max(["abcdefghijklmnopqrstuvwxyz", "1234567890"]) == "abcdefghijklmnopqrstuvwxyz"
 
-def test_long_list():
-    assert find_max(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]) == "a"
+def test_same_unique_chars_lexicographical():
+    assert find_max(["abc", "def", "ghi"]) == "abc"

@@ -33,12 +33,12 @@ def cycpattern_check(a, b):
     return False
 
 def test_cycpattern_check_basic():
-    assert cycpattern_check("abcd","abd") == False
-    assert cycpattern_check("hello","ell") == True
-    assert cycpattern_check("whassup","psus") == False
-    assert cycpattern_check("abab","baa") == True
-    assert cycpattern_check("efef","eeff") == False
-    assert cycpattern_check("himenss","simen") == True
+    assert cycpattern_check("abcd", "abd") == False
+    assert cycpattern_check("hello", "ell") == True
+    assert cycpattern_check("whassup", "psus") == False
+    assert cycpattern_check("abab", "baa") == True
+    assert cycpattern_check("efef", "eeff") == False
+    assert cycpattern_check("himenss", "simen") == True
 
 def test_cycpattern_check_empty_strings():
     assert cycpattern_check("", "") == True
@@ -49,10 +49,11 @@ def test_cycpattern_check_single_char():
     assert cycpattern_check("a", "a") == True
     assert cycpattern_check("a", "b") == False
     assert cycpattern_check("b", "a") == False
-    assert cycpattern_check("b", "b") == True
+    assert cycpattern_check("a", "c") == False
 
-def test_cycpattern_check_different_lengths():
-    assert cycpattern_check("abc", "abcd") == False
-    assert cycpattern_check("abc", "bc") == False
-    assert cycpattern_check("abc", "c") == False
-    assert cycpattern_check("abc", "ab") == False
+def test_cycpattern_check_longer_strings():
+    assert cycpattern_check("abcdefg", "def") == True
+    assert cycpattern_check("abcdefg", "gfed") == True
+    assert cycpattern_check("abcdefg", "fedc") == True
+    assert cycpattern_check("abcdefg", "abcdef") == True
+    assert cycpattern_check("abcdefg", "abcdefg") == True

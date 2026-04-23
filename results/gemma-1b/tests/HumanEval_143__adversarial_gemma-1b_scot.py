@@ -69,4 +69,3 @@ def test_words_in_sentence():
     assert words_in_sentence("a b c") == "a b c"
     assert words_in_sentence("a b c d e f") == "a b c d e f"
     assert words_in_sentence("a b c d e f g h") == "a b c d e f g h"
-    print("All test cases passed")

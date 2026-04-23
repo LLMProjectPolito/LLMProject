@@ -22,6 +22,5 @@ def even_odd_count(n):
             odd_count += 1
     return (even_count, odd_count)
 
-
 def test_even_odd_count_negative():
     assert even_odd_count(-12) == (1, 1)

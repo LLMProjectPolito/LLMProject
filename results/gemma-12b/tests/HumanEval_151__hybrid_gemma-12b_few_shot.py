@@ -35,6 +35,95 @@ def double_the_difference(lst):
             sum_of_squares += num * num
     return sum_of_squares
 
+class TestDoubleTheDifference:
+    """
+    Pytest class for testing the double_the_difference function.
+    """
+
+    def test_basic_case(self):
+        """Tests a standard case with positive and negative numbers."""
+        assert double_the_difference([1, 3, 2, 0]) == 10
+
+    def test_all_negative(self):
+        """Tests a case with all negative numbers."""
+        assert double_the_difference([-1, -2, 0]) == 0
+
+    def test_single_odd_positive(self):
+        """Tests a case with a single odd positive number."""
+        assert double_the_difference([9, -2]) == 81
+
+    def test_single_zero(self):
+        """Tests a case with a single zero."""
+        assert double_the_difference([0]) == 0
+
+    def test_empty_list(self):
+        """Tests the case of an empty list."""
+        assert double_the_difference([]) == 0
+
+    def test_mixed_types(self):
+        """Tests a list with mixed data types (should ignore non-integers)."""
+        assert double_the_difference([1, 2.5, "hello", 3]) == 10
+
+    def test_large_numbers(self):
+        """Tests with larger odd numbers."""
+        assert double_the_difference([11, 13, 15]) == 121 + 169 + 225
+
+    def test_only_even_numbers(self):
+        """Tests a list with only even numbers."""
+        assert double_the_difference([2, 4, 6]) == 0
+
+    def test_zero_and_odd(self):
+        """Tests a list with zero and odd numbers."""
+        assert double_the_difference([0, 1, 3]) == 10
+
+    def test_negative_and_odd(self):
+        """Tests a list with negative and odd numbers."""
+        assert double_the_difference([-1, 3, 5]) == 0
+
+    def test_positive_odd_numbers(self):
+        """Tests a list with only positive odd numbers."""
+        assert double_the_difference([1, 3, 5]) == 1 + 9 + 25
+
+    def test_mixed_numbers(self):
+        """Tests a list with mixed numbers."""
+        assert double_the_difference([1, 3, 2, 0]) == 1 + 9
+
+    def test_negative_numbers(self):
+        """Tests a list with only negative numbers."""
+        assert double_the_difference([-1, -2, -3]) == 0
+
+    def test_negative_and_positive(self):
+        """Tests a list with negative and positive numbers."""
+        assert double_the_difference([-1, 1, -2, 3]) == 1 + 9
+
+    def test_zero(self):
+        """Tests a list with only zero."""
+        assert double_the_difference([0]) == 0
+
+    def test_large_numbers2(self):
+        """Tests with larger odd numbers."""
+        assert double_the_difference([9, 11, 13]) == 81 + 121 + 169
+
+    def test_non_integer_numbers(self):
+        """Tests with non-integer numbers."""
+        assert double_the_difference([1.5, 2, 3.0]) == 0
+
+    def test_mixed_types2(self):
+        """Tests a list with mixed data types (should ignore non-integers)."""
+        assert double_the_difference([1, "a", 3, 5.5, 7]) == 1 + 9 + 49
+
+    def test_all_even2(self):
+        """Tests a list with only even numbers."""
+        assert double_the_difference([2, 4, 6, 8]) == 0
+
+    def test_single_odd_number(self):
+        """Tests a list with a single odd number."""
+        assert double_the_difference([7]) == 49
+
+    def test_complex_list(self):
+        """Tests a complex list with various numbers."""
+        assert double_the_difference([1, 2, -3, 4, 5, -6, 7, 8, 9, -10]) == 1 + 25 + 49 + 81
+
 def is_palindrome(s: str) -> bool:
     """ Checks if a string is a palindrome """
     s = s.lower()
@@ -45,74 +134,6 @@ def get_max(arr: list[int]) -> int:
     if not arr:
         return None
     return max(arr)
-
-
-# Pytest suite
-def test_double_the_difference_basic():
-    assert double_the_difference([1, 3, 2, 0]) == 10
-
-def test_double_the_difference_negative():
-    assert double_the_difference([-1, -2, 0]) == 0
-
-def test_double_the_difference_single_odd():
-    assert double_the_difference([9, -2]) == 81
-
-def test_double_the_difference_single_zero():
-    assert double_the_difference([0]) == 0
-
-def test_double_the_difference_empty_list():
-    assert double_the_difference([]) == 0
-
-def test_double_the_difference_mixed_positive_negative_and_zero():
-    assert double_the_difference([1, -2, 3, 0, 5]) == 35
-
-def test_double_the_difference_non_integer_values():
-    assert double_the_difference([1, 2.5, 3, "a"]) == 9
-
-def test_double_the_difference_all_even():
-    assert double_the_difference([2, 4, 6, 8]) == 0
-
-def test_double_the_difference_large_numbers():
-    assert double_the_difference([11, 13, 15]) == 515
-
-def test_double_the_difference_with_zero_and_odd():
-    assert double_the_difference([0, 1, 3]) == 10
-
-def test_empty_list():
-    assert double_the_difference([]) == 0
-
-def test_positive_odd_numbers():
-    assert double_the_difference([1, 3, 5]) == 35
-
-def test_mixed_numbers():
-    assert double_the_difference([1, 3, 2, 0]) == 10
-
-def test_negative_numbers():
-    assert double_the_difference([-1, -2, -3]) == 0
-
-def test_negative_and_positive():
-    assert double_the_difference([-1, 1, -2, 3]) == 10
-
-def test_zero():
-    assert double_the_difference([0]) == 0
-
-def test_large_numbers():
-    assert double_the_difference([9, 11, 13]) == 371
-
-def test_non_integer_numbers():
-    assert double_the_difference([1.5, 2, 3.0]) == 0
-
-def test_mixed_types():
-    assert double_the_difference([1, "a", 3, 5.5, 7]) == 59
-
-def test_all_even():
-    assert double_the_difference([2, 4, 6, 8]) == 0
-
-def test_single_odd_number():
-    assert double_the_difference([7]) == 49
-
-def test_complex_list():
-    assert double_the_difference([1, 2, -3, 4, 5, -6, 7, 8, 9, -10]) == 156
 
 def test_palindrome_basic():
     assert is_palindrome('radar') == True

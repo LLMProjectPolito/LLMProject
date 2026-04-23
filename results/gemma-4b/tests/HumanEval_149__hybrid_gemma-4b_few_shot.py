@@ -88,36 +88,21 @@ def test_sorted_list_sum_basic():
     assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
     assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
     assert sorted_list_sum(["abc", "def", "ghi"]) == ["abc", "def", "ghi"]
-    assert sorted_list_sum(["abc", "def", "ghi", "jkl"]) == ["abc", "def", "ghi", "jkl"]
+    assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
 def test_sorted_list_sum_duplicates():
     assert sorted_list_sum(["aa", "aa", "a"]) == ["aa", "aa"]
     assert sorted_list_sum(["ab", "ab", "a"]) == ["ab", "ab"]
 
-def test_sorted_list_sum_same_length_different_order():
-    assert sorted_list_sum(["abc", "def", "ghi"]) == ["abc", "def", "ghi"]
-    assert sorted_list_sum(["ghi", "def", "abc"]) == ["abc", "def", "ghi"]
+def test_sorted_list_sum_mixed():
+    assert sorted_list_sum(["ab", "a", "aaa", "cd", "ab"]) == ["ab", "ab", "cd"]
+    assert sorted_list_sum(["aa", "a", "aaa", "cd", "ab"]) == ["aa", "ab", "cd"]
 
-def test_sorted_list_sum_empty_input():
+def test_sorted_list_sum_empty():
     assert sorted_list_sum([]) == []
-
-def test_sorted_list_sum_mixed_lengths():
-    assert sorted_list_sum(["a", "bb", "ccc", "dddd"]) == ["a", "bb", "ddd"]
-    assert sorted_list_sum(["dddd", "ccc", "bb", "a"]) == ["a", "bb", "ddd"]
-
-def test_is_palindrome_edge_cases():
-    assert is_palindrome(" ") == True
-    assert is_palindrome("a") == True
-    assert is_palindrome("ab") == False
-
-def test_get_max_single_element():
-    assert get_max([5]) == 5
 
 def test_sorted_list_sum_all_odd():
     assert sorted_list_sum(["a", "b", "c"]) == []
 
-def test_sorted_list_sum_all_even():
-    assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
-
-def test_sorted_list_sum_with_empty_string():
-    assert sorted_list_sum(["", "aa", "bb"]) == ["", "aa", "bb"]
+def test_sorted_list_sum_same_length_different_chars():
+    assert sorted_list_sum(["ab", "ac", "ad"]) == ["ab", "ac", "ad"]

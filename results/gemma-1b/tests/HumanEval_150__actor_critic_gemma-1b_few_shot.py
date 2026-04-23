@@ -11,24 +11,51 @@ def x_or_y(n, x, y):
 
 import pytest
 
-def is_palindrome(s: str) -> bool:
-    """ Checks if a string is a palindrome """
-    s = s.lower()
-    s = ''.join(filter(str.isalnum, s))
-    return s == s[::-1]
+def x_or_y(n, x, y):
+    """A simple program which should return the value of x if n is 
+    a prime number and should return the value of y otherwise.
 
-def get_max(arr: list[int]) -> int:
-    """ Returns the maximum element in a list, or None if empty """
-    if not arr:
-        return None
-    max_val = arr[0]
-    for num in arr:
-        if num > max_val:
-            max_val = num
-    return max_val
+    Examples:
+    for x_or_y(7, 34, 12) == 34
+    for x_or_y(15, 8, 5) == 5
+    
+    """
+    if n > 1:
+        for i in range(2, n):
+            if n % i == 0:
+                return -1  # n is not prime
+        return x
+    else:
+        return y
 
-def test_max_positive():
-    assert get_max([1, 2, 3]) == 3
+def test_x_or_y_positive():
+    assert x_or_y(7, 34, 12) == 34
+    assert x_or_y(15, 8, 5) == 5
 
-def test_max_empty():
-    assert get_max([]) == None
+def test_x_or_y_empty():
+    assert x_or_y([]) == None
+
+def test_x_or_y_prime():
+    assert x_or_y(7, 7, 7) == 7
+    assert x_or_y(11, 11, 11) == 11
+    assert x_or_y(13, 13, 13) == 13
+    assert x_or_y(17, 17, 17) == 17
+    assert x_or_y(19, 19, 19) == 19
+    assert x_or_y(23, 23, 23) == 23
+    assert x_or_y(29, 29, 29) == 29
+    assert x_or_y(31, 31, 31) == 31
+    assert x_or_y(37, 37, 37) == 37
+    assert x_or_y(41, 41, 41) == 41
+    assert x_or_y(43, 43, 43) == 43
+    assert x_or_y(47, 47, 47) == 47
+    assert x_or_y(53, 53, 53) == 53
+    assert x_or_y(59, 59, 59) == 59
+    assert x_or_y(61, 61, 61) == 61
+    assert x_or_y(67, 67, 67) == 67
+    assert x_or_y(71, 71, 71) == 71
+    assert x_or_y(73, 73, 73) == 73
+    assert x_or_y(79, 79, 79) == 79
+    assert x_or_y(83, 83, 83) == 83
+    assert x_or_y(89, 89, 89) == 89
+    assert x_or_y(97, 97, 97) == 97
+    print("All tests passed")

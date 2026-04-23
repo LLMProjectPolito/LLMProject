@@ -32,32 +32,32 @@ def specialFilter(nums):
 def test_specialFilter_empty_list():
     assert specialFilter([]) == 0
 
-def test_specialFilter_no_matching_elements():
+def test_specialFilter_no_matching_numbers():
     assert specialFilter([1, 2, 3, 4, 5]) == 0
 
-def test_specialFilter_single_matching_element():
+def test_specialFilter_single_matching_number():
     assert specialFilter([15]) == 1
 
-def test_specialFilter_multiple_matching_elements():
+def test_specialFilter_multiple_matching_numbers():
     assert specialFilter([15, -73, 14, -15]) == 1
 
-def test_specialFilter_mixed_elements():
+def test_specialFilter_mixed_numbers():
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
 def test_specialFilter_negative_numbers():
     assert specialFilter([-15, -33, -45]) == 0
 
 def test_specialFilter_large_numbers():
-    assert specialFilter([123, 456, 789]) == 0
+    assert specialFilter([111, 131, 151, 171, 191]) == 5
 
 def test_specialFilter_numbers_with_zero():
-    assert specialFilter([101, 202, 303]) == 0
+    assert specialFilter([101, 123, 145, 167, 189]) == 3
 
-def test_specialFilter_all_odd_first_last():
-    assert specialFilter([11, 33, 55, 77, 99]) == 5
+def test_specialFilter_duplicate_numbers():
+    assert specialFilter([15, 15, 15]) == 3
 
-def test_specialFilter_some_odd_some_even():
-    assert specialFilter([11, 22, 33, 44, 55]) == 2
+def test_specialFilter_numbers_with_negative_signs():
+    assert specialFilter([-15, 15, -33, 33]) == 2
 
-def test_specialFilter_with_negative_and_positive():
-    assert specialFilter([-11, 11, -33, 33]) == 2
+def test_specialFilter_numbers_with_decimal_points():
+    assert specialFilter([15.5, 17.1, 19.9]) == 0

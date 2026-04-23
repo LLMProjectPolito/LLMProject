@@ -59,7 +59,7 @@ def test_large_numbers():
     assert sum_squares([100, 200, 300]) == 10000 + 80000 + 270000
 
 def test_zero_values():
-    assert sum_squares([0, 1, 2, 3]) == 0 + 1 + 4 + 9
+    assert sum_squares([0, 0, 0]) == 0
 
 def test_example_1():
     assert sum_squares([1, 2, 3]) == 6

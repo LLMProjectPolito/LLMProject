@@ -74,3 +74,9 @@ def test_example_1():
 
 def test_example_2():
     assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
+
+def test_numbers_as_strings():
+    assert sorted_list_sum(["12", "1", "123", "45"]) == ["12", "45"]
+
+def test_special_characters():
+    assert sorted_list_sum(["!@#", "!", "$%^"]) == ["!@#"]

@@ -25,17 +25,15 @@ def fix_spaces(text):
     fix_spaces(" Example   3") == "_Example-3"
     """
     result = ""
-    space_count = 0
+    count = 0
     for char in text:
-        if char == ' ':
-            space_count += 1
-            if space_count <= 2:
+        if char == " ":
+            count += 1
+            if count <= 2:
                 result += "_"
-            else:
-                result += "-"
         else:
+            count = 0
             result += char
-            space_count = 0
     return result
 
 def test_fix_spaces_no_spaces():
@@ -50,14 +48,14 @@ def test_fix_spaces_multiple_spaces():
 def test_fix_spaces_many_spaces():
     assert fix_spaces(" Example   3") == "_Example-3"
 
+def test_fix_spaces_empty_string():
+    assert fix_spaces("") == ""
+
 def test_fix_spaces_leading_spaces():
     assert fix_spaces("  Hello") == "_Hello"
 
 def test_fix_spaces_trailing_spaces():
     assert fix_spaces("Hello  ") == "Hello_ "
 
-def test_fix_spaces_all_spaces():
-    assert fix_spaces("   ") == "---"
-
-def test_fix_spaces_empty_string():
-    assert fix_spaces("") == ""
+def test_fix_spaces_mixed_spaces():
+    assert fix_spaces("Hello   World") == "Hello__World"

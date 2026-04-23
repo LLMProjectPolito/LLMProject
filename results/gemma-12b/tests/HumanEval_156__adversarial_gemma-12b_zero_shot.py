@@ -57,14 +57,14 @@ def test_int_to_mini_roman_edge_cases():
     assert int_to_mini_roman(1) == "i"
     assert int_to_mini_roman(1000) == "m"
 
-def test_int_to_mini_roman_invalid_input_lower_bound():
+def test_int_to_mini_roman_invalid_input():
     with pytest.raises(ValueError):
         int_to_mini_roman(0)
-
-def test_int_to_mini_roman_invalid_input_upper_bound():
     with pytest.raises(ValueError):
         int_to_mini_roman(1001)
-
-def test_int_to_mini_roman_negative_input():
-    with pytest.raises(ValueError):
-        int_to_mini_roman(-1)
+    with pytest.raises(TypeError):
+        int_to_mini_roman("abc")
+    with pytest.raises(TypeError):
+        int_to_mini_roman(1.5)
+    with pytest.raises(TypeError):
+        int_to_mini_roman([1])

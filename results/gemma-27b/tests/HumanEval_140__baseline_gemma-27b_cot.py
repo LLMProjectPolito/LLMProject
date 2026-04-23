@@ -47,15 +47,11 @@ def test_fix_spaces_empty_string():
     assert fix_spaces("") == ""
 
 def test_fix_spaces_mixed_spaces():
-    assert fix_spaces("  Example 1  2   3  ") == "-Example_1-2-3-"
+    assert fix_spaces("  Example  123   456 ") == "-Example-123-456_"
 
-def test_fix_spaces_with_tabs():
-    assert fix_spaces("Example\t1") == "Example\t1"
-
-def test_fix_spaces_with_newlines():
-    assert fix_spaces("Example\n1") == "Example\n1"
+def test_fix_spaces_consecutive_spaces_and_single_space():
+    assert fix_spaces("Example  1 2") == "Example-1_2"
 
 def test_fix_spaces_long_string_with_multiple_space_groups():
     long_string = "This is a long string with   multiple   space   groups."
-    expected_string = "This_is_a_long_string_with-multiple-space-groups."
-    assert fix_spaces(long_string) == expected_string
+    assert fix_spaces(long_string) == "This_is_a_long_string_with-multiple-space-groups."

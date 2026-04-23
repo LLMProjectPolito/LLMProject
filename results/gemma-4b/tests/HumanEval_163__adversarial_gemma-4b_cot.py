@@ -23,7 +23,7 @@ def generate_integers(a, b):
     generate_integers(10, 14) => []
     """
     result = []
-    for i in range(a, b + 1):
+    for i in range(min(a, b), max(a, b) + 1):
         s = str(i)
         for digit in s:
             if int(digit) % 2 == 0:
@@ -34,27 +34,30 @@ def generate_integers(a, b):
 
 def test_generate_integers_normal():
     assert generate_integers(2, 8) == [2, 4, 6, 8]
-
-def test_generate_integers_reverse():
     assert generate_integers(8, 2) == [2, 4, 6, 8]
-
-def test_generate_integers_no_even():
     assert generate_integers(10, 14) == []
-
-def test_generate_integers_single_number():
+    assert generate_integers(2, 2) == [2]
     assert generate_integers(4, 4) == [4]
-
-def test_generate_integers_a_equals_b():
-    assert generate_integers(6, 6) == [6]
-
-def test_generate_integers_large_numbers():
-    assert generate_integers(100, 102) == [100, 102]
-
-def test_generate_integers_mixed_even_odd():
-    assert generate_integers(1, 5) == [2, 4]
 
 def test_generate_integers_with_zeros():
     assert generate_integers(20, 28) == [2, 4, 6, 8]
+    assert generate_integers(28, 20) == [2, 4, 6, 8]
+    assert generate_integers(10, 12) == []
+    assert generate_integers(20, 22) == [2, 0]
 
-def test_generate_integers_with_leading_zeros():
-    assert generate_integers(1000, 1002) == [1000, 1002]
+def test_generate_integers_single_digit():
+    assert generate_integers(2, 2) == [2]
+    assert generate_integers(8, 8) == [8]
+    assert generate_integers(1, 1) == []
+    assert generate_integers(2, 1) == [2]
+
+def test_generate_integers_large_range():
+    assert generate_integers(100, 102) == []
+    assert generate_integers(102, 104) == [2, 4]
+    assert generate_integers(200, 204) == [2, 0]
+
+def test_generate_integers_edge_cases():
+    assert generate_integers(1, 10) == []
+    assert generate_integers(10, 1) == [2, 4, 6, 8]
+    assert generate_integers(1, 100) == []
+    assert generate_integers(100, 1) == [2, 4, 6, 8]

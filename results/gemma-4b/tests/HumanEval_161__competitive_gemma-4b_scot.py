@@ -64,4 +64,4 @@ def test_solve_with_special_characters():
     assert solve("!@#$%^") == "^%$#@!"
 
 def test_solve_long_string():
-    assert solve("This is a long string with mixed case and numbers.") == "tHIS iS A LoNg sTRiNg wITH mIXeD cASE AnD nUMBErS."
+    assert solve("This is a long string with mixed case and numbers.") == "tHIS iS A LoNg sTRING wITH mIXED cASE AND nUMBERS."

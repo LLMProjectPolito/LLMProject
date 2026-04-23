@@ -13,15 +13,13 @@ def fix_spaces(text):
 
 def fix_spaces(text):
     result = ""
-    space_count = 0
+    count = 0
     for char in text:
         if char == ' ':
-            if space_count > 0:
-                result += '-'
-                space_count -= 1
-            else:
-                result += char
+            count += 1
         else:
+            if count > 2:
+                result += '-'
+                count = 0
             result += char
-            space_count += 1
     return result

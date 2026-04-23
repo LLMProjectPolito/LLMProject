@@ -77,7 +77,7 @@ def test_long_name_with_digits():
     assert file_name_check("1234example.txt") == 'No'
 
 def test_name_with_numbers_and_letters():
-    assert file_name_check("a123example.txt") == 'No'
+    assert file_name_check("example123.dll") == 'No'
 
 def test_empty_name():
     assert file_name_check("") == 'No'

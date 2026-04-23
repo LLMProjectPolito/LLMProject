@@ -38,12 +38,12 @@ def test_operator_validation_valid_operators():
 def test_operator_validation_invalid_operator():
     operators = ['+', '*', '%', '**']
     operands = [2, 3, 4, 5]
-    assert '%' not in ['+', '-', '*', '//', '**']
+    assert '%' not in operators
 
 def test_operator_validation_empty_operator_list():
     operators = []
     operands = [2, 3]
-    assert len(operators) >= 0
+    assert len(operators) == len(operands) - 1
 
 # Focus: Operand Value Range
 def test_operand_value_range_positive():
@@ -81,7 +81,7 @@ def test_expression_complexity_multiple_operations():
     assert do_algebra(operator, operand) == 9
 
 def test_expression_complexity_exponentiation():
-    """Tests an expression involving exponentiation."""
+    """Tests an expression with exponentiation."""
     operator = ['**']
     operand = [2, 3]
     assert do_algebra(operator, operand) == 8

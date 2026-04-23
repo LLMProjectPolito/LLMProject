@@ -27,6 +27,9 @@ def sorted_list_sum(lst):
     should return the list sorted by that rule.
     If two words have the same length, sort the list alphabetically.
     The function should return a list of strings in sorted order.
+    For example:
+    assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
+    assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
     """
     even_length_strings = [s for s in lst if len(s) % 2 == 0]
     even_length_strings.sort(key=lambda s: (len(s), s))
@@ -53,12 +56,16 @@ def test_mixed_lengths_and_duplicates():
 def test_single_even_length_string():
     assert sorted_list_sum(["aa"]) == ["aa"]
 
-def test_single_odd_length_string():
-    assert sorted_list_sum(["a"]) == []
+def test_reverse_alphabetical_same_length():
+    assert sorted_list_sum(["dc", "cb", "ba"]) == ["ba", "cb", "dc"]
 
 def test_large_list():
-    large_list = ["a" * i for i in range(1, 101) if i % 2 == 0]
-    assert sorted_list_sum(large_list) == sorted(large_list, key=lambda s: (len(s), s))
+    large_list = [str(i) * 2 for i in range(1, 6)] * 10  # Simplified large list creation
+    expected_result = sorted(large_list, key=lambda s: (len(s), s))
+    assert sorted_list_sum(large_list) == expected_result
 
-def test_same_length_different_order():
-    assert sorted_list_sum(["zz", "aa", "bb", "cc"]) == ["aa", "bb", "cc", "zz"]
+def test_list_with_only_empty_strings():
+    assert sorted_list_sum(["", ""]) == ["", ""]
+
+def test_strings_with_non_alphabetic_characters():
+    assert sorted_list_sum(["a1", "bb2", "ccc"]) == ["a1", "bb2"]

@@ -28,7 +28,7 @@ def is_prime(n):
 
 def x_or_y(n, x, y):
     """
-    If n is prime, return x. Otherwise, return y.
+    Given an integer n, return x if n is a prime number, otherwise return y.
     """
     if is_prime(n):
         return x
@@ -42,11 +42,11 @@ def test_x_or_y_prime_number():
     assert x_or_y(3, 5, 1) == 5
     assert x_or_y(5, 100, 0) == 100
     assert x_or_y(11, -1, 1) == -1
-    assert x_or_y(13, -5, 10) == -5
-    assert x_or_y(17, 0, 1) == 0
-    assert x_or_y(19, 10, -10) == 10
-    assert x_or_y(23, 2.5, 3.5) == 2.5
-    assert x_or_y(29, "a", "b") == "a"
+    assert x_or_y(13, -1, 1) == -1
+    assert x_or_y(17, 2, 3) == 2
+    assert x_or_y(19, 4, 5) == 4
+    assert x_or_y(23, 6, 7) == 6
+    assert x_or_y(29, 8, 9) == 8
 
 def test_x_or_y_not_prime_number():
     """Test when n is not a prime number."""
@@ -55,12 +55,11 @@ def test_x_or_y_not_prime_number():
     assert x_or_y(6, 7, 8) == 8
     assert x_or_y(9, 0, -1) == -1
     assert x_or_y(10, 1000, 1) == 1
-    assert x_or_y(8, 5, 1) == 1
-    assert x_or_y(12, -5, 10) == 10
-    assert x_or_y(14, 0, 1) == 1
-    assert x_or_y(16, 10, -10) == -10
-    assert x_or_y(18, 2.5, 3.5) == 3.5
-    assert x_or_y(20, "a", "b") == "b"
+    assert x_or_y(8, 5, 6) == 6
+    assert x_or_y(12, 11, 12) == 12
+    assert x_or_y(14, 13, 14) == 14
+    assert x_or_y(16, 15, 16) == 16
+    assert x_or_y(18, 17, 18) == 18
 
 def test_x_or_y_edge_cases():
     """Test edge cases like 0, 1, and negative numbers."""
@@ -68,18 +67,17 @@ def test_x_or_y_edge_cases():
     assert x_or_y(1, 3, 4) == 4
     assert x_or_y(-5, 5, 6) == 6  # Negative input for n
     assert x_or_y(2, 0, 0) == 0
-    assert x_or_y(1, 0, 0) == 0
-    assert x_or_y(1, 10, 20) == 20  # 1 is not prime
-    assert x_or_y(2, 10, 20) == 10  # 2 is prime
-    assert x_or_y(0, 10, 20) == 20  # 0 is not prime
-    assert x_or_y(-1, 10, 20) == 20 # negative number is not prime
-    assert x_or_y(100, 10, 20) == 20
-    assert x_or_y(101, 10, 20) == 10
+    assert x_or_y(1, 10, 20) == 20
+    assert x_or_y(0, 5, 10) == 10
+    assert x_or_y(2, -1, -2) == -1
+    assert x_or_y(4, -1, -2) == -2
 
 def test_x_or_y_large_numbers():
     """Test with large numbers to check for potential overflow issues."""
     assert x_or_y(1000000007, 100, 200) == 100  # Large prime
     assert x_or_y(1000000008, 300, 400) == 400  # Large non-prime
+    assert x_or_y(1000000007, 1, 2) == 1  # Prime
+    assert x_or_y(1000000008, 1, 2) == 2  # Not prime
 
 def test_x_or_y_x_and_y_same():
     """Test when x and y are the same value."""
@@ -96,10 +94,8 @@ def test_x_or_y_mixed_signs():
     assert x_or_y(7, -10, 20) == -10
     assert x_or_y(4, 5, -6) == -6
 
-def test_x_or_y_type_handling():
-    assert x_or_y(7, 34.5, 12) == 34.5
-    assert x_or_y(15, 8, 5.5) == 5.5
-    assert x_or_y(7, "hello", 12) == "hello"
-    assert x_or_y(15, 8, "world") == "world"
-    assert x_or_y(7, True, False) == True
-    assert x_or_y(15, False, True) == True
+def test_x_or_y_negative_numbers():
+    assert x_or_y(7, -34, -12) == -34
+    assert x_or_y(15, -8, -5) == -5
+    assert x_or_y(2, -10, -20) == -10
+    assert x_or_y(4, -1, -2) == -2

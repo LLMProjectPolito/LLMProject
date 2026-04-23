@@ -60,7 +60,7 @@ def sum_squares(lst):
 
 def test_sum_squares():
     """
-    Tests the sum_squares function.
+    This function tests the sum_squares function with various inputs.
     """
     assert sum_squares([1, 2, 3]) == 6
     assert sum_squares([]) == 0

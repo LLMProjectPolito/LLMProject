@@ -68,10 +68,10 @@ def test_no_prime_words():
     assert words_in_sentence("hello world") == ""
 
 def test_single_prime_word():
-    assert words_in_sentence("prime") == "prime"
+    assert words_in_sentence("test") == "test"
 
 def test_multiple_prime_words():
-    assert words_in_sentence("this is a test") == "is"
+    assert words_in_sentence("This is a test") == "is"
 
 def test_prime_words_with_spaces():
     assert words_in_sentence("lets go for swimming") == "go for"
@@ -87,17 +87,17 @@ def is_prime(n):
             return False
     return True
 
-def test_words_in_sentence_empty():
+def test_words_in_sentence_empty_sentence():
     assert words_in_sentence("") == ""
 
 def test_words_in_sentence_no_prime_words():
-    assert words_in_sentence("This is a test") == ""
+    assert words_in_sentence("hello world") == ""
 
 def test_words_in_sentence_single_prime_word():
-    assert words_in_sentence("is") == "is"
+    assert words_in_sentence("test") == "test"
 
 def test_words_in_sentence_multiple_prime_words():
-    assert words_in_sentence("lets go for swimming") == "go for"
+    assert words_in_sentence("This is a test") == "is"
 
-def test_words_in_sentence_all_prime_words():
-    assert words_in_sentence("prime") == "prime"
+def test_words_in_sentence_prime_words_with_spaces():
+    assert words_in_sentence("lets go for swimming") == "go for"

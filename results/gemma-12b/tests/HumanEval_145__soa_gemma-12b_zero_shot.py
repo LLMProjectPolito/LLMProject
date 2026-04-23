@@ -77,6 +77,6 @@ def test_order_by_points_large_numbers(large_numbers_data):
     assert order_by_points(large_numbers_data) == expected
 
 def test_order_by_points_duplicate_sums(duplicate_sums_data):
-    duplicate_sums_data = [1, 10, 11, 2, 20]
-    expected = [1, 2, 10, 11, 20]
+    duplicate_sums_data = [1, 10, 2, 20]
+    expected = [1, 10, 2, 20]
     assert order_by_points(duplicate_sums_data) == expected

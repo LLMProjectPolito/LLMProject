@@ -24,7 +24,7 @@ def test_valid_file_name():
     assert file_name_check("a.txt") == "Yes"
     assert file_name_check("A.TXT") == "Yes"
     assert file_name_check("long_file_name.txt") == "Yes"
-    assert file_name_check("file123.txt") == "Yes"
+    assert file_name_check("file12.txt") == "Yes"
 
 def test_invalid_file_name_too_many_digits():
     assert file_name_check("1234example.txt") == "No"
@@ -59,7 +59,7 @@ def test_invalid_file_name_empty_extension():
 def test_file_name_with_digits_and_letters():
     assert file_name_check("file1.txt") == "Yes"
     assert file_name_check("file23.exe") == "Yes"
-    assert file_name_check("file12.dll") == "Yes"
+    assert file_name_check("file123.dll") == "Yes"
     assert file_name_check("1file.txt") == "No"
     assert file_name_check("file1234.txt") == "No"
 

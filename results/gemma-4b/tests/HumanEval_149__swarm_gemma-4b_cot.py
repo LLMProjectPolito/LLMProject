@@ -16,7 +16,6 @@ def sorted_list_sum(lst):
     """
 
 import pytest
-import math
 
 def sorted_list_sum(lst):
     """Write a function that accepts a list of strings as a parameter,
@@ -56,4 +55,4 @@ def test_duplicate_even_length():
     assert sorted_list_sum(["aa", "ab", "aa", "cd"]) == ["aa", "aa", "ab", "cd"]
 
 def test_same_length_different_chars():
-    assert sorted_list_sum(["ab", "ac", "ba", "bc"]) == ["ab", "ba", "ac", "bc"]
+    assert sorted_list_sum(["ab", "ac", "ba", "bc"]) == ["ab", "ac", "ba", "bc"]

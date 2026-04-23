@@ -50,6 +50,7 @@ def Strongest_Extension(class_name, extensions):
 
     return f"{class_name}.{strongest_extension}"
 
+
 def test_strongest_extension_basic():
     assert Strongest_Extension('Slices', ['SErviNGSliCes', 'Cheese', 'StuFfed']) == 'Slices.SErviNGSliCes'
 
@@ -57,7 +58,7 @@ def test_strongest_extension_same_strength():
     assert Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
 
 def test_strongest_extension_empty_extensions():
-    assert Strongest_Extension('my_class', []) == 'my_class.'
+    assert Strongest_Extension('my_class', []) == 'my_class.None'
 
 def test_strongest_extension_single_extension():
     assert Strongest_Extension('my_class', ['AA']) == 'my_class.AA'
@@ -71,8 +72,11 @@ def test_strongest_extension_all_uppercase():
 def test_strongest_extension_all_lowercase():
     assert Strongest_Extension('my_class', ['abc', 'def']) == 'my_class.abc'
 
-def test_strongest_extension_numbers_and_letters():
-    assert Strongest_Extension('my_class', ['A1', 'B2', 'C3']) == 'my_class.A1'
+def test_strongest_extension_numbers():
+    assert Strongest_Extension('my_class', ['123', '456']) == 'my_class.123'
 
 def test_strongest_extension_special_characters():
     assert Strongest_Extension('my_class', ['!@#', '$%^']) == 'my_class.!@#'
+
+def test_strongest_extension_mixed_characters():
+    assert Strongest_Extension('my_class', ['aB1', 'cDe']) == 'my_class.aB1'

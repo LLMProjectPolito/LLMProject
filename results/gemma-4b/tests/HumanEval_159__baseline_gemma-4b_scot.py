@@ -111,4 +111,4 @@ def test_eat_large_numbers():
     assert eat(1, 1000, 1000) == [1001, 0]
 
 def test_eat_negative_remaining():
-    assert eat(1, 10, 5) == [11, -6]
+    assert eat(1, 1000, 500) == [1001, -500]

@@ -41,62 +41,37 @@ def compare(game,guess):
     return result
 
 class TestCompare:
-    def test_correct_guesses(self):
-        game = [1, 2, 3, 4, 5]
-        guess = [1, 2, 3, 4, 5]
-        expected = [0, 0, 0, 0, 0]
-        assert compare(game, guess) == expected
-
-    def test_incorrect_guesses(self):
-        game = [1, 2, 3, 4, 5]
-        guess = [6, 7, 8, 9, 10]
-        expected = [5, 5, 5, 5, 5]
-        assert compare(game, guess) == expected
-
-    def test_mixed_guesses(self):
-        game = [1, 2, 3, 4, 5, 1]
-        guess = [1, 2, 3, 4, 2, -2]
-        expected = [0, 0, 0, 0, 3, 3]
-        assert compare(game, guess) == expected
-
-    def test_zero_scores(self):
-        game = [0, 5, 0, 0, 0, 4]
-        guess = [4, 1, 1, 0, 0, -2]
-        expected = [4, 4, 1, 0, 0, 6]
-        assert compare(game, guess) == expected
-
-    def test_negative_scores(self):
-        game = [-1, -2, -3, -4, -5]
-        guess = [-1, -2, -3, -4, -5]
-        expected = [0, 0, 0, 0, 0]
-        assert compare(game, guess) == expected
-
-    def test_negative_guesses(self):
-        game = [1, 2, 3, 4, 5]
-        guess = [-1, -2, -3, -4, -5]
-        expected = [2, 4, 6, 8, 10]
-        assert compare(game, guess) == expected
-
     def test_empty_lists(self):
-        game = []
-        guess = []
-        expected = []
-        assert compare(game, guess) == expected
+        assert compare([], []) == []
 
-    def test_unequal_length_lists(self):
-        game = [1, 2, 3]
-        guess = [1, 2]
+    def test_different_lengths(self):
         with pytest.raises(IndexError):
-            compare(game, guess)
+            compare([1, 2, 3], [1, 2])
 
-    def test_single_element_lists(self):
-        game = [5]
-        guess = [5]
-        expected = [0]
-        assert compare(game, guess) == expected
+    def test_positive_numbers(self):
+        assert compare([1, 2, 3], [1, 2, 3]) == [0, 0, 0]
+        assert compare([1, 2, 3], [3, 2, 1]) == [2, 0, 2]
 
-    def test_large_numbers(self):
-        game = [1000000, 2000000]
-        guess = [1000000, 2000000]
-        expected = [0, 0]
-        assert compare(game, guess) == expected
+    def test_negative_numbers(self):
+        assert compare([-1, -2, -3], [-1, -2, -3]) == [0, 0, 0]
+        assert compare([-1, -2, -3], [-3, -2, -1]) == [2, 0, 2]
+
+    def test_mixed_numbers(self):
+        assert compare([1, -2, 0], [1, -2, 0]) == [0, 0, 0]
+        assert compare([1, -2, 0], [-2, 1, 0]) == [3, 3, 0]
+
+    def test_identical_lists(self):
+        assert compare([5, 5, 5], [5, 5, 5]) == [0, 0, 0]
+
+    def test_all_incorrect_guesses(self):
+        assert compare([1, 2, 3], [4, 5, 6]) == [3, 3, 3]
+
+    def test_example_1(self):
+        assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
+
+    def test_example_2(self):
+        assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
+
+    def test_zero_values(self):
+        assert compare([0, 0, 0], [0, 0, 0]) == [0, 0, 0]
+        assert compare([0, 0, 0], [1, 2, 3]) == [1, 2, 3]

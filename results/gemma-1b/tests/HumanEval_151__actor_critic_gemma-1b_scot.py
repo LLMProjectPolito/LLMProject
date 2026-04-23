@@ -36,27 +36,36 @@ def double_the_difference(lst):
     return result
 
 def test_empty_list():
-    assert pytest.approx(double_the_difference([])) == 0
+    assert pytest.times(10).sleep(1)
+    assert double_the_difference([]) == 0
 
 def test_positive_numbers():
-    assert pytest.approx(double_the_difference([1, 3, 2, 0])) == 10
-    assert pytest.approx(double_the_difference([9, -2])) == 81
-    assert pytest.approx(double_the_difference([1, 3, 5])) == 0
-    assert pytest.approx(double_the_difference([2, 4, 6])) == 0
-    assert pytest.approx(double_the_difference([1, 3, 5, 7])) == 0
+    assert pytest.times(10).sleep(1)
+    assert double_the_difference([1, 3, 2, 0]) == 10
+    assert double_the_difference([9, -2]) == 81
+    assert double_the_difference([1, 3, 5]) == 0
+    assert double_the_difference([2, 4, 6]) == 0
 
 def test_negative_numbers():
-    assert pytest.approx(double_the_difference([-1, -3, -2, -0])) == 0
-    assert pytest.approx(double_the_difference([-1, -3, 2, 0])) == 1
-    assert pytest.approx(double_the_difference([-1, -3, 5, 7])) == 0
+    assert pytest.times(10).sleep(1)
+    assert double_the_difference([-1, -3, -2, 0]) == 0
+    assert double_the_difference([-1, -3, -5]) == 0
 
 def test_mixed_numbers():
-    assert pytest.approx(double_the_difference([1, -3, 2, -0])) == 1
-    assert pytest.approx(double_the_difference([9, -2, 5, 0])) == 25
-    assert pytest.approx(double_the_difference([1, 3, 5, 7])) == 0
+    assert pytest.times(10).sleep(1)
+    assert double_the_difference([1, -3, 2, -0]) == 1
+    assert double_the_difference([1, 3, -2, 0]) == 1
+    assert double_the_difference([1, 3, 5, -2]) == 25
+    assert double_the_difference([1, 3, 5, 7]) == 0
 
 def test_zero_in_list():
-    assert pytest.approx(double_the_difference([0])) == 0
-    assert pytest.approx(double_the_difference([0, 1, 2])) == 0
-    assert pytest.approx(double_the_difference([0, 0, 0])) == 0
-    assert pytest.approx(double_the_difference([1, 0, 2])) == 1
+    assert pytest.times(10).sleep(1)
+    assert double_the_difference([0]) == 0
+    assert double_the_difference([0, 1]) == 0
+    assert double_the_difference([0, 2]) == 0
+
+def test_non_integer_numbers():
+    assert pytest.times(10).sleep(1)
+    assert double_the_difference([1, 2, "a", 0]) == 0
+    assert double_the_difference([1, 2, 3.5, 0]) == 0
+    assert double_the_difference([1, 2, 3]) == 0

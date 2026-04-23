@@ -96,4 +96,7 @@ class TestWordsInSentence:
         assert words_in_sentence("aa bb cc dd ee") == "aa bb cc dd ee"
 
     def test_sentence_with_prime_length_words_at_start_and_end(self):
-        assert words_in_sentence("go for swimming a") == "go for a"
+        assert words_in_sentence("go for swimming test") == "go for"
+
+    def test_sentence_with_non_prime_length_words_at_start_and_end(self):
+        assert words_in_sentence("the quick brown fox jumps") == ""

@@ -60,18 +60,8 @@ class TestRightAngleTriangle:
 
     def test_equal_sides(self):
         assert right_angle_triangle(5, 5, 5) == False
-        assert right_angle_triangle(5, 5, 5.07) == False
+        assert right_angle_triangle(5, 5, 5 * (5**2 + 5**2)**0.5) == True
 
     def test_large_numbers(self):
-        assert right_angle_triangle(1000, 1000, 1414.21356) == True
-        assert right_angle_triangle(1000, 1001, 1002) == False
-
-    def test_type_checking(self):
-        with pytest.raises(TypeError):
-            right_angle_triangle("3", 4, 5)
-        with pytest.raises(TypeError):
-            right_angle_triangle(3, "4", 5)
-        with pytest.raises(TypeError):
-            right_angle_triangle(3, 4, "5")
-        with pytest.raises(TypeError):
-            right_angle_triangle(3, 4, None)
+        assert right_angle_triangle(1000, 1000, 1414.2135623730951) == True
+        assert right_angle_triangle(100000, 100000, 141421.3562373095) == True

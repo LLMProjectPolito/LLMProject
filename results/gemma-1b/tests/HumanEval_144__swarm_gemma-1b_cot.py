@@ -28,18 +28,24 @@ def simplify(x, n):
     simplify("1/6", "2/1") = False
     simplify("7/10", "10/2") = False
     """
-    x_val = str(x)
-    n_val = str(n)
-    
     try:
-        num, den = map(int, x_val.split("/"))
-        den_val = int(den)
+        x_val = str(x)
+        n_val = str(n)
+        
+        num_val = int(x_val)
+        den_val = int(n_val)
         
         if den_val == 0:
             return False
         
-        return num * den_val == int(num * den_val)
-    except ValueError:
+        numerator = num_val
+        denominator = den_val
+        
+        if numerator % denominator == 0:
+            return True
+        else:
+            return False
+    except:
         return False
 
 def test_simplify_valid_cases():
@@ -56,7 +62,6 @@ def test_simplify_valid_cases():
     assert simplify("1/7", "7/1") == True
     assert simplify("1/8", "8/1") == True
     assert simplify("1/9", "9/1") == True
-    assert simplify("1/10", "10/1") == True
     assert simplify("1/10", "10/1") == True
     assert simplify("1/10", "10/1") == True
     assert simplify("1/10", "10/1") == True

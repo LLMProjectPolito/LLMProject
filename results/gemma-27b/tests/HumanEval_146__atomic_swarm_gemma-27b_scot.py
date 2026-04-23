@@ -38,5 +38,5 @@ def specialFilter(nums):
                     count += 1
     return count
 
-def test_empty_list():
+def test_empty_array():
     assert specialFilter([]) == 0

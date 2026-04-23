@@ -28,25 +28,4 @@ def cycpattern_check(a, b):
         rotated_b = b[i:] + b[:i]
         if rotated_b in a:
             return True
-
     return False
-
-def test_cycpattern_check_example1():
-    assert cycpattern_check("abcd","abd") == False
-    assert cycpattern_check("hello","ell") == True
-    assert cycpattern_check("whassup","psus") == False
-    assert cycpattern_check("abab","baa") == True
-    assert cycpattern_check("efef","eeff") == False
-    assert cycpattern_check("himenss","simen") == True
-
-def test_cycpattern_check_empty_string():
-    assert cycpattern_check("", "") == True
-
-def test_cycpattern_check_single_char():
-    assert cycpattern_check("a","a") == True
-
-def test_cycpattern_check_same_string():
-    assert cycpattern_check("a","a") == True
-
-def test_cycpattern_check_different_strings():
-    assert cycpattern_check("abc","def") == False

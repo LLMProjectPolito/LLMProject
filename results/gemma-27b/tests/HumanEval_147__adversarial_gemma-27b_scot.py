@@ -39,6 +39,11 @@ def get_max_triples(n):
                     count += 1
     return count
 
+def test_small_n():
+    assert get_max_triples(5) == 1
+    assert get_max_triples(6) == 3
+    assert get_max_triples(7) == 6
+
 def test_n_equals_1():
     assert get_max_triples(1) == 0
 
@@ -48,30 +53,14 @@ def test_n_equals_2():
 def test_n_equals_3():
     assert get_max_triples(3) == 0
 
-def test_n_equals_4():
-    assert get_max_triples(4) == 0
-
-def test_n_equals_5():
-    assert get_max_triples(5) == 1
-
-def test_n_equals_6():
-    assert get_max_triples(6) == 3
-
-def test_n_equals_7():
-    assert get_max_triples(7) == 6
-
 def test_large_n():
-    assert get_max_triples(100) == 161700
+    assert get_max_triples(10) == 20
+    assert get_max_triples(20) == 1330
 
-def test_array_generation():
-    n = 5
-    expected_array = [1, 3, 7, 13, 21]
-    assert get_max_triples(n) == 1 #check the function still works
-    a = [i * i - i + 1 for i in range(1, n + 1)]
-    assert a == expected_array
+def test_modulus_property():
+    for i in range(1, 11):
+        assert (i * i - i + 1) % 3 != 0
+        assert (i * i - i + 1) % 3 == 1
 
-def test_modulo_property():
-    n = 10
-    a = [i * i - i + 1 for i in range(1, n + 1)]
-    for x in a:
-        assert x % 3 == (x % 3)
+def test_zero_result():
+    assert get_max_triples(4) == 0

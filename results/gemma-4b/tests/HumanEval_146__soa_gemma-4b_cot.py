@@ -63,19 +63,19 @@ def test_all_negative_greater_than_10():
     assert specialFilter([-11, -13, -15]) == 0
 
 def test_all_positive_greater_than_10():
-    assert specialFilter([11, 13, 15]) == 1
+    assert specialFilter([11, 13, 15]) == 3
+
+def test_single_digit_greater_than_10():
+    assert specialFilter([11, 13, 15, 17, 19]) == 5
+
+def test_mixed_single_and_multiple_digits():
+    assert specialFilter([11, 123, 15, 12345]) == 2
 
 def test_edge_case_1():
     assert specialFilter([111, 131, 151, 171, 191]) == 5
 
 def test_edge_case_2():
-    assert specialFilter([1111, 1311, 1511, 1711, 1911]) == 0
+    assert specialFilter([111, 131, 151, 171, 191, 21]) == 5
 
 def test_edge_case_3():
-    assert specialFilter([11111, 13111, 15111, 17111, 19111]) == 0
-
-def test_single_digit_greater_than_10():
-    assert specialFilter([11, 13, 15, 17, 19]) == 0
-
-def test_mixed_single_and_multiple_digits():
-    assert specialFilter([11, 15, 111, 131]) == 2
+    assert specialFilter([111, 131, 151, 171, 191, 10]) == 5

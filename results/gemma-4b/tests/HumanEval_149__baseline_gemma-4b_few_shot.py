@@ -75,5 +75,5 @@ def test_sorted_list_sum_duplicates():
 def test_sorted_list_sum_same_length():
     assert sorted_list_sum(["abc", "def", "ghi"]) == ["abc", "def", "ghi"]
 
-def test_sorted_list_sum_longer():
-    assert sorted_list_sum(["abcdef", "ghi", "jklm"]) == ["abcdef", "ghi", "jklm"]
+def test_sorted_list_sum_mixed_same_length():
+    assert sorted_list_sum(["abc", "def", "ghi", "jkl"]) == ["abc", "def", "ghi", "jkl"]

@@ -26,74 +26,68 @@ def sum_squares(lst):
     For lst = []  the output should be 0
     For lst = [-1,-5,2,-1,-5]  the output should be -126
     """
-    sum = 0
-    for i in range(len(lst)):
+    total = 0
+    for i, num in enumerate(lst):
         if i % 3 == 0:
-            sum += lst[i]**2
+            total += num ** 2
         elif i % 4 == 0 and i % 3 != 0:
-            sum += lst[i]**3
+            total += num ** 3
         else:
-            sum += lst[i]
-    return sum
+            total += num
+    return total
 
-class TestSumSquares:
-    def test_empty_list(self):
-        assert sum_squares([]) == 0
+def test_empty_list():
+    assert sum_squares([]) == 0
 
-    def test_basic_list(self):
-        assert sum_squares([1, 2, 3]) == 6
+def test_element_at_index_0():
+    assert sum_squares([5, 1, 2, 3, 4]) == 16
 
-    def test_negative_numbers(self):
-        assert sum_squares([-1, -5, 2, -1, -5]) == -126
+def test_element_at_index_1():
+    assert sum_squares([1, 5, 2, 3, 4]) == 15
 
-    def test_mixed_positive_negative(self):
-        assert sum_squares([1, -2, 3, -4, 5]) == 15
+def test_element_at_index_2():
+    assert sum_squares([1, 2, 5, 3, 4]) == 16
 
-    def test_multiples_of_3(self):
-        assert sum_squares([3, 6, 9, 1, 2]) == 129
+def test_basic_list():
+    assert sum_squares([1, 2, 3]) == 6
 
-    def test_multiples_of_4(self):
-        assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 193
+def test_list_with_negative_numbers():
+    assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
-    def test_multiples_of_both_3_and_4(self):
-        assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1982
+def test_list_with_zeros():
+    assert sum_squares([0, 1, 2, 3, 4]) == 10
 
-    def test_large_numbers(self):
-        assert sum_squares([100, 200, 300]) == 8090000
+def test_list_with_mixed_numbers():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 140
 
-    def test_zeroes(self):
-        assert sum_squares([0, 0, 0, 0, 0]) == 0
+def test_list_with_only_multiples_of_3():
+    assert sum_squares([3, 6, 9, 12]) == 210
 
-    def test_single_element(self):
-        assert sum_squares([5]) == 5
+def test_list_with_only_multiples_of_4():
+    assert sum_squares([4, 8, 12, 16]) == 208
 
-    def test_single_element_multiple_of_3(self):
-        assert sum_squares([3]) == 9
+def test_list_with_multiples_of_both_3_and_4():
+    assert sum_squares([3, 4, 6, 8, 9, 12]) == 156
 
-    def test_single_element_multiple_of_4(self):
-        assert sum_squares([4]) == 64
+def test_list_with_large_numbers():
+    large_sum = 100**2 + 200**3 + 300
+    assert sum_squares([100, 200, 300]) == large_sum
 
-    def test_non_integer_input(self):
-        with pytest.raises(TypeError) as excinfo:
-            sum_squares([1, 2, "a"])
-            assert "Input list must contain only integers." in str(excinfo.value)
+def test_large_numbers_overflow():
+    assert sum_squares([1000, 2000, 3000]) == 1000000 + 8000000000 + 9000000000
 
-    def test_mixed_data_types(self):
-        with pytest.raises(TypeError) as excinfo:
-            sum_squares([1, 2, 3.14, "a"])
-            assert "Input list must contain only integers." in str(excinfo.value)
+def test_list_with_floats():
+    with pytest.raises(TypeError):
+        sum_squares([1.0, 2.0, 3.0])
 
-    def test_negative_multiples(self):
-        assert sum_squares([-3, -4, 1]) == 1
+def test_single_element_multiple_of_3():
+    assert sum_squares([3]) == 9
 
-    def test_large_list(self):
-        large_list = list(range(1, 101))
-        expected_sum = 0
-        for i in range(len(large_list)):
-            if i % 3 == 0:
-                expected_sum += large_list[i]**2
-            elif i % 4 == 0 and i % 3 != 0:
-                expected_sum += large_list[i]**3
-            else:
-                expected_sum += large_list[i]
-        assert sum_squares(large_list) == expected_sum
+def test_single_element_multiple_of_4():
+    assert sum_squares([4]) == 64
+
+def test_single_element_neither_multiple():
+    assert sum_squares([5]) == 5
+
+def test_negative_index():
+    assert sum_squares([-1, -2, -3, -4]) == -126

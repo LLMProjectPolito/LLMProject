@@ -37,16 +37,16 @@ def x_or_y(n, x, y):
 class TestXorY:
     def test_prime_n(self):
         assert x_or_y(7, 34, 12) == 34
-        assert x_or_y(2, 10, 20) == 10
-        assert x_or_y(11, 5, 1) == 5
+        assert x_or_y(2, 100, 200) == 100
+        assert x_or_y(11, 5, 10) == 5
         assert x_or_y(13, "a", "b") == "a"
 
     def test_non_prime_n(self):
         assert x_or_y(15, 8, 5) == 5
         assert x_or_y(4, 1, 2) == 2
         assert x_or_y(9, "x", "y") == "y"
-        assert x_or_y(1, 100, 200) == 200
-        assert x_or_y(0, 50, 60) == 60
+        assert x_or_y(1, 10, 20) == 20
+        assert x_or_y(0, 5, 10) == 10
 
     def test_negative_n(self):
         assert x_or_y(-5, 1, 2) == 2
@@ -59,5 +59,3 @@ class TestXorY:
     def test_mixed_types(self):
         assert x_or_y(7, 1, "hello") == 1
         assert x_or_y(8, "world", 2) == 2
-        assert x_or_y(2, 3.14, 2.71) == 3.14
-        assert x_or_y(4, 3.14, 2.71) == 2.71

@@ -17,6 +17,8 @@ def Strongest_Extension(class_name, extensions):
     for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
     """
 
+import pytest
+
 def Strongest_Extension(class_name, extensions):
     """You will be given the name of a class (a string) and a list of extensions.
     The extensions are to be used to load additional classes to the class. The
@@ -52,7 +54,37 @@ def Strongest_Extension(class_name, extensions):
             max_strength = strength
             strongest_extension = extension
 
-    if strongest_extension is None:
-        return f"{class_name}.None"
-    else:
-        return f"{class_name}.{strongest_extension}"
+    return f"{class_name}.{strongest_extension}"
+
+def test_strongest_extension_example1():
+    assert Strongest_Extension('Slices', ['SErviNGSliCes', 'Cheese', 'StuFfed']) == 'Slices.SErviNGSliCes'
+
+def test_strongest_extension_example2():
+    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
+
+def test_strongest_extension_empty_extensions():
+    assert Strongest_Extension('MyClass', []) == 'MyClass.None'
+
+def test_strongest_extension_all_uppercase():
+    assert Strongest_Extension('TestClass', ['AAA', 'BBB', 'CCC']) == 'TestClass.AAA'
+
+def test_strongest_extension_all_lowercase():
+    assert Strongest_Extension('TestClass', ['aaa', 'bbb', 'ccc']) == 'TestClass.aaa'
+
+def test_strongest_extension_mixed_case():
+    assert Strongest_Extension('TestClass', ['aA', 'Bb', 'Cc']) == 'TestClass.aA'
+
+def test_strongest_extension_same_strength():
+    assert Strongest_Extension('TestClass', ['Aa', 'aA']) == 'TestClass.Aa'
+
+def test_strongest_extension_numbers_and_symbols():
+    assert Strongest_Extension('TestClass', ['123', 'abc', 'A1B2']) == 'TestClass.A1B2'
+
+def test_strongest_extension_long_names():
+    assert Strongest_Extension('LongClassName', ['VeryLongExtensionName1', 'AnotherVeryLongExtensionName2']) == 'LongClassName.VeryLongExtensionName1'
+
+def test_strongest_extension_negative_strength():
+    assert Strongest_Extension('TestClass', ['abc', 'def', 'ghi']) == 'TestClass.abc'
+
+def test_strongest_extension_zero_strength():
+    assert Strongest_Extension('TestClass', ['aA', 'Bb', 'Cc']) == 'TestClass.aA'

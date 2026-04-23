@@ -46,7 +46,7 @@ def test_order_by_points_negative_numbers():
     assert order_by_points([-1, -11, -2, -22]) == [-1, -2, -11, -22]
 
 def test_order_by_points_mixed_numbers():
-    assert order_by_points([1, -1, 11, -11, 2, -2]) == [-1, -2, 1, -11, 2, 11]
+    assert order_by_points([-1, 1, 11, -11, 2, 22]) == [-1, 1, 2, -11, 11, 22]
 
 def test_order_by_points_duplicate_numbers():
     assert order_by_points([1, 1, 11, 11]) == [1, 1, 11, 11]

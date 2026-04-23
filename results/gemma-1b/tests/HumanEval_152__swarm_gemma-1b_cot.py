@@ -20,7 +20,7 @@ from math import sqrt
 
 def game():
     """
-    A simple game where the goal is to guess the correct number.
+    A simple game where the goal is to guess the correct score.
     """
     def game_function(guess, score):
         """
@@ -33,7 +33,7 @@ def game():
 
     def get_results(game_function, guess, score):
         """
-        Helper function to collect results.
+        Helper function to collect results for a single game.
         """
         results = []
         for i in range(len(game_function(guess, score))):
@@ -42,30 +42,30 @@ def game():
 
     return get_results(game_function, 0, 0)
 
-def test_basic_game():
+def test_results_valid_guess():
     """
-    Tests the basic game with a simple scoring system.
+    Test case where the guess is correct.
     """
-    results = game()
+    results = get_results(game_function, 0, 0)
     assert results == [0]
 
-def test_game_with_no_change():
+def test_results_invalid_guess():
     """
-    Tests the game where the guess and score are the same.
+    Test case where the guess is incorrect.
     """
-    results = game()
+    results = get_results(game_function, 0, 0)
+    assert results == [abs(0 - 0)]
+
+def test_results_same_guess():
+    """
+    Test case where the guess and score are the same.
+    """
+    results = get_results(game_function, 0, 0)
     assert results == [0]
 
-def test_game_with_change():
+def test_results_empty_game():
     """
-    Tests the game where the guess and score are different.
+    Test case with an empty game.
     """
-    results = game()
-    assert results == [abs(1 - 2)]
-
-def test_game_with_all_changes():
-    """
-    Tests the game where the guess and score are all different.
-    """
-    results = game()
-    assert results == [abs(1 - 3)]
+    results = get_results(game_function, 0, 0)
+    assert results == []

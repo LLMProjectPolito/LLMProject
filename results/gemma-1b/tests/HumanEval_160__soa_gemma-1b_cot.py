@@ -55,22 +55,177 @@ def do_algebra(operator, operand):
     try:
         op1 = operator[0]
         op2 = operator[1]
-        operand = operand[1:]
+        operand1 = operand[0]
+        operand2 = operand[1]
 
         if op1 == '+':
-            return op2 + operand
+            return operand1 + operand2
         elif op1 == '-':
-            return op2 - operand
+            return operand1 - operand2
         elif op1 == '*':
-            return op2 * operand
+            return operand1 * operand2
         elif op1 == '/':
-            if operand % op2 == 0:
-                return operand // op2
-            else:
-                return float('inf')
+            if operand2 == 0:
+                return "Error: Division by zero"
+            return operand1 // operand2
         elif op1 == '**':
-            return op2 ** operand
+            return operand1 ** operand2
         else:
-            return 0
+            return "Error: Invalid operator"
     except:
-        return 0
+        return "Error: Invalid input"
+
+    return "Error: Invalid input"
+    
+def test_addition():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4 - 5
+    assert result == 9
+    
+def test_subtraction():
+    array = [2, 3, 4, 5]
+    result = 2 - 3 * 4
+    assert result == -5
+    
+def test_multiplication():
+    array = [2, 3, 4, 5]
+    result = 2 * 3 * 4 - 5
+    assert result == 24
+    
+def test_floor_division():
+    array = [2, 3, 4, 5]
+    result = 2 // 3
+    assert result == 0.6666666666666666
+    
+def test_exponentiation():
+    array = [2, 3, 4, 5]
+    result = 2 ** 3
+    assert result == 8
+    
+def test_invalid_operator():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4
+    assert result == "Error: Invalid operator"
+    
+def test_invalid_operand():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4
+    assert result == "Error: Invalid input"
+    
+def test_empty_operand():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4
+    assert result == "Error: Invalid input"
+    
+def test_zero_operand():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4
+    assert result == "Error: Invalid input"
+    
+def test_mixed_operators():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4 // 5
+    assert result == 2
+    
+def test_complex_expression():
+    array = [1, 2, 3, 4, 5]
+    result = 10 + 2 * 3 - 4 // 2
+    assert result == 10
+    
+def test_negative_operand():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4
+    assert result == "Error: Invalid input"
+    
+def test_zero_operand_with_negative_numbers():
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4
+    assert result == "Error: Invalid input"
+    
+def test_large_numbers():
+    array = [100, 200, 300, 400]
+    result = 100 + 200 * 300
+    assert result == 60000
+    
+def test_exponentiation_large_numbers():
+    array = [100, 200, 300, 400]
+    result = 100 ** 3
+    assert result == 1000000
+    
+def test_multiple_operations():
+    array = [1, 2, 3, 4, 5]
+    result = 10 + 2 * 3 * 4
+    assert result == 24
+    
+def test_zero_in_operand():
+    array = [1, 2, 3, 4, 5]
+    result = 1 + 2 * 3
+    assert result == "Error: Invalid input"
+    
+def test_invalid_operator_with_zero():
+    array = [1, 2, 3, 4, 5]
+    result = 1 + 2 * 3
+    assert result == "Error: Invalid operator"
+    
+def test_zero_in_operator():
+    array = [1, 2, 3, 4, 5]
+    result = 1 + 2 * 3
+    assert result == "Error: Invalid operator"
+    
+def test_empty_operand_with_zero():
+    array = [1, 2, 3, 4, 5]
+    result = 1 + 2 * 3
+    assert result == "Error: Invalid input"
+    
+def test_zero_in_operator_with_non_zero_numbers():
+    array = [1, 2, 3, 4, 5]
+    result = 1 + 2 * 3
+    assert result == "Error: Invalid input"
+    
+def test_complex_expression_with_zero():
+    array = [1, 2, 3, 4, 5]
+    result = 10 + 2 * 3 * 4
+    assert result == 24
+    
+def test_zero_in_operand_with_zero_in_operator():
+    array = [1, 2, 3, 4, 5]
+    result = 1 + 2 * 3
+    assert result == "Error: Invalid input"
+    
+def test_zero_in_operand_with_non_zero_numbers():
+    array = [1, 2, 3, 4, 5]
+    result = 1 + 2 * 3
+    assert result == "Error: Invalid input"
+    
+def test_large_numbers_with_zero():
+    array = [100, 200, 300, 400]
+    result = 100 + 200 * 300
+    assert result == 60000
+    
+def test_zero_in_large_numbers():
+    array = [100, 200, 300, 400]
+    result = 100 + 200 * 300
+    assert result == 60000
+    
+def test_multiple_zero_values():
+    array = [0, 0, 0, 0]
+    result = 0 + 0 * 0
+    assert result == 0
+    
+def test_zero_in_multiple_values():
+    array = [0, 0, 0, 0]
+    result = 0 + 0 * 0
+    assert result == "Error: Invalid input"
+    
+def test_negative_numbers_with_zero():
+    array = [-1, 2, 3, 4, 5]
+    result = -1 + 2 * 3
+    assert result == 6
+    
+def test_negative_numbers_with_zero_in_operator():
+    array = [-1, 2, 3, 4, 5]
+    result = -1 + 2 * 3
+    assert result == "Error: Invalid input"
+    
+def test_zero_in_negative_numbers():
+    array = [-1, 2, 3, 4

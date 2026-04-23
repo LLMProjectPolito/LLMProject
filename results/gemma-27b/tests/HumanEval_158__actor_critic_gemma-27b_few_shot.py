@@ -36,7 +36,8 @@ def find_max(words):
             max_unique = unique_chars
             max_word = word
         elif unique_chars == max_unique:
-            # If unique character counts are equal, choose the lexicographically smaller word
+            # If words have the same number of unique characters,
+            # choose the one that comes first lexicographically.
             if word < max_word:
                 max_word = word
 
@@ -53,7 +54,7 @@ def test_find_max_same_unique_chars():
 def test_find_max_all_same_char():
     assert find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
 
-def test_find_max_with_empty_list():
+def test_find_max_empty_list():
     assert find_max([]) == ""
 
 def test_find_max_all_empty_strings():
@@ -69,20 +70,16 @@ def test_find_max_none_input():
     with pytest.raises(TypeError):
         find_max(None)
 
-# New tests based on review
-def test_find_max_single_word():
-    assert find_max(["hello"]) == "hello"
+# New tests based on review:
 
-def test_find_max_with_special_chars():
-    assert find_max(["abc!", "def$", "ghi#"]) == "abc!"
+def test_find_max_special_chars():
+    assert find_max(["abc!", "ab2", "a!2"]) == "abc!"
 
-def test_find_max_with_numbers():
-    assert find_max(["abc1", "def2", "ghi3"]) == "abc1"
+def test_find_max_long_short_same_unique():
+    assert find_max(["a", "bb", "ccc", "abcd"]) == "a"
+
+def test_find_max_same_max_unique_lexicographical():
+    assert find_max(["aaa", "aaa", "aaa"]) == "aaa"
 
 def test_find_max_case_sensitivity():
-    assert find_max(["Name", "name"]) == "Name"  # Assuming case-sensitive
-
-def test_find_max_long_strings():
-    long_string1 = "a" * 1000
-    long_string2 = "abcdefghijklmnopqrstuvwxyz"
-    assert find_max([long_string1, long_string2]) == long_string2
+    assert find_max(["Name", "name"]) == "Name"  # Or "name" if case-insensitive is desired

@@ -32,47 +32,53 @@ def simplify(x, n):
     result_den = x_den * n_den
     return result_num % result_den == 0
 
-def test_simplify_true_case1():
+def test_simplify_true_case_1():
     assert simplify("1/5", "5/1") == True
 
-def test_simplify_false_case1():
+def test_simplify_false_case_1():
     assert simplify("1/6", "2/1") == False
 
-def test_simplify_false_case2():
+def test_simplify_false_case_2():
     assert simplify("7/10", "10/2") == False
 
-def test_simplify_true_case2():
+def test_simplify_true_case_2():
     assert simplify("2/3", "3/1") == True
 
-def test_simplify_true_case3():
+def test_simplify_true_case_3():
     assert simplify("4/5", "5/4") == True
 
-def test_simplify_false_case3():
+def test_simplify_false_case_3():
     assert simplify("1/2", "1/3") == False
 
-def test_simplify_true_case4():
+def test_simplify_true_case_4():
     assert simplify("1/1", "1/1") == True
 
-def test_simplify_false_case4():
+def test_simplify_false_case_4():
     assert simplify("1/2", "2/3") == False
 
 def test_simplify_large_numbers_true():
     assert simplify("100/20", "20/1") == True
 
 def test_simplify_large_numbers_false():
-    assert simplify("100/21", "20/1") == False
+    assert simplify("100/3", "1/2") == False
 
 def test_simplify_with_same_fraction():
-    assert simplify("2/3", "2/3") == True
+    assert simplify("2/4", "2/4") == True
 
 def test_simplify_different_fractions_true():
-    assert simplify("4/6", "3/2") == True
+    assert simplify("3/5", "5/3") == True
 
 def test_simplify_different_fractions_false():
-    assert simplify("5/7", "2/3") == False
+    assert simplify("2/5", "3/7") == False
 
 def test_simplify_one_is_whole_number_true():
     assert simplify("1/2", "2/1") == True
 
 def test_simplify_one_is_whole_number_false():
     assert simplify("1/3", "2/1") == False
+
+def test_simplify_with_larger_denominators():
+    assert simplify("1/100", "100/1") == True
+
+def test_simplify_with_larger_denominators_false():
+    assert simplify("1/101", "100/1") == False

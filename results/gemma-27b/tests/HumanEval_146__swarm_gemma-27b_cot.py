@@ -40,26 +40,8 @@ def test_specialFilter_edge_case_13():
 def test_specialFilter_edge_case_101():
     assert specialFilter([101]) == 0
 
-def test_specialFilter_edge_case_1111():
-    assert specialFilter([1111]) == 0
-
 def test_specialFilter_edge_case_99():
     assert specialFilter([99]) == 1
-
-def test_specialFilter_edge_case_1001():
-    assert specialFilter([1001]) == 0
-
-def test_specialFilter_edge_case_10001():
-    assert specialFilter([10001]) == 0
-
-def test_specialFilter_edge_case_100001():
-    assert specialFilter([100001]) == 0
-
-def test_specialFilter_edge_case_1000001():
-    assert specialFilter([1000001]) == 0
-
-def test_specialFilter_edge_case_10000001():
-    assert specialFilter([10000001]) == 0
 
 def test_specialFilter_edge_case_19():
     assert specialFilter([19]) == 1

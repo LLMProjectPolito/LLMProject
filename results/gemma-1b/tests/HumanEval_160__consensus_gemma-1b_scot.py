@@ -29,24 +29,11 @@ import pytest
 
 def do_algebra(operator, operand):
     try:
-        op1 = operator[0]
-        op2 = operator[1]
-        operand = operand[1:]
-
-        if op1 == '+':
-            return op2 + operand
-        elif op1 == '-':
-            return op2 - operand
-        elif op1 == '*':
-            return op2 * operand
-        elif op1 == '/':
-            if operand % op2 == 0:
-                return operand // op2
-            else:
-                return float('inf')
-        elif op1 == '**':
-            return op2 ** operand
+        if len(operator) == 1:
+            return operator[0]
+        elif len(operand) == 1:
+            return operand[0]
         else:
-            return 0
+            return eval(str(operator[0]) + str(operand[0]) + operator[1] + str(operand[1]))
     except:
-        return 0
+        return None

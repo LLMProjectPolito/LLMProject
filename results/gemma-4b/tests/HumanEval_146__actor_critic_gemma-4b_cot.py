@@ -32,17 +32,17 @@ def specialFilter(nums):
 def test_empty_list():
     assert specialFilter([]) == 0
 
-def test_no_matching_elements():
+def test_no_matching_numbers():
     assert specialFilter([1, 2, 3, 4, 5]) == 0
 
-def test_single_matching_element():
+def test_single_matching_number():
     assert specialFilter([15]) == 1
 
-def test_multiple_matching_elements():
+def test_multiple_matching_numbers():
     assert specialFilter([15, 25, 35, 45, 55]) == 5
 
-def test_mixed_elements():
-    assert specialFilter([15, -73, 14, -15, 21, 109]) == 2
+def test_mixed_numbers():
+    assert specialFilter([15, -73, 14, -15, 21, 33]) == 2
 
 def test_negative_numbers():
     assert specialFilter([-15, -25, -35]) == 0
@@ -50,29 +50,32 @@ def test_negative_numbers():
 def test_large_numbers():
     assert specialFilter([115, 125, 135]) == 3
 
-def test_edge_case_single_digit_greater_than_10():
-    assert specialFilter([11, 13, 15, 17, 19]) == 0
+def test_numbers_with_zero_first_digit():
+    assert specialFilter([105, 125, 135]) == 1
 
-def test_edge_case_single_digit_less_than_10():
-    assert specialFilter([1, 2, 3, 4, 5]) == 0
+def test_numbers_with_zero_last_digit():
+    assert specialFilter([150, 250, 350]) == 0
 
-def test_edge_case_first_digit_odd_last_digit_even():
-    assert specialFilter([12, 34, 56, 78, 90]) == 0
+def test_edge_case_1():
+    assert specialFilter([11, 13, 15, 17, 19]) == 5
 
-def test_edge_case_first_digit_even_last_digit_odd():
-    assert specialFilter([21, 43, 65, 87, 109]) == 0
+def test_edge_case_2():
+    assert specialFilter([11, 12, 13, 14, 15]) == 1
 
-def test_edge_case_first_digit_even_last_digit_even():
-    assert specialFilter([22, 44, 66, 88, 100]) == 0
+def test_edge_case_3():
+    assert specialFilter([101, 103, 105, 107, 109]) == 0
 
-def test_edge_case_first_digit_odd_last_digit_zero():
-    assert specialFilter([10, 30, 50, 70, 90]) == 0
+def test_edge_case_4():
+    assert specialFilter([111, 133, 155, 177, 199]) == 0
 
-def test_mixed_positive_negative_numbers():
+def test_mixed_positive_negative():
     assert specialFilter([-15, 25, -35, 45]) == 2
-
-def test_zero_in_list():
-    assert specialFilter([0, 15, 25]) == 1
 
 def test_duplicate_numbers():
     assert specialFilter([15, 15, 15]) == 3
+
+def test_numbers_close_to_10():
+    assert specialFilter([9, 11, 19]) == 1
+
+def test_numbers_greater_than_10_but_not_matching():
+    assert specialFilter([11, 12, 13, 14, 15, 16, 17, 18, 19]) == 1

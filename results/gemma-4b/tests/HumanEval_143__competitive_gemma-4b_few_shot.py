@@ -76,16 +76,16 @@ def test_all_prime_length_words():
     assert words_in_sentence("prime prime prime") == "prime prime prime"
 
 def test_sentence_with_leading_and_trailing_spaces():
-    assert words_in_sentence("  This is a test  ") == "is a"
+    assert words_in_sentence("  This is a test  ") == "is"
 
 def test_sentence_with_multiple_spaces():
-    assert words_in_sentence("This   is  a    test") == "is a"
+    assert words_in_sentence("This   is  a    test") == "is"
 
 def test_long_sentence_with_prime_words():
-    assert words_in_sentence("This is a very long sentence with some prime length words") == "is a some"
+    assert words_in_sentence("This is a very long sentence with some prime length words") == "is a"
 
-def test_sentence_with_only_one_prime_word():
+def test_sentence_with_only_one_word_prime():
     assert words_in_sentence("one") == "one"
 
-def test_sentence_with_two_prime_words():
-    assert words_in_sentence("two three") == "two three"
+def test_sentence_with_only_one_word_non_prime():
+    assert words_in_sentence("two") == ""

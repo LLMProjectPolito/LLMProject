@@ -34,33 +34,30 @@ def simplify(x, n):
 
     return result_num % result_den == 0
 
-class TestSimplify:
-    def test_whole_number_result(self):
-        assert simplify("1/5", "5/1") == True
-        assert simplify("2/3", "3/2") == True
-        assert simplify("4/1", "1/4") == True
+def test_whole_number_result():
+    assert simplify("1/5", "5/1") == True
+    assert simplify("2/3", "3/2") == True
+    assert simplify("4/6", "3/2") == True
 
-    def test_non_whole_number_result(self):
-        assert simplify("1/6", "2/1") == False
-        assert simplify("7/10", "10/2") == False
-        assert simplify("1/3", "1/2") == False
+def test_non_whole_number_result():
+    assert simplify("1/6", "2/1") == False
+    assert simplify("7/10", "10/2") == False
+    assert simplify("1/3", "2/5") == False
 
-    def test_simple_fractions(self):
-        assert simplify("1/2", "1/2") == False
-        assert simplify("1/4", "4/1") == True
-        assert simplify("1/8", "2/1") == False
+def test_fractions_equal_to_one():
+    assert simplify("1/1", "5/1") == True
+    assert simplify("2/2", "3/3") == True
+    assert simplify("1/1", "1/1") == True
 
-    def test_larger_fractions(self):
-        assert simplify("12/5", "5/12") == True
-        assert simplify("15/7", "7/3") == True
-        assert simplify("20/3", "3/5") == False
+def test_fractions_with_common_factors():
+    assert simplify("2/4", "3/6") == True
+    assert simplify("4/8", "2/4") == True
+    assert simplify("6/9", "3/3") == True
 
-    def test_fractions_with_common_factors(self):
-        assert simplify("2/4", "4/2") == True
-        assert simplify("3/6", "6/3") == True
-        assert simplify("4/8", "2/1") == True
+def test_edge_case_numerator_one():
+    assert simplify("1/2", "3/4") == False
+    assert simplify("1/5", "1/1") == False
 
-    def test_edge_case_one_whole_number(self):
-        assert simplify("2/1", "1/2") == True
-        assert simplify("5/1", "1/5") == True
-        assert simplify("1/2", "3/1") == False
+def test_edge_case_denominator_one():
+    assert simplify("2/1", "3/1") == True
+    assert simplify("5/1", "1/1") == True

@@ -35,7 +35,7 @@ def double_the_difference(lst):
 ### STEP 1: REASONING
 # The function `double_the_difference` calculates the sum of squares of odd, positive integers in a list.
 # It should handle empty lists, negative numbers, non-integer numbers, and zero correctly.
-# The test suite should cover these cases with various inputs to ensure the function behaves as expected.
+# The test suite should cover these cases with various inputs, including edge cases.
 
 ### STEP 2: PLAN
 # Test cases:
@@ -49,8 +49,8 @@ def double_the_difference(lst):
 # 8. List with a single zero: [0]
 # 9. List with a single negative number: [-1]
 # 10. List with a single even number: [2]
-# 11. List with a mix of positive and negative odd numbers: [1, -3, 5, -7]
-# 12. List with a mix of positive and negative even numbers: [2, -4, 6, -8]
+# 11. List with a mix of positive and negative odd numbers: [1, -3]
+# 12. List with a mix of positive and negative even numbers: [2, -4]
 
 ### STEP 3: CODE
 def test_empty_list():
@@ -83,17 +83,23 @@ def test_single_negative():
 def test_single_even():
     assert double_the_difference([2]) == 0
 
-def test_mixed_odd_negative():
-    assert double_the_difference([1, -3, 5, -7]) == 1 + 9 + 25 == 35
+def test_positive_and_negative_odd():
+    assert double_the_difference([1, -3]) == 1 + 9 == 10
 
-def test_mixed_even_negative():
-    assert double_the_difference([2, -4, 6, -8]) == 4 + 16 == 20
+def test_positive_and_negative_even():
+    assert double_the_difference([2, -4]) == 0
 
-def test_example_1():
-    assert double_the_difference([1, 3, 2, 0]) == 10
+def test_mixed_odd_even():
+    assert double_the_difference([1, 2, 3, 4, 5]) == 1 + 9 + 25 == 35
 
-def test_example_2():
-    assert double_the_difference([-1, -2, 0]) == 0
+def test_large_numbers():
+    assert double_the_difference([1001, 1003]) == 1001*1001 + 1003*1003
 
-def test_example_3():
-    assert double_the_difference([9, -2]) == 81
+def test_duplicate_odd_numbers():
+    assert double_the_difference([1, 1, 1]) == 3
+
+def test_duplicate_even_numbers():
+    assert double_the_difference([2, 2, 2]) == 0
+
+def test_mixed_duplicate_odd_even():
+    assert double_the_difference([1, 2, 1, 2]) == 1 + 1 == 2

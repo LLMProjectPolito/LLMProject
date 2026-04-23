@@ -103,7 +103,7 @@ def int_to_mini_roman(number):
         (150, "cl"),
         (152, "clii"),
         (194, "cxciv"),
-        (199, "cxciix"),
+        (199, "cxciiix"),
         (200, "cc"),
         (300, "ccc"),
         (400, "cd"),

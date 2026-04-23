@@ -55,7 +55,8 @@ def simplify(x, n):
 class TestSimplify:
     def test_simplify_whole_number(self):
         assert simplify("1/5", "5/1") == True
-        assert simplify("2/4", "2/2") == True
+        assert simplify("2/4", "2/1") == True
+        assert simplify("1/2", "2/1") == True
         assert simplify("3/6", "2/1") == True
         assert simplify("1/1", "1/1") == True
 
@@ -63,16 +64,19 @@ class TestSimplify:
         assert simplify("1/6", "2/1") == False
         assert simplify("7/10", "10/2") == False
         assert simplify("1/3", "1/2") == False
-        assert simplify("2/5", "3/7") == False
+        assert simplify("1/4", "1/3") == False
+        assert simplify("2/5", "3/4") == False
 
     def test_simplify_denominator_one(self):
         assert simplify("1/1", "2/3") == False
-        assert simplify("3/1", "1/1") == True
-        assert simplify("2/1", "4/1") == True
-        assert simplify("1/2", "1/1") == False
+        assert simplify("2/3", "1/1") == False
+        assert simplify("1/1", "1/1") == True
+        assert simplify("5/1", "1/2") == False
+        assert simplify("1/2", "5/1") == False
 
     def test_simplify_large_numbers(self):
         assert simplify("100/200", "200/100") == True
-        assert simplify("123/456", "900/123") == False
+        assert simplify("123/456", "456/123") == False
         assert simplify("1000/10", "10/1000") == True
-        assert simplify("1001/11", "11/1001") == True
+        assert simplify("12345/67890", "67890/12345") == False
+        assert simplify("1000000/1", "1/1000000") == True

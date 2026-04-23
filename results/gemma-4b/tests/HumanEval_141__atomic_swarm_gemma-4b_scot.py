@@ -57,23 +57,32 @@ def file_name_check(file_name):
 
     return 'Yes'
 
-def test_edge_empty():
+def test_edge_empty_string():
     assert file_name_check("") == 'No'
 
 def test_edge_too_many_digits():
     assert file_name_check("1234.txt") == 'No'
 
 def test_edge_no_dot():
-    assert file_name_check("exampletxt") == 'No'
+    assert file_name_check("example.txt") == 'No'
 
-def test_edge_dot_before_letter():
+def test_edge_multiple_dots():
+    assert file_name_check("example..txt") == 'No'
+
+def test_edge_dot_at_start():
     assert file_name_check(".example.txt") == 'No'
 
-def test_edge_dot_after_letter():
+def test_edge_dot_at_end():
     assert file_name_check("example.txt.") == 'No'
 
-def test_edge_invalid_extension():
+def test_edge_empty_before_dot():
+    assert file_name_check("1example.txt") == 'No'
+
+def test_edge_invalid_after_dot():
     assert file_name_check("example.pdf") == 'No'
+
+def test_edge_invalid_start_letter():
+    assert file_name_check("1example.txt") == 'No'
 
 import pytest
 
@@ -105,14 +114,11 @@ def file_name_check(file_name):
     if file_name.count('.') != 1:
         return 'No'
 
-    dot_index = file_name.find('.')
-    prefix = file_name[:dot_index]
-    suffix = file_name[dot_index + 1:]
-
-    if not prefix or not 'a' <= prefix[0] <= 'z' or not 'A' <= prefix[0] <= 'Z':
+    parts = file_name.split('.')
+    if not parts[0] or not parts[0][0].isalpha():
         return 'No'
 
-    if suffix not in ['txt', 'exe', 'dll']:
+    if parts[1] not in ['txt', 'exe', 'dll']:
         return 'No'
 
     return 'Yes'
@@ -126,11 +132,8 @@ def test_too_many_digits():
 def test_no_dot():
     assert file_name_check("exampletxt") == 'No'
 
-def test_empty_prefix():
-    assert file_name_check(" .example.txt") == 'No'
+def test_empty_before_dot():
+    assert file_name_check(" .txt") == 'No'
 
-def test_prefix_not_letter():
-    assert file_name_check("1example.txt") == 'No'
-
-def test_invalid_suffix():
+def test_invalid_extension():
     assert file_name_check("example.pdf") == 'No'

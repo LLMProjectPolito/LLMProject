@@ -69,5 +69,8 @@ def test_simplify_fraction_with_one_as_denominator():
 def test_simplify_fraction_with_zero_numerator():
     assert simplify("0/1", "1/1") == True
 
+def test_simplify_fraction_with_zero_denominator():
+    pass # Should not happen based on problem description
+
 def test_simplify_fraction_with_decimal_result():
     assert simplify("1/3", "2/1") == False

@@ -22,7 +22,6 @@ def fix_spaces(text):
     fix_spaces(" Example 2") == "_Example_2"
     fix_spaces(" Example   3") == "_Example-3"
     """
-    
     if not text:
         return ""
 
@@ -39,18 +38,21 @@ def fix_spaces(text):
             new_text += char
             space_count = 0
 
-    if new_text.endswith('_') and new_text.count('-') == 0 and new_text.count('_') > 0:
-        new_text = new_text[:-1]
+    if new_text.endswith('_') and new_text.count('-') == 0 and ' ' in text:
+        new_text = new_text[:-1] + '-'
     
-    if new_text.startswith('_') and new_text.count('-') == 0 and new_text.count('_') > 0:
-        new_text = new_text[1:]
+    if new_text.startswith('_') and new_text.count('-') == 0 and ' ' in text:
+        new_text = '-' + new_text[1:]
 
-    if new_text.endswith('-'):
-        new_text = new_text[:-1]
+    if new_text.startswith('_') and new_text.endswith('_') and new_text.count('-') == 0 and ' ' in text:
+        new_text = '-' + new_text[1:-1] + '-'
     
-    if new_text.startswith('-'):
-        new_text = new_text[1:]
+    if new_text.startswith('_') and new_text.endswith('-'):
+        new_text = '-' + new_text[1:]
     
+    if new_text.startswith('-') and new_text.endswith('_'):
+        new_text = new_text[:-1] + '-'
+
     if text == "   ":
         return "-"
 

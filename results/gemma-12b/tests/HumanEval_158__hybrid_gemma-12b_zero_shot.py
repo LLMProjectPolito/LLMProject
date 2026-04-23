@@ -59,30 +59,42 @@ class TestFindMax:
         """Test with words containing Unicode characters."""
         assert find_max(["你好", "abc", "世界"]) == "你好"
 
-    def test_all_words_same_unique_chars(self):
-        """Test when all words have the same number of unique characters."""
-        assert find_max(["abc", "cba", "bac"]) == "abc"
+    def test_words_with_identical_words(self):
+        """Test with a list containing identical words."""
+        assert find_max(["abc", "abc", "abc"]) == "abc"
 
     def test_long_words(self):
-        """Test with long words."""
-        assert find_max(["abcdefghijklmnopqrstuvwxyz", "1234567890"]) == "abcdefghijklmnopqrstuvwxyz"
+        """Test with long words to ensure efficiency."""
+        assert find_max(["abcdefghijklmnopqrstuvwxyz", "abc"]) == "abcdefghijklmnopqrstuvwxyz"
 
     def test_words_with_empty_string(self):
         """Test with a list containing an empty string."""
         assert find_max(["", "abc", "def"]) == ""
 
-    def test_words_with_only_empty_strings(self):
+    def test_all_empty_strings(self):
         """Test with a list containing only empty strings."""
         assert find_max(["", "", ""]) == ""
 
-    def test_words_with_same_length_and_unique_chars(self):
-        """Test when words have the same length and unique chars."""
+    def test_mixed_lengths_and_unique_chars(self):
+        """Test with a mix of word lengths and unique character counts."""
+        assert find_max(["a", "bb", "ccc", "dddd"]) == "ccc"
+
+    def test_edge_case_all_same_length_same_unique(self):
+        """Test an edge case where all words have the same length and unique chars."""
         assert find_max(["abc", "def", "ghi"]) == "abc"
 
-    def test_words_with_same_unique_chars_and_length(self):
-        """Test when words have the same unique chars and length."""
-        assert find_max(["abc", "bac", "cab"]) == "abc"
+    def test_all_words_same_unique_chars(self):
+        """Test when all words have the same number of unique characters."""
+        assert find_max(["abc", "cba", "bac"]) == "abc"
 
-    def test_words_with_duplicates_and_same_unique_chars(self):
-        """Test with words containing duplicates and same unique chars."""
-        assert find_max(["aabbcc", "ddeeff", "gghhii"]) == "aabbcc"
+    def test_words_with_numbers(self):
+        """Test with words containing numbers."""
+        assert find_max(["123", "abc", "def"]) == "abc"
+
+    def test_words_with_spaces(self):
+        """Test with words containing spaces."""
+        assert find_max(["hello world", "abc def", "ghi jkl"]) == "hello world"
+
+    def test_words_with_unicode_characters(self):
+        """Test with words containing Unicode characters."""
+        assert find_max(["你好", "世界", "Python"]) == "你好"

@@ -67,7 +67,7 @@ def test_example_2():
 def test_multiple_of_3_at_start():
     assert sum_squares([3, 1, 2, 4, 5]) == 9 + 1 + 4 + 64 + 25 == 103
 
-def test_multiple_of_4_at_start():
+def test_multiple_of_4_not_3_at_start():
     assert sum_squares([4, 1, 2, 3, 5]) == 64 + 1 + 4 + 9 + 25 == 103
 
 def test_multiple_of_3_and_4():
@@ -75,4 +75,10 @@ def test_multiple_of_3_and_4():
 
 def test_large_list():
     lst = list(range(10))
-    assert sum_squares(lst) == 385
+    expected_sum = 0
+    for i in range(len(lst)):
+        if i % 3 == 0:
+            expected_sum += lst[i]**2
+        elif i % 4 == 0 and i % 3 != 0:
+            expected_sum += lst[i]**3
+    assert sum_squares(lst) == expected_sum

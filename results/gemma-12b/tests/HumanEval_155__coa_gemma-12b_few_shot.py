@@ -26,10 +26,11 @@ def test_even_odd_count_positive_integer():
     assert even_odd_count(123456) == (3, 3)
 
 def test_even_odd_count_negative_integer():
-    assert even_odd_count(-12345) == (2, 3)
+    assert even_odd_count(-123456) == (3, 3)
 
 def test_even_odd_count_single_digit():
     assert even_odd_count(2) == (1, 0)
+    assert even_odd_count(3) == (0, 1)
 
 # Focus: Logic Branches
 def test_even_odd_count_positive_number():
@@ -39,4 +40,4 @@ def test_even_odd_count_negative_number():
     assert even_odd_count(-2468) == (4, 0)
 
 def test_even_odd_count_mixed_number():
-    assert even_odd_count(1234567890) == (5, 5)
+    assert even_odd_count(1357924680) == (4, 6)

@@ -60,9 +60,9 @@ def eat(number, need, remaining):
 
     Have fun :)
     """
-    eaten = min(need, remaining)
-    total_eaten = number + eaten
-    remaining_carrots = remaining - eaten
+    eat_amount = min(need - number, remaining)
+    total_eaten = number + eat_amount
+    remaining_carrots = remaining - eat_amount
     return [total_eaten, remaining_carrots]
 
 def test_eat_sufficient_carrots():
@@ -75,22 +75,19 @@ def test_eat_exactly_enough_carrots():
     assert eat(1, 10, 10) == [11, 0]
 
 def test_eat_no_carrots_needed():
-    assert eat(5, 0, 10) == [5, 10]
+    assert eat(5, 5, 10) == [5, 10]
 
 def test_eat_no_carrots_remaining():
     assert eat(2, 11, 0) == [2, 0]
 
 def test_eat_zero_initial_eaten():
-    assert eat(0, 5, 7) == [5, 2]
+    assert eat(0, 5, 10) == [5, 5]
 
-def test_eat_large_numbers():
-    assert eat(500, 300, 400) == [800, 0]
-
-def test_eat_zero_need():
-    assert eat(10, 0, 5) == [10, 5]
-
-def test_eat_edge_case_max_values():
+def test_eat_boundary_values():
+    assert eat(0, 0, 0) == [0, 0]
     assert eat(1000, 1000, 1000) == [2000, 0]
 
-def test_eat_remaining_less_than_need():
-    assert eat(2, 11, 5) == [7, 0]
+def test_eat_large_values():
+    assert eat(500, 700, 300) == [800, 0]
+    assert eat(500, 700, 500) == [1000, 0]
+    assert eat(500, 700, 1000) == [1200, 500]

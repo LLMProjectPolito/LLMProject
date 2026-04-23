@@ -52,15 +52,16 @@ def test_find_max_multiple():
     assert find_max(["abc", "def", "ghi"]) == "abc"
     assert find_max(["a", "b", "c"]) == "a"
     
+def test_duplicate_max():
+    assert find_max(["a", "a", "b"]) == "a"
+    assert find_max(["a", "b", "b"]) == "b"
+    
+def test_lexicographical_order():
+    assert find_max(["aaaaaaa", "bb", "cc"]) == ""
+    
 def test_different_lengths():
     assert find_max(["a", "bb", "ccc"]) == "ccc"
     
-def test_duplicate_max_words():
-    assert find_max(["a", "a", "a"]) == "a"
-    
-def test_case_sensitive():
-    assert find_max(["Name", "name"]) == "name"
-    
 def test_mixed_case():
-    assert find_max(["aA", "bB"]) == "bB"
+    assert find_max(["aBc", "bC", "cC"]) == "bC"
 ```

@@ -47,3 +47,4 @@ def test_find_max():
     assert find_max(["a"]) == "a"
     assert find_max(["b"]) == "b"
     assert find_max(["abc"]) == "abc"
+    assert find_max(["ab"]) == "ab"

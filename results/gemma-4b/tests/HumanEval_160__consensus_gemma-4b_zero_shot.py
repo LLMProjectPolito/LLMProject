@@ -114,7 +114,7 @@ def test_empty_operand():
 def test_large_numbers():
     operator = ['*', '**']
     operand = [2, 3, 10]
-    assert do_algebra(operator, operand) == 200
+    assert do_algebra(operator, operand) == 240
 
 def test_zero_operand():
     operator = ['+', '*']

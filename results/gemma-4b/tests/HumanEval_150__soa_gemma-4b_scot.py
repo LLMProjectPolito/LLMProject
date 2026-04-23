@@ -32,7 +32,7 @@ def test_x_or_y_prime():
     assert x_or_y(11, 22, 1) == 22
     assert x_or_y(13, 100, 5) == 100
     assert x_or_y(17, 99, 1) == 99
-    assert x_or_y(19, 88, 2) == 88
+    assert x_or_y(19, 5, 20) == 5
 
 def test_x_or_y_not_prime():
     assert x_or_y(15, 8, 5) == 5

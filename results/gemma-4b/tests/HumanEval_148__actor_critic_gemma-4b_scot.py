@@ -92,5 +92,5 @@ def test_bf_invalid_planet_name():
     assert bf("Earth", "Pluto") == ()
 
 def test_bf_empty_orbit_range():
-    assert bf("Venus", "Venus") == ()
-    assert bf("Mercury", "Venus") == ()
+    assert bf("Venus", "Earth") == ()
+    assert bf("Mars", "Jupiter") == ()

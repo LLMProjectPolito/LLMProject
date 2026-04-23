@@ -14,6 +14,8 @@ def file_name_check(file_name):
     file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
 
+import pytest
+
 def file_name_check(file_name):
     """Create a function which takes a string representing a file's name, and returns
     'Yes' if the the file's name is valid, and returns 'No' otherwise.
@@ -28,15 +30,16 @@ def file_name_check(file_name):
     file_name_check("example.txt") # => 'Yes'
     file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
-    parts = file_name.split(".")
-    if len(parts) > 3:
+    if len(file_name) > 3:
         return 'No'
-    if len(parts) == 1:
+    if '.' not in file_name:
         return 'No'
-    if not parts[0]:
+    if not file_name[0].isalpha():
         return 'No'
-    if not parts[1][0].isalpha():
+    if not file_name[1:].isspace():
         return 'No'
-    if parts[1][-1] not in ['txt', 'exe', 'dll']:
+    if len(file_name[1:]) != 1:
+        return 'No'
+    if file_name[1:] not in ['txt', 'exe', 'dll']:
         return 'No'
     return 'Yes'

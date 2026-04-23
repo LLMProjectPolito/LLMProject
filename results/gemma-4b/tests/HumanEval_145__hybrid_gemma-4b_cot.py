@@ -32,19 +32,17 @@ def order_by_points(nums):
 
     return sorted(nums, key=lambda x: (sum_digits(x), nums.index(x)))
 
-
 def test_order_by_points():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
     assert order_by_points([]) == []
     assert order_by_points([1, 2, 3, 4, 5]) == [1, 2, 3, 4, 5]
     assert order_by_points([5, 4, 3, 2, 1]) == [1, 2, 3, 4, 5]
-    assert order_by_points([-1, -2, -3, -4, -5]) == [-1, -2, -3, -4, -5]
-    assert order_by_points([10, 1, 100, 101]) == [1, 10, 100, 101]
-    assert order_by_points([12, 21, 3, 4, 5]) == [3, 4, 5, 12, 21]
-    assert order_by_points([-12, 21, -3, 4, 5]) == [-3, 4, 5, -12, 21]
-    assert order_by_points([0, 0, 0, 0]) == [0, 0, 0, 0]
+    assert order_by_points([10, 1, 100, 11]) == [1, 10, 100, 11]
+    assert order_by_points([-1, 1, -11, 11]) == [-1, -11, 1, 11]
+    assert order_by_points([121, 11, 2, 20]) == [2, 11, 20, 121]
     assert order_by_points([1, 1, 1, 1]) == [1, 1, 1, 1]
     assert order_by_points([-1, -1, -1, -1]) == [-1, -1, -1, -1]
-    assert order_by_points([1, -1, 1, -1]) == [-1, 1, -1, 1]
-    assert order_by_points([10, 1, 100, 101, 11]) == [1, 10, 100, 101, 11]
-    assert order_by_points([11, 1, 10, 100, 101]) == [1, 10, 11, 100, 101]
+    assert order_by_points([0, 0, 0, 0]) == [0, 0, 0, 0]
+    assert order_by_points([1000, 10, 1]) == [1, 10, 1000]
+    assert order_by_points([12, 21, 1, 2]) == [1, 2, 12, 21]
+    assert order_by_points([-12, 21, -1, 2]) == [-1, -12, 2, 21]

@@ -34,19 +34,16 @@ def test_order_by_points_negative_numbers():
     assert order_by_points([-1, -10, -100]) == [-1, -10, -100]
 
 def test_order_by_points_mixed_positive_negative():
-    assert order_by_points([1, -1, 10, -10]) == [1, -1, 10, -10]
+    assert order_by_points([-1, 1, -10, 10]) == [-1, 1, -10, 10]
 
-def test_order_by_points_zero():
-    assert order_by_points([0, 1, -1]) == [0, 1, -1]
-
-def test_order_by_points_duplicate_numbers():
-    assert order_by_points([2, 2, 2]) == [2, 2, 2]
+def test_order_by_points_with_zeros():
+    assert order_by_points([0, 10, 1, -1]) == [0, -1, 1, 10]
 
 def test_order_by_points_large_numbers():
-    assert order_by_points([123, 45, 6]) == [123, 45, 6]
+    assert order_by_points([123, 45, 6, 789]) == [6, 45, 123, 789]
+
+def test_order_by_points_duplicate_numbers():
+    assert order_by_points([1, 1, 1, 1]) == [1, 1, 1, 1]
 
 def test_order_by_points_complex_case():
-    assert order_by_points([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) == [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
-
-def test_order_by_points_another_complex_case():
-    assert order_by_points([12, 21, 3, 13, 23]) == [3, 12, 21, 13, 23]
+    assert order_by_points([21, 12, 3, 1, 10]) == [1, 3, 10, 21, 12]

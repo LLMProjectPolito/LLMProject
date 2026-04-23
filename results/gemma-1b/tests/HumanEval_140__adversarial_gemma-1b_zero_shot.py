@@ -33,33 +33,41 @@ def fix_spaces(text):
             if count > 2:
                 result += '-'
                 count = 0
-            else:
-                result += char
+            result += char
     return result
 
 def test_fix_spaces_basic():
     assert fix_spaces("Example") == "Example"
-
-def test_fix_spaces_one_space_consecutive():
     assert fix_spaces("Example 1") == "Example_1"
-
-def test_fix_spaces_two_spaces_consecutive():
-    assert fix_spaces("Example 2") == "_Example_2"
-
-def test_fix_spaces_three_spaces_consecutive():
-    assert fix_spaces("Example 3") == "_Example-3"
-
-def test_fix_spaces_multiple_spaces_consecutive():
-    assert fix_spaces("Example 4") == "_Example-4"
-
+    assert fix_spaces(" Example 2") == "_Example_2"
+    assert fix_spaces(" Example   3") == "_Example-3"
+    
+def test_fix_spaces_with_multiple_spaces():
+    assert fix_spaces("Example   ") == "_Example-3"
+    
 def test_fix_spaces_empty_string():
     assert fix_spaces("") == ""
-
-def test_fix_spaces_string_with_only_spaces():
-    assert fix_spaces("   ") == ""
-
-def test_fix_spaces_mixed_spaces_and_underscores():
-    assert fix_spaces("Example with spaces") == "Example with spaces"
-
-def test_fix_spaces_with_hyphens():
-    assert fix_spaces("Example-1") == "Example-1"
+    
+def test_fix_spaces_single_space():
+    assert fix_spaces(" ") == " "
+    
+def test_fix_spaces_with_leading_and_trailing_spaces():
+    assert fix_spaces("  Example ") == "Example"
+    
+def test_fix_spaces_with_mixed_spaces_and_underscores():
+    assert fix_spaces("Example 123") == "Example_123"
+    
+def test_fix_spaces_with_multiple_underscores():
+    assert fix_spaces("Example_123") == "_Example_123"
+    
+def test_fix_spaces_with_mixed_spaces_and_underscores_and_negatives():
+    assert fix_spaces("Example-123") == "_Example-123"
+    
+def test_fix_spaces_with_special_characters():
+    assert fix_spaces("Example!@#") == "_Example!"
+    
+def test_fix_spaces_with_numbers():
+    assert fix_spaces("Example 123") == "Example_123"
+    
+def test_fix_spaces_with_unicode():
+    assert fix_spaces("Example 123") == "_Example_123"

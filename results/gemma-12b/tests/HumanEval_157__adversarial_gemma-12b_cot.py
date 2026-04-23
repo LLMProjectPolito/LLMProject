@@ -11,7 +11,6 @@ def right_angle_triangle(a, b, c):
     '''
 
 import pytest
-from math import isclose
 
 def right_angle_triangle(a, b, c):
     '''
@@ -33,50 +32,36 @@ def right_angle_triangle(a, b, c):
         return False
 
     sides = sorted([a, b, c])
-    return isclose(sides[0]**2 + sides[1]**2, sides[2]**2)
+    return abs(sides[0]**2 + sides[1]**2 - sides[2]**2) < 1e-6
 
+@pytest.mark.parametrize("a, b, c, expected", [
+    (3, 4, 5, True),
+    (5, 12, 13, True),
+    (1, 2, 3, False),
+    (2, 3, 4, False),
+    (4, 3, 5, True),  # Unsorted
+    (5, 4, 3, True),
+    (3, 5, 4, True),
+    (0, 4, 5, False),  # Zero length
+    (-3, 4, 5, False), # Negative length
+    (3, -4, 5, False),
+    (3, 4, -5, False),
+    (1.0, 2.0, 2.236067977, True), # Float values
+    (3.0, 4.0, 5.0, True),
+    (1, 1, 1, False),
+    (1, 1, 1.41421356, True),
+    (2, 2, 2, False),
+    (1, 2, 2.5, True),
+])
+def test_right_angle_triangle(a, b, c, expected):
+    assert right_angle_triangle(a, b, c) == expected
 
-class TestRightAngleTriangle:
-    def test_valid_right_triangle_int(self):
-        assert right_angle_triangle(3, 4, 5) == True
-
-    def test_valid_right_triangle_float(self):
-        assert right_angle_triangle(3.0, 4.0, 5.0) == True
-
-    def test_non_right_triangle_int(self):
-        assert right_angle_triangle(1, 2, 3) == False
-
-    def test_non_right_triangle_float(self):
-        assert right_angle_triangle(1.0, 2.0, 3.0) == False
-
-    def test_unsorted_sides(self):
-        assert right_angle_triangle(4, 3, 5) == True
-
-    def test_zero_side(self):
-        assert right_angle_triangle(0, 4, 5) == False
-        assert right_angle_triangle(3, 0, 5) == False
-        assert right_angle_triangle(3, 4, 0) == False
-
-    def test_negative_side(self):
-        assert right_angle_triangle(-3, 4, 5) == False
-        assert right_angle_triangle(3, -4, 5) == False
-        assert right_angle_triangle(3, 4, -5) == False
-
-    def test_mixed_types(self):
-        assert right_angle_triangle(3, 4.0, 5) == True
-
-    def test_large_numbers(self):
-        assert right_angle_triangle(600, 800, 1000) == True
-
-    def test_floating_point_precision(self):
-        assert right_angle_triangle(0.3, 0.4, 0.5) == True
-
-    def test_type_error(self):
-        with pytest.raises(TypeError):
-            right_angle_triangle("a", 4, 5)
-        with pytest.raises(TypeError):
-            right_angle_triangle(3, "b", 5)
-        with pytest.raises(TypeError):
-            right_angle_triangle(3, 4, "c")
-        with pytest.raises(TypeError):
-            right_angle_triangle([1,2], 4, 5)
+def test_type_error():
+    with pytest.raises(TypeError):
+        right_angle_triangle("a", 4, 5)
+    with pytest.raises(TypeError):
+        right_angle_triangle(3, "b", 5)
+    with pytest.raises(TypeError):
+        right_angle_triangle(3, 4, "c")
+    with pytest.raises(TypeError):
+        right_angle_triangle([1,2], 4, 5)

@@ -29,15 +29,15 @@ def Strongest_Extension(class_name, extensions):
         cap = 0
         sm = 0
         for char in extension:
-            if char.isupper():
+            if 'A' <= char <= 'Z':
                 cap += 1
-            elif char.islower():
+            elif 'a' <= char <= 'z':
                 sm += 1
         strength = cap - sm
         if strength > max_strength:
             max_strength = strength
             strongest_extension = extension
-    return class_name + "." + strongest_extension
+    return class_name + '.' + strongest_extension
 
 # Focus: Type Scenarios
 def Strongest_Extension(class_name, extensions):
@@ -59,19 +59,23 @@ def Strongest_Extension(class_name, extensions):
     """
     strongest_extension = None
     max_strength = float('-inf')
+
     for extension in extensions:
-        cap = 0
-        sm = 0
+        cap_count = 0
+        lower_count = 0
         for char in extension:
-            if char.isupper():
-                cap += 1
-            elif char.islower():
-                sm += 1
-        strength = cap - sm
+            if 'A' <= char <= 'Z':
+                cap_count += 1
+            else:
+                lower_count += 1
+
+        strength = cap_count - lower_count
+
         if strength > max_strength:
             max_strength = strength
             strongest_extension = extension
-    return class_name.join(str(x) for x in strongest_extension)
+
+    return strongest_extension
 
 # Focus: Logic Branches
 def Strongest_Extension(class_name, extensions):
@@ -81,12 +85,12 @@ def Strongest_Extension(class_name, extensions):
         cap = 0
         sm = 0
         for char in extension:
-            if char.isupper():
+            if 'A' <= char <= 'Z':
                 cap += 1
-            elif char.islower():
+            else:
                 sm += 1
         strength = cap - sm
         if strength > max_strength:
             max_strength = strength
             strongest_extension = extension
-    return class_name + "." + strongest_extension
+    return class_name + '.' + strongest_extension

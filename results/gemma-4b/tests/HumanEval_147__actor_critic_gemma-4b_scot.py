@@ -45,62 +45,53 @@ def get_max_triples(n):
 # The function `get_max_triples(n)` calculates the number of triples (i, j, k)
 # in an array `a` of length `n` such that `a[i] + a[j] + a[k]` is divisible by 3,
 # with the constraint that `i < j < k`. The array `a` is generated as `a[i] = i*i - i + 1`.
-# We need to test various input values of `n`, including edge cases like n = 0, n = 1,
-# and n = 2, and also test cases where the generated array `a` has elements that
-# are multiples of 3, and cases where they are not.
+# We need to test various input values of `n` and ensure the function returns the correct count.
+# Edge cases include n = 1, n = 2, n = 3, and n = 4.  Also, we should consider cases where
+# the elements of the array are all multiples of 3, or none are.
 
 # STEP 2: PLAN - List test functions names and scenarios.
-# test_empty_array: Test with n = 0.
-# test_single_element_array: Test with n = 1.
-# test_two_element_array: Test with n = 2.
-# test_small_array: Test with n = 5 (example from the problem description).
-# test_large_array: Test with n = 10.
-# test_all_multiples_of_3: Test with n such that all elements of a are multiples of 3.
-# test_no_triples: Test with n such that no triples sum to a multiple of 3.
+# test_empty_array: Test with n = 0 (should return 0).
+# test_n_equals_1: Test with n = 1 (should return 0).
+# test_n_equals_2: Test with n = 2 (should return 0).
+# test_n_equals_3: Test with n = 3 (should return 0).
+# test_n_equals_4: Test with n = 4 (should return 1).
+# test_n_equals_5: Test with n = 5 (should return 1).
+# test_n_equals_6: Test with n = 6 (should return 4).
+# test_n_equals_7: Test with n = 7 (should return 6).
+# test_n_equals_8: Test with n = 8 (should return 10)
+# test_n_equals_9: Test with n = 9 (should return 18)
+# test_n_equals_10: Test with n = 10 (should return 30)
 
 # STEP 3: CODE - Write the high-quality pytest suite.
 def test_empty_array():
     assert get_max_triples(0) == 0
 
-def test_single_element_array():
+def test_n_equals_1():
     assert get_max_triples(1) == 0
 
-def test_two_element_array():
+def test_n_equals_2():
     assert get_max_triples(2) == 0
-
-def test_small_array():
-    assert get_max_triples(5) == 1
-
-def test_large_array():
-    assert get_max_triples(10) == 10
-
-def test_all_multiples_of_3():
-    n = 3
-    a = [1, 3, 7]
-    assert get_max_triples(n) == 0
-
-def test_no_triples():
-    n = 4
-    a = [1, 2, 4, 7]
-    assert get_max_triples(n) == 0
-
-def test_n_equals_6():
-    assert get_max_triples(6) == 6
-
-def test_n_equals_7():
-    assert get_max_triples(7) == 10
 
 def test_n_equals_3():
     assert get_max_triples(3) == 0
 
 def test_n_equals_4():
-    assert get_max_triples(4) == 0
+    assert get_max_triples(4) == 1
+
+def test_n_equals_5():
+    assert get_max_triples(5) == 1
+
+def test_n_equals_6():
+    assert get_max_triples(6) == 4
+
+def test_n_equals_7():
+    assert get_max_triples(7) == 6
 
 def test_n_equals_8():
-    assert get_max_triples(8) == 28
+    assert get_max_triples(8) == 10
 
 def test_n_equals_9():
-    assert get_max_triples(9) == 27
+    assert get_max_triples(9) == 18
 
 def test_n_equals_10():
-    assert get_max_triples(10) == 45
+    assert get_max_triples(10) == 30

@@ -20,12 +20,12 @@ def find_max(words):
 
     find_max(["name", "of", "string"]) == "string"
     find_max(["name", "enam", "game"]) == "enam"
-    find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
+    find_max(["aaaaaaa", "bb" ,"cc"]) == ""aaaaaaa"
     """
     if not words:
         return ""
 
-    max_unique = -1
+    max_unique = 0
     result = ""
 
     for word in words:
@@ -37,7 +37,6 @@ def find_max(words):
             result = word
 
     return result
-
 
 def test_empty_list():
     assert find_max([]) == ""
@@ -55,10 +54,13 @@ def test_multiple_words_same_unique_chars_and_lexicographical_order():
     assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
 def test_multiple_words_same_unique_chars_and_lexicographical_order_2():
-    assert find_max(["abc", "bca", "cab"]) == "abc"
+    assert find_max(["abc", "def", "ghi"]) == "abc"
+
+def test_multiple_words_same_unique_chars_and_lexicographical_order_3():
+    assert find_max(["xyz", "abc", "def"]) == "abc"
 
 def test_mixed_case():
-    assert find_max(["Name", "enam", "GAME"]) == "enam"
+    assert find_max(["Name", "enam", "Game"]) == "enam"
 
 def test_numbers_and_letters():
     assert find_max(["a123", "b456", "c789"]) == "a123"

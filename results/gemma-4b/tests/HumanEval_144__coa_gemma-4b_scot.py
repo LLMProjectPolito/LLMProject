@@ -31,7 +31,8 @@ def test_simplify_non_whole_numbers():
 
 def test_simplify_large_numbers():
     assert simplify("100/10", "10/1") == True
-    assert simplify("123/4", "4/1") == False
+    assert simplify("1000/100", "10/1") == True
+    assert simplify("10000/1000", "10/1") == True
 
 # Focus: Type Scenarios
 import pytest

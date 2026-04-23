@@ -55,9 +55,15 @@ def do_algebra(operator, operand):
     try:
         if len(operator) == 1:
             return operator[0]
-        elif len(operand) == 1:
-            return operand[0]
+        elif len(operator) == 2:
+            return operator[0] + operator[1]
+        elif len(operator) == 3:
+            return operator[0] * operator[1] * operator[2]
+        elif len(operator) == 4:
+            return operator[0] * operator[1] * operator[2] * operator[3]
+        elif len(operator) == 5:
+            return operator[0] * operator[1] * operator[2] * operator[3] * operator[4]
         else:
-            return eval(str(operator[0]) + str(operand[0]) + operator[1] + str(operand[1]))
-    except Exception:
-        return None
+            return 0
+    except:
+        return 0

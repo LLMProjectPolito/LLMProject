@@ -69,11 +69,20 @@ def test_string_with_spaces():
 def test_string_with_unicode():
     assert solve("你好世界") == "你好世界"
 
-def test_string_with_leading_and_trailing_spaces():
-    assert solve("  abc  ") == "  ABC  "
+def test_string_with_symbols_and_letters():
+    assert solve("!@#aB$c") == "!@#A b$C"
 
-def test_string_with_only_one_character():
+def test_all_uppercase():
+    assert solve("ABC") == "abc"
+
+def test_all_lowercase():
+    assert solve("abc") == "ABC"
+
+def test_single_letter_lowercase():
     assert solve("a") == "A"
 
-def test_string_with_only_one_special_character():
+def test_single_letter_uppercase():
+    assert solve("A") == "a"
+
+def test_single_special_char():
     assert solve("#") == "#"

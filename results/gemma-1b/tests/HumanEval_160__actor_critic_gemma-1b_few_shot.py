@@ -53,7 +53,7 @@ def do_algebra(operator, operand):
 
     """
     if len(operand) != 2:
-        raise ValueError("Operand must be a list of two integers.")
+        raise ValueError("Operand list must contain exactly two elements.")
     
     if operator == '+':
         return operand[0] + operand[1]
@@ -74,27 +74,30 @@ def test_do_algebra():
     assert do_algebra('- 2 3') == 1
     assert do_algebra('* 2 3') == 6
     assert do_algebra('/') 2 3 == 1
-    assert do_algebra('2 ** 3') == 8
-    assert do_algebra('2 + 3 * 4') == 9
-    assert do_algebra('2 - 3 * 4') == 1
-    assert do_algebra('2 * 3 ** 2') == 9
-    assert do_algebra('2 / 3') == 0.6666666666666666
-    assert do_algebra('2 ** 3') == 8
-    assert do_algebra('2 + 3 * 4') == 9
-    assert do_algebra('2 - 3 * 4') == 1
-    assert do_algebra('2 * 3 ** 2') == 9
-    assert do_algebra('2 / 3') == 0.6666666666666666
+    assert do_algebra('2 3 ** 2') == 2
+    assert do_algebra('2 3 + 4') == 10
+    assert do_algebra('2 3 - 4') == 1
+    assert do_algebra('2 3 * 4') == 24
+    assert do_algebra('2 3 / 4') == 0.5
+    assert do_algebra('2 3 ** 2') == 2
+    assert do_algebra('2 3 ** 2 4') == 24
+    assert do_algebra('2 3 + 4 5') == 11
+    assert do_algebra('2 3 - 4 5') == 1
+    assert do_algebra('2 3 * 4 5') == 60
+    assert do_algebra('2 3 / 4 5') == 1.25
+    assert do_algebra('2 3 ** 2 4') == 24
+    assert do_algebra('2 3 ** 2 4 5') == 25
     
     # Edge cases
-    assert do_algebra('') == 0
-    assert do_algebra([1, 2]) == 3
+    assert do_algebra('2') == 2
+    assert do_algebra('', '') == 0
     assert do_algebra([1, 2, 3]) == 6
-    assert do_algebra([1, 2, 3, 4]) == 24
-    assert do_algebra([1, 2, 3, 4, 5]) == 120
+    assert do_algebra([1, 2]) == 2
+    assert do_algebra([1]) == 1
     
     #Error handling
     try:
-        do_algebra('1 2')
+        do_algebra('2')
     except ValueError:
         pass
     
@@ -107,3 +110,5 @@ def test_do_algebra():
         do_algebra('2 3')
     except ValueError:
         pass
+    
+    print("All tests passed!")

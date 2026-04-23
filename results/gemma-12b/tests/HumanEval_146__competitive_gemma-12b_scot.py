@@ -58,7 +58,7 @@ class TestSpecialFilter:
         assert specialFilter([101, 103, 105, 107, 109]) == 0
 
     def test_negative_numbers_only(self):
-        assert specialFilter([-15, -73, -11, -35]) == 0
+        assert specialFilter([-15, -73, -11, -33]) == 0
 
     def test_single_number(self):
         assert specialFilter([15]) == 1

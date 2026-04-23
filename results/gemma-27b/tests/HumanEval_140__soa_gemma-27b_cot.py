@@ -41,19 +41,19 @@ def test_only_spaces():
     assert fix_spaces("   ") == "-"
 
 def test_mixed_spaces():
-    assert fix_spaces("Example  1 2   3") == "Example-1_2-3"
+    assert fix_spaces("Example  1   2") == "Example-1-2"
 
-def test_consecutive_spaces_and_leading_space():
-    assert fix_spaces("  Example   4") == "-Example-4"
-
-def test_consecutive_spaces_and_trailing_space():
-    assert fix_spaces("Example   4  ") == "Example-4-"
+def test_consecutive_and_single_spaces():
+    assert fix_spaces("Example   1 2") == "Example-1_2"
 
 def test_long_string_with_multiple_spaces():
-    assert fix_spaces("This is a long string with   multiple    spaces.") == "This_is_a_long_string_with-multiple-spaces."
+    assert fix_spaces("This is a long string with   multiple   spaces.") == "This_is_a_long_string_with-multiple-spaces."
 
 def test_string_with_tabs():
     assert fix_spaces("Example\t1") == "Example_1"
 
 def test_string_with_newlines():
     assert fix_spaces("Example\n1") == "Example_1"
+
+def test_string_with_carriage_return():
+    assert fix_spaces("Example\r1") == "Example_1"

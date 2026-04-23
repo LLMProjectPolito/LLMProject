@@ -59,5 +59,5 @@ def test_single_even_number():
 def test_large_numbers():
     assert double_the_difference([100, 200]) == 40000
 
-def test_negative_large_numbers():
-    assert double_the_difference([-100, -200]) == 40000
+def test_mixed_large_and_small():
+    assert double_the_difference([1, 2, 3]) == 1

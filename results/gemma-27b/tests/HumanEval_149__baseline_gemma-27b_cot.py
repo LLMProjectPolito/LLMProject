@@ -69,5 +69,5 @@ def test_list_with_only_empty_string():
 def test_list_with_mixed_case():
     assert sorted_list_sum(["aA", "bb", "Aa"]) == ["aA", "Aa", "bb"]
 
-def test_list_with_special_characters():
-    assert sorted_list_sum(["!@#", "abc", "$%^"]) == ["!@#", "$%^"]
+def test_list_with_numbers_as_strings():
+    assert sorted_list_sum(["12", "1", "22"]) == ["12", "22"]

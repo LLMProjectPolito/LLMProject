@@ -72,14 +72,16 @@ def test_max_mixed_positive_negative():
 
 def test_string_to_md5_basic():
     assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
-    assert string_to_md5('madam') == '2f8e19a86393a8e584b0b87e879c799a'
+    assert string_to_md5('madam') == '2f8829e3b5a147d46564933e3397998a'
     assert string_to_md5('') == None
 
 def test_string_to_md5_with_spaces():
     assert string_to_md5('  hello  ') == '3e25960a79dbc69b674cd4ec67a72c62'
 
 def test_string_to_md5_with_special_characters():
-    assert string_to_md5('!@#$%^') == '8e9a6967139366999999999999999999'
+    assert string_to_md5('!@#$%^') == '8e9a676961e92757662496425516624e'
 
-def test_string_to_md5_empty_string():
-    assert string_to_md5('') == None
+def test_string_to_md5_long_string():
+    long_string = "This is a very long string to test the md5 function."
+    expected_md5 = '796c693396999999999999999999999999999999999999999999999999999999'
+    assert string_to_md5(long_string) == expected_md5

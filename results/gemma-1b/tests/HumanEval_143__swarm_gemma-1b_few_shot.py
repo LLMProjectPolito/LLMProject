@@ -44,7 +44,7 @@ def words_in_sentence(sentence: str) -> str:
         * sentence contains only letters
     """
     def is_prime(n):
-        if n < 2:
+        if n <= 1:
             return False
         for i in range(2, int(n**0.5) + 1):
             if n % i == 0:
@@ -58,10 +58,10 @@ def words_in_sentence(sentence: str) -> str:
             result.append(word)
     return " ".join(result)
 
-def test_words_in_sentence_example_1():
+def test_words_in_sentence_example1():
     assert words_in_sentence("This is a test") == "is"
 
-def test_words_in_sentence_example_2():
+def test_words_in_sentence_example2():
     assert words_in_sentence("lets go for swimming") == "go for"
 
 def test_words_in_sentence_empty_string():
@@ -71,7 +71,7 @@ def test_words_in_sentence_single_word():
     assert words_in_sentence("hello") == "hello"
 
 def test_words_in_sentence_multiple_words():
-    assert words_in_sentence("this is a test") == "this is"
+    assert words_in_sentence("This is a test") == "is"
 
-def test_words_in_sentence_with_punctuation():
-    assert words_in_sentence("hello, world!") == "world!"
+def test_words_in_sentence_with_numbers():
+    assert words_in_sentence("12345") == "12345"

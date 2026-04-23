@@ -25,30 +25,32 @@ def right_angle_triangle(a, b, c):
     sides = sorted([a, b, c])
     return sides[0]**2 + sides[1]**2 == sides[2]**2
 
-def test_right_angle_triangle():
+def test_right_angle_triangle_valid():
     assert right_angle_triangle(3, 4, 5) == True
     assert right_angle_triangle(5, 12, 13) == True
-    assert right_angle_triangle(1, 1, 1) == False
-    assert right_angle_triangle(6, 8, 10) == True
+    assert right_angle_triangle(8, 15, 17) == True
     assert right_angle_triangle(7, 24, 25) == True
 
-def test_edge_cases():
-    assert right_angle_triangle(1, 1, 0) == False
+def test_right_angle_triangle_invalid():
+    assert right_angle_triangle(1, 2, 3) == False
+    assert right_angle_triangle(1, 1, 1) == False
+    assert right_angle_triangle(2, 3, 4) == False
+    assert right_angle_triangle(4, 5, 6) == False
+
+def test_right_angle_triangle_edge_cases():
+    assert right_angle_triangle(1, 1, 1) == False
     assert right_angle_triangle(0, 0, 0) == False
+    assert right_angle_triangle(1, 0, 1) == False
+    assert right_angle_triangle(1, 1, 0) == False
     assert right_angle_triangle(1, 2, 1) == False
     assert right_angle_triangle(2, 1, 1) == False
-    assert right_angle_triangle(1, 1, 1.99) == False
-    assert right_angle_triangle(1, 1, 2) == True
-    assert right_angle_triangle(1, 0, 1) == False
-    assert right_angle_triangle(0, 1, 1) == False
-    assert right_angle_triangle(1, 1, 1.4142135623730951) == True
+    assert right_angle_triangle(1, 1, 2) == False
 
-def test_invalid_input_types():
-    with pytest.raises(TypeError):
-        right_angle_triangle("3", 4, 5)
-    with pytest.raises(TypeError):
-        right_angle_triangle(3, "4", 5)
-    with pytest.raises(TypeError):
-        right_angle_triangle(3, 4, "5")
-    with pytest.raises(TypeError):
-        right_angle_triangle(3.14, 2.71, 1.61)
+def test_right_angle_triangle_large_numbers():
+    assert right_angle_triangle(1000, 1000, 1414) == True
+    assert right_angle_triangle(1000, 1000, 1415) == False
+
+def test_right_angle_triangle_float_numbers():
+    assert right_angle_triangle(3.0, 4.0, 5.0) == True
+    assert right_angle_triangle(1.5, 2.0, 2.5) == True
+    assert right_angle_triangle(1.0, 1.0, 1.41421356237) == False

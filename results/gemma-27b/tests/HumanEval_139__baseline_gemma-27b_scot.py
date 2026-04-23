@@ -28,37 +28,36 @@ def special_factorial(n):
     """
     if not isinstance(n, int):
         raise TypeError("Input must be an integer.")
-    if n <= 0:
-        raise ValueError("Input must be a positive integer.")
-
-    def factorial(num):
-        if num == 0:
-            return 1
-        else:
-            return num * factorial(num-1)
+    if n < 0:
+        raise ValueError("Input must be a non-negative integer.")
 
     result = 1
     for i in range(1, n + 1):
-        result *= factorial(i)
+        factorial = 1
+        for j in range(1, i + 1):
+            factorial *= j
+        result *= factorial
     return result
 
-def test_special_factorial_base_case():
-    assert special_factorial(1) == 1
-
-def test_special_factorial_small_values():
-    assert special_factorial(2) == 2
-    assert special_factorial(3) == 12
+def test_special_factorial_positive():
     assert special_factorial(4) == 288
 
-def test_special_factorial_larger_value():
-    assert special_factorial(5) == 34560
+def test_special_factorial_one():
+    assert special_factorial(1) == 1
 
 def test_special_factorial_zero():
-    with pytest.raises(ValueError):
-        special_factorial(0)
+    assert special_factorial(0) == 1
 
-def test_special_factorial_type_error():
+def test_special_factorial_small():
+    assert special_factorial(2) == 2
+    assert special_factorial(3) == 12
+
+def test_special_factorial_medium():
+    assert special_factorial(5) == 34560
+    assert special_factorial(6) == 24883200
+
+def test_special_factorial_type():
     with pytest.raises(TypeError):
-        special_factorial(2.5)
+        special_factorial(3.14)
     with pytest.raises(TypeError):
-        special_factorial("2")
+        special_factorial("hello")

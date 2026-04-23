@@ -21,24 +21,22 @@ def solve(s):
     solve("1234") = "4321"
     solve("ab") = "AB"
     solve("#a@C") = "#A@c"
-    solve("   ") = "   " # Whitespace only string
     """
     has_letter = False
-    result = ""
+    result = []
     for char in s:
         if char.isalpha():
             has_letter = True
-            if char.islower():
-                result += char.upper()
+            if 'a' <= char <= 'z':
+                result.append(char.upper())
             else:
-                result += char.lower()
+                result.append(char.lower())
         else:
-            result += char
+            result.append(char)
     if not has_letter:
-        return result[::-1]
-    return result
+        return "".join(result[::-1])
+    return "".join(result)
 
-### Tests (Pytest):
 import pytest
 
 def test_solve_basic():
@@ -50,7 +48,7 @@ def test_solve_mixed():
 def test_solve_numbers():
     assert solve("1234") == "4321"
 
-def test_solve_empty():
+def test_solve_empty_string():
     assert solve("") == ""
 
 def test_solve_no_letters():
@@ -65,8 +63,11 @@ def test_solve_special_chars():
 def test_solve_mixed_case():
     assert solve("aBcDeF") == "AbCdEf"
 
-def test_solve_whitespace_only():
-    assert solve("   ") == "   "
-
 def test_solve_unicode():
-    assert solve("你好世界") == "你好世界"  # Unicode characters should remain unchanged
+    assert solve("你好") == "你好"
+
+def test_solve_alphanumeric():
+    assert solve("a1B2c") == "A1b2C"
+
+def test_solve_long_string():
+    assert solve("This is a Long String with 123 and !@#") == "THIS IS A LONG STRING WITH 123 AND !@#"

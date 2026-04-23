@@ -88,10 +88,10 @@ def eat(number, need, remaining):
 # STEP 3: CODE - Write the high-quality pytest suite.
 class TestEat:
     def test_enough_remaining(self):
-        assert eat(5, 6, 10) == [11, 4]
+        assert eat(5, 6, 10) == [15, 4]
 
     def test_not_enough_remaining(self):
-        assert eat(4, 8, 9) == [13, 0]
+        assert eat(4, 8, 9) == [13, 1]
 
     def test_zero_remaining(self):
         assert eat(1, 10, 0) == [1, 0]

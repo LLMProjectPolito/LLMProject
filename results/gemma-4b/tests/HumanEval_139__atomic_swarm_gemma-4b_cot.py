@@ -44,12 +44,8 @@ def special_factorial(n):
         result *= factorial
     return result
 
-def test_edge():
+def test_edge_zero():
     assert special_factorial(0) == 1
-    assert special_factorial(1) == 1
-    assert special_factorial(2) == 2
-    assert special_factorial(3) == 6
-    assert special_factorial(4) == 288
 
 import pytest
 

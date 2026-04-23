@@ -57,16 +57,22 @@ class TestFindMax:
         assert find_max(["a", "aa", "aaa", "aaaa"]) == "a"
 
     def test_all_same_unique_chars(self):
-        assert find_max(["abc", "cba", "bac"]) == "abc"
+        assert find_max(["abc", "bca", "cab"]) == "abc"
 
-    def test_numbers_and_symbols(self):
-        assert find_max(["123", "abc", "1234"]) == "1234"
+    def test_empty_string_in_list(self):
+        assert find_max(["", "abc", "def"]) == "abc"
+
+    def test_list_with_empty_string(self):
+        assert find_max(["abc", "", "def"]) == "abc"
+
+    def test_list_with_only_empty_string(self):
+        assert find_max([""]) == ""
 
     def test_special_characters(self):
         assert find_max(["!@#", "$%^", "&*()"]) == "!@#"
 
-    def test_mixed_case(self):
-        assert find_max(["aBc", "AbC", "abc"]) == "AbC"
+    def test_numbers_in_string(self):
+        assert find_max(["123", "12", "1"]) == "123"
 
     def test_unicode_characters(self):
         assert find_max(["你好", "世界", "你好世界"]) == "你好世界"
@@ -78,9 +84,3 @@ class TestFindMax:
 
     def test_duplicate_words(self):
         assert find_max(["abc", "abc", "def"]) == "abc"
-
-    def test_single_word(self):
-        assert find_max(["hello"]) == "hello"
-
-    def test_words_with_spaces(self):
-        assert find_max(["hello world", "hello", "world"]) == "hello world"

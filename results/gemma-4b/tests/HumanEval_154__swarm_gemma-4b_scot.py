@@ -31,10 +31,6 @@ def cycpattern_check(a , b):
 def rotate(s):
     return s[1:] + s[0]
 
-### SCoT Steps:
-# STEP 1: REASONING - The function checks if a word or any of its rotations is a substring of another word. An edge case is when the second word is an empty string. The function should return True in this case, as an empty string is always a substring of any string.
-# STEP 2: PLAN - Test function name: test_empty_b. Scenario: Input b is an empty string.
-# STEP 3: CODE - Write the pytest suite.
 def test_empty_b():
     assert cycpattern_check("abcd", "") == True
 
@@ -45,13 +41,19 @@ def test_basic_false():
     assert cycpattern_check("abcd", "abd") == False
 
 def test_rotation_true():
+    assert cycpattern_check("whassup", "psus") == False
+
+def test_rotation_true_2():
     assert cycpattern_check("abab", "baa") == True
 
 def test_rotation_false():
     assert cycpattern_check("efef", "eeff") == False
 
-def test_complex_true():
+def test_rotation_true_3():
     assert cycpattern_check("himenss", "simen") == True
 
-def test_complex_false():
-    assert cycpattern_check("whassup", "psus") == False
+def test_longer_string_true():
+    assert cycpattern_check("thisisalongstring", "islong") == True
+
+def test_longer_string_false():
+    assert cycpattern_check("thisisalongstring", "notpresent") == False

@@ -47,7 +47,7 @@ def test_right_angle_triangle_positive_sides():
     assert right_angle_triangle(3, 4, 5) == True
 
 def test_right_angle_triangle_negative_sides():
-    assert right_angle_triangle(1, 2, 3) == False
+    assert right_angle_triangle(-1, 2, 3) == False
 
 def test_right_angle_triangle_zero_side():
     assert right_angle_triangle(0, 0, 0) == True
@@ -88,14 +88,26 @@ def test_right_angle_triangle_negative_sides_1():
 def test_right_angle_triangle_zero_side_1():
     assert right_angle_triangle(0, 2, 3) == False
 
-def test_right_angle_triangle_one_side_zero_1():
+def test_right_angle_triangle_one_side_zero():
     assert right_angle_triangle(1, 0, 3) == False
 
-def test_right_angle_triangle_two_side_zero_1():
+def test_right_angle_triangle_two_side_zero():
     assert right_angle_triangle(2, 0, 3) == False
 
-def test_right_angle_triangle_positive_sides_2():
-    assert right_angle_triangle(3, 4, 5) == True
+def test_right_angle_triangle_three_side_zero():
+    assert right_angle_triangle(3, 0, 2) == False
 
 def test_right_angle_triangle_negative_sides_2():
-    assert right_angle_triangle(1, 2, 3) == False
+    assert right_angle_triangle(-1, 2, 3) == False
+
+def test_right_angle_triangle_zero_side_2():
+    assert right_angle_triangle(0, 2, 3) == False
+
+def test_right_angle_triangle_one_side_zero_side():
+    assert right_angle_triangle(1, 0, 3) == False
+
+def test_right_angle_triangle_two_side_zero_side():
+    assert right_angle_triangle(2, 0, 3) == False
+
+def test_right_angle_triangle_three_side_zero_side():
+    assert right_angle_triangle(3, 0, 2) == False

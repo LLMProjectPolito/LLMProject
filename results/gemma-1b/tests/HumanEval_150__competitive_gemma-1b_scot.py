@@ -18,8 +18,10 @@ def x_or_y(n, x, y):
     for x_or_y(15, 8, 5) == 5
     
     """
-    if n == 2:
+    if n > 1:
+        for i in range(2, n):
+            if n % i == 0:
+                return n
         return x
-    if n % 2 == 0:
+    else:
         return y
-    return x

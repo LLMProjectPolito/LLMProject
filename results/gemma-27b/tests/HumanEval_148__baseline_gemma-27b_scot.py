@@ -34,7 +34,7 @@ def bf(planet1, planet2):
     bf("Earth", "Mercury") ==> ("Venus")
     bf("Mercury", "Uranus") ==> ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
     '''
-    planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
+    planets = ("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
     if planet1 not in planets or planet2 not in planets:
         return ()
 
@@ -44,8 +44,8 @@ def bf(planet1, planet2):
     if start_index > end_index:
         start_index, end_index = end_index, start_index
 
-    result = tuple(planets[start_index + 1:end_index])
-    return result
+    result = planets[start_index + 1:end_index]
+    return tuple(result)
 
 def test_valid_planets_in_order():
     assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
@@ -53,23 +53,23 @@ def test_valid_planets_in_order():
 def test_valid_planets_reverse_order():
     assert bf("Earth", "Mercury") == ("Venus")
 
-def test_valid_planets_wide_range():
+def test_valid_planets_mixed_order():
     assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-
-def test_invalid_planet1():
-    assert bf("Pluto", "Neptune") == ()
-
-def test_invalid_planet2():
-    assert bf("Jupiter", "Pluto") == ()
-
-def test_invalid_planets_both():
-    assert bf("Pluto", "X") == ()
 
 def test_same_planet():
     assert bf("Earth", "Earth") == ()
 
-def test_first_and_last_planet():
-    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
+def test_invalid_planet_name_1():
+    assert bf("Pluto", "Neptune") == ()
+
+def test_invalid_planet_name_2():
+    assert bf("Earth", "Pluto") == ()
+
+def test_invalid_planet_names():
+    assert bf("Pluto", "X") == ()
+
+def test_empty_range():
+    assert bf("Neptune", "Mercury") == ()
 
 def test_adjacent_planets():
-    assert bf("Earth", "Mars") == ("")
+    assert bf("Earth", "Mars") == ("Mars",)

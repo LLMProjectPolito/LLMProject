@@ -41,7 +41,7 @@ def test_even_odd_count_negative_large_number():
     assert even_odd_count(-1234567890) == (5, 5)
 
 def test_even_odd_count_number_with_leading_zeros():
-    assert even_odd_count(10203) == (2, 2)
+    assert even_odd_count(10203) == (2, 3)
 
 def test_even_odd_count_number_with_trailing_zeros():
     assert even_odd_count(12300) == (2, 2)

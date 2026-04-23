@@ -58,7 +58,7 @@ def test_cycpattern_check_repeated_chars_no_match():
     assert cycpattern_check("aaaaa", "bb") == False
 
 def test_cycpattern_check_special_chars():
-    assert cycpattern_check("!@#$%^", "@#$") == True
+    assert cycpattern_check("!@#$%^", "$%^") == True
 
 def test_cycpattern_check_special_chars_no_match():
     assert cycpattern_check("!@#$%^", "abc") == False

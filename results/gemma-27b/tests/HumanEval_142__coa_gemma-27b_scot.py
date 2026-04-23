@@ -61,3 +61,4 @@ def test_sum_squares_negative_integers():
 def test_sum_squares_zero_integers():
     assert sum_squares([0, 0, 0, 0, 0, 0]) == 0
     assert sum_squares([0, 3, 0, 4, 0, 6]) == 0 + 9 + 0 + 64 + 0 + 36
+    assert sum_squares([-3, 0, 4, -6, 0, 12]) == 9 + 0 + 64 + 36 + 0 + 144

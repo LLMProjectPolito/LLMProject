@@ -38,14 +38,14 @@ def test_only_spaces():
 def test_mixed_spaces():
     assert fix_spaces("A B  C   D") == "A_B--C-D"
 
-def test_long_string_with_multiple_consecutive_spaces():
-    assert fix_spaces("This is a very long string with   multiple    consecutive spaces.") == "This_is_a_very_long_string_with--multiple---consecutive_spaces."
+def test_long_string_with_consecutive_spaces():
+    assert fix_spaces("This is a very long string with   multiple    consecutive spaces.") == "This_is_a_very_long_string_with---multiple----consecutive_spaces."
 
 def test_string_with_tabs_and_spaces():
-    assert fix_spaces("This\tis\ta\tstring\twith\tspaces.") == "This\tis\ta\tstring\twith\tspaces."
+    assert fix_spaces("This\tis\ta\tstring\twith\tspaces.") == "This_is_a_string_with_spaces."
 
 def test_string_with_newline_and_spaces():
-    assert fix_spaces("This\nis\na\nstring\twith\tspaces.") == "This\nis\na\nstring\twith\tspaces."
+    assert fix_spaces("This\nis\na\nstring\twith\nspaces.") == "This_is_a_string_with_spaces."
 
 def test_string_with_special_characters_and_spaces():
     assert fix_spaces("!@#$%^&*()_+=-`~[]\{}|;':\",./<>? Example") == "!@#$%^&*()_+=-`~[]\{}|;':\",./<>?_Example"

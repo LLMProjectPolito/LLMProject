@@ -47,6 +47,6 @@ def test_right_angle_triangle_zero():
 
 def test_right_angle_triangle_large():
     assert right_angle_triangle(100, 200, 300) == True
-    assert right_angle_triangle(1, 1, 100) == False
+    assert right_angle_triangle(1, 100, 100) == False
     assert right_angle_triangle(100, 1, 100) == False
-    assert right_angle_triangle(100, 100, 1) == False
+    assert right_angle_triangle(100, 200, 1) == False

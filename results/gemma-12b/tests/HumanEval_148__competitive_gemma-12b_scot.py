@@ -18,41 +18,65 @@ def bf(planet1, planet2):
 
 import pytest
 
-def test_bf_jupiter_neptune():
-    assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
+def bf(planet1, planet2):
+    '''
+    There are eight planets in our solar system: the closerst to the Sun 
+    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn, 
+    Uranus, Neptune.
+    Write a function that takes two planet names as strings planet1 and planet2. 
+    The function should return a tuple containing all planets whose orbits are 
+    located between the orbit of planet1 and the orbit of planet2, sorted by 
+    the proximity to the sun. 
+    The function should return an empty tuple if planet1 or planet2
+    are not correct planet names. 
+    Examples
+    bf("Jupiter", "Neptune") ==> ("Saturn", "Uranus")
+    bf("Earth", "Mercury") ==> ("Venus")
+    bf("Mercury", "Uranus") ==> ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+    '''
+    planets = ("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
+    if planet1 not in planets or planet2 not in planets:
+        return ()
 
-def test_bf_earth_mercury():
-    assert bf("Earth", "Mercury") == ("Venus",)
+    index1 = planets.index(planet1)
+    index2 = planets.index(planet2)
 
-def test_bf_mercury_uranus():
-    assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+    start = min(index1, index2) + 1
+    end = max(index1, index2)
 
-def test_bf_neptune_mercury():
-    assert bf("Neptune", "Mercury") == ("Uranus", "Saturn", "Jupiter", "Mars", "Earth", "Venus")
+    between_planets = planets[start:end]
+    return tuple(between_planets)
 
-def test_bf_mercury_mercury():
-    assert bf("Mercury", "Mercury") == ()
+class TestBF:
+    def test_jupiter_neptune(self):
+        assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
 
-def test_bf_venus_venus():
-    assert bf("Venus", "Venus") == ()
+    def test_earth_mercury(self):
+        assert bf("Earth", "Mercury") == ("Venus",)
 
-def test_bf_earth_earth():
-    assert bf("Earth", "Earth") == ()
+    def test_mercury_uranus(self):
+        assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
 
-def test_bf_invalid_planet1():
-    assert bf("Pluto", "Neptune") == ()
+    def test_neptune_mars(self):
+        assert bf("Neptune", "Mars") == ("Uranus", "Saturn", "Jupiter", "Earth", "Venus", "Mercury")
 
-def test_bf_invalid_planet2():
-    assert bf("Jupiter", "Pluto") == ()
+    def test_venus_jupiter(self):
+        assert bf("Venus", "Jupiter") == ("Earth", "Mars", "Saturn")
 
-def test_bf_invalid_both():
-    assert bf("Pluto", "Ceres") == ()
+    def test_invalid_planet1(self):
+        assert bf("Pluto", "Neptune") == ()
 
-def test_bf_same_planet_different_case():
-    assert bf("mercury", "Mercury") == ()
+    def test_invalid_planet2(self):
+        assert bf("Jupiter", "Pluto") == ()
 
-def test_bf_planet1_after_planet2():
-    assert bf("Saturn", "Venus") == ("Uranus", "Neptune")
+    def test_invalid_both(self):
+        assert bf("Pluto", "Ceres") == ()
 
-def test_bf_planet1_and_planet2_same():
-    assert bf("Earth", "Earth") == ()
+    def test_same_planet(self):
+        assert bf("Earth", "Earth") == ()
+
+    def test_mercury_mercury(self):
+        assert bf("Mercury", "Mercury") == ()
+
+    def test_neptune_neptune(self):
+        assert bf("Neptune", "Neptune") == ()

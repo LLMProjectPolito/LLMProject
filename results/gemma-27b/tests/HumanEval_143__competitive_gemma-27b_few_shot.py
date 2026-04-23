@@ -90,8 +90,5 @@ def test_long_sentence():
 def test_sentence_with_only_one_word():
     assert words_in_sentence("two") == "two"
 
-def test_sentence_with_only_one_non_prime_word():
-    assert words_in_sentence("one") == ""
-
-def test_sentence_with_numbers_and_letters():
-    assert words_in_sentence("a1 b2 c3") == "a1 b2 c3"
+def test_sentence_with_numbers():
+    assert words_in_sentence("123 45 6789") == "45"

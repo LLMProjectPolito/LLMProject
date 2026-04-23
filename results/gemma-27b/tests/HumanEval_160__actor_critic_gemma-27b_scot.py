@@ -52,106 +52,91 @@ def do_algebra(operator, operand):
         Operator list has at least one operator, and operand list has at least two operands.
 
     """
-    if len(operand) < 2:
-        raise IndexError("Operand list must have at least two elements.")
-
     result = operand[0]
     for i in range(len(operator)):
-        try:
-            if operator[i] == '+':
-                result += operand[i+1]
-            elif operator[i] == '-':
-                result -= operand[i+1]
-            elif operator[i] == '*':
-                result *= operand[i+1]
-            elif operator[i] == '//':
-                result //= operand[i+1]
-            elif operator[i] == '**':
-                if operand[0] == 0 and operand[i+1] < 0:
-                    raise ValueError("Cannot raise zero to a negative power")
-                result **= operand[i+1]
-            else:
-                raise TypeError("Invalid operator")
-        except ZeroDivisionError:
-            raise ValueError("Division by zero")
+        if operator[i] == '+':
+            result += operand[i+1]
+        elif operator[i] == '-':
+            result -= operand[i+1]
+        elif operator[i] == '*':
+            result *= operand[i+1]
+        elif operator[i] == '//':
+            result //= operand[i+1]
+        elif operator[i] == '**':
+            result **= operand[i+1]
     return result
 
-def test_valid_expression():
-    operators = ['+', '*', '-']
-    operands = [2, 3, 4, 5]
-    assert do_algebra(operators, operands) == 9
+@pytest.mark.parametrize(
+    "operator, operands, expected",
+    [
+        (['+'], [2, 3], 5),
+        (['-'], [5, 2], 3),
+        (['*'], [2, 3], 6),
+        (['//'], [10, 3], 3),
+        (['**'], [2, 3], 8),
+    ],
+)
+def test_operators_parameterized(operator, operands, expected):
+    assert do_algebra(operator, operands) == expected
 
-def test_addition_only():
-    operators = ['+']
-    operands = [1, 2]
-    assert do_algebra(operators, operands) == 3
-
-def test_subtraction_only():
-    operators = ['-']
-    operands = [5, 2]
-    assert do_algebra(operators, operands) == 3
-
-def test_multiplication_only():
-    operators = ['*']
-    operands = [2, 3]
-    assert do_algebra(operators, operands) == 6
-
-def test_floor_division():
-    operators = ['//']
-    operands = [10, 3]
-    assert do_algebra(operators, operands) == 3
-
-def test_exponentiation():
-    operators = ['**']
-    operands = [2, 3]
-    assert do_algebra(operators, operands) == 8
-
-def test_mixed_operators():
-    operators = ['+', '*', '//', '**']
+def test_mixed_operators_with_floor_division():
+    operators = ['*', '+', '//']
     operands = [2, 3, 4, 2]
-    assert do_algebra(operators, operands) == 10
+    assert do_algebra(operators, operands) == 7
 
-def test_zero_division():
+def test_floor_division_negative_numbers():
+    operators = ['//']
+    operands = [-5, 2]
+    assert do_algebra(operators, operands) == -3
+
+def test_exponentiation_negative_exponent():
+    operators = ['**']
+    operands = [2, -1]
+    assert do_algebra(operators, operands) == 0.5
+
+def test_exponentiation_zero_base():
+    operators = ['**']
+    operands = [0, 2]
+    assert do_algebra(operators, operands) == 0
+
+def test_exponentiation_one_base():
+    operators = ['**']
+    operands = [1, 5]
+    assert do_algebra(operators, operands) == 1
+
+def test_floor_division_by_zero():
     operators = ['//']
     operands = [5, 0]
-    with pytest.raises(ValueError):
-        do_algebra(operators, operands)
-
-def test_zero_base_negative_exponent():
-    operators = ['**']
-    operands = [0, -1]
-    with pytest.raises(ValueError):
+    with pytest.raises(ZeroDivisionError):
         do_algebra(operators, operands)
 
 def test_large_numbers():
     operators = ['+']
     operands = [10**9, 10**9]
-    assert do_algebra(operators, operands) == 2 * 10**9
+    assert do_algebra(operators, operands) == 2 * (10**9)
 
-def test_invalid_operator():
-    operators = ['%']
+def test_empty_operator_list():
+    operators = []
     operands = [5, 2]
-    with pytest.raises(TypeError):
-        do_algebra(operators, operands)
+    assert do_algebra(operators, operands) == 5
 
-def test_insufficient_operands():
+def test_mismatched_list_lengths():
     operators = ['+']
-    operands = [5]
+    operands = [5, 2, 3]
     with pytest.raises(IndexError):
         do_algebra(operators, operands)
 
-def test_consecutive_operators():
-    operators = ['*', '*', '+']
-    operands = [2, 3, 4, 5]
-    assert do_algebra(operators, operands) == 29
+def test_multiple_exponentiations():
+    operators = ['**', '**']
+    operands = [2, 3, 2]
+    assert do_algebra(operators, operands) == 512
 
-def test_floor_division_by_zero():
-    operators = ['//']
-    operands = [5, 0]
-    with pytest.raises(ValueError):
-        do_algebra(operators, operands)
+def test_negative_numbers_multiple_operators():
+    operators = ['+', '*', '-']
+    operands = [-2, 3, -4, 1]
+    assert do_algebra(operators, operands) == 1
 
-def test_long_expression():
-    operators = ['+', '*', '-', '//', '**']
-    operands = [2, 3, 4, 2, 2]
-    assert do_algebra(operators, operands) == 11
+def test_exponentiation_large_numbers():
+    operators = ['**']
+    operands = [2, 100]
+    assert do_algebra(operators, operands) == 1267650600228229401496703205376

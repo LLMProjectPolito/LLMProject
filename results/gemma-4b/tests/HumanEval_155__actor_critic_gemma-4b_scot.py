@@ -46,8 +46,6 @@ def even_odd_count(num):
 # test_even_odd_count_single_digit_odd
 # test_even_odd_count_multiple_digits
 # test_even_odd_count_large_number
-# test_even_odd_count_mixed_digits
-# test_even_odd_count_edge_case_large
 
 # STEP 3: CODE - Write the high-quality pytest suite.
 ###
@@ -57,7 +55,7 @@ def test_even_odd_count_positive():
     assert even_odd_count(13579) == (0, 5)
 
 def test_even_odd_count_negative():
-    assert even_odd_count(-12) == (1, 1)
+    assert even_odd_count(-123) == (1, 2)
     assert even_odd_count(-2468) == (4, 0)
     assert even_odd_count(-13579) == (0, 5)
 
@@ -78,10 +76,8 @@ def test_even_odd_count_large_number():
     assert even_odd_count(1234567890) == (5, 5)
     assert even_odd_count(-9876543210) == (5, 5)
 
-def test_even_odd_count_mixed_digits():
-    assert even_odd_count(12345) == (2, 3)
-    assert even_odd_count(24681) == (4, 1)
+def test_even_odd_count_all_even():
+    assert even_odd_count(2468) == (4, 0)
 
-def test_even_odd_count_edge_case_large():
-    assert even_odd_count(1111111111) == (5, 6)
-    assert even_odd_count(2222222222) == (6, 6)
+def test_even_odd_count_all_odd():
+    assert even_odd_count(13579) == (0, 5)

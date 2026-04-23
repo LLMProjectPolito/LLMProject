@@ -8,54 +8,56 @@ def even_odd_count(num):
     """
 
 import pytest
+from your_module import even_odd_count  # Replace your_module
 
-def even_odd_count(num):
-    """Given an integer. return a tuple that has the number of even and odd digits respectively.
-
-     Example:
-        even_odd_count(-12) ==> (1, 1)
-        even_odd_count(123) ==> (1, 2)
-    """
-    num_str = str(abs(num))
-    even_count = 0
-    odd_count = 0
-    for digit in num_str:
-        digit = int(digit)
-        if digit % 2 == 0:
-            even_count += 1
-        else:
-            odd_count += 1
-    return (even_count, odd_count)
-
-def test_positive_number():
+def test_valid_positive_integer():
     assert even_odd_count(123) == (1, 2)
 
-def test_negative_number():
+def test_valid_negative_integer():
     assert even_odd_count(-12) == (1, 1)
 
-def test_zero():
+def test_zero_input():
     assert even_odd_count(0) == (1, 0)
+
+def test_all_even_digits():
+    assert even_odd_count(2468) == (4, 0)
+
+def test_all_odd_digits():
+    assert even_odd_count(1357) == (0, 4)
+
+def test_mixed_digits():
+    assert even_odd_count(123456) == (3, 3)
+
+def test_large_positive_number():
+    assert even_odd_count(1234567890) == (5, 5)
+
+def test_large_negative_number():
+    assert even_odd_count(-9876543210) == (5, 5)
+
+def test_repeating_digits():
+    assert even_odd_count(112233) == (3, 3)
+
+def test_invalid_input_string():
+    with pytest.raises(TypeError):
+        even_odd_count("abc")
+
+def test_invalid_input_float():
+    with pytest.raises(TypeError):
+        even_odd_count(1.23)
+
+def test_invalid_input_none():
+    with pytest.raises(TypeError):
+        even_odd_count(None)
 
 def test_single_digit_even():
     assert even_odd_count(2) == (1, 0)
 
 def test_single_digit_odd():
-    assert even_odd_count(1) == (0, 1)
+    assert even_odd_count(3) == (0, 1)
 
-def test_all_even():
-    assert even_odd_count(2468) == (4, 0)
+def test_boolean_input():
+    with pytest.raises(TypeError):
+        even_odd_count(True)
 
-def test_all_odd():
-    assert even_odd_count(1357) == (0, 4)
-
-def test_mixed():
-    assert even_odd_count(123456) == (3, 3)
-
-def test_large_number():
-    assert even_odd_count(1234567890) == (5, 5)
-
-def test_leading_zeros():
-    assert even_odd_count(1002) == (2, 1)
-
-def test_all_zeros():
-    assert even_odd_count(0) == (1, 0)
+def test_very_large_number():
+    assert even_odd_count(2147483647) == (3, 8) # Max int 32-bit

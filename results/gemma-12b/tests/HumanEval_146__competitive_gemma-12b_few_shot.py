@@ -49,19 +49,16 @@ class TestSpecialFilter:
         assert specialFilter([15, -73, 14, -15, 35, -91, 101, 13579]) == 4
 
     def test_mixed_numbers(self):
-        assert specialFilter([11, 12, 13, 14, 15, 16, 17, 18, 19, 20]) == 1
+        assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39]) == 0
 
-    def test_all_numbers_greater_than_10(self):
-        assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29]) == 10
+    def test_all_matching_numbers(self):
+        assert specialFilter([11, 13, 15, 17, 19, 31, 33, 35, 37, 39]) == 0
 
-    def test_numbers_with_zero_in_between(self):
-        assert specialFilter([101, 103, 105, 107, 109]) == 0
+    def test_numbers_greater_than_10_only(self):
+        assert specialFilter([11, 13, 15, 17, 19]) == 0
 
     def test_negative_numbers_only(self):
-        assert specialFilter([-15, -73, -11, -33]) == 0
+        assert specialFilter([-11, -13, -15, -17, -19]) == 0
 
-    def test_single_number(self):
-        assert specialFilter([15]) == 1
-
-    def test_single_number_not_matching(self):
-        assert specialFilter([12]) == 0
+    def test_zero_and_positive_numbers(self):
+        assert specialFilter([0, 11, 13, 15, 17, 19]) == 0

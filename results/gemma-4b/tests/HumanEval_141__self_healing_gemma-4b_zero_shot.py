@@ -31,22 +31,29 @@ def file_name_check(file_name):
     file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
     digits = 0
-    for char in file_name:
+    dot_count = 0
+    name_parts = file_name.split('.')
+    if len(name_parts) != 2:
+        return 'No'
+    
+    before_dot = name_parts[0]
+    after_dot = name_parts[1]
+    
+    for char in before_dot:
         if char.isdigit():
             digits += 1
-    if digits > 3:
+    
+    dot_count = before_dot.count('.')
+    
+    if digits > 3 or dot_count != 1:
         return 'No'
-
-    if file_name.count('.') != 1:
+    
+    if not before_dot or not before_dot[0].isalpha():
         return 'No'
-
-    parts = file_name.split('.')
-    if not parts[0] or not parts[0][0].isalpha():
+    
+    if after_dot not in ['txt', 'exe', 'dll']:
         return 'No'
-
-    if parts[1] not in ['txt', 'exe', 'dll']:
-        return 'No'
-
+    
     return 'Yes'
 
 def test_valid_file_name():
@@ -55,41 +62,47 @@ def test_valid_file_name():
 def test_valid_file_name_with_digits():
     assert file_name_check("example123.txt") == 'No'
 
-def test_no_dot():
-    assert file_name_check("example") == 'No'
+def test_valid_file_name_with_multiple_dots():
+    assert file_name_check("example..txt") == 'No'
 
-def test_multiple_dots():
-    assert file_name_check("example.txt.txt") == 'No'
-
-def test_empty_before_dot():
-    assert file_name_check(".txt") == 'No'
-
-def test_digit_before_dot():
+def test_invalid_prefix():
     assert file_name_check("1example.txt") == 'No'
 
-def test_invalid_extension():
+def test_invalid_suffix():
     assert file_name_check("example.pdf") == 'No'
 
-def test_too_many_digits():
+def test_empty_prefix():
+    assert file_name_check(".txt") == 'No'
+
+def test_file_name_with_leading_and_trailing_spaces():
+    assert file_name_check("  example.txt  ") == 'Yes'
+
+def test_file_name_with_multiple_digits():
     assert file_name_check("123example.txt") == 'No'
 
-def test_too_many_digits_2():
+def test_file_name_with_more_than_three_digits():
     assert file_name_check("1234example.txt") == 'No'
 
-def test_valid_file_name_with_uppercase():
-    assert file_name_check("Example.txt") == 'Yes'
+def test_file_name_with_no_dot():
+    assert file_name_check("example") == 'No'
 
-def test_valid_file_name_with_mixed_case():
-    assert file_name_check("ExAmple.txt") == 'Yes'
+def test_file_name_with_dot_at_end():
+    assert file_name_check("example.txt.") == 'No'
 
-def test_valid_file_name_with_numbers_and_letters():
+def test_file_name_with_dot_in_middle():
+    assert file_name_check("example.test.txt") == 'No'
+
+def test_file_name_with_special_characters():
+    assert file_name_check("example!@#.txt") == 'No'
+
+def test_file_name_with_numbers_and_letters():
     assert file_name_check("example123.txt") == 'No'
 
-def test_valid_file_name_with_numbers_and_letters_2():
-    assert file_name_check("ExAmple123.txt") == 'No'
+def test_file_name_with_only_digits():
+    assert file_name_check("123.txt") == 'No'
 
-def test_valid_file_name_with_special_characters():
-    assert file_name_check("example.txt") == 'Yes'
+def test_file_name_with_uppercase_letters():
+    assert file_name_check("Example.txt") == 'Yes'
 
-def test_valid_file_name_with_special_characters_2():
-    assert file_name_check("example.txt!") == 'No'
+def test_file_name_with_mixed_case_letters():
+    assert file_name_check("ExAmPle.txt") == 'Yes'

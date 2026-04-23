@@ -26,19 +26,19 @@ def test_empty_string():
     assert string_to_md5("") is None
 
 def test_simple_string():
-    assert string_to_md5('Hello') == '3e25960a79dbc69b674cd4ec67a72c62'
+    assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
 
 def test_string_with_spaces():
     assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
 
 def test_string_with_special_characters():
-    assert string_to_md5('Hello!@#$%^') == '3e25960a79dbc69b674cd4ec67a72c62'
-
-def test_long_string():
-    assert string_to_md5('This is a very long string to test the md5 hash function.') == '3e25960a79dbc69b674cd4ec67a72c62'
+    assert string_to_md5('Hello! world') == '3e25960a79dbc69b674cd4ec67a72c62'
 
 def test_string_with_numbers():
-    assert string_to_md5('1234567890') == '3e25960a79dbc69b674cd4ec67a72c62'
+    assert string_to_md5('1234567890') == 'a68f7a9b9c8d0e1f2a3b4c5d6e7f8a'
+
+def test_long_string():
+    assert string_to_md5('This is a very long string.') == 'a68f7a9b9c8d0e1f2a3b4c5d6e7f8a'
 
 def test_string_with_unicode():
-    assert string_to_md5('你好世界') == '3e25960a79dbc69b674cd4ec67a72c62'
+    assert string_to_md5('你好世界') == 'a68f7a9b9c8d0e1f2a3b4c5d6e7f8a'

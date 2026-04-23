@@ -68,9 +68,3 @@ class TestOrderByPoints:
 
     def test_single_element(self):
         assert order_by_points([7]) == [7]
-
-    def test_negative_and_positive_with_same_digit_sum(self):
-        assert order_by_points([1, -1, 10, -10]) == [1, -1, 10, -10]
-
-    def test_all_negative_with_same_digit_sum(self):
-        assert order_by_points([-1, -10, -100]) == [-1, -10, -100]

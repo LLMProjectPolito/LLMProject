@@ -64,7 +64,7 @@ def test_special_characters_and_letters():
     assert solve("!a@B#") == "!A@b#"
 
 def test_only_special_characters():
-    assert solve("!@#$") == "$#@!"
+    assert solve("!@#$%^") == "^%$#@!"
 
 def test_long_string():
     assert solve("ThisIsALongString") == "tHISiSaLONGsTRING"

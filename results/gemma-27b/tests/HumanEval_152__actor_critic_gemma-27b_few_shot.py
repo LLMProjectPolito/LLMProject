@@ -18,15 +18,14 @@ def compare(game,guess):
 import pytest
 
 def compare(game, guess):
-    """
-    Calculates the absolute difference between elements of two lists.
+    """Calculates the absolute difference between corresponding elements of two lists.
 
     Args:
-        game (list[int]): List of actual game scores.
-        guess (list[int]): List of guessed scores.
+        game (list[int]): The list of actual values.
+        guess (list[int]): The list of guessed values.
 
     Returns:
-        list[int]: List of absolute differences between game and guess scores.
+        list[int]: A list containing the absolute differences between each element in 'game' and 'guess'.
 
     Raises:
         ValueError: If the input lists have different lengths.
@@ -59,17 +58,12 @@ def test_compare_negative_numbers():
     assert compare([-1, -2, -3], [1, 2, 3]) == [2, 4, 6]
     assert compare([-1, 2, -3], [1, -2, 3]) == [2, 4, 6]
 
-def test_compare_large_numbers():
-    assert compare([10**9, 10**9 + 1], [10**9, 10**9]) == [0, 1]
+def test_compare_large_differences():
+    assert compare([1, 1000000000], [1, 1000000001]) == [0, 1]
 
 def test_compare_mixed_signs():
-    assert compare([-1, 0, 1, -2, 2], [1, -1, 1, 2, -2]) == [2, 1, 0, 4, 4]
+    assert compare([-1, 0, 1, -2, 2], [1, -1, 1, 0, -2]) == [2, 1, 0, 2, 4]
 
-def test_compare_different_lengths():
+def test_compare_unequal_lengths():
     with pytest.raises(ValueError):
         compare([1, 2], [1, 2, 3])
-    with pytest.raises(ValueError):
-        compare([1, 2, 3], [1, 2])
-
-def test_compare_very_large_difference():
-    assert compare([1, 2], [-1000000, 2]) == [1000001, 0]

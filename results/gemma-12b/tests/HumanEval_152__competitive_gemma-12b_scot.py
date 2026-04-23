@@ -64,10 +64,4 @@ class TestCompare:
         assert compare([0, 0, 0], [1, 2, 3]) == [1, 2, 3]
 
     def test_large_numbers(self):
-        assert compare([1000, 2000, 3000], [1000, 2001, 3000]) == [0, 1, 0]
-
-    def test_different_lengths(self):
-        with pytest.raises(ValueError):
-            compare([1, 2], [1])
-        with pytest.raises(ValueError):
-            compare([1], [1, 2])
+        assert compare([1000, 2000], [1000, 2001]) == [0, 1]

@@ -49,7 +49,7 @@ def test_generate_integers_start_even_end_odd():
     assert generate_integers(2, 3) == [2]
 
 def test_generate_integers_start_odd_end_even():
-    assert generate_integers(1, 4) == [2, 4]
+    assert generate_integers(1, 2) == [2]
 
 def test_generate_integers_large_numbers():
     assert generate_integers(2000, 2008) == [2000, 2002, 2004, 2006, 2008]

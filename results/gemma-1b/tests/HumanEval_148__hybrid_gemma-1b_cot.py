@@ -16,6 +16,11 @@ def bf(planet1, planet2):
     bf("Mercury", "Uranus") ==> ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
     '''
 
+OUTPUT RULES:
+1. Output ONLY the code block at the end.
+2. DO NOT REDEFINE the function under test.
+3. Use a single Python code block for all tests.
+
 def bf(planet1, planet2):
     '''
     There are eight planets in our solar system: the closerst to the Sun 

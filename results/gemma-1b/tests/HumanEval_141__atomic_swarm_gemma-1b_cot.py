@@ -40,13 +40,10 @@ def file_name_check(file_name):
     if not file_name.startswith('.'):
         return 'No'
 
-    if len(file_name) > 1 and not file_name[1:].islower():
+    if not file_name.endswith(".txt") and not file_name.endswith(".exe") and not file_name.endswith(".dll"):
         return 'No'
 
-    if file_name.endswith(".txt") or file_name.endswith(".exe") or file_name.endswith(".dll"):
-        return 'Yes'
-
-    return 'No'
+    return 'Yes'
 
 def test_file_name_check():
     assert file_name_check("example.txt") == 'Yes'
@@ -61,6 +58,7 @@ def test_file_name_check():
     assert file_name_check("a.txt") == 'No'
     assert file_name_check("A.txt") == 'No'
     assert file_name_check("1A.txt") == 'No'
+    assert file_name_check("1A.txt.txt") == 'No'
 
 def file_name_check(file_name):
     """Create a function which takes a string representing a file's name, and returns

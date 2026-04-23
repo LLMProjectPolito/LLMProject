@@ -43,26 +43,20 @@ def test_empty_string():
 def test_no_letters():
     assert solve("1234") == "4321"
 
-def test_lowercase():
+def test_lowercase_letters():
     assert solve("ab") == "AB"
 
-def test_uppercase():
+def test_uppercase_letters():
     assert solve("AB") == "ab"
 
-def test_mixed_case():
+def test_mixed_case_letters():
     assert solve("#a@C") == "#A@c"
 
-def test_mixed_case_with_numbers():
-    assert solve("1a2B3c") == "1A2b3C"
-
-def test_all_letters_lowercase():
-    assert solve("hello") == "HELLO"
-
-def test_all_letters_uppercase():
-    assert solve("WORLD") == "world"
-
-def test_special_characters():
-    assert solve("!@#$%^") == "^%$#@!"
-
 def test_mixed_characters():
-    assert solve("a1b2c3d") == "A1B2C3D"
+    assert solve("HeLlO wOrLd!") == "hElLo WoRlD!"
+
+def test_all_uppercase():
+    assert solve("HELLO") == "hello"
+
+def test_all_lowercase():
+    assert solve("world") == "WORLD"

@@ -66,6 +66,12 @@ def do_algebra(operator, operand):
         elif operator[i] == '**':
             result **= operand[i+1]
     return result
+    
+
+def test_zero_operand():
+    operator = ['+', '-', '*']
+    operand = [5, 0, 2]
+    assert do_algebra(operator, operand) == 5
 
 def test_empty_operator():
     operator = []
@@ -97,16 +103,7 @@ def test_exponentiation():
     operand = [2, 3]
     assert do_algebra(operator, operand) == 8
 
-def test_mixed_operations():
+def test_multiple_operations():
     operator = ['+', '*']
-    operand = [2, 3, 4]
-    assert do_algebra(operator, operand) == 10
-
-def test_complex_operations():
-    operator = ['+', '*', '//', '**']
     operand = [2, 3, 4, 5]
-    assert do_algebra(operator, operand) == 14
-
-def test_empty_operand():
-    with pytest.raises(IndexError):
-        do_algebra(['+', '*'], [])
+    assert do_algebra(operator, operand) == 11

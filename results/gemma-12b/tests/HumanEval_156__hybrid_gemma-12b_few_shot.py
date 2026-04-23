@@ -30,8 +30,9 @@ class TestIntToMiniRoman:
         with pytest.raises(TypeError):
             int_to_mini_roman(1.5)
 
+
     def test_basic_numbers(self):
-        """Tests single-digit and simple numbers."""
+        """Tests basic numbers and their Roman numeral equivalents."""
         assert int_to_mini_roman(1) == "i"
         assert int_to_mini_roman(2) == "ii"
         assert int_to_mini_roman(3) == "iii"
@@ -81,7 +82,7 @@ class TestIntToMiniRoman:
         assert int_to_mini_roman(1000) == "m"
 
     def test_complex_numbers(self):
-        """Tests numbers requiring combinations of roman numerals."""
+        """Tests more complex numbers requiring combinations of Roman numerals."""
         assert int_to_mini_roman(152) == "clii"
         assert int_to_mini_roman(426) == "cdxxvi"
         assert int_to_mini_roman(999) == "cmxciX"
@@ -89,28 +90,15 @@ class TestIntToMiniRoman:
         assert int_to_mini_roman(744) == "dCCLXXXIV"
         assert int_to_mini_roman(57) == "lvii"
         assert int_to_mini_roman(299) == "ccxcix"
-        assert int_to_mini_roman(199) == "cmxciX" #Added test from original suite 1
-        assert int_to_mini_roman(649) == "dcxlix" #Added test from original suite 1
-        assert int_to_mini_roman(891) == "dccciXci" #Added test from original suite 1
-        assert int_to_mini_roman(1000) == "m" #Added test from original suite 1
-        assert int_to_mini_roman(501) == "di" #Added test from original suite 1
+        assert int_to_mini_roman(666) == "dclxxvi"
+        assert int_to_mini_roman(888) == "dCCCLXXXVIII"
 
     def test_edge_cases(self):
-        """Tests numbers at the boundaries of roman numeral values."""
+        """Tests edge cases and boundary conditions."""
         assert int_to_mini_roman(1) == "i"
+        assert int_to_mini_roman(1000) == "m"
+        assert int_to_mini_roman(500) == "d"
+        assert int_to_mini_roman(900) == "cm"
+        assert int_to_mini_roman(400) == "cd"
         assert int_to_mini_roman(4) == "iv"
         assert int_to_mini_roman(9) == "ix"
-        assert int_to_mini_roman(10) == "x"
-        assert int_to_mini_roman(40) == "xl"
-        assert int_to_mini_roman(90) == "xc"
-        assert int_to_mini_roman(400) == "cd"
-        assert int_to_mini_roman(900) == "cm"
-        assert int_to_mini_roman(1000) == "m"
-
-    def test_more_complex(self):
-        """Tests more complex combinations."""
-        assert int_to_mini_roman(789) == "DCCLXXXIX"
-        assert int_to_mini_roman(456) == "cdlvvi"
-        assert int_to_mini_roman(876) == "DCCCLXXVI"
-        assert int_to_mini_roman(123) == "cxxiii"
-        assert int_to_mini_roman(987) == "cmxcvii"

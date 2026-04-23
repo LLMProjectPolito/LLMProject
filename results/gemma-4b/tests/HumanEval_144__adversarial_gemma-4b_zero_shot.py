@@ -37,7 +37,7 @@ def simplify(x, n):
     else:
         return False
 
-# Tests (Pytest):
+# Tests (Pytest)
 def test_simplify_valid():
     assert simplify("1/5", "5/1") == True
     assert simplify("2/3", "6/1") == True

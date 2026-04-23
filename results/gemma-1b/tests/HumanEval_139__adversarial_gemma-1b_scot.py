@@ -53,3 +53,6 @@ def test_special_factorial_ten():
 
 def test_special_factorial_large():
     assert special_factorial(20) == 2432902008176640000
+
+def test_special_factorial_negative():
+    assert special_factorial(-1) == 0 # Handle negative input gracefully - could raise an exception if desired

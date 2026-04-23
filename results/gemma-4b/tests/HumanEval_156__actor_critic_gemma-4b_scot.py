@@ -62,5 +62,32 @@ def test_int_to_mini_roman_small_numbers():
     assert int_to_mini_roman(400) == 'cd'
     assert int_to_mini_roman(900) == 'cm'
 
+def test_int_to_mini_roman_larger_numbers():
+    assert int_to_mini_roman(20) == 'xx'
+    assert int_to_mini_roman(39) == 'xxxix'
+    assert int_to_mini_roman(88) == 'lxxxviii'
+    assert int_to_mini_roman(99) == 'xcii'
+    assert int_to_mini_roman(14) == 'xiv'
+    assert int_to_mini_roman(46) == 'xxiv'
+
+def test_int_to_mini_roman_edge_cases():
+    assert int_to_mini_roman(1) == 'i'
+    assert int_to_mini_roman(1000) == 'm'
+    assert int_to_mini_roman(1001) == 'mi'
+    assert int_to_mini_roman(999) == 'cxcviii'
+    assert int_to_mini_roman(1000) == 'm'
+    assert int_to_mini_roman(2) == 'ii'
+    assert int_to_mini_roman(3) == 'iii'
+    assert int_to_mini_roman(6) == 'vi'
+    assert int_to_mini_roman(7) == 'vii'
+    assert int_to_mini_roman(8) == 'viii'
+    assert int_to_mini_roman(12) == 'xii'
+    assert int_to_mini_roman(13) == 'xiii'
+    assert int_to_mini_roman(14) == 'xiv'
+    assert int_to_mini_roman(16) == 'xvi'
+    assert int_to_mini_roman(17) == ' xvii'
+    assert int_to_mini_roman(18) == ' xviii'
+    assert int_to_mini_roman(20) == 'xx'
+
 def test_int_to_mini_roman_zero():
     assert int_to_mini_roman(0) == ''

@@ -39,25 +39,31 @@ def test_empty_sentence():
     assert words_in_sentence("") == ""
 
 def test_single_word_prime_length():
-    assert words_in_sentence("go") == "go"
+    assert words_in_sentence("abcde") == "abcde"
 
 def test_single_word_non_prime_length():
-    assert words_in_sentence("this") == ""
+    assert words_in_sentence("abcd") == ""
 
 def test_multiple_words_some_prime():
     assert words_in_sentence("This is a test") == "is"
 
 def test_multiple_words_all_prime():
-    assert words_in_sentence("lets go for swimming") == "go for"
+    assert words_in_sentence("go for swimming") == "go for"
 
 def test_multiple_words_none_prime():
-    assert words_in_sentence("this is a very long test") == ""
+    assert words_in_sentence("a bb ccc dddd") == ""
 
-def test_sentence_with_one_letter_prime():
-    assert words_in_sentence("a test") == "a"
+def test_boundary_one_char_prime():
+    assert words_in_sentence("a") == "a"
 
-def test_sentence_with_one_letter_non_prime():
-    assert words_in_sentence("bb test") == ""
+def test_boundary_one_char_non_prime():
+    assert words_in_sentence("b") == ""
+
+def test_boundary_two_char_prime():
+    assert words_in_sentence("ab") == "ab"
+
+def test_boundary_two_char_non_prime():
+    assert words_in_sentence("ba") == ""
 
 # Focus: Type Scenarios
 def test_empty_sentence():
@@ -68,9 +74,6 @@ def test_no_prime_length_words():
 
 def test_mixed_prime_and_non_prime_words():
     assert words_in_sentence("This is a test") == "is"
-
-def test_all_prime_length_words():
-    assert words_in_sentence("lets go for swimming") == "go for"
 
 # Focus: Logic Branches
 def test_empty_sentence():

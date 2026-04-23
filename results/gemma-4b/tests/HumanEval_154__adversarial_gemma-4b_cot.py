@@ -45,23 +45,18 @@ def test_cycpattern_check_basic_false():
 def test_cycpattern_check_rotation_true():
     assert cycpattern_check("abcd", "bcda") == True
     assert cycpattern_check("abc", "cab") == True
-    assert cycpattern_check("abc", "bca") == True
-    assert cycpattern_check("abc", "acb") == True
+    assert cycpattern_check("hello", "lohel") == True
 
-def test_cycpattern_check_longer_string():
-    assert cycpattern_check("thisisalongstring", "longstr") == True
-    assert cycpattern_check("thisisalongstring", "string") == True
-    assert cycpattern_check("thisisalongstring", "stringt") == True
-    assert cycpattern_check("thisisalongstring", "ngstril") == False
+def test_cycpattern_check_rotation_false():
+    assert cycpattern_check("abcd", "acbd") == False
+    assert cycpattern_check("abc", "bac") == False
 
 def test_cycpattern_check_same_string():
     assert cycpattern_check("abc", "abc") == True
-    assert cycpattern_check("abc", "bca") == True
-    assert cycpattern_check("abc", "cab") == True
+    assert cycpattern_check("hello", "hello") == True
 
-def test_cycpattern_check_edge_cases():
-    assert cycpattern_check("a", "a") == True
-    assert cycpattern_check("a", "b") == False
-    assert cycpattern_check("aa", "a") == True
-    assert cycpattern_check("aa", "aa") == True
-    assert cycpattern_check("aa", "ab") == False
+def test_cycpattern_check_long_strings():
+    assert cycpattern_check("thisisalongstring", "longstr") == True
+    assert cycpattern_check("thisisalongstring", "string") == True
+    assert cycpattern_check("thisisalongstring", "ingstr") == True
+    assert cycpattern_check("thisisalongstring", "stringt") == False

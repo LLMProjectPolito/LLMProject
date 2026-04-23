@@ -43,34 +43,42 @@ def get_max_triples(n):
     return count
 
 
-@pytest.mark.parametrize("n, expected", [
-    (1, 0),
-    (2, 0),
-    (3, 0),
-    (4, 0),
-    (5, 1),
-    (6, 2),
-    (7, 3),
-    (8, 4),
-    (9, 6),
-    (10, 8),
-    (20, 135),
-])
-def test_get_max_triples(n, expected):
-    """Tests for get_max_triples with various inputs."""
-    assert get_max_triples(n) == expected
+def test_get_max_triples_n_less_than_3():
+    assert get_max_triples(1) == 0
+    assert get_max_triples(2) == 0
 
-
-def test_get_max_triples_zero_count():
-    """Tests a case where the answer is 0."""
+def test_get_max_triples_n_equals_3():
+    a = [1, 3, 7]
     assert get_max_triples(3) == 0
 
-def test_get_max_triples_larger_count():
-    """Tests a case where the answer is a larger number."""
-    assert get_max_triples(10) == 8
+def test_get_max_triples_n_equals_4():
+    a = [1, 3, 7, 13]
+    assert get_max_triples(4) == 0
 
-# Negative test (although problem statement specifies positive integer)
-def test_get_max_triples_invalid_input():
-    """Tests with invalid input (negative integer)."""
+def test_get_max_triples_n_equals_5():
+    a = [1, 3, 7, 13, 21]
+    assert get_max_triples(5) == 1
+
+def test_get_max_triples_n_equals_10():
+    a = [1, 3, 7, 13, 21, 31, 43, 57, 73, 91]
+    assert get_max_triples(10) == 5
+
+def test_get_max_triples_n_equals_20():
+    a = [(i * i - i + 1) for i in range(1, 21)]
+    assert get_max_triples(20) == 125
+
+def test_get_max_triples_no_triples_sum_to_multiple_of_3():
+    a = [1, 2, 4, 5, 7, 8, 10, 11]
+    assert get_max_triples(len(a)) == 0
+
+def test_get_max_triples_many_triples_sum_to_multiple_of_3():
+    a = [1, 4, 7, 2, 5, 8, 3, 6, 9]
+    assert get_max_triples(len(a)) == 84
+
+def test_get_max_triples_negative_input():
     with pytest.raises(TypeError):  # Or ValueError, depending on desired behavior
         get_max_triples(-1)
+
+def test_get_max_triples_zero_input():
+    with pytest.raises(TypeError):  # Or ValueError, depending on desired behavior
+        get_max_triples(0)

@@ -25,7 +25,7 @@ def find_max(words):
     if not words:
         return ""
 
-    max_unique = -1
+    max_unique = 0
     result = ""
 
     for word in words:
@@ -51,11 +51,11 @@ def test_find_max_multiple_words_different_unique_chars():
 def test_find_max_multiple_words_same_unique_chars_lexicographical_order():
     assert find_max(["name", "enam", "game"]) == "enam"
 
-def test_find_max_multiple_words_same_unique_chars_lexicographical_order_and_longer():
+def test_find_max_multiple_words_same_unique_chars_and_lexicographical_order():
     assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
-def test_find_max_multiple_words_same_unique_chars_lexicographical_order_and_shorter():
-    assert find_max(["abc", "def", "ghi"]) == "abc"
+def test_find_max_multiple_words_same_unique_chars_and_lexicographical_order_2():
+    assert find_max(["abc", "bca", "cab"]) == "abc"
 
 def test_find_max_words_with_duplicates():
     assert find_max(["aabbcc", "abc"]) == "aabbcc"
@@ -72,8 +72,8 @@ def test_find_max_words_with_numbers():
 def test_find_max_words_with_empty_string():
     assert find_max(["", "abc"]) == "abc"
 
-def test_find_max_words_with_empty_and_non_empty():
-    assert find_max(["", "abc", ""]) == "abc"
+def test_find_max_words_with_empty_string_and_empty_string():
+    assert find_max(["", ""]) == ""
 
-def test_find_max_words_with_all_empty():
-    assert find_max(["", "", ""]) == ""
+def test_find_max_words_with_mixed_strings():
+    assert find_max(["apple", "banana", "orange"]) == "banana"

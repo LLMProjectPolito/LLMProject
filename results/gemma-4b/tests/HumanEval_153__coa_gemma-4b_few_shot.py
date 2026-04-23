@@ -37,13 +37,13 @@ def test_strongest_extension_empty_extensions():
 import pytest
 
 def test_strongest_extension_uppercase_only():
-    assert Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
+    assert Strongest_Extension('Slices', ['AA', 'Be', 'CC']) == 'Slices.AA'
 
 def test_strongest_extension_negative_strength():
-    assert Strongest_Extension('Slices', ['SErviNGSliCes', 'Cheese', 'StuFfed']) == 'Slices.SErviNGSliCes'
+    assert Strongest_Extension('my_class', ['SErviNGSliCes', 'Cheese', 'StuFfed']) == 'my_class.SErviNGSliCes'
 
-def test_strongest_extension_equal_strengths():
-    assert Strongest_Extension('my_class', ['AA', 'BB']) == 'my_class.AA'
+def test_strongest_extension_equal_strength():
+    assert Strongest_Extension('my_class', ['AA', 'BB', 'CC']) == 'my_class.AA'
 
 # Focus: Logic Branches
 import pytest

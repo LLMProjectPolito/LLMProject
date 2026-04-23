@@ -59,7 +59,7 @@ def bf(planet1, planet2):
     elif planet1 == "Uranus":
         planet1_orbit = 19.222
     elif planet1 == "Neptune":
-        planet1_orbit = 30.35
+        planet1_orbit = 30.067
     
     if planet2 == "Mercury":
         planet2_orbit = 0.397
@@ -76,9 +76,9 @@ def bf(planet1, planet2):
     elif planet2 == "Uranus":
         planet2_orbit = 19.222
     elif planet2 == "Neptune":
-        planet2_orbit = 30.35
+        planet2_orbit = 30.067
     
     if planet1_orbit < planet2_orbit:
         return (planet1, planet2)
     else:
-        return (planet1, planet2)
+        return (planet2, planet1)

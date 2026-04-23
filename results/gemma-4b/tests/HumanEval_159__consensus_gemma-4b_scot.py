@@ -91,5 +91,4 @@ def test_eat_large_numbers():
 def test_eat_edge_cases():
     assert eat(0, 0, 0) == [0, 0]
     assert eat(1000, 1000, 1000) == [2000, 0]
-    assert eat(1000, 0, 1000) == [1000, 0]
-    assert eat(0, 1000, 1000) == [1000, 0]
+    assert eat(500, 500, 500) == [1000, 0]

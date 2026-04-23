@@ -70,7 +70,13 @@ def test_complex_case():
     assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape"]) == ["banana", "orange"]
 
 def test_single_element():
-    assert sorted_list_sum(["abc"]) == []
+    assert sorted_list_sum(["aa"]) == ["aa"]
 
-def test_single_even_element():
-    assert sorted_list_sum(["abcd"]) == ["abcd"]
+def test_single_odd_element():
+    assert sorted_list_sum(["a"]) == []
+
+def test_large_list():
+    assert sorted_list_sum(["aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh", "ii", "jj"]) == ["aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh", "ii", "jj"]
+
+def test_list_with_empty_string():
+    assert sorted_list_sum(["", "aa", ""]) == ["","aa"]

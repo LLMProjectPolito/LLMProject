@@ -49,7 +49,7 @@ def test_cycpattern_check_single_char():
     assert cycpattern_check("a", "a") == True
     assert cycpattern_check("a", "b") == False
     assert cycpattern_check("b", "a") == False
-    assert cycpattern_check("a", "c") == False
+    assert cycpattern_check("b", "b") == True
 
 def test_cycpattern_check_different_lengths():
     assert cycpattern_check("abc", "abcd") == False

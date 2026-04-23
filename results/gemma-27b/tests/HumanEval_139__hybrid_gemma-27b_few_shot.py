@@ -14,6 +14,7 @@ def special_factorial(n):
 
 import pytest
 from math import factorial
+import time
 
 def special_factorial(n):
     """The Brazilian factorial is defined as:
@@ -29,8 +30,6 @@ def special_factorial(n):
     """
     if n <= 0:
         raise ValueError("Input must be a positive integer.")
-    if not isinstance(n, int):
-        raise TypeError("Input must be an integer.")
     result = 1
     for i in range(1, n + 1):
         result *= factorial(i)
@@ -56,8 +55,6 @@ def test_special_factorial_positive():
 
 def test_special_factorial_large():
     assert special_factorial(6) == 43545600
-    # Test with a slightly larger number to check for potential overflow issues
-    # (though Python handles large integers well, it's good to test)
     assert special_factorial(7) == 62270208000
 
 def test_special_factorial_edge_cases():
@@ -73,15 +70,21 @@ def test_special_factorial_type_error():
         special_factorial("2")
 
 def test_special_factorial_very_large():
-    # Test with a larger number to ensure the function can handle it without crashing
-    # This test might take a bit longer to run.
-    try:
-        result = special_factorial(8)
-        assert result == 1036800000000000
-    except OverflowError:
-        pytest.fail("OverflowError raised for special_factorial(8)")
-    except Exception as e:
-        pytest.fail(f"Unexpected exception raised: {e}")
+    result = special_factorial(8)
+    assert result == 864000000000000
+
+def test_special_factorial_performance():
+    start_time = time.time()
+    special_factorial(10)
+    end_time = time.time()
+    assert end_time - start_time < 0.1
+
+def test_special_factorial_with_math_factorial():
+    n = 5
+    expected_result = 1
+    for i in range(1, n + 1):
+        expected_result *= factorial(i)
+    assert special_factorial(n) == expected_result
 
 def test_palindrome_basic():
     assert is_palindrome('radar') == True

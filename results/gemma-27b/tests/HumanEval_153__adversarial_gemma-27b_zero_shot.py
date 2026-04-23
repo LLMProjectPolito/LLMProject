@@ -93,7 +93,7 @@ def test_class_name_with_spaces():
     assert Strongest_Extension("My Class", ["Ext1", "Ext2"]) == "My Class.Ext1"
 
 def test_extension_names_with_spaces():
-    assert Strongest_Extension("Class", ["Ext 1", "Ext 2"]) == "Class.Ext 1"
+    assert Strongest_Extension("Class", ["Ext 1", "Ext2"]) == "Class.Ext 1"
 
 def test_empty_class_name():
     assert Strongest_Extension("", ["Ext1", "Ext2"]) == "".Ext1

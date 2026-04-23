@@ -17,5 +17,7 @@ import pytest
 import math
 
 def test_sum_squares_empty_list():
-    """Test with an empty list to ensure it returns 0."""
-    assert sum_squares([]) == 0
+    """Test with an empty list to ensure it handles the edge case correctly."""
+    lst = []
+    expected_sum = 0
+    assert sum_squares(lst) == expected_sum

@@ -22,21 +22,17 @@ def solve(s):
     solve("ab") = "AB"
     solve("#a@C") = "#A@c"
     """
-    has_letters = False
-    for char in s:
-        if 'a' <= char <= 'z' or 'A' <= char <= 'Z':
-            has_letters = True
-            break
-
-    if not has_letters:
-        return s[::-1]
-
+    has_letter = False
     result = ""
     for char in s:
-        if 'a' <= char <= 'z':
-            result += char.upper()
-        elif 'A' <= char <= 'Z':
-            result += char.lower()
+        if 'a' <= char <= 'z' or 'A' <= char <= 'Z':
+            has_letter = True
+            if 'a' <= char <= 'z':
+                result += char.upper()
+            else:
+                result += char.lower()
         else:
             result += char
+    if not has_letter:
+        return result[::-1]
     return result

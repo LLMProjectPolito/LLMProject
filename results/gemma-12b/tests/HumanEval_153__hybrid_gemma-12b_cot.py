@@ -36,8 +36,8 @@ def Strongest_Extension(class_name, extensions):
     Example:
     for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
     """
-    strongest_extension = ""
     max_strength = float('-inf')
+    strongest_extension = ""
     for extension in extensions:
         cap_count = 0
         sm_count = 0
@@ -88,8 +88,5 @@ def test_strongest_extension_long_extensions():
 def test_strongest_extension_equal_strength_first_wins():
     assert Strongest_Extension("TestClass", ['AA', 'AA', 'BB']) == "TestClass.AA"
 
-def test_strongest_extension_equal_strength_multiple():
-    assert Strongest_Extension("TestClass", ['AA', 'BB', 'CC']) == "TestClass.AA"
-
 def test_strongest_extension_negative_strength():
-    assert Strongest_Extension("TestClass", ['aaaaA', 'BBBBB']) == "TestClass.BBBBB"
+    assert Strongest_Extension("TestClass", ['aaaaA', 'B']) == "TestClass.B"

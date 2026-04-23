@@ -64,16 +64,16 @@ class TestFindMax:
         assert find_max(["hello world", "hello", "world"]) == "hello world"
 
     def test_words_with_special_characters(self):
-        assert find_max(["!@#", "abc", "$%^"]) == "!@#"
+        assert find_max(["!@#", "abc", "123"]) == "!@#"
+
+    def test_words_with_numbers(self):
+        assert find_max(["123", "abc", "456"]) == "123"
 
     def test_single_word(self):
         assert find_max(["single"]) == "single"
 
-    def test_numbers_as_strings(self):
-        assert find_max(["123", "12", "1"]) == "123"
-
-    def test_empty_string(self):
-        assert find_max(["", "abc", "def"]) == "abc"
-
-    def test_multiple_empty_strings(self):
+    def test_all_empty_strings(self):
         assert find_max(["", "", ""]) == ""
+
+    def test_empty_string_and_others(self):
+        assert find_max(["", "abc", "def"]) == "abc"

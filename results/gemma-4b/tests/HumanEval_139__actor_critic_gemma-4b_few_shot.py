@@ -52,7 +52,7 @@ def test_is_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
     assert is_palindrome('A man, a plan, a canal: Panama') == True
-    assert is_palindrome('Race car') == True
+    assert is_palindrome('Racecar') == True
     assert is_palindrome('Was it a car or a cat I saw?') == True
 
 def test_is_palindrome_empty():
@@ -62,9 +62,11 @@ def test_is_palindrome_empty():
 
 def test_is_palindrome_mixed_case():
     assert is_palindrome('Racecar') == True
+    assert is_palindrome('Madam') == True
 
 def test_is_palindrome_with_punctuation():
-    assert is_palindrome('Madam, I\'m Adam') == True
+    assert is_palindrome('A man, a plan, a canal: Panama') == True
+    assert is_palindrome('No ' + 'x in Nixon') == True
 
 def test_max_positive():
     assert get_max([1, 2, 3]) == 3
@@ -83,6 +85,7 @@ def test_max_negative_numbers():
 
 def test_max_mixed_positive_negative():
     assert get_max([-1, 0, 1]) == 1
+    assert get_max([-5, 2, -1]) == 2
 
 def test_special_factorial_basic():
     assert special_factorial(1) == 1
@@ -90,7 +93,7 @@ def test_special_factorial_basic():
     assert special_factorial(3) == 6
     assert special_factorial(4) == 288
     assert special_factorial(5) == 34560
-    
+
 def test_special_factorial_zero():
     assert special_factorial(0) == 1
 

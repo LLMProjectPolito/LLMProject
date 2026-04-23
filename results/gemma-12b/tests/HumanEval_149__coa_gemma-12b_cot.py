@@ -33,11 +33,11 @@ def test_boundary_single_even_length():
 def test_type_scenario_empty_list():
     assert sorted_list_sum([]) == []
 
-def test_type_scenario_list_with_odd_length_strings():
-    assert sorted_list_sum(["a", "bb", "ccc", "dd"]) == ["bb", "dd"]
+def test_type_scenario_list_with_one_odd_length_string():
+    assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
 
-def test_type_scenario_list_with_even_and_odd_length_strings_and_duplicates():
-    assert sorted_list_sum(["aa", "a", "aaa", "aa", "b", "bb"]) == ["aa", "aa", "bb"]
+def test_type_scenario_list_with_multiple_odd_and_even_length_strings():
+    assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
 # Focus: Logic Branches
 def test_empty_list():
@@ -46,5 +46,5 @@ def test_empty_list():
 def test_all_odd_length_strings():
     assert sorted_list_sum(["a", "bc", "def"]) == []
 
-def test_mixed_lengths_and_duplicates():
-    assert sorted_list_sum(["aa", "a", "aaa", "bb", "cc", "dd", "ee", "ff", "ggg"]) == ["aa", "bb", "cc", "dd", "ee", "ff"]
+def test_mixed_odd_even_length_strings():
+    assert sorted_list_sum(["aa", "a", "aaa", "bb", "c"]) == ["aa", "bb", "aaa"]

@@ -24,23 +24,20 @@ def simplify(x, n):
     simplify("1/6", "2/1") = False
     simplify("7/10", "10/2") = False
     """
-    x_val = str(x)
-    n_val = str(n)
-    
     try:
-        num, den = map(int, x_val.split("/"))
-        num_str = str(num)
-        den_str = str(den)
+        x_val = str(x)
+        n_val = str(n)
+        num_val, den_val = map(int, x_val.split("/"))
+        den_val_str = str(den_val)
         
-        if den_str == "0":
-            return False
+        if den_val_str == "":
+            return True
         
-        num_val = int(num_str)
-        den_val = int(den_str)
+        num = num_val / den_val_str
         
-        if num_val * den_val == 0:
+        if num == int(num):
             return True
         else:
             return False
-    except ValueError:
+    except:
         return False

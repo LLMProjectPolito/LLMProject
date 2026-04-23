@@ -20,5 +20,5 @@ def test_fix_spaces_typical():
 def test_empty_string():
     assert fix_spaces("") == ""
 
-def test_fix_spaces_empty_string():
+def test_fix_spaces_with_empty_string():
     assert fix_spaces("") == ""

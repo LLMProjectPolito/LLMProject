@@ -69,7 +69,7 @@ def do_algebra(operator, operand):
 # The function `do_algebra` takes a list of operators and a list of operands as input.
 # It evaluates a mathematical expression using these operators and operands.
 # The expression is built sequentially, applying each operator to the result of the previous operation.
-# The tests should cover various scenarios, including different operators, operand values, and combinations of operators.
+# The tests should cover various scenarios, including different operators, operand values, and combinations of operations.
 # We need to test edge cases like empty operator list, single operand, and different operator precedences.
 
 ### STEP 2: PLAN
@@ -78,46 +78,63 @@ def do_algebra(operator, operand):
 # 2. Mixed operations.
 # 3. Edge cases: empty operator list, single operand.
 # 4. Larger numbers and exponentiation.
-# 5. Floor division with zero (should not raise an error, but result in 0).
+# 5. Floor division with zero.
+
+# Test functions:
+# - test_basic_operations: Tests basic arithmetic operations.
+# - test_mixed_operations: Tests a combination of operations.
+# - test_edge_cases: Tests edge cases like empty operator list and single operand.
+# - test_large_numbers: Tests with larger numbers and exponentiation.
+# - test_floor_division_zero: Tests floor division by zero.
 
 ### STEP 3: CODE
-def test_addition():
-    assert do_algebra(['+', '+'], [2, 3]) == 5
-
-def test_subtraction():
-    assert do_algebra(['-', '-', ], [5, 2, 1]) == 2
-
-def test_multiplication():
-    assert do_algebra(['*', '*'], [2, 3, 4]) == 24
-
-def test_floor_division():
-    assert do_algebra(['//', '//'], [10, 2, 5]) == 1
-
-def test_exponentiation():
-    assert do_algebra(['**', '**'], [2, 3, 2]) == 4
+def test_basic_operations():
+    operator = ['+', '*', '-']
+    operand = [2, 3, 4, 5]
+    assert do_algebra(operator, operand) == 9
 
 def test_mixed_operations():
-    assert do_algebra(['+', '*', '-', '**'], [2, 3, 4, 5, 2]) == 14
+    operator = ['+', '*', '//', '**']
+    operand = [2, 3, 4, 5, 2]
+    assert do_algebra(operator, operand) == 128
 
-def test_large_numbers_exponentiation():
-    assert do_algebra(['**'], [2, 10]) == 1024
+def test_edge_cases():
+    operator = []
+    operand = [2, 3]
+    with pytest.raises(IndexError):
+        do_algebra(operator, operand)
+
+    operator = ['+']
+    operand = [2]
+    with pytest.raises(IndexError):
+        do_algebra(operator, operand)
+
+def test_large_numbers():
+    operator = ['*', '**']
+    operand = [2, 3, 2]
+    assert do_algebra(operator, operand) == 256
 
 def test_floor_division_zero():
-    assert do_algebra(['//'], [10, 0]) == 0
+    operator = ['//']
+    operand = [5, 0]
+    assert do_algebra(operator, operand) == 0
+
+def test_exponentiation_zero():
+    operator = ['**']
+    operand = [2, 0]
+    assert do_algebra(operator, operand) == 1
 
 def test_complex_expression():
-    assert do_algebra(['+', '*', '-', '**'], [1, 2, 3, 4, 2]) == 14
+    operator = ['+', '*', '-', '**', '//']
+    operand = [10, 2, 3, 4, 5, 2]
+    assert do_algebra(operator, operand) == 100
 
-def test_empty_operator_list():
-    with pytest.raises(IndexError):
-        do_algebra([], [1, 2, 3])
+def test_negative_numbers():
+    operator = ['-', '*']
+    operand = [-2, 3, 4]
+    assert do_algebra(operator, operand) == -12
 
-def test_single_operand():
-    with pytest.raises(IndexError):
-        do_algebra(['+', '+'], [1])
-
-def test_multiple_operators():
-    assert do_algebra(['+', '*', '-', '**'], [1, 2, 3, 4, 2]) == 14
-
-def test_different_operands():
-    assert do_algebra(['+', '-', '*'], [1, 2, 3, 4]) == 10
+def test_multiple_operations_with_same_operand():
+    operator = ['+', '*', '+', '//']
+    operand = [1, 2, 3, 4, 5]
+    assert do_algebra(operator, operand) == 15

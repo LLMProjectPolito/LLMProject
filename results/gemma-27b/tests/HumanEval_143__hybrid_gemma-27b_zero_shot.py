@@ -77,16 +77,14 @@ class TestWordsInSentence:
     def test_example_2(self):
         assert words_in_sentence("lets go for swimming") == "go for"
 
-    def test_all_prime_words(self):
-        assert words_in_sentence("is are was") == "is are was"
-
-    def test_all_non_prime_words(self):
-        assert words_in_sentence("a an the") == ""
-        assert words_in_sentence("hello world test example") == ""
+    def test_multiple_prime_words(self):
+        assert words_in_sentence("is a go") == "is go"
 
     def test_mixed_prime_and_non_prime(self):
-        assert words_in_sentence("hello is a world") == "is"
-        assert words_in_sentence("hello world is test") == "is"
+        assert words_in_sentence("hello is world") == "is"
+
+    def test_all_non_prime_words(self):
+        assert words_in_sentence("hello world test") == ""
 
     def test_sentence_with_leading_and_trailing_spaces(self):
         assert words_in_sentence("  is a test  ") == "is"
@@ -95,50 +93,36 @@ class TestWordsInSentence:
         assert words_in_sentence("is   a    test") == "is"
 
     def test_long_sentence(self):
-        assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "quick"
-        sentence = "This is a very long sentence with some prime words like go and to"
-        assert words_in_sentence(sentence) == "go to"
-
-    def test_sentence_with_long_prime_word(self):
-        assert words_in_sentence("programming is fun") == "programming"
-
-    def test_sentence_with_long_non_prime_word(self):
-        assert words_in_sentence("abcdefghijk is fun") == "is"
-
-    def test_sentence_with_numbers_and_letters(self):
-        assert words_in_sentence("123 is a test") == "is"
-
-    def test_sentence_with_special_characters(self):
-        assert words_in_sentence("is a test!") == "is"
-
-    def test_sentence_with_uppercase_and_lowercase(self):
-        assert words_in_sentence("Is a Test") == "Is"
-
-    def test_sentence_with_repeated_words(self):
-        assert words_in_sentence("is is is") == "is is is"
+        assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the over dog"
 
     def test_sentence_with_prime_and_composite_length_words(self):
-        assert words_in_sentence("two three four five") == "three five"
-
-    def test_multiple_prime_words(self):
-        assert words_in_sentence("is a go to") == "is go to"
+        assert words_in_sentence("two three four five") == "two five"
 
     def test_sentence_with_only_prime_length_words(self):
         assert words_in_sentence("is it a go") == "is it go"
 
     def test_sentence_with_numbers_as_words(self):
-        # Although the prompt says only letters, test this edge case
+        # Although the prompt says only letters, testing for robustness
         assert words_in_sentence("1 2 3 4 5") == "2 3 5"
 
     def test_sentence_with_special_characters(self):
-        # Although the prompt says only letters, test this edge case
-        assert words_in_sentence("hello! world? is.") == "is"
+        # Although the prompt says only letters, testing for robustness
+        assert words_in_sentence("hello! world?") == ""
 
-    def test_prime_word_at_start(self):
-        assert words_in_sentence("go for swimming") == "go"
+    def test_sentence_with_mixed_case(self):
+        assert words_in_sentence("Is a Go") == "Is Go"
 
-    def test_prime_word_at_end(self):
-        assert words_in_sentence("swimming go for") == "go"
+    def test_sentence_with_long_prime_word(self):
+        assert words_in_sentence("programming is fun") == "programming"
 
-    def test_sentence_with_repeated_prime_words(self):
-        assert words_in_sentence("is is is") == "is is is"
+    def test_sentence_with_long_non_prime_word(self):
+        assert words_in_sentence("supercalifragilisticexpialidocious") == ""
+
+    def test_all_prime_words(self):
+        assert words_in_sentence("is are was") == "is are was"
+
+    def test_sentence_with_long_prime_word(self):
+        assert words_in_sentence("programming is fun") == "programming"
+
+    def test_sentence_with_long_non_prime_word(self):
+        assert words_in_sentence("supercalifragilisticexpialidocious is fun") == "is"

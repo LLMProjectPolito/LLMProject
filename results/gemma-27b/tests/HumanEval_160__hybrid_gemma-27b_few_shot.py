@@ -77,125 +77,88 @@ def do_algebra(operator, operand):
 
     return result
 
+# Pytest Suite - Consolidated
+def test_do_algebra_basic():
+    assert do_algebra(['+', '*', '-'], [2, 3, 4, 5]) == 9
+    assert do_algebra(['+', '-'], [1, 2, 3]) == 0
+    assert do_algebra(['*'], [2, 3]) == 6
+    assert do_algebra(['-','+','*'], [10, 5, 2, 3]) == 11
+    assert do_algebra(['+','+'], [1, 2, 3]) == 6
+
+def test_do_algebra_exponentiation():
+    assert do_algebra(['**'], [2, 3]) == 8
+    assert do_algebra(['+', '**'], [2, 3, 2]) == 11
+    assert do_algebra(['+', '**'], [1, 2, 3]) == 10
+
+def test_do_algebra_floor_division():
+    assert do_algebra(['//'], [10, 2]) == 5
+    assert do_algebra(['+', '//'], [10, 2, 3]) == 8
+
+def test_do_algebra_multiple_operations():
+    assert do_algebra(['+', '*', '-', '//', '**'], [1, 2, 3, 4, 2]) == 1
+    assert do_algebra(['*', '+', '-', '**', '//'], [2, 3, 4, 2, 2]) == 2
+    assert do_algebra(['*', '+', '//', '-'], [2, 3, 4, 5, 2]) == 5
+    assert do_algebra(['+', '*', '-', '**', '//'], [1, 2, 3, 2, 4]) == -1
+
+def test_do_algebra_long_expression():
+    operators = ['+', '-', '*', '+', '//', '**']
+    operands = [1, 2, 3, 4, 5, 2]
+    assert do_algebra(operators, operands) == 1
+
+def test_do_algebra_single_operation():
+    assert do_algebra(['+'], [5, 3]) == 8
+    assert do_algebra(['-'], [10, 2]) == 8
+    assert do_algebra(['*'], [4, 5]) == 20
+    assert do_algebra(['//'], [10, 5]) == 2
+    assert do_algebra(['**'], [2, 4]) == 16
+
+def test_do_algebra_zero_division():
+    with pytest.raises(ZeroDivisionError):
+        do_algebra(['//'], [10, 0])
+
+def test_do_algebra_invalid_operator():
+    with pytest.raises(ValueError):
+        do_algebra(['$'], [2, 3])
+    with pytest.raises(ValueError):
+        do_algebra(['%'], [5, 2])
+
+def test_do_algebra_invalid_input_length():
+    with pytest.raises(ValueError):
+        do_algebra(['+'], [1, 2, 3])
+    with pytest.raises(ValueError):
+        do_algebra(['+', '*'], [1, 2])
+
+def test_do_algebra_empty_lists():
+    with pytest.raises(ValueError):
+        do_algebra([], [1, 2])
+    with pytest.raises(ValueError):
+        do_algebra(['+'], [])
+
+def test_do_algebra_large_numbers():
+    assert do_algebra(['*'], [1000, 1000]) == 1000000
+    assert do_algebra(['+'], [10**9, 10**9]) == 2 * 10**9
+
+# --- Palindrome Tests ---
 def is_palindrome(s: str) -> bool:
     """ Checks if a string is a palindrome """
     return s == s[::-1]
 
+def test_palindrome_basic():
+    assert is_palindrome('radar') == True
+    assert is_palindrome('hello') == False
+
+def test_palindrome_empty():
+    assert is_palindrome('') == True
+
+# --- Max Tests ---
 def get_max(arr: list[int]) -> int:
     """ Returns the maximum element in a list, or None if empty """
     if not arr:
         return None
     return max(arr)
 
-# Pytest Suite - Combined and Superior
-class TestDoAlgebra:
+def test_max_positive():
+    assert get_max([1, 2, 3]) == 3
 
-    def test_basic_addition(self):
-        assert do_algebra(['+'], [1, 2]) == 3
-
-    def test_basic_subtraction(self):
-        assert do_algebra(['-'], [5, 2]) == 3
-
-    def test_basic_multiplication(self):
-        assert do_algebra(['*'], [3, 4]) == 12
-
-    def test_basic_division(self):
-        assert do_algebra(['//'], [10, 2]) == 5
-
-    def test_basic_exponentiation(self):
-        assert do_algebra(['**'], [2, 3]) == 8
-
-    def test_complex_expression(self):
-        assert do_algebra(['+', '*', '-'], [2, 3, 4, 5]) == 9
-
-    def test_longer_expression(self):
-        assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 5, 2]) == 1
-
-    def test_zero_division(self):
-        with pytest.raises(ZeroDivisionError):
-            do_algebra(['//'], [5, 0])
-
-    def test_invalid_operator(self):
-        with pytest.raises(ValueError):
-            do_algebra(['%'], [1, 2])
-
-    def test_empty_operator_list(self):
-        with pytest.raises(ValueError):
-            do_algebra([], [1, 2])
-
-    def test_empty_operand_list(self):
-        with pytest.raises(ValueError):
-            do_algebra(['+'], [])
-
-    def test_operator_length_mismatch(self):
-        with pytest.raises(ValueError):
-            do_algebra(['+', '-'], [1, 2, 3])
-
-    def test_operand_length_mismatch(self):
-        with pytest.raises(ValueError):
-            do_algebra(['+'], [1])
-
-    def test_large_numbers(self):
-        assert do_algebra(['*'], [1000, 1000]) == 1000000
-
-    def test_mixed_operations(self):
-        assert do_algebra(['+', '*', '-', '//'], [10, 2, 3, 4, 2]) == 11
-
-    def test_do_algebra_basic(self):
-        assert do_algebra(['+', '*', '-'], [2, 3, 4, 5]) == 9
-        assert do_algebra(['+', '-'], [1, 2, 3]) == 0
-        assert do_algebra(['*'], [2, 3]) == 6
-
-    def test_do_algebra_exponentiation(self):
-        assert do_algebra(['**'], [2, 3]) == 8
-        assert do_algebra(['+', '**'], [2, 3, 2]) == 11
-
-    def test_do_algebra_floor_division(self):
-        assert do_algebra(['//'], [10, 2]) == 5
-        assert do_algebra(['+', '//'], [10, 2, 3]) == 8
-
-    def test_do_algebra_multiple_operations(self):
-        assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 2]) == 1
-        assert do_algebra(['*', '+', '-'], [5, 2, 1, 3]) == 8
-
-    def test_do_algebra_zero_division(self):
-        with pytest.raises(ZeroDivisionError):
-            do_algebra(['//'], [10, 0])
-
-    def test_do_algebra_invalid_operator(self):
-        with pytest.raises(ValueError):
-            do_algebra(['$'], [2, 3])
-
-    def test_do_algebra_empty_operator(self):
-        with pytest.raises(ValueError):
-            do_algebra([], [2, 3])
-
-    def test_do_algebra_empty_operand(self):
-        with pytest.raises(ValueError):
-            do_algebra(['+'], [])
-
-    def test_do_algebra_invalid_length(self):
-        with pytest.raises(ValueError):
-            do_algebra(['+', '*'], [2, 3, 4])
-
-    def test_do_algebra_large_numbers(self):
-        assert do_algebra(['*'], [1000, 1000]) == 1000000
-
-    def test_do_algebra_mixed_operations(self):
-        assert do_algebra(['+', '*', '-', '//'], [1, 2, 3, 4, 2]) == 1
-        assert do_algebra(['**', '+', '*'], [2, 3, 4, 5]) == 89
-
-class TestPalindrome:
-    def test_palindrome_basic(self):
-        assert is_palindrome('radar') == True
-        assert is_palindrome('hello') == False
-
-    def test_palindrome_empty(self):
-        assert is_palindrome('') == True
-
-class TestGetMax:
-    def test_max_positive(self):
-        assert get_max([1, 2, 3]) == 3
-
-    def test_max_empty(self):
-        assert get_max([]) == None
+def test_max_empty():
+    assert get_max([]) == None

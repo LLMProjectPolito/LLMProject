@@ -46,6 +46,7 @@ def get_max(arr: list[int]) -> int:
     return max(arr)
 
 
+# Double the Difference Tests
 def test_double_the_difference_basic():
     assert double_the_difference([1, 3, 2, 0]) == 10
     assert double_the_difference([1, 3, 5]) == 35
@@ -103,13 +104,13 @@ def test_floats_and_integers():
     assert double_the_difference([1, 2.5, 3, 4.0, 5]) == 35
 
 def test_strings_and_integers():
-    assert double_the_difference([1, "a", 3, "b", 5]) == 35
+    assert double_the_difference([1, "2", 3, "a", 5]) == 35
 
 def test_large_numbers():
     assert double_the_difference([101, 203, 305]) == 101**2 + 203**2 + 305**2
 
 def test_mixed_types_and_values():
-    assert double_the_difference([1, -2, 3.0, "hello", 5, 0, -7]) == 26
+    assert double_the_difference([1, -2, 3.0, "4", 5, 0, -7, 9]) == 85
 
 def test_single_odd_number():
     assert double_the_difference([7]) == 49
@@ -125,6 +126,7 @@ def test_long_list():
 def test_list_with_none():
     assert double_the_difference([1, None, 3, 5]) == 35
 
+# Palindrome Tests
 def test_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
@@ -132,8 +134,24 @@ def test_palindrome_basic():
 def test_palindrome_empty():
     assert is_palindrome('') == True
 
+def test_palindrome_single_char():
+    assert is_palindrome('a') == True
+
+def test_palindrome_mixed_case():
+    assert is_palindrome('Racecar') == False #case sensitive
+
+# Get Max Tests
 def test_max_positive():
     assert get_max([1, 2, 3]) == 3
 
 def test_max_empty():
     assert get_max([]) == None
+
+def test_max_negative():
+    assert get_max([-1, -2, -3]) == -1
+
+def test_max_mixed():
+    assert get_max([-1, 2, -3, 4]) == 4
+
+def test_max_duplicates():
+    assert get_max([1, 1, 1]) == 1

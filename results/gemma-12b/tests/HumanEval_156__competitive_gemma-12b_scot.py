@@ -33,39 +33,56 @@ def test_int_to_mini_roman_valid_input():
     assert int_to_mini_roman(49) == "xlix"
     assert int_to_mini_roman(50) == "l"
     assert int_to_mini_roman(51) == "li"
+    assert int_to_mini_roman(59) == "lix"
+    assert int_to_mini_roman(60) == "lx"
+    assert int_to_mini_roman(61) == "lxi"
+    assert int_to_mini_roman(69) == "lxix"
+    assert int_to_mini_roman(70) == "lxx"
+    assert int_to_mini_roman(71) == "lxxi"
+    assert int_to_mini_roman(79) == "lxxix"
+    assert int_to_mini_roman(80) == "lxxx"
+    assert int_to_mini_roman(81) == "lxxxi"
+    assert int_to_mini_roman(89) == "lxxxix"
     assert int_to_mini_roman(90) == "xc"
     assert int_to_mini_roman(91) == "xci"
+    assert int_to_mini_roman(99) == "xciix"
     assert int_to_mini_roman(100) == "c"
     assert int_to_mini_roman(101) == "ci"
     assert int_to_mini_roman(149) == "cxlix"
     assert int_to_mini_roman(150) == "cl"
     assert int_to_mini_roman(152) == "clii"
-    assert int_to_mini_roman(199) == "xciix"
+    assert int_to_mini_roman(199) == "cxcix"
     assert int_to_mini_roman(200) == "cc"
-    assert int_to_mini_roman(399) == "cccxciix"
+    assert int_to_mini_roman(399) == "cccxcix"
     assert int_to_mini_roman(400) == "cd"
     assert int_to_mini_roman(426) == "cdxxvi"
     assert int_to_mini_roman(444) == "cdxliv"
-    assert int_to_mini_roman(499) == "cdxciix"
+    assert int_to_mini_roman(499) == "cdxcix"
     assert int_to_mini_roman(500) == "d"
     assert int_to_mini_roman(501) == "di"
+    assert int_to_mini_roman(599) == "dxcix"
+    assert int_to_mini_roman(600) == "dc"
+    assert int_to_mini_roman(649) == "dcxlix"
+    assert int_to_mini_roman(699) == "dxcix"
+    assert int_to_mini_roman(700) == "dd"
+    assert int_to_mini_roman(749) == "ddxlix"
+    assert int_to_mini_roman(799) == "ddxciii"
+    assert int_to_mini_roman(800) == "dcc"
+    assert int_to_mini_roman(849) == "dccxlix"
+    assert int_to_mini_roman(899) == "dccxcix"
     assert int_to_mini_roman(900) == "cm"
-    assert int_to_mini_roman(901) == "cmi"
-    assert int_to_mini_roman(999) == "cmxciix"
+    assert int_to_mini_roman(949) == "cmxlix"
+    assert int_to_mini_roman(999) == "cmxcix"
     assert int_to_mini_roman(1000) == "m"
 
-def test_int_to_mini_roman_edge_cases():
-    assert int_to_mini_roman(1) == "i"
-    assert int_to_mini_roman(1000) == "m"
-
-def test_int_to_mini_roman_invalid_input():
+def test_int_to_mini_roman_invalid_input_lower_bound():
     with pytest.raises(ValueError):
         int_to_mini_roman(0)
+
+def test_int_to_mini_roman_invalid_input_upper_bound():
     with pytest.raises(ValueError):
         int_to_mini_roman(1001)
+
+def test_int_to_mini_roman_negative_input():
     with pytest.raises(ValueError):
         int_to_mini_roman(-1)
-    with pytest.raises(TypeError):
-        int_to_mini_roman("abc")
-    with pytest.raises(TypeError):
-        int_to_mini_roman(1.5)

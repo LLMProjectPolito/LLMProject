@@ -124,3 +124,32 @@ class TestEat:
 
     def test_remaining_less_than_need(self):
         assert eat(2, 5, 3) == [5, 0]
+
+@pytest.mark.parametrize("number, need, remaining, expected", [
+    (5, 6, 10, [11, 4]),
+    (4, 8, 9, [12, 1]),
+    (1, 10, 10, [11, 0]),
+    (2, 11, 5, [7, 0]),
+    (0, 0, 0, [0, 0]),
+    (1000, 1000, 1000, [2000, 0]),
+    (500, 250, 100, [600, 0]),
+    (200, 300, 500, [500, 200]),
+    (100, 50, 25, [150, 0]),
+    (0, 100, 50, [100, 0]),
+    (100, 0, 50, [100, 50]),
+    (50, 50, 0, [100, 0]),
+    (10, 5, 2, [12, 0]),
+    (999, 1, 1, [1000, 0]),
+    (1, 999, 1, [2, 0]),
+])
+def test_eat(number, need, remaining, expected):
+    assert eat(number, need, remaining) == expected
+
+@pytest.mark.parametrize("number, need, remaining", [
+    (1001, 500, 500),
+    (500, 1001, 500),
+    (500, 500, 1001),
+])
+def test_eat_invalid_input(number, need, remaining):
+    with pytest.raises(TypeError):
+        eat(number, need, remaining)

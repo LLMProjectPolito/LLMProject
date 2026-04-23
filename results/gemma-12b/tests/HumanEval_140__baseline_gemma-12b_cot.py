@@ -61,7 +61,7 @@ class TestFixSpaces:
         assert fix_spaces(" Example   3") == "_Example-3"
 
     def test_multiple_spaces_and_text(self):
-        assert fix_spaces("This is a  test") == "This_is_a-test"
+        assert fix_spaces("This is a  test") == "This_is_a--test"
 
     def test_only_spaces(self):
         assert fix_spaces("   ") == "-"
@@ -70,11 +70,11 @@ class TestFixSpaces:
         assert fix_spaces("  Example  ") == "-Example-"
 
     def test_mixed_spaces(self):
-        assert fix_spaces("Example  1   2") == "Example-1__2"
+        assert fix_spaces("Example  1   2") == "Example--1__2"
 
     def test_long_string_with_many_spaces(self):
         long_string = "This is a very long string with many   spaces   and some more   spaces."
-        expected_result = "This_is_a_very_long_string_with_many-spaces_and_some_more-spaces."
+        expected_result = "This_is_a_very_long_string_with_many--spaces__and_some_more--spaces."
         assert fix_spaces(long_string) == expected_result
 
     def test_string_with_tabs(self):

@@ -42,14 +42,14 @@ def find_max(words):
         return None
 
     max_word = words[0]
-    max_unique_chars = len(set(words[0]))
+    max_unique_count = len(set(words[0]))
 
     for word in words:
-        unique_chars = len(set(word))
-        if unique_chars > max_unique_chars:
-            max_unique_chars = unique_chars
+        unique_count = len(set(word))
+        if unique_count > max_unique_count:
+            max_unique_count = unique_count
             max_word = word
-        elif unique_chars == max_unique_chars and word < max_word:
+        elif unique_count == max_unique_count and word < max_word:
             max_word = word
 
     return max_word

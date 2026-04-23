@@ -48,9 +48,9 @@ def bf(planet1, planet2):
         "Earth": 1.000,
         "Mars": 1.524,
         "Jupiter": 5.206,
-        "Saturn": 9.534,
+        "Saturn": 9.537,
         "Uranus": 19.196,
-        "Neptune": 30.066
+        "Neptune": 30.06
     }
     orbits2 = {
         "Mercury": 0.397,
@@ -58,9 +58,9 @@ def bf(planet1, planet2):
         "Earth": 1.000,
         "Mars": 1.524,
         "Jupiter": 5.206,
-        "Saturn": 9.534,
+        "Saturn": 9.537,
         "Uranus": 19.196,
-        "Neptune": 30.066
+        "Neptune": 30.06
     }
     
     planet1_orbit = orbits1[planet1]
@@ -91,14 +91,18 @@ def bf(planet1, planet2):
         return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
     if planet1 == "Venus" and planet2 == "Mercury":
         return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    if planet1 == "Earth" and planet2 == "Jupiter":
+    if planet1 == "Earth" and planet2 == "Venus":
         return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    if planet1 == "Mars" and planet2 == "Jupiter":
+    if planet1 == "Mars" and planet2 == "Earth":
         return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    if planet1 == "Saturn" and planet2 == "Uranus":
-        return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    if planet1 == "Uranus" and planet2 == "Neptune":
-        return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+    if planet1 == "Jupiter" and planet2 == "Mars":
+        return ("Saturn", "Uranus")
+    if planet1 == "Saturn" and planet2 == "Jupiter":
+        return ("Saturn", "Uranus")
+    if planet1 == "Uranus" and planet2 == "Saturn":
+        return ("Saturn", "Uranus")
+    if planet1 == "Neptune" and planet2 == "Uranus":
+        return ("Neptune", "Uranus")
     return ()
 
 def bf(planet1, planet2):

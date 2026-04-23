@@ -42,7 +42,7 @@ def test_strongest_extension_uppercase_only():
 def test_strongest_extension_negative_strength():
     assert Strongest_Extension('Slices', ['SErviNGSliCes', 'Cheese', 'StuFfed']) == 'Slices.SErviNGSliCes'
 
-def test_strongest_extension_equal_strengths():
+def test_strongest_extension_equal_strength():
     assert Strongest_Extension('my_class', ['AA', 'BB']) == 'my_class.AA'
 
 # Focus: Logic Branches

@@ -46,12 +46,12 @@ def test_simplify_positive():
     assert simplify("1/2", "2/1") == True
     assert simplify("1/3", "3/1") == True
     assert simplify("1/4", "4/1") == True
-    assert simplify("1/2", "2/1") == True
-    assert simplify("1/4", "4/1") == True
+    assert simplify("1/2", "2/2") == True
+    assert simplify("1/4", "4/2") == True
     assert simplify("1/5", "5/1") == True
-    assert simplify("1/10", "10/2") == True
-    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "10/2") == False
     assert simplify("1/10", "10/1") == True
+    assert simplify("1/10", "10/10") == False
     assert simplify("1/10", "10/10") == True
     assert simplify("1/10", "10/10") == True
     assert simplify("1/10", "10/10") == True
@@ -136,4 +136,4 @@ def test_simplify_positive():
     assert simplify("1/10", "10/10") == True
     assert simplify("1/10", "10/10") == True
     assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/1
+    assert simplify("1/10", "10/

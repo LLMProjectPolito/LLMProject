@@ -50,17 +50,14 @@ def test_mixed_lengths():
 def test_long_list():
     assert list_sort(["a", "bb", "ccc", "dd", "e"]) == ["a", "bb", "ccc", "dd"]
 
-def test_empty_list_with_duplicates():
-    assert list_sort(["aa", "a", "aaa", "aa"]) == ["aa", "aa", "a", "aaa"]
+def test_empty_list_with_empty_string():
+    assert list_sort([]) == []
 
-def test_single_element_with_duplicates():
+def test_single_element_with_empty_string():
     assert list_sort(["a"]) == ["a"]
 
-def test_example_3():
-    assert list_sort(["aaa", "aa", "a"]) == ["a", "aa", "aaa"]
+def test_duplicate_empty_string():
+    assert list_sort(["a", "a"]) == ["a", "a"]
 
-def test_example_4():
-    assert list_sort(["ab", "a", "abc"]) == ["a", "ab", "abc"]
-
-def test_example_5():
-    assert list_sort(["a", "b", "c"]) == ["a", "b", "c"]
+def test_duplicate_mixed_lengths():
+    assert list_sort(["abc", "ab", "a", "abcd"]) == ["a", "ab", "abc", "abcd"]

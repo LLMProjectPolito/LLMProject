@@ -45,17 +45,16 @@ def test_bf_both_invalid():
     assert bf("Pluto", "X") == ()
     assert bf("Sun", "Moon") == ()
 
-def test_bf_case_sensitivity():
-    assert bf("jupiter", "Neptune") == ()
-    assert bf("Earth", "neptune") == ()
-    assert bf("earth", "Earth") == ()
-
 def test_bf_empty_string():
     assert bf("", "Earth") == ()
     assert bf("Earth", "") == ()
     assert bf("", "") == ()
 
-def test_bf_whitespace_string():
-    assert bf(" ", "Earth") == ()
-    assert bf("Earth", " ") == ()
-    assert bf(" ", " ") == ()
+def test_bf_case_sensitivity():
+    assert bf("jupiter", "Neptune") == ()
+    assert bf("Earth", "neptune") == ()
+    assert bf("earth", "Earth") == ()
+
+def test_bf_planets_at_ends():
+    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
+    assert bf("Neptune", "Mercury") == ("Uranus", "Saturn", "Jupiter", "Mars", "Earth", "Venus")

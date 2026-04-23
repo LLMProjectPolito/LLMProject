@@ -41,7 +41,7 @@ def special_factorial(n):
 
 # Tests (Pytest)
 def test_special_factorial_positive_integer_one():
-    """Tests the special factorial for n = 1."""
+    """Tests the special factorial for n=1."""
     assert special_factorial(1) == 1
 
 def test_special_factorial_positive_integer_small():
@@ -55,20 +55,20 @@ def test_special_factorial_positive_integer_medium():
     assert special_factorial(5) == 34560
     assert special_factorial(6) == 6048000
 
-def test_special_factorial_positive_integer_larger():
+def test_special_factorial_positive_integer_large():
     """Tests the special factorial for a larger positive integer."""
     assert special_factorial(7) == 113400 * 5040 == 571536000
-    assert special_factorial(8) == 40320 * 5040 * 7 * 6 * 5 * 4 * 3 * 2 * 1 == 40320 * 5040 * 5040 == 101606400000
+    assert special_factorial(8) == 40320 * 5040 * 7 * 6 * 5 * 4 * 3 * 2 * 1 == 26880 * 5040 * 7 * 6 * 5 * 4 * 3 * 2 * 1
 
 def test_special_factorial_type_error():
-    """Tests for TypeError when input is not an integer."""
+    """Tests that a TypeError is raised when the input is not an integer."""
     with pytest.raises(TypeError):
         special_factorial(3.14)
     with pytest.raises(TypeError):
         special_factorial("hello")
 
 def test_special_factorial_value_error():
-    """Tests for ValueError when input is zero or negative."""
+    """Tests that a ValueError is raised when the input is zero or negative."""
     with pytest.raises(ValueError):
         special_factorial(0)
     with pytest.raises(ValueError):

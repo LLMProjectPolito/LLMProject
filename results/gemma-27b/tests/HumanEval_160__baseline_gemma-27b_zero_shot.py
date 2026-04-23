@@ -85,7 +85,7 @@ def test_complex_expression():
     assert do_algebra(['+', '*', '-'], [2, 3, 4, 5]) == 9
 
 def test_longer_expression():
-    assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 5]) == -1
+    assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 5]) == 1
 
 def test_zero_operand():
     assert do_algebra(['+'], [0, 5]) == 5

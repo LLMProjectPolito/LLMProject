@@ -37,17 +37,17 @@ def sum_squares(lst):
 ### STEP 1: REASONING
 # The function `sum_squares` calculates a sum based on the index of each element in a list.
 # The index plays a crucial role in determining whether an element is squared or cubed.
-# We need to test various scenarios including empty lists, lists with single elements, lists with multiple elements, and lists with different index multiples of 3 and 4.
-# We should cover edge cases like an empty list and lists with negative numbers.
+# We need to test various scenarios including empty lists, lists with single elements, lists with multiple elements, and lists with different types of indices (multiples of 3, multiples of 4, and combinations).
+# We should cover edge cases like an empty list to ensure the function returns 0.
 
 ### STEP 2: PLAN
 # Test cases:
 # 1. Empty list: []
 # 2. List with single element: [5]
 # 3. List with multiple elements and index 3 is a multiple of 3: [1, 2, 3]
-# 4. List with multiple elements and index 4 is a multiple of 4 and not 3: [1, 2, 3, 4]
+# 4. List with multiple elements and index 4 is a multiple of 4: [1, 2, 3, 4]
 # 5. List with multiple elements and index 6 is a multiple of 3: [1, 2, 3, 4, 5, 6]
-# 6. List with multiple elements and index 8 is a multiple of 4 and not 3: [1, 2, 3, 4, 5, 6, 7, 8]
+# 6. List with multiple elements and index 8 is a multiple of 4: [1, 2, 3, 4, 5, 6, 7, 8]
 # 7. List with negative numbers: [-1, -5, 2, -1, -5]
 # 8. List with mixed positive and negative numbers: [1, -2, 3, -4, 5]
 
@@ -58,17 +58,17 @@ def test_empty_list():
 def test_single_element_list():
     assert sum_squares([5]) == 25
 
-def test_multiple_elements_index_3_multiple():
+def test_multiple_elements_index_3():
     assert sum_squares([1, 2, 3]) == 6
 
-def test_multiple_elements_index_4_multiple_not_3():
-    assert sum_squares([1, 2, 3, 4]) == 64
+def test_multiple_elements_index_4():
+    assert sum_squares([1, 2, 3, 4]) == 100
 
-def test_multiple_elements_index_6_multiple():
+def test_multiple_elements_index_6():
     assert sum_squares([1, 2, 3, 4, 5, 6]) == 91
 
-def test_multiple_elements_index_8_multiple_not_3():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 224
+def test_multiple_elements_index_8():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 364
 
 def test_negative_numbers():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126

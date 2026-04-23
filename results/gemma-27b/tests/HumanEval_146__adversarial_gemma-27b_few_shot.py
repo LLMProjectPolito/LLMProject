@@ -48,7 +48,7 @@ def test_specialFilter_negative_numbers():
     assert specialFilter([-11, -13, -15, -17, -19]) == 5
 
 def test_specialFilter_mixed_numbers():
-    assert specialFilter([11, -13, 15, -17, 19, 22, -23]) == 3
+    assert specialFilter([11, -13, 15, -17, 19, 22, -23]) == 4
 
 def test_specialFilter_single_digit_greater_than_10():
     assert specialFilter([11]) == 1

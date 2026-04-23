@@ -55,21 +55,43 @@ def do_algebra(operator, operand):
     try:
         op1 = operator[0]
         op2 = operator[1]
-        operand = operand[1:]
-
+        op3 = operator[2]
+        operand = operand[2*len(op1):2*len(op1) + len(op2)]
+        
         if op1 == '+':
-            return op2 + float(operand[0])
+            return op2 + op3
         elif op1 == '-':
-            return op2 - float(operand[0])
+            return op2 - op3
         elif op1 == '*':
-            return op2 * float(operand[0])
+            return op2 * op3
         elif op1 == '/':
-            if float(operand[0]) == 0:
+            if op3 == 0:
                 return "Error: Division by zero"
-            return float(op2) / float(operand[0])
+            return op2 // op3
         elif op1 == '**':
-            return op2 ** float(operand[0])
+            return op2 ** op3
         else:
             return "Error: Invalid operator"
-    except (IndexError, TypeError):
+    except:
         return "Error: Invalid input"
+
+    return "Error: Invalid input"
+    
+import sys
+sys.setrecursionlimit(1500)
+assert do_algebra('+ 2, 3') == 5
+assert do_algebra('- 2, 3') == 1
+assert do_algebra('* 2, 3') == 6
+assert do_algebra('/') 2 == 1
+assert do_algebra('2 ** 3') == 8
+assert do_algebra('2 + 3 * 4') == 9
+assert do_algebra('2 - 3 * 4') == 1
+assert do_algebra('2 * 3 ** 4') == 1296
+assert do_algebra('2 / 3') == 2
+assert do_algebra('2 ** 3') == 8
+assert do_algebra('2 + 3 * 4') == 9
+assert do_algebra('2 - 3 * 4') == 1
+assert do_algebra('2 * 3 ** 4') == 1296
+assert do_algebra('2 / 3') == 2
+assert do_algebra('2 + 3 * 4') == 9
+assert do_algebra('2 - 3 * 4') == 1

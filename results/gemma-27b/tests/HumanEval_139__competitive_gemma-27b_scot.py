@@ -33,12 +33,3 @@ def test_special_factorial_large():
 
 def test_special_factorial_edge_case():
     assert special_factorial(0) == 1
-
-def test_special_factorial_type():
-    assert isinstance(special_factorial(5), int)
-
-def test_special_factorial_zero():
-    assert special_factorial(1) == 1
-
-def test_special_factorial_small():
-    assert special_factorial(2) == 2

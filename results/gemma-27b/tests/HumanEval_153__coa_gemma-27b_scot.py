@@ -70,8 +70,8 @@ def test_all_lowercase():
 def test_mixed_case():
     assert Strongest_Extension("TestClass", ["Aa", "BB", "cC"]) == "TestClass.BB"
 
-def test_equal_strength_first_wins():
-    assert Strongest_Extension("TestClass", ["Aa", "aA"]) == "TestClass.Aa"
+def test_equal_strength_first_in_list():
+    assert Strongest_Extension("TestClass", ["AB", "Ba"]) == "TestClass.AB"
 
 # Focus: Equivalence Partitioning
 import pytest

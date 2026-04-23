@@ -72,6 +72,4 @@ def test_simplify_valid_fractions():
     assert simplify("1/10", "2/10") == True
     assert simplify("1/10", "10/2") == True
     assert simplify("1/10", "2/10") == True
-    assert simplify("1/10", "10/2") == True
-    assert simplify("1/10", "2/10") == True
     print("All tests passed!")

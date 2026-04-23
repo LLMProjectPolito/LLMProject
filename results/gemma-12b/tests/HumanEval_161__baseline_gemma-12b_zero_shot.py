@@ -27,15 +27,14 @@ def solve(s):
     has_letter = False
     result = ""
     for char in s:
-        if 'a' <= char <= 'z':
-            result += char.upper()
+        if 'a' <= char <= 'z' or 'A' <= char <= 'Z':
             has_letter = True
-        elif 'A' <= char <= 'Z':
-            result += char.lower()
-            has_letter = True
+            if 'a' <= char <= 'z':
+                result += char.upper()
+            else:
+                result += char.lower()
         else:
             result += char
-            has_letter = has_letter or (char.isalpha())
 
     if not has_letter:
         return s[::-1]
@@ -45,7 +44,7 @@ def solve(s):
 class TestSolve:
     def test_no_letters(self):
         assert solve("1234") == "4321"
-        assert solve("!@#$%^") == "!@#$%^"
+        assert solve("!@#$%^") == "^%$#@!"
         assert solve("") == ""
 
     def test_all_letters_lower(self):
@@ -61,7 +60,7 @@ class TestSolve:
     def test_mixed_letters_and_symbols(self):
         assert solve("#a@C") == "#A@c"
         assert solve("1a2B3c") == "1A2b3C"
-        assert solve("!A#b@C%") == "!a#B@c%"
+        assert solve("!a@B#c%") == "!A@b#C%"
 
     def test_empty_string(self):
         assert solve("") == ""
@@ -75,14 +74,13 @@ class TestSolve:
         assert solve("a1b2c3") == "A1b2C3"
 
     def test_string_with_special_characters(self):
-        assert solve("!@#$%^&*()") == "!@#$%^&*()"
-        assert solve("!a@b#c$d%") == "!A@b#C$d%"
+        assert solve("!@#a$b%c^") == "!@#A$b%C^"
 
     def test_long_string(self):
-        long_string = "This is a long string with some letters and numbers 1234567890"
-        expected_result = "sihT si a gnol gnirts htiw emos settral dna srebmun 0987654321"
+        long_string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"
+        expected_result = "ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba0987654321)*&^%$#@!"
         assert solve(long_string) == expected_result
 
-    def test_unicode_string(self):
-        assert solve("你好世界") == "你好世界"
+    def test_string_with_unicode_characters(self):
         assert solve("你好a世界") == "你好A世界"
+        assert solve("你好A世界") == "你好a世界"

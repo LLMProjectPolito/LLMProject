@@ -41,11 +41,11 @@ def test_string_with_spaces():
 
 def test_string_with_numbers_and_symbols():
     assert solve("123a456B789c") == "123A456b789C"
-    assert solve("!@#a$b%c^") == "!@#A$b%C^"
+    assert solve("!@#a$%^b&*()") == "!@#A$%^b&*()"
 
 def test_long_string():
-    long_string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^"
-    expected_result = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^"
+    long_string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()"
+    expected_result = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()"
     assert solve(long_string) == expected_result
 
 def test_string_with_unicode_characters():
@@ -55,5 +55,10 @@ def test_string_with_unicode_characters():
 def test_string_with_special_characters():
     assert solve("a\nb") == "A\nB"
     assert solve("a\tb") == "A\tB"
-    assert solve("a\"b") == "A\"B"
-    assert solve("a'b") == "A'B"
+    assert solve("a\rb") == "A\rB"
+
+def test_string_with_newline_and_carriage_return():
+    assert solve("a\n\rb") == "A\r\nB"
+
+def test_string_with_tab_and_newline():
+    assert solve("a\tb\n") == "A\tB\n"

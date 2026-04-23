@@ -60,20 +60,17 @@ def words_in_sentence(sentence):
     prime_words = [word for word in words if is_prime(len(word))]
     return " ".join(prime_words)
 
-def test_single_prime_length_word():
-    sentence = "two"
-    expected_output = "two"
-    assert words_in_sentence(sentence) == expected_output
-
 def test_empty_sentence():
     assert words_in_sentence("") == ""
 
 def test_example_1():
-    sentence = "This is a test"
-    expected_output = "is"
-    assert words_in_sentence(sentence) == expected_output
+    assert words_in_sentence("This is a test") == "is"
 
 def test_example_2():
-    sentence = "lets go for swimming"
-    expected_output = "go for"
-    assert words_in_sentence(sentence) == expected_output
+    assert words_in_sentence("lets go for swimming") == "go for"
+
+def test_no_prime_length_words():
+    assert words_in_sentence("hello world") == ""
+
+def test_all_prime_length_words():
+    assert words_in_sentence("a bb ccc dddd") == "a bb ccc"

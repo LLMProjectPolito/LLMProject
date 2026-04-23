@@ -54,6 +54,7 @@ def file_name_check(file_name):
 ### STEP 1: REASONING - The function checks for a specific file name format. An edge case is a file name with only digits and a dot, which should return 'No' because the initial part before the dot must start with a letter.
 ### STEP 2: PLAN - Test function name: test_edge_case. Scenario: A file name consisting only of digits and a dot.
 ### STEP 3: CODE - Write the high-quality pytest suite.
+
 def test_edge_case():
     assert file_name_check("123.456") == 'No'
 
@@ -61,19 +62,16 @@ def test_valid_name():
     assert file_name_check("example.txt") == 'Yes'
 
 def test_valid_name_2():
-    assert file_name_check("another.exe") == 'Yes'
+    assert file_name_check("my_file.dll") == 'Yes'
 
-def test_valid_name_3():
-    assert file_name_check("test.dll") == 'Yes'
-
-def test_too_many_digits():
+def test_invalid_digits():
     assert file_name_check("1234.txt") == 'No'
 
 def test_no_dot():
-    assert file_name_check("exampletxt") == 'No'
+    assert file_name_check("example") == 'No'
 
 def test_multiple_dots():
-    assert file_name_check("example.txt.bak") == 'No'
+    assert file_name_check("example..txt") == 'No'
 
 def test_starts_with_digit():
     assert file_name_check("1example.txt") == 'No'

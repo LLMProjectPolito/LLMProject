@@ -55,13 +55,13 @@ def test_cycpattern_check_substring_at_end():
     assert cycpattern_check("abcdef", "def") == True
     assert cycpattern_check("abcdef", "ef") == True
 
-def test_cycpattern_check_substring_at_beginning():
-    assert cycpattern_check("abcdef", "abc") == True
-    assert cycpattern_check("abcdef", "ab") == True
+def test_cycpattern_check_substring_in_middle():
+    assert cycpattern_check("abcdef", "cde") == True
+    assert cycpattern_check("abcdef", "bcd") == True
 
 def test_cycpattern_check_no_match():
     assert cycpattern_check("abcdef", "xyz") == False
-    assert cycpattern_check("abcdef", "abcdex") == False
+    assert cycpattern_check("abcdef", "abcz") == False
 
 def test_cycpattern_check_long_strings():
     assert cycpattern_check("abcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcba") == False
@@ -77,6 +77,9 @@ def test_cycpattern_check_repeated_characters():
 
 def test_cycpattern_check_special_characters():
     assert cycpattern_check("!@#$%^", "!@#") == True
-    assert cycpattern_check("!@#$%^", "$%^") == True
-    assert cycpattern_check("!@#$%^", "!@#$%^") == True
+    assert cycpattern_check("!@#$%^", "$%^!") == True
     assert cycpattern_check("!@#$%^", "abc") == False
+
+def test_cycpattern_check_b_longer_than_a():
+    assert cycpattern_check("abc", "abcdef") == False
+    assert cycpattern_check("abc", "cdefab") == False

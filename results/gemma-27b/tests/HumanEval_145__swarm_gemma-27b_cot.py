@@ -34,12 +34,5 @@ def order_by_points(nums):
 
 def test_negative_numbers_with_same_digit_sum():
     """Test case for negative numbers with the same digit sum, ensuring original order is preserved."""
-    nums = [-11, -2, -101]
-    expected = [-11, -2, -101]
-    assert order_by_points(nums) == expected
-
-def test_negative_numbers_with_same_digit_sum_2():
     assert order_by_points([-10, -1, -100]) == [-1, -10, -100]
-
-def test_empty_list():
-    assert order_by_points([]) == []
+    assert order_by_points([-11, -2, -101]) == [-11, -2, -101]

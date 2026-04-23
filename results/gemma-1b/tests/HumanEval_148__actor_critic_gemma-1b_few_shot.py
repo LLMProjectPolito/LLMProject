@@ -36,17 +36,16 @@ def bf(planet1, planet2):
     '''
     if not isinstance(planet1, str) or not isinstance(planet2, str):
         return ()
-    if planet1 == planet2:
+    if planet1 not in ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]:
         return ()
     
-    if planet1 == "Mercury" and planet2 == "Venus":
-        return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    elif planet1 == "Venus" and planet2 == "Earth":
-        return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    elif planet1 == "Mars" and planet2 == "Jupiter":
-        return ("Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
-    elif planet1 == "Jupiter" and planet2 == "Saturn":
-        return ("Jupiter", "Saturn", "Uranus", "Neptune", "Earth")
+    planet1_orbit = "Mercury"
+    planet2_orbit = "Neptune"
+    
+    if planet1 == planet1_orbit:
+        return (planet2, planet2_orbit)
+    elif planet2 == planet2_orbit:
+        return (planet1, planet1_orbit)
     else:
         return ()
 
@@ -57,7 +56,7 @@ def test_bf_empty():
     assert bf("", "") == ()
 
 def test_bf_invalid_input():
-    assert bf("Mercury", "Uranus") == ()
+    assert bf("Mercury", "Venus") == ()
 
-def test_bf_same_planet():
-    assert bf("Mercury", "Mercury") == ()
+def test_bf_invalid_input_2():
+    assert bf("Jupiter", "Mars") == ()

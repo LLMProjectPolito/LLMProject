@@ -63,7 +63,9 @@ def eat(number, need, remaining):
     """
     if number == 0:
         return [remaining, 0]
-    elif number < need:
+    elif number == need:
+        return [remaining, 0]
+    elif number > need:
         return [remaining, 0]
     else:
         return [remaining, 0]
@@ -99,7 +101,9 @@ def eat(number, need, remaining):
     """
     if number == 0:
         return [remaining, 0]
-    elif number < need:
+    elif number == need:
+        return [remaining, 0]
+    elif number > need:
         return [remaining, 0]
     else:
         return [remaining, 0]

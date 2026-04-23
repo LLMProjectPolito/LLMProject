@@ -54,7 +54,7 @@ def do_algebra(operator, operand):
     """
     expression = str(operand[0])
     for i in range(len(operator)):
-        expression += ' ' + operator[i] + ' ' + str(operand[i+1])
+        expression += operator[i] + str(operand[i+1])
     return eval(expression)
 
 class TestDoAlgebra:
@@ -98,10 +98,15 @@ class TestDoAlgebra:
         operand = [2, 3, 4, 5, 2]
         assert do_algebra(operator, operand) == 7
 
-    def test_multiple_operations(self):
-        operator = ['+', '*', '//', '**']
-        operand = [2, 3, 4, 5, 2]
-        assert do_algebra(operator, operand) == 34
+    def test_multiple_additions(self):
+        operator = ['+', '+']
+        operand = [1, 2, 3]
+        assert do_algebra(operator, operand) == 6
+
+    def test_multiple_subtractions(self):
+        operator = ['-', '-']
+        operand = [5, 2, 1]
+        assert do_algebra(operator, operand) == 2
 
     def test_zero_operand(self):
         operator = ['+']
@@ -113,7 +118,12 @@ class TestDoAlgebra:
         operand = [1000, 2000]
         assert do_algebra(operator, operand) == 2000000
 
-    def test_negative_result(self):
-        operator = ['-']
-        operand = [2, 5]
-        assert do_algebra(operator, operand) == -3
+    def test_exponentiation_with_zero(self):
+        operator = ['**']
+        operand = [2, 0]
+        assert do_algebra(operator, operand) == 1
+
+    def test_exponentiation_with_one(self):
+        operator = ['**']
+        operand = [5, 1]
+        assert do_algebra(operator, operand) == 5

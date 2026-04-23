@@ -32,7 +32,7 @@ def solve(s):
             res += char.lower()
         else:
             res += char
-    if not any('a' <= c <= 'z' for c in s):
+    if not any('a' <= char <= 'z' for char in s):
         return s[::-1]
     return res
 
@@ -64,4 +64,4 @@ def test_solve_with_special_characters():
     assert solve("!@#$%^") == "^%$#@!"
 
 def test_solve_long_string():
-    assert solve("This is a long string with mixed case and numbers.") == "tHIS iS A LoNg sTRiNg wITH mIXed cASE AnD nUMbers."
+    assert solve("This is a long string with mixed case and numbers.") == "tHIS IS A LONG STRING WITH MIXED CASE AND NUMBERS."

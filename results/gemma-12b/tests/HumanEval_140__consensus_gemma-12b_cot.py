@@ -38,17 +38,20 @@ def test_only_spaces():
 def test_mixed_spaces():
     assert fix_spaces("A B  C   D") == "A_B--C-D"
 
-def test_long_string_with_multiple_consecutive_spaces():
-    assert fix_spaces("This is a very long string with   multiple    consecutive spaces.") == "This_is_a_very_long_string_with--multiple---consecutive_spaces."
+def test_long_string_with_consecutive_spaces():
+    assert fix_spaces("This is a very long string with   multiple    consecutive spaces.") == "This_is_a_very_long_string_with---multiple----consecutive_spaces."
 
-def test_string_with_tabs_and_spaces():
-    assert fix_spaces("This\tis\ta\tstring\twith\tspaces.") == "This_is_a_string_with_spaces."
+def test_string_with_tabs():
+    assert fix_spaces("Example\t1") == "Example_1"
 
-def test_string_with_newline_and_spaces():
-    assert fix_spaces("This\nis\na\nstring\twith\tspaces.") == "This_is_a_string_with_spaces."
+def test_string_with_newlines():
+    assert fix_spaces("Example\n1") == "Example_1"
 
-def test_string_with_special_characters_and_spaces():
-    assert fix_spaces("!@#$%^&*()_+=-`~[]\{}|;':\",./<>? Example") == "!@#$%^&*()_+=-`~[]\{}|;':\",./<>?_Example"
+def test_string_with_mixed_whitespace():
+    assert fix_spaces("Example\t 1 \n 2") == "Example_1__2"
 
-def test_string_with_numbers_and_spaces():
-    assert fix_spaces("123 456   789") == "123_456--789"
+def test_string_with_only_consecutive_spaces_at_start():
+    assert fix_spaces("   Example") == "-Example"
+
+def test_string_with_only_consecutive_spaces_at_end():
+    assert fix_spaces("Example   ") == "Example-"

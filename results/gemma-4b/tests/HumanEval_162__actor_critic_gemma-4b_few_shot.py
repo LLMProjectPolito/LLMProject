@@ -69,8 +69,8 @@ def test_max_single_element():
 def test_max_duplicate_elements():
     assert get_max([2, 2, 2, 2]) == 2
 
-def test_max_negative_and_positive():
-    assert get_max([-1, 0, 1]) == 1
+def test_max_mixed_positive_negative():
+    assert get_max([-1, 2, -3, 4]) == 4
 
 def test_string_to_md5_basic():
     assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
@@ -86,4 +86,4 @@ def test_string_to_md5_with_special_chars():
     assert string_to_md5('!@#$%^') == 'b10a8db164e0754105b7a99be72e3fe5'
 
 def test_string_to_md5_unicode():
-    assert string_to_md5('你好世界') == 'f39b05d4899964699999999999999999'
+    assert string_to_md5('你好世界') == 'f39b05d4899996969361699999999999'

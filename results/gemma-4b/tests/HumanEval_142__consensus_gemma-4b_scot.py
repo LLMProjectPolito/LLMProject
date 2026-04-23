@@ -56,35 +56,28 @@ def test_multiple_elements_none_multiple_of_3_or_4():
     assert sum_squares([1, 2, 3, 4, 5]) == 15
 
 def test_multiple_elements_some_multiple_of_3():
-    assert sum_squares([1, 2, 3, 4, 5]) == 55
+    assert sum_squares([1, 2, 3, 4, 5]) == 1 + 4 + 9 + 16 + 25 == 55
 
 def test_multiple_elements_some_multiple_of_4_not_3():
-    assert sum_squares([1, 2, 3, 4, 5]) == 103
+    assert sum_squares([1, 2, 3, 4, 5]) == 1 + 4 + 9 + 64 + 25 == 103
 
 def test_multiple_elements_multiple_of_3_and_4():
-    assert sum_squares([1, 2, 3, 4, 5]) == 103
+    assert sum_squares([1, 2, 3, 4, 5]) == 1 + 4 + 9 + 64 + 25 == 103
 
 def test_multiple_of_3_at_start():
-    assert sum_squares([3, 1, 2, 4, 5]) == 103
+    assert sum_squares([3, 1, 2, 4, 5]) == 9 + 1 + 4 + 64 + 25 == 103
 
 def test_multiple_of_4_at_start():
-    assert sum_squares([4, 1, 2, 3, 5]) == 103
+    assert sum_squares([4, 1, 2, 3, 5]) == 64 + 1 + 4 + 9 + 25 == 103
 
 def test_multiple_of_3_and_4():
-    assert sum_squares([3, 4, 1, 2, 5]) == 103
+    assert sum_squares([3, 4, 1, 2, 5]) == 9 + 64 + 1 + 4 + 25 == 103
 
 def test_large_list():
-    lst = list(range(10))
-    expected_sum = 0
-    for i in range(len(lst)):
-        if i % 3 == 0:
-            expected_sum += lst[i]**2
-        elif i % 4 == 0 and i % 3 != 0:
-            expected_sum += lst[i]**3
-    assert sum_squares(lst) == expected_sum
+    assert sum_squares([i for i in range(10)]) == 385
 
 def test_negative_numbers():
-    assert sum_squares([-1, -2, -3]) == 12
+    assert sum_squares([-1, -2, -3, -4, -5]) == -1 - 4 - 9 - 64 - 25 == -103
 
 def test_mixed_positive_negative():
-    assert sum_squares([-1, 2, -3, 4]) == 76
+    assert sum_squares([-1, 2, -3, 4, -5]) == -1 + 4 - 9 + 64 - 25 == 33

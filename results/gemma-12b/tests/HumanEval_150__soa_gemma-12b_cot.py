@@ -40,20 +40,17 @@ class TestXorY:
         assert x_or_y(1, 10, 20) == 20  # 1 is not prime
         assert x_or_y(0, 5, 10) == 10  # 0 is not prime
         assert x_or_y(-5, 1, 2) == 2 # Negative numbers are not prime
-        assert x_or_y(23, 100, 50) == 100
-        assert x_or_y(29, 1, 2) == 1
+        assert x_or_y(23, 100, 200) == 100
+        assert x_or_y(29, 500, 1000) == 500
 
-    def test_large_prime(self):
-        assert x_or_y(101, 50, 100) == 50
-
-    def test_large_non_prime(self):
-        assert x_or_y(100, 50, 100) == 100
+    def test_large_numbers(self):
+        assert x_or_y(101, 1000, 2000) == 1000
+        assert x_or_y(103, 5000, 10000) == 5000
+        assert x_or_y(997, 1, 2) == 1
+        assert x_or_y(1000, 10, 20) == 20
 
     def test_x_and_y_equal(self):
         assert x_or_y(7, 5, 5) == 5
         assert x_or_y(10, 5, 5) == 5
         assert x_or_y(2, 5, 5) == 5
-
-    def test_zero_values(self):
-        assert x_or_y(7, 0, 0) == 0
-        assert x_or_y(10, 0, 0) == 0
+        assert x_or_y(4, 5, 5) == 5

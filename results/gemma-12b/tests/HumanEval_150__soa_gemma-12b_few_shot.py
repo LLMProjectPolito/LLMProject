@@ -34,26 +34,30 @@ class TestXorY:
         assert x_or_y(4, 10, 20) == 20
         assert x_or_y(6, 50, 100) == 100
         assert x_or_y(9, 2, 4) == 4
-        assert x_or_y(10, 100, 50) == 50
+        assert x_or_y(10, 1, 2) == 2
 
     def test_edge_cases(self):
-        assert x_or_y(1, 5, 10) == 10  # 1 is not prime
-        assert x_or_y(0, 10, 20) == 20  # 0 is not prime
+        assert x_or_y(1, 10, 20) == 20  # 1 is not prime
+        assert x_or_y(0, 5, 10) == 10  # 0 is not prime
         assert x_or_y(-5, 1, 2) == 2 # Negative numbers are not prime
         assert x_or_y(2, 0, 0) == 0
         assert x_or_y(3, 0, 0) == 0
 
     def test_large_prime(self):
-        assert x_or_y(101, 1000, 500) == 1000
+        assert x_or_y(101, 50, 100) == 50
 
     def test_large_non_prime(self):
-        assert x_or_y(100, 1000, 500) == 500
+        assert x_or_y(100, 50, 100) == 100
 
     def test_x_and_y_equal(self):
         assert x_or_y(7, 5, 5) == 5
-        assert x_or_y(4, 5, 5) == 5
+        assert x_or_y(10, 5, 5) == 5
+        assert x_or_y(2, 5, 5) == 5
 
-    def test_zero_input(self):
-        assert x_or_y(0, 0, 0) == 0
-        assert x_or_y(1, 0, 0) == 0
-        assert x_or_y(2, 0, 0) == 0
+    def test_type_checking(self):
+        with pytest.raises(TypeError):
+            x_or_y("7", 34, 12)
+        with pytest.raises(TypeError):
+            x_or_y(7, "34", 12)
+        with pytest.raises(TypeError):
+            x_or_y(7, 34, "12")

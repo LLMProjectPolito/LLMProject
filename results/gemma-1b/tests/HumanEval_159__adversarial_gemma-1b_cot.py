@@ -50,7 +50,7 @@ def eat(number, need, remaining):
         the number of carrots that you have eaten.
     * need : integer
         the number of carrots that you need to eat.
-    * @remaining : integer
+    * remaining : integer
         the number of remaining carrots thet exist in stock
     
     Constrain:
@@ -62,8 +62,6 @@ def eat(number, need, remaining):
     """
     total_eaten = number
     remaining_after_meals = remaining
-    
     if number < need:
         remaining_after_meals = remaining - need
-    
     return [total_eaten, remaining_after_meals]

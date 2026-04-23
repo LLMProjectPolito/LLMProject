@@ -45,7 +45,7 @@ def test_single_element_multiple_of_4_not_3():
     assert sum_squares([4]) == 64
 
 def test_single_element_not_multiple_of_3_or_4():
-    assert sum_squares([2]) == 2
+    assert sum_squares([5]) == 5
 
 def test_mixed_elements_multiple_of_3_and_4():
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 4 + 9 + 64 + 25 + 36
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1**2 + 2**2 + 3**2 + 4**3 + 5**2 + 6**2

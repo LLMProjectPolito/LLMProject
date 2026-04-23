@@ -47,9 +47,9 @@ def test_string_with_unicode_characters():
     assert solve("你好世界") == "你好世界"
 
 def test_string_with_numbers_and_special_chars():
-    assert solve("123!@#") == "!@#321"
+    assert solve("123!@#") == "123!@#"
 
-def test_string_with_letters_numbers_and_special_chars():
+def test_string_with_letters_and_numbers_and_special_chars():
     assert solve("a1b!2c@") == "A1B!2C@"
 
 def test_string_with_leading_and_trailing_spaces():

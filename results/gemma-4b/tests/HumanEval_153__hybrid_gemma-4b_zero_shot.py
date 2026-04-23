@@ -78,14 +78,8 @@ def test_extension_with_special_characters():
 def test_extension_with_numbers():
     assert Strongest_Extension("my_class", ["123", "abc"]) == "my_class.123"
 
-def test_extension_with_uppercase_and_lowercase():
-    assert Strongest_Extension("my_class", ["aBc", "DeF"]) == "my_class.aBc"
-
-def test_class_name_with_special_characters():
-    assert Strongest_Extension("!@#class", ["abc", "def"]) == "!@#class.abc"
-
 def test_class_name_with_numbers():
-    assert Strongest_Extension("123class", ["abc", "def"]) == "123class.abc"
+    assert Strongest_Extension("123class", ["AA", "BB"]) == "123class.AA"
 
 def test_extension_name_with_class_name():
     assert Strongest_Extension("my_class", ["my_class"]) == "my_class.my_class"

@@ -17,10 +17,10 @@ def find_max(words):
 # - Empty list input
 # - List with a single word
 # - List with multiple words, where one word has the maximum unique characters
-# - List with multiple words, where multiple words have the same maximum unique characters (lexicographical comparison)
-# - List with words containing repeated characters
+# - List with multiple words, where multiple words have the same maximum unique characters (lexicographical order matters)
+# - List with words containing duplicate characters
 # - List with empty strings
-# - List with mixed case strings (should be case-sensitive)
+# - List with special characters
 
 # STEP 2: PLAN
 # Test functions:
@@ -28,9 +28,9 @@ def find_max(words):
 # - test_single_word: Test with a list containing a single word.
 # - test_multiple_words_unique_max: Test with multiple words, where one has the maximum unique characters.
 # - test_multiple_words_same_max_lexicographical: Test with multiple words having the same maximum unique characters, checking lexicographical order.
-# - test_words_with_repeated_characters: Test with words containing repeated characters.
-# - test_empty_strings: Test with a list containing empty strings.
-# - test_mixed_case_strings: Test with mixed-case strings to ensure case sensitivity.
+# - test_words_with_duplicate_characters: Test with words containing duplicate characters.
+# - test_empty_strings: Test with empty strings in the list.
+# - test_special_characters: Test with words containing special characters.
 
 # STEP 3: CODE
 import pytest
@@ -74,11 +74,20 @@ class TestFindMax:
     def test_multiple_words_same_max_lexicographical(self):
         assert find_max(["name", "enam", "game"]) == "enam"
 
-    def test_words_with_repeated_characters(self):
+    def test_words_with_duplicate_characters(self):
         assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
     def test_empty_strings(self):
         assert find_max(["", "abc", ""]) == "abc"
 
-    def test_mixed_case_strings(self):
-        assert find_max(["Name", "name", "STRING", "string"]) == "Name"
+    def test_special_characters(self):
+        assert find_max(["!@#", "abc", "$%^"]) == "!@#"
+
+    def test_mixed_case(self):
+        assert find_max(["AbC", "aBc", "abc"]) == "AbC"
+
+    def test_numbers(self):
+        assert find_max(["123", "12", "1"]) == "123"
+
+    def test_long_strings(self):
+        assert find_max(["abcdefghijklmnopqrstuvwxyz", "abc"]) == "abcdefghijklmnopqrstuvwxyz"

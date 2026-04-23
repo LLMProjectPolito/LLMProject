@@ -19,7 +19,7 @@ def bf(planet1, planet2):
 # STEP 1: REASONING
 # The function `bf` takes two planet names as strings and returns a tuple of planets
 # located between them in terms of proximity to the sun, sorted by proximity.
-# The planets are Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune.
+# The planets are: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune.
 # The function should handle invalid planet names by returning an empty tuple.
 # The test suite needs to cover:
 # 1. Valid planet names with planet1 before planet2.
@@ -58,7 +58,7 @@ def bf(planet1, planet2):
     bf("Earth", "Mercury") ==> ("Venus")
     bf("Mercury", "Uranus") ==> ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
     '''
-    planets = ("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
+    planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
     if planet1 not in planets or planet2 not in planets:
         return ()
 

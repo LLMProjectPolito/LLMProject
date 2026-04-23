@@ -25,7 +25,6 @@ def do_algebra(operator, operand):
 
     """
 
-```python
 import pytest
 import math
 
@@ -75,14 +74,14 @@ def do_algebra(operator, operand):
             return op2 * op1
         elif op1 == '/':
             if op2 == 0:
-                return 0
+                return "Division by zero"
             return op2 // op2
         elif op1 == '**':
-            return op2 ** op2
+            return op2 ** op1
         else:
-            return 0
+            return "Invalid operator"
     except IndexError:
-        return 0
+        return "IndexError"
 
 def do_algebra(operator, operand):
     """
@@ -130,14 +129,14 @@ def do_algebra(operator, operand):
             return op2 * op1
         elif op1 == '/':
             if op2 == 0:
-                return 0
+                return "Division by zero"
             return op2 // op2
         elif op1 == '**':
-            return op2 ** op2
+            return op2 ** op1
         else:
-            return 0
+            return "Invalid operator"
     except:
-        return 0
+        return "IndexError"
 
 def test_do_algebra():
     assert do_algebra('+', 2) == 4
@@ -169,63 +168,8 @@ def test_do_algebra():
     assert do_algebra('-', 2) == 0
     assert do_algebra('*', 2) == 4
     assert do_algebra('/', 2) == 1
-    assert do_algebra('/', 2) == 0
-    assert do_algebra('+', 2) == 2
-    assert do_algebra('-', 2) == 0
-    assert do_algebra('*', 2) == 4
-    assert do_algebra('/', 2) == 1
-    assert do_algebra('/', 2) == 0
-    assert do_algebra('+', 2) == 2
-    assert do_algebra('-', 2) == 0
-    assert do_algebra('*', 2) == 4
-    assert do_algebra('/', 2) == 1
-    assert do_algebra('/', 2) == 0
-    assert do_algebra('+', 2) == 2
-    assert do_algebra('-', 2) == 0
-    assert do_algebra('*', 2) == 4
-    assert do_algebra('/', 2) == 1
-    assert do_algebra('/', 2) == 0
-    assert do_algebra('+', 2) == 2
-    assert do_algebra('-', 2) == 0
-    assert do_algebra('*', 2) == 4
-    assert do_algebra('/', 2) == 1
-    assert do_algebra('/', 2) == 0
-    assert do_algebra('+', 2) == 2
-    assert do_algebra('-', 2) == 0
-    assert do_algebra('*', 2) == 4
-    assert do_algebra('/', 2) == 1
-    assert do_algebra('/', 2) == 0
-    assert do_algebra('+', 2) == 2
-    assert do_algebra('-', 2) == 0
-    assert do_algebra('*', 2) == 4
-    assert do_algebra('/', 2) == 1
-    assert do_algebra('/', 2) == 0
-    assert do_algebra('+', 2) == 2
-    assert do_algebra('-', 2) == 0
-    assert do_algebra('*', 2) == 4
-    assert do_algebra('/', 2) == 1
-    assert do_algebra('/', 2) == 0
-    assert do_algebra('+', 2) == 2
-    assert do_algebra('-', 2) == 0
-    assert do_algebra('*', 2) == 4
-    assert do_algebra('/', 2) == 1
-    assert do_algebra('/', 2) == 0
-    assert do_algebra('+', 2) == 2
-    assert do_algebra('-', 2) == 0
-    assert do_algebra('*', 2) == 4
-    assert do_algebra('/', 2) == 1
-    assert do_algebra('/', 2) == 0
-    assert do_algebra('+', 2) == 2
-    assert do_algebra('-', 2) == 0
-    assert do_algebra('*', 2) == 4
-    assert do_algebra('/', 2) == 1
-    assert do_algebra('/', 2) == 0
-    assert do_algebra('+', 2) == 2
-    assert do_algebra('-', 2) == 0
-    assert do_algebra('*', 2) == 4
-    assert do_algebra('/', 2) == 1
-    assert do_algebra('/', 2) == 0
-    assert do_algebra('+', 2) == 2
-    assert do_algebra('-', 2) == 0
-    assert do_algebra('*', 2) == 4
-    assert do_algebra('/', 2) == 1
+
+    print("All tests passed!")
+
+if __name__ == "__main__":
+    test_do_algebra()

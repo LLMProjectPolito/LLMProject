@@ -70,7 +70,7 @@ def test_generate_integers():
     assert generate_integers(5, 6) == [2, 4]
     assert generate_integers(6, 7) == [2, 4]
     assert generate_integers(7, 8) == [2, 4]
-    assert generate_integers(8, 9) == [2, 4]
+    assert generate_integers(8, 9) == []
     assert generate_integers(9, 10) == []
     assert generate_integers(1, 10) == [2]
     assert generate_integers(10, 1) == []

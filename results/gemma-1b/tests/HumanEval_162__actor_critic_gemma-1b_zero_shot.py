@@ -32,16 +32,16 @@ def test_string_with_spaces():
     assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
 
 def test_string_with_numbers():
-    assert string_to_md5('12345') == 'a68f7a2d9f8b9c0e1d2b3c4f'
+    assert string_to_md5('12345') == 'a69f8d9c7b8e5d1f2c3a4b5d6'
 
 def test_string_with_special_characters():
-    assert string_to_md5('!@#$%^') == 'a68f7a2d9f8b9c0e1d2b3c4f'
+    assert string_to_md5('!@#$%^') == 'a69f8d9c7b8e5d1f2c3a4b5d6'
 
 def test_long_string():
-    assert string_to_md5('This is a very long string to test the md5 hash function.') == 'a68f7a2d9f8b9c0e1d2b3c4f'
+    assert string_to_md5('This is a very long string to test the md5 hash function.') == 'a69f8d9c7b8e5d1f2c3a4b5d6'
 
 def test_string_with_unicode():
-    assert string_to_md5('你好世界') == 'a68f7a2d9f8b9c0e1d2b3c4f'
+    assert string_to_md5('你好世界') == 'a69f8d9c7b8e5d1f2c3a4b5d6'
 
 def test_string_with_mixed_case():
     assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'

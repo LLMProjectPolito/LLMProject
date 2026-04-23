@@ -36,7 +36,8 @@ def fix_spaces(text):
             if count > 2:
                 result += '-'
                 count = 0
-            result += char
+            else:
+                result += char
     return result
 
 # Focus: Type Scenarios
@@ -75,5 +76,6 @@ def fix_spaces(text):
             if count > 2:
                 result += '-'
                 count = 0
-            result += char
+            else:
+                result += char
     return result

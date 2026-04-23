@@ -17,31 +17,33 @@ def get_max_triples(n):
 import pytest
 from your_module import get_max_triples  # Replace your_module
 
+def test_get_max_triples_n_negative():
+    """Test with a negative input. The function should return 0."""
+    assert get_max_triples(-5) == 0
+
+@pytest.mark.parametrize("n, expected", [(5, 1), (6, 2), (7, 3)])
+def test_get_max_triples_n_range(n, expected):
+    """Test for n = 5, 6, 7. Expected values are 1, 2, 3 respectively."""
+    assert get_max_triples(n) == expected
+
+def test_get_max_triples_n_intermediate():
+    """Test with intermediate values of n."""
+    assert get_max_triples(8) == 6
+    assert get_max_triples(9) == 8
+    assert get_max_triples(11) == 14
+    assert get_max_triples(12) == 17
+
+def test_get_max_triples_n_large():
+    """Test with a large value of n (20, 50, 100) to check for potential overflow or performance issues."""
+    assert get_max_triples(20) == 114
+    assert get_max_triples(50) == 434
+    assert get_max_triples(100) == 1617
+
 def test_get_max_triples_n_0():
-    assert get_max_triples(0) == 0  # Edge case: n = 0, no triples possible
+    """Test with n = 0. The function should return 0."""
+    assert get_max_triples(0) == 0
 
-@pytest.mark.parametrize("n", [1, 2])
-def test_get_max_triples_n_less_than_3(n):
-    assert get_max_triples(n) == 0  # Edge cases: n = 1, 2, no triples possible
-
-def test_get_max_triples_n_3():
-    assert get_max_triples(3) == 0  # Edge case: n = 3, no triples possible
-
-@pytest.mark.parametrize("n", [5, 6, 7])
-def test_get_max_triples_n_range(n):
-    assert get_max_triples(n) == n - 4  # Tests for n = 5, 6, 7
-
-@pytest.mark.parametrize("n", [10, 15])
-def test_get_max_triples_n_larger_range(n):
-    assert get_max_triples(n) == (n * (n - 1) * (n - 2)) // 6  # Tests for n = 10, 15
-
-def test_get_max_triples_large_n():
-    assert get_max_triples(100) == 1617  # Large n test to check for performance/overflow
-
-def test_get_max_triples_negative_n():
-    with pytest.raises(TypeError):
-        get_max_triples(-5)  # Test for negative input
-
-def test_get_max_triples_non_integer_n():
-    with pytest.raises(TypeError):
-        get_max_triples(3.14)  # Test for non-integer input
+@pytest.mark.parametrize("n", [1, 2, 3])
+def test_get_max_triples_n_less_than_4(n):
+    """Test with n < 4. The function should return 0."""
+    assert get_max_triples(n) == 0

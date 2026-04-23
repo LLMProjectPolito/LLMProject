@@ -48,23 +48,20 @@ class TestOrderByPoints:
     def test_example_1(self):
         assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
 
-    def test_similar_digit_sums(self):
+    def test_same_digit_sum(self):
         assert order_by_points([12, 21, 3]) == [3, 12, 21]
 
     def test_zero(self):
         assert order_by_points([0, 1, -1]) == [0, 1, -1]
 
     def test_large_numbers(self):
-        assert order_by_points([123, 45, 6]) == [6, 45, 123]
+        assert order_by_points([123, 45, 6, 789]) == [6, 45, 123, 789]
 
     def test_duplicate_numbers(self):
         assert order_by_points([1, 1, 1]) == [1, 1, 1]
 
     def test_negative_and_positive_same_digit_sum(self):
-        assert order_by_points([-10, 10]) == [-10, 10]
+        assert order_by_points([-10, 10, 1]) == [-10, 10, 1]
 
     def test_complex_case(self):
         assert order_by_points([5, 15, 2, 25, 3]) == [2, 5, 3, 15, 25]
-
-    def test_single_element(self):
-        assert order_by_points([7]) == [7]

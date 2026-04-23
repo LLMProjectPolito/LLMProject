@@ -17,8 +17,6 @@ def Strongest_Extension(class_name, extensions):
     for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
     """
 
-import pytest
-
 def Strongest_Extension(class_name, extensions):
     """You will be given the name of a class (a string) and a list of extensions.
     The extensions are to be used to load additional classes to the class. The
@@ -58,6 +56,8 @@ def Strongest_Extension(class_name, extensions):
             strongest_extension = extension
     
     return class_name + "." + strongest_extension
+
+import pytest
 
 class TestStrongestExtension:
     def test_example_1(self):

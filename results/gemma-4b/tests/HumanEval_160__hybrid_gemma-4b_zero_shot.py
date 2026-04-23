@@ -66,47 +66,6 @@ def do_algebra(operator, operand):
             result **= operand[i+1]
     return result
 
-class TestDoAlgebra:
-
-    def test_addition_subtraction(self):
-        assert do_algebra(['+', '-'], [2, 3, 4, 5]) == 9
-
-    def test_multiplication_floor_division(self):
-        assert do_algebra(['*', '//'], [2, 3, 4, 5]) == 4
-
-    def test_exponentiation_addition(self):
-        assert do_algebra(['**', '+'], [2, 3, 4, 5]) == 125
-
-    def test_multiple_operations(self):
-        assert do_algebra(['+', '*', '-', '**'], [2, 3, 4, 5, 6]) == 12
-
-    def test_floor_division_exponentiation(self):
-        assert do_algebra(['//', '**'], [2, 3, 4, 5]) == 1
-
-    def test_single_operand(self):
-        assert do_algebra(['+', '-'], [2, 3]) == 2
-
-    def test_single_operator(self):
-        assert do_algebra(['+'], [2, 3, 4, 5]) == 2
-
-    def test_large_numbers(self):
-        assert do_algebra(['*', '//'], [1000, 2000, 3000, 4000]) == 1000
-
-    def test_zero_operand(self):
-        assert do_algebra(['+', '-'], [2, 0, 3, 4, 5]) == 2
-
-    def test_zero_operator(self):
-        assert do_algebra([], [2, 3, 4, 5]) == 2
-
-    def test_negative_numbers(self):
-        assert do_algebra(['+', '-'], [-2, 3, 4, 5]) == 0
-
-    def test_exponentiation_with_zero_exponent(self):
-        assert do_algebra(['**'], [2, 0]) == 1
-
-    def test_complex_expression(self):
-        assert do_algebra(['+', '*', '//', '-'], [2, 3, 4, 5, 6]) == 1
-
 def test_addition():
     operator = ['+', '+']
     operand = [2, 3, 4]
@@ -135,7 +94,7 @@ def test_exponentiation():
 def test_mixed_operations():
     operator = ['+', '*', '-', '**']
     operand = [2, 3, 4, 5, 2]
-    assert do_algebra(operator, operand) == 24
+    assert do_algebra(operator, operand) == 26
 
 def test_single_operand():
     operator = ['+']
@@ -154,8 +113,8 @@ def test_empty_operand():
 
 def test_large_numbers():
     operator = ['*', '**']
-    operand = [2, 3, 10]
-    assert do_algebra(operator, operand) == 240
+    operand = [2, 10, 3]
+    assert do_algebra(operator, operand) == 8192
 
 def test_zero_operand():
     operator = ['+', '*']
@@ -175,4 +134,4 @@ def test_exponentiation_zero():
 def test_complex_expression():
     operator = ['+', '*', '//', '-']
     operand = [10, 2, 3, 4, 5]
-    assert do_algebra(operator, operand) == 10
+    assert do_algebra(operator, operand) == 13

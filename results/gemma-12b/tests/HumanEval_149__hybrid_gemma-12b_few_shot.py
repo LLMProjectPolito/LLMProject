@@ -36,17 +36,6 @@ def sorted_list_sum(lst):
     even_length_strings.sort(key=lambda s: (len(s), s))
     return even_length_strings
 
-def is_palindrome(s: str) -> bool:
-    """ Checks if a string is a palindrome """
-    return s == s[::-1]
-
-def get_max(arr: list[int]) -> int:
-    """ Returns the maximum element in a list, or None if empty """
-    if not arr:
-        return None
-    return max(arr)
-
-
 @pytest.mark.parametrize("input_list, expected_output", [
     (["aa", "a", "aaa"], ["aa"]),
     (["ab", "a", "aaa", "cd"], ["ab", "cd"]),
@@ -60,17 +49,17 @@ def get_max(arr: list[int]) -> int:
     (["abc", "def", "ghi"], []),
     (["abc", "def", "ghi", "jkl"], ["abc", "def", "ghi", "jkl"]),
     (["abc", "def", "ghi", "jkl", "mno"], ["abc", "def", "ghi", "jkl"]),
-    (["abc", "def", "ghi", "jkl", "mno", "pqr"], ["abc", "def", "ghi", "jkl", "mno"]),
-    (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu"], ["abc", "def", "ghi", "jkl", "mno"]),
-    (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx"], ["abc", "def", "ghi", "jkl", "mno"]),
-    (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz"], ["abc", "def", "ghi", "jkl", "mno"]),
-    (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz", "aaa"], ["abc", "def", "ghi", "jkl", "mno"]),
-    (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz", "aaa", "bbb"], ["abc", "def", "ghi", "jkl", "mno"]),
+    (["abc", "def", "ghi", "jkl", "mno", "pqr"], ["abc", "def", "ghi", "jkl"]),
+    (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu"], ["abc", "def", "ghi", "jkl"]),
+    (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx"], ["abc", "def", "ghi", "jkl"]),
+    (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz"], ["abc", "def", "ghi", "jkl"]),
+    (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz", "aaa"], ["abc", "def", "ghi", "jkl"]),
+    (["abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz", "aaa", "bbb"], ["abc", "def", "ghi", "jkl"]),
 ])
 def test_sorted_list_sum(input_list, expected_output):
     assert sorted_list_sum(input_list) == expected_output
 
-def test_sorted_list_sum_empty():
+def test_sorted_list_sum_empty_list():
     assert sorted_list_sum([]) == []
 
 def test_sorted_list_sum_all_odd():
@@ -84,6 +73,19 @@ def test_sorted_list_sum_same_length_alphabetical():
 
 def test_sorted_list_sum_mixed_lengths_and_alphabetical():
     assert sorted_list_sum(["abc", "ab", "abcd", "a", "aba"]) == ["ab"]
+
+def test_sorted_list_sum_duplicates():
+    assert sorted_list_sum(["aa", "aa", "bb"]) == ["aa", "aa", "bb"]
+
+def is_palindrome(s: str) -> bool:
+    """ Checks if a string is a palindrome """
+    return s == s[::-1]
+
+def get_max(arr: list[int]) -> int:
+    """ Returns the maximum element in a list, or None if empty """
+    if not arr:
+        return None
+    return max(arr)
 
 def test_palindrome_basic():
     assert is_palindrome('radar') == True

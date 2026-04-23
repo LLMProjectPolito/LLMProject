@@ -40,28 +40,37 @@ def int_to_mini_roman(number):
 
     return result
 
-def test_int_to_mini_roman_examples():
-    assert int_to_mini_roman(19) == 'xix'
-    assert int_to_mini_roman(152) == 'clii'
-    assert int_to_mini_roman(426) == 'cdxxvi'
+@pytest.mark.parametrize("number, expected", [
+    (19, "xix"),
+    (152, "clii"),
+    (426, "cdxxvi"),
+])
+def test_int_to_mini_roman_examples(number, expected):
+    assert int_to_mini_roman(number) == expected
 
-def test_int_to_mini_roman_boundary_1():
-    assert int_to_mini_roman(1) == 'i'
+@pytest.mark.parametrize("number, expected", [
+    (1, "i"),
+    (1000, "m"),
+])
+def test_int_to_mini_roman_edge_cases(number, expected):
+    assert int_to_mini_roman(number) == expected
 
-def test_int_to_mini_roman_boundary_1000():
-    assert int_to_mini_roman(1000) == 'm'
-
-def test_int_to_mini_roman_edge_cases():
-    assert int_to_mini_roman(4) == 'iv'
-    assert int_to_mini_roman(9) == 'ix'
-    assert int_to_mini_roman(40) == 'xl'
-    assert int_to_mini_roman(90) == 'xc'
-    assert int_to_mini_roman(400) == 'cd'
-    assert int_to_mini_roman(900) == 'cm'
-
-def test_int_to_mini_roman_random_values():
-    assert int_to_mini_roman(3) == 'iii'
-    assert int_to_mini_roman(58) == 'lviii'
-    assert int_to_mini_roman(1994) == 'mcmxciv' # Out of range, but tests the logic
-    assert int_to_mini_roman(399) == 'cccxcmix'
-    assert int_to_mini_roman(88) == 'lxxxviii'
+@pytest.mark.parametrize("number, expected", [
+    (3, "iii"),
+    (4, "iv"),
+    (5, "v"),
+    (6, "vi"),
+    (7, "vii"),
+    (8, "viii"),
+    (9, "ix"),
+    (10, "x"),
+    (40, "xl"),
+    (50, "l"),
+    (90, "xc"),
+    (100, "c"),
+    (400, "cd"),
+    (500, "d"),
+    (900, "cm"),
+])
+def test_int_to_mini_roman_common_values(number, expected):
+    assert int_to_mini_roman(number) == expected

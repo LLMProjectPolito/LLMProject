@@ -40,6 +40,7 @@ def get_max(arr: list[int]) -> int:
     return max(arr)
 
 
+# Fix Spaces Tests
 def test_fix_spaces_no_spaces():
     assert fix_spaces("Example") == "Example"
 
@@ -66,17 +67,11 @@ def test_fix_spaces_only_spaces():
     assert fix_spaces("   ") == "-"
 
 def test_fix_spaces_mixed_spaces():
-    assert fix_spaces("  Example   7  ") == "-Example-7_"
-    assert fix_spaces("  Example    7  ") == "-Example-7_"
+    assert fix_spaces("  Example    7  ") == "_Example-7_"
 
 def test_fix_spaces_long_string_with_multiple_space_groups():
     long_string = "This is a long string with   multiple   space   groups."
     expected_string = "This_is_a_long_string_with-multiple-space-groups."
-    assert fix_spaces(long_string) == expected_string
-
-def test_fix_spaces_long_string_with_multiple_space_patterns():
-    long_string = "This is a long string with   multiple   spaces and some  single spaces."
-    expected_string = "This_is_a_long_string_with-multiple-spaces_and_some_single_spaces."
     assert fix_spaces(long_string) == expected_string
 
 def test_fix_spaces_string_with_tabs():
@@ -85,19 +80,7 @@ def test_fix_spaces_string_with_tabs():
 def test_fix_spaces_string_with_newlines():
     assert fix_spaces("Example\n1") == "Example_1" # Newlines are treated as single spaces
 
-def test_fix_spaces_string_with_carriage_returns():
-    assert fix_spaces("Example\r1") == "Example_1" # Carriage returns are treated as single spaces
-
-def test_fix_spaces_consecutive_spaces_at_start():
-    assert fix_spaces("   Hello") == "-Hello"
-
-def test_fix_spaces_consecutive_spaces_at_end():
-    assert fix_spaces("Hello   ") == "Hello-"
-
-def test_fix_spaces_empty_string():
-    assert fix_spaces("") == ""
-
-# Palindrome tests
+# Palindrome Tests
 def test_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
@@ -105,21 +88,18 @@ def test_palindrome_basic():
 def test_palindrome_empty():
     assert is_palindrome('') == True
 
-def test_palindrome_single_char():
-    assert is_palindrome('a') == True
-
-def test_palindrome_mixed_case():
-    assert is_palindrome('Racecar') == False
-
-# Max tests
+# Get Max Tests
 def test_max_positive():
     assert get_max([1, 2, 3]) == 3
 
 def test_max_empty():
     assert get_max([]) == None
 
-def test_max_negative():
-    assert get_max([-1, -2, -3]) == -1
+def test_fix_spaces_three_spaces():
+    assert fix_spaces("abc   def") == "abc-def"
 
-def test_max_mixed():
-    assert get_max([-1, 2, -3, 4]) == 4
+def test_fix_spaces_four_spaces():
+    assert fix_spaces("abc    def") == "abc-def"
+
+def test_fix_spaces_empty_string():
+    assert fix_spaces("") == ""

@@ -45,35 +45,26 @@ class TestDoubleTheDifference:
     def test_negative_numbers(self):
         assert double_the_difference([-1, -2, -3]) == 0
 
-    def test_negative_and_positive(self):
-        assert double_the_difference([-1, 3, -5, 7]) == 9 + 49 == 58
-
     def test_zero(self):
         assert double_the_difference([0]) == 0
 
-    def test_single_odd_number(self):
-        assert double_the_difference([5]) == 25
+    def test_mixed_positive_negative_and_zero(self):
+        assert double_the_difference([1, -2, 0, 3]) == 1 + 9 == 10
 
-    def test_single_even_number(self):
-        assert double_the_difference([2]) == 0
+    def test_non_integer_numbers(self):
+        assert double_the_difference([1.5, 2, 3.0]) == 0
 
-    def test_single_negative_number(self):
-        assert double_the_difference([-3]) == 0
-
-    def test_floats(self):
-        assert double_the_difference([1.5, 2.0, 3.5]) == 0
-
-    def test_strings(self):
-        assert double_the_difference(["1", "2", "3"]) == 0
-
-    def test_mixed_types(self):
-        assert double_the_difference([1, 2.0, "3", 4.0, 5]) == 25
+    def test_string_in_list(self):
+        assert double_the_difference([1, "a", 3]) == 1 + 9 == 10
 
     def test_large_numbers(self):
-        assert double_the_difference([1001, 1003]) == 1001**2 + 1003**2
+        assert double_the_difference([99, 101]) == 99*99 + 101*101 == 9801 + 10201 == 20002
 
-    def test_all_even(self):
-        assert double_the_difference([2, 4, 6, 8]) == 0
+    def test_single_odd_number(self):
+        assert double_the_difference([7]) == 49
 
-    def test_all_negative(self):
-        assert double_the_difference([-1, -2, -3, -4]) == 0
+    def test_multiple_odd_numbers_with_negatives(self):
+        assert double_the_difference([1, 3, -5, 7, -9]) == 1 + 9 + 49 == 59
+
+    def test_all_even_numbers(self):
+        assert double_the_difference([2, 4, 6]) == 0

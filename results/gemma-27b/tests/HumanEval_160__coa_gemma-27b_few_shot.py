@@ -91,24 +91,63 @@ def test_empty_operand_list():
     with pytest.raises(IndexError):
         do_algebra(['+'], [])
 
-def test_operand_list_with_one_element():
+def test_operand_list_length_one():
     with pytest.raises(IndexError):
         do_algebra(['+'], [1])
 
 # Focus: Large Numbers/Overflow
 import pytest
 
-def test_large_number_addition():
+def do_algebra(operator, operand):
+    """
+    Given two lists operator, and operand. The first list has basic algebra operations, and 
+    the second list is a list of integers. Use the two given lists to build the algebric 
+    expression and return the evaluation of this expression.
+
+    The basic algebra operations:
+    Addition ( + ) 
+    Subtraction ( - ) 
+    Multiplication ( * ) 
+    Floor division ( // ) 
+    Exponentiation ( ** ) 
+
+    Example:
+    operator['+', '*', '-']
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4 - 5
+    => result = 9
+
+    Note:
+        The length of operator list is equal to the length of operand list minus one.
+        Operand is a list of of non-negative integers.
+        Operator list has at least one operator, and operand list has at least two operands.
+
+    """
+    result = operand[0]
+    for i in range(len(operator)):
+        if operator[i] == '+':
+            result += operand[i+1]
+        elif operator[i] == '-':
+            result -= operand[i+1]
+        elif operator[i] == '*':
+            result *= operand[i+1]
+        elif operator[i] == '//':
+            result //= operand[i+1]
+        elif operator[i] == '**':
+            result **= operand[i+1]
+    return result
+
+def test_large_numbers_addition():
     operators = ['+']
     operands = [10**10, 10**10]
     assert do_algebra(operators, operands) == 2 * (10**10)
 
-def test_large_number_multiplication():
+def test_large_numbers_multiplication():
     operators = ['*']
     operands = [10**5, 10**5]
     assert do_algebra(operators, operands) == 10**10
 
-def test_large_number_exponentiation():
-    operators = ['**']
-    operands = [2, 30]
-    assert do_algebra(operators, operands) == 2**30
+def test_large_numbers_mixed_operations():
+    operators = ['+', '*', '-', '**']
+    operands = [2, 3, 4, 5]
+    assert do_algebra(operators, operands) == (2 + 3 * 4) - 5**2

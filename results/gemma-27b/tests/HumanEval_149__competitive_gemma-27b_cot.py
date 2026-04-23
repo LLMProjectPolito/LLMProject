@@ -47,5 +47,5 @@ def test_list_with_empty_string():
 def test_list_with_only_empty_string():
     assert sorted_list_sum([""]) == []
 
-def test_list_with_odd_and_even_duplicates():
-    assert sorted_list_sum(["abc", "ab", "abc", "a", "cd", "cd"]) == ["ab", "cd", "cd"]
+def test_list_with_odd_and_even_and_empty():
+    assert sorted_list_sum(["a", "aa", "aaa", "bb", ""]) == ["aa", "bb"]

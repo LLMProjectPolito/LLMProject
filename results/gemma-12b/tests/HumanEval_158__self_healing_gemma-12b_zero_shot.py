@@ -20,7 +20,7 @@ def find_max(words):
 
     find_max(["name", "of", "string"]) == "string"
     find_max(["name", "enam", "game"]) == "enam"
-    find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
+    find_max(["aaaaaaa", "bb" ,"cc"]) == ""aaaaaaa"
     """
     if not words:
         return ""
@@ -75,3 +75,6 @@ class TestFindMax:
 
     def test_unicode_characters(self):
         assert find_max(["你好", "世界", "你好世界"]) == "你好世界"
+
+    def test_mixed_case(self):
+        assert find_max(["aBc", "AbC", "abc"]) == "AbC"

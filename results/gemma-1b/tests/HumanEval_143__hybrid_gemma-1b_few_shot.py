@@ -60,9 +60,9 @@ def words_in_sentence(sentence):
     words = sentence.split()
     prime_words = []
     for word in words:
-        if is_palindrome(word):
+        if is_prime(word):
             prime_words.append(word)
-    return ' '.join(prime_words)
+    return " ".join(prime_words)
 
 def is_prime(n: int) -> bool:
     """ Checks if a number is prime."""
@@ -73,14 +73,32 @@ def is_prime(n: int) -> bool:
             return False
     return True
 
-def is_palindrome(s: str) -> bool:
-    """ Checks if a string is a palindrome """
-    s = s.lower()
-    return s == s[::-1]
-
-def test_palindrome_basic():
+def suite1():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
 
-def test_palindrome_empty():
-    assert is_palindrome('') == True
+def suite2():
+    assert get_max([1, 2, 3]) == 3
+    assert get_max([]) == None
+
+def suite3():
+    assert words_in_sentence("This is a test") == "is"
+    assert words_in_sentence("lets go for swimming") == "go for"
+    assert words_in_sentence("a b c d e") == "abcde"
+
+def test_suite1():
+    pytest. automaker.add('test_palindrome')
+    pytest.addftest(lambda focused: suite1())
+
+def test_suite2():
+    pytest. automaker.add('test_max_positive')
+    pytest.addftest(lambda focused: suite2())
+
+def test_suite3():
+    pytest. automaker.add('test_words_in_sentence')
+    pytest.addftest(lambda focused: suite3())
+
+if __name__ == '__main__':
+    test_suite1()
+    test_suite2()
+    test_suite3()

@@ -20,7 +20,14 @@ def words_in_sentence(sentence):
         * sentence contains only letters
     """
 
-import pytest
+def is_prime(n):
+    """Helper function to check if a number is prime."""
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
 
 def words_in_sentence(sentence):
     """
@@ -42,51 +49,6 @@ def words_in_sentence(sentence):
         * 1 <= len(sentence) <= 100
         * sentence contains only letters
     """
-    def is_prime(n):
-        if n <= 1:
-            return False
-        for i in range(2, int(n**0.5) + 1):
-            if n % i == 0:
-                return False
-        return True
-
     words = sentence.split()
     prime_words = [word for word in words if is_prime(len(word))]
     return " ".join(prime_words)
-
-
-def test_words_in_sentence_example1():
-    assert words_in_sentence("This is a test") == "is"
-
-def test_words_in_sentence_example2():
-    assert words_in_sentence("lets go for swimming") == "go for"
-
-def test_words_in_sentence_empty():
-    assert words_in_sentence("") == ""
-
-def test_words_in_sentence_no_primes():
-    assert words_in_sentence("hello world") == ""
-
-def test_words_in_sentence_all_primes():
-    assert words_in_sentence("a bb ccc dddd") == "a bb ccc"
-
-def test_words_in_sentence_leading_trailing_spaces():
-    assert words_in_sentence("  a bb ccc dddd  ") == "a bb ccc"
-
-def test_words_in_sentence_multiple_spaces():
-    assert words_in_sentence("a  bb   ccc") == "a bb ccc"
-
-def test_words_in_sentence_single_prime():
-    assert words_in_sentence("a b c d e") == "a"
-
-def test_words_in_sentence_long_sentence():
-    assert words_in_sentence("This is a very long sentence with some prime length words") == "is a very long sentence"
-
-def test_words_in_sentence_prime_at_end():
-    assert words_in_sentence("hello world a") == "a"
-
-def test_words_in_sentence_prime_at_beginning():
-    assert words_in_sentence("a hello world") == "a"
-
-def test_words_in_sentence_mixed_case():
-    assert words_in_sentence("This Is A Test") == "Is A"

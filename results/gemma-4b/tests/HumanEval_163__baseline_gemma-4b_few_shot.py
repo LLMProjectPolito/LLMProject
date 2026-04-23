@@ -65,8 +65,8 @@ def test_generate_integers_no_even():
 def test_generate_integers_mixed():
     assert generate_integers(1, 9) == [2, 4, 6, 8]
 
-def test_generate_integers_single():
-    assert generate_integers(2, 2) == [2]
+def test_generate_integers_same_start_end():
+    assert generate_integers(2, 2) == []
 
-def test_generate_integers_large():
-    assert generate_integers(100, 105) == [102, 104]
+def test_generate_integers_large_range():
+    assert generate_integers(100, 110) == [102, 104, 106, 108, 110]

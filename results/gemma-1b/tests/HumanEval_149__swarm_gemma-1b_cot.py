@@ -57,13 +57,18 @@ def list_sort(lst):
     new_lst.sort()
     return new_lst
 
-@pytest.mark.parametrize(
-    "lst, expected",
-    [
-        ([1, 2, 3, 4, 5, 6], [1, 3, 5]),
-        ([1, 2, 3, 4, 5, 6], [2, 4, 6]),
-        ([1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6]),
-    ],
-)
-def test_list_sort(lst, expected):
-    assert list_sort(lst) == expected
+def test_list_sort():
+    assert list_sort([1, 2, 3, 4, 5]) == [1, 2, 3, 4, 5]
+    assert list_sort([1, 3, 2, 4, 5]) == [1, 2, 3, 4, 5]
+    assert list_sort([2, 4, 1, 3, 5]) == [1, 2, 3, 4, 5]
+    assert list_sort([1, 2, 3, 4, 5, 6]) == [1, 2, 3, 4, 5, 6]
+    assert list_sort([1, 2, 3, 4, 5, 6, 7]) == [1, 2, 3, 4, 5, 6, 7]
+    assert list_sort([1, 2, 3, 4, 5, 6, 7, 8]) == [1, 2, 3, 4, 5, 6, 7, 8]
+    assert list_sort([]) == []
+    assert list_sort([5]) == [5]
+    assert list_sort([1]) == [1]
+    assert list_sort([2]) == [2]
+    assert list_sort([3]) == [3]
+    assert list_sort([4]) == [4]
+    assert list_sort([5, 6]) == [5, 6]
+    assert list_sort([6, 5]) == [5, 6]

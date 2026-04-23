@@ -71,45 +71,44 @@ def test_long_words():
 def test_words_with_empty_string():
     assert find_max(["", "abc"]) == "abc"
 
+def test_empty_string_first():
+    assert find_max(["", ""]) == ""
+
+def test_same_word_multiple_times():
+    assert find_max(["hello", "hello", "hello"]) == "hello"
+
+def test_complex_case():
+    assert find_max(["abcde", "abcdf", "abcdeff", "abcdefg"]) == "abcdefg"
+
+def test_lexicographical_tiebreaker():
+    assert find_max(["zabc", "aabc"]) == "aabc"
+
+def test_mixed_case_words():
+    assert find_max(["Hello", "hello", "World"]) == "World"
+
+def test_long_words():
+    assert find_max(["abcdefghijklmnopqrstuvwxyz", "abc"]) == "abcdefghijklmnopqrstuvwxyz"
+
 def test_multiple_empty_strings():
     assert find_max(["", "", ""]) == ""
 
 def test_empty_string_and_word():
     assert find_max(["", "a"]) == "a"
 
-def test_same_word_multiple_times():
-    assert find_max(["abc", "abc", "abc"]) == "abc"
+def test_words_with_same_length_and_unique_chars():
+    assert find_max(["abc", "cba"]) == "abc"
 
 def test_complex_case():
-    assert find_max(["abcde", "abcfg", "abchj", "abc"]) == "abcde"
+    assert find_max(["apple", "banana", "orange", "grape"]) == "orange"
 
-def test_long_string_with_few_unique():
-    assert find_max(["aaaaaaaaaaaaaaaaaaaa", "abc"]) == "abc"
+def test_all_same_chars():
+    assert find_max(["aaaa", "bbbb", "cccc"]) == "aaaa"
 
-def test_all_words_same_unique_count():
-    assert find_max(["abc", "bca", "cab"]) == "abc"
-
-def test_mixed_case_words():
-    assert find_max(["Hello", "world", "Python"]) == "Python"
-
-def test_empty_string_and_repeated_chars():
-    assert find_max(["", "aaaaa"]) == "aaaaa"
-
-def test_multiple_max_words():
-    assert find_max(["abc", "bac", "cba"]) == "abc"
+def test_mixed_lengths_and_unique_chars():
+    assert find_max(["a", "aa", "aaa", "aaaa", "abcde"]) == "abcde"
 
 def test_words_with_unicode_characters():
     assert find_max(["你好", "世界"]) == "世界"
 
 def test_words_with_mixed_unicode_and_ascii():
     assert find_max(["hello", "你好世界"]) == "你好世界"
-
-def test_long_list_of_words():
-    words = ["a" * i for i in range(1, 11)]
-    assert find_max(words) == "a" * 10
-
-def test_words_with_same_length_but_different_unique_chars():
-    assert find_max(["abcd", "abcc"]) == "abcd"
-
-def test_words_with_same_length_and_same_unique_chars():
-    assert find_max(["abcd", "dcba"]) == "abcd"

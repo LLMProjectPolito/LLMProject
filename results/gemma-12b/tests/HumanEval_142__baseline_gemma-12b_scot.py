@@ -29,9 +29,9 @@ def sum_squares(lst):
     total = 0
     for i, num in enumerate(lst):
         if i % 3 == 0:
-            total += num**2
+            total += num ** 2
         elif i % 4 == 0 and i % 3 != 0:
-            total += num**3
+            total += num ** 3
         else:
             total += num
     return total
@@ -72,7 +72,7 @@ class TestSumSquares:
         assert sum_squares([-1, -2, -3, -4, -5]) == (-1)**2 + (-2) + (-3)**2 + (-4)**3 + (-5) == 1 - 2 + 9 - 64 - 5 == -61
 
     def test_mixed_numbers(self):
-        assert sum_squares([-1, -5, 2, -1, -5]) == (-1)**2 + (-5) + 2 + (-1)**2 + (-5)**3 == 1 - 5 + 2 + 1 - 125 == -126
+        assert sum_squares([-1, -5, 2, -1, -5]) == (-1)**2 + (-5) + 2**2 + (-1)**3 + (-5) == 1 - 5 + 4 - 1 - 5 == -6
 
     def test_multiple_of_3(self):
         assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 2 + 3**2 + 4 + 5 + 6**2 == 1 + 2 + 9 + 4 + 5 + 36 == 57

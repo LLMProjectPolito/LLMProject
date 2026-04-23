@@ -58,8 +58,8 @@ def test_numbers_only():
 def test_special_characters():
     assert solve("#a@C") == "#A@c"
 
-def test_mixed_case_numbers():
-    assert solve("123a") == "A321"
+def test_string_with_spaces():
+    assert solve("hello world") == "dlrow olleh"
 
-def test_mixed_case_numbers_and_letters():
-    assert solve("a123") == "321a"
+def test_string_with_unicode():
+    assert solve("你好世界") == "界世好你"

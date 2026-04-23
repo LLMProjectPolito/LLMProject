@@ -45,20 +45,23 @@ def test_is_palindrome():
     assert is_palindrome('Was it a car or a cat I saw?') == True
     assert is_palindrome('Madam') == True
     assert is_palindrome('121') == True
-    assert is_palindrome('123') == False
-    assert is_palindrome('') == True
-    assert is_palindrome(' ') == True
+    assert is_palindrome('12321') == True
+    assert is_palindrome('ab') == False
     assert is_palindrome('a') == True
-    assert is_palindrome('Race car') == True
+    assert is_palindrome('') == True
+    assert is_palindrome('!@#$') == True
+    assert is_palindrome('123') == False
+    assert is_palindrome('a1b2c3d') == False
+    assert is_palindrome('Racecar') == True
+    assert is_palindrome('RaCeCaR') == True
     assert is_palindrome('No lemon, no melon') == True
-    assert is_palindrome('Madam, I\'m Adam') == True
+    assert is_palindrome('12345') == False
 
 def test_get_max():
     assert get_max([1, 2, 3]) == 3
     assert get_max([3, 2, 1]) == 3
     assert get_max([1, 3, 2]) == 3
     assert get_max([5, 5, 5]) == 5
-    assert get_max([]) == None
     assert get_max([-1, -2, -3]) == -1
     assert get_max([-1, -2, 0]) == 0
     assert get_max([-1, 2, -3, 0]) == 2
@@ -73,7 +76,11 @@ def test_right_angle_triangle():
     assert right_angle_triangle(5, 12, 13) == False
     assert right_angle_triangle(1, 1, 1) == False
     assert right_angle_triangle(2, 2, 3) == False
-    assert right_angle_triangle(5, 5, 5) == False
-    assert right_angle_triangle(0, 4, 5) == False
-    assert right_angle_triangle(3, 0, 5) == False
-    assert right_angle_triangle(3, 4, 0) == False
+    assert right_angle_triangle(1, 1, 2) == False
+    assert right_angle_triangle(0, 0, 0) == False
+    assert right_angle_triangle(1, 0, 0) == False
+    assert right_angle_triangle(0, 1, 0) == False
+    assert right_angle_triangle(0, 0, 1) == False
+    assert right_angle_triangle(3.0, 4.0, 5.0) == True
+    assert right_angle_triangle(1.5, 2.0, 2.5) == True
+    assert right_angle_triangle(1, 1, 1.41421356237) == True

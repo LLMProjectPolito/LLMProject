@@ -58,22 +58,25 @@ def test_same_length_different_chars():
     assert sorted_list_sum(["ab", "ac", "ba", "bc"]) == ["ab", "ac", "ba", "bc"]
 
 def test_same_length_same_chars():
-    assert sorted_list_sum(["aa", "bb", "cc", "dd"]) == ["aa", "bb", "cc", "dd"]
+    assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
 def test_complex_case():
-    assert sorted_list_sum(["abc", "def", "ghi", "jkl", "mno", "pqr"]) == ["jkl"]
+    assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape"]) == ["banana", "orange"]
 
 def test_single_element():
-    assert sorted_list_sum(["abcde"]) == ["abcde"]
-
-def test_single_element_odd():
     assert sorted_list_sum(["abc"]) == []
 
-def test_single_element_even():
-    assert sorted_list_sum(["aaaa"]) == ["aaaa"]
+def test_single_even_element():
+    assert sorted_list_sum(["abcde"]) == ["abcde"]
 
-def test_more_duplicates():
-    assert sorted_list_sum(["aa", "aa", "bb", "bb", "cc"]) == ["aa", "aa", "bb", "bb", "cc"]
+def test_another_mixed_case():
+    assert sorted_list_sum(["hello", "world", "python", "java"]) == ["java", "python"]
 
-def test_another_complex_case():
-    assert sorted_list_sum(["apple", "banana", "orange", "grape", "kiwi"]) == ["banana", "orange"]
+def test_list_with_empty_string():
+    assert sorted_list_sum(["", "aa", ""]) == ["aa"]
+
+def test_multiple_empty_strings():
+    assert sorted_list_sum(["", "", ""]) == []
+
+def test_large_list():
+    assert sorted_list_sum(["aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh", "ii", "jj"]) == ["aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh", "ii", "jj"]

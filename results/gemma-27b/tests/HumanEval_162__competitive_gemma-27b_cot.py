@@ -23,11 +23,11 @@ def test_string_to_md5_with_numbers():
     assert string_to_md5('12345') == '5994471abb01112afcc18159f6cc74b4'
 
 def test_string_to_md5_with_special_characters():
-    assert string_to_md5('!@#$%^') == 'd9b1b7a8629f99999694999996949999'
+    assert string_to_md5('!@#$%^') == 'b10a8db164e0754105b7a99be72e3fe5'
 
 def test_string_to_md5_long_string():
     long_string = "This is a very long string to test the md5 function."
-    assert string_to_md5(long_string) == '9f86d081884c7d659a2feaa0c55ad015'
+    assert string_to_md5(long_string) == 'd9b1b7a8699999999999999999999999'
 
 def test_string_to_md5_unicode_string():
-    assert string_to_md5('你好世界') == 'b10a8db164e0754105b7a99be72e3fe5'
+    assert string_to_md5('你好世界') == '6f9d9999999999999999999999999999'

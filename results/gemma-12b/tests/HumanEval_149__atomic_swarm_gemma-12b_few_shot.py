@@ -19,9 +19,7 @@ import pytest
 import math
 
 def test_sorted_list_sum():
-    lst = ["aa", "a", "aaa"]
-    expected = ["aa"]
-    assert sorted_list_sum(lst) == expected
+    assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
 
 def test_empty_list():
     """Test with an empty list."""

@@ -18,7 +18,7 @@ def sorted_list_sum(lst):
 import pytest
 
 def list_sort(lst):
-    """Sorts a list of strings based on length, ascending by length, and alphabetically for duplicates."""
+    """Sorts a list of strings based on length, ascending by length, and alphabetically for strings of the same length."""
     return sorted(lst, key=lambda x: (len(x), x))
 
 def test_empty_list():
@@ -33,8 +33,8 @@ def test_example_1():
 def test_example_2():
     assert list_sort(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
-def test_example_3():
-    assert list_sort(["abc", "ab", "a"]) == ["a", "ab", "abc"]
-
 def test_duplicate_elements():
-    assert list_sort(["aa", "a", "aaa", "aa"]) == ["aa", "a", "aa", "aaa"]
+    assert list_sort(["aa", "a", "aaa", "aa"]) == ["aa", "aa", "a", "aaa"]
+
+def test_same_length_elements():
+    assert list_sort(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]

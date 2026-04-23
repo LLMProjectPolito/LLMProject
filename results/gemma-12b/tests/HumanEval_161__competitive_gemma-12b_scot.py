@@ -15,23 +15,23 @@ import pytest
 
 def test_solve_no_letters():
     assert solve("1234") == "4321"
-    assert solve("!@#$%^") == "^%$#@!"
+    assert solve("!@#$%^") == "!@#$%^"
     assert solve("") == ""
 
 def test_solve_all_letters_lower():
     assert solve("abc") == "ABC"
-    assert solve("xyz") == "XYZ"
-    assert solve("aBc") == "AbC"
+    assert solve("hello") == "HELLO"
+    assert solve("world") == "WORLD"
 
 def test_solve_all_letters_upper():
     assert solve("ABC") == "abc"
-    assert solve("XYZ") == "xyz"
-    assert solve("aBc") == "AbC"
+    assert solve("HELLO") == "hello"
+    assert solve("WORLD") == "world"
 
 def test_solve_mixed_letters_and_symbols():
     assert solve("#a@C") == "#A@c"
     assert solve("1a2B3c") == "1A2b3C"
-    assert solve("!a@B#c") == "!A@b#C"
+    assert solve("!Ab@Cd") == "!aB@cD"
 
 def test_solve_empty_string():
     assert solve("") == ""
@@ -42,7 +42,6 @@ def test_solve_single_letter():
 
 def test_solve_single_symbol():
     assert solve("!") == "!"
-    assert solve("1") == "1"
 
 def test_solve_long_string():
     assert solve("ThisIsALongStringWithLettersAndSymbols123") == "tHISisALONGSTRINGWITHLETTERSANDSMBOLS123"

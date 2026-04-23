@@ -63,22 +63,18 @@ def test_specialFilter_negative_numbers():
     assert specialFilter([-15, -21, -33, -45, -55, -67, -79, -81, -93]) == 5
 
 def test_specialFilter_mixed_numbers():
-    assert specialFilter([15, -73, 14, -15, 21, -33, 45, -55, 67, -79, 81, -93]) == 4
+    assert specialFilter([15, -73, 14, -15, 21, 33]) == 2
 
 def test_specialFilter_numbers_less_than_10():
     assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 0
 
 def test_specialFilter_edge_cases_first_last_digit():
-    assert specialFilter([11, 13, 15, 17, 19, 21, 33, 55, 77, 99]) == 10
+    assert specialFilter([11, 33, 55, 77, 99]) == 5
+    assert specialFilter([12, 34, 56, 78, 90]) == 0
+    assert specialFilter([111, 333, 555, 777, 999]) == 5
+    assert specialFilter([123, 345, 567, 789, 901]) == 0
 
 def test_specialFilter_zero_and_negative_zero():
-    assert specialFilter([0, -0, 11, -11, 13, -13]) == 4
-
-def test_specialFilter_single_digit_positive():
-    assert specialFilter([1, 3, 5, 7, 9]) == 0
-
-def test_specialFilter_single_digit_negative():
-    assert specialFilter([-1, -3, -5, -7, -9]) == 0
-
-def test_specialFilter_complex_case():
-    assert specialFilter([15, -73, 14, -15, 21, -33, 45, -55, 67, -79, 81, -93, 111, 222, 333]) == 4
+    assert specialFilter([0, -0]) == 0
+    assert specialFilter([-11, -33]) == 0
+    assert specialFilter([11, 33]) == 2

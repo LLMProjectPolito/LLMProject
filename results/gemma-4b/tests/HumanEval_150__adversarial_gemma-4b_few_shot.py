@@ -9,7 +9,6 @@ def x_or_y(n, x, y):
     
     """
 
-```python
 import pytest
 
 def is_palindrome(s: str) -> bool:
@@ -84,58 +83,12 @@ def test_x_or_y_prime():
 
 def test_x_or_y_not_prime():
     assert x_or_y(15, 8, 5) == 5
-    assert x_or_y(20, 8, 5) == 5
-    assert x_or_y(21, 8, 5) == 5
-    assert x_or_y(25, 8, 5) == 5
-    assert x_or_y(27, 8, 5) == 5
+    assert x_or_y(20, 8, 5) == 8
+    assert x_or_y(25, 8, 5) == 8
+    assert x_or_y(30, 8, 5) == 8
+    assert x_or_y(1, 8, 5) == 5
 
 def test_x_or_y_edge_cases():
-    assert x_or_y(1, 34, 12) == 34
-    assert x_or_y(2, 34, 12) == 34
-    assert x_or_y(3, 34, 12) == 34
-    assert x_or_y(4, 34, 12) == 34
-    assert x_or_y(5, 34, 12) == 34
-    assert x_or_y(6, 34, 12) == 34
-    assert x_or_y(8, 34, 12) == 34
-    assert x_or_y(9, 34, 12) == 34
-    assert x_or_y(10, 34, 12) == 34
-    assert x_or_y(12, 34, 12) == 34
-    assert x_or_y(14, 34, 12) == 34
-    assert x_or_y(16, 34, 12) == 34
-    assert x_or_y(18, 34, 12) == 34
-    assert x_or_y(20, 34, 12) == 34
-    assert x_or_y(22, 34, 12) == 34
-    assert x_or_y(24, 34, 12) == 34
-    assert x_or_y(26, 34, 12) == 34
-    assert x_or_y(28, 34, 12) == 34
-    assert x_or_y(30, 34, 12) == 34
-    assert x_or_y(32, 34, 12) == 34
-    assert x_or_y(33, 34, 12) == 34
-    assert x_or_y(35, 34, 12) == 34
-    assert x_or_y(36, 34, 12) == 34
-    assert x_or_y(38, 34, 12) == 34
-    assert x_or_y(39, 34, 12) == 34
-    assert x_or_y(40, 34, 12) == 34
-    assert x_or_y(42, 34, 12) == 34
-    assert x_or_y(44, 34, 12) == 34
-    assert x_or_y(45, 34, 12) == 34
-    assert x_or_y(46, 34, 12) == 34
-    assert x_or_y(48, 34, 12) == 34
-    assert x_or_y(49, 34, 12) == 34
-    assert x_or_y(50, 34, 12) == 34
-    assert x_or_y(51, 34, 12) == 34
-    assert x_or_y(52, 34, 12) == 34
-    assert x_or_y(54, 34, 12) == 34
-    assert x_or_y(55, 34, 12) == 34
-    assert x_or_y(56, 34, 12) == 34
-    assert x_or_y(57, 34, 12) == 34
-    assert x_or_y(58, 34, 12) == 34
-    assert x_or_y(60, 34, 12) == 34
-    assert x_or_y(62, 34, 12) == 34
-    assert x_or_y(63, 34, 12) == 34
-    assert x_or_y(64, 34, 12) == 34
-    assert x_or_y(65, 34, 12) == 34
-    assert x_or_y(66, 34, 12) == 34
-    assert x_or_y(68, 34, 12) == 34
-    assert x_or_y(69, 34, 12) == 34
-    assert x_or_
+    assert x_or_y(1, 34, 12) == 12
+    assert x_or_y(0, 34, 12) == 12
+    assert x_or_y(-1, 34, 12) == 12

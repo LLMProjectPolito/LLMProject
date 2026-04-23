@@ -10,20 +10,12 @@ def even_odd_count(num):
 import pytest
 
 def even_odd_count(num):
-    """Given a number (integer or convertible to integer). return a tuple that has the number of even and odd digits respectively.
+    """Given an integer. return a tuple that has the number of even and odd digits respectively.
 
      Example:
         even_odd_count(-12) ==> (1, 1)
         even_odd_count(123) ==> (1, 2)
-        even_odd_count(12.5) ==> (1, 1)
     """
-    if not isinstance(num, (int, float)):
-        raise TypeError("Input must be an integer or a float.")
-    try:
-        num = int(num)
-    except ValueError:
-        raise ValueError("Input cannot be converted to an integer.")
-
     even_count = 0
     odd_count = 0
     num_str = str(abs(num))  # Handle negative numbers
@@ -47,30 +39,29 @@ def test_all_even():
 def test_all_odd():
     assert even_odd_count(1357) == (0, 4)
 
-def test_even_single():
+def test_single_even():
     assert even_odd_count(2) == (1, 0)
 
-def test_odd_single():
+def test_single_odd():
     assert even_odd_count(1) == (0, 1)
 
 def test_zero():
     assert even_odd_count(0) == (1, 0)
 
-def test_mixed():
+def test_mixed_positive():
     assert even_odd_count(1234567890) == (5, 5)
+
+def test_mixed_negative():
+    assert even_odd_count(-9876543210) == (5, 5)
 
 def test_large_number():
     assert even_odd_count(12345678901234567890) == (10, 10)
 
-def test_number_with_zeros():
-    assert even_odd_count(100) == (2, 1)
+def test_negative_large_number():
+    assert even_odd_count(-12345678901234567890) == (10, 10)
 
-def test_large_negative_number():
-    assert even_odd_count(-1234567890123456789) == (10, 9)
+def test_number_with_leading_zeros_string():
+    assert even_odd_count(1000) == (3, 1)
 
-def test_float_input():
-    assert even_odd_count(12.5) == (1, 1)
-
-def test_invalid_input():
-    with pytest.raises(TypeError):
-        even_odd_count("abc")
+def test_number_with_trailing_zeros():
+    assert even_odd_count(12300) == (2, 2)

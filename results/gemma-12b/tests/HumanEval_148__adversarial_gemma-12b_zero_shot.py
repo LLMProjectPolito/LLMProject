@@ -64,7 +64,7 @@ class TestBF:
         assert bf("Pluto", "Venus") == ()
 
     def test_invalid_planet2(self):
-        assert bf("Venus", "Pluto") == ()
+        assert bf("Venus", "Ceres") == ()
 
     def test_invalid_planets(self):
         assert bf("Pluto", "Ceres") == ()
@@ -81,5 +81,5 @@ class TestBF:
     def test_earth_jupiter(self):
         assert bf("Earth", "Jupiter") == ("Mars", "Jupiter", "Saturn")
 
-    def test_jupiter_earth(self):
-        assert bf("Jupiter", "Earth") == ("Saturn", "Uranus")
+    def test_uranus_venus(self):
+        assert bf("Uranus", "Venus") == ("Saturn", "Jupiter", "Mars", "Earth")

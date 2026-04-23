@@ -22,11 +22,20 @@ def string_to_md5(text):
     md5_hash = hashlib.md5(text.encode('utf-8')).hexdigest()
     return md5_hash
 
-def test_string_to_md5_hello_world():
-    assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
+def test_empty_string():
+    assert string_to_md5("") is None
 
-def test_string_to_md5_empty_string():
-    assert string_to_md5('') is None
+def test_hello_world():
+    assert string_to_md5("Hello world") == "3e25960a79dbc69b674cd4ec67a72c62"
 
-def test_string_to_md5_another_string():
-    assert string_to_md5("test") == '098f6bcd4621d373cade4e832627b4f6'
+def test_long_string():
+    long_string = "This is a very long string to test the MD5 hashing function."
+    assert string_to_md5(long_string) == '9f86d081884c7d659a2feaa0c55ad015'
+
+def test_special_characters():
+    special_string = "This string contains !@#$%^&*()_+=-`~[]\{}|;':\",./<>?"
+    assert string_to_md5(special_string) == '9a781199999999999999999999999999'
+
+def test_unicode_string():
+    unicode_string = "你好世界"  # Hello world in Chinese
+    assert string_to_md5(unicode_string) == 'b10a8db164e0754105b7a99be72e3fe5'

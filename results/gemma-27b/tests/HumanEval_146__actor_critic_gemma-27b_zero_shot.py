@@ -20,8 +20,6 @@ def specialFilter(nums):
     """
     count = 0
     for num in nums:
-        if not isinstance(num, int):
-            continue  # Skip non-integer inputs
         if num > 10:
             num_str = str(abs(num))
             first_digit = int(num_str[0])
@@ -36,6 +34,9 @@ def test_empty_list():
 def test_no_special_numbers():
     assert specialFilter([2, 4, 6, 8, 10]) == 0
 
+def test_single_special_number():
+    assert specialFilter([15]) == 1
+
 def test_multiple_special_numbers():
     assert specialFilter([15, 33, 57, 79, 91]) == 5
 
@@ -48,39 +49,28 @@ def test_negative_numbers():
 def test_large_numbers():
     assert specialFilter([101, 123, 155, 177, 199]) == 5
 
-def test_numbers_with_even_digits():
+def test_even_digits():
     assert specialFilter([12, 34, 56, 78, 90]) == 0
-
-def test_numbers_less_than_or_equal_to_10():
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 0
 
 def test_mixed_positive_and_negative():
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
-@pytest.mark.parametrize("num", [11, 99, 101])
-def test_edge_cases(num):
-    assert specialFilter([num]) == 1
+def test_1001():
+    assert specialFilter([1001]) == 1
 
-def test_edge_case_100():
-    assert specialFilter([100]) == 0
+def test_leading_zeros():
+    assert specialFilter([-015]) == 1
 
-def test_edge_case_10():
-    assert specialFilter([10]) == 0
-
-def test_greater_than_10_no_special():
-    assert specialFilter([12, 14, 16, 18, 21, 23]) == 0
-
-def test_zero_padding():
-    assert specialFilter([11]) == 1
-
-def test_large_number_with_even_digit():
-    assert specialFilter([1234567890]) == 0
-
-def test_non_integer_input():
-    assert specialFilter([15, "abc", 33]) == 2
-
-def test_multiple_non_integer_inputs():
-    assert specialFilter([15, "abc", "def", 33, 1.2]) == 2
-
-def test_very_large_number():
+def test_large_number():
     assert specialFilter([1234567891]) == 1
+
+def test_large_list():
+    nums = [i for i in range(1, 101)]
+    expected_count = sum(1 for i in nums if i > 10 and str(abs(i))[0] in '13579' and str(abs(i))[-1] in '13579')
+    assert specialFilter(nums) == expected_count
+
+def test_all_even_numbers():
+    assert specialFilter([22, 44, 66, 88]) == 0
+
+def test_more_than_two_digits():
+    assert specialFilter([1001]) == 1

@@ -17,9 +17,10 @@ def bf(planet1, planet2):
     '''
 
 import pytest
+from typing import Tuple
 
-def bf(planet1, planet2):
-    '''
+def bf(planet1: str, planet2: str) -> Tuple[str, str]:
+    """
     There are eight planets in our solar system: the closerst to the Sun 
     is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn, 
     Uranus, Neptune.
@@ -33,72 +34,44 @@ def bf(planet1, planet2):
     bf("Jupiter", "Neptune") ==> ("Saturn", "Uranus")
     bf("Earth", "Mercury") ==> ("Venus")
     bf("Mercury", "Uranus") ==> ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    '''
-    if not (planet1 in ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]):
+    """
+    if not isinstance(planet1, str) or not isinstance(planet2, str):
         return ()
-    
-    planet1_orbit = 0.0
-    planet2_orbit = 0.0
-    
-    if planet1 == "Mercury":
-        planet1_orbit = 0.0
-    elif planet1 == "Venus":
-        planet1_orbit = 0.0
-    elif planet1 == "Earth":
-        planet1_orbit = 0.0
-    elif planet1 == "Mars":
-        planet1_orbit = 0.0
-    elif planet1 == "Jupiter":
-        planet1_orbit = 0.0
-    elif planet1 == "Saturn":
-        planet1_orbit = 0.0
-    elif planet1 == "Uranus":
-        planet1_orbit = 0.0
-    elif planet1 == "Neptune":
-        planet1_orbit = 0.0
-    
-    if planet2 == "Mercury":
-        planet2_orbit = 0.0
-    elif planet2 == "Venus":
-        planet2_orbit = 0.0
-    elif planet2 == "Earth":
-        planet2_orbit = 0.0
-    elif planet2 == "Mars":
-        planet2_orbit = 0.0
-    elif planet2 == "Jupiter":
-        planet2_orbit = 0.0
-    elif planet2 == "Saturn":
-        planet2_orbit = 0.0
-    elif planet2 == "Uranus":
-        planet2_orbit = 0.0
-    elif planet2 == "Neptune":
-        planet2_orbit = 0.0
-    
-    if planet1_orbit > planet2_orbit:
-        return (planet1, planet2)
-    elif planet1_orbit < planet2_orbit:
-        return (planet2, planet1)
-    else:
-        return (planet1, planet2)
 
-# Run the tests
-def test_bf():
+    if planet1 not in ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]:
+        return ()
+
+    planet1_orbit = "Mercury"
+    planet2_orbit = "Neptune"
+
+    if planet1 == planet1_orbit:
+        return (planet2, planet2_orbit)
+    elif planet2 == planet2_orbit:
+        return (planet1, planet1_orbit)
+    else:
+        return ()
+
+
+# Test Cases
+def test_bf_valid_input():
     assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
     assert bf("Earth", "Mercury") == ("Venus")
     assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    assert bf("Venus", "Earth") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    assert bf("Mars", "Jupiter") == ("Mars", "Jupiter")
-    assert bf("Saturn", "Uranus") == ("Saturn", "Uranus")
-    assert bf("Uranus", "Neptune") == ("Uranus", "Neptune")
-    assert bf("Venus", "Mars") == ("Venus", "Mars")
-    assert bf("Mercury", "Venus") == ("Mercury", "Venus")
-    assert bf("Venus", "Mercury") == ("Venus", "Mercury")
-    assert bf("Mercury", "Mars") == ("Mercury", "Mars")
-    assert bf("Mars", "Mercury") == ("Mars", "Mercury")
-    assert bf("Jupiter", "Saturn") == ("Jupiter", "Saturn")
-    assert bf("Saturn", "Jupiter") == ("Saturn", "Jupiter")
-    assert bf("Uranus", "Neptune") == ("Uranus", "Neptune")
-    assert bf("Neptune", "Uranus") == ("Neptune", "Uranus")
-    print("All tests passed!")
+    assert bf("Jupiter", "Venus") == ()
+    assert bf("Earth", "Mars") == ()
+    assert bf("Mercury", "Uranus") == ()
+    assert bf("", "Jupiter") == ()
+    assert bf("Jupiter", "") == ()
 
-test_bf()
+def test_bf_invalid_input():
+    assert bf("Jupiter", "Venus") == ()
+    assert bf("Earth", "Mars") == ()
+    assert bf("Mercury", "Uranus") == ()
+
+def test_bf_empty_input():
+    assert bf("", "Jupiter") == ()
+    assert bf("Jupiter", "") == ()
+
+def test_bf_invalid_type():
+    assert bf(123, "Jupiter") == ()
+    assert bf("Jupiter", 123) == ()

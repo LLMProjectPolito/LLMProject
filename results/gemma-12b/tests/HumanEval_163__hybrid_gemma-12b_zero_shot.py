@@ -40,19 +40,7 @@ class TestGenerateIntegers:
 
     def test_b_is_even(self):
         """Test when b is an even number."""
-        assert generate_integers(6, 12) == [6, 8, 10, 12]
-
-    def test_a_and_b_are_even(self):
-        """Test when both a and b are even numbers."""
-        assert generate_integers(2, 4) == [2, 4]
-
-    def test_a_equals_b(self):
-        """Test when a and b are equal."""
-        assert generate_integers(4, 4) == [4] if 4 % 2 == 0 else []
-
-    def test_a_equals_b_odd(self):
-        """Test when a and b are equal and odd."""
-        assert generate_integers(3, 3) == []
+        assert generate_integers(2, 6) == [2, 4, 6]
 
     def test_a_and_b_are_equal_even(self):
         """Test when a and b are equal and even."""
@@ -60,7 +48,7 @@ class TestGenerateIntegers:
 
     def test_a_and_b_are_equal_odd(self):
         """Test when a and b are equal and odd."""
-        assert generate_integers(5, 5) == []
+        assert generate_integers(3, 3) == []
 
     def test_large_range(self):
         """Test with a large range of numbers."""

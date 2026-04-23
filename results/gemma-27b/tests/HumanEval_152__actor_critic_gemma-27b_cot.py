@@ -26,8 +26,10 @@ def test_compare_equal_lists():
 def test_compare_different_lists():
     assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
     assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
+    assert compare([2147483647, 2147483647], [2147483647, 2147483647]) == [0, 0]
+    assert compare([2147483647, -2147483648], [-2147483648, 2147483647]) == [4294967295, 4294967295]
 
-def test_compare_lists_with_zero_values():
+def test_compare_with_zeros():
     assert compare([0, 0, 0], [1, 2, 3]) == [1, 2, 3]
     assert compare([1, 2, 3], [0, 0, 0]) == [1, 2, 3]
 
@@ -42,52 +44,38 @@ def test_compare_mixed_positive_negative():
 def test_compare_large_numbers():
     assert compare([1000, 2000, 3000], [1000, 2000, 3000]) == [0, 0, 0]
     assert compare([1000, 2000, 3000], [1001, 1999, 3002]) == [1, 1, 2]
-    assert compare([2**31-1, 2**31-1, 2**31-1], [2**31-1, 2**31-1, 2**31-1]) == [0, 0, 0]
-
-def test_compare_large_difference():
-    assert compare([2**31 - 1], [-2**31]) == [2**31 - 1 + 2**31]
 
 def test_compare_different_lengths():
     with pytest.raises(ValueError) as excinfo:
         compare([1, 2], [1, 2, 3])
-    assert str(excinfo.value) == "Lists must be of the same length."
+    assert "Lists must be of equal length" in str(excinfo.value)
 
-def test_compare_non_integer_input():
+@pytest.mark.parametrize(
+    "invalid_input",
+    [pytest.param(1.5, id="float"),
+     pytest.param("1", id="string"),
+     pytest.param(True, id="boolean"),
+     pytest.param(1 + 1j, id="complex")
+    ]
+)
+def test_compare_non_integer_input(invalid_input):
     with pytest.raises(TypeError) as excinfo:
-        compare([1.5, 2], [1, 2])
-    assert str(excinfo.value) == "Input lists must contain integers only."
+        compare([1, invalid_input], [1, 2])
+    assert "Input lists must contain integers only" in str(excinfo.value)
 
+def test_compare_invalid_input_type():
     with pytest.raises(TypeError) as excinfo:
-        compare([1, 2], [1.5, 2])
-    assert str(excinfo.value) == "Input lists must contain integers only."
-
-    with pytest.raises(TypeError) as excinfo:
-        compare(["1", 2], [1, 2])
-    assert str(excinfo.value) == "Input lists must contain integers only."
-
-    with pytest.raises(TypeError) as excinfo:
-        compare([1, 2], ["1", 2])
-    assert str(excinfo.value) == "Input lists must contain integers only."
-
-    with pytest.raises(TypeError) as excinfo:
-        compare([True, 2], [1, 2])
-    assert str(excinfo.value) == "Input lists must contain integers only."
+        compare("not a list", [1, 2])
+    assert "Input must be a list" in str(excinfo.value)
 
 def test_compare_empty_vs_non_empty():
     with pytest.raises(ValueError) as excinfo:
         compare([], [1, 2, 3])
-    assert str(excinfo.value) == "Lists must be of the same length."
+    assert "Lists must be of equal length" in str(excinfo.value)
 
     with pytest.raises(ValueError) as excinfo:
         compare([1, 2, 3], [])
-    assert str(excinfo.value) == "Lists must be of the same length."
+    assert "Lists must be of equal length" in str(excinfo.value)
 
-def test_compare_none_input():
-    with pytest.raises(TypeError) as excinfo:
-        compare([None, 2], [1, 2])
-    assert str(excinfo.value) == "Input lists must contain integers only."
-
-def test_compare_complex_input():
-    with pytest.raises(TypeError) as excinfo:
-        compare([1 + 1j, 2], [1, 2])
-    assert str(excinfo.value) == "Input lists must contain integers only."
+def test_compare_lists_with_small_differences():
+    assert compare([1, 2, 3, 2], [1, 2, 4, 2]) == [0, 0, 1, 0]

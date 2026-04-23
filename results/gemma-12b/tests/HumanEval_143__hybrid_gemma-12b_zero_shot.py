@@ -65,49 +65,74 @@ class TestWordsInSentence:
 
     def test_sentence_with_all_prime_length_words(self):
         """Test with a sentence where all words have prime lengths."""
-        assert words_in_sentence("a b c d e f g") == "a b c d e f g"
+        assert words_in_sentence("a is go") == "a is go"
 
     def test_long_sentence(self):
         """Test with a longer sentence."""
-        sentence = "The quick brown fox jumps over the lazy dog"
-        expected = "The fox over the dog"
+        sentence = "This is a very long sentence with some words of prime and non-prime lengths"
+        expected = "is a"
         assert words_in_sentence(sentence) == expected
 
     def test_sentence_with_one_character_words(self):
         """Test with a sentence containing only one-character words."""
-        assert words_in_sentence("a b c") == "a b c"
+        assert words_in_sentence("a b c d e") == "a b c d e"
 
     def test_sentence_with_prime_and_non_prime_one_char_words(self):
-        """Test with a sentence containing one-character words, some prime, some not."""
-        assert words_in_sentence("a bb c") == "a c"
+        """Test with a mix of one-char prime and non-prime words."""
+        assert words_in_sentence("a bb c d e") == "a c e"
 
     def test_sentence_with_numbers_as_words(self):
-        """Test with a sentence containing numbers as words (should still work)."""
-        assert words_in_sentence("1 2 3 4 5") == "2 3 5"
+        """Test with numbers as words (should still work as letters)."""
+        assert words_in_sentence("1 2 3 4 5") == "2 3"
 
     def test_sentence_with_special_characters(self):
-        """Test with a sentence containing special characters (should ignore them)."""
+        """Test with special characters (should be ignored)."""
         assert words_in_sentence("!@#$ %^&*()") == ""
 
     def test_sentence_with_unicode_characters(self):
-        """Test with a sentence containing unicode characters."""
-        assert words_in_sentence("你好 世界") == "" # Assuming unicode chars are not considered letters
+        """Test with unicode characters."""
+        assert words_in_sentence("你好 世界") == "" # Assuming unicode characters are not considered letters
 
     @pytest.mark.parametrize(
         "sentence, expected",
         [
-            ("hello world", "world"),
-            ("a b c d e", "a b c d e"),
-            ("this is a very long sentence", "is a"),
-            ("the quick brown fox jumps over the lazy dog", "The fox over the dog"),
-            ("a", "a"),
-            ("", ""),
-            ("  a  b  c  ", "a b c"),
+            ("abc def ghi", "def"),
+            ("a b c d e f g", "a b c d e f g"),
+            ("hello world", ""),
+            ("the quick brown fox jumps over the lazy dog", "the"),
+            ("a very long sentence", "a"),
         ],
     )
     def test_parametrize(self, sentence, expected):
         """Test using pytest.mark.parametrize for multiple test cases."""
         assert words_in_sentence(sentence) == expected
+
+    def test_empty_sentence(self):
+        assert words_in_sentence("") == ""
+
+    def test_no_prime_length_words(self):
+        assert words_in_sentence("a bb ccc dddd") == ""
+
+    def test_single_prime_length_word(self):
+        assert words_in_sentence("a bb ccc dddd") == "a"
+
+    def test_multiple_prime_length_words(self):
+        assert words_in_sentence("This is a test") == "is"
+
+    def test_mixed_prime_and_non_prime_words(self):
+        assert words_in_sentence("lets go for swimming") == "go for"
+
+    def test_sentence_with_leading_and_trailing_spaces(self):
+        assert words_in_sentence("  This is a test  ") == "is"
+
+    def test_sentence_with_multiple_spaces_between_words(self):
+        assert words_in_sentence("This  is   a    test") == "is"
+
+    def test_sentence_with_all_prime_length_words(self):
+        assert words_in_sentence("a bb c d e") == "a bb c d e"
+
+    def test_sentence_with_long_words(self):
+        assert words_in_sentence("This is a very long sentence with some prime length words") == "is a"
 
     def test_sentence_with_same_length_words(self):
         assert words_in_sentence("aa bb cc dd") == ""
@@ -115,17 +140,10 @@ class TestWordsInSentence:
     def test_sentence_with_one_letter_words(self):
         assert words_in_sentence("a b c d e f g h i j k l m n o p q r s t u v w x y z") == "a b c d e f g h i j k l m n o p q r s t u v w x y z"
 
-    def test_sentence_with_prime_and_non_prime_one_letter_words(self):
-        assert words_in_sentence("a bb c d e f g h i j k l m n o p q r s t u v w x y z") == "a c e i o u"
-
     def test_sentence_with_numbers_in_words(self):
-        assert words_in_sentence("123 abc 45 def 789 ghi") == "abc def"
+        with pytest.raises(TypeError):
+            words_in_sentence("a1 b2 c3")
 
     def test_sentence_with_special_characters(self):
-        assert words_in_sentence("!@# abc $def %ghi") == "abc def ghi"
-
-    def test_sentence_with_unicode_characters(self):
-        assert words_in_sentence("你好世界 abc 世界") == "abc 世界"
-
-    def test_sentence_with_mixed_characters(self):
-        assert words_in_sentence("a1 b2 c3 d4 e5 f6 g7 h8 i9 j0") == "a1 b2 c3 d4 e5 f6 g7 h8 i9 j0"
+        with pytest.raises(TypeError):
+            words_in_sentence("a! b@ c#")

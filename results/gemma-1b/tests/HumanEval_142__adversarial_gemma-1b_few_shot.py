@@ -30,26 +30,15 @@ def sum_squares(lst):
     for i in range(len(lst)):
         if i % 3 == 0 and i % 4 != 0:
             total += lst[i] ** 2
-        elif i % 3 != 0 and i % 4 == 0:
+        elif i % 4 == 0 and i % 3 != 0:
             total += lst[i] ** 3
     return total
 
 def test_sum_squares_positive():
     assert sum_squares([1, 2, 3]) == 6
     assert sum_squares([1, 2, 3, 4]) == 16
-    assert sum_squares([-1, -5, 2, -1, -5]) == -126
+    assert sum_squares([1, 2, 3, 4, 5]) == 29
+    assert sum_squares([]) == 0
     
 def test_sum_squares_empty():
     assert sum_squares([]) == 0
-    
-def test_sum_squares_single_element():
-    assert sum_squares([5]) == 25
-    
-def test_sum_squares_mixed():
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == 56
-    
-def test_sum_squares_negative():
-    assert sum_squares([-1, -2, -3]) == 14
-    
-def test_sum_squares_zero():
-    assert sum_squares([0, 0, 0]) == 0

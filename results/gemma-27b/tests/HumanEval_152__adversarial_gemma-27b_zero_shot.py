@@ -49,14 +49,14 @@ def test_compare_example2():
 def test_compare_empty_lists():
     assert compare([], []) == []
 
-def test_compare_all_correct():
+def test_compare_same_lists():
     assert compare([1, 2, 3], [1, 2, 3]) == [0, 0, 0]
 
-def test_compare_all_incorrect():
+def test_compare_different_lists():
     assert compare([1, 2, 3], [4, 5, 6]) == [3, 3, 3]
 
 def test_compare_mixed_correct_incorrect():
-    assert compare([1, 2, 3, 4], [1, 5, 3, 2]) == [0, 3, 0, 2]
+    assert compare([1, 2, 3, 4, 5], [1, 2, 4, 4, 6]) == [0, 0, 1, 0, 1]
 
 def test_compare_negative_numbers():
     assert compare([-1, -2, -3], [-1, -2, -4]) == [0, 0, 1]
@@ -67,6 +67,8 @@ def test_compare_zero_values():
 def test_compare_large_numbers():
     assert compare([1000, 2000, 3000], [1001, 1999, 3000]) == [1, 1, 0]
 
-def test_compare_different_lengths():
-    with pytest.raises(IndexError):
-        compare([1, 2], [1, 2, 3])
+def test_compare_single_element():
+    assert compare([5], [5]) == [0]
+
+def test_compare_single_element_incorrect():
+    assert compare([5], [6]) == [1]

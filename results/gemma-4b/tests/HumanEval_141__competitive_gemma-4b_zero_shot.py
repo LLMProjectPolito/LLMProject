@@ -84,10 +84,10 @@ def test_valid_file_name_with_uppercase():
     assert file_name_check("Example.txt") == 'Yes'
 
 def test_valid_file_name_with_mixed_case():
-    assert file_name_check("ExAmPle.txt") == 'Yes'
+    assert file_name_check("ExAmple.txt") == 'Yes'
 
 def test_valid_file_name_with_numbers_and_letters():
     assert file_name_check("example123.txt") == 'Yes'
 
 def test_valid_file_name_with_numbers_and_letters_and_uppercase():
-    assert file_name_check("ExAmPle123.txt") == 'Yes'
+    assert file_name_check("ExAmple123.txt") == 'Yes'

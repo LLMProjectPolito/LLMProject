@@ -48,25 +48,31 @@ def test_negative_numbers():
     assert specialFilter([-11, -13, -15, -17, -19]) == 5
 
 def test_large_numbers():
-    assert specialFilter([101, 123, 157, 189, 1001]) == 4
+    assert specialFilter([101, 123, 157, 189, 1000]) == 0
 
 def test_numbers_with_even_digits():
     assert specialFilter([12, 34, 56, 78, 90]) == 0
 
-def test_numbers_less_than_or_equal_to_10():
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 0
+def test_numbers_with_one_odd_digit():
+    assert specialFilter([12, 34, 56, 78, 90, 11, 33, 55, 77, 99]) == 4
 
 def test_example_1():
-    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
-
-def test_example_2():
     assert specialFilter([15, -73, 14, -15]) == 1
 
-def test_zero_in_number():
-    assert specialFilter([101, 103, 105, 107, 109]) == 0
+def test_example_2():
+    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
-def test_all_numbers_greater_than_10_but_no_special():
-    assert specialFilter([12, 14, 16, 18, 21, 23]) == 0
+def test_numbers_close_to_10():
+    assert specialFilter([11, 13, 15, 17, 19]) == 5
 
-def test_mixed_positive_and_negative_special():
-    assert specialFilter([11, -13, 15, -17, 19]) == 5
+def test_numbers_greater_than_10_with_even_first_digit():
+    assert specialFilter([21, 43, 65, 87, 109]) == 0
+
+def test_numbers_greater_than_10_with_even_last_digit():
+    assert specialFilter([12, 34, 56, 78, 11]) == 0
+
+def test_numbers_with_leading_zeros():
+    assert specialFilter([011, 013, 015]) == 0
+
+def test_numbers_with_trailing_zeros():
+    assert specialFilter([110, 130, 150]) == 0

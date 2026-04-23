@@ -34,13 +34,13 @@ def special_factorial(n):
     if n <= 0:
         raise ValueError("Input must be a positive integer.")
     
-    result = 1
+    factorial_product = 1
     for i in range(1, n + 1):
         factorial = 1
         for j in range(1, i + 1):
             factorial *= j
-        result *= factorial
-    return result
+        factorial_product *= factorial
+    return factorial_product
 
 def factorial(n):
     if n == 0:
@@ -48,14 +48,18 @@ def factorial(n):
     else:
         return n * factorial(n-1)
 
-def test_special_factorial_boundary_1():
-    assert special_factorial(1) == 1
+@pytest.mark.parametrize("n", [1, 2])
+def test_special_factorial_boundary_low(n):
+    assert special_factorial(n) == 1
 
-def test_special_factorial_boundary_2():
-    assert special_factorial(2) == 2
-
-def test_special_factorial_boundary_3():
-    assert special_factorial(3) == 12
+@pytest.mark.parametrize("n", [3, 4, 5])
+def test_special_factorial_boundary_mid(n):
+    if n == 3:
+        assert special_factorial(n) == 12
+    elif n == 4:
+        assert special_factorial(n) == 288
+    elif n == 5:
+        assert special_factorial(n) == 34560
 
 # Focus: Equivalence Partitioning
 import pytest
@@ -89,34 +93,36 @@ def factorial(n):
     else:
         return n * factorial(n-1)
 
-@pytest.mark.parametrize("n", [1, 2, 3, 4, 5])
-def test_special_factorial_positive_values(n):
-    """Tests with valid positive integer inputs."""
-    expected = 1
-    for i in range(1, n + 1):
-        expected *= factorial(i)
-    assert special_factorial(n) == expected
+@pytest.mark.parametrize("n", [1])
+def test_special_factorial_equivalence_partition_1(n):
+    assert special_factorial(n) == 1
 
-@pytest.mark.parametrize("n", [0, -1, -5])
-def test_special_factorial_invalid_values(n):
-    """Tests with invalid inputs (non-positive integers)."""
-    with pytest.raises(ValueError):
-        special_factorial(n)
+@pytest.mark.parametrize("n", [2])
+def test_special_factorial_equivalence_partition_2(n):
+    assert special_factorial(n) == 2
+
+@pytest.mark.parametrize("n", [3])
+def test_special_factorial_equivalence_partition_3(n):
+    assert special_factorial(n) == 12
+
+@pytest.mark.parametrize("n", [4])
+def test_special_factorial_equivalence_partition_4(n):
+    assert special_factorial(n) == 288
 
 # Focus: Error Handling/Invalid Input
 import pytest
 
-def test_special_factorial_negative_input():
+def test_negative_input():
     with pytest.raises(ValueError) as excinfo:
         special_factorial(-1)
     assert "Input must be a positive integer." == str(excinfo.value)
 
-def test_special_factorial_zero_input():
+def test_zero_input():
     with pytest.raises(ValueError) as excinfo:
         special_factorial(0)
     assert "Input must be a positive integer." == str(excinfo.value)
 
-def test_special_factorial_non_integer_input():
+def test_non_integer_input():
     with pytest.raises(TypeError) as excinfo:
         special_factorial(3.14)
     assert "Input must be an integer." == str(excinfo.value)

@@ -9,6 +9,7 @@ def x_or_y(n, x, y):
     
     """
 
+```python
 import pytest
 
 def x_or_y(n, x, y):
@@ -37,15 +38,15 @@ def test_x_or_y_prime():
 def test_x_or_y_not_prime():
     assert x_or_y(15, 8, 5) == 5
     assert x_or_y(20, 1, 9) == 9
-    assert x_or_y(21, 7, 4) == 4
-    assert x_or_y(25, 6, 3) == 3
+    assert x_or_y(25, 7, 6) == 6
+    assert x_or_y(30, 4, 3) == 3
 
 def test_x_or_y_edge_cases():
     assert x_or_y(1, 34, 12) == 12
     assert x_or_y(2, 34, 12) == 34
     assert x_or_y(3, 34, 12) == 34
     assert x_or_y(4, 34, 12) == 12
-    assert x_or_y(5, 34, 12) == 12
+    assert x_or_y(5, 34, 12) == 34
     assert x_or_y(6, 34, 12) == 12
     assert x_or_y(8, 34, 12) == 12
     assert x_or_y(9, 34, 12) == 12
@@ -54,12 +55,12 @@ def test_x_or_y_edge_cases():
     assert x_or_y(14, 34, 12) == 12
     assert x_or_y(16, 34, 12) == 12
     assert x_or_y(18, 34, 12) == 12
+    assert x_or_y(21, 34, 12) == 12
     assert x_or_y(22, 34, 12) == 12
     assert x_or_y(24, 34, 12) == 12
     assert x_or_y(26, 34, 12) == 12
     assert x_or_y(27, 34, 12) == 12
     assert x_or_y(28, 34, 12) == 12
-    assert x_or_y(30, 34, 12) == 12
     assert x_or_y(32, 34, 12) == 12
     assert x_or_y(33, 34, 12) == 12
     assert x_or_y(35, 34, 12) == 12
@@ -74,3 +75,40 @@ def test_x_or_y_edge_cases():
     assert x_or_y(48, 34, 12) == 12
     assert x_or_y(49, 34, 12) == 34
     assert x_or_y(50, 34, 12) == 12
+    assert x_or_y(51, 34, 12) == 12
+    assert x_or_y(52, 34, 12) == 12
+    assert x_or_y(54, 34, 12) == 12
+    assert x_or_y(55, 34, 12) == 12
+    assert x_or_y(56, 34, 12) == 12
+    assert x_or_y(57, 34, 12) == 12
+    assert x_or_y(58, 34, 12) == 12
+    assert x_or_y(60, 34, 12) == 12
+    assert x_or_y(63, 34, 12) == 12
+    assert x_or_y(64, 34, 12) == 34
+    assert x_or_y(65, 34, 12) == 12
+    assert x_or_y(66, 34, 12) == 12
+    assert x_or_y(68, 34, 12) == 12
+    assert x_or_y(69, 34, 12) == 12
+    assert x_or_y(70, 34, 12) == 12
+    assert x_or_y(72, 34, 12) == 12
+    assert x_or_y(74, 34, 12) == 12
+    assert x_or_y(75, 34, 12) == 12
+    assert x_or_y(76, 34, 12) == 12
+    assert x_or_y(77, 34, 12) == 12
+    assert x_or_y(78, 34, 12) == 12
+    assert x_or_y(80, 34, 12) == 12
+    assert x_or_y(81, 34, 12) == 12
+    assert x_or_y(82, 34, 12) == 12
+    assert x_or_y(84, 34, 12) == 12
+    assert x_or_y(85, 34, 12) == 12
+    assert x_or_y(86, 34, 12) == 12
+    assert x_or_y(87, 34, 12) == 12
+    assert x_or_y(88, 34, 12) == 12
+    assert x_or_y(90, 34, 12) == 12
+    assert x_or_y(91, 34, 12) == 12
+    assert x_or_y(92, 34, 12) == 12
+    assert x_or_y(93, 34, 12) == 12
+    assert x_or_y(94, 34, 12) == 12
+    assert x_or_y(95, 34, 12) == 12
+    assert x_or_y(96, 34, 12) == 12
+    assert x_or_y(98, 34, 12) == 1

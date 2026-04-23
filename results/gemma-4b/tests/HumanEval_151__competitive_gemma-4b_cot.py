@@ -60,7 +60,7 @@ def test_double_the_difference_single_zero():
     assert double_the_difference([0]) == 0
 
 def test_double_the_difference_with_floats():
-    assert double_the_difference([1.5, 2, 3]) == 0
+    assert double_the_difference([1.5, 3.0, 2.2, 0.0]) == 0
 
 def test_double_the_difference_with_mixed_types():
-    assert double_the_difference([1, 2.5, 3, "a"]) == 9
+    assert double_the_difference([1, 2.5, "a", 3, -1]) == 10

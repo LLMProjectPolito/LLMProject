@@ -22,9 +22,7 @@ def cycpattern_check(a , b):
     """
     n = len(b)
     if n == 0:
-        return True if len(a) == 0 else True
-    if len(a) == 0:
-        return False
+        return True
     for i in range(n):
         rotated_b = b[i:] + b[:i]
         if rotated_b in a:

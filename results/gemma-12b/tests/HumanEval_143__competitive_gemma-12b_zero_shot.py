@@ -71,24 +71,27 @@ class TestWordsInSentence:
         assert words_in_sentence("a be do") == "a be do"
 
     def test_mixed_prime_and_non_prime_words(self):
-        assert words_in_sentence("a long be short do") == "a be do"
+        assert words_in_sentence("a be do hello") == "a be do"
 
     def test_sentence_with_leading_and_trailing_spaces(self):
         assert words_in_sentence("  a be do  ") == "a be do"
 
     def test_sentence_with_multiple_spaces(self):
-        assert words_in_sentence("a  be   do") == "a be do"
+        assert words_in_sentence("a   be  do") == "a be do"
 
     def test_single_word_prime_length(self):
-        assert words_in_sentence("two") == "two"
+        assert words_in_sentence("go") == "go"
 
     def test_single_word_non_prime_length(self):
         assert words_in_sentence("hello") == ""
 
     def test_long_sentence(self):
         sentence = "This is a very long sentence with some words of prime and non-prime lengths"
-        expected = "is a very long sentence with some lengths"
+        expected = "is a very"
         assert words_in_sentence(sentence) == expected
 
     def test_sentence_with_numbers_in_words(self):
-        assert words_in_sentence("word1 word2 word3") == ""
+        assert words_in_sentence("a1 b2 c3") == ""
+
+    def test_sentence_with_special_characters(self):
+        assert words_in_sentence("a! b@ c#") == ""

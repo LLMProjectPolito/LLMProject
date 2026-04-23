@@ -52,7 +52,7 @@ def test_duplicate_strings():
     assert sorted_list_sum(["aa", "ab", "aa", "cd"]) == ["aa", "aa", "ab", "cd"]
 
 def test_strings_with_same_length_different_alphabetical_order():
-    assert sorted_list_sum(["abc", "abd", "abe"]) == ["abc", "abd", "abe"]
+    assert sorted_list_sum(["abc", "acb"]) == ["abc", "acb"]
 
 def test_single_even_length_string():
     assert sorted_list_sum(["aa"]) == ["aa"]

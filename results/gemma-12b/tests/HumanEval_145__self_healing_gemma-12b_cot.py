@@ -54,20 +54,25 @@ def test_order_by_points_negative_numbers(sample_data):
     assert order_by_points(sample_data) == [-1, -11, 1, -12, 11]
 
 def test_order_by_points_zero(sample_data):
-    data = [0, 1, -1]
-    assert order_by_points(data) == [0, -1, 1]
+    data = [0] + sample_data
+    assert order_by_points(data) == [0, -1, -11, 1, -12, 11]
 
 def test_order_by_points_large_numbers(sample_data):
-    data = [123, 45, 6, -789]
-    expected = [-789, 6, 45, 123]
+    data = [123, 456, 789]
+    expected = [123, 456, 789]
     assert order_by_points(data) == expected
 
 def test_order_by_points_mixed_positive_negative_zero():
-    data = [1, -1, 0, 10, -10]
-    expected = [0, -1, 1, -10, 10]
+    data = [-10, 10, 0, -5, 5]
+    expected = [-10, 0, -5, 5, 10]
+    assert order_by_points(data) == expected
+
+def test_order_by_points_duplicate_numbers():
+    data = [1, 1, 1, 1]
+    expected = [1, 1, 1, 1]
     assert order_by_points(data) == expected
 
 def test_order_by_points_all_negative():
-    data = [-1, -2, -3, -4, -5]
-    expected = [-1, -2, -3, -4, -5]
+    data = [-1, -2, -3]
+    expected = [-1, -2, -3]
     assert order_by_points(data) == expected

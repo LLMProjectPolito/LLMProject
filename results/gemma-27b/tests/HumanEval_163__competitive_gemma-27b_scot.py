@@ -33,23 +33,26 @@ def test_generate_integers_larger_range():
 def test_generate_integers_larger_range_descending():
     assert generate_integers(20, 12) == [12, 14, 16, 18, 20]
 
-def test_generate_integers_same_number():
-    assert generate_integers(4, 4) == [4]
+def test_generate_integers_mixed_range():
+    assert generate_integers(11, 15) == [12, 14]
 
-def test_generate_integers_a_greater_than_b():
-    assert generate_integers(16, 10) == [10, 12, 14, 16]
+def test_generate_integers_mixed_range_descending():
+    assert generate_integers(15, 11) == [12, 14]
 
-def test_generate_integers_empty_range():
+def test_generate_integers_edge_case_1():
     assert generate_integers(1, 1) == []
 
-def test_generate_integers_start_odd_end_odd():
-    assert generate_integers(1, 3) == []
+def test_generate_integers_edge_case_2():
+    assert generate_integers(0, 0) == []
 
-def test_generate_integers_start_even_end_odd():
-    assert generate_integers(2, 3) == [2]
-
-def test_generate_integers_start_odd_end_even():
+def test_generate_integers_edge_case_3():
     assert generate_integers(1, 2) == [2]
+
+def test_generate_integers_edge_case_4():
+    assert generate_integers(2, 3) == [2]
 
 def test_generate_integers_large_numbers():
     assert generate_integers(2000, 2008) == [2000, 2002, 2004, 2006, 2008]
+
+def test_generate_integers_large_numbers_descending():
+    assert generate_integers(2008, 2000) == [2000, 2002, 2004, 2006, 2008]

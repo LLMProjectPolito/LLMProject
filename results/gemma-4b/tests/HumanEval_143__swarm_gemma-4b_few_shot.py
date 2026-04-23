@@ -41,15 +41,19 @@ def words_in_sentence(sentence):
 
 def test_words_in_sentence_basic():
     assert words_in_sentence("This is a test") == "is"
-
-def test_words_in_sentence_multiple():
     assert words_in_sentence("lets go for swimming") == "go for"
-
-def test_words_in_sentence_length():
-    assert words_in_sentence("a bb ccc dddd") == "c"
-
-def test_words_in_sentence_single_word():
+    assert words_in_sentence("a bb ccc dddd") == "ccc"
     assert words_in_sentence("hello world") == "world"
-
-def test_words_in_sentence_numbers():
     assert words_in_sentence("123 abc def") == "abc def"
+
+def test_words_in_sentence_empty():
+    assert words_in_sentence("") == ""
+
+def test_words_in_sentence_no_primes():
+    assert words_in_sentence("abcdefg") == ""
+
+def test_words_in_sentence_single_prime():
+    assert words_in_sentence("racecar") == "racecar"
+
+def test_words_in_sentence_mixed():
+    assert words_in_sentence("one two three four five") == "two four"

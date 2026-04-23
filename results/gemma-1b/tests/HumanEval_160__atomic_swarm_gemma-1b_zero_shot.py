@@ -150,12 +150,12 @@ def do_algebra(operator, operand):
     """
     try:
         if len(operator) == 1 and len(operand) == 1:
-            return operator[0] * operand[0]
+            return operator[0] + operand[0]
         elif len(operator) == 1:
             return operator[0]
         elif len(operand) == 1:
             return operand[0]
         else:
             return eval(str(operator[0]) + str(operand[0]))
-    except:
+    except (TypeError, ValueError, IndexError):
         return None

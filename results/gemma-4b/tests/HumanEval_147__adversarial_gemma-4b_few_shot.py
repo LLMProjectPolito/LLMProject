@@ -50,7 +50,6 @@ def get_max_triples(n):
                     count += 1
     return count
 
-
 def test_is_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
@@ -63,23 +62,17 @@ def test_is_palindrome_empty():
     assert is_palindrome(' ') == True
     assert is_palindrome('a') == True
 
-def test_is_palindrome_mixed_case():
-    assert is_palindrome('Racecar') == True
-
 def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
     assert get_max([3, 2, 1]) == 3
-    assert get_max([1, 3, 2]) == 3
     assert get_max([-1, -2, -3]) == -1
+    assert get_max([1, 5, 2, 8, 3]) == 8
 
 def test_get_max_empty():
     assert get_max([]) == None
 
 def test_get_max_single_element():
     assert get_max([5]) == 5
-
-def test_get_max_negative_and_positive():
-    assert get_max([-1, 2, -3, 4]) == 4
 
 def test_get_max_triples_n_5():
     assert get_max_triples(5) == 1

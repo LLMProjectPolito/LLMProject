@@ -65,14 +65,14 @@ def test_words_with_empty_string():
 def test_words_with_empty_string_and_same_unique_chars():
     assert find_max(["", "ab", "cd"]) == "ab"
 
+def test_long_words():
+    assert find_max(["abcdefghijklmnopqrstuvwxyz", "abc"]) == "abcdefghijklmnopqrstuvwxyz"
+
 def test_words_with_special_characters():
     assert find_max(["hello!", "world?"]) == "world?"
 
 def test_words_with_numbers():
-    assert find_max(["123", "12"]) == "123"
-
-def test_long_words():
-    assert find_max(["abcdefghijklmnopqrstuvwxyz", "abc"]) == "abcdefghijklmnopqrstuvwxyz"
+    assert find_max(["123", "abc"]) == "123"
 
 def test_same_word_multiple_times():
     assert find_max(["hello", "hello", "hello"]) == "hello"

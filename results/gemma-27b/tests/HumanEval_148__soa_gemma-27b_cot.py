@@ -48,7 +48,7 @@ def test_bf_both_invalid():
 def test_bf_case_sensitivity():
     assert bf("jupiter", "Neptune") == ()
     assert bf("Earth", "neptune") == ()
-    assert bf("earth", "mercury") == ()
+    assert bf("earth", "Earth") == ()
 
 def test_bf_empty_string():
     assert bf("", "Earth") == ()

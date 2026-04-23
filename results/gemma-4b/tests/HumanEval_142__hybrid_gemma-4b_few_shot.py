@@ -57,3 +57,6 @@ def test_sum_squares_all_multiples_of_4_not_3():
 
 def test_sum_squares_no_multiples():
     assert sum_squares([1, 2, 4, 5, 7, 8]) == 23
+
+def test_sum_squares_complex():
+    assert sum_squares([1, 4, 9, 16, 25, 36, 49, 64, 81, 100]) == 1 + 64 + 81 + 256 + 625 + 1296 + 2401 + 4096 + 6561 + 10000

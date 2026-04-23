@@ -75,7 +75,7 @@ class TestEvenOddCount:
         assert even_odd_count(20) == (2, 0)
 
     def test_max_int(self):
-        assert even_odd_count(2147483647) == (4, 5)
+        assert even_odd_count(2147483647) == (4, 6)
 
     def test_min_int(self):
         assert even_odd_count(-2147483648) == (1, 9)
@@ -92,7 +92,3 @@ class TestEvenOddCount:
 
     def test_number_with_negative_and_zero(self):
         assert even_odd_count(-10) == (1, 1)
-
-    def test_number_with_large_even_and_odd(self):
-        assert even_odd_count(2024) == (3, 1)
-        assert even_odd_count(1011) == (1, 3)

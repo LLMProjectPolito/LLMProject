@@ -12,7 +12,6 @@ def simplify(x, n):
     simplify("7/10", "10/2") = False
     """
 
-```python
 import pytest
 
 def simplify(x, n):
@@ -50,90 +49,25 @@ def test_simplify_valid_fractions():
     assert simplify("1/4", "4/1") == True
     assert simplify("1/5", "5/1") == True
     assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
     assert simplify("1/10", "10/2") == True
-    assert simplify("1/10", "10/1") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    print("All tests passed!")

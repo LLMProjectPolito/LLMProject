@@ -39,36 +39,39 @@ class TestXorY:
     def test_prime_number(self):
         assert x_or_y(7, 34, 12) == 34
         assert x_or_y(2, 10, 20) == 10
-        assert x_or_y(3, 5, 1) == 5
-        assert x_or_y(5, 100, 1) == 100
-        assert x_or_y(11, 1, 2) == 1
-        assert x_or_y(13, 99, 0) == 99
-        assert x_or_y(17, -1, 1) == -1
-        assert x_or_y(19, 0, 10) == 0
+        assert x_or_y(3, 5, 8) == 5
+        assert x_or_y(5, 1, 2) == 1
+        assert x_or_y(11, 100, 200) == 100
+        assert x_or_y(13, 50, 60) == 50
+        assert x_or_y(17, 77, 88) == 77
+        assert x_or_y(19, 99, 100) == 99
+        assert x_or_y(23, 1, 0) == 1
+        assert x_or_y(29, -1, 0) == -1
 
-    def test_composite_number(self):
+    def test_non_prime_number(self):
         assert x_or_y(15, 8, 5) == 5
         assert x_or_y(4, 1, 2) == 2
         assert x_or_y(6, 3, 4) == 4
         assert x_or_y(8, 5, 6) == 6
         assert x_or_y(9, 7, 8) == 8
-        assert x_or_y(10, 11, 12) == 12
-        assert x_or_y(12, 13, 14) == 14
-        assert x_or_y(14, 15, 16) == 16
+        assert x_or_y(10, 10, 11) == 11
+        assert x_or_y(12, 12, 13) == 13
+        assert x_or_y(14, 14, 15) == 15
+        assert x_or_y(16, 16, 17) == 17
+        assert x_or_y(18, 18, 19) == 19
+        assert x_or_y(20, 20, 21) == 21
 
     def test_edge_cases(self):
         assert x_or_y(1, 10, 20) == 20
         assert x_or_y(0, 10, 20) == 20
         assert x_or_y(-1, 10, 20) == 20
+        assert x_or_y(-7, 10, 20) == 20
         assert x_or_y(2, 0, 0) == 0
-        assert x_or_y(1, 0, 0) == 0
-        assert x_or_y(0, 0, 0) == 0
+        assert x_or_y(4, 0, 0) == 0
 
     def test_large_numbers(self):
-        assert x_or_y(101, 1000, 1) == 1000  # Prime
-        assert x_or_y(100, 1000, 1) == 1  # Composite
-        assert x_or_y(997, 5, 10) == 5 #Prime
-        assert x_or_y(999, 5, 10) == 10 #Composite
+        assert x_or_y(1000000007, 1, 2) == 1  # Large prime
+        assert x_or_y(1000000008, 1, 2) == 2  # Large non-prime
 
     def test_negative_numbers_x_y(self):
         assert x_or_y(7, -34, -12) == -34

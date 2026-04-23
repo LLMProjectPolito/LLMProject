@@ -60,7 +60,7 @@ class TestRightAngleTriangle:
 
     def test_large_numbers(self):
         assert right_angle_triangle(1000, 1000, 1414.21356237) == True
-        assert right_angle_triangle(10000, 10000, 14142.1356237) == True
+        assert right_angle_triangle(1000, 1000, 1415) == False
 
     def test_floating_point_numbers(self):
         assert right_angle_triangle(3.0, 4.0, 5.0) == True
@@ -68,20 +68,25 @@ class TestRightAngleTriangle:
         assert right_angle_triangle(0.3, 0.4, 0.5) == True
         assert right_angle_triangle(0.6, 0.8, 1.0) == True
 
-    def test_edge_cases(self):
-        assert right_angle_triangle(5, 12, 13) == True
-        assert right_angle_triangle(13, 12, 5) == True
-        assert right_angle_triangle(12, 5, 13) == True
-        assert right_angle_triangle(12, 13, 5) == True
-        assert right_angle_triangle(5, 13, 12) == True
-        assert right_angle_triangle(13, 5, 12) == True
-
-    def test_almost_right_triangle(self):
-        assert right_angle_triangle(3, 4, 5.0001) == False
-        assert right_angle_triangle(3.0001, 4, 5) == False
-        assert right_angle_triangle(3, 4.0001, 5) == False
-
-    def test_order_of_sides(self):
+    def test_order_of_inputs(self):
         assert right_angle_triangle(4, 3, 5) == True
         assert right_angle_triangle(5, 3, 4) == True
-        assert right_angle_triangle(3, 5, 4) == True
+        assert right_angle_triangle(5, 4, 3) == True
+
+    def test_edge_case_close_to_right_triangle(self):
+        assert right_angle_triangle(3, 4, 5.00000000001) == False
+        assert right_angle_triangle(3, 4, 4.99999999999) == False
+
+    def test_degenerate_triangle(self):
+        assert right_angle_triangle(1, 2, 3) == False
+        assert right_angle_triangle(1, 1, 2) == False
+
+    def test_zero_length_sides(self):
+        assert right_angle_triangle(0, 0, 0) == True  # Technically a degenerate case
+        assert right_angle_triangle(0, 3, 4) == False
+        assert right_angle_triangle(3, 0, 4) == False
+        assert right_angle_triangle(3, 4, 0) == False
+
+    def test_floating_point_numbers_2(self):
+        assert right_angle_triangle(3.0, 4.0, 5.0) == True
+        assert right_angle_triangle(3.000000001, 4.0, 5.0) == False

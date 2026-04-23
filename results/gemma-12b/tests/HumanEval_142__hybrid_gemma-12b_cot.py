@@ -69,4 +69,7 @@ class TestSumSquares:
         assert sum_squares([12]) == 144
 
     def test_list_with_negative_and_positive(self):
-        assert sum_squares([-2, 3, -4, 5]) == 25 + 5 - 8 + 125
+        assert sum_squares([-2, 3, -4, 5]) == 4 + 27 + -64 + 125
+
+    def test_list_with_floats_converted_to_int(self):
+        assert sum_squares([1.0, 2.0, 3.0]) == 6

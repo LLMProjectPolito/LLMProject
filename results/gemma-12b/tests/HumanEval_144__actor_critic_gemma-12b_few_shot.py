@@ -13,6 +13,7 @@ def simplify(x, n):
     """
 
 import pytest
+import math
 
 def simplify(x, n):
     """Your task is to implement a function that will simplify the expression
@@ -35,45 +36,52 @@ def simplify(x, n):
     return numerator % denominator == 0
 
 
-### Tests (Pytest):
-def test_simplify_fractions_result_true():
+def test_simplify_basic_true():
     assert simplify("1/5", "5/1") == True
 
-def test_simplify_fractions_result_false():
+def test_simplify_basic_false():
     assert simplify("1/6", "2/1") == False
 
 def test_simplify_another_false():
     assert simplify("7/10", "10/2") == False
 
-def test_simplify_denominator_one_x():
-    assert simplify("1/1", "2/3") == True
-
-def test_simplify_denominator_one_n():
-    assert simplify("3/4", "1/1") == True
-
-def test_simplify_both_denominator_one():
+def test_simplify_edge_case_one_over_one():
     assert simplify("1/1", "1/1") == True
+
+def test_simplify_edge_case_x_one_over_one():
+    assert simplify("1/1", "2/3") == False
+
+def test_simplify_edge_case_n_one_over_one():
+    assert simplify("3/4", "1/1") == False
+
+def test_simplify_large_numbers():
+    assert simplify("1000/2", "2/1000") == True
 
 def test_simplify_complex_true():
     assert simplify("2/3", "3/2") == True
 
 def test_simplify_complex_false():
-    assert simplify("1/4", "3/5") == False
-
-def test_simplify_large_numbers_true():
-    assert simplify("100/2", "2/100") == True
-
-def test_simplify_large_numbers_false():
-    assert simplify("101/2", "2/100") == False
+    assert simplify("2/5", "3/7") == False
 
 def test_simplify_zero_numerator():
     assert simplify("0/1", "1/1") == True
 
-def test_simplify_zero_numerator_false():
-    assert simplify("0/1", "1/2") == False
+def test_simplify_zero_denominator():
+    with pytest.raises(ZeroDivisionError):
+        simplify("1/0", "1/1")
 
-def test_simplify_zero_fraction():
-    assert simplify("0/1", "0/1") == True
+def test_simplify_invalid_format_x():
+    with pytest.raises(ValueError):
+        simplify("1", "1/1")
 
-def test_simplify_zero_fraction_false():
-    assert simplify("0/1", "1/1") == False
+def test_simplify_invalid_format_n():
+    with pytest.raises(ValueError):
+        simplify("1/1", "1")
+
+def test_simplify_non_integer_numerator():
+    with pytest.raises(ValueError):
+        simplify("1.5/2", "1/1")
+
+def test_simplify_non_integer_denominator():
+    with pytest.raises(ValueError):
+        simplify("1/2.5", "1/1")

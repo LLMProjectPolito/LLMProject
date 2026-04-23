@@ -33,38 +33,50 @@ def simplify(x, n):
     return result.denominator == 1
 
 class TestSimplify:
-    def test_simplify_true(self):
+    def test_simplify_true_case_1(self):
         assert simplify("1/5", "5/1") == True
-        assert simplify("2/2", "1/1") == True
-        assert simplify("1/1", "1/1") == True
-        assert simplify("4/2", "2/2") == True
-        assert simplify("3/3", "2/2") == True
-        assert simplify("1/3", "3/1") == True
-        assert simplify("2/4", "4/2") == True
 
-    def test_simplify_false(self):
+    def test_simplify_true_case_2(self):
+        assert simplify("2/4", "2/1") == True
+
+    def test_simplify_true_case_3(self):
+        assert simplify("3/6", "2/1") == True
+
+    def test_simplify_false_case_1(self):
         assert simplify("1/6", "2/1") == False
+
+    def test_simplify_false_case_2(self):
         assert simplify("7/10", "10/2") == False
+
+    def test_simplify_false_case_3(self):
         assert simplify("1/2", "1/3") == False
-        assert simplify("1/4", "1/2") == False
-        assert simplify("2/3", "1/2") == False
-        assert simplify("1/5", "2/1") == False
-        assert simplify("3/4", "1/3") == False
 
-    def test_simplify_edge_cases(self):
+    def test_simplify_with_larger_numbers_true(self):
+        assert simplify("12/4", "2/1") == True
+
+    def test_simplify_with_larger_numbers_false(self):
+        assert simplify("12/5", "5/2") == False
+
+    def test_simplify_with_same_numerator_and_denominator_true(self):
+        assert simplify("1/1", "1/1") == True
+
+    def test_simplify_with_one_as_denominator_true(self):
+        assert simplify("1/1", "2/1") == True
+
+    def test_simplify_with_one_as_denominator_false(self):
+        assert simplify("1/2", "1/1") == False
+
+    def test_simplify_edge_case_1(self):
         assert simplify("1/100", "100/1") == True
+
+    def test_simplify_edge_case_2(self):
         assert simplify("1/101", "101/1") == True
-        assert simplify("100/1", "1/100") == False
-        assert simplify("1000/1", "1/1000") == False
 
-    def test_simplify_large_numbers(self):
-        assert simplify("1000000/1", "1/1000000") == False
-        assert simplify("1000000/1000000", "1/1") == True
-        assert simplify("1000000/1", "1000000/1") == True
+    def test_simplify_edge_case_3(self):
+        assert simplify("1/102", "102/1") == True
 
-    def test_simplify_mixed_numbers(self):
-        # While the problem states fractions are in the form numerator/denominator,
-        # it's good to test behavior if mixed numbers are passed.  The current
-        # implementation will treat them as improper fractions.
-        assert simplify("1 1/2", "2/3") == False # treated as 3/2 * 2/3 = 1
-        assert simplify("1/2", "1 1/3") == False # treated as 1/2 * 4/3 = 2/3
+    def test_simplify_complex_true(self):
+        assert simplify("4/8", "6/3") == True
+
+    def test_simplify_complex_false(self):
+        assert simplify("4/9", "6/3") == False

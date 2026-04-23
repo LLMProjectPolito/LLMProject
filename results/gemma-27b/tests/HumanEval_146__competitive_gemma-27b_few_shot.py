@@ -44,13 +44,16 @@ def test_numbers_less_than_or_equal_to_10():
     assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 0
 
 def test_large_numbers():
-    assert specialFilter([111, 333, 555, 777, 999, 101, 103, 105, 107, 109]) == 5
+    assert specialFilter([111, 333, 555, 777, 999]) == 5
 
-def test_mixed_large_and_small_numbers():
-    assert specialFilter([15, 111, 22, 333, 44, 555, 66, 777, 88, 999]) == 4
+def test_large_numbers_mixed():
+    assert specialFilter([111, 222, 333, 444, 555]) == 3
 
 def test_negative_special_numbers():
-    assert specialFilter([-13, -35, -57, -79, -91]) == 0
+    assert specialFilter([-13, -35, -57, -79, -91]) == 5
 
 def test_negative_and_positive_special_numbers():
-    assert specialFilter([15, -37, 59, -71, 93]) == 2
+    assert specialFilter([15, -37, 59, -71, 93]) == 5
+
+def test_zero():
+    assert specialFilter([0]) == 0

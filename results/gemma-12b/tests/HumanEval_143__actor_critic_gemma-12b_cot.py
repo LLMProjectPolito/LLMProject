@@ -64,15 +64,16 @@ def test_single_prime_length_word():
     assert words_in_sentence("a") == "a"
 
 def test_multiple_prime_length_words():
-    assert words_in_sentence("This is a test") == "is"
-
-def test_mixed_prime_and_non_prime_words():
     assert words_in_sentence("lets go for swimming") == "go for"
 
-def test_spaces_handling():
+def test_mixed_prime_and_non_prime_length_words():
+    assert words_in_sentence("This is a test") == "is"
+
+def test_sentence_with_leading_and_trailing_spaces():
     assert words_in_sentence("  This is a test  ") == "is"
+
+def test_sentence_with_multiple_spaces_between_words():
     assert words_in_sentence("This  is   a    test") == "is"
-    assert words_in_sentence("   ") == ""
 
 def test_sentence_with_only_one_word():
     assert words_in_sentence("prime") == "prime"
@@ -81,16 +82,22 @@ def test_sentence_with_prime_length_words_at_beginning_and_end():
     assert words_in_sentence("a lets go for swimming") == "a lets"
 
 def test_sentence_with_all_prime_length_words():
-    assert words_in_sentence("a is go") == "a is go"
+    assert words_in_sentence("a is go for") == "a is go for"
 
 def test_sentence_with_long_prime_length_words():
     assert words_in_sentence("This is a verylongword test") == ""
 
 def test_sentence_with_short_prime_length_words():
-    assert words_in_sentence("I am") == "I am"
+    assert words_in_sentence("I am here") == "I am"
 
-def test_mixed_case():
-    assert words_in_sentence("This Is A Test") == "Is A"
+def test_numbers_in_sentence():
+    assert words_in_sentence("1 2 3 4 5") == ""
 
-def test_with_special_characters():
-    assert words_in_sentence("hello! world?") == ""
+def test_special_characters_in_sentence():
+    assert words_in_sentence("This! is? a, test.") == ""
+
+def test_is_prime_zero():
+    assert is_prime(0) == False
+
+def test_is_prime_one():
+    assert is_prime(1) == False

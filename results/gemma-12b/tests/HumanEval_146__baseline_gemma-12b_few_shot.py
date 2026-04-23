@@ -22,42 +22,46 @@ def specialFilter(nums):
     for num in nums:
         if num > 10:
             num_str = str(abs(num))
-            if num_str and num_str[0] in '13579' and num_str[-1] in '13579':
+            if num_str[0] in '13579' and num_str[-1] in '13579':
                 count += 1
     return count
 
-def test_specialFilter_example1():
-    assert specialFilter([15, -73, 14, -15]) == 1
+class TestSpecialFilter:
+    def test_empty_list(self):
+        assert specialFilter([]) == 0
 
-def test_specialFilter_example2():
-    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
+    def test_no_matching_numbers(self):
+        assert specialFilter([1, 2, 3, 4, 5]) == 0
 
-def test_specialFilter_empty():
-    assert specialFilter([]) == 0
+    def test_basic_example_1(self):
+        assert specialFilter([15, -73, 14, -15]) == 1
 
-def test_specialFilter_no_match():
-    assert specialFilter([1, 2, 3, 4, 5]) == 0
+    def test_basic_example_2(self):
+        assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
-def test_specialFilter_all_match():
-    assert specialFilter([11, 33, 55, 77, 99]) == 5
+    def test_mixed_positive_negative(self):
+        assert specialFilter([15, -73, 14, -15, 35, -21]) == 3
 
-def test_specialFilter_mixed():
-    assert specialFilter([11, 22, 33, 44, 55, 66, 77, 88, 99, 101, 111]) == 10
+    def test_large_numbers(self):
+        assert specialFilter([151, 357, 919, 123, 456]) == 3
 
-def test_specialFilter_negative_numbers():
-    assert specialFilter([-11, -33, -55, -77, -99]) == 0
+    def test_numbers_with_zeros(self):
+        assert specialFilter([105, 307, 509, 100, 300]) == 0
 
-def test_specialFilter_large_numbers():
-    assert specialFilter([11111, 33333, 55555, 77777, 99999]) == 5
+    def test_single_matching_number(self):
+        assert specialFilter([15]) == 0
 
-def test_specialFilter_zero():
-    assert specialFilter([0]) == 0
+    def test_all_matching_numbers(self):
+        assert specialFilter([15, 35, 55, 75, 95]) == 0
 
-def test_specialFilter_single_element_match():
-    assert specialFilter([15]) == 0
+    def test_negative_numbers_only(self):
+        assert specialFilter([-15, -35, -55, -75, -95]) == 0
 
-def test_specialFilter_single_element_no_match():
-    assert specialFilter([12]) == 0
+    def test_numbers_greater_than_10_only(self):
+        assert specialFilter([11, 12, 13, 14, 15]) == 0
 
-def test_specialFilter_with_floats():
-    assert specialFilter([15.0, 33.5, 55.2]) == 0
+    def test_edge_case_1(self):
+        assert specialFilter([111, 112, 113]) == 0
+
+    def test_edge_case_2(self):
+        assert specialFilter([99, 98, 97]) == 0

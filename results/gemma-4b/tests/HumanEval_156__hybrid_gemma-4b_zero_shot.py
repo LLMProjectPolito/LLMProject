@@ -72,9 +72,8 @@ def test_int_to_mini_roman_larger_numbers():
     assert int_to_mini_roman(88) == 'lxxxviii'
 
 def test_int_to_mini_roman_mixed():
-    assert int_to_mini_roman(27) == 'xxvii'
-    assert int_to_mini_roman(68) == 'lxviii'
-    assert int_to_mini_roman(199) == 'cxcix'
+    assert int_to_mini_roman(123) == 'cxxiii'
+    assert int_to_mini_roman(2023) == 'mcmxxiii'
     assert int_to_mini_roman(399) == 'cccxcix'
 
 def test_int_to_mini_roman_invalid_input():

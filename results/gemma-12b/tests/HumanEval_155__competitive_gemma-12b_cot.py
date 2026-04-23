@@ -38,3 +38,9 @@ def test_even_odd_count_large_number():
 
 def test_even_odd_count_negative_large_number():
     assert even_odd_count(-9876543210) == (5, 5)
+
+def test_even_odd_count_number_with_repeating_digits():
+    assert even_odd_count(2222) == (4, 0)
+
+def test_even_odd_count_number_with_repeating_digits_odd():
+    assert even_odd_count(1111) == (0, 4)

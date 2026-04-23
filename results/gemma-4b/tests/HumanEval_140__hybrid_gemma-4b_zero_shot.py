@@ -63,16 +63,13 @@ def test_fix_spaces_long_consecutive_spaces():
     assert fix_spaces("This  has   many   spaces") == "This___has___many___spaces"
 
 def test_fix_spaces_trailing_spaces():
-    assert fix_spaces("Some text   ") == "Some_text--"
+    assert fix_spaces("Hello  ") == "Hello-"
 
 def test_fix_spaces_multiple_consecutive_and_trailing():
-    assert fix_spaces("Multiple   spaces   at   the   end") == "Multiple---spaces---at---the---end"
+    assert fix_spaces("Hello  World   ") == "Hello__World-"
 
 def test_fix_spaces_with_special_characters():
-    assert fix_spaces("Special! chars ") == "Special!_chars_"
+    assert fix_spaces("Hello!  World?") == "Hello!__World?"
 
 def test_fix_spaces_with_numbers():
-    assert fix_spaces("1 2 3") == "1_2_3"
-
-def test_fix_spaces_with_mixed_content():
-    assert fix_spaces("A1 B2 C3") == "A1_B2_C3"
+    assert fix_spaces("Value 123  Test") == "Value_123-Test"

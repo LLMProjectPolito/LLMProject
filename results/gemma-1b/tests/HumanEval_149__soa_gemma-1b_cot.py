@@ -32,12 +32,9 @@ def list_sort(lst):
     assert list_sort(["aa", "a", "aaa"]) => ["aa"]
     assert list_sort(["ab", "a", "aaa", "cd"]) => ["ab", "cd"]
     """
-    new_list = []
-    for s in lst:
-        if len(s) % 2 == 0:
-            new_list.append(s)
-    new_list.sort(key=lambda x: (len(x), x))
-    return new_list
+    filtered_list = [word for word in lst if len(word) % 2 == 0]
+    filtered_list.sort(key=lambda word: (len(word), word))
+    return filtered_list
 
 def test_empty_list():
     assert list_sort([]) == []
@@ -45,10 +42,10 @@ def test_empty_list():
 def test_single_element_list():
     assert list_sort(["a"]) == ["a"]
 
-def test_example_case1():
+def test_example_case_1():
     assert list_sort(["aa", "a", "aaa"]) == ["aa"]
 
-def test_example_case2():
+def test_example_case_2():
     assert list_sort(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
 def test_duplicate_elements():

@@ -58,7 +58,7 @@ def bf(planet1, planet2):
         "Earth": 1.000,
         "Mars": 1.521,
         "Jupiter": 5.206,
-        "Saturn": 9.534,
+        "Saturn": 9.546,
         "Uranus": 19.196,
         "Neptune": 30.066
     }
@@ -66,12 +66,8 @@ def bf(planet1, planet2):
     planet1_orbit = orbits1[planet1]
     planet2_orbit = orbits2[planet2]
     
-    result = []
-    for planet in ["Saturn", "Uranus", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Venus", "Earth", "Mars", "Jupiter", "Saturn"]:
-        if abs(planet1_orbit - planet2_orbit) <= 1.0:
-            result.append(planet)
-    
-    return tuple(result)
+    result = tuple(sorted((planet1, planet2)))
+    return result
 
 def bf(planet1, planet2):
     '''
@@ -97,32 +93,28 @@ def bf(planet1, planet2):
         return ()
     
     orbits1 = {
-        "Mercury": 0.388,
-        "Venus": 0.721,
-        "Earth": 1.000,
-        "Mars": 1.521,
-        "Jupiter": 5.206,
-        "Saturn": 9.534,
-        "Uranus": 19.196,
-        "Neptune": 30.066
+        "Mercury": 0.39,
+        "Venus": 0.72,
+        "Earth": 1.0,
+        "Mars": 1.5,
+        "Jupiter": 5.2,
+        "Saturn": 9.4,
+        "Uranus": 19.0,
+        "Neptune": 30.0
     }
     orbits2 = {
-        "Mercury": 0.388,
-        "Venus": 0.721,
-        "Earth": 1.000,
-        "Mars": 1.521,
-        "Jupiter": 5.206,
-        "Saturn": 9.534,
-        "Uranus": 19.196,
-        "Neptune": 30.066
+        "Mercury": 0.39,
+        "Venus": 0.72,
+        "Earth": 1.0,
+        "Mars": 1.5,
+        "Jupiter": 5.2,
+        "Saturn": 9.4,
+        "Uranus": 19.0,
+        "Neptune": 30.0
     }
     
     planet1_orbit = orbits1[planet1]
     planet2_orbit = orbits2[planet2]
     
-    result = []
-    for planet in ["Saturn", "Uranus", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Venus", "Earth", "Mars", "Jupiter", "Saturn"]:
-        if abs(planet1_orbit - planet2_orbit) <= 1.0:
-            result.append(planet)
-    
-    return tuple(result)
+    result = tuple(sorted((planet1, planet2)))
+    return result

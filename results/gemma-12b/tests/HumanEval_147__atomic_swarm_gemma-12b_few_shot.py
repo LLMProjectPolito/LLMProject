@@ -17,12 +17,11 @@ def get_max_triples(n):
 import pytest
 import math
 
-def test_get_max_triples_positive():
+def test_get_max_triples():
     assert get_max_triples(5) == 1
 
 def test_edge_n_equals_1(n):
-    """Test case for n = 1, which should return 0."""
-    from your_module import get_max_triples  # Replace your_module
+    from solution import get_max_triples
     assert get_max_triples(1) == 0
 
 def test_get_max_triples_invalid_input():

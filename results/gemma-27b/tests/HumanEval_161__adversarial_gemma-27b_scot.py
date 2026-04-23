@@ -53,24 +53,25 @@ def test_no_letters_special():
     assert solve("#@%$") == "%$@#"
 
 def test_mixed_case_letters():
-    assert solve("aB") == "Ab"
+    assert solve("aBcDeF") == "AbCdEf"
 
-def test_mixed_letters_and_numbers():
-    assert solve("a1B2") == "A1b2"
-
-def test_mixed_letters_and_special():
-    assert solve("#a@C") == "#A@c"
+def test_mixed_characters():
+    assert solve("#a@C123") == "#A@c123"
 
 def test_all_lowercase():
-    assert solve("abc") == "ABC"
+    assert solve("abcdef") == "ABCDEF"
 
 def test_all_uppercase():
-    assert solve("ABC") == "abc"
+    assert solve("ABCDEF") == "abcdef"
 
 def test_string_with_spaces():
-    assert solve("a b c") == "A B C"
+    assert solve("hello world") == "HELLO WORLD"
 
-def test_long_string():
-    long_string = "a" * 1000 + "1" * 1000 + "A" * 1000
-    expected_string = "A" * 1000 + "1" * 1000 + "a" * 1000
-    assert solve(long_string) == expected_string
+def test_string_with_unicode():
+    assert solve("你好world") == "你好WORLD"
+
+def test_single_letter_lowercase():
+    assert solve("a") == "A"
+
+def test_single_letter_uppercase():
+    assert solve("A") == "a"

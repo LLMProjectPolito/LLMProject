@@ -69,7 +69,7 @@ def test_more_than_three_consecutive_spaces():
     assert fix_spaces("Example    1") == "Example-1"
 
 def test_mixed_spaces():
-    assert fix_spaces(" Example  1   2") == "_Example-1_2"
+    assert fix_spaces(" Example   1 2") == "_Example-1_2"
 
 def test_empty_string():
     assert fix_spaces("") == ""
@@ -87,8 +87,9 @@ def test_consecutive_spaces_at_start():
 def test_consecutive_spaces_at_end():
     assert fix_spaces("Example   ") == "Example-"
 
-def test_long_string_with_consecutive_spaces():
-    assert fix_spaces("A" + " " * 5 + "B") == "A-B"
+def test_long_consecutive_spaces():
+    assert fix_spaces("Example                1") == "Example-"
 
-def test_string_with_only_spaces():
-    assert fix_spaces("   ") == "-"
+def test_type_handling():
+    with pytest.raises(TypeError):
+        fix_spaces(123)

@@ -36,25 +36,26 @@ def test_mixed_lengths_with_duplicates():
 def test_same_length_different_alphabetical():
     assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
 
-def test_same_length_same_alphabetical():
-    assert sorted_list_sum(["ab", "ac", "ad"]) == ["ab", "ac", "ad"]
+def test_same_length_with_duplicates():
+    assert sorted_list_sum(["ab", "cd", "ab", "ef", "cd"]) == ["ab", "ab", "cd", "cd", "ef"]
 
-def test_mixed_lengths_and_alphabetical():
-    assert sorted_list_sum(["aa", "a", "aaa", "bb", "b", "ccc", "ab"]) == ["aa", "ab", "bb", "ccc"]
+def test_complex_case():
+    assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape"]) == ["kiwi", "grape"]
 
-def test_long_list():
-    lst = ["a", "aa", "aaa", "aaaa", "aaaaa", "b", "bb", "bbb", "bbbb", "bbbbb", "c", "cc", "ccc", "cccc", "ccccc"]
-    expected = ["a", "b", "c", "aa", "bb", "cc", "aaa", "bbb", "ccc", "aaaa", "bbbb", "cccc", "aaaaa", "bbbbb", "ccccc"]
-    assert sorted_list_sum(lst) == expected
-
-def test_list_with_special_characters():
-    assert sorted_list_sum(["a!", "aa?", "aaa#"]) == ["a!", "aa?", "aaa#"]
-
-def test_list_with_numbers_as_strings():
-    assert sorted_list_sum(["1", "12", "123"]) == ["1", "12", "123"]
-
-def test_list_with_empty_string():
+def test_case_with_empty_string():
     assert sorted_list_sum(["", "a", "aa"]) == ["", "aa"]
 
-def test_list_with_unicode_characters():
-    assert sorted_list_sum(["你好", "世界", "你好世界"]) == ["你好", "世界", "你好世界"]
+def test_case_with_special_characters():
+    assert sorted_list_sum(["!@#", "a", "!!"]) == ["!@#", "!!"]
+
+def test_long_strings():
+    assert sorted_list_sum(["abcdefgh", "abcde", "abcdef"]) == ["abcde", "abcdef", "abcdefgh"]
+
+def test_all_same_length_and_same_value():
+    assert sorted_list_sum(["abc", "abc", "abc"]) == ["abc", "abc", "abc"]
+
+def test_one_even_one_odd():
+    assert sorted_list_sum(["a", "bb"]) == ["bb"]
+
+def test_multiple_even_and_odd():
+    assert sorted_list_sum(["a", "bb", "ccc", "d", "ee", "fff"]) == ["bb", "ee", "ccc", "fff"]

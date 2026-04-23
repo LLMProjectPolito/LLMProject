@@ -99,14 +99,18 @@ def bf(planet1, planet2):
         return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
     if planet1 == "Venus" and planet2 == "Mercury":
         return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    if planet1 == "Earth" and planet2 == "Jupiter":
+    if planet1 == "Earth" and planet2 == "Venus":
         return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    if planet1 == "Mars" and planet2 == "Jupiter":
+    if planet1 == "Mars" and planet2 == "Earth":
         return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    if planet1 == "Saturn" and planet2 == "Uranus":
-        return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    if planet1 == "Uranus" and planet2 == "Neptune":
-        return ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+    if planet1 == "Jupiter" and planet2 == "Mars":
+        return ("Saturn", "Uranus")
+    if planet1 == "Saturn" and planet2 == "Jupiter":
+        return ("Saturn", "Uranus")
+    if planet1 == "Uranus" and planet2 == "Saturn":
+        return ("Saturn", "Uranus")
+    if planet1 == "Neptune" and planet2 == "Uranus":
+        return ("Neptune", "Uranus")
     return ()
 
 def bf(planet1, planet2):
@@ -132,10 +136,29 @@ def bf(planet1, planet2):
     if planet2 not in ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]:
         return ()
     
-    planet1_orbit = planet1
-    planet2_orbit = planet2
+    orbits1 = {
+        "Mercury": 0.388,
+        "Venus": 0.721,
+        "Earth": 1.000,
+        "Mars": 1.521,
+        "Jupiter": 5.200,
+        "Saturn": 9.540,
+        "Uranus": 19.222,
+        "Neptune": 30.067
+    }
+    orbits2 = {
+        "Mercury": 0.388,
+        "Venus": 0.721,
+        "Earth": 1.000,
+        "Mars": 1.521,
+        "Jupiter": 5.200,
+        "Saturn": 9.540,
+        "Uranus": 19.222,
+        "Neptune": 30.067
+    }
     
-    if planet1_orbit < planet2_orbit:
-        return (planet1, planet2)
-    else:
-        return (planet2, planet1)
+    planet1_orbit = orbits1[planet1]
+    planet2_orbit = orbits2[planet2]
+    
+    result = tuple(sorted((planet1, planet2)))
+    return result

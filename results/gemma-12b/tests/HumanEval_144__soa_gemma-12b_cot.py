@@ -69,17 +69,17 @@ class TestSimplify:
     def test_simplify_large_numbers_false(self):
         assert simplify("100/201", "201/100") == False
 
-    def test_simplify_same_number_true(self):
+    def test_simplify_same_fraction(self):
         assert simplify("1/1", "1/1") == True
 
-    def test_simplify_zero_numerator_true(self):
+    def test_simplify_one_is_one(self):
+        assert simplify("1/2", "1/1") == False
+
+    def test_simplify_one_is_one_true(self):
+        assert simplify("1/1", "2/1") == True
+
+    def test_simplify_zero_numerator(self):
         assert simplify("0/1", "1/1") == True
 
     def test_simplify_zero_numerator_false(self):
         assert simplify("0/1", "1/2") == False
-
-    def test_simplify_complex_true(self):
-        assert simplify("2/3", "3/2") == True
-
-    def test_simplify_complex_false(self):
-        assert simplify("2/5", "3/7") == False

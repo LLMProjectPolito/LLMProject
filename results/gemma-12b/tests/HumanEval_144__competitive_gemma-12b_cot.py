@@ -81,12 +81,13 @@ class TestSimplify:
         assert simplify("18/19", "19/20") == False
         assert simplify("20/21", "21/22") == False
         assert simplify("2/5", "10/2") == True
-        assert simplify("3/7", "14/1") == True
-        assert simplify("4/9", "9/4") == True
-        assert simplify("5/11", "11/5") == True
-        assert simplify("6/13", "13/6") == True
-        assert simplify("7/15", "15/7") == True
-        assert simplify("8/17", "17/8") == True
-        assert simplify("9/19", "19/9") == True
-        assert simplify("10/21", "21/10") == True
-        assert simplify("11/23", "23/11") == True
+        assert simplify("1/3", "6/1") == True
+        assert simplify("1/4", "8/2") == True
+        assert simplify("1/5", "10/1") == True
+        assert simplify("1/6", "12/2") == True
+        assert simplify("1/7", "14/1") == True
+        assert simplify("1/8", "16/2") == True
+        assert simplify("1/9", "18/3") == True
+        assert simplify("1/10", "20/2") == True
+        assert simplify("1/11", "22/1") == True
+        assert simplify("1/12", "24/2") == True

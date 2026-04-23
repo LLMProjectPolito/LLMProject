@@ -8,7 +8,6 @@ def specialFilter(nums):
     specialFilter([33, -2, -3, 45, 21, 109]) => 2
     """
 
-```python
 import pytest
 
 def is_palindrome(s: str) -> bool:
@@ -64,51 +63,52 @@ def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
     assert get_max([3, 2, 1]) == 3
     assert get_max([1, 3, 2]) == 3
-    assert get_max([5, 1, 8, 2]) == 8
+    assert get_max([-1, -2, -3]) == -1
+
+def test_get_max_empty():
+    assert get_max([]) == None
 
 def test_get_max_negative():
     assert get_max([-1, -2, -3]) == -1
-    assert get_max([-3, -2, -1]) == -1
+    assert get_max([-1, 0, -2]) == 0
 
 def test_get_max_mixed():
     assert get_max([-1, 2, -3, 4]) == 4
     assert get_max([1, -2, 3, -4]) == 3
 
-def test_get_max_empty():
-    assert get_max([]) == None
+def test_specialFilter_empty():
+    assert specialFilter([]) == 0
 
-def test_specialFilter_basic():
-    assert specialFilter([15, -73, 14, -15]) == 1
+def test_specialFilter_no_matching():
+    assert specialFilter([1, 2, 3, 4, 5]) == 0
+
+def test_specialFilter_single_match():
+    assert specialFilter([15, 2, 3, 4, 5]) == 1
+
+def test_specialFilter_multiple_matches():
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
-    assert specialFilter([11, 13, 15]) == 3
-    assert specialFilter([22, 24, 26]) == 0
 
-def test_specialFilter_negative():
-    assert specialFilter([-11, -13, -15]) == 0
-    assert specialFilter([-15, 11, -13, 15]) == 1
+def test_specialFilter_negative_numbers():
+    assert specialFilter([-15, -33, -2, -3, 45, 21, 109]) == 1
 
-def test_specialFilter_mixed():
-    assert specialFilter([11, -13, 15, -17]) == 2
-    assert specialFilter([-11, 13, -15, 17]) == 2
-    assert specialFilter([-11, 13, -15, 17, 19]) == 3
+def test_specialFilter_mixed_numbers():
+    assert specialFilter([11, 13, 15, 2, 3, 4, 5, 101, 103]) == 3
 
 def test_specialFilter_edge_cases():
-    assert specialFilter([11, 12, 13]) == 1
-    assert specialFilter([11, 12, 13, 14]) == 1
-    assert specialFilter([11, 12, 13, 14, 15]) == 1
-    assert specialFilter([11, 12, 13, 14, 15, 17]) == 2
-    assert specialFilter([11, 12, 13, 14, 15, 17, 19]) == 3
-    assert specialFilter([11, 12, 13, 14, 15, 17, 19, 21]) == 4
-    assert specialFilter([11, 12, 13, 14, 15, 17, 19, 21, 23]) == 5
-    assert specialFilter([11, 12, 13, 14, 15, 17, 19, 21, 23, 25]) == 6
-    assert specialFilter([11, 12, 13, 14, 15, 17, 19, 21, 23, 25, 27]) == 7
-    assert specialFilter([11, 12, 13, 14, 15, 17, 19, 21, 23, 25, 27, 29]) == 8
-    assert specialFilter([11, 12, 13, 14, 15, 17, 19, 21, 23, 25, 27, 29, 31]) == 9
-    assert specialFilter([11, 12, 13, 14, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33]) == 10
-    assert specialFilter([11, 12, 13, 14, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35]) == 11
-    assert specialFilter([11, 12, 13, 14, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37]) == 12
-    assert specialFilter([11, 12, 13, 14, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39]) == 13
-    assert specialFilter([11, 12, 13, 14, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41]) == 14
-    assert specialFilter([11, 12, 13, 14, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43]) == 15
-    assert specialFilter([11, 12, 13, 14, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45]) == 16
-    assert specialFilter([11, 12, 13, 14, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33
+    assert specialFilter([11, 13, 15, 17, 19]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 21]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 21, 23]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49]) == 5
+    assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51]) == 5

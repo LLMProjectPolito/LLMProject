@@ -39,18 +39,17 @@ def test_invalid_file_names_empty_prefix():
     assert file_name_check(".exe") == "No"
     assert file_name_check(".dll") == "No"
 
-def test_invalid_file_names_invalid_prefix():
+def test_invalid_file_names_prefix_not_letter():
     assert file_name_check("1example.txt") == "No"
     assert file_name_check("2file.exe") == "No"
     assert file_name_check("9document.dll") == "No"
-    assert file_name_check("_file.txt") == "No"
-    assert file_name_check("!file.dll") == "No"
-    assert file_name_check(" file.txt") == "No"
+    assert file_name_check("!file.txt") == "No"
 
 def test_invalid_file_names_invalid_extension():
-    assert file_name_check("example.jpg") == "No"
-    assert file_name_check("file.pdf") == "No"
-    assert file_name_check("document.zip") == "No"
+    assert file_name_check("example.pdf") == "No"
+    assert file_name_check("file.jpg") == "No"
+    assert file_name_check("document.png") == "No"
+    assert file_name_check("example.zip") == "No"
 
 def test_edge_cases():
     assert file_name_check("a.txt") == "Yes"
@@ -68,7 +67,13 @@ def test_file_name_with_spaces():
     assert file_name_check("file name.exe") == "No"
     assert file_name_check("example.txt ") == "No"
 
-def test_file_name_with_special_characters():
-    assert file_name_check("example!.txt") == "No"
-    assert file_name_check("file@.exe") == "No"
-    assert file_name_check("document#.dll") == "No"
+def test_uppercase_and_lowercase():
+    assert file_name_check("ExAmPlE.txt") == "Yes"
+    assert file_name_check("fIlE.exe") == "Yes"
+    assert file_name_check("dOcUmEnT.dll") == "Yes"
+
+def test_invalid_file_names_invalid_prefix():
+    assert file_name_check("1example.txt") == "No"
+    assert file_name_check("2file.exe") == "No"
+    assert file_name_check("!file.dll") == "No"
+    assert file_name_check(" file.txt") == "No"

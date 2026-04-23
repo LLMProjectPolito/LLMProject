@@ -85,22 +85,25 @@ def test_sentence_with_only_spaces():
     assert words_in_sentence("   ") == ""
 
 def test_sentence_with_prime_length_words():
-    assert words_in_sentence("hello world") == "world"
+    assert words_in_sentence("prime test") == "prime"
 
 def test_sentence_with_non_prime_length_words():
-    assert words_in_sentence("short long") == ""
+    assert words_in_sentence("nonprime test") == ""
 
 def test_sentence_with_mixed_prime_and_non_prime_words():
-    assert words_in_sentence("one two three four") == "one two"
+    assert words_in_sentence("prime nonprime test") == "prime"
 
-def test_sentence_with_large_prime_length_word():
-    assert words_in_sentence("abcdefghijklmnopqrstuvwxyz") == "abcdefghijklmnopqrstuvwxyz"
+def test_sentence_with_long_words():
+    assert words_in_sentence("This is a verylongword") == "is"
 
-def test_sentence_with_large_non_prime_length_word():
-    assert words_in_sentence("abcdefghijklm") == ""
+def test_sentence_with_short_words():
+    assert words_in_sentence("a b c d") == "a b c"
 
 def test_sentence_with_prime_and_non_prime_mixed_order():
     assert words_in_sentence("test is abc") == "is"
 
-def test_sentence_with_prime_and_non_prime_mixed_order_2():
-    assert words_in_sentence("abc is test") == "is"
+def test_sentence_with_large_prime_length_word():
+    assert words_in_sentence("abcdefghijklmnopqrstuvwxyza") == ""
+
+def test_sentence_with_small_prime_length_word():
+    assert words_in_sentence("ab") == "ab"

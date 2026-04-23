@@ -50,16 +50,14 @@ def factorial(n):
 
 @pytest.mark.parametrize("n", [1, 2])
 def test_special_factorial_boundary_low(n):
-    assert special_factorial(n) == 1
+    assert special_factorial(n) == factorial(n)
 
 @pytest.mark.parametrize("n", [3, 4, 5])
 def test_special_factorial_boundary_mid(n):
-    if n == 3:
-        assert special_factorial(n) == 12
-    elif n == 4:
-        assert special_factorial(n) == 288
-    elif n == 5:
-        assert special_factorial(n) == 34560
+    expected = 1
+    for i in range(1, n + 1):
+        expected *= factorial(i)
+    assert special_factorial(n) == expected
 
 # Focus: Equivalence Partitioning
 import pytest
@@ -124,5 +122,5 @@ def test_special_factorial_zero_input():
 
 def test_special_factorial_non_integer_input():
     with pytest.raises(TypeError) as excinfo:
-        special_factorial(1.5)
+        special_factorial(3.14)
     assert "Input must be an integer." == str(excinfo.value)

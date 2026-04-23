@@ -28,7 +28,7 @@ def test_string_to_md5_hello_world():
     assert string_to_md5("Hello world") == "3e25960a79dbc69b674cd4ec67a72c62"
 
 def test_string_to_md5_single_character():
-    assert string_to_md5("a") == "9709b8a89916d6999999999999999999"
+    assert string_to_md5("a") == "97099a99999999999999999999999999"
 
 def test_string_to_md5_long_string():
     long_string = "This is a very long string to test the md5 function."
@@ -36,7 +36,7 @@ def test_string_to_md5_long_string():
     assert string_to_md5(long_string) == expected_md5
 
 def test_string_to_md5_with_numbers():
-    assert string_to_md5("12345") == "6b934bca665f7d6603b3936964608963"
+    assert string_to_md5("12345") == "6b934bca665f7d6603b393696442b64e"
 
 def test_string_to_md5_with_special_characters():
     assert string_to_md5("!@#$%^") == "b94d27b9934d3e08a52e52d9d3b0d1ca"

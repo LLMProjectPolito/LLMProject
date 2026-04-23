@@ -100,8 +100,11 @@ class TestEat:
     def test_large_numbers_not_enough(self):
         assert eat(999, 1000, 1) == [1000, 0]
 
-    def test_equal_need_and_remaining(self):
-        assert eat(5, 5, 5) == [10, 0]
+    def test_equal_numbers(self):
+        assert eat(100, 100, 100) == [200, 0]
 
     def test_edge_case_zero_all(self):
         assert eat(0, 0, 0) == [0, 0]
+
+    def test_need_greater_than_remaining(self):
+        assert eat(1, 10, 2) == [3, 0]

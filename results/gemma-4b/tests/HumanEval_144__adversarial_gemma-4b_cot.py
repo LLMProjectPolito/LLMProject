@@ -40,26 +40,28 @@ def simplify(x, n):
 # Test cases
 def test_simplify_valid():
     assert simplify("1/5", "5/1") == True
-    assert simplify("2/3", "6/1") == True
+    assert simplify("1/2", "2/1") == True
     assert simplify("10/2", "2/1") == True
-    assert simplify("1/1", "1/1") == True
+    assert simplify("7/10", "10/7") == True
 
 def test_simplify_invalid():
     assert simplify("1/6", "2/1") == False
     assert simplify("7/10", "10/2") == False
-    assert simplify("1/2", "3/1") == False
-    assert simplify("5/7", "11/1") == False
+    assert simplify("1/3", "2/1") == False
+    assert simplify("1/4", "3/1") == False
 
 def test_simplify_edge_cases():
     assert simplify("1/1", "1/1") == True
-    assert simplify("1/1", "1/2") == False
-    assert simplify("1/2", "1/1") == False
-    assert simplify("100/1", "1/1") == True
-    assert simplify("1/100", "1/1") == True
-    assert simplify("1/100", "1/2") == False
+    assert simplify("1/1", "2/1") == False
+    assert simplify("2/1", "1/1") == True
+    assert simplify("1/2", "1/2") == True
 
 def test_simplify_large_numbers():
-    assert simplify("1000/1", "10/1") == True
-    assert simplify("1000/1", "11/1") == False
-    assert simplify("12345/1", "5/1") == True
-    assert simplify("12345/1", "6/1") == False
+    assert simplify("100/10", "10/1") == True
+    assert simplify("100/10", "11/1") == False
+
+def test_simplify_different_formats():
+    with pytest.raises(ValueError):
+        simplify("1/a", "5/1")
+    with pytest.raises(ValueError):
+        simplify("1/5", "b/1")

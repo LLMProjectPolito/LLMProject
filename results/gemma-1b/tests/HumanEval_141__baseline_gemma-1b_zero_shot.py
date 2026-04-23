@@ -30,11 +30,12 @@ def file_name_check(file_name):
     file_name_check("example.txt") # => 'Yes'
     file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
-    if not re.match(r"^[a-zA-Z][a-zA-Z0-9]{3,}\.([a-zA-Z0-9])$", file_name):
+    if not re.match(r"^[a-zA-Z][a-zA-Z0-9]{3,}", file_name):
         return 'No'
-    elif len(file_name) > 3 and file_name[0] not in 'a-zA-Z':
+    if not file_name.startswith('.'):
         return 'No'
-    elif len(file_name) == 3 and file_name[1] not in ['txt', 'exe', 'dll']:
-        return 'No'
-    else:
+    if not file_name[1:]:
+        file_name = file_name[1:]
+    if file_name in ['txt', 'exe', 'dll']:
         return 'Yes'
+    return 'No'

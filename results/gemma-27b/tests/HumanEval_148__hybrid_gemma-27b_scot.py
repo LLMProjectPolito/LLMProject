@@ -55,16 +55,17 @@ def test_valid_planets():
     assert bf("Mars", "Venus") == ("Earth",)
 
 def test_invalid_planet1():
-    assert bf("Pluto", "Earth") == ()
+    assert bf("Pluto", "Neptune") == ()
 
 def test_invalid_planet2():
-    assert bf("Earth", "Pluto") == ()
-
-def test_invalid_both_planets():
-    assert bf("Pluto", "X") == ()
+    assert bf("Jupiter", "Pluto") == ()
 
 def test_same_planet():
     assert bf("Earth", "Earth") == ()
+
+def test_adjacent_planets():
+    assert bf("Earth", "Mars") == ()
+    assert bf("Mars", "Earth") == ()
 
 def test_reverse_order():
     assert bf("Neptune", "Jupiter") == ("Uranus", "Saturn")

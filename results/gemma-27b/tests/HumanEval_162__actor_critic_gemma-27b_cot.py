@@ -9,41 +9,51 @@ def string_to_md5(text):
 
 import hashlib
 import pytest
+import unicodedata
 
 def test_string_to_md5_valid_string():
-    assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
+    text = 'Hello world'
+    assert string_to_md5(text) == hashlib.md5(text.encode('utf-8')).hexdigest()
 
 def test_string_to_md5_empty_string():
+    # Expect None for an empty string input.
     assert string_to_md5('') is None
 
 def test_string_to_md5_string_with_spaces():
-    assert string_to_md5('  test  ') == 'a94a8fe5ccb19ba61c4c0873d391e987'
+    text = '  test  '
+    assert string_to_md5(text) == hashlib.md5(text.encode('utf-8')).hexdigest()
+
+def test_string_to_md5_string_with_special_characters():
+    text = '!@#$%^&*()'
+    assert string_to_md5(text) == hashlib.md5(text.encode('utf-8')).hexdigest()
 
 def test_string_to_md5_long_string():
-    long_string = 'This is a very long string to test the md5 hash function.'
-    assert string_to_md5(long_string) == '9f86d081884c7d659a2feaa0c55ad015'
-
-def test_string_to_md5_mixed_string():
-    assert string_to_md5('Hello123!@#') == '5d41402abc4b2a76b9719d911017c592'
-
-def test_string_to_md5_with_non_string_input():
-    assert string_to_md5(123) is None
+    long_string = 'This is a very long string to test the md5 hash function.' * 10
+    assert string_to_md5(long_string) == hashlib.md5(long_string.encode('utf-8')).hexdigest()
 
 def test_string_to_md5_unicode_string():
-    assert string_to_md5('你好世界') == 'd41d8cd98f00b204e9800998ecf8427e'
+    text = '你好世界'
+    assert string_to_md5(text) == hashlib.md5(text.encode('utf-8')).hexdigest()
 
-def test_string_to_md5_special_characters():
-    assert string_to_md5('!@#$%^') == 'b10a8db164e0754105b7a99be72e3fe5'
+def test_string_to_md5_numeric_string():
+    text = '1234567890'
+    assert string_to_md5(text) == hashlib.md5(text.encode('utf-8')).hexdigest()
 
-def test_string_to_md5_with_none_input():
-    assert string_to_md5(None) is None
+def test_string_to_md5_mixed_string():
+    text = 'Hello123World!'
+    assert string_to_md5(text) == hashlib.md5(text.encode('utf-8')).hexdigest()
 
-def test_string_to_md5_utf8_encoding():
-    unicode_string = '你好世界'
-    encoded_string = unicode_string.encode('utf-8')
-    assert string_to_md5(encoded_string.decode('utf-8')) == 'd41d8cd98f00b204e9800998ecf8427e'
+def test_string_to_md5_case_sensitivity():
+    assert string_to_md5('Hello') != string_to_md5('hello')
 
-def test_string_to_md5_utf16_encoding():
-    unicode_string = '你好世界'
-    encoded_string = unicode_string.encode('utf-16')
-    assert string_to_md5(encoded_string.decode('utf-16')) == 'd41d8cd98f00b204e9800998ecf8427e'
+def test_string_to_md5_non_string_input():
+    with pytest.raises(TypeError):
+        string_to_md5(123)
+
+def test_string_to_md5_unicode_normalization():
+    text = 'café'
+    assert string_to_md5(text) == hashlib.md5(text.encode('utf-8')).hexdigest()
+
+def test_string_to_md5_very_long_string():
+    very_long_string = 'a' * 100000
+    assert string_to_md5(very_long_string) == hashlib.md5(very_long_string.encode('utf-8')).hexdigest()

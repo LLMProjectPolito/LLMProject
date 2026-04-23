@@ -15,5 +15,11 @@ def simplify(x, n):
 import pytest
 import math
 
+def test_multiply_by_one():
+    assert simplify("1/2", "1/1") == True
+    assert simplify("1/1", "1/2") == True
+    assert simplify("5/7", "1/1") == True
+    assert simplify("1/1", "5/7") == True
+
 def test_multiply_one_by_one():
     assert simplify("1/1", "1/1") == True

@@ -24,9 +24,6 @@ def solve(s):
     solve("ab") = "AB"
     solve("#a@C") = "#A@c"
     """
-    s = s.lower()
-    if not s:
-        return s[::-1]
     result = ""
     for char in s:
         if 'a' <= char <= 'z':
@@ -37,14 +34,31 @@ def solve(s):
             result += char
     return result
 
-def test_solve_positive():
-    assert solve("1234") == "4321"
+class TestSolve(unittest.TestCase):
 
-def test_solve_empty():
-    assert solve("") == ""
+    def test_solve_positive(self):
+        self.assertEqual(solve("1234"), "4321")
 
-def test_solve_mixed():
-    assert solve("ab") == "AB"
+    def test_solve_empty(self):
+        self.assertIsNone(solve(""))
 
-def test_solve_no_letters():
-    assert solve("#a@C") == "#C@a"
+    def test_solve_single_letter(self):
+        self.assertEqual(solve("a"), "A")
+
+    def test_solve_mixed_case(self):
+        self.assertEqual(solve("ab"), "AB")
+
+    def test_solve_numbers(self):
+        self.assertEqual(solve("123"), "321")
+
+    def test_solve_symbols(self):
+        self.assertEqual(solve("#a"), "#A")
+
+    def test_solve_palindrome(self):
+        self.assertEqual(solve("radar"), "radar")
+
+    def test_solve_non_palindrome(self):
+        self.assertEqual(solve("hello"), "hello")
+
+if __name__ == '__main__':
+    unittest.main()

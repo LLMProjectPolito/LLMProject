@@ -37,48 +37,43 @@ def simplify(x, n):
     else:
         return False
 
-### Tests (Pytest):
-def test_simplify_1():
-    assert simplify("1/5", "5/1") == True
+class TestSimplify:
 
-def test_simplify_2():
-    assert simplify("1/6", "2/1") == False
+    def test_simple_true(self):
+        assert simplify("1/5", "5/1") == True
 
-def test_simplify_3():
-    assert simplify("7/10", "10/2") == False
+    def test_simple_false(self):
+        assert simplify("1/6", "2/1") == False
 
-def test_simplify_4():
-    assert simplify("1/1", "1/1") == True
+    def test_complex_true(self):
+        assert simplify("7/10", "10/2") == False
 
-def test_simplify_5():
-    assert simplify("2/3", "3/2") == True
+    def test_large_numbers_true(self):
+        assert simplify("100/10", "10/1") == True
 
-def test_simplify_6():
-    assert simplify("3/4", "4/3") == True
+    def test_large_numbers_false(self):
+        assert simplify("100/10", "11/1") == False
 
-def test_simplify_7():
-    assert simplify("4/3", "3/4") == True
+    def test_equal_fractions_true(self):
+        assert simplify("1/1", "1/1") == True
 
-def test_simplify_8():
-    assert simplify("10/3", "3/10") == True
+    def test_equal_fractions_false(self):
+        assert simplify("1/2", "1/2") == False
 
-def test_simplify_9():
-    assert simplify("1/2", "2/3") == False
+    def test_different_order_true(self):
+        assert simplify("5/1", "1/5") == True
 
-def test_simplify_10():
-    assert simplify("5/7", "7/5") == True
+    def test_different_order_false(self):
+        assert simplify("6/1", "1/6") == False
 
-def test_simplify_11():
-    assert simplify("1/1", "2/1") == False
+    def test_numerator_one_true(self):
+        assert simplify("1/5", "5/1") == True
 
-def test_simplify_12():
-    assert simplify("1/2", "1/2") == True
+    def test_numerator_one_false(self):
+        assert simplify("1/6", "2/1") == False
 
-def test_simplify_13():
-    assert simplify("100/10", "10/1") == True
+    def test_denominator_one_true(self):
+        assert simplify("1/5", "5/1") == True
 
-def test_simplify_14():
-    assert simplify("10/10", "10/1") == True
-
-def test_simplify_15():
-    assert simplify("1/10", "10/1") == False
+    def test_denominator_one_false(self):
+        assert simplify("1/6", "2/1") == False

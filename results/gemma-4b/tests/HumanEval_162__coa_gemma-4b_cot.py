@@ -33,7 +33,7 @@ def test_short_string():
     assert string_to_md5("a") == "2598cf249d032696d88dda92b9b3a9a8"
 
 def test_long_string():
-    assert string_to_md5("This is a longer string to test the function.") == 'b979e4619876839469997778999999999999999999999999999999999999999'
+    assert string_to_md5("This is a longer string to test the function.") == 'b979e46178264499999999999999999999999999999999999999999999999999'
 
 # Focus: Type Scenarios
 import pytest

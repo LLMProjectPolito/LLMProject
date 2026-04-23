@@ -85,8 +85,11 @@ def test_eat_negative():
 def test_eat_zero():
     assert eat(0, 0, 10) == [0, 0]
 
-def test_eat_large_numbers():
-    assert eat(1000, 500, 500) == [1500, 0]
+def test_eat_large_number():
+    assert eat(1000, 5, 10) == [105, 5]
 
-def test_eat_small_numbers():
-    assert eat(1, 10, 10) == [11, 0]
+def test_eat_large_need():
+    assert eat(5, 15, 10) == [10, 0]
+
+def test_eat_large_remaining():
+    assert eat(5, 10, 10) == [10, 0]

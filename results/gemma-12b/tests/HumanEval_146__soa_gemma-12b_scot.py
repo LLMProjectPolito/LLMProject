@@ -74,14 +74,11 @@ def test_specialFilter_numbers_with_odd_first_and_last_digits(sample_data):
 def test_specialFilter_negative_numbers_with_odd_digits(sample_data):
     assert specialFilter([15, 17, 19, 21, 23, -15, -17, -19]) == 8
 
-def test_specialFilter_complex_case(sample_data):
+def test_specialFilter_mixed_positive_negative_and_odd_digits(sample_data):
     assert specialFilter([15, 17, 19, 21, 23, -15, -17, -19, 101, 303, 505, 707, 909]) == 14
 
-def test_specialFilter_very_complex_case(sample_data):
+def test_specialFilter_large_mixed_list(sample_data):
     assert specialFilter([15, 17, 19, 21, 23, -15, -17, -19, 101, 303, 505, 707, 909, 1111, 3333, 5555, 7777, 9999]) == 18
 
-def test_specialFilter_even_more_complex_case(sample_data):
+def test_specialFilter_very_large_mixed_list(sample_data):
     assert specialFilter([15, 17, 19, 21, 23, -15, -17, -19, 101, 303, 505, 707, 909, 1111, 3333, 5555, 7777, 9999, 12345, 54321]) == 20
-
-def test_specialFilter_with_zero(sample_data):
-    assert specialFilter([15, 0, -73]) == 1

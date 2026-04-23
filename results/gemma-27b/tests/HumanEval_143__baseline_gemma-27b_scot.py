@@ -84,7 +84,7 @@ def is_prime(n):
     ("one", ""),
     ("two", "two"),
     ("  hello world  ", ""),
-    ("a very long sentence", "a very")
+    ("a b c d e f g h i j k l m n o p q r s t u v w x y z", "a b c d e f g h i j k l m n o p q r s t u v w x y z")
 ])
 def test_words_in_sentence(sentence, expected):
     assert words_in_sentence(sentence) == expected

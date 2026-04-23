@@ -27,7 +27,7 @@ def solve(s):
     has_letter = False
     result = ""
     for char in s:
-        if 'a' <= char <= 'z' or 'A' <= char <= 'Z':
+        if char.isalpha():
             has_letter = True
             if 'a' <= char <= 'z':
                 result += char.upper()
@@ -57,14 +57,14 @@ def test_mixed_case():
 def test_with_numbers_and_symbols():
     assert solve("#a@C") == "#A@c"
 
-def test_long_string_mixed_case():
+def test_numbers_and_symbols_only():
+    assert solve("#@123") == "321@"
+
+def test_long_string():
     assert solve("ThisIsALongString") == "tHISiSaLONGsTRING"
 
 def test_string_with_spaces():
     assert solve("hello world") == "HELLO WORLD"
-
-def test_string_with_unicode_characters():
-    assert solve("αβΓδ") == "ΑΒγΔ"
 
 def test_string_with_leading_and_trailing_spaces():
     assert solve("  abc  ") == "  ABC  "
@@ -75,17 +75,14 @@ def test_string_with_only_spaces():
 def test_interspersed_numbers_symbols_and_letters():
     assert solve("a1B2c") == "A1b2C"
 
-def test_empty_string_with_spaces():
-    assert solve(" ") == " "
+def test_no_letters_reversal():
+    assert solve("!@#$") == "$#@!"
 
-def test_unicode_and_non_letters():
-    assert solve("a1Γb") == "A1γB"
+def test_unicode_characters():
+    assert solve("你好世界") == "界世好你"
 
-def test_ascii_and_unicode_mix():
-    assert solve("aBΓδ") == "AβγΔ"
+def test_mixed_unicode_and_ascii():
+    assert solve("a你好B") == "B好你a"
 
-def test_leading_trailing_spaces_and_letters():
-    assert solve(" aB ") == " Aβ "
-
-def test_diverse_unicode():
-    assert solve("你好世界") == "你好世界"[::-1]
+def test_unicode_and_symbols():
+    assert solve("a!你好b") == "b好你!"

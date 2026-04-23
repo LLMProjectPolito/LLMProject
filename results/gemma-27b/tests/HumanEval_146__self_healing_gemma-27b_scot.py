@@ -18,8 +18,11 @@ def specialFilter(nums):
     """
     count = 0
     for num in nums:
-        if abs(num) > 10:
+        if num > 10:
             num_str = str(abs(num))
-            if num_str[0] in '13579' and num_str[-1] in '13579':
-                count += 1
+            if len(num_str) > 0:
+                first_digit = int(num_str[0])
+                last_digit = int(num_str[-1])
+                if first_digit % 2 != 0 and last_digit % 2 != 0:
+                    count += 1
     return count

@@ -27,10 +27,10 @@ def simplify(x, n):
     num_x, den_x = map(int, x.split('/'))
     num_n, den_n = map(int, n.split('/'))
 
-    product_num = num_x * num_n
-    product_den = den_x * den_n
+    product = num_x * num_n
+    divisor = den_x * den_n
 
-    if product_num % product_den == 0:
+    if product % divisor == 0:
         return True
     else:
         return False
@@ -52,14 +52,14 @@ def test_simplify_same_fraction():
 def test_simplify_larger_numbers():
     assert simplify("100/10", "10/1") == True
 
-def test_simplify_small_numbers():
-    assert simplify("1/1", "1/1") == True
+def test_simplify_smaller_numbers():
+    assert simplify("1/100", "10/1") == False
 
 def test_simplify_one_is_one():
-    assert simplify("1/5", "1/5") == True
+    assert simplify("1/1", "1/1") == True
 
 def test_simplify_one_is_zero():
-    assert simplify("1/5", "0/1") == False
+    assert simplify("1/1", "0/1") == False
 
 def test_simplify_zero_numerator():
     assert simplify("0/5", "5/1") == True
@@ -67,8 +67,11 @@ def test_simplify_zero_numerator():
 def test_simplify_zero_numerator_false():
     assert simplify("0/6", "2/1") == False
 
+def test_simplify_zero_denominator():
+    assert simplify("1/0", "1/1") == False # Should handle zero denominator gracefully
+
 def test_simplify_large_numbers_true():
-    assert simplify("12345/12345", "12345/12345") == True
+    assert simplify("12345/67890", "10/1") == True
 
 def test_simplify_large_numbers_false():
-    assert simplify("12345/12346", "12345/12346") == False
+    assert simplify("12345/67890", "100/1") == False

@@ -38,7 +38,7 @@ def test_specialFilter_single_element():
     assert specialFilter([15]) == 1
 
 def test_specialFilter_all_elements_greater_than_10():
-    assert specialFilter([10, 20, 30, 40, 50]) == 5
+    assert specialFilter([11, 12, 13, 14, 15]) == 5
 
 def test_specialFilter_all_elements_less_than_10():
-    assert specialFilter([-10, -20, -30]) == 0
+    assert specialFilter([1, 2, 3, 4, 5]) == 0

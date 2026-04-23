@@ -34,7 +34,7 @@ def test_right_angle_triangle_valid():
 def test_right_angle_triangle_invalid():
     assert right_angle_triangle(1, 2, 3) == False
     assert right_angle_triangle(1, 1, 1) == False
-    assert right_angle_triangle(2, 2, 3) == False
+    assert right_angle_triangle(2, 3, 4) == False
     assert right_angle_triangle(4, 5, 6) == False
 
 def test_right_angle_triangle_zero_values():
@@ -54,8 +54,8 @@ def test_right_angle_triangle_equal_sides():
 
 def test_right_angle_triangle_large_numbers():
     assert right_angle_triangle(1000, 1000, 1414) == True
-    assert right_angle_triangle(1000, 1000, 1415) == False
+    assert right_angle_triangle(1, 1, 1) == False
 
-def test_right_angle_triangle_decimal_values():
+def test_right_angle_triangle_float_values():
     assert right_angle_triangle(3.0, 4.0, 5.0) == True
     assert right_angle_triangle(1.5, 2.0, 2.5) == False

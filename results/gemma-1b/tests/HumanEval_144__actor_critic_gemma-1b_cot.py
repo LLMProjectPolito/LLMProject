@@ -28,12 +28,18 @@ def simplify(x, n):
         x_val = str(x)
         n_val = str(n)
         
-        num_val = int(x_val.replace("/", ""))
-        den_val = int(n_val.replace("/", ""))
+        num_val = int(x_val)
+        den_val = int(n_val)
         
         if den_val == 0:
             return False
         
-        return num_val * den_val == int(num_val * den_val)
+        numerator = num_val
+        denominator = den_val
+        
+        if numerator % denominator == 0:
+            return True
+        else:
+            return False
     except:
         return False

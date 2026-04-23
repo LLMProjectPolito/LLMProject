@@ -56,7 +56,7 @@ def test_equivalence_partitioning_enough_carrots():
 def test_equivalence_partitioning_not_enough_carrots():
     assert eat(2, 11, 5) == [7, 0]
     assert eat(10, 20, 5) == [15, 0]
-    assert eat(50, 100, 20) == [70, 0]
+    assert eat(5, 10, 2) == [7, 0]
 
 def test_equivalence_partitioning_zero_values():
     assert eat(0, 0, 0) == [0, 0]

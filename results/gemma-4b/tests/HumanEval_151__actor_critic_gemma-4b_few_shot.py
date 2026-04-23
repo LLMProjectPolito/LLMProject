@@ -87,14 +87,12 @@ def test_double_the_difference_empty():
     assert double_the_difference([]) == 0
 
 def test_double_the_difference_mixed():
-    assert double_the_difference([1, -2, 3, -4, 5]) == 30
+    assert double_the_difference([1, -2, 3, -4, 5]) == 35
     assert double_the_difference([0]) == 0
     assert double_the_difference([1, 2, 3, 4, 5]) == 55
-    assert double_the_difference([-1, 2, -3, 4, -5]) == 50
+    assert double_the_difference([-1, 2, -3, 4, -5]) == 55
     assert double_the_difference([1, 3, 2, 0]) == 10
     assert double_the_difference([9, -2]) == 81
     assert double_the_difference([0]) == 0
-    assert double_the_difference([1, 3, 2, 0]) == 10
-    assert double_the_difference([-1, -2, 0]) == 0
-    assert double_the_difference([9, -2]) == 81
-    assert double_the_difference([0]) == 0
+    assert double_the_difference([1, 3, 2, 0, 5]) == 35
+    assert double_the_difference([-1, -2, 0, 5]) == 25

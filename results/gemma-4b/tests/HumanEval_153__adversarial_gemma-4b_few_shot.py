@@ -101,10 +101,10 @@ def test_strongest_extension_empty_extensions():
     assert Strongest_Extension('my_class', []) == 'my_class.None'
 
 def test_strongest_extension_all_uppercase():
-    assert Strongest_Extension('Class', ['ABC', 'DEF', 'GHI']) == 'Class.ABC'
+    assert Strongest_Extension('my_class', ['ABC', 'DEF']) == 'my_class.ABC'
 
 def test_strongest_extension_all_lowercase():
-    assert Strongest_Extension('Class', ['abc', 'def', 'ghi']) == 'Class.abc'
+    assert Strongest_Extension('my_class', ['abc', 'def']) == 'my_class.abc'
 
 def test_strongest_extension_mixed_case_and_numbers():
-    assert Strongest_Extension('Test', ['T1', 't2', 'A3']) == 'Test.T1'
+    assert Strongest_Extension('my_class', ['a1B', 'b2C']) == 'my_class.a1B'

@@ -68,7 +68,7 @@ def test_mini_roman_combinations():
     assert int_to_mini_roman(39) == 'xxxix'
     assert int_to_mini_roman(88) == 'lxxxviii'
     assert int_to_mini_roman(149) == 'cxlix'
-    assert int_to_mini_roman(388) == 'cccLXXXVIII'
+    assert int_to_mini_roman(388) == 'cccLxxxviii'
     assert int_to_mini_roman(999) == 'cmxcix'
 
 def test_mini_roman_boundary_values():

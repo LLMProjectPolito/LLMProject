@@ -59,7 +59,7 @@ def test_invalid_file_name_invalid_extension():
 def test_invalid_file_name_starts_with_special_char():
     assert file_name_check("_example.txt") == "No"
     assert file_name_check("!MyFile.exe") == "No"
-    assert file_name_check("#AnotherFile.dll") == "No"
+    assert file_name_check("@AnotherFile.dll") == "No"
 
 def test_invalid_file_name_empty_string():
     assert file_name_check("") == "No"

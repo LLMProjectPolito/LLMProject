@@ -57,52 +57,29 @@ def is_prime(n):
             return False
     return True
 
-class TestWordsInSentence:
+names = ["words_in_sentence"]
 
-    def test_empty_sentence(self):
-        assert words_in_sentence("") == ""
+@pytest.mark.parametrize(names, [
+    ("This is a test"),
+    ("lets go for swimming"),
+    ("a b c d e f g h i j k l m n o p q r s t u v w x y z"),
+    ("hello world"),
+    ("one two three"),
+    ("a"),
+    (""),
+    ("prime"),
+    ("primes"),
+    ("primeprimes")
+])
+def test_words_in_sentence(sentence):
+    assert words_in_sentence(sentence) == " ".join([word for word in sentence.split() if is_prime(len(word))])
 
-    def test_no_prime_length_words(self):
-        assert words_in_sentence("This is a test") == ""
-
-    def test_single_prime_length_word(self):
-        assert words_in_sentence("is") == "is"
-
-    def test_multiple_prime_length_words(self):
-        assert words_in_sentence("lets go for swimming") == "go for"
-
-    def test_mixed_prime_and_non_prime_words(self):
-        assert words_in_sentence("This is a test sentence") == "is"
-
-    def test_sentence_with_only_prime_length_words(self):
-        assert words_in_sentence("abc def ghi") == "abc def"
-
-    def test_sentence_with_long_prime_length_words(self):
-        assert words_in_sentence("abcdefghijk") == "abcdefghijk"
-
-    def test_sentence_with_multiple_spaces(self):
-        assert words_in_sentence("This  is   a    test") == "is"
-
-    def test_sentence_with_leading_and_trailing_spaces(self):
-        assert words_in_sentence("  This is a test  ") == "is"
-
-    def test_sentence_with_numbers(self):
-        assert words_in_sentence("This is 123 test") == "is"
-
-    def test_sentence_with_special_characters(self):
-        assert words_in_sentence("This is a!@# test") == "is"
-
-    def test_prime_length_one(self):
-        assert words_in_sentence("a") == "a"
-
-    def test_prime_length_two(self):
-        assert words_in_sentence("ab") == "ab"
-
-    def test_prime_length_three(self):
-        assert words_in_sentence("abc") == "abc"
-
-    def test_prime_length_four(self):
-        assert words_in_sentence("abcd") == ""
-
-    def test_prime_length_five(self):
-        assert words_in_sentence("abcde") == "abcde"
+@pytest.mark.parametrize("sentence", [
+    "123",
+    "abc123def",
+    "a123b",
+    "123a",
+])
+def test_invalid_input(sentence):
+    with pytest.raises(TypeError):
+        words_in_sentence(sentence)

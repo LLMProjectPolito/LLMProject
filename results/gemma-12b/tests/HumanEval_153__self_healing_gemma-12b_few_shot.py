@@ -100,4 +100,4 @@ class TestStrongestExtension:
         assert Strongest_Extension("My_Class!", ["Extension1", "Extension2"]) == "My_Class!.Extension1"
 
     def test_class_name_with_numbers(self):
-        assert Strongest_Extension("Class123", ["Extension1", "Extension2"]) == "Class123.Extension1"
+        assert Strongest_Extension("Class123", ["ExtensionA", "ExtensionB"]) == "Class123.ExtensionA"

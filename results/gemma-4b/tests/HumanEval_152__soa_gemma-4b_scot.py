@@ -37,31 +37,35 @@ def compare(game,guess):
         result.append(abs(guess[i] - game[i]))
     return result
 
-def test_compare_empty():
-    assert compare([], []) == []
-
-def test_compare_equal():
-    assert compare([1, 2, 3], [1, 2, 3]) == [0, 0, 0]
-
-def test_compare_correct_guess():
+def test_compare_correct_guesses():
     assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
 
-def test_compare_incorrect_guess():
+def test_compare_incorrect_guesses():
     assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
 
-def test_compare_mixed():
-    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 1, 2]) == [0, 0, 0, 0, 0, 0]
+def test_compare_empty_arrays():
+    assert compare([], []) == []
 
-def test_compare_negative_numbers():
-    assert compare([-1, -2, -3], [-1, -2, -3]) == [0, 0, 0]
-
-def test_compare_negative_and_positive():
-    assert compare([1, -2, 3], [1, 2, 3]) == [0, 1, 0]
+def test_compare_single_element_arrays():
+    assert compare([5], [5]) == [0]
+    assert compare([5], [6]) == [1]
 
 def test_compare_different_lengths():
     with pytest.raises(IndexError):
-        compare([1, 2, 3], [1, 2])
+        compare([1, 2], [1])
 
-def test_compare_different_lengths_reversed():
-    with pytest.raises(IndexError):
-        compare([1, 2, 3], [1, 2, 3])
+def test_compare_negative_numbers():
+    assert compare([-1, -2, -3], [-1, -2, -3]) == [0, 0, 0]
+    assert compare([-1, -2, -3], [-4, -5, -6]) == [3, 3, 3]
+
+def test_compare_mixed_numbers():
+    assert compare([1, -2, 3], [1, -2, 3]) == [0, 0, 0]
+    assert compare([1, -2, 3], [4, -5, 6]) == [3, 3, 3]
+
+def test_compare_zero_values():
+    assert compare([0, 0, 0], [0, 0, 0]) == [0, 0, 0]
+    assert compare([0, 0, 0], [1, 2, 3]) == [1, 2, 3]
+
+def test_compare_large_numbers():
+    assert compare([1000, 2000, 3000], [1000, 2000, 3000]) == [0, 0, 0]
+    assert compare([1000, 2000, 3000], [1001, 2002, 3003]) == [1, 1, 1]

@@ -52,12 +52,12 @@ def test_order_by_points_single_element():
     assert order_by_points([5]) == [5]
 
 def test_order_by_points_large_numbers():
-    assert order_by_points([123, 45, 6, 789, 1]) == [1, 6, 45, 123, 789]
+    assert order_by_points([123, 45, 678, 9, 100]) == [9, 45, 100, 123, 678]
 
 def test_order_by_points_zero_sum():
     assert order_by_points([0, 0, 0]) == [0, 0, 0]
 
-def test_order_by_points_negative_and_positive_with_same_sum():
+def test_order_by_points_negative_and_positive_same_sum():
     assert order_by_points([-1, 1]) == [-1, 1]
 
 def test_order_by_points_complex_case():

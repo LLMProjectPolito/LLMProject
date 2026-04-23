@@ -72,29 +72,11 @@ def test_example_1():
 def test_example_2():
     assert words_in_sentence("lets go for swimming") == "go for"
 
-def test_example_3():
-    assert words_in_sentence("a b c d e") == "a b c d e"
+def test_long_sentence():
+    assert words_in_sentence("This is a very long sentence with many words.") == "very long sentence with many words"
 
-def test_example_4():
-    assert words_in_sentence("12345") == "12345"
+def test_sentence_with_spaces():
+    assert words_in_sentence("  This is a test  ") == "This is a test"
 
-def test_example_5():
-    assert words_in_sentence("abc") == "abc"
-
-def test_example_6():
-    assert words_in_sentence("a b c d e f") == "a b c d e f"
-
-def test_example_7():
-    assert words_in_sentence("1234567890") == "1234567890"
-
-def test_empty_sentence_with_spaces():
-    assert words_in_sentence("   ") == ""
-
-def test_single_word_with_spaces():
-    assert words_in_sentence("hello ") == "hello"
-
-def test_multiple_words_with_spaces():
-    assert words_in_sentence("  this is a test  ") == "is a test"
-
-def test_with_numbers():
+def test_sentence_with_numbers():
     assert words_in_sentence("12345") == "12345"

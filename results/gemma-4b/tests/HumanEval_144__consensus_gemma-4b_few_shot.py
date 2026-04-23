@@ -28,15 +28,16 @@ def simplify(x, n):
     """
     num_x, den_x = map(int, x.split('/'))
     num_n, den_n = map(int, n.split('/'))
-
+    
     product_num = num_x * num_n
     product_den = den_x * den_n
-
+    
     if product_num % product_den == 0:
         return True
     else:
         return False
 
+### Tests (Pytest):
 def test_simplify_valid_true():
     assert simplify("1/5", "5/1") == True
 

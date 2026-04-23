@@ -74,27 +74,27 @@ def do_algebra(operator, operand):
             result *= num
         elif op == '//':
             if num == 0:
-                raise ZeroDivisionError("Division by zero.")
+                raise ZeroDivisionError("Floor division by zero is not allowed.")
             result //= num
         elif op == '**':
             result **= num
         else:
-            raise ValueError("Invalid operator.")
+            raise ValueError(f"Invalid operator: {op}. Supported operators are +, -, *, //, **")
     return result
 
-def test_addition_positive_numbers():
+def test_basic_addition():
     assert do_algebra(['+'], [2, 3]) == 5
 
-def test_subtraction_positive_numbers():
+def test_basic_subtraction():
     assert do_algebra(['-'], [5, 2]) == 3
 
-def test_multiplication_positive_numbers():
+def test_basic_multiplication():
     assert do_algebra(['*'], [4, 3]) == 12
 
-def test_floor_division_positive_numbers():
+def test_basic_floor_division():
     assert do_algebra(['//'], [10, 2]) == 5
 
-def test_exponentiation_positive_numbers():
+def test_basic_exponentiation():
     assert do_algebra(['**'], [2, 3]) == 8
 
 def test_complex_expression():
@@ -103,72 +103,71 @@ def test_complex_expression():
 def test_multiple_operations():
     assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 5]) == 1
 
-def test_zero_division():
-    with pytest.raises(ZeroDivisionError):
-        do_algebra(['//'], [5, 0])
+def test_large_numbers():
+    assert do_algebra(['*'], [1000, 1000]) == 1000000
+
+def test_floor_division_by_one():
+    assert do_algebra(['//'], [10, 1]) == 10
+
+def test_exponentiation_zero():
+    assert do_algebra(['**'], [0, 2]) == 0
+
+def test_exponentiation_one():
+    pass
+
+def test_long_expression_evaluation():
+    operators = ['+', '-', '*', '//', '**', '+', '-']
+    operands = [1, 2, 3, 4, 5, 6, 7]
+    assert do_algebra(operators, operands) == -11
+
+def test_invalid_operator():
+    with pytest.raises(ValueError):
+        do_algebra(['$'], [2, 3])
 
 def test_empty_operator_list():
     with pytest.raises(ValueError):
-        do_algebra([], [1, 2])
+        do_algebra([], [2, 3])
 
 def test_empty_operand_list():
     with pytest.raises(ValueError):
         do_algebra(['+'], [])
 
-def test_invalid_operator():
+def test_operator_length_mismatch():
     with pytest.raises(ValueError):
-        do_algebra(['%'], [1, 2])
+        do_algebra(['+', '+'], [2, 3, 4])
+
+def test_operand_length_less_than_two():
+    with pytest.raises(ValueError):
+        do_algebra(['+'], [2])
 
 def test_negative_operand():
     with pytest.raises(ValueError):
-        do_algebra(['+'], [-1, 2])
+        do_algebra(['+'], [-2, 3])
 
-def test_validation_error_length():
-    with pytest.raises(ValueError):
-        do_algebra(['+', '-'], [1, 2, 3])
+def test_floor_division_by_zero():
+    with pytest.raises(ZeroDivisionError):
+        do_algebra(['//'], [10, 0])
 
-def test_validation_error_operand_count():
-    with pytest.raises(ValueError):
-        do_algebra(['+'], [1])
+def test_operator_precedence():
+    assert do_algebra(['*', '+'], [2, 3, 4]) == 10
 
-def test_multiplication_with_large_numbers():
-    assert do_algebra(['*'], [1000, 1000]) == 1000000
+def test_negative_exponent():
+    result = do_algebra(['**'], [2, -1])
+    assert abs(result - 0.5) < 1e-6
 
-def test_exponentiation_with_zero_base_exponent_zero():
-    assert do_algebra(['**'], [0, 0]) == 1
+def test_floor_division_negative_numbers():
+    assert do_algebra(['//'], [-10, 3]) == -4
 
-def test_exponentiation_with_zero_base_positive_exponent():
-    assert do_algebra(['**'], [0, 5]) == 0
+def test_mixed_positive_negative():
+    assert do_algebra(['+', '-', '*'], [5, -2, 3]) == 11
 
-def test_exponentiation_with_one_base():
-    assert do_algebra(['**'], [5, 1]) == 5
+def test_long_chain_varying_signs():
+    operators = ['+', '-', '*', '//', '**', '+', '-']
+    operands = [1, -2, 3, 4, -5, 6, -7]
+    assert do_algebra(operators, operands) == -11
 
-def test_floor_division_with_one_divisor():
-    assert do_algebra(['//'], [5, 1]) == 5
-
-def test_floor_division_with_remainder():
-    assert do_algebra(['//'], [7, 3]) == 2
-
-def test_floor_division_with_negative_numbers():
-    assert do_algebra(['//'], [-7, 3]) == -3
-
-def test_floor_division_negative_numbers_2():
-    assert do_algebra(['//'], [7, -3]) == -3
-
-def test_exponentiation_with_negative_operand():
-    assert do_algebra(['**'], [2, -2]) == 0.25
-
-def test_exponentiation_with_negative_base_non_integer_exponent():
-    assert do_algebra(['**'], [-2, 0.5]) == pytest.approx(1.4142135623730951)
-
-def test_consecutive_floor_divisions():
-    assert do_algebra(['//', '//'], [10, 2, 3]) == 1
-
-def test_consecutive_exponentiations():
-    assert do_algebra(['**', '**'], [2, 2, 3]) == 16
-
-def test_consecutive_addition_and_exponentiation():
-    assert do_algebra(['+', '**'], [2, 3, 2]) == 11
-
-def test_consecutive_exponentiation_and_addition():
-    assert do_algebra(['**', '+'], [2, 3, 2]) == 10
+def test_floor_division_comprehensive():
+    assert do_algebra(['//'], [10, 2]) == 5
+    assert do_algebra(['//'], [10, -2]) == -5
+    assert do_algebra(['//'], [-10, 2]) == -5
+    assert do_algebra(['//'], [-10, -2]) == 5

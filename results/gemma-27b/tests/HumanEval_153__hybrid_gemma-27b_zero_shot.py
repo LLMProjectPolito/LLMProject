@@ -40,15 +40,13 @@ def Strongest_Extension(class_name, extensions):
     max_strength = float('-inf')
 
     for extension in extensions:
-        cap_count = 0
-        sm_count = 0
-        for char in extension:
-            if 'A' <= char <= 'Z':
-                cap_count += 1
-            elif 'a' <= char <= 'z':
-                sm_count += 1
-
-        strength = cap_count - sm_count
+        cap_count = sum(1 for char in extension if char.isupper())
+        sm_count = sum(1 for char in extension if char.islower())
+        
+        if sm_count == 0:
+            strength = float('inf') if cap_count > 0 else 0
+        else:
+            strength = cap_count - sm_count
 
         if strength > max_strength:
             max_strength = strength
@@ -70,21 +68,17 @@ def Strongest_Extension(class_name, extensions):
         ("Class5", [], "Class5.None"),
         ("Class6", [''], "Class6."),
         ("Class7", ['AAAA', 'bbbb', 'CCCC'], "Class7.AAAA"),
-        ("Class8", ['aA', 'Bb', 'Cc'], "Class8.aA"),
-        ("Class9", ['ExtensionA', 'ExtensionA'], "Class9.ExtensionA"),
-        ("Class10", ['Extension1', 'Extension2', 'Extension3'], "Class10.Extension1"),
-        ("Example", ['aBcDeF', 'AbCdEf', 'abcdef'], "Example.AbCdEf"),
-        ("Class1", ['UPPER', 'lower', 'MiXeD'], "Class1.UPPER"),
-        ("Class2", ['sameStrength1', 'sameStrength2'], "Class2.sameStrength1"),
-        ("Class3", [], "Class3.None"),
-        ("Class4", [''], "Class4."),
-        ("Class5", ['AAAA', 'bbbb'], "Class5.AAAA"),
-        ("Class6", ['aA', 'Aa'], "Class6.aA"),
-        ("Class7", ['123', 'abc'], "Class7.123"),
-        ("Class8", ['!@#', 'ABC'], "Class8.ABC"),
-        ("Class9", ['ExtensionWithNumbers123', 'ExtensionWithoutNumbers'], "Class9.ExtensionWithNumbers123"),
-        ("Class10", ['ExtensionWithSpecialChars!@#', 'ExtensionWithoutSpecialChars'], "Class10.ExtensionWithSpecialChars!@#"),
-    ],
+        ("Class8", ['AaBbCc', 'DdEeFf', 'GgHhIi'], "Class8.AaBbCc"),
+        ("Class9", ['ExtensionWithNumbers123', 'AnotherExtension456'], "Class9.ExtensionWithNumbers123"),
+        ("Class10", ['ExtensionWithSymbols!@#', 'AnotherExtension$%^'], "Class10.ExtensionWithSymbols!@#"),
+        ("Class11", ['ExtensionWithSpaces ', 'AnotherExtension'], "Class11.ExtensionWithSpaces "),
+        ("Class12", ['ExtensionWithMixedCase', 'extensionwithalllowercase'], "Class12.ExtensionWithMixedCase"),
+        ("Class13", ['ExtensionWithMixedCase', 'ExtensionWithMixedCase'], "Class13.ExtensionWithMixedCase"),
+        ("Class14", ['Extension1', 'Extension2', 'Extension3'], "Class14.Extension1"),
+        ("Class15", ['ExtensionA', 'ExtensionA', 'ExtensionB'], "Class15.ExtensionA"),
+        ("Class16", ['ExtensionA', 'ExtensionB', 'ExtensionA'], "Class16.ExtensionA"),
+        ("Class17", ['ExtensionA', 'ExtensionB', 'ExtensionC', 'ExtensionA'], "Class17.ExtensionA"),
+    ]
 )
 def test_strongest_extension(class_name, extensions, expected):
     if not extensions:

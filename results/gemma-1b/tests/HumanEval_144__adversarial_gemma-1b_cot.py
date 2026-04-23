@@ -28,14 +28,18 @@ def simplify(x, n):
         x_val = str(x)
         n_val = str(n)
         
-        if n_val.count('/') != n_val.count('.') :
+        num_val = int(x_val)
+        den_val = int(n_val)
+        
+        if den_val == 0:
             return False
         
-        num, den = map(int, x_val.split('/'))
+        numerator = num_val
+        denominator = den_val
         
-        if den == 0:
+        if numerator % denominator == 0:
+            return True
+        else:
             return False
-        
-        return abs(num / den - int(num / den)) < 1e-9
     except:
         return False

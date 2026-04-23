@@ -36,14 +36,14 @@ def string_to_md5(text):
         return None
     return hashlib.md5(text.encode()).hexdigest()
 
-def test_valid_string_input_basic():
+def test_valid_string_input_normal_case():
     assert string_to_md5("Hello world") == "3e25960a79dbc69b674cd4ec67a72c62"
 
-def test_valid_string_input_different_string():
-    assert string_to_md5("This is a test") == "5994471abb01112afcc18159f6cc74b4"
-
 def test_valid_string_input_with_numbers():
-    assert string_to_md5("string123") == "967a9a99999999999999999999999999"
+    assert string_to_md5("Test1234") == "a94a8fe5ccb19ba61c4c0873d391e987"
+
+def test_valid_string_input_with_special_characters():
+    assert string_to_md5("!@#$%^") == "96f96999999999999999999999999999"
 
 # Focus: Error/Exception Handling (for potentially very large strings)
 import pytest

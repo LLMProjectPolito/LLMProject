@@ -56,7 +56,7 @@ class TestSortedListSum:
         assert sorted_list_sum(["bc", "ab", "cd"]) == ["ab", "bc", "cd"]
 
     def test_same_length_same_alphabetical(self):
-        assert sorted_list_sum(["ab", "ab", "cd", "cd"]) == ["ab", "ab", "cd", "cd"]
+        assert sorted_list_sum(["ab", "ab", "cd"]) == ["ab", "ab", "cd"]
 
     def test_complex_case(self):
         assert sorted_list_sum(["aa", "a", "aaa", "bb", "b", "ccc", "dd", "d"]) == ["aa", "bb", "dd"]

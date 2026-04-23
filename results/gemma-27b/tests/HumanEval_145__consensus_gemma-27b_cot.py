@@ -74,5 +74,8 @@ def test_complex_case():
 def test_all_same_digit_sum():
     assert order_by_points([1, 10, 100, 1000]) == [1, 10, 100, 1000]
 
-def test_all_negative_same_sum():
-    assert order_by_points([-10, -1, -19]) == [-1, -10, -19]
+def test_same_digit_sum():
+    assert order_by_points([10, 1, 100, 1000]) == [1, 10, 100, 1000]
+
+def test_negative_and_positive_with_same_sum():
+    assert order_by_points([-11, 2, 11, -2]) == [-11, -2, 2, 11]

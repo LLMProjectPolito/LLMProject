@@ -39,16 +39,16 @@ def test_words_in_sentence_empty():
     assert words_in_sentence("") == ""
 
 def test_words_in_sentence_no_prime_words():
-    assert words_in_sentence("This is a test") == ""
+    assert words_in_sentence("hello world") == ""
 
 def test_words_in_sentence_single_prime_word():
-    assert words_in_sentence("is") == "is"
+    assert words_in_sentence("test") == "test"
 
 def test_words_in_sentence_multiple_prime_words():
-    assert words_in_sentence("lets go for swimming") == "go for"
+    assert words_in_sentence("This is a test") == "is"
 
-def test_words_in_sentence_all_prime_words():
-    assert words_in_sentence("prime") == "prime"
+def test_words_in_sentence_prime_words_at_boundaries():
+    assert words_in_sentence("a b c d e") == "a b c d e"
 
 # Focus: Type Scenarios
 import pytest
@@ -94,7 +94,7 @@ def test_words_in_sentence_no_prime_words():
     assert words_in_sentence("hello world") == ""
 
 def test_words_in_sentence_single_prime_word():
-    assert words_in_sentence("test") == "test"
+    assert words_in_sentence("prime") == "prime"
 
 def test_words_in_sentence_multiple_prime_words():
     assert words_in_sentence("This is a test") == "is"

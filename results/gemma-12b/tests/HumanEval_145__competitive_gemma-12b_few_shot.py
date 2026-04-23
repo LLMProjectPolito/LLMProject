@@ -45,14 +45,14 @@ class TestOrderByPoints:
     def test_mixed_numbers(self):
         assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
 
-    def test_same_digit_sum(self):
-        assert order_by_points([12, 21, 3]) == [3, 12, 21]
+    def test_numbers_with_same_digit_sum(self):
+        assert order_by_points([1, 10, 100]) == [1, 10, 100]
 
-    def test_zero(self):
-        assert order_by_points([0, 1, -1]) == [0, -1, 1]
+    def test_numbers_with_zero(self):
+        assert order_by_points([0, 1, 10]) == [0, 1, 10]
 
     def test_large_numbers(self):
-        assert order_by_points([123, 321, 111]) == [111, 123, 321]
+        assert order_by_points([123, 45, 678]) == [45, 123, 678]
 
     def test_duplicate_numbers(self):
         assert order_by_points([1, 1, 1]) == [1, 1, 1]
@@ -61,4 +61,4 @@ class TestOrderByPoints:
         assert order_by_points([-1, 1]) == [-1, 1]
 
     def test_complex_case(self):
-        assert order_by_points([10, 2, 20, 1, 11]) == [1, 2, 10, 11, 20]
+        assert order_by_points([12, 21, 3, 1, 4, 5]) == [1, 3, 4, 5, 12, 21]

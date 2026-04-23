@@ -54,4 +54,4 @@ def test_example_2():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
 def test_multiple_multiples_of_3_and_4():
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 9 + 64 + 125 + 225 + 36 = 440
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 9 + 64 + 125 + 25 + 36

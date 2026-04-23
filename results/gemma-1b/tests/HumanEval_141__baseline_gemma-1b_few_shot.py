@@ -30,21 +30,15 @@ def file_name_check(file_name):
     file_name_check("example.txt") # => 'Yes'
     file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
-    if len(file_name) <= 3:
+    if len(file_name) > 3 or len(file_name) == 3 and file_name[0] not in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ':
         return 'No'
     if '.' not in file_name:
         return 'No'
     parts = file_name.split('.')
     if len(parts) != 2:
         return 'No'
-    
-    if not parts[0][0].isalpha():
+    if not parts[0].isalpha():
         return 'No'
-    
-    if not parts[1]:
-        return 'No'
-    
     if parts[1].lower() not in ['txt', 'exe', 'dll']:
         return 'No'
-    
     return 'Yes'

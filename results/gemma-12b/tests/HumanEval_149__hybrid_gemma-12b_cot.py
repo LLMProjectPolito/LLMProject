@@ -41,6 +41,7 @@ class TestSortedListSum:
         assert sorted_list_sum([]) == []
 
     def test_all_odd_length(self):
+        assert sorted_list_sum(["a", "bbb", "ccccc"]) == []
         assert sorted_list_sum(["a", "bbb", "dddddddd"]) == []
 
     def test_all_even_length(self):
@@ -78,14 +79,8 @@ class TestSortedListSum:
     def test_edge_case_one_odd_element(self):
         assert sorted_list_sum(["a"]) == []
 
-    def test_duplicates(self):
-        assert sorted_list_sum(["aa", "aa", "bb", "cc", "cc"]) == ["aa", "aa", "bb", "cc", "cc"]
+    def test_list_with_empty_string(self):
+        assert sorted_list_sum(["aa", "", "a", "aaa"]) == ["aa"]
 
-    def test_single_even_string(self):
-        assert sorted_list_sum(["aa"]) == ["aa"]
-
-    def test_single_odd_string(self):
-        assert sorted_list_sum(["a"]) == []
-
-    def test_mixed_case_alphabetical(self):
-        assert sorted_list_sum(["Aa", "aa", "BB", "bb"]) == ["Aa", "aa", "BB", "bb"]
+    def test_list_with_special_characters(self):
+        assert sorted_list_sum(["a!", "aa", "a?"]) == ["aa"]

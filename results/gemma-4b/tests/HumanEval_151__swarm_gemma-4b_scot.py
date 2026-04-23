@@ -54,8 +54,5 @@ def test_single_even_positive():
 def test_single_negative():
     assert double_the_difference([-1]) == 0
 
-def test_large_numbers():
-    assert double_the_difference([1001, 1003]) == 1001*1001 + 1003*1003
-
-def test_single_zero():
-    assert double_the_difference([0]) == 0
+def test_list_with_non_integers():
+    assert double_the_difference([1.5, 2, 3]) == 9

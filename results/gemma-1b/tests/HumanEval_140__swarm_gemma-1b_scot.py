@@ -12,7 +12,24 @@ def fix_spaces(text):
     """
 
 import pytest
-from your_module import fix_spaces  # Replace your_module
+
+def fix_spaces(text):
+    """
+    Given a string text, replace all spaces in it with underscores, 
+    and if a string has more than 2 consecutive spaces, 
+    then replace all consecutive spaces with - 
+    """
+    result = ""
+    count = 0
+    for char in text:
+        if char == ' ':
+            count += 1
+        else:
+            if count > 2:
+                result += '-'
+                count = 0
+            result += char
+    return result
 
 def test_fix_spaces_empty():
     assert fix_spaces("") == ""
@@ -27,10 +44,10 @@ def test_fix_spaces_consecutive_spaces():
     assert fix_spaces("  ") == "-"
 
 def test_fix_spaces_mixed_spaces():
-    assert fix_spaces("  hello world") == "hello   world"
+    assert fix_spaces("  hello world") == "  hello   world"
 
 def test_fix_spaces_no_spaces():
-    assert fix_spaces("no spaces") == "no spaces"
+    assert fix_spaces("world") == "world"
 
 def test_fix_spaces_with_underscores():
     assert fix_spaces("hello_world") == "hello_world"

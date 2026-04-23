@@ -23,17 +23,10 @@ def cycpattern_check(a, b):
 
     """
     s = a + a
-    s_rotated = b + b
-    s_rotated_rotated = b + b + b
-    s_rotated_rotated_rotated = b + b + b + b
-
-    if b in s:
-        return True
-    if b in s_rotated:
-        return True
-    if b in s_rotated_rotated:
-        return True
-    return False
+    b_rotated = b
+    for i in range(1, len(b)):
+        b_rotated = b_rotated[i:] + b_rotated[:i]
+    return b_rotated in s
 
 import pytest
 
@@ -48,14 +41,7 @@ def cycpattern_check(a, b):
 
     """
     s = a + a
-    s_rotated = b + b
-    s_rotated_rotated = b + b + b
-    s_rotated_rotated_rotated = b + b + b + b
-
-    if b in s:
-        return True
-    if b in s_rotated:
-        return True
-    if b in s_rotated_rotated:
-        return True
-    return False
+    b_rotated = b
+    for i in range(1, len(b)):
+        b_rotated = b_rotated[i:] + b_rotated[:i]
+    return b_rotated in s

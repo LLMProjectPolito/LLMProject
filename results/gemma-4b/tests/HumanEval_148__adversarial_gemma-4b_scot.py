@@ -59,8 +59,8 @@ def test_valid_planets_mercury_uranus():
 def test_valid_planets_venus_earth():
     assert bf("Venus", "Earth") == ("Mars")
 
-def test_valid_planets_jupiter_jupiter():
-    assert bf("Jupiter", "Jupiter") == ()
+def test_valid_planets_same_planet():
+    assert bf("Jupiter", "Jupiter") == ("Saturn", "Uranus")
 
 def test_invalid_planet_name():
     assert bf("Pluto", "Neptune") == ()
@@ -68,8 +68,5 @@ def test_invalid_planet_name():
 def test_invalid_planet_name_empty():
     assert bf("", "Neptune") == ()
 
-def test_adjacent_planets():
-    assert bf("Mars", "Jupiter") == ("Earth", "Venus", "Mercury")
-
-def test_same_orbit():
-    assert bf("Earth", "Earth") == ()
+def test_valid_planets_mars_saturn():
+    assert bf("Mars", "Saturn") == ("Jupiter", "Uranus")

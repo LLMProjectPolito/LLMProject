@@ -67,57 +67,74 @@ def is_prime(n):
 # like single-word sentences. The `is_prime` helper function needs to be tested as well.
 
 # STEP 2: PLAN - List test functions names and scenarios.
-# - test_empty_sentence: Test with an empty sentence.
-# - test_no_prime_words: Test with a sentence where no words have prime lengths.
-# - test_single_prime_word: Test with a sentence containing only one word with a prime length.
-# - test_multiple_prime_words: Test with a sentence containing multiple words with prime lengths.
-# - test_mixed_prime_and_non_prime_words: Test with a sentence containing a mix of prime and non-prime words.
-# - test_edge_case_single_word_prime: Test with a single word that is prime.
-# - test_edge_case_single_word_non_prime: Test with a single word that is not prime.
-# - test_is_prime_negative: Test is_prime with a negative number.
-# - test_is_prime_zero: Test is_prime with zero.
-# - test_is_prime_one: Test is_prime with one.
-# - test_is_prime_small_prime: Test is_prime with a small prime number.
-# - test_is_prime_large_prime: Test is_prime with a large prime number.
+# test_empty_sentence: Test with an empty sentence.
+# test_no_prime_words: Test with a sentence where no words have prime lengths.
+# test_single_prime_word: Test with a sentence containing only one word with a prime length.
+# test_multiple_prime_words: Test with a sentence containing multiple words with prime lengths.
+# test_mixed_prime_and_non_prime: Test with a sentence containing a mix of prime and non-prime words.
+# test_edge_case_single_word_prime: Test with a single word that is prime.
+# test_edge_case_single_word_non_prime: Test with a single word that is not prime.
+# test_is_prime_negative: Test is_prime with a negative number.
+# test_is_prime_zero: Test is_prime with zero.
+# test_is_prime_one: Test is_prime with one.
+# test_is_prime_small_prime: Test is_prime with a small prime number.
+# test_is_prime_large_prime: Test is_prime with a large prime number.
 
 
 # STEP 3: CODE - Write the high-quality pytest suite.
 ###
+# test_empty_sentence
 def test_empty_sentence():
     assert words_in_sentence("") == ""
 
+# test_no_prime_words
 def test_no_prime_words():
     assert words_in_sentence("hello world") == ""
 
+# test_single_prime_word
 def test_single_prime_word():
     assert words_in_sentence("test") == "test"
 
+# test_multiple_prime_words
 def test_multiple_prime_words():
     assert words_in_sentence("this is a test") == "is"
 
-def test_mixed_prime_and_non_prime_words():
+# test_mixed_prime_and_non_prime
+def test_mixed_prime_and_non_prime():
     assert words_in_sentence("lets go for swimming") == "go for"
 
+# test_edge_case_single_word_prime
 def test_edge_case_single_word_prime():
     assert words_in_sentence("prime") == "prime"
 
+# test_edge_case_single_word_non_prime
 def test_edge_case_single_word_non_prime():
     assert words_in_sentence("notprime") == ""
 
+# test_is_prime_negative
 def test_is_prime_negative():
     assert is_prime(-1) == False
 
+# test_is_prime_zero
 def test_is_prime_zero():
     assert is_prime(0) == False
 
+# test_is_prime_one
 def test_is_prime_one():
     assert is_prime(1) == False
 
+# test_is_prime_small_prime
 def test_is_prime_small_prime():
     assert is_prime(2) == True
 
+# test_is_prime_large_prime
 def test_is_prime_large_prime():
-    assert is_prime(97) == True
+    assert is_prime(17) == True
 
-def test_is_prime_non_prime():
-    assert is_prime(4) == False
+# test_is_prime_negative_edge
+def test_is_prime_negative_edge():
+    assert is_prime(-5) == False
+
+# test_is_prime_two_edge
+def test_is_prime_two_edge():
+    assert is_prime(2) == True

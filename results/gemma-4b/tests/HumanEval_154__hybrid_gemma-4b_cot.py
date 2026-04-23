@@ -66,10 +66,10 @@ def test_cycpattern_check_b_rotation_is_substring_of_a_multiple_times():
     assert cycpattern_check("abababa", "aba") == True
 
 def test_cycpattern_check_b_rotation_is_substring_of_a_no_match():
-    assert cycpattern_check("abcabc", "cab") == False
+    assert cycpattern_check("abc", "cab") == False
 
-def test_cycpattern_check_b_is_empty():
-    assert cycpattern_check("abc", "") == False
+def test_cycpattern_check_b_rotation_is_substring_of_a_partial_match():
+    assert cycpattern_check("abcabc", "bc") == True
 
-def test_cycpattern_check_a_is_empty():
-    assert cycpattern_check("", "abc") == False
+def test_cycpattern_check_b_rotation_is_substring_of_a_partial_no_match():
+    assert cycpattern_check("abcabc", "cba") == False

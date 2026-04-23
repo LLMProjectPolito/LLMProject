@@ -14,7 +14,7 @@ def int_to_mini_roman(number):
 import pytest
 import math
 
-def test_int_to_mini_roman_positive():
+def test_basic():
     assert int_to_mini_roman(19) == 'xix'
 
 def test_edge_min_value():

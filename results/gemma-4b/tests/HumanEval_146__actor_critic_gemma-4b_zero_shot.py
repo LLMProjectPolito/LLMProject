@@ -52,25 +52,31 @@ def test_large_numbers():
     assert specialFilter([111, 333, 555, 777, 999]) == 5
 
 def test_numbers_with_zero():
-    assert specialFilter([101, 103, 105, 107, 109]) == 0
+    assert specialFilter([101, 303, 505, 707, 909]) == 0
 
 def test_numbers_with_odd_first_digit_even_last_digit():
-    assert specialFilter([12, 34, 56, 78, 90]) == 0
+    assert specialFilter([11, 31, 51, 71, 91]) == 0
 
 def test_numbers_with_even_first_digit_odd_last_digit():
-    assert specialFilter([21, 43, 65, 87, 109]) == 0
+    assert specialFilter([21, 41, 61, 81]) == 0
 
-def test_numbers_with_both_digits_even():
-    assert specialFilter([22, 44, 66, 88, 100]) == 0
-
-def test_edge_case_1():
-    assert specialFilter([1111, 3333, 5555, 7777, 9999]) == 5
-
-def test_edge_case_2():
-    assert specialFilter([11, 33, 55, 77, 99]) == 0
-
-def test_edge_case_3():
+def test_numbers_with_odd_first_digit_odd_last_digit_greater_than_10():
     assert specialFilter([111, 333, 555, 777, 999]) == 5
 
-def test_mixed_edge_case():
-    assert specialFilter([111, 333, 555, 777, 999, 11, 33, 55, 77, 99]) == 5
+def test_numbers_with_first_digit_not_odd():
+    assert specialFilter([215, 415, 615, 815]) == 0
+
+def test_numbers_with_last_digit_not_odd():
+    assert specialFilter([151, 351, 551, 751, 951]) == 0
+
+def test_numbers_with_both_digits_not_odd():
+    assert specialFilter([123, 321, 543, 765, 987]) == 0
+
+def test_edge_case_1():
+    assert specialFilter([11111]) == 1
+
+def test_edge_case_2():
+    assert specialFilter([13579]) == 5
+
+def test_edge_case_3():
+    assert specialFilter([97531]) == 1

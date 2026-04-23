@@ -46,8 +46,8 @@ def file_name_check(file_name):
         return "No"
     if not file_name[0].isalpha():
         return "No"
-    if file_name[1] != "." and not file_name[1].isalnum():
+    if file_name[1] != "." and not file_name[1].isalpha():
         return "No"
-    if file_name[2] not in ['txt', 'exe', 'dll']:
-        return "No"
-    return "Yes"
+    if file_name[1] in ["txt", "exe", "dll"]:
+        return "Yes"
+    return "No"

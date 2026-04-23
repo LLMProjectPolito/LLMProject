@@ -38,7 +38,7 @@ def specialFilter(nums):
     return count
     
 def test_edge():
-    assert specialFilter([-11, -12, -13]) == 0
+    assert specialFilter([-11, -13, -15, -17, -19]) == 0
 
 import pytest
 

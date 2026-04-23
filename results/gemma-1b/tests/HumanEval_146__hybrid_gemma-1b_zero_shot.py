@@ -35,13 +35,10 @@ def test_specialFilter_empty_array():
     assert specialFilter([]) == 0
 
 def test_specialFilter_single_element():
-    assert specialFilter([12]) == 1
+    assert specialFilter([1]) == 1
 
 def test_specialFilter_all_negative():
-    assert specialFilter([-15, -73, -14, -15]) == 1
+    assert specialFilter([-1, -3, -5]) == 0
 
 def test_specialFilter_all_positive():
-    assert specialFilter([1, 2, 3, 4, 5]) == 0
-
-def test_specialFilter_mixed_positive_negative():
-    assert specialFilter([-15, 21, -3, 45]) == 2
+    assert specialFilter([1, 3, 5]) == 3

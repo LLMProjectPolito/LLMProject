@@ -101,7 +101,7 @@ class TestDoAlgebra:
     def test_multiple_operations(self):
         operator = ['+', '*', '//', '**']
         operand = [2, 3, 4, 5, 2]
-        assert do_algebra(operator, operand) == 40
+        assert do_algebra(operator, operand) == 34
 
     def test_large_numbers(self):
         operator = ['*']

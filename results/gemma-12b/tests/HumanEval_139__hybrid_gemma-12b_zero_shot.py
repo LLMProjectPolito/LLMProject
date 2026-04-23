@@ -28,42 +28,23 @@ class TestSpecialFactorial:
         assert special_factorial(2) == 2
         assert special_factorial(3) == 12
         assert special_factorial(6) == 864000
-        assert special_factorial(7) == 604800000
+        assert special_factorial(7) == 60480000
+        assert special_factorial(8) == 4608000000
 
     def test_edge_case_one(self):
         """Test the edge case where n is 1."""
         assert special_factorial(1) == 1
 
-    def test_small_integer(self):
-        """Test with a small positive integer."""
+    def test_small_values(self):
+        """Test with small positive integer values."""
+        assert special_factorial(1) == 1
         assert special_factorial(2) == 2
-
-    def test_medium_integer(self):
-        """Test with a medium positive integer."""
         assert special_factorial(3) == 12
 
-    def test_type_checking(self):
-        """Test that the function handles invalid input types."""
-        with pytest.raises(TypeError):
-            special_factorial("4")  # String input
-        with pytest.raises(TypeError):
-            special_factorial(4.5)  # Float input
-        with pytest.raises(TypeError):
-            special_factorial([4])  # List input
-        with pytest.raises(TypeError):
-            special_factorial({"a": 1}) # Dictionary input
-        with pytest.raises(TypeError):
-            special_factorial(None) # None input
-
-    def test_negative_integer(self):
-        """Test with a negative integer."""
-        with pytest.raises(ValueError):
-            special_factorial(-1)
-
-    def test_zero_input(self):
-        """Test with zero input."""
-        with pytest.raises(ValueError):
-            special_factorial(0)
+    def test_larger_values(self):
+        """Test with larger positive integer values."""
+        assert special_factorial(7) == 60480000
+        assert special_factorial(8) == 4608000000
 
     def test_factorial_calculation(self):
         """Test the factorial calculation logic."""
@@ -79,16 +60,28 @@ class TestSpecialFactorial:
                 expected_result *= calculate_factorial(i)
             assert special_factorial(n) == expected_result
 
-    def test_factorial_calculation_correctness(self):
-        """Test the factorial calculation logic."""
-        for n in range(1, 6):
-            expected_result = 1
-            for i in range(1, n + 1):
-                factorial_i = 1
-                for j in range(1, i + 1):
-                    factorial_i *= j
-                expected_result *= factorial_i
-            assert special_factorial(n) == expected_result
+    def test_type_checking(self):
+        """Test that the function handles invalid input types."""
+        with pytest.raises(TypeError):
+            special_factorial(1.5)  # Float input
+        with pytest.raises(TypeError):
+            special_factorial("abc")  # String input
+        with pytest.raises(TypeError):
+            special_factorial([1, 2, 3]) # List input
+        with pytest.raises(TypeError):
+            special_factorial(None)
+
+    def test_negative_input(self):
+        """Test that the function handles negative input."""
+        with pytest.raises(ValueError):
+            special_factorial(-1)
+        with pytest.raises(ValueError):
+            special_factorial(-5)
+
+    def test_zero_input(self):
+        """Test that the function handles zero input."""
+        with pytest.raises(ValueError):
+            special_factorial(0)
 
     @pytest.mark.parametrize(
         "input_value, expected_result",

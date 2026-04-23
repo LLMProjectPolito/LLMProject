@@ -70,11 +70,12 @@ def fix_spaces(text):
     count = 0
     for char in text:
         if char == ' ':
+            if count == 0:
+                result += '_'
+            else:
+                result += '-'
             count += 1
         else:
-            if count > 2:
-                result += '-'
-                count = 0
-            else:
-                result += char
+            result += char
+            count = 0
     return result

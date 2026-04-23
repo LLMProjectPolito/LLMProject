@@ -44,6 +44,7 @@ def test_number_with_only_odd_digits():
     assert even_odd_count(13579) == (0, 5)
 
 def test_number_with_repeated_digits():
+    assert even_odd_count(112233) == (2, 4)
     assert even_odd_count(2222) == (4, 0)
     assert even_odd_count(1111) == (0, 4)
     assert even_odd_count(1212) == (2, 2)
@@ -56,6 +57,22 @@ def test_min_int():
 
 def test_edge_case_negative_zero():
     assert even_odd_count(-0) == (1, 0)
+
+def test_empty_string_input():
+    with pytest.raises(TypeError):
+        even_odd_count("")
+
+def test_float_input():
+    with pytest.raises(TypeError):
+        even_odd_count(1.23)
+
+def test_list_input():
+    with pytest.raises(TypeError):
+        even_odd_count([1, 2, 3])
+
+def test_dict_input():
+    with pytest.raises(TypeError):
+        even_odd_count({"a": 1, "b": 2})
 
 def test_string_input_positive():
     assert even_odd_count("123") == (1, 2)
@@ -71,27 +88,3 @@ def test_string_input_zero():
 
 def test_string_input_negative_zero():
     assert even_odd_count("-0") == (1, 0)
-
-def test_non_integer_input():
-    with pytest.raises(TypeError):
-        even_odd_count(3.14)
-
-def test_empty_string_input():
-    with pytest.raises(TypeError):
-        even_odd_count("")
-
-def test_list_input():
-    with pytest.raises(TypeError):
-        even_odd_count([1, 2, 3])
-
-def test_dict_input():
-    with pytest.raises(TypeError):
-        even_odd_count({"a": 1, "b": 2})
-
-def test_none_input():
-    with pytest.raises(TypeError):
-        even_odd_count(None)
-
-def test_negative_single_digit():
-    assert even_odd_count(-2) == (1, 0)
-    assert even_odd_count(-1) == (0, 1)

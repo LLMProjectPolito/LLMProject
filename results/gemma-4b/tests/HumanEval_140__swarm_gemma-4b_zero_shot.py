@@ -55,7 +55,7 @@ def test_fix_spaces_trailing_spaces():
     assert fix_spaces("Example 1 ") == "Example_1_"
 
 def test_fix_spaces_multiple_consecutive_spaces():
-    assert fix_spaces("  hello   world  ") == "_hello---world-"
+    assert fix_spaces("  hello   world  ") == "_hello--world_"
 
-def test_fix_spaces_multiple_consecutive_spaces_2():
-    assert fix_spaces("   this   is   a   test   ") == "_this---is---a---test-"
+def test_fix_spaces_mixed_spaces():
+    assert fix_spaces("hello   world") == "hello__world"

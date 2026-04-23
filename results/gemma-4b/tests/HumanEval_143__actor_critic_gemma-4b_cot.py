@@ -100,6 +100,9 @@ def test_sentence_with_numbers_as_words():
 def test_sentence_with_special_characters():
     assert words_in_sentence("This is a test!") == ""
 
+def test_all_non_prime_lengths():
+    assert words_in_sentence("abcd efgh ijkl") == ""
+
 def test_prime_number_1():
     assert words_in_sentence("a") == "a"
 
@@ -114,15 +117,3 @@ def test_prime_number_5():
 
 def test_prime_number_7():
     assert words_in_sentence("world") == ""
-
-def test_all_non_prime():
-    assert words_in_sentence("abcdefghijklm") == ""
-
-def test_is_prime_0():
-    assert is_prime(0) == False
-
-def test_is_prime_1():
-    assert is_prime(1) == False
-
-def test_is_prime_2():
-    assert is_prime(2) == True

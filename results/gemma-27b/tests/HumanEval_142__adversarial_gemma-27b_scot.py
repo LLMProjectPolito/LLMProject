@@ -26,51 +26,42 @@ def sum_squares(lst):
     For lst = []  the output should be 0
     For lst = [-1,-5,2,-1,-5]  the output should be -126
     """
-    total = 0
+    new_lst = []
     for i, num in enumerate(lst):
         if i % 3 == 0:
-            total += num ** 2
+            new_lst.append(num**2)
         elif i % 4 == 0:
-            total += num ** 3
+            new_lst.append(num**3)
         else:
-            total += num
-    return total
+            new_lst.append(num)
+    return sum(new_lst)
 
 def test_empty_list():
     assert sum_squares([]) == 0
 
 def test_example_1():
-    assert sum_squares([1, 2, 3]) == 12
+    assert sum_squares([1, 2, 3]) == 6
 
 def test_example_2():
-    assert sum_squares([]) == 0
-
-def test_example_3():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
 def test_list_multiple_of_3():
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 2 + 9 + 4 + 5 + 36
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 2 + 9 + 4 + 25 + 36
 
 def test_list_multiple_of_4():
     assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 1 + 2 + 3 + 64 + 5 + 6 + 7 + 512
 
 def test_list_multiple_of_12():
-    lst = list(range(12))
-    expected_sum = sum(lst)
-    expected_sum += lst[0]**2
-    expected_sum += lst[3]**3
-    expected_sum += lst[6]**2
-    expected_sum += lst[9]**3
-    assert sum_squares(lst) == expected_sum
+    assert sum_squares([i for i in range(12)]) == 1 + 2 + 9 + 4 + 25 + 36 + 49 + 64 + 81 + 100 + 121 + 512
 
 def test_negative_numbers():
-    assert sum_squares([-1, -2, -3, -4]) == (-1) + (-2) + (-3)**2 + (-4)**3
+    assert sum_squares([-1, -2, -3]) == 1 + 4 + 9
 
-def test_mixed_numbers():
-    assert sum_squares([-1, 2, -3, 4, -5]) == (-1) + 2 + (-3)**2 + 4 + (-5)
+def test_mixed_positive_negative():
+    assert sum_squares([-1, 2, -3, 4, -5]) == 1 + 2 + 9 + 4 + 125
 
-def test_zeroes():
-    assert sum_squares([0, 0, 0, 0]) == 0
+def test_single_element():
+    assert sum_squares([5]) == 5
 
 def test_large_numbers():
-    assert sum_squares([1000, 2000, 3000]) == 1000 + 2000 + 3000**2
+    assert sum_squares([1000, 2000, 3000]) == 1000000 + 2000 + 9000000

@@ -19,44 +19,50 @@ import pytest
 def test_get_max_triples_empty():
     assert get_max_triples(0) == 0
 
-def test_get_max_triples_one():
+def test_get_max_triples_small():
     assert get_max_triples(1) == 0
-
-def test_get_max_triples_two():
     assert get_max_triples(2) == 0
-
-def test_get_max_triples_three():
     assert get_max_triples(3) == 1
 
-def test_get_max_triples_four():
-    assert get_max_triples(4) == 1
-
-def test_get_max_triples_five():
+def test_get_max_triples_example():
     assert get_max_triples(5) == 1
 
-def test_get_max_triples_six():
+def test_get_max_triples_larger():
     assert get_max_triples(6) == 3
-
-def test_get_max_triples_seven():
     assert get_max_triples(7) == 6
-
-def test_get_max_triples_eight():
     assert get_max_triples(8) == 10
-
-def test_get_max_triples_nine():
     assert get_max_triples(9) == 16
 
-def test_get_max_triples_ten():
-    assert get_max_triples(10) == 22
+def test_get_max_triples_mod_3():
+    n = 10
+    a = [i * i - i + 1 for i in range(1, n + 1)]
+    count = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            for k in range(j + 1, n):
+                if (a[i] + a[j] + a[k]) % 3 == 0:
+                    count += 1
+    assert get_max_triples(n) == count
 
-def test_get_max_triples_large():
-    assert get_max_triples(100) == 161700
+def test_get_max_triples_large_n():
+    n = 20
+    a = [i * i - i + 1 for i in range(1, n + 1)]
+    count = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            for k in range(j + 1, n):
+                if (a[i] + a[j] + a[k]) % 3 == 0:
+                    count += 1
+    assert get_max_triples(n) == count
 
-def test_get_max_triples_mod_values():
-    n = 1000
-    result = get_max_triples(n)
-    assert isinstance(result, int)
-    assert result >= 0
+def test_get_max_triples_n_is_3k():
+    assert get_max_triples(9) == 16
+    assert get_max_triples(12) == 36
 
-def test_get_max_triples_edge_case():
-    assert get_max_triples(1001) == 1671706
+def test_get_max_triples_n_is_3k_plus_1():
+    assert get_max_triples(10) == 20
+    assert get_max_triples(13) == 45
+
+def test_get_max_triples_n_is_3k_plus_2():
+    assert get_max_triples(11) == 30
+    assert get_max_triples(14) == 56

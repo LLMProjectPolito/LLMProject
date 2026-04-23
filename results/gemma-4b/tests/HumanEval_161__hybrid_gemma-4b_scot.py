@@ -94,4 +94,4 @@ def test_numbers_and_letters():
 
 # test_combination.py
 def test_combination():
-    assert solve("aBc12") == "AbC12"
+    assert solve("HeLlO wOrLd!") == "hElLo WoRlD!"

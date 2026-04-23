@@ -42,33 +42,30 @@ class TestXorY:
         assert x_or_y(3, 5, 8) == 5
         assert x_or_y(5, 1, 2) == 1
         assert x_or_y(11, 100, 200) == 100
-        assert x_or_y(13, 50, 60) == 50
-        assert x_or_y(17, 70, 80) == 70
-        assert x_or_y(19, 90, 100) == 90
-        assert x_or_y(23, 110, 120) == 110
-        assert x_or_y(29, 130, 140) == 130
+        assert x_or_y(13, 50, 75) == 50
+        assert x_or_y(17, 10, 5) == 10
+        assert x_or_y(19, 2, 4) == 2
 
-    def test_non_prime_number(self):
+    def test_composite_number(self):
         assert x_or_y(15, 8, 5) == 5
         assert x_or_y(4, 1, 2) == 2
-        assert x_or_y(6, 3, 4) == 4
-        assert x_or_y(8, 5, 6) == 6
-        assert x_or_y(9, 7, 8) == 8
-        assert x_or_y(10, 9, 10) == 10
-        assert x_or_y(12, 11, 12) == 12
-        assert x_or_y(14, 13, 14) == 14
-        assert x_or_y(16, 15, 16) == 16
-        assert x_or_y(18, 17, 18) == 18
+        assert x_or_y(6, 10, 5) == 5
+        assert x_or_y(8, 20, 10) == 10
+        assert x_or_y(9, 30, 15) == 15
+        assert x_or_y(10, 5, 10) == 10
+        assert x_or_y(12, 100, 50) == 50
+        assert x_or_y(14, 25, 12) == 12
+        assert x_or_y(16, 1, 3) == 3
 
     def test_edge_cases(self):
-        assert x_or_y(1, 1, 2) == 2
-        assert x_or_y(0, 3, 4) == 4
+        assert x_or_y(1, 10, 20) == 20
+        assert x_or_y(0, 5, 10) == 10
         assert x_or_y(2, 0, 0) == 0
-        assert x_or_y(-1, 5, 6) == 6
-        assert x_or_y(-7, 7, 8) == 8
+        assert x_or_y(-1, 1, 2) == 2
+        assert x_or_y(-5, 3, 4) == 4
 
     def test_large_prime(self):
         assert x_or_y(7919, 1000, 2000) == 1000
 
-    def test_large_non_prime(self):
+    def test_large_composite(self):
         assert x_or_y(7920, 1000, 2000) == 2000

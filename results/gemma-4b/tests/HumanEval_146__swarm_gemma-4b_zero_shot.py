@@ -31,6 +31,9 @@ def specialFilter(nums):
     return count
 
 def test_single_odd_first_last_greater_than_10():
+    assert specialFilter([115]) == 1
+
+def test_single_odd_first_last():
     assert specialFilter([111]) == 1
 
 def test_empty_list():
@@ -43,19 +46,10 @@ def test_mixed_positive_negative():
     assert specialFilter([-15, 15, -25, 25]) == 2
 
 def test_all_odd_first_last():
-    assert specialFilter([11, 33, 55, 77, 99]) == 5
+    assert specialFilter([1111, 3333, 5555]) == 3
 
-def test_some_odd_some_even():
-    assert specialFilter([11, 22, 33, 44, 55]) == 2
+def test_some_odd_some_even_first_last():
+    assert specialFilter([11, 13, 15, 17, 19, 21, 23]) == 3
 
 def test_negative_numbers():
-    assert specialFilter([-11, -33, -55]) == 0
-
-def test_large_numbers():
-    assert specialFilter([111111, 333333]) == 2
-
-def test_example_1():
-    assert specialFilter([15, -73, 14, -15]) == 1
-
-def test_example_2():
-    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
+    assert specialFilter([-11, -13, -15, -17, -19]) == 0

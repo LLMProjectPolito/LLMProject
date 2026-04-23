@@ -67,7 +67,7 @@ def test_strings_with_spaces():
     assert sorted_list_sum(["aa bb", "a", "aaa", "bb cc"]) == ["aa bb", "bb cc"]
 
 def test_strings_with_special_characters():
-    assert sorted_list_sum(["a!", "aa", "aaa", "bb@"]) == ["aa", "bb@"]
+    assert sorted_list_sum(["a!", "aa", "aaa", "b@"]) == ["aa", "b@"]
 
 def test_large_list():
     large_list = ["a" * i for i in range(1, 21)]

@@ -38,7 +38,7 @@ def test_sum_squares_zeroes():
     assert sum_squares([0, 0, 0, 0, 0]) == 0
 
 def test_sum_squares_large_numbers():
-    assert sum_squares([100, 200, 300, 400]) == 100 + 200**2 + 300 + 400**3
+    assert sum_squares([100, 200, 300, 400]) == 1010000
 
 def test_sum_squares_single_element():
     assert sum_squares([5]) == 5

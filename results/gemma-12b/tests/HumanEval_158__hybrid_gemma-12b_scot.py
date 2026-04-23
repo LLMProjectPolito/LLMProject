@@ -11,7 +11,6 @@ def find_max(words):
     """
 
 import pytest
-from typing import List
 
 def find_max(words):
     """Write a function that accepts a list of strings.
@@ -49,31 +48,27 @@ class TestFindMax:
 
     def test_multiple_words_different_unique_chars(self):
         assert find_max(["name", "of", "string"]) == "string"
-        assert find_max(["apple", "banana", "kiwi"]) == "banana"
 
     def test_multiple_words_same_unique_chars_lexicographical(self):
         assert find_max(["name", "enam", "game"]) == "enam"
-        assert find_max(["abc", "bca", "cab"]) == "abc"
 
     def test_words_with_repeated_chars(self):
-        assert find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
-        assert find_max(["aabbcc", "abc"]) == "abc"
+        assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
     def test_empty_string_in_list(self):
-        assert find_max(["", "hello"]) == "hello"
-        assert find_max(["hello", ""]) == "hello"
+        assert find_max(["", "abc"]) == "abc"
 
     def test_mixed_empty_and_nonempty_strings(self):
-        assert find_max(["", "a", "aa", "aaa"]) == "aaa"
-        assert find_max(["a", "", "aa"]) == "aa"
+        assert find_max(["", "abc", "def"]) == "abc"
 
     def test_all_same_unique_chars(self):
-        assert find_max(["abc", "def", "ghi"]) == "abc"
-        assert find_max(["aaa", "bbb", "ccc"]) == "aaa"
+        assert find_max(["abc", "bca", "cab"]) == "abc"
 
     def test_long_strings(self):
-        assert find_max(["abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnop"]) == "abcdefghijklmnopqrstuvwxyz"
-        assert find_max(["longstring", "short"]) == "longstring"
+        assert find_max(["abcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcba"]) == "abcdefghijklmnopqrstuvwxyz"
 
-    def test_unicode_strings(self):
-        assert find_max(["你好世界", "你好"]) == "你好世界"
+    def test_all_empty_strings(self):
+        assert find_max(["", "", ""]) == ""
+
+    def test_unicode_characters(self):
+        assert find_max(["你好", "世界", "Python"]) == "Python"

@@ -62,16 +62,16 @@ def test_eat_large_numbers():
     assert eat(100, 200, 300) == [300, 0]
 
 def test_eat_large_numbers_2():
-    assert eat(500, 600, 700) == [1100, 100]
+    assert eat(500, 600, 700) == [1100, 0]
+
+def test_eat_large_numbers_3():
+    assert eat(900, 100, 50) == [1000, 0]
 
 def test_eat_max_values():
     assert eat(1000, 1000, 1000) == [2000, 0]
 
-def test_eat_max_initial():
-    assert eat(1000, 1, 1) == [1001, 0]
+def test_eat_max_values_2():
+    assert eat(0, 1000, 1000) == [1000, 0]
 
-def test_eat_max_need():
-    assert eat(1, 1000, 1000) == [1001, 0]
-
-def test_eat_max_remaining():
-    assert eat(1, 1, 1000) == [2, 999]
+def test_eat_max_values_3():
+    assert eat(1000, 0, 1000) == [1000, 1000]

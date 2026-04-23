@@ -94,11 +94,5 @@ def test_valid_file_name_with_numbers_and_letters():
 def test_valid_file_name_with_numbers_and_letters_and_dots():
     assert file_name_check("a123.example.txt") == 'No'
 
-def test_valid_file_name_with_only_numbers():
-    assert file_name_check("12345.txt") == 'No'
-
-def test_valid_file_name_with_only_letters():
-    assert file_name_check("example.txt") == 'Yes'
-
-def test_valid_file_name_with_only_letters_and_numbers():
-    assert file_name_check("a123.txt") == 'No'
+def test_valid_file_name_with_special_characters():
+    assert file_name_check("example.txt!") == 'No'

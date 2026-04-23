@@ -39,8 +39,34 @@ def is_palindrome(s: str) -> bool:
 def get_max(arr: list[int]) -> int:
     """ Returns the maximum element in a list, or None if empty """
 
-### Problem:
-def is_palindrome(s: str) -> bool:
-    """ Checks if a string is a palindrome """
+    if not arr:
+        return None
 
-### Tests (Pytest):
+    max_val = arr[0]
+    for num in arr:
+        if num > max_val:
+            max_val = num
+    return max_val
+
+def test_order_by_points_positive():
+    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+
+def test_order_by_points_empty():
+    assert order_by_points([]) == []
+
+def test_order_by_points_single():
+    assert order_by_points([5]) == [5]
+
+def test_order_by_points_duplicate_digits():
+    assert order_by_points([11, 11, 11]) == [11, 11, 11]
+
+def test_order_by_points_negative_numbers():
+    assert order_by_points([-1, -11, 1, -12]) == [-1, -11, 1, -12]
+
+def test_is_palindrome():
+    assert is_palindrome('radar') == True
+    assert is_palindrome('hello') == False
+
+def test_get_max():
+    assert get_max([1, 2, 3]) == 3
+    assert get_max([]) == None

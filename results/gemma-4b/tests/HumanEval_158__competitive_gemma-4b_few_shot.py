@@ -25,18 +25,18 @@ def find_max(words):
     if not words:
         return ""
 
-    max_word = ""
-    max_unique_chars = 0
+    max_unique = 0
+    result = ""
 
     for word in words:
         unique_chars = len(set(word))
-        if unique_chars > max_unique_chars:
-            max_unique_chars = unique_chars
-            max_word = word
-        elif unique_chars == max_unique_chars and word < max_word:
-            max_word = word
+        if unique_chars > max_unique:
+            max_unique = unique_chars
+            result = word
+        elif unique_chars == max_unique and word < result:
+            result = word
 
-    return max_word
+    return result
 
 
 def test_find_max_empty_list():
@@ -51,20 +51,20 @@ def test_find_max_multiple_words_different_unique_chars():
 def test_find_max_multiple_words_same_unique_chars_lexicographical_order():
     assert find_max(["name", "enam", "game"]) == "enam"
 
-def test_find_max_multiple_words_same_unique_chars_and_lexicographical_order():
+def test_find_max_multiple_words_same_unique_chars_lexicographical_order_and_max_unique():
     assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
-def test_find_max_multiple_words_same_unique_chars_and_lexicographical_order_2():
-    assert find_max(["abc", "bca", "cab"]) == "abc"
+def test_find_max_multiple_words_same_unique_chars_lexicographical_order_and_max_unique_2():
+    assert find_max(["abc", "def", "ghi"]) == "abc"
+
+def test_find_max_multiple_words_same_unique_chars_lexicographical_order_and_max_unique_3():
+    assert find_max(["xyz", "abc", "def"]) == "abc"
 
 def test_find_max_with_duplicates():
-    assert find_max(["apple", "banana", "apple"]) == "banana"
+    assert find_max(["apple", "banana", "orange"]) == "banana"
 
 def test_find_max_with_empty_string():
     assert find_max(["", "hello"]) == "hello"
 
 def test_find_max_with_mixed_case():
     assert find_max(["Hello", "hello"]) == "Hello"
-
-def test_find_max_with_special_characters():
-    assert find_max(["!@#", "abc"]) == "!@#"

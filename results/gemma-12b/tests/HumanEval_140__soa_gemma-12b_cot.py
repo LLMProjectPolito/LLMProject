@@ -28,23 +28,23 @@ def test_leading_space():
 def test_multiple_consecutive_spaces():
     assert fix_spaces(" Example   3") == "_Example-3"
 
-def test_multiple_spaces_at_beginning():
+def test_multiple_consecutive_spaces_at_beginning():
     assert fix_spaces("   Example 4") == "-Example_4"
 
-def test_multiple_spaces_at_end():
+def test_multiple_consecutive_spaces_at_end():
     assert fix_spaces("Example 5   ") == "Example_5-"
 
-def test_multiple_spaces_in_middle():
-    assert fix_spaces("Example  6  7") == "Example_6_7"
+def test_multiple_consecutive_spaces_in_middle():
+    assert fix_spaces("Example  6  7") == "Example_6-7"
 
 def test_mixed_spaces():
-    assert fix_spaces(" Example  8   9") == "_Example-8-9"
+    assert fix_spaces("Example  8   9  10") == "Example_8-9_10"
 
 def test_only_spaces():
     assert fix_spaces("   ") == "-"
 
 def test_long_string_with_multiple_consecutive_spaces():
-    assert fix_spaces("This is a very long string with   multiple     consecutive spaces.") == "This_is_a_very_long_string_with-multiple---consecutive_spaces."
+    assert fix_spaces("This is a very long string with   multiple     consecutive spaces.") == "This_is_a_very_long_string_with-multiple-consecutive_spaces."
 
 def test_string_with_tabs_and_spaces():
     assert fix_spaces("Example\t 1") == "Example_1"
@@ -53,13 +53,4 @@ def test_string_with_newlines_and_spaces():
     assert fix_spaces("Example\n 1") == "Example_1"
 
 def test_string_with_special_characters_and_spaces():
-    assert fix_spaces("!@#$%^&*() Example 1") == "!@#$%^&*()_Example_1"
-
-def test_string_with_numbers_and_spaces():
-    assert fix_spaces("123 Example 456") == "123_Example_456"
-
-def test_string_with_underscores_and_spaces():
-    assert fix_spaces("Example_1 2") == "Example_1_2"
-
-def test_string_with_hyphens_and_spaces():
-    assert fix_spaces("Example-1 2") == "Example-1_2"
+    assert fix_spaces("!@#$%^&*() Example  1") == "!@#$%^&*()_Example-1"

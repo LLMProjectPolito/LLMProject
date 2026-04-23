@@ -45,10 +45,11 @@ def get_max_triples(n):
         a = [1, 3, 7, 13, 21]
         The only valid triple is (1, 7, 13).
     """
+    a = [i * i - i + 1 for i in range(1, n + 1)]
     count = 0
-    for i in range(n):
-        for j in range(i + 1, n):
-            for k in range(j + 1, n):
+    for i in range(len(a)):
+        for j in range(i + 1, len(a)):
+            for k in range(j + 1, len(a)):
                 if (a[i] + a[j] + a[k]) % 3 == 0:
                     count += 1
     return count

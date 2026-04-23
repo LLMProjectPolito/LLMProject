@@ -37,23 +37,22 @@ class TestRightAngleTriangle:
         assert right_angle_triangle(5, 12, 13) == True
         assert right_angle_triangle(8, 15, 17) == True
         assert right_angle_triangle(7, 24, 25) == True
-        assert right_angle_triangle(6, 8, 10) == True  # Multiple of 3-4-5
-        assert right_angle_triangle(20, 21, 29) == True
+        assert right_angle_triangle(6, 8, 10) == True  # Scaled version
 
     def test_invalid_right_triangle(self):
         """Tests with triangles that are not right-angled."""
         assert right_angle_triangle(1, 2, 3) == False
-        assert right_angle_triangle(1, 1, 1) == False
         assert right_angle_triangle(2, 3, 4) == False
+        assert right_angle_triangle(1, 1, 1) == False
+        assert right_angle_triangle(4, 5, 6) == False
         assert right_angle_triangle(10, 11, 12) == False
-        assert right_angle_triangle(5, 5, 5) == False
 
     def test_zero_length_side(self):
         """Tests with a zero-length side (should not be a triangle)."""
-        assert right_angle_triangle(0, 0, 0) == False
-        assert right_angle_triangle(0, 3, 4) == False
-        assert right_angle_triangle(3, 0, 4) == False
+        assert right_angle_triangle(0, 4, 5) == False
+        assert right_angle_triangle(3, 0, 5) == False
         assert right_angle_triangle(3, 4, 0) == False
+        assert right_angle_triangle(0, 0, 0) == False
 
     def test_negative_length_side(self):
         """Tests with a negative length side (invalid input)."""
@@ -71,9 +70,8 @@ class TestRightAngleTriangle:
 
     def test_large_numbers(self):
         """Tests with large numbers to check for potential overflow issues."""
-        assert right_angle_triangle(1000, 1000, sqrt(2000000)) == True
-        assert right_angle_triangle(10000, 10000, sqrt(200000000)) == True
-        assert right_angle_triangle(100000, 100000, sqrt(20000000000)) == True
+        assert right_angle_triangle(1000, 1000, 1414) == True
+        assert right_angle_triangle(10000, 10000, 14142) == True
 
     def test_floating_point_numbers(self):
         """Tests with floating-point numbers (should still work correctly)."""
@@ -82,7 +80,7 @@ class TestRightAngleTriangle:
         assert right_angle_triangle(1.0, 2.0, 3.0) == False
 
     def test_mixed_types(self):
-        """Tests with mixed types (should raise TypeError)."""
+        """Tests with mixed types to ensure TypeError is raised."""
         with pytest.raises(TypeError):
             right_angle_triangle("3", 4, 5)
         with pytest.raises(TypeError):

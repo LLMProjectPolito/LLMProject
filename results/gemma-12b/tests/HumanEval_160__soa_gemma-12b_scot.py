@@ -93,18 +93,18 @@ def test_do_algebra_multiple_multiplications():
     operand = [2, 3, 4]
     assert do_algebra(operator, operand) == 24
 
-def test_do_algebra_floor_division_zero_divisor():
+def test_do_algebra_floor_division_with_zero():
     operator = ['//']
-    operand = [5, 0]
+    operand = [10, 0]
     with pytest.raises(ZeroDivisionError):
         do_algebra(operator, operand)
 
-def test_do_algebra_exponentiation_zero_base():
+def test_do_algebra_exponentiation_with_zero():
     operator = ['**']
     operand = [0, 2]
     assert do_algebra(operator, operand) == 0
 
-def test_do_algebra_exponentiation_negative_exponent():
+def test_do_algebra_exponentiation_with_negative_exponent():
     operator = ['**']
     operand = [2, -1]
     assert do_algebra(operator, operand) == 0.5

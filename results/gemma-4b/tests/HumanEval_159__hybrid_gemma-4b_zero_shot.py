@@ -85,7 +85,7 @@ def test_eat_zero_values():
     assert eat(1000, 1000, 1000) == [2000, 0]
     assert eat(0, 0, 1000) == [0, 1000]
 
-def test_eat_large_numbers():
+def test_eat_large_values():
     assert eat(999, 1, 1000) == [1000, 1]
     assert eat(1, 999, 1000) == [1000, 1]
     assert eat(500, 500, 1000) == [1000, 0]

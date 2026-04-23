@@ -38,4 +38,4 @@ def test_right_angle_triangle_zero_length():
     assert right_angle_triangle(0, 1, 1) == False
 
 def test_right_angle_triangle_large_numbers():
-    assert right_angle_triangle(1000, 1000, 1000) == True
+    assert right_angle_triangle(1000, 2000, 3000) == True

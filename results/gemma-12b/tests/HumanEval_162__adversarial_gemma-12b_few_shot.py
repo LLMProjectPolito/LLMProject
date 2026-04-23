@@ -8,6 +8,7 @@ def string_to_md5(text):
     """
 
 import hashlib
+import pytest
 
 def string_to_md5(text):
     """
@@ -21,29 +22,28 @@ def string_to_md5(text):
     md5_hash = hashlib.md5(text.encode('utf-8'))
     return md5_hash.hexdigest()
 
-import pytest
+class TestStringtoMD5:
+    def test_valid_string(self):
+        assert string_to_md5("Hello world") == "3e25960a79dbc69b674cd4ec67a72c62"
+        assert string_to_md5("test") == "098f6bcd4621d373cade4e832627b4f6"
+        assert string_to_md5("a") == "0cc175b9c0f1b6a831c3901b9a6783c8"
 
-def test_string_to_md5_valid():
-    assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
-    assert string_to_md5('abc') == 'ba7816bf8f01cfea414140de5dae2223'
-    assert string_to_md5('12345') == '5d41402abc4b2a76b9719d911017c592'
+    def test_empty_string(self):
+        assert string_to_md5("") is None
 
-def test_string_to_md5_empty():
-    assert string_to_md5('') is None
+    def test_string_with_spaces(self):
+        assert string_to_md5("  ") == "d14a028c2a3a2bc9476102bb288234c4"
 
-def test_string_to_md5_unicode():
-    assert string_to_md5('你好世界') == 'a94a8fe5ccb19ba61c4c0873d391e987'
+    def test_string_with_special_characters(self):
+        assert string_to_md5("!@#$%^") == "9d0b2b99432931339999616399996163"
 
-def test_string_to_md5_with_spaces():
-    assert string_to_md5("  test  ") == '9d029999999999999999999999999999'
+    def test_string_with_unicode_characters(self):
+        assert string_to_md5("你好世界") == "b10a8db164e0754105b7a99be72e3fe5"
 
-def test_string_to_md5_same_string():
-    string1 = "test"
-    string2 = "test"
-    assert string_to_md5(string1) == string_to_md5(string2)
+    def test_long_string(self):
+        long_string = "This is a very long string to test the md5 hash function."
+        expected_hash = "99a93999999999999999999999999999" # Replace with actual hash
+        assert string_to_md5(long_string) == "99a93999999999999999999999999999" # Replace with actual hash
 
-def test_string_to_md5_different_case():
-    assert string_to_md5("Test") != string_to_md5("test")
-
-def test_string_to_md5_special_characters():
-    assert string_to_md5("!@#$%^&*()") == '99c69999999999999999999999999999'
+    def test_string_with_numbers(self):
+        assert string_to_md5("12345") == "5994471abb01112afcc18159f0e07a89"

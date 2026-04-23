@@ -67,34 +67,37 @@ def test_single_prime_word():
     assert words_in_sentence("is") == "is"
 
 def test_single_non_prime_word():
-    assert words_in_sentence("this") == ""
+    assert words_in_sentence("a") == ""
 
-def test_multiple_words_some_prime():
+def test_example_1():
     assert words_in_sentence("This is a test") == "is"
 
-def test_multiple_words_all_prime():
-    assert words_in_sentence("go for") == "go for"
+def test_example_2():
+    assert words_in_sentence("lets go for swimming") == "go for"
 
-def test_multiple_words_none_prime():
-    assert words_in_sentence("this that those") == ""
+def test_all_prime_words():
+    assert words_in_sentence("is are was") == "is are was"
 
-def test_mixed_case():
-    assert words_in_sentence("Go For") == "Go For"
+def test_all_non_prime_words():
+    assert words_in_sentence("a an the") == ""
+
+def test_mixed_prime_and_non_prime():
+    assert words_in_sentence("This is a test sentence") == "is test"
 
 def test_long_sentence():
-    assert words_in_sentence("lets go for swimming and running") == "go for"
+    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "quick fox over dog"
 
 def test_sentence_with_leading_and_trailing_spaces():
-    assert words_in_sentence("  This is a test  ") == "is"
+    assert words_in_sentence("  This is a test  ") == "is test"
 
 def test_sentence_with_multiple_spaces():
-    assert words_in_sentence("This  is   a    test") == "is"
+    assert words_in_sentence("This  is   a    test") == "is test"
 
-def test_prime_numbers():
-    assert words_in_sentence("two three five seven eleven") == "two three five seven eleven"
+def test_sentence_with_prime_and_composite_length_words():
+    assert words_in_sentence("two three four five") == "three five"
 
-def test_non_prime_numbers():
-    assert words_in_sentence("one four six eight nine") == ""
+def test_sentence_with_only_one_word():
+    assert words_in_sentence("two") == ""
 
-def test_combination():
-    assert words_in_sentence("one two three four five six seven") == "two three five seven"
+def test_sentence_with_only_one_prime_word():
+    assert words_in_sentence("five") == "five"

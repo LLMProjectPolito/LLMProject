@@ -94,6 +94,5 @@ def Strongest_Extension(class_name, extensions):
 
     return f"{class_name}.{strongest_extension}"
 
-
 def test_empty_extensions():
     assert Strongest_Extension("my_class", []) == "my_class."

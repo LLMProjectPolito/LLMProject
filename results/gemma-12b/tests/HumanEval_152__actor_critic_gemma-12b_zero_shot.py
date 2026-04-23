@@ -27,7 +27,12 @@ def test_compare_mixed_guesses():
 def test_compare_all_incorrect_guesses():
     assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
 
-def test_compare_single_element_lists():
+def test_compare_empty_lists():
+    # Consider if compare should return None or raise an exception
+    # For now, keeping the original behavior, but this should be revisited
+    assert compare([], []) == []
+
+def test_single_element_lists():
     assert compare([5], [5]) == [0]
     assert compare([5], [6]) == [1]
 
@@ -35,27 +40,26 @@ def test_compare_negative_scores():
     assert compare([-1, -2, -3], [-1, -2, -4]) == [0, 0, 1]
 
 def test_compare_unequal_length_lists():
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError) as excinfo:
         compare([1, 2], [1])
+    assert "Lists must be of equal length" in str(excinfo.value)
 
-def test_compare_lists_with_duplicate_elements():
-    assert compare([1, 2, 2, 3], [1, 2, 4, 3]) == [0, 0, 2, 0]
+def test_compare_unequal_length_lists2():
+    with pytest.raises(ValueError) as excinfo:
+        compare([1], [1, 2])
+    assert "Lists must be of equal length" in str(excinfo.value)
 
-def test_compare_lists_with_negative_numbers_and_zero():
+def test_compare_lists_with_duplicate_values():
+    assert compare([1, 1, 2], [1, 3, 2]) == [0, 2, 0]
+
+def test_compare_lists_with_negative_and_zero():
     assert compare([-1, 0, 2], [-1, 1, 2]) == [0, 1, 0]
-
-def test_compare_empty_lists():
-    assert compare([], []) == []
-
-def test_compare_one_element_list_vs_empty_list():
-    assert compare([5], []) == [5]
-    assert compare([], [5]) == [5]
 
 def test_compare_large_numbers():
     assert compare([1000000, 2000000], [1000000, 2000001]) == [0, 1]
 
-def test_compare_numbers_near_limits():
-    assert compare([2**31 - 1, -2**31], [2**31 - 1, -2**31]) == [0, 0]
+def test_compare_floating_point_numbers():
+    assert compare([1.0, 2.5, 3.14], [1.0, 2.5, 3.15]) == [0, 0, 1]
 
-def test_compare_lists_with_same_elements_different_order():
-    assert compare([1, 2, 3], [3, 2, 1]) == [2, 2, 2]
+def test_compare_lists_with_all_same_values():
+    assert compare([1, 1, 1], [1, 1, 1]) == [0, 0, 0]

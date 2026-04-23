@@ -39,20 +39,14 @@ def file_name_check(file_name):
     if not file_name.startswith('.'):
         return "No"
 
-    if not file_name.startswith('a' <= file_name[1:].lower() <= 'z'):
-        return "No"
-
-    parts = file_name.split('.')
+    parts = file_name.split(".")
     if len(parts) != 2:
         return "No"
 
-    before_dot = parts[0]
-    after_dot = parts[1]
-
-    if not before_dot or len(before_dot) == 0:
+    if not parts[0][0].isalpha():
         return "No"
 
-    if after_dot not in ['txt', 'exe', 'dll']:
+    if parts[1] not in ['txt', 'exe', 'dll']:
         return "No"
 
     return "Yes"

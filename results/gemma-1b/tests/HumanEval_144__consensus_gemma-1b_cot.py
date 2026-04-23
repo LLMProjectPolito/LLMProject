@@ -40,7 +40,7 @@ def simplify(x, n):
         denominator //= common_divisor
         
         return abs(numerator) == abs(denominator)
-    except ValueError:
+    except:
         return False
 
 def gcd(a, b):

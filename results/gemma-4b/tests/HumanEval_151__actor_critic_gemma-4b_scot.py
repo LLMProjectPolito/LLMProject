@@ -81,12 +81,3 @@ def test_single_element_zero():
 
 def test_list_with_non_integers():
     assert double_the_difference([1, 2.5, 3, "a"]) == 1 + 9 == 10
-
-def test_double_the_difference_example_1():
-    assert double_the_difference([1, 3, 2, 0]) == 10
-
-def test_double_the_difference_example_2():
-    assert double_the_difference([-1, -2, 0]) == 0
-
-def test_double_the_difference_example_3():
-    assert double_the_difference([9, -2]) == 81

@@ -50,10 +50,10 @@ class TestSumSquares:
         assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 175
 
     def test_multiples_of_3_and_4(self):
-        assert sum_squares([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 216
+        assert sum_squares([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 225
 
     def test_large_numbers(self):
-        assert sum_squares([10, 20, 30, 40]) == 100 + 8000 + 30 + 64000
+        assert sum_squares([10, 20, 30, 40]) == 10**2 + 20**3 + 30 + 40**3
 
     def test_list_with_zeros(self):
         assert sum_squares([0, 0, 0, 0, 0]) == 0

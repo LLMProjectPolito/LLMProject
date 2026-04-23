@@ -28,19 +28,16 @@ def special_factorial(n):
     """
     if n == 0:
         return 1
-    elif n == 1:
-        return 1
-    else:
-        result = 1
-        for i in range(n, 0, -1):
-            result *= i
-        return result
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
 
 def test_special_factorial_positive():
     assert special_factorial(4) == 288
 
-def test_special_factorial_negative():
-    assert special_factorial(-1) == 1
-
 def test_special_factorial_zero():
-    assert special_factorial(0) == 1
+    assert special_factorial(0) is None
+
+def test_special_factorial_one():
+    assert special_factorial(1) == 1

@@ -53,27 +53,26 @@ class TestSpecialFactorial:
         """Tests the edge case where n is 1."""
         assert special_factorial(1) == 1
 
-    def test_small_values(self):
-        """Tests with small positive integer values."""
+    def test_small_integer(self):
+        """Tests with a small positive integer."""
         assert special_factorial(2) == 2
-        assert special_factorial(3) == 18
 
-    def test_larger_values(self):
-        """Tests with larger positive integer values to check for potential overflow issues (within reasonable limits)."""
+    def test_larger_integer(self):
+        """Tests with a larger positive integer to check for potential overflow issues (within reasonable limits)."""
         assert special_factorial(6) == 1307674368000
 
     def test_zero_input(self):
-        """Tests with zero input.  The problem description states n > 0, so this should raise a ValueError."""
+        """Tests with zero input.  Should raise a ValueError."""
         with pytest.raises(ValueError):
             special_factorial(0)
 
     def test_negative_input(self):
-        """Tests with negative input.  The problem description states n > 0, so this should raise a ValueError."""
+        """Tests with a negative input. Should raise a ValueError."""
         with pytest.raises(ValueError):
             special_factorial(-1)
 
-    def test_type_checking(self):
-        """Tests that the function raises a TypeError if the input is not an integer."""
+    def test_type_error(self):
+        """Tests with a non-integer input. Should raise a TypeError."""
         with pytest.raises(TypeError):
             special_factorial(3.14)
         with pytest.raises(TypeError):
@@ -97,31 +96,6 @@ def test_special_factorial_basic(input_n, expected_result):
     assert special_factorial(input_n) == expected_result
 
 
-def test_special_factorial_large_number():
-    """Tests with a larger number to check for potential overflow issues (within reasonable limits)."""
+def test_special_factorial_large_input():
+    """Tests with a larger input to check for potential overflow issues (though Python handles large integers well)."""
     assert special_factorial(6) == 1307674368000
-
-
-def is_palindrome(s: str) -> bool:
-    """ Checks if a string is a palindrome """
-    s = s.lower()
-    return s == s[::-1]
-
-def get_max(arr: list[int]) -> int:
-    """ Returns the maximum element in a list, or None if empty """
-    if not arr:
-        return None
-    return max(arr)
-
-def test_palindrome_basic():
-    assert is_palindrome('radar') == True
-    assert is_palindrome('hello') == False
-
-def test_palindrome_empty():
-    assert is_palindrome('') == True
-
-def test_max_positive():
-    assert get_max([1, 2, 3]) == 3
-
-def test_max_empty():
-    assert get_max([]) == None

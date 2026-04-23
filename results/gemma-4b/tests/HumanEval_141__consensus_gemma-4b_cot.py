@@ -78,21 +78,22 @@ def test_invalid_extension():
     assert file_name_check("example.pdf") == 'No'
 
 
-def test_more_than_three_digits():
+def test_too_many_digits():
     assert file_name_check("123example.txt") == 'No'
+
+
+def test_too_many_digits_2():
+    assert file_name_check("example1234.txt") == 'No'
 
 
 def test_valid_file_name_with_uppercase():
     assert file_name_check("Example.txt") == 'Yes'
 
 def test_valid_file_name_with_mixed_case():
-    assert file_name_check("ExAmple.txt") == 'Yes'
+    assert file_name_check("ExAmPle.txt") == 'Yes'
 
 def test_valid_file_name_with_numbers_and_letters():
-    assert file_name_check("a123example.txt") == 'No'
+    assert file_name_check("example123.txt") == 'No'
 
-def test_valid_file_name_with_numbers_and_letters_and_dots():
-    assert file_name_check("a123.example.txt") == 'No'
-
-def test_valid_file_name_with_special_characters():
-    assert file_name_check("example.txt!") == 'No'
+def test_valid_file_name_with_numbers_and_letters_2():
+    assert file_name_check("ExAmPle123.txt") == 'No'

@@ -65,8 +65,11 @@ def test_fix_spaces_long_consecutive_spaces():
 def test_fix_spaces_trailing_spaces():
     assert fix_spaces("Some text   ") == "Some_text--"
 
-def test_fix_spaces_multiple_leading_and_trailing():
-    assert fix_spaces("  Leading and trailing spaces  ") == "_Leading_and_trailing_spaces--"
+def test_fix_spaces_multiple_consecutive_and_trailing():
+    assert fix_spaces("  Multiple   spaces   at   the   end  ") == "_Multiple---spaces---at---the---end"
+
+def test_fix_spaces_with_numbers():
+    assert fix_spaces("1 2 3 4") == "1_2_3_4"
 
 def test_fix_spaces_with_special_characters():
-    assert fix_spaces("Special! chars ") == "Special_chars_"
+    assert fix_spaces("!@# $ % ^ & * ( )") == "!@#_-_%_-_^_-_&_-_*_-_("

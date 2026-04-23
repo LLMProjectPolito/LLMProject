@@ -53,7 +53,7 @@ def test_negative_special_numbers():
     assert specialFilter([-13, -35, -57, -79, -91]) == 5
 
 def test_negative_and_positive_special_numbers():
-    assert specialFilter([15, -37, 59, -71, 93]) == 5
+    assert specialFilter([15, -37, 59, -71, 93]) == 4
 
 def test_zero():
     assert specialFilter([0]) == 0

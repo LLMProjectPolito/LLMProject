@@ -47,33 +47,40 @@ def test_simplify_not_whole_number():
     assert simplify("1/2", "1/3") == False
     assert simplify("2/5", "1/2") == False
 
+def test_simplify_larger_numbers():
+    assert simplify("12/4", "6/3") == True
+    assert simplify("15/5", "2/1") == True
+    assert simplify("20/8", "4/2") == True
+    assert simplify("100/10", "10/1") == True
+
+def test_simplify_one_is_whole():
+    assert simplify("1/1", "2/3") == False
+    assert simplify("3/2", "1/1") == False
+    assert simplify("5/1", "1/2") == False
+    assert simplify("1/2", "5/1") == False
+
+def test_simplify_edge_cases():
+    assert simplify("1/2", "2/4") == True
+    assert simplify("2/4", "1/2") == True
+    assert simplify("3/9", "1/3") == True
+    assert simplify("1/3", "3/9") == True
+
+def test_simplify_different_denominators():
+    assert simplify("2/3", "6/9") == True
+    assert simplify("4/5", "10/15") == True
+    assert simplify("1/4", "2/8") == True
+    assert simplify("3/7", "6/14") == True
+
+def test_simplify_complex_fractions():
+    assert simplify("11/12", "12/11") == True
+    assert simplify("13/15", "15/13") == True
+    assert simplify("17/18", "18/17") == True
+    assert simplify("19/20", "20/19") == True
+
 def test_simplify_large_numbers():
-    assert simplify("100/25", "25/1") == True
-    assert simplify("1000/3", "1/10") == False
-    assert simplify("12345/10", "10/1") == False
-    assert simplify("12345/5", "2/1") == True
     assert simplify("100/1", "1/100") == True
     assert simplify("12345/10", "10/12345") == False
     assert simplify("999/1", "1/999") == True
-
-def test_simplify_relatively_prime():
-    assert simplify("2/3", "5/7") == False
-    assert simplify("3/4", "7/8") == False
-
-def test_simplify_edge_cases():
-    assert simplify("1/1", "2/1") == True
-    assert simplify("2/1", "1/1") == True
-    assert simplify("1/2", "2/1") == True
-    assert simplify("1/100", "100/1") == True
-    assert simplify("100/1", "1/100") == True
-    assert simplify("1/1000", "1000/1") == True
-    assert simplify("2/1", "1/2") == True
-
-def test_simplify_different_magnitudes():
-    assert simplify("10/1", "1/100") == False
-    assert simplify("1/100", "10/1") == False
-    assert simplify("100/1", "1/10") == False
-    assert simplify("1/10", "100/1") == False
 
 def test_simplify_same_fraction():
     assert simplify("2/3", "2/3") == True
@@ -83,7 +90,13 @@ def test_simplify_different_fractions_whole():
     assert simplify("4/2", "1/2") == True
     assert simplify("6/3", "2/1") == True
 
-def test_simplify_complex_fractions():
+def test_simplify_edge_cases_2():
+    assert simplify("1/1000", "1000/1") == True
+    assert simplify("1000/1", "1/1000") == True
+    assert simplify("2/1", "1/2") == True
+    assert simplify("1/2", "2/1") == True
+
+def test_simplify_complex_fractions_2():
     assert simplify("11/13", "13/11") == True
     assert simplify("17/19", "19/17") == True
     assert simplify("23/29", "29/23") == True
@@ -110,10 +123,7 @@ def test_palindrome_empty():
     assert is_palindrome('') == True
 
 def test_palindrome_with_spaces():
-    assert is_palindrome('race car') == False
-
-def test_palindrome_with_case():
-    assert is_palindrome('Racecar') == False
+    assert is_palindrome("race car") == False
 
 def get_max(arr: list[int]) -> int:
     """ Returns the maximum element in a list, or None if empty """

@@ -23,4 +23,4 @@ def test_x_or_y_invalid_input():
     """Tests the function with a non-integer input for n."""
     import pytest
     with pytest.raises(TypeError):
-        x_or_y("abc", 1, 2)
+        x_or_y("7", 34, 12)

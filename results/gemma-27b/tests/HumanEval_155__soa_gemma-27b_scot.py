@@ -45,14 +45,11 @@ def test_even_odd_count_large_number():
 def test_even_odd_count_large_negative_number():
     assert even_odd_count(-9876543210) == (5, 5)
 
-def test_even_odd_count_repeated_digits():
-    assert even_odd_count(2222) == (4, 0)
+def test_even_odd_count_with_leading_zeros():
+    assert even_odd_count(102) == (2, 1)
 
-def test_even_odd_count_repeated_odd_digits():
-    assert even_odd_count(1111) == (0, 4)
+def test_even_odd_count_all_zeros():
+    assert even_odd_count(000) == (3, 0)
 
-def test_even_odd_count_edge_case():
-    assert even_odd_count(10) == (1, 1)
-
-def test_even_odd_count_another_edge_case():
-    assert even_odd_count(-10) == (1, 1)
+def test_even_odd_count_negative_with_leading_zeros():
+    assert even_odd_count(-001) == (0, 1)

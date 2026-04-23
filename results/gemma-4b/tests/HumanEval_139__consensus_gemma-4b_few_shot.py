@@ -45,9 +45,9 @@ def test_special_factorial_positive_integer():
     assert special_factorial(5) == 34560
     assert special_factorial(6) == 4177926400
     assert special_factorial(7) == 570000000000
-    assert special_factorial(8) == 78886094430000
-    assert special_factorial(9) == 1307674368000000
-    assert special_factorial(10) == 36288000000000000
+    assert special_factorial(8) == 82259769600000
+    assert special_factorial(9) == 12751368358000000
+    assert special_factorial(10) == 330688544704000000
 
 def test_special_factorial_zero():
     assert special_factorial(0) == 1

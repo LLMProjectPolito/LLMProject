@@ -23,84 +23,138 @@ def cycpattern_check(a , b):
 
     """
     if not b:
-        return True
-    if not a:
         return False
-
     for i in range(len(b)):
         rotated_b = b[i:] + b[:i]
         if rotated_b in a:
             return True
     return False
 
-
 class TestCycPatternCheck:
     """
     Pytest class for testing the cycpattern_check function.
-    This class provides a comprehensive suite of tests covering various scenarios,
-    including basic cases, edge cases, and boundary conditions.
+    This class uses parametrization to test various scenarios with different inputs.
     """
 
-    def test_basic_true(self):
-        """Tests basic cases where the pattern or its rotation is a substring."""
-        assert cycpattern_check("hello", "ell") == True
-        assert cycpattern_check("abab", "baa") == True
-        assert cycpattern_check("himenss", "simen") == True
-        assert cycpattern_check("abcde", "cde") == True
-        assert cycpattern_check("abcde", "eabc") == True
-        assert cycpattern_check("abcde", "bcdea") == True
+    @pytest.mark.parametrize(
+        "a, b, expected",
+        [
+            ("abcd", "abd", False),
+            ("hello", "ell", True),
+            ("whassup", "psus", False),
+            ("abab", "baa", True),
+            ("efef", "eeff", False),
+            ("himenss", "simen", True),
+            ("abcde", "cde", True),
+            ("abcde", "edc", False),
+            ("abcde", "abc", True),
+            ("abcde", "e", True),
+            ("abcde", "", False),  # Empty b
+            ("abcde", "f", False),
+            ("aaaaa", "aaaa", True),
+            ("aaaaa", "aaab", False),
+            ("aaaaa", "baaaa", True),
+            ("aaaaa", "aaaaa", True),
+            ("a", "a", True),
+            ("a", "b", False),
+            ("aa", "a", True),
+            ("aa", "aa", True),
+            ("aa", "b", False),
+            ("abcabc", "bca", True),
+            ("abcabc", "cab", True),
+            ("abcabc", "abc", True),
+            ("abcabc", "cba", False),
+            ("abcabc", "bcab", True),
+            ("abcabc", "bcabc", True),
+            ("abcabc", "abcabc", True),
+            ("abcabc", "xyz", False),
+        ],
+    )
+    def test_cycpattern_check(a, b, expected):
+        """
+        Tests the cycpattern_check function with various inputs and expected outputs.
+        """
+        assert cycpattern_check(a, b) == expected
 
-    def test_basic_false(self):
-        """Tests basic cases where the pattern or its rotation is not a substring."""
-        assert cycpattern_check("abcd", "abd") == False
-        assert cycpattern_check("whassup", "psus") == False
-        assert cycpattern_check("efef", "eeff") == False
-        assert cycpattern_check("abc", "def") == False
-        assert cycpattern_check("abc", "abcd") == False
+    def test_cycpattern_check_type_hints():
+        """
+        Tests that the function handles type hints correctly.
+        """
+        with pytest.raises(TypeError):
+            cycpattern_check(123, "abc")
+        with pytest.raises(TypeError):
+            cycpattern_check("abc", 123)
 
-    def test_empty_pattern(self):
-        """Tests the case where the pattern string is empty."""
-        assert cycpattern_check("hello", "") == True
-        assert cycpattern_check("", "") == True
+    def test_cycpattern_check_long_strings():
+        """
+        Tests the function with long strings to ensure performance and correctness.
+        """
+        long_a = "a" * 1000
+        long_b = "a" * 500
+        assert cycpattern_check(long_a, long_b) == True
 
-    def test_empty_text(self):
-        """Tests the case where the text string is empty."""
-        assert cycpattern_check("", "abc") == False
-        assert cycpattern_check("", "") == True
+        long_a = "a" * 1000
+        long_b = "b" * 500
+        assert cycpattern_check(long_a, long_b) == False
 
-    def test_identical_strings(self):
-        """Tests the case where the strings are identical."""
-        assert cycpattern_check("hello", "hello") == True
-        assert cycpattern_check("abc", "abc") == True
+    @pytest.mark.parametrize("a, b, expected", [
+        ("abcd", "abd", False),
+        ("hello", "ell", True),
+        ("whassup", "psus", False),
+        ("abab", "baa", True),
+        ("efef", "eeff", False),
+        ("himenss", "simen", True),
+        ("abcde", "cde", True),
+        ("abcde", "edcba", False),
+        ("aaaaa", "aaaa", True),
+        ("aaaaa", "aaab", False),
+        ("abc", "abc", True),
+        ("abc", "acb", False),
+        ("a", "a", True),
+        ("a", "b", False),
+        ("", "a", False),
+        ("", "", False),
+        ("abc", "", False),
+        ("abcabc", "bca", True),
+        ("abcabc", "cab", True),
+        ("abcabc", "abc", True),
+        ("abcabc", "bcab", True),
+        ("abcabc", "cabc", True),
+        ("abcabc", "bcabc", True),
+        ("abcabc", "abcabc", True),
+        ("abcabc", "xyz", False),
+        ("abcdefg", "efgabc", True),
+        ("abcdefg", "abcdegf", False),
+        ("abcdefg", "defgabc", True),
+        ("abcdefg", "gabcdef", True),
+        ("abcdefg", "abcdef", True),
+        ("abcdefg", "bcdefga", True),
+        ("abcdefg", "abcdefg", True),
+        ("abcdefg", "abcdefgh", False),
+    ])
+    def test_cycpattern_check_extended(a, b, expected):
+        assert cycpattern_check(a, b) == expected
 
-    def test_pattern_longer_than_text(self):
-        """Tests the case where the pattern is longer than the text."""
-        assert cycpattern_check("abc", "abcdef") == False
 
-    def test_pattern_equals_text_but_not_rotation(self):
-        """Tests the case where the pattern is equal to the text but not a rotation."""
-        assert cycpattern_check("abc", "cba") == False
+def is_palindrome(s: str) -> bool:
+    """ Checks if a string is a palindrome """
+    return s == s[::-1]
 
-    def test_overlapping_pattern(self):
-        """Tests cases with overlapping patterns."""
-        assert cycpattern_check("aaaa", "aa") == True
-        assert cycpattern_check("ababab", "bab") == True
-        assert cycpattern_check("ababab", "baba") == True
+def get_max(arr: list[int]) -> int:
+    """ Returns the maximum element in a list, or None if empty """
+    if not arr:
+        return None
+    return max(arr)
 
-    def test_special_characters(self):
-        """Tests cases with special characters."""
-        assert cycpattern_check("!@#$", "@#$!") == True
-        assert cycpattern_check("!@#$", "#$!@") == True
-        assert cycpattern_check("!@#$", "abc") == False
+def test_palindrome_basic():
+    assert is_palindrome('radar') == True
+    assert is_palindrome('hello') == False
 
-    def test_unicode_characters(self):
-        """Tests cases with unicode characters."""
-        assert cycpattern_check("你好世界", "界世好你") == True
-        assert cycpattern_check("你好世界", "世界你好你") == True
-        assert cycpattern_check("你好世界", "abc") == False
+def test_palindrome_empty():
+    assert is_palindrome('') == True
 
-    def test_mixed_case(self):
-        """Tests cases with mixed case characters."""
-        assert cycpattern_check("Hello", "ellH") == True
-        assert cycpattern_check("Hello", "ellO") == False
-        assert cycpattern_check("HeLlO", "lLeH") == True
+def test_max_positive():
+    assert get_max([1, 2, 3]) == 3
+
+def test_max_empty():
+    assert get_max([]) == None

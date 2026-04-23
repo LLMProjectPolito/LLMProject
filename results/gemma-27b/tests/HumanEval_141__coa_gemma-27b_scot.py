@@ -28,13 +28,13 @@ def test_boundary_digit_count_over():
     assert file_name_check("abc1234.txt") == "No"
 
 def test_boundary_dot_count_one():
-    assert file_name_check("example.txt") == "Yes"
+    assert file_name_check("abc.txt") == "Yes"
 
 def test_boundary_dot_count_zero():
-    assert file_name_check("exampletxt") == "No"
+    assert file_name_check("abctxt") == "No"
 
 def test_boundary_dot_count_multiple():
-    assert file_name_check("example.txt.txt") == "No"
+    assert file_name_check("abc.def.txt") == "No"
 
 def test_boundary_prefix_empty():
     assert file_name_check(".txt") == "No"
@@ -46,10 +46,10 @@ def test_boundary_prefix_digit():
     assert file_name_check("1.txt") == "No"
 
 def test_boundary_suffix_valid():
-    assert file_name_check("example.txt") == "Yes"
+    assert file_name_check("abc.txt") == "Yes"
 
 def test_boundary_suffix_invalid():
-    assert file_name_check("example.doc") == "No"
+    assert file_name_check("abc.doc") == "No"
 
 # Focus: Logic Branches
 import pytest
@@ -63,22 +63,21 @@ def test_file_name_check_valid():
 def test_file_name_check_invalid_digit_count():
     assert file_name_check("1234example.txt") == "No"
     assert file_name_check("example1234.dll") == "No"
-    assert file_name_check("123example123.exe") == "No"
 
 def test_file_name_check_invalid_dot_count():
-    assert file_name_check("example.txt.txt") == "No"
+    assert file_name_check("example.txt.exe") == "No"
     assert file_name_check("exampletxt") == "No"
-    assert file_name_check(".txt") == "No"
 
-def test_file_name_check_invalid_extension():
+def test_file_name_check_invalid_prefix():
+    assert file_name_check("1example.txt") == "No"
+    assert file_name_check("!example.dll") == "No"
+
+def test_file_name_check_invalid_suffix():
     assert file_name_check("example.pdf") == "No"
     assert file_name_check("example.jpg") == "No"
-    assert file_name_check("example.py") == "No"
 
-def test_file_name_check_invalid_start_character():
-    assert file_name_check("1example.txt") == "No"
-    assert file_name_check("!example.exe") == "No"
-    assert file_name_check("_example.dll") == "No"
+def test_file_name_check_empty_prefix():
+    assert file_name_check(".txt") == "No"
 
 # Focus: Invalid Input Handling
 import pytest

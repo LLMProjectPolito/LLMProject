@@ -60,43 +60,41 @@ def eat(number, need, remaining):
 
     Have fun :)
     """
-    total_eaten = number + remaining
-    remaining_after_meal = 0 if remaining < need else remaining - need
-    return [total_eaten, remaining_after_meal]
+    total_eaten = number
+    remaining_carrots = remaining
+    if remaining >= need:
+        total_eaten += need
+        remaining_carrots -= need
+    else:
+        total_eaten += remaining
+        remaining_carrots = 0
+    return [total_eaten, remaining_carrots]
 
 
 class TestEat:
     def test_enough_remaining(self):
         assert eat(5, 6, 10) == [11, 4]
-        assert eat(4, 8, 9) == [12, 1]
-        assert eat(1, 10, 10) == [11, 0]
 
     def test_not_enough_remaining(self):
-        assert eat(2, 11, 5) == [7, 0]
-        assert eat(10, 20, 5) == [15, 0]
+        assert eat(4, 8, 9) == [12, 1]
 
     def test_zero_remaining(self):
-        assert eat(5, 6, 0) == [5, 0]
-        assert eat(0, 5, 0) == [0, 0]
+        assert eat(1, 10, 0) == [1, 0]
 
     def test_zero_need(self):
         assert eat(5, 0, 10) == [5, 10]
-        assert eat(0, 0, 0) == [0, 0]
 
     def test_zero_eaten(self):
-        assert eat(0, 5, 10) == [5, 5]
-        assert eat(0, 0, 0) == [0, 0]
+        assert eat(0, 6, 10) == [6, 4]
 
-    def test_all_zeros(self):
-        assert eat(0, 0, 0) == [0, 0]
-
-    def test_max_values(self):
+    def test_edge_case_max_values(self):
         assert eat(1000, 1000, 1000) == [2000, 0]
-        assert eat(0, 0, 1000) == [0, 1000]
-        assert eat(1000, 0, 0) == [1000, 0]
 
-    def test_edge_cases(self):
-        assert eat(1, 1, 1) == [2, 0]
-        assert eat(1000, 1, 1000) == [2000, 0]
-        assert eat(1, 1000, 1) == [1001, 0]
-        assert eat(1000, 1000, 1) == [2000, 0]
+    def test_edge_case_min_values(self):
+        assert eat(0, 0, 0) == [0, 0]
+
+    def test_large_numbers(self):
+        assert eat(500, 750, 900) == [1250, 150]
+
+    def test_another_not_enough(self):
+        assert eat(2, 11, 5) == [7, 0]

@@ -67,10 +67,10 @@ def test_bf_mars_jupiter():
     assert bf("Mars", "Jupiter") == ("Saturn")
 
 def test_bf_saturn_uranus():
-    assert bf("Saturn", "Uranus") == ("Jupiter")
+    assert bf("Saturn", "Uranus") == ("Jupiter", "Mars", "Earth", "Venus")
 
 def test_bf_uranus_neptune():
-    assert bf("Uranus", "Neptune") == ("Saturn", "Jupiter")
+    assert bf("Uranus", "Neptune") == ("Saturn", "Jupiter", "Mars", "Earth", "Venus")
 
 def test_bf_neptune_mercury():
     assert bf("Neptune", "Mercury") == ()
@@ -90,20 +90,8 @@ def test_bf_adjacent_planets():
 def test_bf_far_apart_planets():
     assert bf("Mercury", "Neptune") == ()
 
-def test_bf_edge_case_mercury_venus():
-    assert bf("Mercury", "Venus") == ("Earth")
+def test_bf_empty_string():
+    assert bf("", "Neptune") == ()
 
-def test_bf_edge_case_venus_mars():
-    assert bf("Venus", "Mars") == ("Earth")
-
-def test_bf_edge_case_mars_jupiter():
-    assert bf("Mars", "Jupiter") == ("Saturn")
-
-def test_bf_edge_case_jupiter_saturn():
-    assert bf("Jupiter", "Saturn") == ("Uranus")
-
-def test_bf_edge_case_saturn_uranus():
-    assert bf("Saturn", "Uranus") == ("Jupiter")
-
-def test_bf_edge_case_uranus_neptune():
-    assert bf("Uranus", "Neptune") == ("Saturn", "Jupiter")
+def test_bf_empty_string2():
+    assert bf("Jupiter", "") == ()

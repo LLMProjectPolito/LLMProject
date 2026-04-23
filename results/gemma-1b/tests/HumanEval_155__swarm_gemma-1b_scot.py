@@ -19,21 +19,18 @@ def even_odd_count(num):
     even_count = 0
     odd_count = 0
     for digit in str(abs(num)):
-        digit = int(digit)
-        if digit % 2 == 0:
+        if int(digit) % 2 == 0:
             even_count += 1
         else:
             odd_count += 1
     return (even_count, odd_count)
 
-def test_even_odd_count_negative():
+def test_even_odd_count():
     assert even_odd_count(-12) == (1, 1)
-
-def test_even_odd_count_123():
     assert even_odd_count(123) == (1, 2)
-
-def test_even_odd_count_zero():
+    assert even_odd_count(22) == (0, 1)
+    assert even_odd_count(1) == (1, 0)
     assert even_odd_count(0) == (0, 0)
-
-def test_even_odd_count_large_number():
-    assert even_odd_count(1234567890) == (2, 3)
+    assert even_odd_count(111) == (2, 0)
+    assert even_odd_count(12345) == (1, 2)
+    assert even_odd_count(123456789) == (1, 2)

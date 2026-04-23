@@ -174,10 +174,14 @@ def test_int_to_mini_roman_single_digit():
 
 def test_int_to_mini_roman_multiple_digits():
     assert int_to_mini_roman(19) == 'xix'
-    assert int_to_mini_roman(44) == 'xliv'
+    assert int_to_mini_roman(49) == 'xlix'
     assert int_to_mini_roman(99) == 'xcix'
-
-def test_int_to_mini_roman_hundreds():
     assert int_to_mini_roman(152) == 'clii'
     assert int_to_mini_roman(426) == 'cdxxvi'
     assert int_to_mini_roman(888) == 'dccclxxxviii'
+
+def test_int_to_mini_roman_edge_cases():
+    assert int_to_mini_roman(1) == 'i'
+    assert int_to_mini_roman(10) == 'x'
+    assert int_to_mini_roman(100) == 'c'
+    assert int_to_mini_roman(1000) == 'm'

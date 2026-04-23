@@ -87,15 +87,18 @@ def test_is_palindrome_basic():
 
 def test_is_palindrome_empty():
     assert is_palindrome('') == True
-
-def test_is_palindrome_single_char():
+    assert is_palindrome(' ') == True
     assert is_palindrome('a') == True
 
 def test_is_palindrome_mixed_case():
     assert is_palindrome('Racecar') == True
+    assert is_palindrome('RaCeCaR') == True
 
 def test_is_palindrome_with_spaces():
     assert is_palindrome('A man, a plan, a canal: Panama') == True
+
+def test_is_palindrome_with_punctuation():
+    assert is_palindrome('Madam, I\'m Adam') == True
 
 # Pytest suite for get_max function
 def test_max_positive():
@@ -130,35 +133,94 @@ def test_eat_enough_carrots():
     assert eat(3, 2, 5) == [5, 0]
 
 def test_eat_not_enough_carrots():
-    assert eat(1, 5, 3) == [6, 0]
-
-def test_eat_zero_need():
-    assert eat(0, 0, 10) == [0, 10]
+    assert eat(10, 5, 3) == [15, 0]
 
 def test_eat_zero_remaining():
-    assert eat(5, 6, 0) == [11, -1]
+    assert eat(0, 0, 0) == [0, 0]
+
+def test_eat_zero_need():
+    assert eat(5, 0, 10) == [5, 5]
 
 def test_eat_zero_number():
-    assert eat(0, 6, 10) == [6, 4]
+    assert eat(0, 5, 10) == [5, 5]
 
 def test_eat_large_numbers():
-    assert eat(500, 500, 1000) == [1000, 0]
+    assert eat(999, 500, 1000) == [1499, 501]
 
 def test_eat_negative_remaining():
     assert eat(1, 1, -1) == [2, -3]
 
-def test_is_palindrome_basic():
+# Pytest suite for is_palindrome function
+def test_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
+    assert is_palindrome('A man, a plan, a canal: Panama') == True
+    assert is_palindrome('Racecar') == True
+    assert is_palindrome('Was it a car or a cat I saw?') == True
+    assert is_palindrome('Madam') == True
+    assert is_palindrome('No lemon, no melon') == True
 
-def test_is_palindrome_empty():
+def test_palindrome_empty():
     assert is_palindrome('') == True
-
-def test_is_palindrome_single_char():
+    assert is_palindrome(' ') == True
     assert is_palindrome('a') == True
 
-def test_is_palindrome_mixed_case():
+def test_palindrome_mixed_case():
     assert is_palindrome('Racecar') == True
+    assert is_palindrome('RaCeCaR') == True
 
 def test_is_palindrome_with_spaces():
     assert is_palindrome('A man, a plan, a canal: Panama') == True
+
+def test_is_palindrome_with_punctuation():
+    assert is_palindrome('Madam, I\'m Adam') == True
+
+# Pytest suite for get_max function
+def test_max_positive():
+    assert get_max([1, 2, 3]) == 3
+
+def test_max_negative():
+    assert get_max([-1, -2, -3]) == -1
+
+def test_max_mixed():
+    assert get_max([-1, 2, -3, 4]) == 4
+
+def test_max_empty():
+    assert get_max([]) == None
+
+def test_max_single_element():
+    assert get_max([5]) == 5
+
+# Pytest suite for eat function
+def test_eat_basic_1():
+    assert eat(5, 6, 10) == [11, 4]
+
+def test_eat_basic_2():
+    assert eat(4, 8, 9) == [12, 1]
+
+def test_eat_basic_3():
+    assert eat(1, 10, 10) == [11, 0]
+
+def test_eat_basic_4():
+    assert eat(2, 11, 5) == [7, 0]
+
+def test_eat_enough_carrots():
+    assert eat(3, 2, 5) == [5, 0]
+
+def test_eat_not_enough_carrots():
+    assert eat(10, 5, 3) == [15, 0]
+
+def test_eat_zero_remaining():
+    assert eat(0, 0, 0) == [0, 0]
+
+def test_eat_zero_need():
+    assert eat(5, 0, 10) == [5, 5]
+
+def test_eat_zero_number():
+    assert eat(0, 5, 10) == [5, 5]
+
+def test_eat_large_numbers():
+    assert eat(999, 500, 1000) == [1499, 501]
+
+def test_eat_negative_remaining():
+    assert eat(1, 1, -1) == [2, -3]

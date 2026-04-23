@@ -25,11 +25,12 @@ def test_simplify_invalid_type():
     """Test with invalid input types."""
     try:
         simplify(1, "5/1")
-        assert False, "Should have raised a TypeError"
+        assert False, "TypeError not raised"
     except TypeError:
         pass
+
     try:
         simplify("1/5", 1)
-        assert False, "Should have raised a TypeError"
+        assert False, "TypeError not raised"
     except TypeError:
         pass

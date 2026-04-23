@@ -64,15 +64,13 @@ def test_order_by_points_complex():
     assert order_by_points([21, 12, 3, 1, 2, 10, 11]) == [1, 2, 3, 10, 11, 12, 21]
 
 def test_order_by_points_complex_case():
-    assert order_by_points([21, 12, 3, 1, 2, 10, 11]) == [1, 2, 3, 10, 11, 12, 21]
+    assert order_by_points([21, 12, 3, 1, 100, 2, 11]) == [1, 2, 3, 11, 12, 21, 100]
 
 def test_order_by_points_all_zeros():
     assert order_by_points([0, 0, 0]) == [0, 0, 0]
 
-def test_order_by_points_long_list():
-    nums = list(range(100))
-    expected = sorted(nums, key=lambda x: (sum(int(digit) for digit in str(abs(x))), nums.index(x)))
-    assert order_by_points(nums) == expected
+def test_order_by_points_large_negative_numbers():
+    assert order_by_points([-1000, -100, -10, -1]) == [-1, -10, -100, -1000]
 
 def is_palindrome(s: str) -> bool:
     """ Checks if a string is a palindrome """

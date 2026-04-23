@@ -33,10 +33,13 @@ def test_strongest_extension_all_lowercase():
     assert Strongest_Extension('Class', ['ext1', 'ext2', 'ext3']) == 'Class.ext1'
 
 def test_strongest_extension_mixed_case():
-    assert Strongest_Extension('Class', ['ExT1', 'eXt2', 'EXT3']) == 'Class.ExT1'
+    assert Strongest_Extension('Class', ['ExT1', 'eXt2', 'EXT3']) == 'Class.EXT3'
 
 def test_strongest_extension_negative_strength():
     assert Strongest_Extension('Class', ['aA', 'bB', 'cC']) == 'Class.aA'
 
 def test_strongest_extension_same_strength():
     assert Strongest_Extension('Class', ['Aa', 'aA']) == 'Class.Aa'
+
+def test_strongest_extension_long_names():
+    assert Strongest_Extension('Class', ['VeryLongExtensionName', 'AnotherVeryLongExtensionName']) == 'Class.VeryLongExtensionName'

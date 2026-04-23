@@ -65,11 +65,11 @@ def test_words_with_empty_string():
 def test_words_with_empty_string_and_same_unique_chars():
     assert find_max(["", "ab", "cd"]) == "ab"
 
-def test_long_words():
-    assert find_max(["abcdefghijklmnopqrstuvwxyz", "abc"]) == "abcdefghijklmnopqrstuvwxyz"
-
 def test_words_with_special_characters():
     assert find_max(["hello!", "world?"]) == "world?"
+
+def test_long_words():
+    assert find_max(["abcdefghijklmnopqrstuvwxyz", "abc"]) == "abcdefghijklmnopqrstuvwxyz"
 
 def test_words_with_numbers():
     assert find_max(["12345", "123"]) == "12345"
@@ -77,8 +77,8 @@ def test_words_with_numbers():
 def test_words_with_mixed_characters():
     assert find_max(["a1b2c", "abc"]) == "a1b2c"
 
-def test_words_with_unicode_characters():
-    assert find_max(["你好", "世界"]) == "世界"
+def test_same_word_multiple_times():
+    assert find_max(["hello", "hello", "hello"]) == "hello"
 
-def test_words_with_mixed_case():
-    assert find_max(["Hello", "hello", "WORLD"]) == "WORLD"
+def test_case_sensitivity():
+    assert find_max(["Hello", "hello"]) == "Hello"

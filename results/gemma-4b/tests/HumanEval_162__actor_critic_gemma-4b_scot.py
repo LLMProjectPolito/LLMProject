@@ -29,7 +29,6 @@ def string_to_md5(text):
 # It handles the edge case where the input string is empty, returning None in that scenario.
 # The function expects a string as input and returns a string representing the MD5 hash.
 # We need to test various inputs, including empty strings, normal strings, and strings with special characters.
-# We also need to verify that the returned hash is correct.
 
 # STEP 2: PLAN - List test functions names and scenarios.
 # test_empty_string: Test with an empty string.
@@ -48,14 +47,17 @@ def test_normal_string():
     assert string_to_md5("Hello world") == "3e25960a79dbc69b674cd4ec67a72c62"
 
 def test_special_characters():
-    assert string_to_md5("This is a test!@#$%^&*()") == "6749999999999999999999999999999999999999999999999999999999999999"
+    assert string_to_md5("This is a test!@#$%^&*()") == "6798999999999999999999999999999999999999999999999999999999999999"
 
 def test_unicode_string():
-    assert string_to_md5("你好世界") == "b9a8f99969999999999999999999999999999999999999999999999999999999"
+    assert string_to_md5("你好世界") == "b9a8f99969a99999999999999999999999999999999999999999999999999999"
 
 def test_long_string():
     long_string = "a" * 1000
-    assert string_to_md5(long_string) == "b9a8f99969999999999999999999999999999999999999999999999999999999"
+    assert string_to_md5(long_string) == "b9a8f99969a99999999999999999999999999999999999999999999999999999"
 
 def test_numeric_string():
-    assert string_to_md5("1234567890") == "6b934d987b36d4c89d3692693b8999999999999999999999999999999999999"
+    assert string_to_md5("1234567890") == "6b934d08857a98fc981d6a73377b3b5b"
+
+def test_mixed_string():
+    assert string_to_md5("Hello123World!") == "8966336964939369649393696493936964939369"

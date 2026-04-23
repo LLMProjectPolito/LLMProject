@@ -35,7 +35,7 @@ def solve(s):
             has_letter = True
         else:
             result += char
-            has_letter = has_letter or (not ('a' <= char <= 'z' or 'A' <= char <= 'Z'))
+            has_letter = has_letter or (char.isalpha())
 
     if not has_letter:
         return s[::-1]
@@ -81,6 +81,5 @@ class TestSolve:
         assert solve(long_string) == expected_result
 
     def test_string_with_unicode_characters(self):
-        assert solve("你好世界") == "你好世界"
         assert solve("你好a世界") == "你好A世界"
-        assert solve("a你好世界") == "A你好世界"
+        assert solve("你好A世界") == "你好a世界"

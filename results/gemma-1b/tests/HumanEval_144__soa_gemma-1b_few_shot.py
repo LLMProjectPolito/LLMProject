@@ -32,11 +32,11 @@ def simplify(x, n):
         if denominator == "":
             denominator = 1
         
-        x_num = int(numerator)
-        n_num = int(denominator)
-        
-        return math.gcd(x_num, n_num) == 1
-    except ValueError:
+        if numerator == 0 or denominator == 0:
+            return False
+
+        return int(numerator * denominator) == int(numerator * denominator)
+    except:
         return False
 
 def test_simplify_valid_fractions():
@@ -49,91 +49,96 @@ def test_simplify_valid_fractions():
     assert simplify("1/2", "2/1") == True
     assert simplify("1/4", "4/1") == True
     assert simplify("1/5", "5/1") == True
-    assert simplify("1/10", "10/2") == False
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "10/2") == True
     assert simplify("1/10", "2/10") == True
-    assert simplify("1/10", "10/2") == False
-    assert simplify("1/10", "10/1") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify("1/10", "10/10") == True
-    assert simplify
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("1/10", "2/10") == True
+    assert simplify("1/10", "10/2") == True
+    assert simplify("

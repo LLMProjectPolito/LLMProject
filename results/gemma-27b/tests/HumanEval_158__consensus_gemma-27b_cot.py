@@ -72,22 +72,10 @@ def test_long_words():
     assert find_max(["abcdefghijklmnopqrstuvwxyz", "abc"]) == "abcdefghijklmnopqrstuvwxyz"
 
 def test_words_with_numbers():
-    assert find_max(["12345", "123"]) == "12345"
+    assert find_max(["123", "abc"]) == "123"
 
-def test_words_with_mixed_case():
+def test_duplicate_words():
+    assert find_max(["hello", "hello", "world"]) == "hello"
+
+def test_case_sensitivity():
     assert find_max(["Hello", "hello"]) == "Hello"
-
-def test_same_word_multiple_times():
-    assert find_max(["hello", "hello", "hello"]) == "hello"
-
-def test_words_with_unicode_characters():
-    assert find_max(["你好", "世界"]) == "世界"
-
-def test_mixed_words_2():
-    assert find_max(["apple", "banana", "orange", "kiwi"]) == "banana"
-
-def test_words_with_special_characters_2():
-    assert find_max(["hello!", "world?", "python."]) == "python."
-
-def test_words_with_numbers_2():
-    assert find_max(["123", "4567", "89"]) == "4567"

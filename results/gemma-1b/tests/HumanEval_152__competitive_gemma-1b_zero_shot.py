@@ -20,8 +20,8 @@ import pytest
 def compare(game, guess):
     results = []
     for i in range(len(game)):
-        if game[i] == guess[i]:
+        if game[i] == guess:
             results.append(0)
         else:
-            results.append(abs(game[i] - guess[i]))
+            results.append(abs(game[i] - guess))
     return results

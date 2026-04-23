@@ -22,8 +22,11 @@ def specialFilter(nums):
     for num in nums:
         if num > 10:
             num_str = str(abs(num))
-            if num_str[0] in '13579' and num_str[-1] in '13579':
-                count += 1
+            if len(num_str) > 0:
+                first_digit = int(num_str[0])
+                last_digit = int(num_str[-1])
+                if first_digit % 2 != 0 and last_digit % 2 != 0:
+                    count += 1
     return count
 
 def test_empty_list():
@@ -45,31 +48,28 @@ def test_negative_numbers():
     assert specialFilter([-11, -13, -15, -17, -19]) == 5
 
 def test_large_numbers():
-    assert specialFilter([1001, 12345, 98765, 11111]) == 2
+    assert specialFilter([101, 123, 157, 189, 1001]) == 4
 
 def test_numbers_with_even_digits():
     assert specialFilter([12, 34, 56, 78, 90]) == 0
 
-def test_numbers_close_to_10():
-    assert specialFilter([11, 13, 15, 17, 19]) == 5
+def test_numbers_less_than_or_equal_to_10():
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 0
 
-def test_example_1():
-    assert specialFilter([15, -73, 14, -15]) == 1
-
-def test_example_2():
+def test_complex_case():
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
-def test_all_negative():
-    assert specialFilter([-11, -13, -15, -22, -34]) == 3
+def test_zero_in_number():
+    assert specialFilter([101, 103, 105, 107, 109]) == 0
 
-def test_zero():
-    assert specialFilter([0]) == 0
+def test_all_numbers_greater_than_10_but_no_special():
+    assert specialFilter([12, 14, 16, 18, 21, 23]) == 0
 
-def test_one_digit_odd():
-    assert specialFilter([1, 3, 5, 7, 9]) == 0
+def test_mixed_positive_and_negative():
+    assert specialFilter([15, -33, 57, -79, 91]) == 4
 
-def test_two_digit_odd():
-    assert specialFilter([11, 13, 15, 17, 19]) == 5
+def test_edge_case_11():
+    assert specialFilter([11]) == 1
 
-def test_mixed_positive_negative():
-    assert specialFilter([15, -33, 14, -55, 21, -79]) == 3
+def test_edge_case_99():
+    assert specialFilter([99]) == 1

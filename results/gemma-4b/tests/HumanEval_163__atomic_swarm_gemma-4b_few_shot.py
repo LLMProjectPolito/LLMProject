@@ -54,11 +54,10 @@ def generate_integers(a, b):
     for i in range(a, b + 1):
         s = str(i)
         for digit in s:
-            if int(digit) % 2 == 0:
-                if int(digit) not in result:
-                    result.append(int(digit))
-    result.sort()
-    return result
+            d = int(digit)
+            if d % 2 == 0:
+                result.append(d)
+    return sorted(list(set(result)))
 
 def test_edge_empty_range():
     assert generate_integers(10, 10) == []

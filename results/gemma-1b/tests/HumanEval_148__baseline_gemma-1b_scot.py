@@ -19,7 +19,7 @@ def bf(planet1, planet2):
 import pytest
 
 def bf(planet1, planet2):
-    '''
+    """
     There are eight planets in our solar system: the closerst to the Sun 
     is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn, 
     Uranus, Neptune.
@@ -33,40 +33,26 @@ def bf(planet1, planet2):
     bf("Jupiter", "Neptune") ==> ("Saturn", "Uranus")
     bf("Earth", "Mercury") ==> ("Venus")
     bf("Mercury", "Uranus") ==> ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    '''
-    if not isinstance(planet1, str) or not isinstance(planet2, str):
-        return ()
-    if planet1 not in ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]:
-        return ()
-    if planet2 not in ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]:
+    """
+    if not (planet1 in ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"] and
+            planet2 in ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]):
         return ()
     
-    orbits1 = {
-        "Mercury": 0.397,
+    orbits = {
+        "Mercury": 0.387,
         "Venus": 0.723,
         "Earth": 1.000,
         "Mars": 1.524,
         "Jupiter": 5.206,
-        "Saturn": 9.537,
-        "Uranus": 19.196,
-        "Neptune": 30.066
-    }
-    orbits2 = {
-        "Mercury": 0.397,
-        "Venus": 0.723,
-        "Earth": 1.000,
-        "Mars": 1.524,
-        "Jupiter": 5.206,
-        "Saturn": 9.537,
+        "Saturn": 9.423,
         "Uranus": 19.196,
         "Neptune": 30.066
     }
     
-    planets = []
-    for planet in ["Saturn", "Uranus", "Neptune"]:
-        if planet in orbits1 and planet in orbits2:
-            planets.append(planet)
+    planet1_orbit = orbits[planet1]
+    planet2_orbit = orbits[planet2]
     
-    planets.sort(key=lambda x: (orbits1[x], orbits2[x]))
-    
-    return tuple(planets)
+    if planet1_orbit < planet2_orbit:
+        return (planet1, planet2)
+    else:
+        return (planet2, planet1)

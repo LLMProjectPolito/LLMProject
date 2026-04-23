@@ -49,11 +49,8 @@ def test_sum_squares_multiple_of_4_not_3():
 def test_sum_squares_mixed():
     assert sum_squares([-1, -5, 2, -1, -5]) == -1 + (-5)**3 + 2**2 + (-1)**3 + (-5)**3
     
+def test_sum_squares_complex():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 4 + 9 + 64 + 125 + 36 + 49 + 81 + 81 + 100
+    
 def test_sum_squares_large_numbers():
-    assert sum_squares([10, 20, 30, 40, 50]) == 100 + 8000 + 900 + 6400 + 12500
-    
-def test_sum_squares_negative_numbers():
-    assert sum_squares([-1, -2, -3]) == 1 + 8 + 27
-    
-def test_sum_squares_mixed_positive_negative():
-    assert sum_squares([-1, 2, -3, 4, -5]) == 1 + 4 + (-27) + 64 + (-125)
+    assert sum_squares([100, 200, 300, 400, 500]) == 10000 + 800000 + 27000000 + 64000000 + 125000000

@@ -58,9 +58,8 @@ class TestFileNameCheck:
         assert file_name_check("example.txt") == "Yes"
         assert file_name_check("document.dll") == "Yes"
         assert file_name_check("my_program.exe") == "Yes"
-        assert file_name_check("a.txt") == "Yes"
-        assert file_name_check("A.TXT") == "Yes"
-        assert file_name_check("longname.exe") == "Yes"
+        assert file_name_check("A.txt") == "Yes"
+        assert file_name_check("a.exe") == "Yes"
 
     def test_invalid_file_name_no_dot(self):
         assert file_name_check("example") == "No"
@@ -84,11 +83,16 @@ class TestFileNameCheck:
     def test_invalid_file_name_too_many_digits(self):
         assert file_name_check("1234example.txt") == "No"
         assert file_name_check("1111.txt") == "No"
-        assert file_name_check("1234567890.txt") == "No"
+        assert file_name_check("abc1234.txt") == "No"
 
-    def test_invalid_file_name_none_input(self):
+    def test_valid_file_name_with_digits(self):
+        assert file_name_check("ex1ample.txt") == "Yes"
+        assert file_name_check("abc123.dll") == "Yes"
+        assert file_name_check("12a.txt") == "Yes"
+
+    def test_none_input(self):
         assert file_name_check(None) == "No"
 
-    def test_invalid_file_name_wrong_type(self):
+    def test_non_string_input(self):
         assert file_name_check(123) == "No"
         assert file_name_check([1, 2, 3]) == "No"

@@ -15,7 +15,7 @@ import pytest
 def is_palindrome(s: str) -> bool:
     """ Checks if a string is a palindrome """
     s = s.lower()
-    s = ''.join(filter(str.isalnum, s))
+    s = s.replace(" ", "")
     return s == s[::-1]
 
 def get_max(arr: list[int]) -> int:
@@ -44,11 +44,11 @@ def generate_integers(a, b):
             result.append(i)
     return result
 
-def test_palindrome_basic():
+def test_is_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
 
-def test_palindrome_empty():
+def test_is_palindrome_empty():
     assert is_palindrome('') == True
 
 def test_get_max_positive():
@@ -56,3 +56,12 @@ def test_get_max_positive():
 
 def test_get_max_empty():
     assert get_max([]) == None
+
+def test_get_max_even():
+    assert get_max([2, 4, 6, 8]) == 8
+
+def test_get_max_odd():
+    assert get_max([1, 3, 5]) == 5
+
+def test_get_max_mixed():
+    assert get_max([2, 4, 6, 8, 1]) == 8

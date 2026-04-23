@@ -39,33 +39,32 @@ def get_max_triples(n):
                     count += 1
     return count
 
-class TestGetMaxTriples:
-    def test_n1(self):
-        assert get_max_triples(1) == 0
+def test_get_max_triples_n1():
+    assert get_max_triples(1) == 0
 
-    def test_n2(self):
-        assert get_max_triples(2) == 0
+def test_get_max_triples_n2():
+    assert get_max_triples(2) == 0
 
-    def test_n3(self):
-        assert get_max_triples(3) == 0
+def test_get_max_triples_n3():
+    assert get_max_triples(3) == 0
 
-    def test_n4(self):
-        assert get_max_triples(4) == 0
+def test_get_max_triples_n4():
+    assert get_max_triples(4) == 0
 
-    def test_n5(self):
-        assert get_max_triples(5) == 1
+def test_get_max_triples_n5():
+    assert get_max_triples(5) == 1
 
-    def test_n6(self):
-        assert get_max_triples(6) == 1
+def test_get_max_triples_n6():
+    assert get_max_triples(6) == 1
 
-    def test_n7(self):
-        assert get_max_triples(7) == 2
+def test_get_max_triples_n7():
+    assert get_max_triples(7) == 2
 
-    def test_n8(self):
-        assert get_max_triples(8) == 2
+def test_get_max_triples_n8():
+    assert get_max_triples(8) == 2
 
-    def test_n9(self):
-        assert get_max_triples(9) == 4
+def test_get_max_triples_n9():
+    assert get_max_triples(9) == 3
 
-    def test_n10(self):
-        assert get_max_triples(10) == 5
+def test_get_max_triples_n10():
+    assert get_max_triples(10) == 4

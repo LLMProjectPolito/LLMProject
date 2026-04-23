@@ -61,31 +61,35 @@ class TestEvenOddCount:
 
     def test_number_with_repeated_digits(self):
         """Test with a number containing repeated digits."""
-        assert even_odd_count(222333) == (3, 3)
+        assert even_odd_count(22221111) == (4, 4)
 
     def test_edge_case_1(self):
-        """Test a simple edge case with one even and one odd digit."""
-        assert even_odd_count(21) == (1, 1)
+        """Test a simple edge case."""
+        assert even_odd_count(20) == (2, 0)
 
     def test_edge_case_2(self):
+        """Test another simple edge case."""
+        assert even_odd_count(11) == (0, 2)
+
+    def test_negative_single_digit_even(self):
+        """Test a negative single-digit even number."""
+        assert even_odd_count(-2) == (1, 0)
+
+    def test_negative_single_digit_odd(self):
+        """Test a negative single-digit odd number."""
+        assert even_odd_count(-1) == (0, 1)
+
+    def test_large_number_2(self):
+        """Test with a very large integer."""
+        assert even_odd_count(12345678901234567890) == (5, 10)
+
+    def test_edge_case_one_even_one_odd(self):
         """Test a simple edge case with one even and one odd digit."""
-        assert even_odd_count(12) == (1, 1)
+        assert even_odd_count(10) == (1, 1)
 
-    def test_edge_case_3(self):
-        """Test with a single odd digit."""
-        assert even_odd_count(1) == (0, 1)
-
-    def test_edge_case_4(self):
-        """Test with a single even digit."""
-        assert even_odd_count(2) == (1, 0)
-
-    def test_edge_case_one_even_multiple_odd(self):
-        """Test a simple edge case with one even and multiple odd digits."""
-        assert even_odd_count(1352) == (1, 3)
-
-    def test_edge_case_multiple_even_one_odd(self):
-        """Test a simple edge case with multiple even and one odd digit."""
-        assert even_odd_count(2461) == (3, 1)
+    def test_edge_case_multiple_even_and_odd(self):
+        """Test a more complex edge case with multiple even and odd digits."""
+        assert even_odd_count(2123) == (2, 2)
 
     def test_negative_all_even(self):
         """Test a negative number with all even digits."""
@@ -94,7 +98,3 @@ class TestEvenOddCount:
     def test_negative_all_odd(self):
         """Test a negative number with all odd digits."""
         assert even_odd_count(-13579) == (0, 5)
-
-    def test_large_number_2(self):
-        """Test with a very large integer."""
-        assert even_odd_count(12345678901234567890) == (5, 10)

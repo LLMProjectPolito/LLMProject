@@ -13,11 +13,10 @@ def fix_spaces(text):
 
 import pytest
 
-def test_leading_and_multiple_spaces(fix_spaces):
+def test_leading_and_multiple_spaces():
     assert fix_spaces("   abc") == "-abc"
-    assert fix_spaces("  abc") == "_abc"
-    assert fix_spaces("   ") == "-"
-    assert fix_spaces("  ") == "_"
-    assert fix_spaces("   def  ghi") == "-def-ghi"
     assert fix_spaces("     ") == "-"
     assert fix_spaces("  ") == "-"
+    assert fix_spaces("   ") == "-"
+    assert fix_spaces("  abc") == "_abc"
+    assert fix_spaces("   def  ghi") == "-def-ghi"

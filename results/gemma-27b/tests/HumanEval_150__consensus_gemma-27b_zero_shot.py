@@ -54,15 +54,13 @@ def test_x_or_y_not_prime():
 
 def test_x_or_y_edge_cases():
     assert x_or_y(1, 10, 20) == 20
-    assert x_or_y(0, 5, 10) == 10
-    assert x_or_y(21, 1, 1) == 1
-    assert x_or_y(25, 2, 2) == 2
-    assert x_or_y(29, 100, 100) == 100
-    assert x_or_y(30, 100, 100) == 100
-    assert x_or_y(2, 0, 0) == 0
-    assert x_or_y(2, -1, -2) == -1
-    assert x_or_y(4, -1, -2) == -2
-    assert x_or_y(1, 1, 1) == 1
-    assert x_or_y(1, -1, -1) == -1
-    assert x_or_y(14, -5, 1) == 1
     assert x_or_y(0, 1, 2) == 2
+    assert x_or_y(2, 0, 0) == 0
+    assert x_or_y(1, 0, 1) == 1
+    assert x_or_y(1, -1, -2) == -2
+    assert x_or_y(2, -1, -2) == -1
+    assert x_or_y(3, -1, -2) == -1
+    assert x_or_y(4, -1, -2) == -2
+    assert x_or_y(21, 1, 2) == 2
+    assert x_or_y(25, 1, 2) == 2
+    assert x_or_y(30, 1, 2) == 2

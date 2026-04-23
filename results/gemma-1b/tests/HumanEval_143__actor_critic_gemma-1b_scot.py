@@ -42,7 +42,6 @@ def words_in_sentence(sentence):
         * 1 <= len(sentence) <= 100
         * sentence contains only letters
     """
-    words = sentence.split()
     def is_prime(n):
         if n <= 1:
             return False
@@ -51,6 +50,7 @@ def words_in_sentence(sentence):
                 return False
         return True
 
+    words = sentence.split()
     result = []
     for word in words:
         if is_prime(len(word)):
@@ -67,6 +67,7 @@ def test_words_in_sentence():
     assert words_in_sentence("1234567890") == "1234567890"
     assert words_in_sentence("a b c d e f") == "a b c d e f"
     assert words_in_sentence("a b c d e f g") == "a b c d e f g"
+    assert words_in_sentence("a b c d e f") == "a b c d e f"
     assert words_in_sentence("a b c d e f g h") == "a b c d e f g h"
     assert words_in_sentence("a b c d e f g h i") == "a b c d e f g h i"
     assert words_in_sentence("a b c d e f g h i j") == "a b c d e f g h i j"
@@ -78,4 +79,9 @@ def test_words_in_sentence():
     assert words_in_sentence("a b c d e f g h i j k l m n o p") == "a b c d e f g h i j k l m n o p"
     assert words_in_sentence("a b c d e f g h i j k l m n o p q") == "a b c d e f g h i j k l m n o p q"
     assert words_in_sentence("a b c d e f g h i j k l m n o p q r") == "a b c d e f g h i j k l m n o p q r"
+    assert words_in_sentence("a b c d e f g h i j k l m n o p q r s") == "a b c d e f g h i j k l m n o p q r s"
+    assert words_in_sentence("a b c d e f g h i j k l m n o p q r s t") == "a b c d e f g h i j k l m n o p q r s t"
+    assert words_in_sentence("a b c d e f g h i j k l m n o p q r s t u") == "a b c d e f g h i j k l m n o p q r s t u"
+    assert words_in_sentence("a b c d e f g h i j k l m n o p q r s t u v") == "a b c d e f g h i j k l m n o p q r s t u v"
+    assert words_in_sentence("a b c d e f g h i j k l m n o p q r s t u v w") == "a b c d e f g h i j k l m n o p q r s t u v w"
     print("All test cases passed!")

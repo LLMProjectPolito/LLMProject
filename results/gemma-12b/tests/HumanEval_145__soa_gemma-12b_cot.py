@@ -34,7 +34,7 @@ def single_element_data():
 
 @pytest.fixture
 def multiple_elements_data():
-    return [10, 1, 11, 2, 21]
+    return [10, 1, 11, 2, 20]
 
 @pytest.fixture
 def negative_numbers_data():
@@ -55,7 +55,7 @@ def test_order_by_points_single_element_data(single_element_data):
     assert order_by_points(single_element_data) == single_element_data
 
 def test_order_by_points_multiple_elements_data(multiple_elements_data):
-    expected = [1, 10, 11, 2, 21]
+    expected = [1, 11, 2, 10, 20]
     assert order_by_points(multiple_elements_data) == expected
 
 def test_order_by_points_negative_numbers_data(negative_numbers_data):
@@ -66,17 +66,22 @@ def test_order_by_points_mixed_positive_negative_data(mixed_positive_negative_da
     expected = [1, -1, 10, -10, 11, -11]
     assert order_by_points(mixed_positive_negative_data) == expected
 
-def test_order_by_points_with_zeros(data_with_zeros):
-    data_with_zeros = [10, 0, 1, -10, -1]
-    expected = [0, 1, 10, -1, -10]
-    assert order_by_points(data_with_zeros) == expected
+def test_order_by_points_with_zeros(mixed_positive_negative_data):
+    data = [1, -1, 0, 10, -10, 11, -11]
+    expected = [0, 1, -1, 10, -10, 11, -11]
+    assert order_by_points(data) == expected
 
-def test_order_by_points_large_numbers(large_numbers_data):
-    large_numbers_data = [123, 45, 6, 789, 10]
-    expected = [10, 6, 45, 123, 789]
-    assert order_by_points(large_numbers_data) == expected
+def test_order_by_points_same_digit_sum(sample_data):
+    data = [12, 21, 3]
+    expected = [3, 12, 21]
+    assert order_by_points(data) == expected
 
-def test_order_by_points_duplicate_sums(duplicate_sums_data):
-    duplicate_sums_data = [1, 10, 11, 2, 20]
-    expected = [1, 2, 10, 11, 20]
-    assert order_by_points(duplicate_sums_data) == expected
+def test_order_by_points_large_numbers(sample_data):
+    data = [123, 321, 111]
+    expected = [111, 123, 321]
+    assert order_by_points(data) == expected
+
+def test_order_by_points_all_negative_same_digit_sum(sample_data):
+    data = [-12, -21, -3]
+    expected = [-3, -12, -21]
+    assert order_by_points(data) == expected

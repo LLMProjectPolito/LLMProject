@@ -13,8 +13,8 @@ def even_odd_count(num):
     """Given an integer. return a tuple that has the number of even and odd digits respectively.
 
      Example:
-        even_odd_count(-12) -> (1, 1)
-        even_odd_count(123) -> (1, 2)
+        even_odd_count(-12) ==> (1, 1)
+        even_odd_count(123) ==> (1, 2)
     """
     num = abs(num)
     even_count = 0
@@ -36,7 +36,7 @@ def test_negative_number():
     assert even_odd_count(-12345) == (2, 3)
 
 def test_zero():
-    """Tests the input zero."""
+    """Tests the input 0."""
     assert even_odd_count(0) == (1, 0)
 
 def test_single_even_digit():
@@ -71,10 +71,6 @@ def test_negative_number_with_zeros():
     """Tests a negative number containing zeros."""
     assert even_odd_count(-1020304050) == (5, 5)
 
-def test_simple_number():
-    """Tests a simple number."""
-    assert even_odd_count(123) == (1, 2)
-
-def test_max_integer():
-    """Tests a number close to the maximum integer size."""
-    assert even_odd_count(2147483647) == (3, 9)
+def test_number_with_leading_zeros():
+    """Tests a number with leading zeros (e.g., 0000123)."""
+    assert even_odd_count("0000123") == (1, 3)

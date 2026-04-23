@@ -53,33 +53,24 @@ def do_algebra(operator, operand):
 
     """
     if len(operand) != 2:
-        raise ValueError("Operand must contain exactly two elements.")
+        raise ValueError("Operand must be a list of two integers.")
+    if len(operator) != 2:
+        raise ValueError("Operator must be a list of two operators.")
     
-    if operator == '+':
+    op1 = operator[0]
+    op2 = operator[1]
+
+    if op1 == '+':
         return operand[0] + operand[1]
-    elif operator == '-':
+    elif op1 == '-':
         return operand[0] - operand[1]
-    elif operator == '*':
+    elif op1 == '*':
         return operand[0] * operand[1]
-    elif operator == '//':
+    elif op1 == '/':
+        if operand[1] == 0:
+            raise ZeroDivisionError("Division by zero")
         return operand[0] // operand[1]
-    elif operator == '**':
+    elif op1 == '**':
         return operand[0] ** operand[1]
     else:
-        return 0  # Default value for unknown operators
-
-def test_do_algebra():
-    assert do_algebra('+ 2 3') == 5
-    assert do_algebra('- 2 3') == 1
-    assert do_algebra('* 2 3') == 6
-    assert do_algebra('/') 2 3 == 1
-    assert do_algebra('2 ** 3') == 8
-    assert do_algebra('2 + 3 * 4') == 9
-    assert do_algebra('2 - 3 * 4') == 1
-    assert do_algebra('2 * 3 ** 2') == 9
-    assert do_algebra('2 / 3') == 0.6666666666666666
-    assert do_algebra('2 ** 3') == 8
-    assert do_algebra('2 + 3 * 4') == 14
-    assert do_algebra('2 - 3 * 4') == -14
-    assert do_algebra('2 * 3 ** 2') == 9
-    assert do_algebra('2 / 3') == 0.6666666666666666
+        return 0

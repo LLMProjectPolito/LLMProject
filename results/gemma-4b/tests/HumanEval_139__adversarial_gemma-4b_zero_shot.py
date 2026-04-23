@@ -42,12 +42,12 @@ def test_special_factorial_positive_numbers():
     assert special_factorial(3) == 6
     assert special_factorial(4) == 288
     assert special_factorial(5) == 34560
-    assert special_factorial(6) == 41779288
-    assert special_factorial(7) == 576096000
-    assert special_factorial(8) == 8294400000
-    assert special_factorial(9) == 121645100400
-    assert special_factorial(10) == 36288000000
-    
+    assert special_factorial(6) == 4177926400
+    assert special_factorial(7) == 570000000000
+    assert special_factorial(8) == 78886094430000
+    assert special_factorial(9) == 1307674368000000
+    assert special_factorial(10) == 36288000000000000
+
 def test_special_factorial_zero():
     assert special_factorial(0) == 1
 

@@ -58,9 +58,9 @@ def test_is_palindrome_basic():
     assert is_palindrome('Was it a car or a cat I saw?') == True
     assert is_palindrome('Madam') == True
     assert is_palindrome('level') == True
+    assert is_palindrome('noon') == True
     assert is_palindrome('rotor') == True
     assert is_palindrome('stats') == True
-    assert is_palindrome('noon') == True
 
 def test_is_palindrome_empty():
     assert is_palindrome('') == True
@@ -106,9 +106,11 @@ def test_get_max_triples_n7():
 
 def test_is_palindrome_edge_cases():
     assert is_palindrome("A") == True
+    assert is_palindrome(" ") == True
+    assert is_palindrome("121") == True
+    assert is_palindrome("1221") == True
     assert is_palindrome("ab") == False
+    assert is_palindrome("aba") == True
+    assert is_palindrome("abcba") == True
+    assert is_palindrome("abc") == False
     assert is_palindrome("race a car") == False
-
-def test_get_max_edge_cases():
-    assert get_max([-1]) == -1
-    assert get_max([1]) == 1

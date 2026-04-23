@@ -78,14 +78,17 @@ def test_words_in_sentence_all_prime_length_words():
 def test_words_in_sentence_mixed_length_words():
     assert words_in_sentence("this is a long sentence") == "is a"
 
-def test_words_in_sentence_single_word_prime_length():
+def test_words_in_sentence_single_word_prime():
     assert words_in_sentence("two") == "two"
 
-def test_words_in_sentence_single_word_non_prime_length():
-    assert words_in_sentence("three") == ""
+def test_words_in_sentence_single_word_not_prime():
+    assert words_in_sentence("one") == ""
 
 def test_words_in_sentence_long_sentence():
     assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the fox the dog"
 
 def test_words_in_sentence_sentence_with_duplicates():
     assert words_in_sentence("is is is") == "is is is"
+
+def test_words_in_sentence_sentence_with_leading_and_trailing_spaces():
+    assert words_in_sentence("  is a test  ") == "is"

@@ -45,21 +45,25 @@ def test_multiple_spaces():
     assert fix_spaces("Example  1") == "Example__1"
 
 def test_consecutive_spaces():
-    assert fix_spaces("Example   3") == "Example-3"
+    assert fix_spaces("Example   1") == "Example-1"
 
 def test_mixed_spaces():
-    assert fix_spaces(" Example  1   2 ") == "_Example__1-2_"
+    assert fix_spaces("Example  1   2") == "Example__1-2"
 
 def test_empty_string():
     assert fix_spaces("") == ""
 
 def test_only_spaces():
-    assert fix_spaces(" ") == "_"
-    assert fix_spaces("  ") == "__"
     assert fix_spaces("   ") == "-"
-    assert fix_spaces("    ") == "-"
 
-def test_more_consecutive_spaces():
-    assert fix_spaces("   ") == "-"
-    assert fix_spaces("    ") == "-"
-    assert fix_spaces("     ") == "-"
+def test_spaces_at_start_and_end():
+    assert fix_spaces("  Example  ") == "_Example_"
+
+def test_more_than_three_consecutive_spaces():
+    assert fix_spaces("Example    1") == "Example-1"
+
+def test_leading_and_consecutive_spaces():
+    assert fix_spaces("   Example   1") == "-Example-1"
+
+def test_trailing_and_consecutive_spaces():
+    assert fix_spaces("Example   1   ") == "Example-1-"

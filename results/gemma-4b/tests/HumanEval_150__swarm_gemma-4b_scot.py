@@ -30,7 +30,7 @@ def x_or_y(n, x, y):
         return y
 
 def test_x_or_y_one():
-    assert x_or_y(1, 34, 12) == 12
+    assert x_or_y(1, 10, 5) == 5
 
 def test_x_or_y_prime():
     assert x_or_y(7, 34, 12) == 34
@@ -39,4 +39,4 @@ def test_x_or_y_composite():
     assert x_or_y(15, 8, 5) == 5
 
 def test_x_or_y_edge_case():
-    assert x_or_y(2, 34, 12) == 34
+    assert x_or_y(2, 10, 5) == 10

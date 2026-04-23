@@ -25,7 +25,7 @@ def specialFilter(nums):
             if len(num_str) > 0:
                 first_digit = int(num_str[0])
                 last_digit = int(num_str[-1])
-                if first_digit % 2 != 0 and last_digit % 2 != 0:
+                if (first_digit % 2 != 0 and last_digit % 2 != 0):
                     count += 1
     return count
 
@@ -35,51 +35,44 @@ def specialFilter(nums):
 # The function `specialFilter` counts the number of elements in a list `nums` that satisfy two conditions:
 # 1. The element must be greater than 10.
 # 2. The first and last digits of the absolute value of the element must both be odd (1, 3, 5, 7, or 9).
-# We need to test various scenarios including positive and negative numbers, numbers greater than 10, numbers less than or equal to 10, and cases where the first or last digit is not odd.
-# We should also consider edge cases like empty lists and lists with only one element.
+# We need to test various scenarios including positive and negative numbers, numbers greater than 10, numbers less than or equal to 10, and cases where the first or last digit is not odd.  Edge cases like empty lists and lists with only invalid numbers should also be considered.
 
 ### STEP 2: PLAN
 # Test functions:
 # - test_empty_list: Tests the function with an empty list.
-# - test_positive_numbers: Tests the function with a list of positive numbers.
-# - test_negative_numbers: Tests the function with a list of negative numbers.
-# - test_mixed_numbers: Tests the function with a list of mixed positive and negative numbers.
-# - test_numbers_less_than_10: Tests the function with numbers less than 10.
-# - test_first_last_digit_odd: Tests the function with numbers where both first and last digits are odd.
-# - test_first_last_digit_even: Tests the function with numbers where either the first or last digit is even.
-# - test_single_element_positive: Tests the function with a list containing a single positive number.
-# - test_single_element_negative: Tests the function with a list containing a single negative number.
-# - test_edge_cases: Tests with edge cases like numbers with leading zeros when converted to string.
+# - test_positive_numbers: Tests with a list of positive numbers.
+# - test_negative_numbers: Tests with a list of negative numbers.
+# - test_mixed_numbers: Tests with a list containing both positive and negative numbers.
+# - test_numbers_less_than_10: Tests with numbers less than or equal to 10.
+# - test_all_invalid: Tests with a list containing only numbers that fail both conditions.
+# - test_edge_cases: Tests with edge cases like numbers with leading zeros (handled by abs()).
+# - test_large_numbers: Tests with large numbers to ensure no overflow issues.
 
 ### STEP 3: CODE
 def test_empty_list():
     assert specialFilter([]) == 0
 
 def test_positive_numbers():
-    assert specialFilter([15, 21, 33, 45, 23, 57]) == 4
+    assert specialFilter([15, 23, 35, 47, 59]) == 5
 
 def test_negative_numbers():
-    assert specialFilter([-15, -21, -33, -45, -23, -57]) == 4
+    assert specialFilter([-15, -23, -35, -47, -59]) == 5
 
 def test_mixed_numbers():
-    assert specialFilter([15, -21, 33, -45, 23, -57]) == 3
+    assert specialFilter([15, -23, 35, -47, 59, -61]) == 3
 
 def test_numbers_less_than_10():
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 0
+    assert specialFilter([5, 7, 9]) == 0
 
-def test_first_last_digit_odd():
-    assert specialFilter([11, 33, 55, 77, 99]) == 5
-
-def test_first_last_digit_even():
-    assert specialFilter([21, 43, 65, 87, 109]) == 0
-
-def test_single_element_positive():
-    assert specialFilter([15]) == 1
-
-def test_single_element_negative():
-    assert specialFilter([-15]) == 1
+def test_all_invalid():
+    assert specialFilter([-2, -4, -6, -8]) == 0
 
 def test_edge_cases():
-    assert specialFilter([-111, 111]) == 0
-    assert specialFilter([-11, 11]) == 0
-    assert specialFilter([-1111, 1111]) == 0
+    assert specialFilter([11, 13, 15]) == 3
+    assert specialFilter([-11, -13, -15]) == 3
+    assert specialFilter([101, 103, 105]) == 3
+    assert specialFilter([-101, -103, -105]) == 3
+
+def test_large_numbers():
+    assert specialFilter([1011, 1033, 1055]) == 3
+    assert specialFilter([-1011, -1033, -1055]) == 3

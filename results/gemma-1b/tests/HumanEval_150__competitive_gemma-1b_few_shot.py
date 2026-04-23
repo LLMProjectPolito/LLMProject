@@ -21,5 +21,5 @@ def x_or_y(n, x, y):
     if n == 2:
         return x
     if n % 2 == 0:
-        return x
-    return y
+        return y
+    return x

@@ -8,7 +8,7 @@ def string_to_md5(text):
     """
 
 import pytest
-import hashlib
+import math
 
 def string_to_md5(text):
     """
@@ -19,8 +19,10 @@ def string_to_md5(text):
     """
     if not text:
         return None
-    md5_hash = hashlib.md5(text.encode('utf-8')).hexdigest()
-    return md5_hash
+    md5_hash = 0
+    for char in text:
+        md5_hash = (md5_hash * 31 + ord(char)) % 2**32
+    return str(md5_hash)
 
 def string_to_md5(text):
     """
@@ -31,12 +33,14 @@ def string_to_md5(text):
     """
     if not text:
         return None
-    md5_hash = hashlib.md5(text.encode('utf-8')).hexdigest()
-    return md5_hash
+    md5_hash = 0
+    for char in text:
+        md5_hash = (md5_hash * 31 + ord(char)) % 2**32
+    return str(md5_hash)
 
 def test_string_to_md5():
     assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
     assert string_to_md5('') is None
-    assert string_to_md5('') is None
-    assert string_to_md5('a') == '3e25960a79dbc69b674cd4ec67a72c62'
-    assert string_to_md5('1') == '510e5973d93999999999999999999999'
+    assert string_to_md5('123') == 'a1b2c3d'
+    assert string_to_md5('abc') == 'a1b2c3d'
+    assert string_to_md5('12345') == 'a1b2c3d'

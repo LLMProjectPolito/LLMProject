@@ -24,12 +24,41 @@ def solve(s):
     solve("ab") = "AB"
     solve("#a@C") = "#A@c"
     """
-    res = ""
+    if not s:
+        return s[::-1]
+    result = ""
     for char in s:
         if 'a' <= char <= 'z':
-            res += char.upper()
+            result += char.upper()
         elif 'A' <= char <= 'Z':
-            res += char.lower()
+            result += char.lower()
         else:
-            res += char
-    return res
+            result += char
+    return result
+
+def test_empty_string():
+    assert solve("") == ""
+
+def test_single_character():
+    assert solve("a") == "A"
+
+def test_all_letters():
+    assert solve("abc") == "ABC"
+
+def test_mixed_case():
+    assert solve("ab") == "AB"
+
+def test_numbers():
+    assert solve("123") == "321"
+
+def test_symbols():
+    assert solve("#a") == "#A"
+
+def test_palindrome():
+    assert solve("#a") == "#a"
+
+def test_complex_string():
+    assert solve("aB") == "A@b"
+    assert solve("abc") == "ABC"
+    assert solve("123") == "321"
+    assert solve("#a") == "#A"

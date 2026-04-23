@@ -44,19 +44,19 @@ def sorted_list_sum(lst):
 def test_empty_list():
     assert sorted_list_sum([]) == []
 
-def test_list_with_only_odd_length_strings():
-    assert sorted_list_sum(["a", "abc", ""]) == []
+def test_all_odd_lengths():
+    assert sorted_list_sum(["a", "abc", "def"]) == []
 
-def test_list_with_only_even_length_strings():
-    assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
+def test_single_even_length():
+    assert sorted_list_sum(["aa"]) == ["aa"]
 
-def test_list_with_mixed_length_strings():
+def test_mixed_lengths_boundary():
     assert sorted_list_sum(["a", "aa", "aaa", "aaaa"]) == ["aa", "aaaa"]
 
-def test_list_with_duplicate_even_length_strings():
-    assert sorted_list_sum(["aa", "aa", "bb"]) == ["aa", "aa", "bb"]
+def test_duplicate_even_lengths():
+    assert sorted_list_sum(["aa", "bb", "aa"]) == ["aa", "aa", "bb"]
 
-def test_list_with_same_length_strings_different_alphabetical_order():
+def test_same_length_alphabetical():
     assert sorted_list_sum(["cb", "ab"]) == ["ab", "cb"]
 
 # Focus: Equivalence Partitioning
@@ -98,20 +98,30 @@ def test_equivalence_partitioning(lst, expected):
 # Focus: Logic Branches
 import pytest
 
-def test_empty_list():
-    assert sorted_list_sum([]) == []
+def sorted_list_sum(lst):
+    """Write a function that accepts a list of strings as a parameter,
+    deletes the strings that have odd lengths from it,
+    and returns the resulted list with a sorted order,
+    The list is always a list of strings and never an array of numbers,
+    and it may contain duplicates.
+    The order of the list should be ascending by length of each word, and you
+    should return the list sorted by that rule.
+    If two words have the same length, sort the list alphabetically.
+    The function should return a list of strings in sorted order.
+    You may assume that all words will have the same length.
+    For example:
+    assert list_sort(["aa", "a", "aaa"]) => ["aa"]
+    assert list_sort(["ab", "a", "aaa", "cd"]) => ["ab", "cd"]
+    """
+    new_list = [word for word in lst if len(word) % 2 == 0]
+    new_list.sort(key=lambda x: (len(x), x))
+    return new_list
 
-def test_all_odd_lengths():
-    assert sorted_list_sum(["a", "bb", "ccc"]) == []
-
-def test_mixed_lengths():
-    assert sorted_list_sum(["aa", "a", "aaa", "cd"]) == ["aa", "cd"]
-
-def test_same_length_alphabetical():
-    assert sorted_list_sum(["ab", "aa", "ac"]) == ["aa", "ab", "ac"]
-
-def test_duplicates():
-    assert sorted_list_sum(["aa", "aa", "a", "aaa"]) == ["aa", "aa"]
-
-def test_even_lengths_only():
+def test_even_length_strings():
     assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
+
+def test_mixed_length_strings():
+    assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
+
+def test_duplicate_strings():
+    assert sorted_list_sum(["aa", "aa", "bb", "cc"]) == ["aa", "aa", "bb", "cc"]

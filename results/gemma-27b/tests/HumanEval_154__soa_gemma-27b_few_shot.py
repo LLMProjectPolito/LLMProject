@@ -62,15 +62,21 @@ def test_cycpattern_check_long_strings():
     assert cycpattern_check("thisisalongstring", "stringthisis") == True
     assert cycpattern_check("thisisalongstring", "notpresent") == False
 
-def test_cycpattern_check_repeated_characters():
-    assert cycpattern_check("aaaaa", "aa") == True
-    assert cycpattern_check("aaaaa", "aaa") == True
-    assert cycpattern_check("aaaaa", "aaaa") == True
-    assert cycpattern_check("aaaaa", "aaaaa") == True
-    assert cycpattern_check("aaaaa", "aaaaaa") == False
+def test_cycpattern_check_case_sensitive():
+    assert cycpattern_check("Hello", "ell") == False
+    assert cycpattern_check("hello", "Ell") == False
 
-def test_cycpattern_check_edge_cases():
+def test_cycpattern_check_special_characters():
+    assert cycpattern_check("abc!@#", "!@#abc") == True
+    assert cycpattern_check("abc!@#", "@#abc!") == True
+    assert cycpattern_check("abc!@#", "def!@#") == False
+
+def test_cycpattern_check_numbers():
+    assert cycpattern_check("123456", "345612") == True
+    assert cycpattern_check("123456", "654321") == False
+
+def test_cycpattern_check_one_char_strings():
     assert cycpattern_check("a", "a") == True
-    assert cycpattern_check("a", "b") == False
-    assert cycpattern_check("abc", "cba") == False
-    assert cycpattern_check("abcabc", "bca") == True
+    assert cycpattern_check("ab", "a") == True
+    assert cycpattern_check("ab", "b") == True
+    assert cycpattern_check("ab", "c") == False

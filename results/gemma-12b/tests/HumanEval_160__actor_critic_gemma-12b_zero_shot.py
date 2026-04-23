@@ -27,6 +27,7 @@ def do_algebra(operator, operand):
 
 import pytest
 from your_module import do_algebra  # Replace your_module
+from decimal import Decimal
 
 def test_addition():
     operator = ['+']
@@ -53,50 +54,92 @@ def test_exponentiation():
     operand = [2, 3]
     assert do_algebra(operator, operand) == 8
 
-def test_addition_before_multiplication():
+def test_addition_multiplication():
     operator = ['+', '*']
     operand = [2, 3, 4]
     assert do_algebra(operator, operand) == 14
 
-def test_subtraction_before_division():
+def test_subtraction_division():
     operator = ['-', '//']
     operand = [10, 2, 3]
     assert do_algebra(operator, operand) == 2
 
-def test_complex_expression_precedence():
+def test_multiplication_exponentiation():
+    operator = ['*', '**']
+    operand = [2, 3, 2]
+    assert do_algebra(operator, operand) == 32
+
+def test_multiple_operators_addition_subtraction():
     operator = ['+', '*', '-', '//']
     operand = [2, 3, 4, 5, 2]
-    assert do_algebra(operator, operand) == 5
+    assert do_algebra(operator, operand) == -1
 
-def test_multiple_additions():
-    operator = ['+', '+']
-    operand = [1, 2, 3]
-    assert do_algebra(operator, operand) == 6
+def test_floor_division_negative():
+    operator = ['//']
+    operand = [-10, 3]
+    assert do_algebra(operator, operand) == -4
 
-def test_multiple_subtractions():
-    operator = ['-', '-']
-    operand = [10, 2, 4]
+def test_exponentiation_negative_base():
+    operator = ['**']
+    operand = [-2, 3]
+    assert do_algebra(operator, operand) == -8
+
+def test_exponentiation_negative_exponent():
+    operator = ['**']
+    operand = [2, -2]
+    assert do_algebra(operator, operand) == 0.25
+
+def test_addition_float():
+    operator = ['+']
+    operand = [2.5, 3.5]
+    assert do_algebra(operator, operand) == 6.0
+
+def test_subtraction_float():
+    operator = ['-']
+    operand = [5.5, 2.5]
+    assert do_algebra(operator, operand) == 3.0
+
+def test_multiplication_float():
+    operator = ['*']
+    operand = [2.5, 3.5]
+    assert do_algebra(operator, operand) == 8.75
+
+def test_floor_division_float():
+    operator = ['//']
+    operand = [10.5, 2.5]
     assert do_algebra(operator, operand) == 4
 
-def test_zero_operand():
-    operator = ['+']
-    operand = [0, 5]
-    assert do_algebra(operator, operand) == 5
+def test_exponentiation_float():
+    operator = ['**']
+    operand = [2.5, 2.0]
+    assert do_algebra(operator, operand) == 6.25
 
-def test_zero_operator():
-    operator = ['*']
-    operand = [5, 0]
-    assert do_algebra(operator, operand) == 0
+def test_empty_operator_list():
+    with pytest.raises(IndexError):
+        do_algebra([], [2, 3])
+
+def test_empty_operand_list():
+    with pytest.raises(IndexError):
+        do_algebra(['+'], [])
+
+def test_mismatched_lengths():
+    with pytest.raises(IndexError):
+        do_algebra(['+', '*'], [2, 3])
+
+def test_invalid_operator():
+    with pytest.raises(ValueError):
+        do_algebra(['invalid'], [2, 3])
+
+def test_division_by_zero():
+    operator = ['//']
+    operand = [10, 0]
+    with pytest.raises(ZeroDivisionError):
+        do_algebra(operator, operand)
 
 def test_large_numbers():
-    operator = ['+']
-    operand = [1000000, 2000000]
-    assert do_algebra(operator, operand) == 3000000
-
-def test_division_by_one():
-    operator = ['//']
-    operand = [10, 1]
-    assert do_algebra(operator, operand) == 10
+    operator = ['*']
+    operand = [1000, 1000]
+    assert do_algebra(operator, operand) == 1000000
 
 def test_exponentiation_zero():
     operator = ['**']
@@ -113,90 +156,28 @@ def test_negative_result():
     operand = [2, 5]
     assert do_algebra(operator, operand) == -3
 
-def test_negative_operand_addition():
+def test_multiple_operators():
+    operator = ['+', '-', '*', '//']
+    operand = [1, 2, 3, 4, 5]
+    assert do_algebra(operator, operand) == -1
+
+def test_long_expression():
+    operator = ['+', '*', '-', '//', '**']
+    operand = [1, 2, 3, 4, 5, 2]
+    assert do_algebra(operator, operand) == 15
+
+def test_decimal_input():
     operator = ['+']
-    operand = [-2, 3]
-    assert do_algebra(operator, operand) == 1
+    operand = [Decimal('2.5'), Decimal('3.5')]
+    assert do_algebra(operator, operand) == Decimal('6.0')
 
-def test_negative_operand_subtraction():
-    operator = ['-']
-    operand = [5, -2]
-    assert do_algebra(operator, operand) == 7
-
-def test_negative_operand_multiplication():
-    operator = ['*']
-    operand = [-2, 3]
-    assert do_algebra(operator, operand) == -6
-
-def test_negative_operand_division():
-    operator = ['//']
-    operand = [-10, 2]
-    assert do_algebra(operator, operand) == -5
-
-def test_mixed_integer_float_addition():
+def test_type_error():
     operator = ['+']
-    operand = [2, 3.5]
-    assert do_algebra(operator, operand) == 5.5
-
-def test_mixed_integer_float_multiplication():
-    operator = ['*']
-    operand = [2.5, 3]
-    assert do_algebra(operator, operand) == 7.5
-
-def test_operator_length_greater_than_operand_length_minus_one():
-    operator = ['+', '*', '/']
-    operand = [1, 2]
-    with pytest.raises(ValueError):
+    operand = ['2', 3]
+    with pytest.raises(TypeError):
         do_algebra(operator, operand)
 
-def test_repeated_unsupported_operators():
-    operator = ['^', '^']
-    operand = [1, 2]
-    with pytest.raises(ValueError):
-        do_algebra(operator, operand)
-
-def test_operator_at_beginning():
-    operator = ['*', '+']
-    operand = [1, 2, 3]
-    assert do_algebra(operator, operand) == 5
-
-def test_operator_at_end():
-    operator = ['+', '*']
-    operand = [1, 2, 3]
-    assert do_algebra(operator, operand) == 7
-
-def test_exponentiation_negative_base():
-    operator = ['**']
-    operand = [-2, 3]
-    assert do_algebra(operator, operand) == -8
-
-def test_exponentiation_multiple_operators():
-    operator = ['+', '*', '**']
-    operand = [1, 2, 3, 4]
-    assert do_algebra(operator, operand) == 11
-
-def test_operators_of_same_precedence():
-    operator = ['*', '*']
-    operand = [2, 3, 4]
-    assert do_algebra(operator, operand) == 24
-
-def test_single_operand_error_message():
-    operator = []
-    operand = [5]
-    with pytest.raises(ValueError) as excinfo:
-        do_algebra(operator, operand)
-    assert "Operator list cannot be empty" in str(excinfo.value)
-
-def test_empty_operator_list_error_message():
-    operator = []
-    operand = [1, 2]
-    with pytest.raises(ValueError) as excinfo:
-        do_algebra(operator, operand)
-    assert "Operator list cannot be empty" in str(excinfo.value)
-
-def test_empty_operand_list_error_message():
-    operator = ['+']
-    operand = []
-    with pytest.raises(ValueError) as excinfo:
-        do_algebra(operator, operand)
-    assert "Operand list must contain at least two operands" in str(excinfo.value)
+def test_non_integer_result():
+    operator = ['/']
+    operand = [3, 2]
+    assert do_algebra(operator, operand) == 1.5

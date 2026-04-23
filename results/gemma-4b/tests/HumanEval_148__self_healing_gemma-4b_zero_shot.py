@@ -86,11 +86,11 @@ def test_bf_invalid_planet2():
 def test_bf_empty_orbit():
     assert bf("Earth", "Earth") == ()
 
-def test_bf_same_planet():
-    assert bf("Venus", "Venus") == ()
-
 def test_bf_adjacent_planets():
-    assert bf("Mars", "Jupiter") == ("Saturn")
+    assert bf("Venus", "Earth") == ("Mars")
 
-def test_bf_far_apart_planets():
-    assert bf("Mercury", "Neptune") == ()
+def test_bf_same_planet_names():
+    assert bf("Earth", "Earth") == ()
+
+def test_bf_different_order():
+    assert bf("Neptune", "Jupiter") == ("Saturn", "Uranus", "Venus", "Earth", "Mars")

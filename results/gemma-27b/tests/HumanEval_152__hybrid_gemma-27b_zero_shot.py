@@ -90,7 +90,7 @@ class TestCompare:
         assert compare([1, 1, 2, 3], [1, 2, 2, 3]) == [0, 1, 0, 0]
 
     def test_duplicate_values_in_guess(self):
-        assert compare([1, 2, 3, 4], [1, 2, 2, 4]) == [0, 0, 1, 0]
+        assert compare([1, 2, 3, 4], [1, 1, 3, 4]) == [0, 1, 0, 0]
 
     def test_compare_empty_lists(self):
         assert compare([], []) == []

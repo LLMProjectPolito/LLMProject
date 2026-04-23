@@ -63,7 +63,7 @@ def test_get_max_triples_n_15():
     assert get_max_triples(15) == 19
 
 def test_get_max_triples_large_n():
-    assert get_max_triples(100) == 1668
+    assert get_max_triples(100) == 166
 
 def test_get_max_triples_edge_case_n_0():
     with pytest.raises(ValueError):

@@ -44,46 +44,38 @@ def simplify(x, n):
 
 ### STEP 2: PLAN
 # Test cases:
-# 1. Basic case: x * n is an integer.
-# 2. x * n is not an integer.
-# 3. Simple fractions.
-# 4. Fractions with larger numbers.
-# 5. Cases where the denominator of x is a factor of the denominator of n.
-# 6. Cases where the denominator of x is not a factor of the denominator of n.
+# 1. Basic positive integer multiplication: "1/2", "2/1"
+# 2. Simple fraction multiplication: "1/5", "5/1"
+# 3. Fraction multiplication with larger numbers: "7/10", "10/2"
+# 4. Cases where the product is an integer: "1/2", "2/1"
+# 5. Cases where the product is not an integer: "1/3", "3/2"
+# 6. Edge case: "1/1", "1/1"
+# 7. Another edge case: "2/2", "2/2"
 
 ### STEP 3: CODE
-def test_simplify_basic_integer():
+def test_basic_integer_multiplication():
+    assert simplify("1/2", "2/1") == True
+
+def test_simple_fraction_multiplication():
     assert simplify("1/5", "5/1") == True
 
-def test_simplify_basic_non_integer():
-    assert simplify("1/6", "2/1") == False
-
-def test_simplify_complex_integer():
+def test_fraction_multiplication_larger_numbers():
     assert simplify("7/10", "10/2") == False
 
-def test_simplify_simple_fractions():
+def test_product_is_integer():
     assert simplify("1/2", "2/1") == True
-    assert simplify("2/3", "3/1") == True
-    assert simplify("3/4", "4/1") == True
 
-def test_simplify_complex_fractions():
-    assert simplify("1/2", "3/4") == False
-    assert simplify("2/3", "4/5") == False
-    assert simplify("5/6", "10/1") == False
+def test_product_is_not_integer():
+    assert simplify("1/3", "3/2") == False
 
-def test_simplify_large_numbers():
-    assert simplify("100/10", "10/1") == True
-    assert simplify("100/10", "11/1") == False
-
-def test_simplify_denominator_factor():
-    assert simplify("1/2", "2/2") == True
-    assert simplify("2/3", "3/3") == True
-
-def test_simplify_denominator_not_factor():
-    assert simplify("1/2", "3/4") == False
-    assert simplify("2/3", "5/6") == False
-
-def test_simplify_edge_cases():
+def test_edge_case_one_one():
     assert simplify("1/1", "1/1") == True
-    assert simplify("1/1", "2/1") == False
-    assert simplify("2/1", "1/1") == True
+
+def test_edge_case_two_two():
+    assert simplify("2/2", "2/2") == True
+
+def test_another_edge_case():
+    assert simplify("3/4", "4/3") == True
+
+def test_another_non_integer():
+    assert simplify("3/4", "4/2") == False

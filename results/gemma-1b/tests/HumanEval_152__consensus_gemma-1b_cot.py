@@ -34,7 +34,6 @@ def compare(game, guess):
     """
     result = []
     for i in range(len(game)):
-        score = game[i]
-        guess = guess[i]
-        result.append(abs(score - guess))
+        diff = abs(guess - game[i])
+        result.append(diff)
     return result

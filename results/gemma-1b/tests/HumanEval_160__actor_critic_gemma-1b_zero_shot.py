@@ -53,12 +53,14 @@ def do_algebra(operator, operand):
 
     """
     try:
-        if len(operator) == 1:
+        if len(operator) == 1 and len(operand) == 1:
+            return operator[0] * operand[0]
+        elif len(operator) == 1:
             return operator[0]
         elif len(operand) == 1:
             return operand[0]
         else:
-            return eval(str(operator[0]) + str(operand[0]) + operator[1] + str(operand[1]))
+            return eval(str(operator[0]) + str(operand[0]))
     except (TypeError, ValueError, IndexError):
         return None
 
@@ -102,12 +104,17 @@ def test_invalid_input():
     result = 2 + 3 * 4
     assert result == None
 
-def test_invalid_input_type():
+def test_mixed_operators():
     array = [2, 3, 4, 5]
     result = 2 + 3 * 4
-    assert result == None
+    assert result == 14
 
-def test_invalid_input_length():
-    array = [2, 3, 4, 5]
-    result = 2 + 3 * 4
-    assert result == None
+def test_single_operand():
+    array = [2]
+    result = 2
+    assert result == 2
+
+def test_two_operands():
+    array = [2, 3]
+    result = 2 + 3
+    assert result == 5

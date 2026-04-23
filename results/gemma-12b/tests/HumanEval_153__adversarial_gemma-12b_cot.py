@@ -73,14 +73,14 @@ def test_strongest_extension_mixed_case():
 def test_strongest_extension_numbers_and_symbols():
     assert Strongest_Extension("TestClass", ['123', 'abc', '!@#']) == "TestClass.123"
 
-def test_strongest_extension_class_name_with_special_chars():
-    assert Strongest_Extension("My_Class!", ['AA', 'Be', 'CC']) == "My_Class!.AA"
+def test_strongest_extension_class_name_with_underscore():
+    assert Strongest_Extension("my_class_name", ['AA', 'Be', 'CC']) == "my_class_name.AA"
 
-def test_strongest_extension_extension_with_spaces():
-    assert Strongest_Extension("TestClass", ['AA ', ' Be', 'CC']) == "TestClass.AA "
+def test_strongest_extension_extension_with_numbers():
+    assert Strongest_Extension("TestClass", ['A123', 'bB456', 'cCd']) == "TestClass.A123"
+
+def test_strongest_extension_extension_with_symbols():
+    assert Strongest_Extension("TestClass", ['A!', 'b@', 'c#']) == "TestClass.A!"
 
 def test_strongest_extension_long_extensions():
     assert Strongest_Extension("TestClass", ['ThisIsALongExtension', 'AnotherLongExtension']) == "TestClass.ThisIsALongExtension"
-
-def test_strongest_extension_equal_strength_multiple():
-    assert Strongest_Extension("TestClass", ['AA', 'BB', 'CC']) == "TestClass.AA"

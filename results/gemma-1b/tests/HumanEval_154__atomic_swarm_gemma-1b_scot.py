@@ -35,9 +35,7 @@ def cycpattern_check(a, b):
         return True
     if s4 in s2:
         return True
-    if s2 in s3:
-        return True
-    if s5 in s4:
+    if s5 in s2:
         return True
     return False
 

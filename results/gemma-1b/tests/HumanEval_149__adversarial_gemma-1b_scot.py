@@ -17,7 +17,7 @@ def sorted_list_sum(lst):
 
 import pytest
 
-def sorted_list_sum(lst):
+def list_sort(lst):
     """Write a function that accepts a list of strings as a parameter,
     deletes the strings that have odd lengths from it,
     and returns the resulted list with a sorted order,
@@ -36,5 +36,16 @@ def sorted_list_sum(lst):
     for word in lst:
         if len(word) % 2 == 0:
             filtered_list.append(word)
-    filtered_list.sort()
+    filtered_list.sort(key=lambda x: (len(x), x))
     return filtered_list
+
+def test_list_sort():
+    assert list_sort(["aa", "a", "aaa"]) == ["aa"]
+    assert list_sort(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
+    assert list_sort(["abc", "ab", "a"]) == ["a", "ab", "abc"]
+    assert list_sort(["a", "aa", "aaa"]) == ["a", "aa", "aaa"]
+    assert list_sort(["aa", "a", "aaa", "b"]) == ["a", "aa", "aaa"]
+    assert list_sort(["abc", "ab", "a"]) == ["a", "ab", "abc"]
+    assert list_sort([]) == []
+    assert list_sort(["a"]) == ["a"]
+    assert list_sort(["ab", "a"]) == ["a", "ab"]

@@ -25,15 +25,15 @@ def find_max(words):
     if not words:
         return ""
 
-    max_unique = -1
+    max_unique_chars = -1
     result = ""
 
     for word in words:
         unique_chars = len(set(word))
-        if unique_chars > max_unique:
-            max_unique = unique_chars
+        if unique_chars > max_unique_chars:
+            max_unique_chars = unique_chars
             result = word
-        elif unique_chars == max_unique and word < result:
+        elif unique_chars == max_unique_chars and word < result:
             result = word
 
     return result

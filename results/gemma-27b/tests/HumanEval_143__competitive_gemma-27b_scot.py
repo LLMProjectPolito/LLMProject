@@ -82,13 +82,13 @@ def test_sentence_with_leading_and_trailing_spaces():
     assert words_in_sentence("  go for  ") == "go for"
 
 def test_sentence_with_multiple_spaces_between_words():
-    assert words_in_sentence("go   for") == "go for"
+    assert words_in_sentence("lets   go    for") == "go for"
 
 def test_long_sentence():
-    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the quick fox over the dog"
+    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the over dog"
 
-def test_sentence_with_only_one_word():
-    assert words_in_sentence("two") == "two"
+def test_sentence_with_only_one_word_prime_length():
+    assert words_in_sentence("five") == "five"
 
-def test_sentence_with_numbers():
-    assert words_in_sentence("123 45 6789") == "45"
+def test_sentence_with_only_one_word_non_prime_length():
+    assert words_in_sentence("four") == ""

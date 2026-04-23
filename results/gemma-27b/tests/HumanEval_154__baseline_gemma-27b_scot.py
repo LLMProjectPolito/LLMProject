@@ -41,19 +41,19 @@ def test_b_longer_than_a():
     assert cycpattern_check("abc", "abcd") == False
 
 def test_b_is_substring_of_a():
-    assert cycpattern_check("hello world", "world") == True
+    assert cycpattern_check("hello", "ell") == True
 
 def test_b_rotation_is_substring_of_a():
-    assert cycpattern_check("hello", "ell") == True
+    assert cycpattern_check("hello", "llo") == True
 
 def test_no_match():
     assert cycpattern_check("abcd", "abd") == False
 
 def test_a_and_b_same():
-    assert cycpattern_check("test", "test") == True
+    assert cycpattern_check("abc", "abc") == True
 
 def test_a_contains_b_multiple_times():
-    assert cycpattern_check("abababa", "aba") == True
+    assert cycpattern_check("abababc", "ab") == True
 
 def test_edge_case_1():
     assert cycpattern_check("abab", "baa") == True
@@ -76,3 +76,6 @@ def test_long_strings_no_match():
 
 def test_b_is_empty():
     assert cycpattern_check("abc", "") == True
+
+def test_a_is_empty():
+    assert cycpattern_check("", "abc") == False

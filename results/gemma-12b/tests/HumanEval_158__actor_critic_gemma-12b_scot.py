@@ -17,6 +17,7 @@ def find_max(words):
     The list contains different words. Return the word with maximum number
     of unique characters. If multiple strings have maximum number of unique
     characters, return the one which comes first in lexicographical order.
+    The comparison is case-sensitive.
 
     find_max(["name", "of", "string"]) == "string"
     find_max(["name", "enam", "game"]) == "enam"
@@ -61,12 +62,24 @@ class TestFindMax:
         assert find_max(["", "abc", ""]) == "abc"
 
     def test_words_with_special_characters(self):
-        assert find_max(["!@#", "abc", "xyz"]) == "!@#"
+        assert find_max(["!@#", "abc", "$%^"]) == "!@#"
 
     def test_words_with_unicode_characters(self):
         assert find_max(["你好", "世界", "abc"]) == "你好"
 
-    def test_identical_strings(self):
+    def test_case_sensitivity(self):
+        assert find_max(["Hello", "hello"]) == "Hello"
+
+    def test_with_numbers(self):
+        assert find_max(["a1b2", "abc"]) == "a1b2"
+
+    def test_with_mixed_characters(self):
+        assert find_max(["a!1b", "abc"]) == "a!1b"
+
+    def test_lexicographical_order_same_unique_chars(self):
+        assert find_max(["abc", "abd", "abe"]) == "abc"
+
+    def test_all_identical_strings(self):
         assert find_max(["abc", "abc", "abc"]) == "abc"
 
     def test_single_word(self):
@@ -75,10 +88,7 @@ class TestFindMax:
     def test_numbers_only(self):
         assert find_max(["123", "456"]) == "123"
 
-    def test_special_characters_and_numbers(self):
-        assert find_max(["!@#123", "abc"]) == "!@#123"
-
-    def test_lexicographical_order(self):
-        assert find_max(["ab", "ac", "ba"]) == "ab"
-
-    # Removed test_case_sensitivity
+    # Optional test for long strings
+    # def test_long_strings(self):
+    #     long_string = "a" * 1000
+    #     assert find_max([long_string, "b"]) == long_string

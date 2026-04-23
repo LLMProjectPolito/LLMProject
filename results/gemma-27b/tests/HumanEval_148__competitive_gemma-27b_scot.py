@@ -39,18 +39,20 @@ def test_bf_both_invalid():
 def test_bf_same_planet():
     assert bf("Earth", "Earth") == ()
 
-def test_bf_mercury_mars():
-    assert bf("Mercury", "Mars") == ("Venus", "Earth")
-
-def test_bf_venus_saturn():
-    assert bf("Venus", "Saturn") == ("Earth", "Mars", "Jupiter")
-
-def test_bf_uranus_mars():
-    assert bf("Uranus", "Mars") == ("Neptune",)
+def test_bf_mercury_neptune():
+    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
 
 def test_bf_neptune_mercury():
     assert bf("Neptune", "Mercury") == ("Uranus", "Saturn", "Jupiter", "Mars", "Earth", "Venus")
 
-def test_bf_case_sensitive():
-    assert bf("jupiter", "Neptune") == ()
-    assert bf("Jupiter", "neptune") == ()
+def test_bf_venus_mars():
+    assert bf("Venus", "Mars") == ("Earth",)
+
+def test_bf_mars_venus():
+    assert bf("Mars", "Venus") == ("Earth",)
+
+def test_bf_saturn_jupiter():
+    assert bf("Saturn", "Jupiter") == ()
+
+def test_bf_jupiter_saturn():
+    assert bf("Jupiter", "Saturn") == ()

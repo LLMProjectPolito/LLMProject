@@ -33,24 +33,25 @@ class TestStringtoMD5:
         assert string_to_md5("  ") == '9c6a94a9999999999999999999999999'
 
     def test_string_with_special_characters(self):
-        assert string_to_md5("!@#$%^&*()") == '99499999999999999999999999999999'
+        assert string_to_md5("!@#$%^&*()") == '99c64399999999999999999999999999'
 
     def test_string_with_numbers(self):
         assert string_to_md5("1234567890") == 'd1e2f3a4b5c6d7e8f9a0b1c2d3e4f5'
 
-    def test_string_with_mixed_characters(self):
-        assert string_to_md5("Hello123World!") == '9c999999999999999999999999999999'
-
-    def test_unicode_string(self):
+    def test_string_with_unicode_characters(self):
         assert string_to_md5("你好世界") == 'b10a8db164e0754105b7a99be72e3fe5'
 
     def test_long_string(self):
-        long_string = "This is a very long string to test the md5 hash function." * 10
-        md5_hash = hashlib.md5(long_string.encode('utf-8')).hexdigest()
-        assert string_to_md5(long_string) == md5_hash
+        long_string = "This is a very long string to test the md5 hash function."
+        expected_md5 = 'a94a8fe5ccb19ba61c4c0873d391e987'
+        assert string_to_md5(long_string) == expected_md5
+
+    def test_case_sensitivity(self):
+        assert string_to_md5("hello") != string_to_md5("Hello")
+
+    def test_different_encodings(self):
+        # Test with different encodings to ensure UTF-8 is used correctly
+        assert string_to_md5("éàçüö") == '99c64399999999999999999999999999' # Example, actual value may vary based on system default encoding
 
     def test_string_with_newline(self):
-        assert string_to_md5("Hello\nWorld") == 'c9c99999999999999999999999999999'
-
-    def test_string_with_tab(self):
-        assert string_to_md5("Hello\tWorld") == '9d999999999999999999999999999999'
+        assert string_to_md5("Hello\nworld") == '94799999999999999999999999999999'

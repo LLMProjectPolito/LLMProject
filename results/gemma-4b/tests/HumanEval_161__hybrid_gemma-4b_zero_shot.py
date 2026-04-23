@@ -44,60 +44,6 @@ def test_no_letters():
 
 def test_lowercase_letters():
     assert solve("ab") == "AB"
-
-def test_uppercase_letters():
-    assert solve("AB") == "ab"
-
-def test_mixed_case_letters():
-    assert solve("aB") == "Ab"
-
-def test_letters_and_symbols():
-    assert solve("#a@C") == "#A@c"
-
-def test_letters_and_numbers():
-    assert solve("a1b2c") == "A1B2C"
-
-def test_all_lowercase_with_symbols():
-    assert solve("hello#world!") == "HELLO#WORLD!"
-
-def test_all_uppercase_with_symbols():
-    assert solve("HELLO#WORLD!") == "hello#world!"
-
-def test_long_string_with_mixed_case():
-    assert solve("ThisIsALongStringWithMixedCase") == "tHISiSALONGSTRINGwITHMiXeDCaSE"
-
-def test_string_with_only_symbols():
-    assert solve("!@#$%^") == "!@#$%^"
-
-def test_string_with_numbers_and_symbols():
-    assert solve("123!@#") == "123!@#"
-
-def test_string_with_special_characters():
-    assert solve("!@#$%^") == "!@#$%^"
-
-def test_string_with_unicode_characters():
-    assert solve("你好世界") == "界世好你"
-
-def test_string_with_mixed_unicode_and_ascii():
-    assert solve("Hello你好World") == "HELLO你好WORLD"
-
-def test_string_with_leading_and_trailing_spaces():
-    assert solve("  a b  ") == "  A B  "
-
-def test_string_with_multiple_spaces():
-    assert solve("a   b  c") == "A   B  C"
-
-def test_string_with_tabs():
-    assert solve("a\tb\nc") == "A\tB\nc"
-
-def test_string_with_newlines():
-    assert solve("a\nb\nc") == "A\nB\nc"
-
-def test_string_with_mixed_whitespace():
-    assert solve("a\t\nb\nc") == "A\t\nB\nc"
-
-def test_lowercase_letters():
-    assert solve("ab") == "AB"
     assert solve("hello") == "HELLO"
 
 def test_uppercase_letters():
@@ -105,7 +51,7 @@ def test_uppercase_letters():
     assert solve("WORLD") == "world"
 
 def test_mixed_case_letters():
-    assert solve("aB") == "Ab"
+    assert solve("aBc") == "AbC"
     assert solve("HeLlO") == "hElLo"
 
 def test_letters_and_symbols():
@@ -124,11 +70,11 @@ def test_special_characters():
 def test_long_string():
     assert solve("This is a long string with mixed case and symbols.") == "tHIS iS A LoNg sTRING wITH mIXEd cASE AnD sYMBOLS."
 
-def test_all_uppercase_with_symbols():
-    assert solve("ALLCAPS!") == "allcaps!"
+def test_all_uppercase():
+    assert solve("ALLCAPS") == "allcaps"
 
-def test_all_lowercase_with_symbols():
-    assert solve("alllowercase!") == "ALLlowercase!"
+def test_all_lowercase():
+    assert solve("alllowercase") == "ALLLOWERCASE"
 
 def test_single_letter_lowercase():
     assert solve("a") == "A"
@@ -137,7 +83,10 @@ def test_single_letter_uppercase():
     assert solve("A") == "a"
 
 def test_single_char_non_letter():
-    assert solve("!") == "!"
+    assert solve("1") == "1"
+
+def test_complex_string():
+    assert solve("HeLlO wOrLd! 123") == "hElLo WoRlD! 123"
 
 def test_string_with_spaces():
-    assert solve("  hello world  ") == "  WORLD hello  "
+    assert solve("  hello world  ") == "  HELLO WORLD  "

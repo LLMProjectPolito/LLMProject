@@ -91,19 +91,19 @@ def test_solve_uppercase():
     assert solve("#a@C") == "#A@c"
 
 def test_solve_mixed_case():
-    assert solve("Hello") == "HELLO"
+    assert solve("aBc") == "AbC"
 
-def test_solve_with_numbers():
-    assert solve("1234") == "4321"
+def test_solve_with_spaces():
+    assert solve("hello world") == "DLROW OLLEH"
 
-def test_solve_with_symbols():
-    assert solve("!@#$") == "$#@!"
+def test_solve_with_punctuation():
+    assert solve("Hello, world!") == "!DLROW ,OLLEH"
 
 def test_solve_empty_string():
     assert solve("") == ""
 
-def test_solve_mixed_string():
-    assert solve("aBc123!@") == "AbC123!@"
+def test_solve_special_characters():
+    assert solve("!@#$%^") == "^%$#@!"
 
-def test_solve_complex_string():
-    assert solve("This is a test string.") == "tSiHt si a tset gnirts."
+def test_solve_mixed_special_characters():
+    assert solve("a!b@c#") == "A!B@C#"

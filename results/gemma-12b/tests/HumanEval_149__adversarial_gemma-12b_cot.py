@@ -46,7 +46,7 @@ def test_complex_list():
     assert sorted_list_sum(["aa", "a", "aaa", "bb", "cc", "b", "dddd", "ddd"]) == ["aa", "bb", "cc", "dddd"]
 
 def test_list_with_special_characters():
-    assert sorted_list_sum(["a!", "aa?", "a!!"]) == ["a!", "aa?"]
+    assert sorted_list_sum(["a!", "aa", "!!!"]) == ["aa"]
 
 def test_list_with_numbers_as_strings():
     assert sorted_list_sum(["11", "1", "111"]) == ["11", "111"]
@@ -55,4 +55,4 @@ def test_list_with_empty_string():
     assert sorted_list_sum(["", "a", "aa"]) == ["", "aa"]
 
 def test_list_with_unicode_strings():
-    assert sorted_list_sum(["你好", "你", "你好世界"]) == ["你好"]
+    assert sorted_list_sum(["你好", "你", "世界"]) == ["你好", "世界"]

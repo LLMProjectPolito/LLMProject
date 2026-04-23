@@ -13,8 +13,11 @@ def double_the_difference(lst):
     '''
 
 def double_the_difference(lst):
-    total = 0
+    if not lst:
+        return 0
+    
+    result = 0
     for num in lst:
         if isinstance(num, int) and num % 2 != 0:
-            total += num * num
-    return total
+            result += num * num
+    return result

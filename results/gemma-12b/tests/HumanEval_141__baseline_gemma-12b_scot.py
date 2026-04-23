@@ -84,7 +84,7 @@ class TestFileNameCheck:
     def test_invalid_extension(self):
         assert file_name_check("example.pdf") == "No"
         assert file_name_check("example.jpg") == "No"
-        assert file_name_check("example.xyz") == "No"
+        assert file_name_check("example.dat") == "No"
 
     def test_edge_cases(self):
         assert file_name_check("000.txt") == "Yes"

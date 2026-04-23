@@ -56,14 +56,11 @@ def test_specialFilter_numbers_close_to_10():
 def test_specialFilter_numbers_just_above_10():
     assert specialFilter([11, 12, 13, 14, 15]) == 2
 
-def test_specialFilter_all_numbers_less_than_10():
-    assert specialFilter([1, 2, 3, 4, 5]) == 0
+def test_specialFilter_all_numbers_greater_than_10_but_none_special():
+    assert specialFilter([12, 14, 16, 18, 20]) == 0
 
-def test_specialFilter_single_special_number():
-    assert specialFilter([15]) == 1
-
-def test_specialFilter_single_non_special_number():
-    assert specialFilter([12]) == 0
+def test_specialFilter_single_digit_numbers():
+    assert specialFilter([1, 3, 5, 7, 9]) == 0
 
 def test_specialFilter_zero():
     assert specialFilter([0]) == 0
@@ -71,5 +68,5 @@ def test_specialFilter_zero():
 def test_specialFilter_negative_special_number():
     assert specialFilter([-15]) == 0
 
-def test_specialFilter_negative_non_special_number():
-    assert specialFilter([-12]) == 0
+def test_specialFilter_negative_and_positive():
+    assert specialFilter([-15, 33, -2, 45]) == 2

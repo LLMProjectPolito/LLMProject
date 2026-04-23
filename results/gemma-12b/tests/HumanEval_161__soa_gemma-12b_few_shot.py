@@ -58,7 +58,7 @@ class TestSolve:
     def test_mixed_letters_and_symbols(self):
         assert solve("#a@C") == "#A@c"
         assert solve("1a2B3c") == "1A2b3C"
-        assert solve("!a@B#c%") == "!A@b#C%"
+        assert solve("!a@B#c$") == "!A@b#C$"
 
     def test_empty_string(self):
         assert solve("") == ""
@@ -71,8 +71,8 @@ class TestSolve:
         assert solve("!") == "!"
 
     def test_long_string(self):
-        assert solve("ThisIsALongString") == "tHISiSALONGSTRING"
-        assert solve("ThisIsALongString123") == "tHISiSALONGSTRING123"
+        assert solve("ThisIsALongString") == "tHISisALONGSTRING"
+        assert solve("ThisIsALongString123") == "tHISisALONGSTRING123"
 
     def test_string_with_spaces(self):
         assert solve("Hello World") == "hELLO wORLD"

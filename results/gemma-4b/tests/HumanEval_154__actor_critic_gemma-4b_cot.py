@@ -22,13 +22,10 @@ def cycpattern_check(a, b):
     cycpattern_check("himenss","simen") => True
 
     """
-    if not b:
+    if b in a or b in a[1:] or b in a[:-1]:
         return True
-    for i in range(len(b)):
-        rotated_b = b[i:] + b[:i]
-        if rotated_b in a:
-            return True
-    return False
+    else:
+        return False
 
 def test_cycpattern_check_positive():
     assert cycpattern_check("abcd","abd") == False
@@ -42,28 +39,31 @@ def test_cycpattern_check_positive():
 
 def test_cycpattern_check_negative():
     assert cycpattern_check("abcd","abc") == False
-    assert cycpattern_check("abcd","abce") == False
     assert cycpattern_check("abcd","efgh") == False
+    assert cycpattern_check("hello","world") == False
+    assert cycpattern_check("whassup","hello") == False
+    assert cycpattern_check("abab","cdef") == False
+    assert cycpattern_check("himenss","hello") == False
     assert cycpattern_check("efef","eeff") == False
-    assert cycpattern_check("test","tes") == False
-    assert cycpattern_check("test","est") == False
-    assert cycpattern_check("test","tse") == False
 
-def test_cycpattern_check_empty_b():
-    assert cycpattern_check("abcd","") == True
-
-def test_cycpattern_check_empty_a():
+def test_cycpattern_check_empty_string():
+    assert cycpattern_check("", "") == True
+    assert cycpattern_check("abc", "") == True
     assert cycpattern_check("", "abc") == False
 
+def test_cycpattern_check_single_char():
+    assert cycpattern_check("abc", "a") == True
+    assert cycpattern_check("abc", "b") == True
+    assert cycpattern_check("abc", "c") == True
+    assert cycpattern_check("abc", "d") == False
+
 def test_cycpattern_check_same_string():
-    assert cycpattern_check("abc","abc") == True
-    assert cycpattern_check("abc","bac") == True
-    assert cycpattern_check("abc","cab") == True
+    assert cycpattern_check("abc", "abc") == True
+    assert cycpattern_check("abc", "bca") == True
+    assert cycpattern_check("abc", "cab") == True
 
 def test_cycpattern_check_long_strings():
-    assert cycpattern_check("abcdefghijk","cdefghij") == True
-    assert cycpattern_check("abcdefghijk","ghi") == True
-    assert cycpattern_check("abcdefghijk","jklm") == False
-    assert cycpattern_check("abcdefghijk","abcdefghijk") == True
-    assert cycpattern_check("abcdefghijk","hgfedcba") == True
-    assert cycpattern_check("abcdefghijk","ijkabcde") == False
+    assert cycpattern_check("abcdefgh", "cdef") == True
+    assert cycpattern_check("abcdefgh", "fgh") == True
+    assert cycpattern_check("abcdefgh", "ghi") == False
+    assert cycpattern_check("abcdefgh", "abcdefgh") == True

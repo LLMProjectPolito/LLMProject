@@ -81,11 +81,11 @@ def test_strongest_extension_mixed_case():
 def test_strongest_extension_single_extension():
     assert Strongest_Extension('Class', ['Extension']) == 'Class.Extension'
 
-def test_strongest_extension_with_numbers():
-    assert Strongest_Extension('Class', ['Ext1', 'Ext2', 'Ext3']) == 'Class.Ext1'
-
-def test_strongest_extension_with_special_characters():
-    assert Strongest_Extension('Class', ['Ext!', 'Ext@', 'Ext#']) == 'Class.Ext!'
+def test_strongest_extension_numbers_and_symbols():
+    assert Strongest_Extension('Class', ['123', '!@#', 'AbC']) == 'Class.AbC'
 
 def test_strongest_extension_non_string_extension():
-    assert Strongest_Extension('Class', [123, 'Ext']) == 'Class.Ext'
+    assert Strongest_Extension('Class', [123, 'AbC']) == 'Class.AbC'
+
+def test_strongest_extension_empty_string_extension():
+    assert Strongest_Extension('Class', ['', 'AbC']) == 'Class.AbC'

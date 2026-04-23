@@ -25,17 +25,6 @@ def test_int_to_mini_roman_basic():
     assert int_to_mini_roman(9) == 'ix'
     assert int_to_mini_roman(10) == 'x'
 
-def test_int_to_mini_roman_teens():
-    assert int_to_mini_roman(11) == 'xi'
-    assert int_to_mini_roman(12) == 'xii'
-    assert int_to_mini_roman(13) == 'xiii'
-    assert int_to_mini_roman(14) == 'xiv'
-    assert int_to_mini_roman(15) == 'xv'
-    assert int_to_mini_roman(16) == 'xvi'
-    assert int_to_mini_roman(17) == 'xvii'
-    assert int_to_mini_roman(18) == 'xviii'
-    assert int_to_mini_roman(19) == 'xix'
-
 def test_int_to_mini_roman_tens():
     assert int_to_mini_roman(20) == 'xx'
     assert int_to_mini_roman(30) == 'xxx'
@@ -58,21 +47,23 @@ def test_int_to_mini_roman_hundreds():
     assert int_to_mini_roman(900) == 'cm'
 
 def test_int_to_mini_roman_complex():
+    assert int_to_mini_roman(19) == 'xix'
+    assert int_to_mini_roman(44) == 'xliv'
+    assert int_to_mini_roman(99) == 'xcix'
     assert int_to_mini_roman(152) == 'clii'
     assert int_to_mini_roman(426) == 'cdxxvi'
     assert int_to_mini_roman(888) == 'dccclxxxviii'
-    assert int_to_mini_roman(999) == 'cmxcix'
-    assert int_to_mini_roman(1000) == 'm'
+    assert int_to_mini_roman(944) == 'cmxliv'
 
 def test_int_to_mini_roman_edge_cases():
-    assert int_to_mini_roman(1) == 'i'
     assert int_to_mini_roman(1000) == 'm'
+    assert int_to_mini_roman(1) == 'i'
 
 def test_int_to_mini_roman_invalid_input():
     with pytest.raises(TypeError):
         int_to_mini_roman(1.5)
     with pytest.raises(TypeError):
-        int_to_mini_roman("1")
+        int_to_mini_roman("10")
     with pytest.raises(ValueError):
         int_to_mini_roman(0)
     with pytest.raises(ValueError):

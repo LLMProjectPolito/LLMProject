@@ -58,17 +58,17 @@ def test_only_zeroes():
 def test_negative_limits():
     assert double_the_difference([-1, -2, -3]) == 0
 
-def test_large_numbers():
-    assert double_the_difference([1001, 1003, 1002]) == 1001001 + 1003003
-
 def test_single_odd_number():
-    assert double_the_difference([5]) == 25
+    assert double_the_difference([1]) == 1
 
-def test_single_negative_odd_number():
-    assert double_the_difference([-5]) == 25
+def test_single_even_number():
+    assert double_the_difference([2]) == 0
 
-def test_single_zero():
-    assert double_the_difference([0]) == 0
+def test_mixed_types():
+    assert double_the_difference([1, 2.5, 3, "a", -1]) == 1 + 9
+
+def test_large_numbers():
+    assert double_the_difference([1000000001, 1000000003]) == 1000000001**2 + 1000000003**2
 
 import pytest
 

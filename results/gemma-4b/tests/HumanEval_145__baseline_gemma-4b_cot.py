@@ -32,7 +32,6 @@ def order_by_points(nums):
 
     return sorted(nums, key=lambda x: (sum_digits(x), nums.index(x)))
 
-
 def test_order_by_points_empty_list():
     assert order_by_points([]) == []
 
@@ -54,8 +53,8 @@ def test_order_by_points_single_element():
 def test_order_by_points_large_numbers():
     assert order_by_points([123, 45, 6, 789]) == [6, 45, 123, 789]
 
-def test_order_by_points_zero():
-    assert order_by_points([0, 1, -1]) == [-1, 0, 1]
+def test_order_by_points_zero_sum():
+    assert order_by_points([0, 0, 0]) == [0, 0, 0]
 
-def test_order_by_points_negative_zero():
-    assert order_by_points([-0, 1, -1]) == [-1, -0, 1]
+def test_order_by_points_negative_zero_sum():
+    assert order_by_points([-1, 0, -2]) == [-1, -2, 0]

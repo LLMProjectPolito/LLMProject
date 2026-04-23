@@ -133,10 +133,10 @@ def test_sentence_with_multiple_spaces_between_words():
     assert words_in_sentence("This  is   a    test") == "is"
 
 def test_sentence_with_prime_and_non_prime_words_at_edges():
-    assert words_in_sentence("is this a go") == "is go"
+    assert words_in_sentence("is this a go") == "is a go"
 
 def test_sentence_with_prime_and_non_prime_words_in_middle():
-    assert words_in_sentence("this is a go test") == "is go"
+    assert words_in_sentence("this is a go test") == "is a go"
 
 def test_sentence_with_repeated_prime_words():
     assert words_in_sentence("is is is") == "is is is"

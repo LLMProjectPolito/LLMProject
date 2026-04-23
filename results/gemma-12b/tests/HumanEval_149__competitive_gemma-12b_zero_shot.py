@@ -56,16 +56,16 @@ class TestSortedListSum:
         assert sorted_list_sum(["bc", "ab", "cd"]) == ["ab", "bc", "cd"]
 
     def test_same_length_same_alphabetical(self):
-        assert sorted_list_sum(["ab", "ab", "cd"]) == ["ab", "ab", "cd"]
+        assert sorted_list_sum(["ab", "ab", "cd", "cd"]) == ["ab", "ab", "cd", "cd"]
 
     def test_complex_case(self):
-        assert sorted_list_sum(["aa", "a", "aaa", "bb", "b", "ccc", "dd", "d"]) == ["aa", "bb", "dd"]
+        assert sorted_list_sum(["aa", "a", "aaa", "bb", "bbb", "cc", "c", "dd", "ddd", "ee", "eee"]) == ["aa", "bb", "cc", "dd", "ee"]
+
+    def test_single_element_even(self):
+        assert sorted_list_sum(["aa"]) == ["aa"]
+
+    def test_single_element_odd(self):
+        assert sorted_list_sum(["a"]) == []
 
     def test_long_strings(self):
         assert sorted_list_sum(["abcdef", "abcde", "abcdefg"]) == ["abcdef"]
-
-    def test_strings_with_spaces(self):
-        assert sorted_list_sum(["a b", "ab", "abc"]) == ["ab"]
-
-    def test_strings_with_special_characters(self):
-        assert sorted_list_sum(["!@#", "a!", "ab"]) == ["ab"]

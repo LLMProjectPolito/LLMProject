@@ -39,25 +39,21 @@ def test_specialFilter_positive():
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
     assert specialFilter([1, 2, 3, 4, 5]) == 0
     assert specialFilter([11, 22, 33, 44, 55]) == 5
-    assert specialFilter([1, 2, 3, 4, 5, 6]) == 0
     assert specialFilter([]) == 0
 
 def test_specialFilter_negative():
     assert specialFilter([-15, -23, -35]) == 0
+    assert specialFilter([-11, -22, -33]) == 0
     assert specialFilter([-1, 2, 3]) == 1
-    assert specialFilter([10, -10, 10]) == 2
-    assert specialFilter([-10, -20, -30]) == 0
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 0
+    assert specialFilter([10, 20, 30]) == 0
 
 def test_specialFilter_mixed():
-    assert specialFilter([15, -73, 14, -15, 21, 109]) == 2
-    assert specialFilter([-15, 14, 21, 109]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 0
-    assert specialFilter([-1, -2, -3, -4, -5, -6, -7, -8, -9]) == 0
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 0
-
-def test_specialFilter_empty():
-    assert specialFilter([]) == 0
+    assert specialFilter([15, -73, 14, -15, 33]) == 1
+    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
+    assert specialFilter([11, 22, 33, 44, 55]) == 5
+    assert specialFilter([-15, -23, -35]) == 0
+    assert specialFilter([-1, 2, 3]) == 1
+    assert specialFilter([10, 20, 30]) == 0
 
 def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
@@ -65,11 +61,13 @@ def test_get_max_positive():
 def test_get_max_empty():
     assert get_max([]) == None
 
-def test_get_max_mixed():
-    assert get_max([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 9
-
 def test_get_max_negative():
     assert get_max([-1, -2, -3]) == -1
 
-def test_get_max_negative_mixed():
-    assert get_max([-1, -2, -3, -4, -5, -6, -7, -8, -9]) == -1
+def test_get_max_mixed():
+    assert get_max([15, -73, 14, -15, 33]) == 1
+    assert get_max([33, -2, -3, 45, 21, 109]) == 2
+    assert get_max([11, 22, 33, 44, 55]) == 5
+    assert get_max([-15, -23, -35]) == 0
+    assert get_max([-1, 2, 3]) == 1
+    assert get_max([10, 20, 30]) == 0

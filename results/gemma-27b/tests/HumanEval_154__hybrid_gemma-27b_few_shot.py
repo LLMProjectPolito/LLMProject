@@ -70,13 +70,13 @@ def test_cycpattern_check_both_empty():
     assert cycpattern_check("", "") == True
 
 def test_cycpattern_check_b_longer_than_a():
-    assert cycpattern_check("abc", "abcd") == False
+    assert cycpattern_check("abc", "abcdef") == False
 
 def test_cycpattern_check_same_string():
     assert cycpattern_check("abc", "abc") == True
 
 def test_cycpattern_check_rotation_at_start():
-    assert cycpattern_check("abcdef", "cdefab") == True
+    assert cycpattern_check("abcdef", "defabc") == True
 
 def test_cycpattern_check_rotation_at_end():
     assert cycpattern_check("abcdef", "fabcde") == True
@@ -97,54 +97,11 @@ def test_cycpattern_check_long_strings_no_match():
     b = "b" * 1000
     assert cycpattern_check(a, b) == False
 
-def test_cycpattern_check_rotation_true():
-    assert cycpattern_check("abab", "baa") == True
-
-def test_cycpattern_check_no_match():
-    assert cycpattern_check("efef", "eeff") == False
-
-def test_cycpattern_check_longer_string():
-    assert cycpattern_check("himenss", "simen") == True
-
-def test_cycpattern_check_empty_a():
-    assert cycpattern_check("", "abc") == False
-
-def test_cycpattern_check_empty_b():
-    assert cycpattern_check("abc", "") == False
-
-def test_cycpattern_check_both_empty():
-    assert cycpattern_check("", "") == False
-
-def test_cycpattern_check_same_string():
-    assert cycpattern_check("abc", "abc") == True
-
-def test_cycpattern_check_b_longer_than_a():
-    assert cycpattern_check("abc", "abcd") == False
-
 def test_cycpattern_check_repeated_pattern():
-    assert cycpattern_check("ababab", "aba") == True
+    assert cycpattern_check("ababab", "ab") == True
 
-def test_cycpattern_check_complex_rotation():
-    assert cycpattern_check("waterbottle", "erbottlewat") == True
-
-def test_cycpattern_check_case_sensitive():
-    assert cycpattern_check("Hello", "ell") == False
-
-def test_cycpattern_check_with_spaces():
-    assert cycpattern_check("hello world", "world") == True
-
-def test_cycpattern_check_with_special_chars():
-    assert cycpattern_check("a!b@c#", "b@c#a") == True
-
-def test_cycpattern_check_long_strings():
-    a = "abcdefghijklmnopqrstuvwxyz" * 10
-    b = "uvwxyzabcdefghijklm"
-    assert cycpattern_check(a, b) == True
-
-def test_cycpattern_check_long_strings_no_match():
-    a = "abcdefghijklmnopqrstuvwxyz" * 10
-    b = "zyxwvutsrqponmlkjihgfedcba"
-    assert cycpattern_check(a, b) == False
+def test_cycpattern_check_no_rotation_match():
+    assert cycpattern_check("abcdefg", "gfedcba") == False
 
 def test_palindrome_basic():
     assert is_palindrome('radar') == True

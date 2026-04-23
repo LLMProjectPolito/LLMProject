@@ -36,22 +36,25 @@ def test_single_special_number():
     assert specialFilter([15]) == 1
 
 def test_multiple_special_numbers():
-    assert specialFilter([15, 33, 57, 79, 91]) == 5
+    assert specialFilter([15, 33, 55, 77, 99]) == 5
 
 def test_mixed_numbers():
-    assert specialFilter([15, 2, 33, 4, 57, 6, 79, 8, 91, 10]) == 4
+    assert specialFilter([15, 22, 33, 44, 55]) == 3
 
 def test_negative_numbers():
-    assert specialFilter([-15, -33, -57, -79, -91]) == 5
+    assert specialFilter([-15, -33, -55, 15, 33]) == 2
 
 def test_numbers_less_than_or_equal_to_10():
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 0
+    assert specialFilter([1, 2, 5, 10]) == 0
 
 def test_large_numbers():
-    assert specialFilter([123456789, 135791111, 987654321]) == 2
+    assert specialFilter([12345, 13579, 97531]) == 2
 
-def test_edge_case_11():
-    assert specialFilter([11]) == 0
+def test_zero():
+    assert specialFilter([0]) == 0
 
-def test_edge_case_13():
-    assert specialFilter([13]) == 1
+def test_example_1():
+    assert specialFilter([15, -73, 14, -15]) == 1
+
+def test_example_2():
+    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2

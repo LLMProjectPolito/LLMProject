@@ -30,66 +30,64 @@ def sample_data():
         ([15, -73, 14, -15], 1),
         ([33, -2, -3, 45, 21, 109], 2),
         ([11, 33, 55, 77, 99], 5),
-        ([12, 23, 34, 45, 56, 67, 78, 89, 90], 0),
-        ([111, 333, 555, 777, 999], 5),
+        ([22, 44, 66, 88], 0),
+        ([12, 34, 56, 78, 90], 0),
         ([1, 3, 5, 7, 9], 0),
-        ([10, 11, 12, 13, 14, 15], 1),
-        ([20, 21, 22, 23, 24, 25], 1),
+        ([111, 333, 555, 777, 999], 5),
+        ([101, 303, 505, 707, 909], 5),
+        ([110, 330, 550, 770, 990], 0),
+        ([150, 350, 550, 750, 950], 0),
+        ([15, 73, 14, 15], 2),
         ([], 0),
-        ([15, 15, 15, 15], 4),
-        ([15, 15, 15, 15, 10], 4),
-        ([-15, -33, -55, -77, -99], 5),
-        ([15.0, 33.0, 55.0, 77.0, 99.0], 5),
-        ([15.1, 33.3, 55.5, 77.7, 99.9], 5),
-        ([15, 33, 55, 77, 99, 10], 5),
-        ([15, 33, 55, 77, 99, 11], 6),
-        ([15, 33, 55, 77, 99, 101], 6),
-        ([15, 33, 55, 77, 99, 100], 5),
-        ([15, 33, 55, 77, 99, 1001], 6),
-        ([15, 33, 55, 77, 99, 1000], 5)
+        ([11, 12, 13, 14, 15], 1),
+        ([31, 32, 33, 34, 35], 1),
+        ([51, 52, 53, 54, 55], 1),
+        ([71, 72, 73, 74, 75], 1),
+        ([91, 92, 93, 94, 95], 1),
+        ([100, 200, 300, 400, 500], 0),
+        ([101, 202, 303, 404, 505], 1),
+        ([-11, -33, -55, -77, -99], 5),
+        ([-15, -73, -14, -15], 1),
+        ([15.0, 73.0, 14.0, 15.0], 1), # Test with floats
+        ([15.1, 73.2, 14.3, 15.4], 0) # Test with floats
     ]
 
-def test_specialFilter_positive_cases(sample_data):
-    """Tests with positive cases."""
-    for nums, expected in sample_data:
-        assert specialFilter(nums) == expected
+@pytest.mark.parametrize("nums, expected", sample_data)
+def test_specialFilter(nums, expected):
+    """Tests the specialFilter function with various inputs."""
+    assert specialFilter(nums) == expected
 
-def test_specialFilter_empty_list(sample_data):
+def test_empty_list():
     """Tests with an empty list."""
     assert specialFilter([]) == 0
 
-def test_specialFilter_no_matching_numbers(sample_data):
+def test_no_matching_numbers():
     """Tests with a list containing no matching numbers."""
     assert specialFilter([2, 4, 6, 8, 10]) == 0
 
-def test_specialFilter_negative_numbers_only(sample_data):
-    """Tests with a list containing only negative numbers."""
-    assert specialFilter([-1, -2, -3, -4, -5]) == 1
+def test_all_matching_numbers():
+    """Tests with a list containing all matching numbers."""
+    assert specialFilter([11, 33, 55, 77, 99]) == 5
 
-def test_specialFilter_mixed_positive_and_negative(sample_data):
-    """Tests with a list containing mixed positive and negative numbers."""
-    assert specialFilter([-15, 15, -33, 33]) == 4
+def test_negative_numbers():
+    """Tests with negative numbers."""
+    assert specialFilter([-11, -33, -55, -77, -99]) == 5
 
-def test_specialFilter_large_numbers(sample_data):
+def test_mixed_positive_and_negative():
+    """Tests with a mix of positive and negative numbers."""
+    assert specialFilter([-11, 13, -33, 55, -77, 99]) == 4
+
+def test_large_numbers():
     """Tests with large numbers."""
-    assert specialFilter([12345, 67890, 98765]) == 1
+    assert specialFilter([11111, 33333, 55555, 77777, 99999]) == 5
 
-def test_specialFilter_numbers_with_zeros(sample_data):
-    """Tests with numbers containing zeros."""
-    assert specialFilter([101, 303, 505, 707, 909]) == 5
+def test_zero():
+    """Tests with zero."""
+    assert specialFilter([0]) == 0
 
-def test_specialFilter_numbers_with_leading_zeros(sample_data):
-    """Tests with numbers that might have leading zeros (though not strictly valid)."""
-    assert specialFilter([015, 033, 055, 077, 099]) == 5
-
-def test_specialFilter_float_numbers(sample_data):
-    """Tests with float numbers."""
-    assert specialFilter([15.0, 33.0, 55.0, 77.0, 99.0]) == 5
-
-def test_specialFilter_edge_cases(sample_data):
-    """Tests with edge cases."""
-    assert specialFilter([11, 13, 15, 17, 19]) == 0
-    assert specialFilter([31, 33, 35, 37, 39]) == 0
-    assert specialFilter([51, 53, 55, 57, 59]) == 0
-    assert specialFilter([71, 73, 75, 77, 79]) == 0
-    assert specialFilter([91, 93, 95, 97, 99]) == 0
+def test_single_element_list():
+    """Tests with a single element list."""
+    assert specialFilter([15]) == 1
+    assert specialFilter([14]) == 0
+    assert specialFilter([33]) == 1
+    assert specialFilter([22]) == 0

@@ -96,11 +96,5 @@ class TestEat:
     def test_large_numbers_not_enough(self):
         assert eat(999, 1000, 999) == [1998, 0]
 
-    def test_number_at_max(self):
-        assert eat(1000, 5, 10) == [1005, 5]
-
-    def test_need_at_max(self):
-        assert eat(5, 1000, 10) == [1005, 0]
-
-    def test_remaining_at_max(self):
-        assert eat(5, 6, 1000) == [11, 994]
+    def test_need_equals_remaining(self):
+        assert eat(5, 5, 5) == [10, 0]

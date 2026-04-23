@@ -81,8 +81,8 @@ def bf(planet1, planet2):
     except ValueError:
         return ()
 
-    if idx1 > idx2:
-        idx1, idx2 = idx2, idx1
+    if idx1 >= idx2:
+        return ()
 
     result = []
     for i in range(idx1 + 1, idx2):

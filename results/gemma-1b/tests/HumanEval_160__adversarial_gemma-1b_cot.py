@@ -50,15 +50,29 @@ def do_algebra(operator, operand):
         Operator list has at least one operator, and operand list has at least two operands.
 
     """
-    if len(operator) == 1 and len(operand) == 1:
-        return operator[0] + operand[0]
-    elif len(operator) == 1:
-        return operator[0]
-    elif len(operand) == 1:
-        return operand[0]
-    elif len(operator) == 2:
-        return operator[0] + operand[1]
-    elif len(operand) == 2:
+    if len(operand) == 0:
+        return 0
+
+    if len(operator) == 0:
+        return 0
+
+    if len(operator) == 1:
+        if len(operand) == 1:
+            return operand[0]
+        else:
+            return 0
+
+    if operator[0] == '+':
+        return operand[0] + operand[1]
+    elif operator[0] == '-':
+        return operand[0] - operand[1]
+    elif operator[0] == '*':
         return operand[0] * operand[1]
+    elif operator[0] == '/':
+        if operand[1] == 0:
+            return 0
+        return operand[0] // operand[1]
+    elif operator[0] == '**':
+        return operand[0] ** operand[1]
     else:
         return 0

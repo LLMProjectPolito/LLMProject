@@ -63,10 +63,10 @@ def test_example_2():
     assert specialFilter([15, -73, 14, -15]) == 1
 
 def test_zero_in_number():
-    assert specialFilter([101, 103, 105, 107, 109]) == 0
+    assert specialFilter([101, 103, 105]) == 0
 
 def test_all_numbers_greater_than_10_but_no_special():
     assert specialFilter([12, 14, 16, 18, 21, 23]) == 0
 
-def test_mixed_positive_and_negative_special():
-    assert specialFilter([11, -13, 15, -17, 19]) == 5
+def test_mixed_positive_and_negative():
+    assert specialFilter([11, -13, 15, -17, 19, -21]) == 4

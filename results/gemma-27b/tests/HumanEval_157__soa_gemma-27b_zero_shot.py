@@ -59,5 +59,5 @@ def test_right_angle_triangle_same_sides():
 
 def test_right_angle_triangle_large_numbers():
     assert right_angle_triangle(1000, 1000, 1414) == False
-    assert right_angle_triangle(65, 72, 97) == True
-    assert right_angle_triangle(20, 21, 29) == True
+    assert right_angle_triangle(1000, 1000, 1415) == False
+    assert right_angle_triangle(1000, 1000, 1414.21356237) == True

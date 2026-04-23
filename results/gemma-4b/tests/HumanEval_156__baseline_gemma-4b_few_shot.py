@@ -85,14 +85,8 @@ def test_int_to_mini_roman_10():
 def test_int_to_mini_roman_100():
     assert int_to_mini_roman(100) == 'c'
 
-def test_int_to_mini_roman_400():
-    assert int_to_mini_roman(400) == 'cd'
-
-def test_int_to_mini_roman_500():
-    assert int_to_mini_roman(500) == 'd'
-
-def test_int_to_mini_roman_900():
-    assert int_to_mini_roman(900) == 'cm'
-
 def test_int_to_mini_roman_1000():
     assert int_to_mini_roman(1000) == 'm'
+
+def test_int_to_mini_roman_4000():
+    assert int_to_mini_roman(4000) == 'mm'

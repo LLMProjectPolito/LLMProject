@@ -28,8 +28,13 @@ def test_valid_file_name():
 
 def test_invalid_file_name_too_many_digits():
     assert file_name_check("1234example.txt") == "No"
-    assert file_name_check("file1234.dll") == "No"
+    assert file_name_check("example1234.dll") == "No"
     assert file_name_check("1234.exe") == "No"
+
+def test_invalid_file_name_wrong_extension():
+    assert file_name_check("example.pdf") == "No"
+    assert file_name_check("MyFile.jpg") == "No"
+    assert file_name_check("AnotherFile.png") == "No"
 
 def test_invalid_file_name_no_dot():
     assert file_name_check("exampletxt") == "No"
@@ -38,8 +43,8 @@ def test_invalid_file_name_no_dot():
 
 def test_invalid_file_name_multiple_dots():
     assert file_name_check("example.txt.txt") == "No"
-    assert file_name_check("My.File.exe") == "No"
-    assert file_name_check("Another.File.dll") == "No"
+    assert file_name_check("MyFile.exe.dll") == "No"
+    assert file_name_check("AnotherFile.dll.pdf") == "No"
 
 def test_invalid_file_name_empty_before_dot():
     assert file_name_check(".txt") == "No"
@@ -51,12 +56,7 @@ def test_invalid_file_name_starts_with_digit():
     assert file_name_check("2MyFile.exe") == "No"
     assert file_name_check("3AnotherFile.dll") == "No"
 
-def test_invalid_file_name_invalid_extension():
-    assert file_name_check("example.pdf") == "No"
-    assert file_name_check("MyFile.jpg") == "No"
-    assert file_name_check("AnotherFile.png") == "No"
-
-def test_invalid_file_name_starts_with_special_character():
+def test_invalid_file_name_starts_with_symbol():
     assert file_name_check("!example.txt") == "No"
     assert file_name_check("@MyFile.exe") == "No"
     assert file_name_check("#AnotherFile.dll") == "No"

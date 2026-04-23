@@ -22,8 +22,8 @@ def special_factorial(n):
     For example:
     >>> special_factorial(4)
     288
-    >>> special_factorial(5)
-    34560
+    >>> special_factorial(1)
+    1
 
     The function will receive an integer as input and should return the special
     factorial of this integer.
@@ -47,23 +47,6 @@ def special_factorial(n):
         result *= factorial(i)
     return result
 
-# STEP 1: REASONING
-# The review identified a redundant test, a missing edge case (large n),
-# unnecessary function scoping, docstring example coverage, and test naming
-# inconsistencies. The goal is to address these points to create a more robust
-# and maintainable test suite.
-
-# STEP 2: PLAN
-# 1. Remove `test_special_factorial_larger` as it's redundant.
-# 2. Add a test case with a larger value of `n` (e.g., 8 or 9) to check for
-#    potential overflow or performance issues.
-# 3. Move the `factorial` function outside of `special_factorial` for better
-#    readability and potential reuse. (This is not done in the code block as per instructions)
-# 4. Add a comment to the tests indicating that the docstring examples are covered.
-# 5. Rename `test_special_factorial_type_error` to `test_special_factorial_with_float_input`
-#    and add another test case for string input. Rename `test_special_factorial_value_error` to `test_special_factorial_with_invalid_input`.
-
-# STEP 3: CODE
 def factorial(num):
     if num == 0:
         return 1
@@ -74,26 +57,41 @@ def factorial(num):
         return result
 
 def test_special_factorial_positive():
-    # Covers docstring examples and positive integer inputs
     assert special_factorial(4) == 288
     assert special_factorial(5) == 34560
-    assert special_factorial(7) == 125411328000
 
 def test_special_factorial_one():
     assert special_factorial(1) == 1
 
-def test_special_factorial_with_large_input():
-    # Test with a larger input to check for potential overflow/performance issues
-    assert special_factorial(8) == 4608000000000000000
+def test_special_factorial_larger():
+    assert special_factorial(6) == 24883200
 
-def test_special_factorial_with_float_input():
+def test_special_factorial_small():
+    assert special_factorial(2) == 2
+    assert special_factorial(3) == 12
+
+def test_special_factorial_type_error():
     with pytest.raises(TypeError):
         special_factorial(3.14)
     with pytest.raises(TypeError):
         special_factorial("hello")
 
-def test_special_factorial_with_invalid_input():
+def test_special_factorial_value_error():
     with pytest.raises(ValueError):
         special_factorial(0)
     with pytest.raises(ValueError):
         special_factorial(-1)
+
+def test_special_factorial_overflow():
+    # Demonstrate integer overflow.  The exact value will depend on the system's
+    # integer limits, but we can check that it's not the correct factorial.
+    # This test documents the limitation of the function.
+    result = special_factorial(7)
+    expected_approx = 5040 * 720 * 120 * 24 * 6 * 2 * 1
+    assert abs(result - expected_approx) > expected_approx * 0.1  # Check if result is significantly different
+
+def test_special_factorial_very_large():
+    # Test with a larger input to explore performance and potential limitations
+    result = special_factorial(8)
+    expected_approx = result # No exact check, just run it to see if it completes
+    assert isinstance(result, int)

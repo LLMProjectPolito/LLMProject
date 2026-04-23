@@ -35,5 +35,5 @@ def test_right_angle_triangle():
 
 def test_equal_sides():
     assert right_angle_triangle(5, 5, 6) == True
-    assert right_angle_triangle(5, 5, 8) == False
-    assert right_angle_triangle(10, 10, 10) == True
+    assert right_angle_triangle(5, 12, 13) == True
+    assert right_angle_triangle(10, 10, 20) == False

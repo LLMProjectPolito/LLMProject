@@ -23,37 +23,34 @@ def test_all_lowercase():
     assert solve("ab") == "AB"
 
 def test_mixed_case():
-    assert solve("aB") == "Ab"
-
-def test_with_special_characters():
     assert solve("#a@C") == "#A@c"
 
-def test_numbers_and_letters():
+def test_with_numbers_and_symbols():
     assert solve("a1b2c") == "A1B2C"
 
-def test_only_letters():
-    assert solve("abc") == "ABC"
+def test_only_uppercase():
+    assert solve("AB") == "ab"
 
-def test_long_string():
-    assert solve("ThisIsALongString") == "tHISiSaLONGsTRING"
+def test_special_characters():
+    assert solve("!@#$%^") == "!@#$%^"
+
+def test_mixed_string():
+    assert solve("HeLlO wOrLd 123") == "hElLo WoRlD 123"
 
 def test_string_with_spaces():
-    assert solve("hello world") == "HELLO WORLD"
+    assert solve("  a b  ") == "  A B  "
 
-def test_string_with_numbers_and_spaces():
-    assert solve("123 hello 456") == "123 HELLO 456"
+def test_long_string():
+    assert solve("ThisIsALongStringWithNumbers123AndSymbols!@#") == "tHISiSaLONGsTRINGwITHnUMBERS123aNDsYMBOLS!@#"
 
-def test_string_with_special_chars_and_numbers():
-    assert solve("!@#123abc") == "!@#123ABC"
-
-def test_string_with_unicode_characters():
+def test_string_with_unicode():
     assert solve("你好世界") == "你好世界"
 
 def test_string_with_mixed_unicode_and_ascii():
-    assert solve("hello你好world") == "HELLO你好WORLD"
+    assert solve("Hello你好World") == "hELLO你好wORLD"
 
-def test_string_with_only_special_characters():
-    assert solve("!@#$%^") == "!@#$%^"
+def test_string_with_only_symbols():
+    assert solve("!@#$%^&*()") == "!@#$%^&*()"
 
 def test_string_with_leading_and_trailing_spaces():
     assert solve("  abc  ") == "  ABC  "

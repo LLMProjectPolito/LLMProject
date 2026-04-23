@@ -26,8 +26,24 @@ def x_or_y(n, x, y):
     else:
         return y
 
-def test_x_or_y_non_prime_one():
-    assert x_or_y(4, 34, 12) == 12
+def test_x_or_y_zero():
+    assert x_or_y(0, 34, 12) == 12
 
-def test_x_or_y_one():
-    assert x_or_y(1, 34, 12) == 12
+def test_x_or_y_prime():
+    assert x_or_y(7, 34, 12) == 34
+
+def test_x_or_y_non_prime():
+    assert x_or_y(15, 8, 5) == 5
+
+def test_x_or_y_small_primes():
+    assert x_or_y(2, 100, 50) == 100
+    assert x_or_y(3, 100, 50) == 100
+    assert x_or_y(5, 100, 50) == 100
+    assert x_or_y(7, 100, 50) == 100
+    assert x_or_y(11, 100, 50) == 100
+    assert x_or_y(13, 100, 50) == 100
+    assert x_or_y(17, 100, 50) == 100
+    assert x_or_y(19, 100, 50) == 100
+    assert x_or_y(23, 100, 50) == 100
+    assert x_or_y(29, 100, 50) == 100
+    assert x_or_y(31, 100, 50) == 100

@@ -84,29 +84,26 @@ def test_sentence_with_multiple_spaces_between_words():
 def test_sentence_with_only_spaces():
     assert words_in_sentence("   ") == ""
 
-def test_sentence_with_prime_length_words():
-    assert words_in_sentence("a b c d e") == "a b c"
+def test_sentence_with_prime_length_words_and_non_prime_length_words():
+    assert words_in_sentence("one two three four") == "one two"
 
-def test_sentence_with_non_prime_length_words():
-    assert words_in_sentence("a b c d e f") == "a b c"
+def test_sentence_with_long_prime_length_words():
+    assert words_in_sentence("abcdefghijklm") == "abcdefgh"
 
-def test_sentence_with_long_words():
-    assert words_in_sentence("This is a verylongword") == "is"
+def test_sentence_with_long_non_prime_length_words():
+    assert words_in_sentence("abcdefghijklmn") == ""
 
-def test_sentence_with_mixed_prime_and_non_prime_words():
-    assert words_in_sentence("hello world python") == "world python"
+def test_sentence_with_mixed_case():
+    assert words_in_sentence("ThIs Is A tEsT") == "Is A"
+
+def test_sentence_with_numbers_in_words():
+    assert words_in_sentence("one2 three4 five6") == "one2 three4"
+
+def test_sentence_with_special_characters():
+    assert words_in_sentence("abc! def@ ghi#") == "def"
 
 def test_sentence_with_prime_length_words_at_the_end():
-    assert words_in_sentence("This is a test hello") == "is a test"
+    assert words_in_sentence("This is a test abc") == "is a test"
 
 def test_sentence_with_non_prime_length_words_at_the_end():
-    assert words_in_sentence("This is a test world") == "is a test"
-
-def test_sentence_with_prime_length_words_and_non_prime_length_words():
-    assert words_in_sentence("This is a test world python") == "is a test"
-
-def test_sentence_with_all_non_prime_length_words():
-    assert words_in_sentence("abcdefghijklm") == ""
-
-def test_sentence_with_all_prime_length_words():
-    assert words_in_sentence("abcdefghijkl") == "abc"
+    assert words_in_sentence("This is a test def") == "is a test"

@@ -59,4 +59,4 @@ def test_sorted_list_sum_mixed():
     assert sorted_list_sum(["abc", "aa", "b", "ccd", "ee"]) == ["aa", "ee"]
 
 def test_sorted_list_sum_long_strings():
-    assert sorted_list_sum(["abcdef", "abc", "defgh", "a"]) == ["abcdef", "defgh"]
+    assert sorted_list_sum(["abcdef", "abc", "defgh", "hi"]) == ["abcdef", "defgh"]

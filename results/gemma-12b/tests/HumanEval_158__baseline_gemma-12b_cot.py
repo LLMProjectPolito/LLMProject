@@ -42,38 +42,41 @@ class TestFindMax:
     def test_empty_list(self):
         assert find_max([]) == ""
 
-    def test_basic_case(self):
+    def test_single_word(self):
+        assert find_max(["hello"]) == "hello"
+
+    def test_multiple_words_different_unique_counts(self):
         assert find_max(["name", "of", "string"]) == "string"
 
-    def test_lexicographical_tie(self):
+    def test_multiple_words_same_unique_counts_lexicographical_order(self):
         assert find_max(["name", "enam", "game"]) == "enam"
 
-    def test_all_same_characters(self):
+    def test_words_with_repeated_characters(self):
         assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
-    def test_mixed_lengths(self):
-        assert find_max(["a", "bb", "ccc", "dddd"]) == "ccc"
-
-    def test_duplicate_words(self):
-        assert find_max(["abc", "abc", "def"]) == "abc"
-
-    def test_words_with_spaces(self):
-        assert find_max(["hello world", "good bye"]) == "hello world"
+    def test_words_with_mixed_cases(self):
+        assert find_max(["Name", "name", "STRING", "string"]) == "Name"
 
     def test_words_with_special_characters(self):
-        assert find_max(["abc!", "def?", "ghi#"]) == "abc!"
+        assert find_max(["!@#", "abc", "def"]) == "!@#"
 
     def test_words_with_numbers(self):
-        assert find_max(["abc1", "def2", "ghi3"]) == "abc1"
+        assert find_max(["123", "abc", "456"]) == "123"
 
-    def test_single_word(self):
-        assert find_max(["single"]) == "single"
-
-    def test_multiple_words_same_unique_count(self):
-        assert find_max(["abc", "def", "ghi"]) == "abc"
+    def test_words_with_spaces(self):
+        assert find_max(["hello world", "hello", "world"]) == "hello world"
 
     def test_words_with_unicode_characters(self):
-        assert find_max(["你好", "世界", "Python"]) == "Python"
+        assert find_max(["你好", "世界", "abc"]) == "你好"
 
-    def test_words_with_mixed_unicode_and_ascii(self):
-        assert find_max(["hello", "你好", "world"]) == "hello"
+    def test_words_with_empty_string(self):
+        assert find_max(["", "abc", "def"]) == "abc"
+
+    def test_all_words_empty(self):
+        assert find_max(["", "", ""]) == ""
+
+    def test_same_unique_count_lexicographical_tie(self):
+        assert find_max(["abc", "bca", "cab"]) == "abc"
+
+    def test_long_words(self):
+        assert find_max(["abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnop"]) == "abcdefghijklmnopqrstuvwxyz"

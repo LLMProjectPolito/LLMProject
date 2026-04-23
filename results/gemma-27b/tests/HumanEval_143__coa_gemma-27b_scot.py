@@ -130,6 +130,9 @@ def test_empty_sentence():
 def test_null_sentence():
     assert words_in_sentence(None) == ""
 
+def test_sentence_with_only_spaces():
+    assert words_in_sentence("   ") == ""
+
 # Focus: Sentence with Non-Space Characters Only
 import pytest
 

@@ -88,7 +88,7 @@ class TestWordsInSentence:
 
     def test_long_sentence(self):
         sentence = "This is a very long sentence with many words of varying lengths"
-        expected = "is a very long sentence with many words"
+        expected = "is a very long sentence"
         assert words_in_sentence(sentence) == expected
 
     def test_sentence_with_numbers_in_words(self):

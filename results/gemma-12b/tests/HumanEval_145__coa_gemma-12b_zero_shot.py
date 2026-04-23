@@ -26,18 +26,14 @@ def test_boundary_negative_and_positive_zero():
     assert order_by_points([-1, 0, 1]) == [-1, 0, 1]
 
 # Focus: Type Scenarios
-def test_type_scenario_empty_list():
+def test_empty_list():
     assert order_by_points([]) == []
 
-def test_type_scenario_positive_and_negative_numbers():
+def test_positive_and_negative_numbers():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
 
-def test_type_scenario_mixed_types_raises_typeerror():
-    try:
-        order_by_points([1, "a", 2])
-        assert False, "TypeError not raised"
-    except TypeError:
-        assert True
+def test_numbers_with_same_digit_sum():
+    assert order_by_points([12, 21, 3]) == [3, 12, 21]
 
 # Focus: Logic Branches
 def test_order_by_points_positive_and_negative():

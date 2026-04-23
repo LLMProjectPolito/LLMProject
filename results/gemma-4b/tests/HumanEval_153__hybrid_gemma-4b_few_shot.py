@@ -85,42 +85,49 @@ def test_get_max_positive():
     assert get_max([3, 2, 1]) == 3
     assert get_max([1, 3, 2]) == 3
 
+def test_get_max_empty():
+    assert get_max([]) == None
+
 def test_get_max_negative():
     assert get_max([-1, -2, -3]) == -1
 
 def test_get_max_mixed():
     assert get_max([-1, 2, -3, 4]) == 4
 
-def test_get_max_empty():
-    assert get_max([]) == None
-
-def test_strongest_extension_basic():
+def test_Strongest_Extension_basic():
     assert Strongest_Extension('Slices', ['SErviNGSliCes', 'Cheese', 'StuFfed']) == 'Slices.SErviNGSliCes'
     assert Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
     assert Strongest_Extension('Test', ['test', 'TEST']) == 'Test.TEST'
-    assert Strongest_Extension('Class', ['class', 'Class']) == 'Class.class'
-    assert Strongest_Extension('Name', ['name', 'NAME']) == 'Name.NAME'
+    assert Strongest_Extension('Class', ['class', 'CLASS']) == 'Class.CLASS'
+    assert Strongest_Extension('Name', ['name', 'NAME']) == 'Name.name'
 
-def test_strongest_extension_same_strength():
-    assert Strongest_Extension('Test', ['test', 'TEST']) == 'Test.TEST'
-    assert Strongest_Extension('Name', ['name', 'NAME']) == 'Name.NAME'
+def test_Strongest_Extension_same_strength():
+    assert Strongest_Extension('Test', ['test', 'TEST']) == 'Test.test'
+    assert Strongest_Extension('Class', ['class', 'CLASS']) == 'Class.class'
 
-def test_strongest_extension_empty_extensions():
+def test_Strongest_Extension_empty_extensions():
     assert Strongest_Extension('Test', []) == 'Test.'
 
-def test_strongest_extension_all_lowercase():
-    assert Strongest_Extension('Test', ['test', 'test2']) == 'Test.test'
-
-def test_strongest_extension_all_uppercase():
-    assert Strongest_Extension('Test', ['TEST', 'TEST2']) == 'Test.TEST'
+def test_Strongest_Extension_mixed_case_extensions():
+    assert Strongest_Extension('Test', ['Test', 'test']) == 'Test.Test'
+    assert Strongest_Extension('Class', ['CLASS', 'class']) == 'Class.CLASS'
 
 def test_is_palindrome_edge_cases():
     assert is_palindrome("A") == True
     assert is_palindrome(" ") == True
     assert is_palindrome("ab") == False
 
-def test_get_max_edge_cases():
-    assert get_max([1]) == 1
-    assert get_max([-1]) == -1
-    assert get_max([0]) == 0
-    assert get_max([0, 0, 0]) == 0
+def test_get_max_single_element():
+    assert get_max([5]) == 5
+
+def test_get_max_all_same():
+    assert get_max([2, 2, 2]) == 2
+
+def test_Strongest_Extension_all_uppercase():
+    assert Strongest_Extension("Example", ["ABC", "DEF", "GHI"]) == "Example.ABC"
+
+def test_Strongest_Extension_all_lowercase():
+    assert Strongest_Extension("Example", ["abc", "def", "ghi"]) == "Example.abc"
+
+def test_Strongest_Extension_mixed_case_and_symbols():
+    assert Strongest_Extension('Mixed', ['mIxEd', 'MiXeD']) == 'Mixed.mIxEd'

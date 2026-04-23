@@ -22,22 +22,23 @@ def cycpattern_check(a, b):
     cycpattern_check("himenss","simen") => True
 
     """
-    s1 = a
-    s2 = b
-    s3 = s1
-    s4 = s2
-    s5 = s3
+    if len(a) == 0 or len(b) == 0:
+        return False
 
-    if len(s1) >= len(s2):
-        for i in range(len(s2)):
-            rotated_s2 = s2[i:] + s2[:i]
-            if rotated_s2 in s1:
-                return True
-    else:
-        for i in range(len(s1)):
-            rotated_s1 = s1[i:] + s1[:i]
-            if rotated_s1 in s2:
-                return True
+    if len(a) == 1 and len(b) == 1:
+        return a.lower() in b.lower()
+
+    if len(a) == 1:
+        return a.lower() in b.lower()
+
+    if len(b) == 1:
+        return b.lower() in a.lower()
+
+    for i in range(1, len(b)):
+        rotated_b = b[i:] + b[:i]
+        if rotated_b in a:
+            return True
+
     return False
 
 def test_cycpattern_check_basic():
@@ -49,18 +50,40 @@ def test_cycpattern_check_basic():
     assert cycpattern_check("himenss", "simen") == True
 
 def test_cycpattern_check_empty_strings():
-    assert cycpattern_check("", "") == True
-    assert cycpattern_check("abc", "") == False
-    assert cycpattern_check("", "abc") == False
+    assert cycpattern_check("", "") == False
+    assert cycpattern_check("a", "") == False
+    assert cycpattern_check("", "a") == False
 
 def test_cycpattern_check_single_char():
     assert cycpattern_check("a", "a") == True
     assert cycpattern_check("a", "b") == False
-    assert cycpattern_check("a", "ab") == False
+    assert cycpattern_check("b", "a") == False
+    assert cycpattern_check("b", "b") == True
 
 def test_cycpattern_check_longer_words():
-    assert cycpattern_check("abcdefg", "def") == True
-    assert cycpattern_check("abcdefg", "fed") == True
+    assert cycpattern_check("abcdefg", "cdefg") == True
+    assert cycpattern_check("abcdefg", "defg") == True
+    assert cycpattern_check("abcdefg", "efg") == True
     assert cycpattern_check("abcdefg", "fgh") == True
+    assert cycpattern_check("abcdefg", "gh") == True
+    assert cycpattern_check("abcdefg", "edg") == True
     assert cycpattern_check("abcdefg", "g") == True
-    assert cycpattern_check("abcdefg", "abc") == False
+    assert cycpattern_check("abcdefg", "h") == False
+    assert cycpattern_check("abcdefg", "i") == False
+    assert cycpattern_check("abcdefg", "j") == False
+    assert cycpattern_check("abcdefg", "k") == False
+    assert cycpattern_check("abcdefg", "l") == False
+    assert cycpattern_check("abcdefg", "m") == False
+    assert cycpattern_check("abcdefg", "n") == False
+    assert cycpattern_check("abcdefg", "o") == False
+    assert cycpattern_check("abcdefg", "p") == False
+    assert cycpattern_check("abcdefg", "q") == False
+    assert cycpattern_check("abcdefg", "r") == False
+    assert cycpattern_check("abcdefg", "s") == False
+    assert cycpattern_check("abcdefg", "t") == False
+    assert cycpattern_check("abcdefg", "u") == False
+    assert cycpattern_check("abcdefg", "v") == False
+    assert cycpattern_check("abcdefg", "w") == False
+    assert cycpattern_check("abcdefg", "x") == False
+    assert cycpattern_check("abcdefg", "y") == False
+    assert cycpattern_check("abcdefg", "z") == False

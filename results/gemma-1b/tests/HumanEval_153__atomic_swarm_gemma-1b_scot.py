@@ -40,20 +40,6 @@ def Strongest_Extension(class_name, extensions):
     strongest_extension = ''
     max_strength = -1
     for extension in extensions:
-        strength = 0
-        for char in extension:
-            if 'A' <= char <= 'Z':
-                strength += 1
-        strength = strength - len(extension)
-        if strength > max_strength:
-            max_strength = strength
-            strongest_extension = extension
-    return strongest_extension
-
-def Strongest_Extension(class_name, extensions):
-    strongest_extension = None
-    max_strength = -1
-    for extension in extensions:
         cap = 0
         sm = 0
         for char in extension:
@@ -64,8 +50,21 @@ def Strongest_Extension(class_name, extensions):
         strength = cap - sm
         if strength > max_strength:
             max_strength = strength
-            strongest_extension = class_name
+            strongest_extension = extension
     return strongest_extension
+
+def Strongest_Extension(class_name, extensions):
+    strongest_extension = None
+    max_strength = -1
+    for extension in extensions:
+        strength = 0
+        for char in extension:
+            if 'A' <= char <= 'Z':
+                strength += 1
+        if strength > max_strength:
+            max_strength = strength
+            strongest_extension = extension
+    return class_name + '.' + strongest_extension
 
 def Strongest_Extension(class_name, extensions):
     """You will be given the name of a class (a string) and a list of extensions.

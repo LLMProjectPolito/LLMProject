@@ -27,16 +27,26 @@ def simplify(x, n):
     simplify("7/10", "10/2") = False
     """
     try:
-        numerator, denominator = x.split('/')
-        numerator_val = int(numerator)
-        denominator_val = int(denominator)
-
-        if denominator_val == 0:
+        x_val = int(x)
+        n_val = int(n)
+        numerator = x_val
+        denominator = n_val
+        
+        if denominator == 0:
             return False
 
-        return numerator_val * denominator_val == int(numerator_val * denominator_val)
+        common_divisor = gcd(numerator, denominator)
+        numerator //= common_divisor
+        denominator //= common_divisor
+        
+        return abs(numerator) == abs(denominator)
     except ValueError:
         return False
+
+def gcd(a, b):
+    if b == 0:
+        return a
+    return gcd(b, a % b)
 
 import pytest
 
@@ -53,13 +63,18 @@ def simplify(x, n):
     simplify("7/10", "10/2") = False
     """
     try:
-        numerator, denominator = x.split('/')
-        numerator_val = int(numerator)
-        denominator_val = int(denominator)
-
-        if denominator_val == 0:
+        x_val = int(x)
+        n_val = int(n)
+        numerator = x_val
+        denominator = n_val
+        
+        if denominator == 0:
             return False
-
-        return numerator_val * denominator_val == int(numerator_val * denominator_val)
+        
+        common_divisor = gcd(numerator, denominator)
+        numerator //= common_divisor
+        denominator //= common_divisor
+        
+        return abs(numerator) == abs(denominator)
     except ValueError:
         return False

@@ -36,7 +36,7 @@ def Strongest_Extension(class_name, extensions):
     Example:
     for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
     """
-    strongest_extension = None
+    strongest_extension = ''
     max_strength = -1
     for extension in extensions:
         cap = 0
@@ -50,4 +50,4 @@ def Strongest_Extension(class_name, extensions):
         if strength > max_strength:
             max_strength = strength
             strongest_extension = extension
-    return f"{class_name}.{strongest_extension}"
+    return strongest_extension

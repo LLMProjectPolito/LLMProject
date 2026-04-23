@@ -14,5 +14,5 @@ import pytest
 import math
 
 def test_zero_length_side():
-    """Test case for a triangle with a zero-length side."""
+    """Test case with a zero-length side, which should return False."""
     assert right_angle_triangle(0, 4, 5) == False

@@ -29,17 +29,17 @@ def simplify(x, n):
     """
     num_x, den_x = map(int, x.split('/'))
     num_n, den_n = map(int, n.split('/'))
-    
+
     product_num = num_x * num_n
     product_den = den_x * den_n
-    
+
     if product_num % product_den == 0:
         return True
     else:
         return False
 
 def test_simplify_large_numbers():
-    assert simplify("1000/100", "100/1") == True
+    assert simplify("1000/1", "1/1") == True
 
 def test_simplify_basic():
     assert simplify("1/5", "5/1") == True
@@ -51,4 +51,10 @@ def test_simplify_false2():
     assert simplify("7/10", "10/2") == False
 
 def test_simplify_zero_denominator():
-    assert simplify("1/0", "5/1") == False # Should handle zero denominator gracefully
+    assert simplify("1/0", "5/1") == False
+
+def test_simplify_same_fraction():
+    assert simplify("1/2", "1/2") == True
+
+def test_simplify_one_over_one():
+    assert simplify("1/1", "1/1") == True

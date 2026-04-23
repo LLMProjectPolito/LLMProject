@@ -53,28 +53,25 @@ def words_in_sentence(sentence):
 def is_prime(n):
     if n <= 1:
         return False
-    for i in range(2, int(math.sqrt(n)) + 1):
+    for i in range(2, int(n**0.5) + 1):
         if n % i == 0:
             return False
     return True
 
+def test_single_non_prime_word():
+    assert words_in_sentence("abc") == ""
+
 def test_empty_sentence():
     assert words_in_sentence("") == ""
 
-def test_no_prime_length_words():
-    assert words_in_sentence("This is a test") == ""
-
-def test_single_prime_length_word():
-    assert words_in_sentence("test") == "test"
-
-def test_multiple_prime_length_words():
+def test_sentence_with_prime_words():
     assert words_in_sentence("This is a test") == "is"
 
-def test_sentence_with_only_prime_length_words():
-    assert words_in_sentence("go for") == "go for"
+def test_sentence_with_all_non_prime_words():
+    assert words_in_sentence("abcd") == ""
 
-def test_sentence_with_mixed_prime_and_non_prime_length_words():
-    assert words_in_sentence("This is a test sentence") == "is a"
+def test_sentence_with_mixed_prime_and_non_prime_words():
+    assert words_in_sentence("hello world") == "world"
 
-def test_single_non_prime_word():
-    assert words_in_sentence("abc") == ""
+def test_sentence_with_multiple_prime_words():
+    assert words_in_sentence("one two three") == "one two"

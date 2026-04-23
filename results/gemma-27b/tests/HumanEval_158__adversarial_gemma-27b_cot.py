@@ -48,11 +48,11 @@ def test_long_words():
 def test_duplicate_words():
     assert find_max(["hello", "hello", "world"]) == "hello"
 
-def test_empty_string_in_list():
-    assert find_max(["", "hello", "world"]) == "hello"
-
-def test_list_with_only_empty_strings():
+def test_empty_strings():
     assert find_max(["", "", ""]) == ""
 
-def test_words_with_unicode_characters():
+def test_mixed_empty_and_nonempty():
+    assert find_max(["", "hello", "world"]) == "hello"
+
+def test_unicode_characters():
     assert find_max(["你好", "世界"]) == "世界"

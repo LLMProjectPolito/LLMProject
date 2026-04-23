@@ -50,84 +50,61 @@ def words_in_sentence(sentence):
     return " ".join(result)
 
 def is_prime(n):
-    if n < 2:
+    if n <= 1:
         return False
     for i in range(2, int(n**0.5) + 1):
         if n % i == 0:
             return False
     return True
 
-def words_in_sentence(sentence):
-    """
-    You are given a string representing a sentence,
-    the sentence contains some words separated by a space,
-    and you have to return a string that contains the words from the original sentence,
-    whose lengths are prime numbers,
-    the order of the words in the new string should be the same as the original one.
-
-    Example 1:
-        Input: sentence = "This is a test"
-        Output: "is"
-
-    Example 2:
-        Input: sentence = "lets go for swimming"
-        Output: "go for"
-
-    Constraints:
-        * 1 <= len(sentence) <= 100
-        * sentence contains only letters
-    """
-    def is_prime(n):
-        if n < 2:
-            return False
-        for i in range(2, int(n**0.5) + 1):
-            if n % i == 0:
-                return False
-        return True
-
-    words = sentence.split()
-    result = []
-    for word in words:
-        if is_prime(len(word)):
-            result.append(word)
-    return " ".join(result)
-
-
 def test_empty_sentence():
+    """Test with an empty sentence."""
     assert words_in_sentence("") == ""
 
 def test_no_prime_words():
-    assert words_in_sentence("hello world") == ""
+    """Test when no words have prime length."""
+    assert words_in_sentence("This is a test") == ""
 
 def test_single_prime_word():
+    """Test with a single word of prime length."""
     assert words_in_sentence("is") == "is"
 
 def test_multiple_prime_words():
-    assert words_in_sentence("is go for") == "go for"
+    """Test with multiple words of prime length."""
+    assert words_in_sentence("lets go for swimming") == "go for"
+
+def test_all_prime_length_words():
+    """Test when all words have prime length."""
+    assert words_in_sentence("prime test") == "prime test"
 
 def test_mixed_prime_and_non_prime_words():
-    assert words_in_sentence("this is a test") == "is"
+    """Test with a mix of prime and non-prime length words."""
+    assert words_in_sentence("This is a test sentence") == "is a"
 
-def test_is_prime_small_numbers():
-    assert is_prime(2) == True
-    assert is_prime(3) == True
-    assert is_prime(4) == False
-    assert is_prime(5) == True
+def test_words_in_sentence_long_sentence():
+    """Test with a longer sentence."""
+    assert words_in_sentence("This is a very long sentence with many words") == "is a"
 
-def test_is_prime_large_numbers():
-    assert is_prime(7) == True
-    assert is_prime(11) == True
-    assert is_prime(13) == True
-    assert is_prime(17) == True
+def test_words_in_sentence_sentence_with_numbers():
+    """Test with a sentence containing numbers (should still work)."""
+    assert words_in_sentence("123 is 456") == "is"
 
-def test_is_prime_non_prime_numbers():
-    assert is_prime(4) == False
-    assert is_prime(6) == False
-    assert is_prime(8) == False
-    assert is_prime(9) == False
+def test_words_in_sentence_sentence_with_special_characters():
+    """Test with a sentence containing special characters (should still work)."""
+    assert words_in_sentence("hello! world?") == "world?"
 
-def test_is_prime_one():
-    assert is_prime(1) == False
+def test_words_in_sentence_prime_length_one():
+    """Test with a word of length 1 (which is not prime)."""
+    assert words_in_sentence("a") == ""
 
-def test_is_prime_two():
-    assert is_prime(2) == True
+def test_words_in_sentence_prime_length_two():
+    """Test with a word of length 2 (which is not prime)."""
+    assert words_in_sentence("ab") == ""
+
+def test_words_in_sentence_prime_length_three():
+    """Test with a word of length 3 (which is prime)."""
+    assert words_in_sentence("abc") == "abc"
+
+def test_words_in_sentence_prime_length_five():
+    """Test with a word of length 5 (which is prime)."""
+    assert words_in_sentence("hello") == "hello"

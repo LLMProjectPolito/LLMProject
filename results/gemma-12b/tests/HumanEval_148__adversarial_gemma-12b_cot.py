@@ -44,38 +44,34 @@ def bf(planet1, planet2):
     if index1 >= index2:
         return ()
 
-    between_planets = planets[index1 + 1:index2]
-    return tuple(between_planets)
+    result = tuple(planets[index1 + 1:index2])
+    return result
 
-def test_bf_jupiter_neptune():
-    assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
+class TestBF:
+    def test_valid_planets(self):
+        assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
+        assert bf("Earth", "Mercury") == ("Venus",)
+        assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+        assert bf("Venus", "Saturn") == ("Earth", "Mars", "Jupiter")
+        assert bf("Mars", "Jupiter") == ("Earth",)
 
-def test_bf_earth_mercury():
-    assert bf("Earth", "Mercury") == ("Venus",)
+    def test_invalid_planets(self):
+        assert bf("Pluto", "Neptune") == ()
+        assert bf("Earth", "Pluto") == ()
+        assert bf("Invalid", "Neptune") == ()
+        assert bf("Earth", "Invalid") == ()
+        assert bf("Invalid1", "Invalid2") == ()
 
-def test_bf_mercury_uranus():
-    assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+    def test_same_planet(self):
+        assert bf("Earth", "Earth") == ()
+        assert bf("Mercury", "Mercury") == ()
 
-def test_bf_invalid_planet1():
-    assert bf("Pluto", "Neptune") == ()
+    def test_planet1_after_planet2(self):
+        assert bf("Neptune", "Mercury") == ()
+        assert bf("Uranus", "Venus") == ()
 
-def test_bf_invalid_planet2():
-    assert bf("Jupiter", "Pluto") == ()
-
-def test_bf_invalid_planets():
-    assert bf("Pluto", "Pluto") == ()
-
-def test_bf_same_planet():
-    assert bf("Earth", "Earth") == ()
-
-def test_bf_planet1_after_planet2():
-    assert bf("Neptune", "Jupiter") == ()
-
-def test_bf_mercury_mercury():
-    assert bf("Mercury", "Mercury") == ()
-
-def test_bf_venus_venus():
-    assert bf("Venus", "Venus") == ()
-
-def test_bf_earth_jupiter():
-    assert bf("Earth", "Jupiter") == ("Mars", "Jupiter", "Saturn")
+    def test_edge_cases(self):
+        assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
+        assert bf("Neptune", "Mercury") == ()
+        assert bf("Mercury", "Mercury") == ()
+        assert bf("Venus", "Venus") == ()

@@ -95,13 +95,7 @@ def test_sentence_with_short_words():
     assert words_in_sentence("a b c d e f g h i j k l m n o p q r s t u v w x y z") == "b d f h j l n p r s t"
 
 def test_sentence_with_prime_length_words_and_non_prime():
-    assert words_in_sentence("abc def ghi jkl mno") == "abc def"
+    assert words_in_sentence("prime nonprime") == "prime"
 
 def test_sentence_with_non_prime_length_words_and_prime():
-    assert words_in_sentence("abc def ghi mno pqr") == "abc ghi"
-
-def test_sentence_with_only_non_prime_length_words():
-    assert words_in_sentence("hello world") == ""
-
-def test_sentence_with_only_prime_length_words():
-    assert words_in_sentence("abc def ghi") == "abc def ghi"
+    assert words_in_sentence("nonprime prime") == "prime"

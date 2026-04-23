@@ -83,9 +83,9 @@ def test_int_to_mini_roman_edge_cases():
 
 def test_int_to_mini_roman_invalid_input():
     with pytest.raises(TypeError):
-        int_to_mini_roman(1.5)
-    with pytest.raises(TypeError):
         int_to_mini_roman("1")
+    with pytest.raises(TypeError):
+        int_to_mini_roman(1.5)
     with pytest.raises(ValueError):
         int_to_mini_roman(0)
     with pytest.raises(ValueError):

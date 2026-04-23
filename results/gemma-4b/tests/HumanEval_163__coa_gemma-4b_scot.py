@@ -27,7 +27,7 @@ def test_generate_integers_range_with_even_numbers():
     assert generate_integers(2, 8) == [2, 4, 6, 8]
 
 def test_generate_integers_range_with_odd_numbers():
-    assert generate_integers(1, 3) == [1, 3]
+    assert generate_integers(1, 3) == []
 
 def test_generate_integers_reverse_range():
     assert generate_integers(8, 2) == [2, 4, 6, 8]

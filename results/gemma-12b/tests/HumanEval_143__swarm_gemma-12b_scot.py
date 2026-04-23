@@ -21,7 +21,6 @@ def words_in_sentence(sentence):
     """
 
 import pytest
-import math
 
 def is_prime(n):
     if n <= 1:
@@ -35,3 +34,33 @@ def test_empty_sentence():
     """Test case for an empty sentence."""
     sentence = ""
     assert words_in_sentence(sentence) == ""
+
+def test_sentence_with_no_prime_length_words():
+    """Test case where no words have prime length."""
+    sentence = "this is a test sentence"
+    assert words_in_sentence(sentence) == ""
+
+def test_sentence_with_only_one_prime_length_word():
+    """Test case with only one word of prime length."""
+    sentence = "a very long sentence"
+    assert words_in_sentence(sentence) == "a"
+
+def test_sentence_with_multiple_prime_length_words_at_start():
+    """Test case with multiple prime length words at the beginning."""
+    sentence = "go for a walk"
+    assert words_in_sentence(sentence) == "go for a"
+
+def test_sentence_with_multiple_prime_length_words_at_end():
+    """Test case with multiple prime length words at the end."""
+    sentence = "this is a fun test"
+    assert words_in_sentence(sentence) == "is fun"
+
+def test_sentence_with_leading_and_trailing_spaces():
+    """Test case with leading and trailing spaces."""
+    sentence = "  this is a test  "
+    assert words_in_sentence(sentence) == "is"
+
+def test_sentence_with_multiple_spaces_between_words():
+    """Test case with multiple spaces between words."""
+    sentence = "this  is   a    test"
+    assert words_in_sentence(sentence) == "is"

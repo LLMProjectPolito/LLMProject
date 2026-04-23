@@ -71,7 +71,7 @@ def is_prime(n):
             return False
     return True
 
-def words_in_sentence_prime(sentence):
+def words_in_sentence(sentence):
     words = sentence.split()
     result = []
     for word in words:

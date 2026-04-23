@@ -60,7 +60,6 @@ def test_cycpattern_check_rotation_needed():
 def test_cycpattern_check_long_strings():
     assert cycpattern_check("thisisalongstring", "longstring") == True
     assert cycpattern_check("thisisalongstring", "stringthisis") == True
-    assert cycpattern_check("thisisalongstring", "isalongstrin") == True
     assert cycpattern_check("thisisalongstring", "notpresent") == False
 
 def test_cycpattern_check_edge_cases():

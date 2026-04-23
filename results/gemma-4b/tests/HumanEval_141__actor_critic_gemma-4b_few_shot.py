@@ -59,11 +59,10 @@ def file_name_check(file_name):
     if not before_dot:
         return 'No'
 
-    if not before_dot[0].isalpha():
+    if not 'a' <= before_dot[0] <= 'z' and not 'A' <= before_dot[0] <= 'Z':
         return 'No'
 
-    allowed_extensions = ['txt', 'exe', 'dll']
-    if after_dot not in allowed_extensions:
+    if after_dot not in ['txt', 'exe', 'dll']:
         return 'No'
 
     return 'Yes'
@@ -88,19 +87,22 @@ def test_is_palindrome_mixed_case():
 def test_is_palindrome_with_spaces():
     assert is_palindrome('A man, a plan, a canal: Panama') == True
 
-def test_max_positive():
+def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
     assert get_max([3, 2, 1]) == 3
     assert get_max([1, 3, 2]) == 3
 
-def test_max_empty():
-    assert get_max([]) == None
-
-def test_max_negative():
+def test_get_max_negative():
     assert get_max([-1, -2, -3]) == -1
 
-def test_max_mixed():
+def test_get_max_mixed():
     assert get_max([-1, 2, -3, 4]) == 4
+
+def test_get_max_empty():
+    assert get_max([]) == None
+
+def test_get_max_single_element():
+    assert get_max([5]) == 5
 
 def test_file_name_check_valid():
     assert file_name_check("example.txt") == 'Yes'
@@ -116,15 +118,13 @@ def test_file_name_check_invalid_digits():
 
 def test_file_name_check_invalid_dot():
     assert file_name_check("example..txt") == 'No'
-    assert file_name_check("example.txt.txt") == 'No'
+    assert file_name_check("example.txt.") == 'No'
 
 def test_file_name_check_invalid_before_dot():
     assert file_name_check("1example.txt") == 'No'
-    assert file_name_check("12example.txt") == 'No'
-    assert file_name_check("123example.txt") == 'No'
-    assert file_name_check("1234example.txt") == 'No'
     assert file_name_check("!example.txt") == 'No'
-    assert file_name_check("example. ") == 'No'
+    assert file_name_check("example.txt") == 'Yes'
+    assert file_name_check("example.txt ") == 'No'
 
 def test_file_name_check_invalid_after_dot():
     assert file_name_check("example.pdf") == 'No'
@@ -134,5 +134,11 @@ def test_file_name_check_multiple_dots():
     assert file_name_check("example..txt") == 'No'
     assert file_name_check("example.txt.txt") == 'No'
 
-def test_is_palindrome_redundant():
-    assert is_palindrome(' ') == True
+def test_file_name_check_leading_space():
+    assert file_name_check(" example.txt") == 'No'
+
+def test_file_name_check_non_letter_start():
+    assert file_name_check("!example.txt") == 'No'
+
+def test_file_name_check_number_start():
+    assert file_name_check("1example.txt") == 'No'

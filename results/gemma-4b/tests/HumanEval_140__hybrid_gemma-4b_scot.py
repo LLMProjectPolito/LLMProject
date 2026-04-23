@@ -51,27 +51,20 @@ def fix_spaces(text):
 # - test_empty_string: Tests the case where the input string is empty.
 
 ### STEP 3: CODE
-###
-# test_no_spaces.py
 def test_no_spaces():
     assert fix_spaces("Example") == "Example"
 
-# test_single_space.py
 def test_single_space():
     assert fix_spaces("Example 1") == "Example_1"
 
-# test_multiple_spaces.py
 def test_multiple_spaces():
     assert fix_spaces(" Example 2") == "_Example_2"
 
-# test_more_than_two_spaces.py
 def test_more_than_two_spaces():
     assert fix_spaces(" Example   3") == "_Example-3"
 
-# test_mixed_spaces.py
 def test_mixed_spaces():
-    assert fix_spaces("Hello   World  !") == "_Hello-World-!"
+    assert fix_spaces("  This  is   a  test  ") == "_This_is_a_test_"
 
-# test_empty_string.py
 def test_empty_string():
     assert fix_spaces("") == ""

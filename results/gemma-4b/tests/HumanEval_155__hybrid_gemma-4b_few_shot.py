@@ -85,28 +85,29 @@ def test_get_max_mixed():
 def test_get_max_empty():
     assert get_max([]) == None
 
+def test_get_max_single_element():
+    assert get_max([5]) == 5
+
 def test_even_odd_count_positive():
     assert even_odd_count(123) == (1, 2)
     assert even_odd_count(246) == (3, 0)
     assert even_odd_count(1357) == (0, 4)
     assert even_odd_count(2468) == (4, 0)
+    assert even_odd_count(123456789) == (4, 5)
 
 def test_even_odd_count_negative():
     assert even_odd_count(-12) == (1, 1)
-    assert even_odd_count(-24) == (2, 0)
+    assert even_odd_count(-246) == (3, 0)
     assert even_odd_count(-1357) == (0, 4)
     assert even_odd_count(-2468) == (4, 0)
-
-def test_even_odd_count_mixed():
-    assert even_odd_count(-12) == (1, 1)
-    assert even_odd_count(123) == (1, 2)
-    assert even_odd_count(-24) == (2, 0)
-    assert even_odd_count(1357) == (0, 4)
-    assert even_odd_count(-2468) == (4, 0)
+    assert even_odd_count(-123456789) == (4, 5)
 
 def test_even_odd_count_zero():
     assert even_odd_count(0) == (1, 0)
 
-def test_even_odd_count_single_digit():
-    assert even_odd_count(2) == (1, 1)
-    assert even_odd_count(3) == (0, 1)
+def test_even_odd_count_mixed():
+    assert even_odd_count(-12) == (1, 1)
+    assert even_odd_count(123) == (1, 2)
+    assert even_odd_count(-123) == (1, 2)
+    assert even_odd_count(12) == (2, 0)
+    assert even_odd_count(-12) == (1, 1)

@@ -21,8 +21,5 @@ def string_to_md5(text):
         return None
     return hashlib.md5(text.encode('utf-8')).hexdigest()
 
-def test_empty_string_md5():
+def test_empty_string():
     assert string_to_md5("") is None
-
-def test_hello_world_md5():
-    assert string_to_md5("Hello world") == '3e25960a79dbc69b674cd4ec67a72c62'

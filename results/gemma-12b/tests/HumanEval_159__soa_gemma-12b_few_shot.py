@@ -31,20 +31,23 @@ def eat(number, need, remaining):
 
 import pytest
 
-def test_eat_sufficient_carrots():
+def test_eat_basic():
     assert eat(5, 6, 10) == [11, 4]
 
-def test_eat_insufficient_carrots():
+def test_eat_basic_2():
     assert eat(4, 8, 9) == [12, 1]
 
-def test_eat_exact_carrots():
+def test_eat_basic_3():
     assert eat(1, 10, 10) == [11, 0]
 
-def test_eat_very_insufficient_carrots():
+def test_eat_basic_4():
     assert eat(2, 11, 5) == [7, 0]
 
-def test_eat_zero_eaten():
+def test_eat_enough_remaining():
     assert eat(0, 5, 10) == [5, 5]
+
+def test_eat_exact_remaining():
+    assert eat(0, 5, 5) == [5, 0]
 
 def test_eat_zero_need():
     assert eat(5, 0, 10) == [5, 10]
@@ -52,26 +55,29 @@ def test_eat_zero_need():
 def test_eat_zero_remaining():
     assert eat(5, 6, 0) == [5, 0]
 
-def test_eat_equal_need_remaining():
-    assert eat(3, 7, 7) == [10, 0]
+def test_eat_zero_eaten():
+    assert eat(0, 5, 10) == [5, 5]
 
 def test_eat_large_numbers():
-    assert eat(999, 1000, 1000) == [1999, 0]
+    assert eat(999, 999, 1000) == [1998, 1]
 
-def test_eat_large_numbers_insufficient():
-    assert eat(500, 1000, 200) == [700, 0]
+def test_eat_large_numbers_2():
+    assert eat(100, 1000, 500) == [600, 0]
 
-def test_eat_all_carrots_and_still_hungry():
-    assert eat(100, 200, 150) == [250, 0]
+def test_eat_equal_need_and_remaining():
+    assert eat(0, 5, 5) == [5, 0]
+
+def test_eat_need_greater_than_remaining():
+    assert eat(2, 10, 3) == [5, 0]
 
 def test_eat_edge_case_zero_all():
     assert eat(0, 0, 0) == [0, 0]
 
-def test_eat_number_equal_need_equal_remaining():
-    assert eat(5, 5, 5) == [10, 0]
+def test_eat_max_values():
+    assert eat(1000, 1000, 1000) == [2000, 0]
 
-def test_eat_number_greater_than_need():
-    assert eat(10, 5, 10) == [15, 5]
+def test_eat_max_eaten_and_remaining():
+    assert eat(1000, 500, 1000) == [1500, 500]
 
-def test_eat_number_greater_than_need_and_remaining():
-    assert eat(15, 5, 10) == [20, 0]
+def test_eat_max_need_and_remaining():
+    assert eat(0, 1000, 1000) == [1000, 0]

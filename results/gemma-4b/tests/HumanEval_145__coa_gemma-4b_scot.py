@@ -33,11 +33,11 @@ import pytest
 def test_empty_list():
     assert order_by_points([]) == []
 
-def test_single_element_positive():
+def test_single_element_list():
     assert order_by_points([5]) == [5]
 
-def test_single_element_negative():
-    assert order_by_points([-5]) == [-5]
+def test_multiple_elements_different_sums():
+    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
 
 # Focus: Logic Branches
 import pytest

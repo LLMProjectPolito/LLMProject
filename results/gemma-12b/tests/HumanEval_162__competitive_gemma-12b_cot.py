@@ -33,13 +33,13 @@ class TestStringtoMD5:
         assert string_to_md5("  ") == "d14a028c2a3a2bc9476102bb288234c4"
 
     def test_string_with_special_characters(self):
-        assert string_to_md5("!@#$%^&*()") == "9489d294999399396939693969396939"
+        assert string_to_md5("!@#$%^&*()") == "94a9999f999999999999999999999999"
 
     def test_string_with_numbers(self):
-        assert string_to_md5("1234567890") == "d162b3f8d453904999f9999999999999"
+        assert string_to_md5("1234567890") == "d162b3f8d45359c6a3c699999999999"
 
     def test_string_with_unicode_characters(self):
-        assert string_to_md5("你好世界") == "a94a8fe5ccb19ba61c4c082e53e966b7"
+        assert string_to_md5("你好世界") == "a94a8fe5ccb19ba61c4c0873d391e987"
 
     def test_long_string(self):
         long_string = "This is a very long string to test the md5 hash function."

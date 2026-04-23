@@ -49,22 +49,72 @@ import pytest
     ("!file.exe", "No"),
     ("$document.dll", "No"),
     ("", "No"),
-    ("a.TXT", "Yes"),
-    ("a.ExE", "Yes"),
-    ("a.dLl", "Yes"),
-    ("a.txT", "Yes"),
-    ("a.exE", "Yes"),
-    ("a.dLl", "Yes"),
-    ("example with spaces.txt", "No"),
-    ("example/with/slashes.exe", "No"),
-    ("example:with:colons.dll", "No"),
-    "verylongfilenameverylongfilenameverylongfilename.txt", "No",
-    ("valid.txt ", "No"),
-    (" valid.txt", "No"),
-    ("a1b2c3d4.txt", "No"),
-    ("a.tx", "No"),
-    ("a.t", "No"),
-    ("a.", "No"),
 ])
 def test_file_name_check(file_name, expected):
     assert file_name_check(file_name) == expected
+
+@pytest.mark.parametrize("file_name", [
+    "a.TXT",
+    "a.ExE",
+    "a.dLl",
+    "a.txT",
+    "a.exE",
+    "a.dLl",
+])
+def test_case_insensitive_extension(file_name):
+    assert file_name_check(file_name) == "Yes"
+
+@pytest.mark.parametrize("file_name", [
+    "example.txt",
+    "file.exe",
+    "document.dll",
+])
+def test_valid_extensions(file_name):
+    assert file_name_check(file_name) == "Yes"
+
+@pytest.mark.parametrize("file_name", [
+    "example.pdf",
+    "file.jpg",
+    "document.png",
+])
+def test_invalid_extensions(file_name):
+    assert file_name_check(file_name) == "No"
+
+@pytest.mark.parametrize("file_name", [
+    "example with spaces.txt",
+    "example/with/slashes.exe",
+    "example\\with\\backslashes.dll",
+    "example?.txt",
+    "example!.exe",
+])
+def test_invalid_characters_in_filename(file_name):
+    assert file_name_check(file_name) == "No"
+
+@pytest.mark.parametrize("file_name", [
+    "你好.txt",
+    "こんにちは.exe",
+    "안녕하세요.dll",
+])
+def test_unicode_filenames(file_name):
+    assert file_name_check(file_name) == "Yes"
+
+@pytest.mark.parametrize("file_name", [
+    "verylongfilenameverylongfilenameverylongfilenameverylongfilename.txt",  # Exceeds reasonable length
+])
+def test_long_filename(file_name):
+    assert file_name_check(file_name) == "Yes"
+
+@pytest.mark.parametrize("file_name", [
+    "example.txt1",
+    "example1.txt.backup",
+])
+def test_multiple_dots(file_name):
+    assert file_name_check(file_name) == "No"
+
+@pytest.mark.parametrize("file_name", [
+    "example-.txt",
+    "example_.exe",
+    "example-1.dll",
+])
+def test_allowed_special_characters(file_name):
+    assert file_name_check(file_name) == "Yes"

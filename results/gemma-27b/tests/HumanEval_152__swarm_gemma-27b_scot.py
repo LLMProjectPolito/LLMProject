@@ -46,53 +46,14 @@ def test_negative_values():
 def test_mixed_positive_negative():
     assert compare([1, -2, 3], [-1, 2, 3]) == [2, 4, 0]
 
-def test_large_differences():
-    assert compare([1, 2, 3], [10, -5, 0]) == [9, 7, 3]
-
-def test_zero_values():
-    assert compare([0, 0, 0], [1, 2, 3]) == [1, 2, 3]
-
-def test_all_correct():
-    assert compare([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]) == [0, 0, 0, 0, 0]
-
-def test_all_incorrect():
-    assert compare([1, 2, 3, 4, 5], [6, 7, 8, 9, 10]) == [5, 5, 5, 5, 5]
-
-def test_single_element():
-    assert compare([5], [5]) == [0]
-
-def test_single_element_incorrect():
-    assert compare([5], [10]) == [5]
-
-def test_large_lists():
-    game = list(range(1000))
-    guess = [x + 1 for x in range(1000)]
-    expected = [1] * 1000
-    assert compare(game, guess) == expected
-
-def test_edge_case_max_int():
-    game = [2**31 - 1]
-    guess = [-2**31]
-    assert compare(game, guess) == [2**31 + 1]
-
 def test_large_numbers():
     assert compare([1000, 2000, 3000], [1000, 2001, 2999]) == [0, 1, 1]
 
+def test_all_incorrect_guesses():
+    assert compare([1, 2, 3], [4, 5, 6]) == [3, 3, 3]
+
+def test_zero_values():
+    assert compare([0, 0, 0], [0, 0, 0]) == [0, 0, 0]
+
 def test_edge_case_large_difference():
     assert compare([100], [-100]) == [200]
-
-def test_edge_case_identical_negative_numbers():
-    assert compare([-5, -5, -5], [-5, -5, -5]) == [0, 0, 0]
-
-def test_edge_case_one_correct_many_incorrect():
-    assert compare([1, 2, 3, 4, 5], [1, 7, 3, 9, 5]) == [0, 5, 0, 5, 0]
-
-def test_edge_case_alternating_correct_incorrect():
-    assert compare([1, 2, 3, 4, 5], [1, 3, 1, 5, 1]) == [0, 1, 2, 1, 4]
-
-@pytest.mark.parametrize("game, guess, expected", [
-    ([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]),
-    ([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]),
-])
-def test_examples(game, guess, expected):
-    assert compare(game, guess) == expected

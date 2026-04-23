@@ -51,7 +51,7 @@ def test_invalid_file_name_not_letter_before_dot():
 def test_invalid_file_name_invalid_extension():
     assert file_name_check("example.pdf") == "No"
     assert file_name_check("example.jpg") == "No"
-    assert file_name_check("example.dat") == "No"
+    assert file_name_check("example.xyz") == "No"
     assert file_name_check("example.") == "No"
 
 def test_invalid_file_name_empty_extension():

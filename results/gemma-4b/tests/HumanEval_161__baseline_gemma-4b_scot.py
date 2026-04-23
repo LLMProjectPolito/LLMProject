@@ -40,7 +40,7 @@ def solve(s):
 
 ### STEP 1: REASONING
 # The function `solve(s)` takes a string `s` as input and modifies it based on the case of each character.
-# If a character is a letter, its case is reversed. If it's not a letter, it remains unchanged.
+# If a character is a letter, its case is reversed. If it's not a letter, it's kept as is.
 # If the string contains no letters, the string is reversed.
 # We need to create a pytest suite to test the function with various inputs, including strings with no letters, strings with only letters, and strings with mixed characters.
 # We should cover edge cases like empty strings and strings with special characters.
@@ -97,5 +97,5 @@ def test_single_letter_lowercase():
 def test_single_letter_uppercase():
     assert solve("A") == "a"
 
-def test_string_with_mixed_characters():
-    assert solve("a1b2c3") == "A1B2C3"
+def test_single_special_character():
+    assert solve("#") == "#"

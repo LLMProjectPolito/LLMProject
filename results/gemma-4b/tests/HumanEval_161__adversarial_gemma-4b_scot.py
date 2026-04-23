@@ -45,7 +45,7 @@ def solve(s):
 # We need to test various scenarios including:
 # 1. Strings with no letters (should reverse)
 # 2. Strings with only letters (should reverse case)
-# 3. Strings with mixed letters and non-letters (should reverse case for letters)
+# 3. Strings with mixed letters and non-letters (should reverse case of letters)
 # 4. Empty string (should return empty string)
 # 5. Strings with special characters (should return unchanged)
 
@@ -56,7 +56,7 @@ def solve(s):
 # - test_all_letters_upper: Tests the case where the input string contains only uppercase letters.
 # - test_mixed_letters: Tests the case where the input string contains a mix of letters and non-letters.
 # - test_empty_string: Tests the case where the input string is empty.
-# - test_special_characters: Tests the case where the input string contains only special characters.
+# - test_special_characters: Tests the case where the input string contains special characters.
 
 ### STEP 3: CODE
 def test_no_letters():

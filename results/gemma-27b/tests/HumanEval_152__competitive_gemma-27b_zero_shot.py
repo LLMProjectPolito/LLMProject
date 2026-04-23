@@ -36,7 +36,7 @@ def test_compare_mixed_positive_negative():
     assert compare([1, -2, 3], [1, -1, 2]) == [0, 1, 1]
 
 def test_compare_large_numbers():
-    assert compare([100, 200, 300], [90, 200, 310]) == [10, 0, 10]
+    assert compare([100, 200, 300], [90, 210, 290]) == [10, 10, 10]
 
 def test_compare_single_element():
     assert compare([5], [5]) == [0]

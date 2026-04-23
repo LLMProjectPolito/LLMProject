@@ -58,27 +58,31 @@ def sample_data():
 
 def test_eat_sufficient_carrots(sample_data):
     """Tests cases where there are enough carrots to meet the need."""
-    for number, need, remaining in sample_data:
+    for number, need, remaining, expected in sample_data:
         if need <= remaining:
-            expected_eaten = number + need
-            expected_remaining = remaining - need
-            assert eat(number, need, remaining) == [expected_eaten, expected_remaining]
-        else:
-            expected_eaten = number + remaining
-            expected_remaining = 0
-            assert eat(number, need, remaining) == [expected_eaten, expected_remaining]
+            assert eat(number, need, remaining) == [number + need, remaining - need]
 
 def test_eat_insufficient_carrots(sample_data):
     """Tests cases where there are not enough carrots to meet the need."""
-    for number, need, remaining in sample_data:
+    for number, need, remaining, expected in sample_data:
         if need > remaining:
-            expected_eaten = number + remaining
-            expected_remaining = 0
-            assert eat(number, need, remaining) == [expected_eaten, expected_remaining]
+            assert eat(number, need, remaining) == [number + remaining, 0]
+
+def test_eat_zero_need(sample_data):
+    """Tests cases where the need is zero."""
+    for number, need, remaining, expected in sample_data:
+        if need == 0:
+            assert eat(number, need, remaining) == [number, remaining]
+
+def test_eat_zero_remaining(sample_data):
+    """Tests cases where there are no carrots remaining."""
+    for number, need, remaining, expected in sample_data:
+        if remaining == 0:
+            assert eat(number, need, remaining) == [number, 0]
 
 def test_eat_edge_cases(sample_data):
-    """Tests edge cases like zero values and maximum values."""
-    for number, need, remaining in sample_data:
+    """Tests edge cases like maximum values and zero values."""
+    for number, need, remaining, expected in sample_data:
         if number == 1000 and need == 1 and remaining == 1:
             assert eat(number, need, remaining) == [1001, 0]
         if number == 0 and need == 1000 and remaining == 1000:
@@ -88,20 +92,6 @@ def test_eat_edge_cases(sample_data):
         if number == 500 and need == 500 and remaining == 500:
             assert eat(number, need, remaining) == [1000, 0]
         if number == 0 and need == 0 and remaining == 0:
-            assert eat(number, need, remaining) == [0, 0]
-        if number == 10 and need == 5 and remaining == 2:
-            assert eat(number, need, remaining) == [12, 0]
-        if number == 5 and need == 10 and remaining == 2:
-            assert eat(number, need, remaining) == [7, 0]
-        if number == 1 and need == 1 and remaining == 1:
-            assert eat(number, need, remaining) == [2, 0]
-        if number == 1 and need == 1 and remaining == 0:
-            assert eat(number, need, remaining) == [1, 0]
-        if number == 0 and need == 1 and remaining == 0:
-            assert eat(number, need, remaining) == [0, 0]
-        if number == 1000 and need == 0 and remaining == 1000:
-            assert eat(number, need, remaining) == [1000, 1000]
-        if number == 0 and need == 1000 and remaining == 0:
             assert eat(number, need, remaining) == [0, 0]
 
 def test_eat_invalid_input():

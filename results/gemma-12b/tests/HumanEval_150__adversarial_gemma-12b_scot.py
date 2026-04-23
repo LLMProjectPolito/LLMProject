@@ -45,28 +45,19 @@ class TestXorY:
         assert x_or_y(0, 10, 20) == 20
 
     def test_n_is_one(self):
-        assert x_or_y(1, 10, 20) == 20
+        assert x_or_y(1, 5, 15) == 15
 
     def test_n_is_negative(self):
-        assert x_or_y(-5, 10, 20) == 20
+        assert x_or_y(-5, 2, 4) == 4
 
-    def test_x_is_string(self):
-        assert x_or_y(7, "hello", 12) == "hello"
+    def test_x_equals_y(self):
+        assert x_or_y(5, 7, 7) == 7
 
-    def test_y_is_string(self):
-        assert x_or_y(15, 8, "world") == "world"
+    def test_x_and_y_different_types(self):
+        assert x_or_y(3, "hello", 10) == "hello"
 
-    def test_x_and_y_are_strings(self):
-        assert x_or_y(7, "hello", "world") == "hello"
+    def test_large_prime(self):
+        assert x_or_y(101, 100, 200) == 100
 
-    def test_small_prime(self):
-        assert x_or_y(2, 1, 2) == 1
-
-    def test_small_non_prime(self):
-        assert x_or_y(4, 1, 2) == 2
-
-    def test_larger_prime(self):
-        assert x_or_y(11, 100, 200) == 100
-
-    def test_larger_non_prime(self):
-        assert x_or_y(12, 100, 200) == 200
+    def test_large_non_prime(self):
+        assert x_or_y(100, 50, 60) == 60

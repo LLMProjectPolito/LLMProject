@@ -36,8 +36,15 @@ def specialFilter(nums):
     """
     count = 0
     for num in nums:
-        if num > 10 and (num // 10) % 2 != 0 and (num // 10) % 2 != 1:
-            count += 1
+        s = str(num)
+        if len(s) == 1:
+            if int(s[0]) % 2 != 0 and int(s[-1]) % 2 != 0:
+                count += 1
+        else:
+            first_digit = int(s[0])
+            last_digit = int(s[-1])
+            if first_digit % 2 != 0 and last_digit % 2 != 0:
+                count += 1
     return count
 
 def specialFilter(nums):
@@ -51,7 +58,7 @@ def specialFilter(nums):
     count = 0
     for num in nums:
         if num > 10 and (num % 10 == 1 or num % 10 == 3 or num % 10 == 5 or num % 10 == 7 or num % 10 == 9):
-            s_num = str(num)
-            if len(s_num) > 0 and int(s_num[0]) % 2 != 0 and int(s_num[-1]) % 2 != 0:
+            s = str(num)
+            if len(s) > 0 and int(s[0]) % 2 != 0 and int(s[-1]) % 2 != 0:
                 count += 1
     return count

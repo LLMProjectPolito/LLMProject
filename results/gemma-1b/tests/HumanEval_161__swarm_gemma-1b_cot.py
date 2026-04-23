@@ -64,13 +64,13 @@ def test_solve_empty_string():
     assert solve("") == ""
 
 def test_solve_all_lowercase():
-    assert solve("abc") == "ABC"
+    assert solve("abc") == "cba"
 
 def test_solve_all_uppercase():
-    assert solve("ABC") == "ABC"
+    assert solve("ABC") == "CBA"
 
 def test_solve_mixed_case():
-    assert solve("aBc") == "aBc"
+    assert solve("aBcDeF") == "aBcDeF"
 
 def test_solve_numbers():
     assert solve("123") == "123"

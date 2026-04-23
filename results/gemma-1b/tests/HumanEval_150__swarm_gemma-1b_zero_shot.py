@@ -10,7 +10,6 @@ def x_or_y(n, x, y):
     """
 
 import pytest
-import math
 
 def x_or_y(n, x, y):
     """A simple program which should return the value of x if n is 
@@ -49,21 +48,38 @@ def test_x_or_y():
     assert x_or_y(15, 8, 5) == 5
     assert x_or_y(1, 2, 3) == 2
     assert x_or_y(2, 2, 2) == 2
-    assert x_or_y(3, 3, 3) == 3
-    assert x_or_y(4, 4, 4) == 4
-    assert x_or_y(5, 5, 5) == 5
-    assert x_or_y(6, 6, 6) == 6
-    assert x_or_y(7, 7, 7) == 7
-    assert x_or_y(8, 8, 8) == 8
-    assert x_or_y(9, 9, 9) == 9
-    assert x_or_y(10, 10, 10) == 10
-    assert x_or_y(11, 11, 11) == 11
-    assert x_or_y(12, 12, 12) == 12
-    assert x_or_y(13, 13, 13) == 13
-    assert x_or_y(14, 14, 14) == 14
-    assert x_or_y(15, 15, 15) == 15
-    assert x_or_y(16, 16, 16) == 16
-    assert x_or_y(17, 17, 17) == 17
-    assert x_or_y(18, 18, 18) == 18
-    assert x_or_y(19, 19, 19) == 19
-    assert x_or_y(20, 20, 20) == 20
+    assert x_or_y(1, 1, 1) == 1
+    assert x_or_y(1, 2, 1) == 1
+    assert x_or_y(1, 3, 1) == 1
+    assert x_or_y(1, 4, 1) == 1
+    assert x_or_y(1, 5, 1) == 1
+    assert x_or_y(1, 6, 1) == 1
+    assert x_or_y(1, 7, 1) == 1
+    assert x_or_y(1, 8, 1) == 1
+    assert x_or_y(1, 9, 1) == 1
+    assert x_or_y(1, 10, 1) == 1
+    assert x_or_y(1, 11, 1) == 1
+    assert x_or_y(1, 12, 1) == 1
+    assert x_or_y(1, 13, 1) == 1
+    assert x_or_y(1, 14, 1) == 1
+    assert x_or_y(1, 15, 1) == 1
+    assert x_or_y(1, 16, 1) == 1
+    assert x_or_y(1, 17, 1) == 1
+    assert x_or_y(1, 18, 1) == 1
+    assert x_or_y(1, 19, 1) == 1
+    assert x_or_y(1, 20, 1) == 1
+    assert x_or_y(1, 21, 1) == 1
+    assert x_or_y(1, 22, 1) == 1
+    assert x_or_y(1, 23, 1) == 1
+    assert x_or_y(1, 24, 1) == 1
+    assert x_or_y(1, 25, 1) == 1
+    assert x_or_y(1, 26, 1) == 1
+    assert x_or_y(1, 27, 1) == 1
+    assert x_or_y(1, 28, 1) == 1
+    assert x_or_y(1, 29, 1) == 1
+    assert x_or_y(1, 30, 1) == 1
+    assert x_or_y(1, 31, 1) == 1
+    assert x_or_y(1, 32, 1) == 1
+    assert x_or_y(1, 33, 1) == 1
+    assert x_or_y(1, 34, 1) == 1
+    print("All tests passed")

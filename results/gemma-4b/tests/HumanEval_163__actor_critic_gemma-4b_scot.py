@@ -47,40 +47,43 @@ def generate_integers(a, b):
 #   - a and b are single digits
 
 # STEP 2: PLAN - List test functions names and scenarios.
-# test_generate_integers_basic: Test with a simple range containing even digits.
-# test_generate_integers_reverse: Test with a range in reverse order.
-# test_generate_integers_no_even: Test with a range containing no even digits.
+# test_generate_integers_basic: Test with a simple range of numbers.
+# test_generate_integers_reverse_range: Test with a range in reverse order.
+# test_generate_integers_no_even_digits: Test with a range containing no even digits.
 # test_generate_integers_single_digit: Test with a single-digit input.
-# test_generate_integers_a_greater_than_b: Test with a > b.
-# test_generate_integers_a_equals_b: Test with a == b.
+# test_generate_integers_a_equals_b: Test when a and b are equal.
+# test_generate_integers_a_greater_than_b: Test when a is greater than b.
 # test_generate_integers_mixed_digits: Test with a range containing mixed digits.
+# test_generate_integers_large_numbers: Test with larger numbers to ensure no overflow issues.
+
 
 # STEP 3: CODE - Write the high-quality pytest suite.
-###
 def test_generate_integers_basic():
     assert generate_integers(2, 8) == [2, 4, 6, 8]
 
-def test_generate_integers_reverse():
+def test_generate_integers_reverse_range():
     assert generate_integers(8, 2) == [2, 4, 6, 8]
 
-def test_generate_integers_no_even():
+def test_generate_integers_no_even_digits():
     assert generate_integers(1, 3) == []
 
 def test_generate_integers_single_digit():
     assert generate_integers(2, 2) == [2]
-    assert generate_integers(7, 7) == []
-    assert generate_integers(8, 8) == [8]
-    assert generate_integers(2, 2) == [2]
-
-def test_generate_integers_a_greater_than_b():
-    assert generate_integers(8, 2) == [2, 4, 6, 8]
 
 def test_generate_integers_a_equals_b():
     assert generate_integers(4, 4) == [4]
 
+def test_generate_integers_a_greater_than_b():
+    assert generate_integers(5, 3) == [3, 5]
+
 def test_generate_integers_mixed_digits():
     assert generate_integers(10, 14) == []
-    assert generate_integers(20, 24) == [2, 4]
-    assert generate_integers(12, 16) == [2, 4, 6]
+
+def test_generate_integers_large_numbers():
+    assert generate_integers(100, 102) == [1, 0]
+
+def test_generate_integers_even_and_odd():
     assert generate_integers(1, 5) == [2, 4]
-    assert generate_integers(1, 1) == []
+
+def test_generate_integers_all_even():
+    assert generate_integers(2, 6) == [2, 4, 6]

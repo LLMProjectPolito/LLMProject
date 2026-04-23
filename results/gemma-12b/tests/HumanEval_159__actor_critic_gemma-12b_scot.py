@@ -60,43 +60,56 @@ def eat(number, need, remaining):
 
     Have fun :)
     """
-    total_eaten = number + remaining
-    remaining_after_eating = max(0, total_eaten - need)
-    return [total_eaten, remaining_after_eating]
+    if remaining >= need:
+        return [number + need, remaining - need]
+    else:
+        return [number + remaining, 0]
 
 
-def test_enough_carrots():
-    assert eat(5, 6, 10) == [15, 4]
+def test_enough_remaining():
+    assert eat(5, 6, 10) == [11, 4]
 
-def test_insufficient_carrots():
-    assert eat(4, 8, 9) == [13, 5]
+def test_not_enough_remaining():
+    assert eat(4, 8, 9) == [12, 1]
 
-def test_need_greater_than_remaining_less_than_number():
-    assert eat(5, 8, 2) == [7, 0]
-
-def test_no_carrots_remaining():
+def test_zero_remaining():
     assert eat(1, 10, 0) == [1, 0]
 
-def test_no_need():
-    assert eat(5, 0, 10) == [15, 10]
+def test_zero_need():
+    assert eat(5, 0, 10) == [5, 10]
 
-def test_no_carrots_eaten():
-    assert eat(0, 10, 10) == [10, 0]
+def test_zero_eaten():
+    assert eat(0, 6, 10) == [6, 4]
+
+def test_all_zeros():
+    assert eat(0, 0, 0) == [0, 0]
 
 def test_max_values():
     assert eat(1000, 1000, 1000) == [2000, 0]
 
-def test_min_values():
-    assert eat(0, 0, 0) == [0, 0]
-
 def test_need_equals_remaining():
     assert eat(5, 5, 5) == [10, 0]
 
-def test_large_numbers():
-    assert eat(500, 600, 700) == [1200, 100]
+def test_need_one_greater_than_remaining():
+    assert eat(2, 3, 2) == [4, 0]
 
-def test_large_remaining_small_need():
-    assert eat(2, 1, 1000) == [1002, 999]
+def test_need_significantly_exceeds_remaining():
+    assert eat(2, 6, 3) == [5, 0]
 
-def test_insufficient_carrots_2():
-    assert eat(1, 5, 2) == [3, 0]
+def test_number_exceeds_need():
+    assert eat(6, 5, 10) == [11, 5]
+
+def test_remaining_significantly_exceeds_need():
+    assert eat(2, 3, 100) == [5, 97]
+
+def test_negative_input_number():
+    with pytest.raises(TypeError):
+        eat(-1, 5, 10)
+
+def test_negative_input_need():
+    with pytest.raises(TypeError):
+        eat(5, -1, 10)
+
+def test_negative_input_remaining():
+    with pytest.raises(TypeError):
+        eat(5, 5, -1)

@@ -54,41 +54,37 @@ def file_name_check(file_name):
 def test_valid_filename():
     assert file_name_check("example.txt") == 'Yes'
 
-def test_too_many_digits():
+def test_invalid_digit_count():
     assert file_name_check("1234example.txt") == 'No'
 
-def test_no_dot():
+def test_invalid_dot_count():
     assert file_name_check("exampletxt") == 'No'
+    assert file_name_check("example.txt.") == 'No'
+    assert file_name_check("example..txt") == 'No'
 
-def test_multiple_dots():
-    assert file_name_check("example.txt.backup") == 'No'
+def test_invalid_start_character():
+    assert file_name_check("1example.dll") == 'No'
+    assert file_name_check("_example.txt") == 'No'
+
+def test_invalid_extension():
+    assert file_name_check("example.pdf") == 'No'
+    assert file_name_check("example.jpg") == 'No'
 
 def test_empty_before_dot():
     assert file_name_check(".txt") == 'No'
 
-def test_starts_with_digit():
-    assert file_name_check("1example.dll") == 'No'
-
-def test_invalid_extension():
-    assert file_name_check("example.jpg") == 'No'
-
-def test_valid_extension_lowercase():
-    assert file_name_check("example.txt") == 'Yes'
-
-def test_valid_extension_uppercase():
-    assert file_name_check("example.EXE") == 'No'
-
 def test_empty_filename():
     assert file_name_check("") == 'No'
 
-def test_filename_with_spaces():
-    assert file_name_check("example file.txt") == 'No'
+def test_valid_filename_uppercase():
+    assert file_name_check("Example.txt") == 'Yes'
 
-def test_filename_with_special_characters():
-    assert file_name_check("!example.txt") == 'No'
+def test_valid_filename_mixedcase():
+    assert file_name_check("ExAmPlE.txt") == 'Yes'
 
-def test_filename_with_special_characters_after_dot():
-    assert file_name_check("example.txt!") == 'No'
+def test_digit_at_start():
+    assert file_name_check("123a.txt") == 'No'
 
-def test_three_digits():
-    assert file_name_check("123example.txt") == 'Yes'
+def test_special_characters():
+    assert file_name_check("example!.txt") == 'Yes'
+    assert file_name_check("example@.txt") == 'Yes'

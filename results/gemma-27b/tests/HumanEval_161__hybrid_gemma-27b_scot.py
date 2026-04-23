@@ -58,13 +58,13 @@ def test_mixed_characters_string():
     assert solve("#a@C") == "#A@c"
 
 def test_no_letters_string():
-    assert solve("123#") == "#321"
+    assert solve("123#$") == "$#321"
 
 def test_string_with_spaces():
     assert solve("hello world") == "HELLO WORLD"
 
-def test_string_with_special_chars_and_letters():
-    assert solve("!aB@") == "!Ab@"
+def test_string_with_mixed_characters_and_spaces():
+    assert solve("a1 b2 c3") == "A1 B2 C3"
 
-def test_string_with_numbers_and_letters():
-    assert solve("1a2B") == "1A2b"
+def test_string_with_special_characters():
+    assert solve("!@#$%^") == "!@#$%^"

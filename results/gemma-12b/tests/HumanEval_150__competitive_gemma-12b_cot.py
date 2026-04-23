@@ -60,5 +60,4 @@ class TestXorY:
         assert x_or_y(7, 1, "hello") == 1
         assert x_or_y(8, "world", 2) == 2
         assert x_or_y(2, 3.14, 2.71) == 3.14
-        assert x_or_y(3, [1,2], (3,4)) == [1,2]
-        assert x_or_y(4, {1:2}, {3:4}) == {3:4}
+        assert x_or_y(4, 3.14, 2.71) == 2.71

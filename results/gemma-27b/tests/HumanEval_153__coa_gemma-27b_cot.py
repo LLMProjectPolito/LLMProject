@@ -62,15 +62,15 @@ def test_single_extension():
     assert Strongest_Extension("TestClass", ["Extension"]) == "TestClass.Extension"
 
 def test_all_uppercase():
-    assert Strongest_Extension("TestClass", ["AAA", "BBB", "CCC"]) == "TestClass.AAA"
+    assert Strongest_Extension("TestClass", ["AAA", "BBB"]) == "TestClass.AAA"
 
 def test_all_lowercase():
-    assert Strongest_Extension("TestClass", ["aaa", "bbb", "ccc"]) == "TestClass.aaa"
+    assert Strongest_Extension("TestClass", ["aaa", "bbb"]) == "TestClass.aaa"
 
 def test_mixed_case():
     assert Strongest_Extension("TestClass", ["Aa", "BB", "cC"]) == "TestClass.BB"
 
-def test_equal_strength_first_in_list():
+def test_equal_strength_first_wins():
     assert Strongest_Extension("TestClass", ["AB", "Ba"]) == "TestClass.AB"
 
 # Focus: Equivalence Partitioning

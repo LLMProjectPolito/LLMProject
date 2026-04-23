@@ -50,10 +50,10 @@ def test_compare_multiple_off():
     assert compare([1, 2, 3], [1, 2, 5]) == [0, 0, 2]
 
 def test_compare_negative_off():
-    assert compare([1, 2, 3], [1, 2, -1]) == [0, 0, 2]
+    assert compare([1, 2, 3], [1, 2, -1]) == [0, 0, 1]
 
 def test_compare_mixed_off():
-    assert compare([1, 2, 3], [1, 2, -1]) == [0, 0, 2]
+    assert compare([1, 2, 3], [1, 2, -1]) == [0, 0, 1]
 
 def test_compare_longer_lists():
     assert compare([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]) == [0, 0, 0, 0, 0]

@@ -40,7 +40,7 @@ class TestSimplify:
         assert simplify("2/2", "1/1") == True
         assert simplify("1/1", "1/1") == True
         assert simplify("3/3", "2/2") == True
-        assert simplify("4/4", "5/5") == True
+        assert simplify("4/4", "1/1") == True
         assert simplify("1/2", "2/1") == False
         assert simplify("1/3", "3/1") == True
         assert simplify("1/4", "4/1") == True
@@ -70,13 +70,23 @@ class TestSimplify:
         assert simplify("1/15", "2/1") == False
         assert simplify("1/16", "3/1") == False
 
-    def test_simplify_edge_cases(self):
-        assert simplify("1/1", "2/2") == True
-        assert simplify("2/2", "1/1") == True
-        assert simplify("1/1", "1/1") == True
-        assert simplify("100/1", "1/100") == False
-        assert simplify("100/1", "100/1") == True
-        assert simplify("1/100", "100/1") == False
-        assert simplify("100/100", "1/1") == True
-        assert simplify("1/100", "1/1") == False
-        assert simplify("100/1", "1/1") == False
+    def test_simplify_complex(self):
+        assert simplify("2/5", "5/2") == False
+        assert simplify("3/7", "7/3") == True
+        assert simplify("4/9", "9/4") == True
+        assert simplify("5/11", "11/5") == True
+        assert simplify("6/13", "13/6") == False
+        assert simplify("7/15", "15/7") == False
+        assert simplify("8/17", "17/8") == False
+        assert simplify("9/19", "19/9") == False
+        assert simplify("10/21", "21/10") == False
+        assert simplify("11/23", "23/11") == False
+        assert simplify("12/25", "25/12") == False
+        assert simplify("13/27", "27/13") == False
+        assert simplify("14/29", "29/14") == False
+        assert simplify("15/31", "31/15") == False
+        assert simplify("16/33", "33/16") == False
+        assert simplify("17/35", "35/17") == False
+        assert simplify("18/37", "37/18") == False
+        assert simplify("19/39", "39/19") == False
+        assert simplify("20/41", "41/20") == False

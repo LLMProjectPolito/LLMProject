@@ -65,10 +65,10 @@ def test_longer_list():
     assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 385
 
 def test_list_with_zeros():
-    assert sum_squares([0, 1, 2, 3, 4, 5]) == 150
+    assert sum_squares([0, 1, 2, 3, 4]) == 30
 
 def test_list_with_large_numbers():
-    assert sum_squares([100, 200, 300, 400]) == 2400000
+    assert sum_squares([100, 200, 300, 400]) == 240000
 
 def test_list_with_duplicate_values():
     assert sum_squares([1, 1, 1, 1]) == 4

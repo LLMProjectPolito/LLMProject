@@ -60,7 +60,7 @@ def test_single_odd_number():
     assert double_the_difference([7]) == 49
 
 def test_single_even_number():
-    assert double_the_difference([2]) == 0
+    assert double_the_difference([4]) == 0
 
 def test_single_negative_number():
     assert double_the_difference([-5]) == 0

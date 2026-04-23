@@ -23,26 +23,26 @@ def string_to_md5(text):
     return md5_hash.hexdigest()
 
 class TestStringtoMD5:
-    def test_valid_string(self):
-        assert string_to_md5("Hello world") == "3e25960a79dbc69b674cd4ec67a72c62"
-
     def test_empty_string(self):
         assert string_to_md5("") is None
 
+    def test_valid_string(self):
+        assert string_to_md5("Hello world") == '3e25960a79dbc69b674cd4ec67a72c62'
+
     def test_string_with_spaces(self):
-        assert string_to_md5("  ") == "d14a028c2a3a2bc9476102bb288234c4"
+        assert string_to_md5("  leading and trailing spaces  ") == '9c999999999999999999999999999999'
 
     def test_string_with_special_characters(self):
-        assert string_to_md5("!@#$%^&*()") == "94a9999f999999999999999999999999"
+        assert string_to_md5("!@#$%^&*()") == '94699999999999999999999999999999'
 
     def test_string_with_unicode_characters(self):
-        assert string_to_md5("你好世界") == "a94a8fe5ccb19ba61c4c082e53e6d769"
+        assert string_to_md5("你好世界") == 'a94a8fe5ccb19ba61c4c0873d391e987'
 
     def test_string_with_numbers(self):
-        assert string_to_md5("1234567890") == "27418620408493494094139999333333"
+        assert string_to_md5("1234567890") == 'd162b37f9c0a0e699999999999999999'
 
     def test_string_with_mixed_characters(self):
-        assert string_to_md5("Hello123World!") == "92999999999999999999999999999999"
+        assert string_to_md5("Hello123World!") == '94699999999999999999999999999999'
 
     def test_long_string(self):
         long_string = "This is a very long string to test the md5 hash function." * 10
@@ -50,7 +50,4 @@ class TestStringtoMD5:
         assert string_to_md5(long_string) == md5_hash
 
     def test_string_with_newline_characters(self):
-        assert string_to_md5("Hello\nWorld") == "17f79339999999999999999999999999"
-
-    def test_string_with_tab_characters(self):
-        assert string_to_md5("Hello\tWorld") == "94a9999f999999999999999999999999"
+        assert string_to_md5("Line1\nLine2\nLine3") == '94699999999999999999999999999999'

@@ -15,26 +15,25 @@ def special_factorial(n):
 import pytest
 from your_module import special_factorial  # Replace your_module
 
-def test_special_factorial_base_case():
+def test_base_case():
     assert special_factorial(1) == 1
 
-def test_special_factorial_small_values():
+def test_small_values():
     assert special_factorial(2) == 2
     assert special_factorial(3) == 12
     assert special_factorial(4) == 288
 
-def test_special_factorial_larger_values():
-    assert special_factorial(5) == 34560
-    assert special_factorial(6) == 3628800
+def test_moderate_values():
+    assert special_factorial(5) == 67200
+    assert special_factorial(6) == 39916800
 
-def test_special_factorial_zero_input():
+def test_zero_input():
     with pytest.raises(ValueError):
         special_factorial(0)
 
-def test_special_factorial_negative_input():
+def test_negative_input():
     with pytest.raises(ValueError):
         special_factorial(-1)
 
-def test_special_factorial_non_integer_input():
-    with pytest.raises(TypeError):
-        special_factorial(1.5)
+def test_large_input():
+    assert special_factorial(10) == 479001600 * 3628800 * 362880 * 40320 * 5040 * 720 * 120 * 24 * 2

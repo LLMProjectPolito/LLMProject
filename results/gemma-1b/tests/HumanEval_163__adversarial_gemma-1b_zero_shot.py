@@ -50,4 +50,4 @@ def test_generate_integers_with_zero():
     assert generate_integers(0, 10) == [0, 2, 4, 6, 8]
 
 def test_generate_integers_negative_numbers():
-    assert generate_integers(-2, 8) == [-2, 0, 2, 4, 6, 8]
+    assert generate_integers(-2, 2) == [-2, 0, 2, 4]

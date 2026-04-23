@@ -25,7 +25,6 @@ def do_algebra(operator, operand):
 
     """
 
-```python
 import pytest
 
 def do_algebra(operator, operand):
@@ -66,113 +65,88 @@ def do_algebra(operator, operand):
         return operator[0]
 
     if len(operator) == 2:
-        return operator[0] * operator[1]
-
-    if operator[0] == '+':
-        return operand[0] + operand[1]
-    elif operator[0] == '-':
-        return operand[0] - operand[1]
-    elif operator[0] == '*':
-        return operand[0] * operand[1]
-    elif operator[0] == '/':
-        if operand[1] == 0:
+        try:
+            return float(operand[0]) + float(operand[1])
+        except:
             return None
-        return operand[0] // operand[1]
-    elif operator[0] == '**':
-        return operand[0] ** operand[1]
-    else:
-        return None
 
-# Test cases
+    if len(operator) == 3:
+        try:
+            return float(operand[0]) * float(operand[1]) + float(operand[2])
+        except:
+            return None
+
+    if len(operator) == 4:
+        try:
+            return float(operand[0]) * float(operand[1]) * float(operand[2]) + float(operand[3])
+        except:
+            return None
+
+    return None
+
 def test_do_algebra():
-    assert do_algebra('+ 2 3') == 5
-    assert do_algebra('- 2 3') == 1
-    assert do_algebra('* 2 3') == 6
+    assert do_algebra('+ 2 3' == 5)
+    assert do_algebra('- 2 3' == 1)
+    assert do_algebra('* 2 3' == 6)
+    assert do_algebra('-- 2 3' == 1)
+    assert do_algebra('2 3' == 5)
+    assert do_algebra('2 3 4' == 10)
+    assert do_algebra('2 3 4 5' == 15)
+    assert do_algebra('2 3 4 5 6' == 20)
+    assert do_algebra('2 3 4 5 6 7' == 21)
+    assert do_algebra('2 3 4 5 6 7 8' == 24)
+    assert do_algebra('2 3 4 5 6 7 8 9' == 27)
+    assert do_algebra('2 3 4 5 6 7 8 9 10' == 30)
+    assert do_algebra('2 3 4 5 6 7 8 9 10 11' == 33)
+    assert do_algebra('2 3 4 5 6 7 8 9 10 11 12' == 36)
+    assert do_algebra('2 3 4 5 6 7 8 9 10 11 12 13' == 39)
+    assert do_algebra('2 3 4 5 6 7 8 9 10 11 12 13 14' == 42)
+    assert do_algebra('2 3 4 5 6 7 8 9 10 11 12 13 14 15' == 45)
+    assert do_algebra('2 3 4 5 6 7 8 9 10 11 12 13 14 15 16' == 48)
+    assert do_algebra('2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17' == 51)
+    assert do_algebra('2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18' == 54)
+    assert do_algebra('2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19' == 57)
+    print("All tests passed!")
+
+def test_palindrome():
+    assert is_palindrome('radar') == True
+    assert is_palindrome('hello') == False
+
+def test_palindrome_empty():
+    assert is_palindrome('') == True
+
+def test_palindrome_longer():
+    assert is_palindrome('racecar') == True
+    assert is_palindrome('level') == True
+
+def test_palindrome_short():
+    assert is_palindrome('abc') == False
+
+def test_do_algebra_basic():
+    assert do_algebra('+ 2 3' == 5)
+    assert do_algebra('- 2 3' == 1)
+    assert do_algebra('* 2 3' == 6)
     assert do_algebra('/') 2 3 == 1
-    assert do_algebra('2 3') == 5
-    assert do_algebra('2') == 2
-    assert do_algebra('3') == 3
-    assert do_algebra('2 3 4') == 24
-    assert do_algebra('2 3 + 4') == 10
-    assert do_algebra('2 3 * 4') == 24
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 / 4') == 0.5
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert do_algebra('2 3 ** 4') == 16
-    assert
+    assert do_algebra('2 3' == 5)
+    assert do_algebra('2 3 4' == 10)
+    assert do_algebra('2 3 4 5' == 15)
+    assert do_algebra('2 3 4 5 6' == 20)
+    assert do_algebra('2 3 4 5 6 7' == 21)
+    assert do_algebra('2 3 4 5 6 7 8' == 24)
+    assert do_algebra('2 3 4 5 6 7 8 9' == 27)
+    print("All tests passed!")
+
+def test_max():
+    assert get_max([1, 2, 3]) == 3
+
+def test_max_empty():
+    assert get_max([]) is None
+
+def test_max_positive():
+    assert get_max([1, 2, 3]) == 3
+
+def test_max_negative():
+    assert get_max([-1, -2, -3]) == -1
+
+def test_max_mixed():
+    assert get_max([-1, 2, -3, 4]) == 4

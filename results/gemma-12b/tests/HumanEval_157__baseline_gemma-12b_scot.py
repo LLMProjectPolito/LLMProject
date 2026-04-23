@@ -19,7 +19,7 @@ def right_angle_triangle(a, b, c):
 # 3. Cases where the sides are not in ascending order (e.g., 5, 3, 4)
 # 4. Edge cases with zero or negative side lengths (should return False)
 # 5. Cases with equal sides (isosceles right triangle)
-# 6. Cases where the triangle inequality theorem is violated (e.g., 1, 1, 5)
+# 6. Cases with floating-point numbers
 
 # STEP 2: PLAN
 # Test functions:
@@ -29,8 +29,7 @@ def right_angle_triangle(a, b, c):
 # - test_zero_side: Checks a triangle with a side length of zero.
 # - test_negative_side: Checks a triangle with a negative side length.
 # - test_isosceles_right_triangle: Checks an isosceles right triangle.
-# - test_triangle_inequality_violation: Checks a triangle that violates the triangle inequality theorem.
-# - test_large_numbers: Checks with large numbers to ensure no overflow issues.
+# - test_floating_point_numbers: Checks with floating-point side lengths.
 
 # STEP 3: CODE
 import pytest
@@ -65,10 +64,7 @@ class TestRightAngleTriangle:
         assert right_angle_triangle(-3, 4, 5) == False
 
     def test_isosceles_right_triangle(self):
-        assert right_angle_triangle(1, 1, 2**0.5) == True
+        assert right_angle_triangle(5, 5, 7.0710678118654755) == True
 
-    def test_triangle_inequality_violation(self):
-        assert right_angle_triangle(1, 1, 5) == False
-
-    def test_large_numbers(self):
-        assert right_angle_triangle(1000, 1000, 1414.21356) == True
+    def test_floating_point_numbers(self):
+        assert right_angle_triangle(3.0, 4.0, 5.0) == True

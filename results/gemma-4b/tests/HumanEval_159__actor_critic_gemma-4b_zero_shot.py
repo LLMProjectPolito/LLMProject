@@ -86,12 +86,6 @@ def test_eat_zero_remaining():
     assert eat(5, 6, 0) == [11, 0]
     assert eat(0, 0, 0) == [0, 0]
 
-def test_eat_negative_need():
-    assert eat(5, -1, 10) == [4, 11]
-
-def test_eat_negative_remaining():
-    assert eat(5, 6, -1) == [11, 0]
-
 def test_eat_large_numbers():
     assert eat(999, 999, 999) == [1998, 0]
     assert eat(1000, 1000, 1000) == [2000, 0]
@@ -99,5 +93,5 @@ def test_eat_large_numbers():
 def test_eat_edge_cases():
     assert eat(0, 0, 0) == [0, 0]
     assert eat(1000, 1000, 1000) == [2000, 0]
-    assert eat(1, 0, 1000) == [1, 1000]
+    assert eat(1, 0, 1000) == [1, 999]
     assert eat(0, 1, 1000) == [1, 999]

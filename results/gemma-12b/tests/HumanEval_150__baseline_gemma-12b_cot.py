@@ -31,31 +31,28 @@ def test_x_or_y_not_prime():
     """Test case where n is not a prime number."""
     assert x_or_y(15, 8, 5) == 5
     assert x_or_y(4, 10, 20) == 20
-    assert x_or_y(6, 1, 2) == 2
-    assert x_or_y(9, 100, 200) == 200
-    assert x_or_y(10, 5, 10) == 10
-
-def test_x_or_y_n_is_1():
-    """Test case where n is 1 (not prime)."""
+    assert x_or_y(6, 100, 200) == 200
+    assert x_or_y(9, 5, 10) == 10
     assert x_or_y(1, 5, 10) == 10
 
-def test_x_or_y_n_is_0():
-    """Test case where n is 0 (not prime)."""
+def test_x_or_y_edge_cases():
+    """Test case for edge cases like 0, 1, and negative numbers."""
     assert x_or_y(0, 5, 10) == 10
+    assert x_or_y(1, 5, 10) == 10
+    assert x_or_y(-5, 5, 10) == 10  # Negative numbers are not prime
 
-def test_x_or_y_x_equals_y():
-    """Test case where x and y are equal."""
+def test_x_or_y_same_values():
+    """Test case where x and y are the same."""
     assert x_or_y(7, 5, 5) == 5
     assert x_or_y(4, 5, 5) == 5
 
-def test_x_or_y_negative_n():
-    """Test case where n is negative (not prime)."""
-    assert x_or_y(-5, 1, 2) == 2
+def test_x_or_y_large_numbers():
+    """Test case with large numbers to ensure no overflow issues."""
+    assert x_or_y(1000000007, 100, 200) == 100
+    assert x_or_y(1000000008, 100, 200) == 200
 
-def test_x_or_y_large_prime():
-    """Test case with a large prime number."""
-    assert x_or_y(997, 100, 200) == 100
-
-def test_x_or_y_large_non_prime():
-    """Test case with a large non-prime number."""
-    assert x_or_y(1000, 100, 200) == 200
+def test_x_or_y_zero_values():
+    """Test case where x or y is zero."""
+    assert x_or_y(7, 0, 10) == 0
+    assert x_or_y(4, 10, 0) == 0
+    assert x_or_y(2, 0, 0) == 0

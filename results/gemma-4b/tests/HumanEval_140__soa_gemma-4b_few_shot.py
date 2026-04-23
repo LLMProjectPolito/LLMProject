@@ -65,5 +65,8 @@ def test_fix_spaces_long_consecutive_spaces():
 def test_fix_spaces_trailing_spaces():
     assert fix_spaces("Hello  ") == "Hello-"
 
-def test_fix_spaces_multiple_consecutive_and_trailing():
-    assert fix_spaces("Hello  World   ") == "Hello__World-"
+def test_fix_spaces_multiple_leading_and_trailing():
+    assert fix_spaces("  Hello  World  ") == "_Hello-World-"
+
+def test_fix_spaces_with_special_characters():
+    assert fix_spaces("Hello!  World?") == "Hello!__World?"

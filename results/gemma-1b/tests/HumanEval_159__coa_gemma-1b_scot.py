@@ -34,6 +34,8 @@ import math
 
 
 # Focus: Boundary Values
+import pytest
+
 def eat(number, need, remaining):
     """
     You're a hungry rabbit, and you already have eaten a certain number of carrots,
@@ -64,12 +66,7 @@ def eat(number, need, remaining):
     Have fun :)
     """
     total_eaten = number
-    remaining_after_meals = remaining
-    
-    if number < need:
-        remaining_after_meals = remaining - need
-        total_eaten = number
-    
+    remaining_after_meals = remaining - need
     return [total_eaten, remaining_after_meals]
 
 # Focus: Type Scenarios
@@ -145,7 +142,7 @@ def eat(number, need, remaining):
     remaining_after_meals = remaining
     
     if number < need:
-        total_eaten += need - number
-        remaining_after_meals -= need
-        
+        remaining_after_meals = remaining - need
+        total_eaten = number
+    
     return [total_eaten, remaining_after_meals]

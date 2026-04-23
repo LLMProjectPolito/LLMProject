@@ -33,7 +33,7 @@ def solve(s):
         else:
             res += char
     if not any('a' <= char <= 'z' for char in s):
-        return s[::-1]
+        return res[::-1]
     return res
 
 def test_solve_no_letters():
@@ -55,7 +55,7 @@ def test_solve_all_lowercase():
     assert solve("abc") == "ABC"
 
 def test_solve_with_numbers_and_symbols():
-    assert solve("a1b2c#d@") == "A1B2C#D@"
+    assert solve("a1b2c#d@e") == "A1B2C#D@E"
 
 def test_solve_with_spaces():
     assert solve("hello world") == "HELLO WORLD"
@@ -64,4 +64,4 @@ def test_solve_with_special_characters():
     assert solve("!@#$%^") == "^%$#@!"
 
 def test_solve_long_string():
-    assert solve("This is a long string with mixed case and numbers.") == "tHIS iS A LoNg sTRiNg wITH mIXeD cASE AnD nUMbeRs."
+    assert solve("This is a long string with mixed case and numbers.") == "tHIS IS A LONG STRING WITH MIXED CASE AND NUMBERS."

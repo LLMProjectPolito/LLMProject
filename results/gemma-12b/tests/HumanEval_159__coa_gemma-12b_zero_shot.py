@@ -40,18 +40,18 @@ def test_eat_boundary_need_equals_remaining():
 def test_eat_boundary_need_slightly_greater_than_remaining():
     assert eat(2, 11, 10) == [22, 0]
 
-def test_eat_boundary_number_equals_need():
-    assert eat(5, 5, 10) == [10, 5]
+def test_eat_boundary_need_is_zero():
+    assert eat(5, 0, 10) == [5, 10]
 
 # Focus: Type Scenarios
 def test_eat_enough_carrots():
     assert eat(5, 6, 10) == [11, 4]
 
-def test_eat_more_carrots_than_needed():
-    assert eat(4, 8, 9) == [12, 1]
-
-def test_eat_all_remaining_carrots():
+def test_eat_not_enough_carrots():
     assert eat(2, 11, 5) == [7, 0]
+
+def test_eat_exact_carrots():
+    assert eat(1, 10, 10) == [11, 0]
 
 # Focus: Logic Branches
 def test_eat_enough_remaining():

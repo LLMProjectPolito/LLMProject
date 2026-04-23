@@ -81,29 +81,32 @@ def test_sentence_with_leading_and_trailing_spaces():
 def test_sentence_with_multiple_spaces_between_words():
     assert words_in_sentence("This   is  a    test") == "is"
 
-def test_sentence_with_only_prime_words():
-    assert words_in_sentence("abc def ghi") == "abc def"
+def test_sentence_with_only_spaces():
+    assert words_in_sentence("   ") == ""
 
-def test_sentence_with_only_non_prime_words():
-    assert words_in_sentence("abcd efgh ijkl") == ""
+def test_sentence_with_prime_length_words():
+    assert words_in_sentence("prime test") == "prime"
+
+def test_sentence_with_non_prime_length_words():
+    assert words_in_sentence("nonprime test") == ""
 
 def test_sentence_with_mixed_prime_and_non_prime_words():
-    assert words_in_sentence("This is a test abc def") == "is a"
+    assert words_in_sentence("prime nonprime test") == "prime"
 
 def test_sentence_with_long_words():
-    assert words_in_sentence("This is a verylongword") == "is a"
+    assert words_in_sentence("This is a verylongword") == "is"
 
 def test_sentence_with_short_words():
-    assert words_in_sentence("a b c d e") == "a b c"
+    assert words_in_sentence("a b c d") == "a b c"
 
-def test_sentence_with_prime_length_words_at_the_end():
-    assert words_in_sentence("This is a test abc") == "is a"
+def test_sentence_with_prime_and_non_prime_mixed_order():
+    assert words_in_sentence("test is abc") == "is"
 
-def test_sentence_with_non_prime_length_words_at_the_end():
-    assert words_in_sentence("This is a test def") == "is a"
+def test_sentence_with_multiple_prime_words():
+    assert words_in_sentence("abc def ghi") == "abc def"
 
-def test_sentence_with_prime_length_words_at_the_beginning():
-    assert words_in_sentence("abc This is a test") == "abc"
+def test_sentence_with_large_prime_length_word():
+    assert words_in_sentence("abcdefghijklmnopqrstuvwxyza") == ""
 
-def test_sentence_with_non_prime_length_words_at_the_beginning():
-    assert words_in_sentence("abcd This is a test") == "This is a"
+def test_sentence_with_small_prime_length_word():
+    assert words_in_sentence("ab") == "ab"

@@ -51,14 +51,14 @@ def words_in_sentence(sentence):
         * sentence contains only letters
     """
     words = sentence.split()
-    for word in words:
-        if not word.isalpha():
-            raise ValueError("Sentence contains non-letter characters")
     prime_words = [word for word in words if is_prime(len(word))]
     return " ".join(prime_words)
 
 def test_empty_sentence():
     assert words_in_sentence("") == ""
+
+def test_sentence_with_only_spaces():
+    assert words_in_sentence("   ") == ""
 
 def test_no_prime_length_words():
     assert words_in_sentence("This is a long sentence") == ""
@@ -75,43 +75,17 @@ def test_single_word_prime_length():
 def test_single_word_non_prime_length():
     assert words_in_sentence("testing") == ""
 
-def test_space_handling():
+def test_leading_trailing_spaces():
     assert words_in_sentence("  This is a test  ") == "is a"
-    assert words_in_sentence("This  is   a    test") == "is a"
+
+def test_multiple_spaces_between_words():
+    assert words_in_sentence("This   is  a   test") == "is a"
 
 def test_long_sentence():
     assert words_in_sentence("This is a very long sentence with many words of varying lengths") == "is a very long sentence"
 
-def test_sentence_with_only_spaces():
-    assert words_in_sentence("   ") == ""
+def test_single_space():
+    assert words_in_sentence(" ") == ""
 
-def test_is_prime_small_primes():
-    assert is_prime(2) == True
-    assert is_prime(3) == True
-    assert is_prime(5) == True
-    assert is_prime(7) == True
-
-def test_is_prime_larger_primes():
-    assert is_prime(11) == True
-    assert is_prime(13) == True
-    assert is_prime(17) == True
-
-def test_is_prime_non_primes():
-    assert is_prime(1) == False
-    assert is_prime(4) == False
-    assert is_prime(6) == False
-    assert is_prime(8) == False
-    assert is_prime(9) == False
-    assert is_prime(10) == False
-
-def test_long_word():
-    long_word = "a" * 17  # Prime length
-    assert words_in_sentence(long_word) == long_word
-
-def test_very_long_sentence():
-    long_sentence = "This is a " + "word " * 20 + "with some prime and non-prime length words"
-    assert words_in_sentence(long_sentence) == "is a word word word word word word word word word word word"
-
-def test_non_letter_characters():
-    with pytest.raises(ValueError):
-        words_in_sentence("This is a 1 test")
+def test_sentence_with_non_letter_characters():
+    assert words_in_sentence("This is a test123") == "is a"

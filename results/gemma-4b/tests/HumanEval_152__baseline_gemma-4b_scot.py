@@ -38,43 +38,36 @@ def compare(game,guess):
     return result
 
 ### SCoT Steps:
+# STEP 1: REASONING
+# The function `compare` takes two lists, `game` and `guess`, as input. It calculates the absolute difference between each element in `guess` and the corresponding element in `game`. The result is a new list containing these absolute differences. If the guess is correct at a particular index, the difference will be 0.
+# We need to test various scenarios including correct guesses, incorrect guesses with small and large differences, and edge cases like empty lists (although the problem description doesn't explicitly mention this, it's good practice to consider).
 
-### STEP 1: REASONING
-# The function `compare` takes two lists, `game` and `guess`, as input.
-# It calculates the absolute difference between each element in `guess` and the corresponding element in `game`.
-# It returns a new list containing these absolute differences.
-# The goal is to test the function with various inputs to ensure it produces the correct output.
-# We need to consider cases where the guesses are correct (difference of 0), and cases where they are incorrect.
-# We should test with different lengths of lists and different values in the lists.
-
-### STEP 2: PLAN
+# STEP 2: PLAN
 # Test cases:
 # 1. Correct guesses: [1, 2, 3, 4, 5, 1] vs [1, 2, 3, 4, 2, -2]
-# 2. Incorrect guesses: [0, 5, 0, 0, 0, 4] vs [4, 1, 1, 0, 0, -2]
-# 3. Empty lists: [] vs []
+# 2. Incorrect guesses with small differences: [0, 5, 0, 0, 0, 4] vs [4, 1, 1, 0, 0, -2]
+# 3. Incorrect guesses with large differences: [1, 2, 3, 4, 5, 1] vs [1, 2, 3, 4, 6, 1]
 # 4. Single element lists: [1] vs [1]
-# 5. Mixed correct and incorrect: [1, 2, 3, 4, 5, 1] vs [1, 2, 3, 4, 6, 1]
-# 6. Negative values: [1, -2, 3, -4, 5, -1] vs [1, -2, 3, -4, 5, -1]
+# 5. Single element lists with incorrect guess: [1] vs [2]
+# 6. Lists with negative numbers: [1, -2, 3] vs [-1, 2, 3]
 
-### STEP 3: CODE
-def test_compare_correct_guesses():
-    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
+# Test function names: test_compare_correct, test_compare_incorrect_small, test_compare_incorrect_large, test_compare_single_element, test_compare_negative_numbers
 
-def test_compare_incorrect_guesses():
-    assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
+# STEP 3: CODE
+def test_compare_correct():
+    assert compare([1,2,3,4,5,1],[1,2,3,4,2,-2]) == [0,0,0,0,3,3]
 
-def test_compare_empty_lists():
-    assert compare([], []) == []
+def test_compare_incorrect_small():
+    assert compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) == [4,4,1,0,0,6]
 
-def test_compare_single_element_lists():
-    assert compare([1], [1]) == [0]
+def test_compare_incorrect_large():
+    assert compare([1,2,3,4,5,1],[1,2,3,4,6,1]) == [0,0,0,0,2,0]
 
-def test_compare_mixed_correct_incorrect():
-    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 6, 1]) == [0, 0, 0, 0, 1, 0]
+def test_compare_single_element():
+    assert compare([1],[1]) == [0]
 
-def test_compare_negative_values():
-    assert compare([1, -2, 3, -4, 5, -1], [1, -2, 3, -4, 5, -1]) == [0, 0, 0, 0, 0, 0]
+def test_compare_single_element_incorrect():
+    assert compare([1],[2]) == [1]
 
-def test_compare_different_lengths():
-    with pytest.raises(IndexError):
-        compare([1, 2, 3], [1, 2])
+def test_compare_negative_numbers():
+    assert compare([1, -2, 3], [-1, 2, 3]) == [0, 3, 0]

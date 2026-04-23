@@ -67,29 +67,26 @@ def do_algebra(operator, operand):
             result **= operand[i+1]
     return result
 
-def test_empty_operator():
-    assert do_algebra([], [1, 2, 3]) == 1
-
-def test_empty_operand():
-    operator = ['+', '*']
-    operand = []
-    with pytest.raises(IndexError):
-        do_algebra(operator, operand)
-
 def test_addition():
-    assert do_algebra(['+', 2, 3, 4], [2, 3, 4]) == 9
+    assert do_algebra(['+', '+'], [2, 3]) == 5
 
 def test_subtraction():
-    assert do_algebra(['-', 5, 2, 1], [5, 2, 1]) == 4
+    assert do_algebra(['-', '-'], [5, 2]) == 3
 
 def test_multiplication():
-    assert do_algebra(['*', 2, 3, 4], [2, 3, 4]) == 24
+    assert do_algebra(['*', '*'], [2, 3]) == 6
 
 def test_floor_division():
-    assert do_algebra(['//', 10, 2, 1], [10, 2, 1]) == 5
+    assert do_algebra(['//', '//'], [10, 2]) == 5
 
 def test_exponentiation():
-    assert do_algebra(['**', 2, 3, 4], [2, 3, 4]) == 16
+    assert do_algebra(['**', '**'], [2, 3]) == 8
 
 def test_mixed_operations():
-    assert do_algebra(['+', '*', '-', 2, 3, 4, 5], [2, 3, 4, 5]) == 14
+    assert do_algebra(['+', '*', '-'], [2, 3, 4, 5]) == 9
+
+def test_complex_expression():
+    assert do_algebra(['*', '+', '//'], [5, 2, 3, 2]) == 11
+
+def test_exponentiation_complex():
+    assert do_algebra(['**', '+', '*'], [2, 3, 4, 5]) == 128

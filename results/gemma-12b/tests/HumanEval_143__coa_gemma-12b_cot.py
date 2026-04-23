@@ -57,7 +57,7 @@ def test_sentence_with_one_letter_prime():
     assert words_in_sentence("a test") == "a"
 
 def test_sentence_with_one_letter_non_prime():
-    assert words_in_sentence("aa test") == ""
+    assert words_in_sentence("bb test") == ""
 
 # Focus: Type Scenarios
 def test_empty_sentence():

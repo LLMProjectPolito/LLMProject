@@ -38,7 +38,7 @@ def test_special_factorial_type_error():
     with pytest.raises(TypeError):
         special_factorial([1,2,3])
 
-def test_special_factorial_negative():
+def test_special_factorial_negative_input():
     with pytest.raises(ValueError):
         special_factorial(-1)
     with pytest.raises(ValueError):

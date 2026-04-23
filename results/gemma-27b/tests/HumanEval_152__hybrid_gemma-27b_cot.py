@@ -58,3 +58,5 @@ def test_compare_non_integer_input_raises_error():
         compare([1, 2], [1.5, 2])
     with pytest.raises(TypeError):
         compare(["1", 2], [1, 2])
+    with pytest.raises(TypeError):
+        compare([1, 2], ["1", 2])

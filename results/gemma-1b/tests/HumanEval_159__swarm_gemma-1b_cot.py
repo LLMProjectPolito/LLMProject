@@ -61,12 +61,15 @@ def eat(number, need, remaining):
 
     Have fun :)
     """
-    eaten = number
-    remaining = remaining - need
-    if remaining <= 0:
-        return [eaten, 0]
+    total_eaten = number
+    remaining_after_meals = remaining
+    
+    if number == need:
+        return [total_eaten, 0]
+    elif number == need - 1:
+        return [total_eaten, remaining_after_meals - 1]
     else:
-        return [eaten, remaining]
+        return [total_eaten, 0]
 
 def eat(number, need, remaining):
     """
@@ -97,11 +100,9 @@ def eat(number, need, remaining):
 
     Have fun :)
     """
-    total_eaten = number
-    remaining_after_meals = remaining
-    
-    if number < need:
-        remaining_after_meals = 0
-        total_eaten -= need
-    
-    return [total_eaten, remaining_after_meals]
+    eaten = number
+    remaining = remaining - need
+    if remaining <= 0:
+        return [eaten, 0]
+    else:
+        return [eaten, remaining]

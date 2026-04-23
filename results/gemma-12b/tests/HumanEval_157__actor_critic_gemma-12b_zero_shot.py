@@ -20,44 +20,46 @@ def test_valid_right_triangle():
     assert right_angle_triangle(7, 24, 25) == True
     assert right_angle_triangle(20, 21, 29) == True
 
-def test_triangle_constraints():
-    assert right_angle_triangle(1, 1, 3) == False  # Sum less than third side
-    assert right_angle_triangle(1, 2, 1) == False  # Triangle inequality violation
-    assert right_angle_triangle(1, 1, 2) == False  # Triangle inequality violation
-    assert right_angle_triangle(0, 0, 0) == False  # All sides zero
-    assert right_angle_triangle(0, 4, 5) == False  # One side zero
-    assert right_angle_triangle(3, 0, 5) == False  # One side zero
-    assert right_angle_triangle(3, 4, 0) == False  # One side zero
-    assert right_angle_triangle(0, 0, 5) == False # Two sides zero
+def test_invalid_right_triangle():
+    assert right_angle_triangle(1, 2, 3) == False
+    assert right_angle_triangle(4, 5, 6) == False
+    assert right_angle_triangle(10, 11, 12) == False
+    assert right_angle_triangle(2, 3, 4) == False
 
-def test_equilateral_triangle():
-    assert right_angle_triangle(1, 1, 1) == False
+def test_non_right_triangles():
+    assert right_angle_triangle(0, 0, 0) == False  # All sides zero
+    assert right_angle_triangle(1, 1, 1) == False  # Equilateral triangle
+    assert right_angle_triangle(2, 2, 3) == False # Two sides equal, not a right triangle
+    assert right_angle_triangle(1, 1, 2) == False  # Invalid triangle (sum of two sides < third side)
 
 def test_large_numbers():
-    assert right_angle_triangle(1000, 1000, pytest.approx(1414.2135623730951, rel=1e-6)) == True
     assert right_angle_triangle(1000, 1000, 1414) == False
-    assert right_angle_triangle(10000, 10000, pytest.approx(14142.135623730951, rel=1e-6)) == True
+    assert right_angle_triangle(1000, 1000, pytest.approx(1414.2135623730951)) == True
+    assert right_angle_triangle(10000, 10000, 14142) == False
 
 def test_float_inputs():
     assert right_angle_triangle(3.0, 4.0, 5.0) == True
     assert right_angle_triangle(1.5, 2.0, 2.5) == True
     assert right_angle_triangle(1.0, 2.0, 3.0) == False
+    assert right_angle_triangle(0.1, 0.2, pytest.approx(0.2236, abs=1e-5)) == True
+    assert right_angle_triangle(0.001, 0.002, pytest.approx(0.002236, abs=1e-5)) == True
 
 def test_negative_inputs():
-    assert right_angle_triangle(-3, 4, 5) == False
-    assert right_angle_triangle(3, -4, 5) == False
-    assert right_angle_triangle(3, 4, -5) == False
-    assert right_angle_triangle(-3, -4, -5) == False
+    with pytest.raises(ValueError):
+        right_angle_triangle(-3, 4, 5)
+    with pytest.raises(ValueError):
+        right_angle_triangle(3, -4, 5)
+    with pytest.raises(ValueError):
+        right_angle_triangle(3, 4, -5)
+    with pytest.raises(ValueError):
+        right_angle_triangle(-3, -4, -5)
 
-def test_type_handling():
-    assert right_angle_triangle("3", "4", "5") == False
-    assert right_angle_triangle(3, 4, "5") == False
-    assert right_angle_triangle(3, "4", 5) == False
-    assert right_angle_triangle("3", 4, 5) == False
-
-def test_argument_order():
-    assert right_angle_triangle(4, 3, 5) == True
-    assert right_angle_triangle(5, 4, 3) == False
-    assert right_angle_triangle(3, 5, 4) == False
-    assert right_angle_triangle(5, 3, 4) == False
-    assert right_angle_triangle(4, 5, 3) == False
+def test_zero_and_positive():
+    with pytest.raises(ValueError):
+        right_angle_triangle(0, 4, 5)
+    with pytest.raises(ValueError):
+        right_angle_triangle(3, 0, 5)
+    with pytest.raises(ValueError):
+        right_angle_triangle(3, 4, 0)
+    with pytest.raises(ValueError):
+        right_angle_triangle(0, 0, 5) # One side zero, other sides positive

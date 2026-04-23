@@ -178,4 +178,4 @@ def test_non_space_only_2():
     assert words_in_sentence("abcdef") == "abcdef"
 
 def test_non_space_only_3():
-    assert words_in_sentence("abcdefgh") == "abcdefgh"
+    assert words_in_sentence("a") == ""

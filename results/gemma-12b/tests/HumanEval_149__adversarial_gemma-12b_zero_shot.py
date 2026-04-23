@@ -42,26 +42,23 @@ def test_same_length_alphabetical_with_duplicates():
 def test_mixed_lengths_and_alphabetical():
     assert sorted_list_sum(["aa", "a", "aaa", "cd", "bb", "cc"]) == ["aa", "bb", "cc", "cd"]
 
-def test_long_strings():
-    assert sorted_list_sum(["abcdef", "abc", "ab", "a", "abcdefgh"]) == ["ab", "abc", "abcdef", "abcdefgh"]
+def test_long_list():
+    assert sorted_list_sum(["a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa"]) == ["aa", "aaaa", "aaaaa", "aaaaaa"]
 
-def test_strings_with_spaces():
-    assert sorted_list_sum(["a b", "aa", "aaa", "a"]) == ["aa"]
+def test_list_with_empty_string():
+    assert sorted_list_sum(["", "a", "aa"]) == ["", "aa"]
 
-def test_strings_with_special_characters():
-    assert sorted_list_sum(["!@#", "!!", "!!!"]) == ["!!"]
+def test_list_with_special_characters():
+    assert sorted_list_sum(["!@#", "a", "!!"]) == ["!@#", "!!"]
 
-def test_single_element_even():
-    assert sorted_list_sum(["aa"]) == ["aa"]
+def test_list_with_unicode_characters():
+    assert sorted_list_sum(["你好", "a", "世界"]) == ["你好", "世界"]
 
-def test_single_element_odd():
-    assert sorted_list_sum(["a"]) == []
+def test_list_with_numbers_as_strings():
+    assert sorted_list_sum(["12", "1", "123"]) == ["12", "123"]
 
-def test_duplicate_even_length():
+def test_list_with_mixed_characters():
+    assert sorted_list_sum(["a1", "a", "a12"]) == ["a", "a1", "a12"]
+
+def test_list_with_same_length_and_same_value():
     assert sorted_list_sum(["aa", "aa", "aa"]) == ["aa", "aa", "aa"]
-
-def test_duplicate_odd_length():
-    assert sorted_list_sum(["a", "a", "a"]) == []
-
-def test_complex_scenario():
-    assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape", "pear"]) == ['kiwi', 'pear', 'apple', 'grape', 'banana', 'orange']

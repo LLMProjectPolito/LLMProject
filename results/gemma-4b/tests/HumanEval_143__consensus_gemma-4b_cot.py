@@ -62,52 +62,49 @@ def test_empty_sentence():
     assert words_in_sentence("") == ""
 
 def test_single_word_prime():
-    assert words_in_sentence("test") == "test"
+    assert words_in_sentence("abc") == "abc"
 
 def test_single_word_non_prime():
-    assert words_in_sentence("hello") == ""
+    assert words_in_sentence("abcd") == ""
 
 def test_multiple_words_some_prime():
     assert words_in_sentence("This is a test") == "is"
 
 def test_multiple_words_all_prime():
-    assert words_in_sentence("prime prime prime") == "prime prime prime"
+    assert words_in_sentence("abc def ghi") == "abc def"
 
 def test_multiple_words_no_prime():
-    assert words_in_sentence("hello world") == ""
+    assert words_in_sentence("abcd efgh ijkl") == ""
 
 def test_sentence_with_leading_and_trailing_spaces():
-    assert words_in_sentence("  test  ") == "test"
+    assert words_in_sentence("  This is a test  ") == "is"
 
 def test_sentence_with_multiple_spaces():
-    assert words_in_sentence("test   test") == "test test"
+    assert words_in_sentence("This   is  a    test") == "is"
 
 def test_sentence_with_numbers():
-    assert words_in_sentence("test1 test2") == "test1"
+    assert words_in_sentence("This is 123 test") == "is"
 
 def test_sentence_with_special_characters():
-    assert words_in_sentence("test! test?") == "test"
+    assert words_in_sentence("This is a!@# test") == "is"
 
-def test_sentence_with_mixed_case():
-    assert words_in_sentence("Test Is A Test") == "Is"
+def test_sentence_with_long_words():
+    assert words_in_sentence("This is a verylongword test") == "is"
 
-def test_long_sentence_with_primes():
-    assert words_in_sentence("This is a very long sentence with some prime words") == "is some"
+def test_sentence_with_short_words():
+    assert words_in_sentence("a b c d e f g h i j k l m n o p q r s t u v w x y z") == "b d f h j l n p r s t"
 
-def test_long_sentence_with_no_primes():
-    assert words_in_sentence("This is a very long sentence with no prime words") == ""
+def test_sentence_with_prime_length_words():
+    assert words_in_sentence("prime test") == "prime"
 
-def test_sentence_with_only_spaces():
-    assert words_in_sentence("   ") == ""
+def test_sentence_with_non_prime_length_words():
+    assert words_in_sentence("nonprime test") == ""
 
-def test_sentence_with_one_word_prime():
-    assert words_in_sentence("one") == "one"
+def test_sentence_with_mixed_prime_and_non_prime_words():
+    assert words_in_sentence("prime nonprime test") == "prime"
 
-def test_sentence_with_one_word_non_prime():
-    assert words_in_sentence("two") == ""
+def test_sentence_with_only_non_prime_words():
+    assert words_in_sentence("nonprime nonprime nonprime") == ""
 
-def test_sentence_with_prime_length_words_at_start_and_end():
-    assert words_in_sentence("prime test prime") == "prime test prime"
-
-def test_sentence_with_prime_length_words_interspersed():
-    assert words_in_sentence("hello prime world prime") == "prime world prime"
+def test_sentence_with_only_prime_words():
+    assert words_in_sentence("prime prime prime") == "prime prime prime"

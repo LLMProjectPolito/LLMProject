@@ -36,23 +36,20 @@ def test_words_with_numbers():
 def test_words_with_mixed_characters():
     assert find_max(["a1b2", "c3d4e", "f5"]) == "c3d4e"
 
-def test_duplicate_words():
-    assert find_max(["hello", "hello", "world"]) == "hello"
+def test_words_with_duplicates():
+    assert find_max(["aabbcc", "abcdef", "aa"]) == "abcdef"
 
-def test_words_with_uppercase_and_lowercase():
-    assert find_max(["Hello", "world", "WorlD"]) == "Hello"
+def test_words_with_empty_string():
+    assert find_max(["", "abc", "def"]) == "abc"
+
+def test_words_with_only_duplicates():
+    assert find_max(["aaaa", "bbbb", "cccc"]) == "aaaa"
 
 def test_long_words():
     assert find_max(["abcdefghijklmnopqrstuvwxyz", "abc"]) == "abcdefghijklmnopqrstuvwxyz"
 
-def test_words_with_spaces():
-    assert find_max(["hello world", "abc"]) == "hello world"
-
 def test_words_with_unicode_characters():
     assert find_max(["你好", "世界"]) == "世界"
 
-def test_words_with_empty_string():
-    assert find_max(["", "abc"]) == "abc"
-
-def test_multiple_max_words():
-    assert find_max(["abc", "bca", "cab"]) == "abc"
+def test_lexicographical_tiebreaker():
+    assert find_max(["abc", "abd", "abe"]) == "abc"

@@ -70,7 +70,7 @@ def test_long_string():
     assert solve("ThisIsALongString") == "tHISiSaLONGsTRING"
 
 def test_string_with_spaces():
-    assert solve("a b C") == "A b c"
+    assert solve("a b C") == "A B c"
 
 def test_string_with_unicode():
     assert solve("你好世界") == "你好世界"

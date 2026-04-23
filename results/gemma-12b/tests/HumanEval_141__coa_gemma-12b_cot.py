@@ -39,11 +39,11 @@ def test_file_name_check_invalid_extension():
     assert file_name_check("example.pdf") == 'No'
 
 # Focus: Type Scenarios
-def test_file_name_check_valid_scenario():
+def test_valid_file_name():
     assert file_name_check("example.txt") == 'Yes'
 
-def test_file_name_check_invalid_digit_scenario():
+def test_invalid_file_name_digit_count():
     assert file_name_check("1234example.txt") == 'No'
 
-def test_file_name_check_invalid_extension_scenario():
+def test_invalid_file_name_extension():
     assert file_name_check("example.pdf") == 'No'

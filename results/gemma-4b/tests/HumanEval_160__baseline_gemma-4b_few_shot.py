@@ -92,11 +92,11 @@ def test_max_empty():
 
 def test_do_algebra_addition():
     assert do_algebra(['+', '+'], [2, 3, 4]) == 9
-    assert do_algebra(['+', '+'], [1, 2, 3, 4]) == 10
+    assert do_algebra(['+', '+'], [1, 2, 3, 4, 5]) == 15
 
 def test_do_algebra_subtraction():
     assert do_algebra(['-', '-'], [5, 3, 2]) == 0
-    assert do_algebra(['-', '-'], [10, 5, 2, 1]) == 6
+    assert do_algebra(['-', '-'], [10, 5, 2, 1]) == 4
 
 def test_do_algebra_multiplication():
     assert do_algebra(['*', '*'], [2, 3, 4]) == 24
@@ -108,9 +108,8 @@ def test_do_algebra_floor_division():
 
 def test_do_algebra_exponentiation():
     assert do_algebra(['**', '**'], [2, 3]) == 8
-    assert do_algebra(['**', '**'], [2, 3, 2]) == 64
+    assert do_algebra(['**', '**'], [2, 4]) == 16
 
 def test_do_algebra_mixed():
     assert do_algebra(['+', '*', '-'], [2, 3, 4, 5]) == 9
     assert do_algebra(['*', '+', '-', '**'], [2, 3, 4, 5, 2]) == 14
-    assert do_algebra(['//', '+', '*'], [10, 2, 5, 3]) == 13

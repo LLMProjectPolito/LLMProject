@@ -36,7 +36,7 @@ def solve(s):
         else:
             result += char
     if not has_letter:
-        result = result[::-1]
+        return result[::-1]
     return result
 
 def test_empty_string():
@@ -58,7 +58,7 @@ def test_with_numbers_and_symbols():
     assert solve("#a@C") == "#A@c"
 
 def test_numbers_and_symbols_only():
-    assert solve("#@123") == "#@123"[::-1]
+    assert solve("#@123") == "321@"
 
 def test_long_string():
     assert solve("ThisIsALongString") == "tHISiSaLONGsTRING"
@@ -69,17 +69,14 @@ def test_string_with_spaces():
 def test_string_with_special_characters():
     assert solve("!@#$%^") == "!@#$%^"[::-1]
 
-def test_mixed_string():
-    assert solve("a1B2c3D") == "A1b2C3d"
-
 def test_string_with_unicode_characters():
     assert solve("你好世界") == "你好世界"[::-1]
 
-def test_string_with_numbers_and_letters():
-    assert solve("a1b2c3d") == "A1B2C3D"
+def test_mixed_string():
+    assert solve("a1B2c3D") == "A1b2C3d"
 
-def test_string_with_only_numbers():
-    assert solve("123") == "321"
+def test_string_with_leading_and_trailing_spaces():
+    assert solve("  abc  ") == "  ABC  "
 
-def test_string_with_only_symbols():
-    assert solve("!@#") == "!@#"[::-1]
+def test_string_with_only_spaces():
+    assert solve("   ") == "   "[::-1]

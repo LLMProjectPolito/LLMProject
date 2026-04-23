@@ -48,7 +48,7 @@ def bf(planet1, planet2):
     result = tuple(planets[start_index + 1:end_index])
     return result
 
-# Pytest Suite - Combined and Enhanced
+# Pytest Suite for bf function
 def test_bf_jupiter_neptune():
     assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
 
@@ -88,10 +88,12 @@ def test_bf_mars_jupiter():
 def test_bf_jupiter_mars():
     assert bf("Jupiter", "Mars") == ("Saturn", "Uranus")
 
+# Problem: is_palindrome
 def is_palindrome(s: str) -> bool:
     """ Checks if a string is a palindrome """
     return s == s[::-1]
 
+# Tests for is_palindrome
 def test_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
@@ -99,12 +101,14 @@ def test_palindrome_basic():
 def test_palindrome_empty():
     assert is_palindrome('') == True
 
+# Problem: get_max
 def get_max(arr: list[int]) -> int:
     """ Returns the maximum element in a list, or None if empty """
     if not arr:
         return None
     return max(arr)
 
+# Tests for get_max
 def test_max_positive():
     assert get_max([1, 2, 3]) == 3
 

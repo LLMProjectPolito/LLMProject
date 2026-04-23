@@ -13,9 +13,7 @@ def cycpattern_check(a , b):
 import pytest
 
 def cycpattern_check(a , b):
-    """You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word.
-    The algorithm iterates through all rotations of string `b` and checks if any of them is a substring of string `a`.
-    Time Complexity: O(len(b) * len(a)), where len(a) is the length of string a and len(b) is the length of string b.
+    """You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word
     cycpattern_check("abcd","abd") => False
     cycpattern_check("hello","ell") => True
     cycpattern_check("whassup","psus") => False
@@ -52,7 +50,7 @@ def test_single_char_b():
 def test_substring_present_true():
     assert cycpattern_check("hello", "ell") == True
 
-def test_substring_present_false():
+def test_substring_not_present_false():
     assert cycpattern_check("abcd", "abd") == False
 
 def test_repeated_chars_true():
@@ -67,45 +65,38 @@ def test_edge_case_true():
 def test_edge_case_false():
     assert cycpattern_check("whassup", "psus") == False
 
-# New tests based on review feedback
+def test_a_not_empty_b_empty():
+    assert cycpattern_check("abc", "") == True
 
-def test_same_length_no_substring():
-    assert cycpattern_check("abc", "acb") == False
+def test_same_length_not_substring():
+    assert cycpattern_check("abcd", "dcba") == False
 
-def test_long_a_short_b_at_end():
-    assert cycpattern_check("abcdefghijk", "ijk") == True
+def test_long_string_multiple_occurrences():
+    assert cycpattern_check("aaaaaaaaaa", "aa") == True
 
-def test_unicode_strings():
-    assert cycpattern_check("你好世界", "世界") == True
-    assert cycpattern_check("你好世界", "好世") == True
-    assert cycpattern_check("你好世界", "界世") == False
+def test_long_string_multiple_occurrences_not_cyclic():
+    assert cycpattern_check("aaaaaaaaaa", "aaa") == True
 
-def test_large_strings():
-    a = "a" * 1000
-    b = "a" * 100
-    assert cycpattern_check(a, b) == True
+def test_long_string_complex_pattern():
+    assert cycpattern_check("abcdefghijkabcdefghijk", "defghijka") == True
 
-    a = "a" * 1000
-    b = "b" * 100
-    assert cycpattern_check(a, b) == False
+def test_long_string_complex_pattern_false():
+    assert cycpattern_check("abcdefghijkabcdefghijk", "defghijkab") == False
 
-def test_substring_cyclic_permutation():
-    assert cycpattern_check("abcabc", "bca") == True
-
-def test_substring_cyclic_permutation_different_lengths():
-    assert cycpattern_check("abcdefg", "cdef") == True
-
-def test_substring_cyclic_permutation_false():
-    assert cycpattern_check("abcdefg", "cdeff") == False
+def test_long_strings_no_match():
+    assert cycpattern_check("abcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcba") == False
 
 def test_special_characters():
     assert cycpattern_check("hello!", "lo!") == True
-    assert cycpattern_check("hello!", "lo$") == False
+    assert cycpattern_check("hello!", "l!") == True
+    assert cycpattern_check("hello!", "!lo") == True
 
 def test_numbers():
     assert cycpattern_check("12345", "234") == True
-    assert cycpattern_check("12345", "346") == False
+    assert cycpattern_check("12345", "3451") == True
+    assert cycpattern_check("12345", "512") == False
 
 def test_mixed_characters():
-    assert cycpattern_check("a1b2c3d", "1b2c") == True
-    assert cycpattern_check("a1b2c3d", "1b3c") == False
+    assert cycpattern_check("a1b2c3d", "1b2") == True
+    assert cycpattern_check("a1b2c3d", "c3da") == True
+    assert cycpattern_check("a1b2c3d", "dabc") == False

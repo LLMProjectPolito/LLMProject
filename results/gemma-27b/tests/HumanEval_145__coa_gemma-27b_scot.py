@@ -27,7 +27,7 @@ def test_digit_sum_calculation_negative_numbers():
 def test_digit_sum_calculation_mixed_numbers():
     assert order_by_points([1, -11, 2, -22, 11]) == [1, -11, 2, -22, 11]
 
-# Focus: Empty/Null Input
+# Focus: Handling of Negative Numbers
 import pytest
 
 def order_by_points(nums):
@@ -49,14 +49,16 @@ def order_by_points(nums):
 
     return sorted(nums, key=lambda x: (sum_digits(x), nums.index(x)))
 
-def test_empty_list():
-    assert order_by_points([]) == []
+def test_negative_numbers_basic():
+    assert order_by_points([1, -1, -11, 11]) == [-1, -11, 1, 11]
 
-def test_null_input():
-    with pytest.raises(TypeError):
-        order_by_points(None)
+def test_negative_numbers_with_zero():
+    assert order_by_points([-1, 0, -11, 11]) == [-1, 0, -11, 11]
 
-# Focus: Tie-breaking with Original Index
+def test_multiple_negative_numbers():
+    assert order_by_points([-1, -11, -12, -21]) == [-1, -11, -12, -21]
+
+# Focus: Original Index Preservation
 import pytest
 
 def order_by_points(nums):
@@ -78,11 +80,11 @@ def order_by_points(nums):
 
     return sorted(nums, key=lambda x: (sum_digits(x), nums.index(x)))
 
-def test_tie_breaking_original_index_1():
-    assert order_by_points([1, 10, 100, 1000]) == [1, 10, 100, 1000]
+def test_original_index_preservation_same_sum():
+    assert order_by_points([10, 1, 100, 1]) == [1, 10, 1, 100]
 
-def test_tie_breaking_original_index_2():
-    assert order_by_points([11, 1, 10, 2]) == [1, 2, 10, 11]
+def test_original_index_preservation_with_negatives():
+    assert order_by_points([11, -1, 2, -2]) == [-1, -2, 2, 11]
 
-def test_tie_breaking_original_index_3():
-    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+def test_original_index_preservation_duplicate_values():
+    assert order_by_points([1, 1, 1, 1]) == [1, 1, 1, 1]

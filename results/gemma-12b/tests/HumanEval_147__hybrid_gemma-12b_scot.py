@@ -17,14 +17,6 @@ def get_max_triples(n):
 import pytest
 from your_module import get_max_triples  # Replace your_module
 
-def test_get_max_triples_n_0():
-    with pytest.raises(ValueError):
-        get_max_triples(0)
-
-def test_get_max_triples_n_negative():
-    with pytest.raises(ValueError):
-        get_max_triples(-1)
-
 def test_get_max_triples_n_1():
     assert get_max_triples(1) == 0
 
@@ -44,13 +36,20 @@ def test_get_max_triples_n_6():
     assert get_max_triples(6) == 2
 
 def test_get_max_triples_n_7():
-    assert get_max_triples(7) == 3
+    assert get_max_triples(7) == 2
 
-def test_get_max_triples_small_n():
-    assert get_max_triples(5) == 1
-
-def test_get_max_triples_large_n():
-    assert get_max_triples(100) == 1617
+def test_get_max_triples_n_8():
+    assert get_max_triples(8) == 4
 
 def test_get_max_triples_n_10():
-    assert get_max_triples(10) == 8
+    assert get_max_triples(10) == 6
+
+def test_get_max_triples_n_20():
+    assert get_max_triples(20) == 126
+
+def test_get_max_triples_large_n():
+    assert get_max_triples(100) == 4851
+
+def test_get_max_triples_n_0():
+    with pytest.raises(ValueError):
+        get_max_triples(0)

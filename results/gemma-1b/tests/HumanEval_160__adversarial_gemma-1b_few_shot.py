@@ -53,24 +53,20 @@ def do_algebra(operator, operand):
 
     """
     if len(operand) != 2:
-        raise ValueError("Operand must be a list of two integers.")
+        raise ValueError("Operand must contain exactly two elements.")
     
-    op1 = operand[0]
-    op2 = operand[1]
-
     if operator == '+':
-        return op1 + op2
+        return operand[0] + operand[1]
     elif operator == '-':
-        return op1 - op2
+        return operand[0] - operand[1]
     elif operator == '*':
-        return op1 * op2
+        return operand[0] * operand[1]
     elif operator == '//':
-        return op1 // op2
+        return operand[0] // operand[1]
     elif operator == '**':
-        return op1 ** op2
+        return operand[0] ** operand[1]
     else:
-        return None  # Or raise an exception for invalid operator
-
+        return 0  # Default value for unknown operators
 
 def test_do_algebra():
     assert do_algebra('+ 2 3') == 5
@@ -80,16 +76,20 @@ def test_do_algebra():
     assert do_algebra('2 ** 3') == 8
     assert do_algebra('2 + 3 * 4') == 9
     assert do_algebra('2 - 3 * 4') == 1
-    assert do_algebra('2 + 3 / 4') == 1.5
-    assert do_algebra('2 / 3') == 0.6666666666666666
+    assert do_algebra('2 / 3') == 2.0
     assert do_algebra('2 ** 3') == 8
-    assert do_algebra('2 + 3 * 4') == 14
-    assert do_algebra('2 - 3 * 4') == -14
-    assert do_algebra('2 + 3 / 4') == 1.25
-    assert do_algebra('2 / 3') == 0.6666666666666666
+    assert do_algebra('2 + 3 * 4') == 11
+    assert do_algebra('2 - 3 * 4') == -1
+    assert do_algebra('2 / 3') == 2.0
+    assert do_algebra('2 + 3 * 4') == 11
+    assert do_algebra('2 - 3 * 4') == -1
+    assert do_algebra('2 / 3') == 2.0
+    assert do_algebra('2 + 3 * 4') == 11
+    assert do_algebra('2 - 3 * 4') == -1
     
-    # Test with empty list
-    assert do_algebra('+ 1') == None
-    assert do_algebra('- 1') == None
-    assert do_algebra('1') == None
-    assert do_algebra('') == None
+    # Test cases with invalid input
+    with pytest.raises(ValueError) as e:
+        do_algebra('2')
+    
+    with pytest.raises(ValueError) as e:
+        do_algebra('+ 2')

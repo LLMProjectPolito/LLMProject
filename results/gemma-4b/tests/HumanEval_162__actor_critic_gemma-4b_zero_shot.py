@@ -28,27 +28,27 @@ def test_string_to_md5_empty():
     assert string_to_md5('') is None
 
 def test_string_to_md5_single_char():
-    assert string_to_md5('a') == '9709a533666963899999999999999999'
+    assert string_to_md5('a') == '9709969c69c899898999999999999999'
 
 def test_string_to_md5_unicode():
     assert string_to_md5('你好世界') == 'b9a8f9c9769999999999999999999999'
 
 def test_string_to_md5_numbers():
-    assert string_to_md5('12345') == '6b934236f54885699999999999999999'
+    assert string_to_md5('12345') == '6b934d088579b3359396889999999999'
 
 def test_string_to_md5_special_chars():
     assert string_to_md5('!@#$%^') == '89669399999999999999999999999999'
 
 def test_string_to_md5_mixed():
-    assert string_to_md5('Hello123!@#') == '89669399999999999999999999999999'
+    assert string_to_md5('Hello123!@#') == 'a94a8fe5ccb19ba61c4c0873d391e987'
 
 def test_string_to_md5_long_string():
     long_string = "This is a very long string to test the function with a large input."
-    expected_md5 = 'a94a8fe5ccb19ba61c4c0873d391e987'
+    expected_md5 = '89669399999999999999999999999999'
     assert string_to_md5(long_string) == expected_md5
 
 def test_string_to_md5_whitespace():
-    assert string_to_md5('   ') == '37659878a86d69999999999999999999'
+    assert string_to_md5('   ') == '37659d78999999999999999999999999'
 
 def test_string_to_md5_newline():
     assert string_to_md5('hello\nworld') == 'b9a8f9c9769999999999999999999999'

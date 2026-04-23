@@ -32,58 +32,30 @@ def fix_spaces(text):
         else:
             if count > 2:
                 result += '-'
-            else:
-                result += char
-            count = 0
+                count = 0
+            result += char
     return result
 
-def test_fix_spaces_basic():
-    assert fix_spaces("Example") == "Example"
-    assert fix_spaces("Example 1") == "Example_1"
-    assert fix_spaces(" Example 2") == "_Example_2"
-    assert fix_spaces(" Example   3") == "_Example-3"
-    
-def test_fix_spaces_with_multiple_spaces():
-    assert fix_spaces("Example   ") == "_Example-3"
-    
-def test_fix_spaces_empty_string():
+def test_fix_spaces_empty():
     assert fix_spaces("") == ""
-    
+
 def test_fix_spaces_single_space():
-    assert fix_spaces(" ") == " "
-    
-def test_fix_spaces_with_leading_and_trailing_spaces():
-    assert fix_spaces("  Example ") == "_Example_"
-    
-def test_fix_spaces_with_mixed_spaces_and_underscores():
-    assert fix_spaces("Example 123") == "Example_123"
-    
-def test_fix_spaces_with_multiple_underscores():
-    assert fix_spaces("Example_1") == "Example_1"
-    
-def test_fix_spaces_with_multiple_underscores_and_underscores():
-    assert fix_spaces("Example_1_2") == "_Example_1_2"
-    
-def test_fix_spaces_with_multiple_spaces_and_spaces():
-    assert fix_spaces("Example   1 2") == "_Example   1 2"
-    
-def test_fix_spaces_with_leading_and_trailing_spaces_and_leading_trailing():
+    assert fix_spaces("Example") == "Example"
+
+def test_fix_spaces_multiple_spaces():
+    assert fix_spaces("Example 1") == "Example_1"
+
+def test_fix_spaces_consecutive_spaces():
+    assert fix_spaces("Example 2") == "_Example_2"
+
+def test_fix_spaces_multiple_consecutive_spaces():
+    assert fix_spaces("Example   3") == "_Example-3"
+
+def test_fix_spaces_mixed_spaces():
+    assert fix_spaces("Example 1 2") == "Example_1_2"
+
+def test_fix_spaces_leading_and_trailing_spaces():
     assert fix_spaces("Example ") == "Example"
-    
-def test_fix_spaces_with_mixed_spaces_and_underscores_and_underscores():
+
+def test_fix_spaces_with_numbers():
     assert fix_spaces("Example 123") == "Example_123"
-    
-def test_fix_spaces_with_multiple_spaces_and_underscores():
-    assert fix_spaces("Example_1") == "Example_1"
-    
-def test_fix_spaces_with_multiple_underscores_and_underscores_and_underscores():
-    assert fix_spaces("Example_1_2") == "_Example_1_2"
-    
-def test_fix_spaces_with_multiple_spaces_and_underscores_and_underscores():
-    assert fix_spaces("Example   1 2") == "_Example   1 2"
-    
-def test_fix_spaces_with_multiple_underscores_and_underscores_and_underscores_and_underscores():
-    assert fix_spaces("Example_1_2_3") == "_Example_1_2_3"
-    
-def test_fix_spaces_with_multiple_spaces_and_underscores_and_underscores_and_underscores_and_underscores():
-    assert fix_spaces("Example   1 2 3") == "_Example   1 2 3"

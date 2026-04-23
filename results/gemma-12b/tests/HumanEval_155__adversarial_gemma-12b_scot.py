@@ -29,34 +29,28 @@ def even_odd_count(num):
 
 class TestEvenOddCount:
     def test_positive_mixed(self):
-        assert even_odd_count(12345) == (2, 3)
-
-    def test_positive_even(self):
-        assert even_odd_count(2468) == (4, 0)
-
-    def test_positive_odd(self):
-        assert even_odd_count(13579) == (0, 5)
+        assert even_odd_count(123456) == (3, 3)
 
     def test_negative_mixed(self):
-        assert even_odd_count(-12345) == (2, 3)
+        assert even_odd_count(-123456) == (3, 3)
 
-    def test_negative_even(self):
-        assert even_odd_count(-2468) == (4, 0)
+    def test_all_even(self):
+        assert even_odd_count(2468) == (4, 0)
 
-    def test_negative_odd(self):
-        assert even_odd_count(-13579) == (0, 5)
+    def test_all_odd(self):
+        assert even_odd_count(13579) == (0, 5)
+
+    def test_single_even(self):
+        assert even_odd_count(2) == (1, 0)
+
+    def test_single_odd(self):
+        assert even_odd_count(1) == (0, 1)
 
     def test_zero(self):
         assert even_odd_count(0) == (1, 0)
 
-    def test_single_digit_even(self):
-        assert even_odd_count(2) == (1, 0)
-
-    def test_single_digit_odd(self):
-        assert even_odd_count(1) == (0, 1)
-
     def test_large_number(self):
         assert even_odd_count(1234567890) == (5, 5)
 
-    def test_large_negative_number(self):
-        assert even_odd_count(-9876543210) == (5, 5)
+    def test_leading_zeros(self):
+        assert even_odd_count(0123) == (2, 2)

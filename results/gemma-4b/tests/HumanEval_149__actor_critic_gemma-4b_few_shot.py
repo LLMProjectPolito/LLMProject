@@ -19,7 +19,7 @@ import pytest
 
 def is_palindrome(s: str) -> bool:
     """ Checks if a string is a palindrome """
-    s = s.lower()
+    s = ''.join(filter(str.isalnum, s)).lower()
     return s == s[::-1]
 
 def get_max(arr: list[int]) -> int:
@@ -50,18 +50,19 @@ def sorted_list_sum(lst):
 def test_is_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
-    assert is_palindrome('A man, a plan, a canal: Panama') == False # Case sensitive
-    assert is_palindrome('Racecar') == True
+    assert is_palindrome('A man, a plan, a canal: Panama') == True
+    assert is_palindrome('Race car') == True
+    assert is_palindrome('Was it a car or a cat I saw?') == True
 
 def test_is_palindrome_empty():
     assert is_palindrome('') == True
     assert is_palindrome(' ') == True
 
-def test_is_palindrome_single_char():
-    assert is_palindrome('a') == True
-
 def test_is_palindrome_mixed_case():
-    assert is_palindrome('Madam') == True
+    assert is_palindrome('Racecar') == True
+
+def test_is_palindrome_with_punctuation():
+    assert is_palindrome('Madam, I\'m Adam') == True
 
 def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
@@ -80,21 +81,18 @@ def test_get_max_mixed():
 def test_sorted_list_sum_basic():
     assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
     assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
-    assert sorted_list_sum(["abc", "def", "ghi"]) == ["abc", "def", "ghi"]
+    assert sorted_list_sum(["abc", "def", "ghi"]) == []
+    assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
 def test_sorted_list_sum_duplicates():
     assert sorted_list_sum(["aa", "aa", "a"]) == ["aa", "aa"]
-    assert sorted_list_sum(["ab", "ab", "cd", "cd"]) == ["ab", "ab", "cd", "cd"]
+    assert sorted_list_sum(["ab", "ab", "a"]) == ["ab", "ab"]
 
-def test_sorted_list_sum_same_length():
-    assert sorted_list_sum(["abc", "abd", "abe"]) == ["abc", "abd", "abe"]
-    assert sorted_list_sum(["abc", "abe", "abd"]) == ["abc", "abe", "abd"]
+def test_sorted_list_sum_same_length_different_chars():
+    assert sorted_list_sum(["ac", "bd", "ce"]) == ["ac", "bd", "ce"]
 
-def test_sorted_list_sum_empty_input():
-    assert sorted_list_sum([]) == []
+def test_sorted_list_sum_same_length_same_chars():
+    assert sorted_list_sum(["aa", "ab", "ac"]) == ["aa", "ab", "ac"]
 
-def test_sorted_list_sum_all_odd():
-    assert sorted_list_sum(["a", "b", "c"]) == []
-
-def test_sorted_list_sum_mixed_odd_even():
-    assert sorted_list_sum(["aa", "a", "aaa", "cd", "bb"]) == ["aa", "bb", "cd"]
+def test_sorted_list_sum_mixed():
+    assert sorted_list_sum(["aa", "ab", "a", "ac", "bd"]) == ["aa", "ab", "ac", "bd"]

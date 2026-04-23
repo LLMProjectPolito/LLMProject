@@ -32,18 +32,24 @@ def test_bf_boundary_earth_mars():
 
 # Focus: Invalid Input
 def test_invalid_planet_names():
-    assert bf("InvalidPlanet", "Earth") == ()
-    assert bf("Earth", "InvalidPlanet") == ()
+    assert bf("Pluto", "Neptune") == ()
+    assert bf("Jupiter", "Xenon") == ()
+    assert bf("Earth", "Marsian") == ()
+    assert bf("InvalidPlanet", "Neptune") == ()
+    assert bf("Jupiter", "InvalidPlanet") == ()
     assert bf("InvalidPlanet", "InvalidPlanet") == ()
 
-def test_planet_names_not_in_solar_system():
-    assert bf("Pluto", "Earth") == ()
-    assert bf("Earth", "Pluto") == ()
-    assert bf("Moon", "Mars") == ()
-    assert bf("Mars", "Moon") == ()
+def test_invalid_input_types():
+    assert bf(123, "Neptune") == ()
+    assert bf("Jupiter", 456) == ()
+    assert bf(123, 456) == ()
+    assert bf(["Jupiter"], "Neptune") == ()
+    assert bf("Jupiter", ["Neptune"]) == ()
 
-def test_identical_invalid_planet_names():
-    assert bf("Invalid", "Invalid") == ()
+def test_empty_string_input():
+    assert bf("", "Neptune") == ()
+    assert bf("Jupiter", "") == ()
+    assert bf("", "") == ()
 
 # Focus: Logic Branches
 def test_bf_between_jupiter_and_neptune():

@@ -28,13 +28,13 @@ def test_boundary_digit_count_over():
     assert file_name_check("abc1234.txt") == "No"
 
 def test_boundary_dot_count_one():
-    assert file_name_check("example.txt") == "Yes"
+    assert file_name_check("abc.txt") == "Yes"
 
 def test_boundary_dot_count_zero():
-    assert file_name_check("exampletxt") == "No"
+    assert file_name_check("abctxt") == "No"
 
 def test_boundary_dot_count_multiple():
-    assert file_name_check("example.txt.txt") == "No"
+    assert file_name_check("abc.def.txt") == "No"
 
 def test_boundary_prefix_empty():
     assert file_name_check(".txt") == "No"
@@ -46,10 +46,10 @@ def test_boundary_prefix_digit():
     assert file_name_check("1.txt") == "No"
 
 def test_boundary_suffix_valid():
-    assert file_name_check("example.txt") == "Yes"
+    assert file_name_check("abc.txt") == "Yes"
 
 def test_boundary_suffix_invalid():
-    assert file_name_check("example.pdf") == "No"
+    assert file_name_check("abc.doc") == "No"
 
 # Focus: Logic Branches
 import pytest
@@ -75,7 +75,7 @@ def test_file_name_check_invalid_extension():
     assert file_name_check("example.jpg") == "No"
     assert file_name_check("example.py") == "No"
 
-def test_file_name_check_invalid_start_char():
+def test_file_name_check_invalid_start_character():
     assert file_name_check("1example.txt") == "No"
     assert file_name_check("2AnotherExample.exe") == "No"
     assert file_name_check("!file123.dll") == "No"
@@ -97,6 +97,3 @@ def test_invalid_input_invalid_extension():
 
 def test_invalid_input_starts_with_digit():
     assert file_name_check("1example.txt") == "No"
-
-def test_invalid_input_multiple_dots():
-    assert file_name_check("example.txt.txt") == "No"

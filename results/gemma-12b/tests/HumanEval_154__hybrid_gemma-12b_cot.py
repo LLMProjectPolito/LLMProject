@@ -82,3 +82,28 @@ class TestCycpatterCheck:
         long_a = "abcdefghijklmnopqrstuvwxyz" * 2
         long_b = "zyxwvu"
         assert cycpattern_check(long_a, long_b) == False
+
+    def test_substring_at_start(self):
+        assert cycpattern_check("abcdef", "abc") == True
+
+    def test_substring_at_end(self):
+        assert cycpattern_check("abcdef", "def") == True
+
+    def test_substring_in_middle(self):
+        assert cycpattern_check("abcdef", "cde") == True
+
+    def test_special_characters(self):
+        assert cycpattern_check("abc!@#", "@#") == True
+
+    def test_unicode_characters(self):
+        assert cycpattern_check("你好世界", "你好") == True
+
+    def test_long_strings_true2(self):
+        long_a = "abcdefghijklmnopqrstuvwxyz" * 2
+        long_b = "xyz"
+        assert cycpattern_check(long_a, long_b) == True
+
+    def test_long_strings_false2(self):
+        long_a = "abcdefghijklmnopqrstuvwxyz" * 2
+        long_b = "zyxwvuts"
+        assert cycpattern_check(long_a, long_b) == False

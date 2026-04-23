@@ -32,7 +32,7 @@ def cycpattern_check(a , b):
 
     return False
 
-class TestCycPatternCheck:
+class TestCycpatternCheck:
 
     def test_empty_strings(self):
         assert cycpattern_check("", "") == False

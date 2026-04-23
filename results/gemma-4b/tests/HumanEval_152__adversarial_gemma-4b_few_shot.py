@@ -72,13 +72,11 @@ def test_compare_correct_guesses():
     assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
 
 def test_compare_incorrect_guesses():
-    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 6, -2]) == [0, 0, 0, 0, 2, 3]
+    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 6, -2]) == [0, 0, 0, 0, 2, 4]
     assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -1]) == [4, 4, 1, 0, 0, 5]
 
 def test_compare_different_lengths():
     with pytest.raises(IndexError):
         compare([1, 2, 3], [1, 2])
-
-def test_compare_negative_numbers():
-    assert compare([-1, -2, -3], [-1, -2, -3]) == [0, 0, 0]
-    assert compare([-1, -2, -3], [-1, -1, -3]) == [0, 1, 0]
+    with pytest.raises(IndexError):
+        compare([1, 2], [1, 2, 3])

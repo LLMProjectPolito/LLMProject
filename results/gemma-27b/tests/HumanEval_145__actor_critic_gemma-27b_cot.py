@@ -13,52 +13,69 @@ def order_by_points(nums):
 
 import pytest
 
+def digit_sum(n):
+    """Calculates the sum of the digits of a number."""
+    n = abs(n)  # Handle negative numbers
+    s = 0
+    for digit in str(n):
+        s += int(digit)
+    return s
+
 def test_empty_list():
     assert order_by_points([]) == []
 
 def test_single_element():
     assert order_by_points([5]) == [5]
 
-# Positive and Negative Numbers
-def test_positive_and_negative():
-    assert order_by_points([1, 2, 3, -1, -2, -3]) == [1, -1, 2, -2, 3, -3]
+def test_mixed_positive_and_negative():
+    assert order_by_points([1, -1, 2, -2, 3, -3]) == [1, -1, 2, -2, 3, -3]
 
 def test_example_case():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
 
-def test_zero():
-    assert order_by_points([0, 1, -1]) == [0, 1, -1]
+def test_same_digit_sum_order():
+    assert order_by_points([10, 1, 19, 28]) == [1, 10, 19, 28]
 
-def test_multiple_zeros():
-    assert order_by_points([0, 0, 0]) == [0, 0, 0]
-
-def test_negative_and_zero():
-    assert order_by_points([-1, 0, -10]) == [-1, 0, -10]
-
-# Edge Cases
-def test_all_negative_numbers():
-    assert order_by_points([-1, -2, -3]) == [-1, -2, -3]
-
-def test_large_negative_numbers():
-    assert order_by_points([-1000, -1, -100, -10]) == [-1, -10, -100, -1000]
-
-# Large Numbers
 def test_large_numbers():
     assert order_by_points([1000, 1, 100, 10]) == [1, 10, 100, 1000]
 
-def test_very_large_number():
-    assert order_by_points([1234567890, 1]) == [1, 1234567890]
+def test_numbers_with_zero():
+    assert order_by_points([0, 10, 1, 100]) == [0, 1, 10, 100]
 
-# Digit Sum Tiebreaker
-def test_digit_sum_tiebreaker():
-    assert order_by_points([19, 10]) == [10, 19]
-    assert order_by_points([28, 19]) == [19, 28]
+def test_duplicate_numbers():
+    assert order_by_points([1, 1, 1, 1]) == [1, 1, 1, 1]
 
-def test_digit_sum_tiebreaker_more_cases():
-    assert order_by_points([11, 2, 20]) == [2, 11, 20]
-    assert order_by_points([10, 1, 19]) == [1, 10, 19]
-    assert order_by_points([1, 10, 19, 28]) == [1, 10, 19, 28]
+def test_negative_numbers_with_large_digit_sum():
+    assert order_by_points([-123, -10, -1]) == [-1, -10, -123]
 
-# Mixed Cases
-def test_mixed_positive_negative_large_numbers():
-    assert order_by_points([123, 45, 6, 789, 1, -10, -1]) == [1, -1, 6, -10, 45, 123, 789]
+def test_mixed_large_and_small():
+    assert order_by_points([100, 1, -10, -1]) == [-1, 1, -10, 100]
+
+def test_all_zeros():
+    assert order_by_points([0, 0, 0]) == [0, 0, 0]
+
+def test_same_digit_sum():
+    assert order_by_points([19, 28, 37]) == [19, 28, 37]
+
+def test_large_digit_sums():
+    assert order_by_points([999, 1]) == [1, 999]
+
+def test_floating_point_numbers():
+    assert order_by_points([1.1, 2.2, 3.3]) == [1.1, 2.2, 3.3]
+
+def test_mixed_floats_and_ints():
+    assert order_by_points([1, 1.1, 2, 2.2]) == [1, 1.1, 2, 2.2]
+
+def test_negative_and_positive_same_digit_sum():
+    assert order_by_points([-10, 1]) == [-10, 1]
+
+def test_larger_negative_numbers():
+    assert order_by_points([-99, -1, 10]) == [-1, -99, 10]
+
+def test_non_numeric_input():
+    with pytest.raises(TypeError):
+        order_by_points([1, "a", 2])
+
+def test_mixed_types():
+    with pytest.raises(TypeError):
+        order_by_points([1, True, 2.5])

@@ -18,34 +18,35 @@ from your_module import double_the_difference  # Replace your_module
 def test_empty_list():
     assert double_the_difference([]) == 0
 
-def test_positive_odd_numbers():
+def test_positive_odd_numbers_square_sum():
     assert double_the_difference([1, 3, 5]) == 1**2 + 3**2 + 5**2
 
 def test_positive_even_numbers():
     assert double_the_difference([2, 4, 6]) == 0
 
-def test_mixed_numbers():
+def test_mixed_positive_numbers_odd_even():
     assert double_the_difference([1, 2, 3, 4, 5]) == 1**2 + 3**2 + 5**2
 
-def test_negative_numbers():
+def test_negative_numbers_ignored():
     assert double_the_difference([-1, -2, -3]) == 0
 
-def test_zero():
+def test_non_integer_numbers_ignored():
+    assert double_the_difference([1.5, 2.5, 3.5]) == 0
+
+def test_mixed_types_odd_even():
+    assert double_the_difference([1, 2.5, -3, 4]) == 1**2
+
+def test_single_odd_number():
+    assert double_the_difference([7]) == 7**2
+
+def test_single_even_number():
+    assert double_the_difference([8]) == 0
+
+def test_large_numbers():
+    assert double_the_difference([999]) == 999**2
+
+def test_zero_in_list():
     assert double_the_difference([0]) == 0
 
-def test_duplicate_numbers():
-    assert double_the_difference([1, 1, 2]) == 1**2 + 1**2
-
-def test_non_integer_numbers():
-    assert double_the_difference([1.5, 2.5, 3.5]) == 1.5**2 + 2.5**2 + 3.5**2
-
-def test_mixed_types():
-    assert double_the_difference([1, 2.5, -3, 4, 5]) == 1**2 + 2.5**2 + 4**2 + 5**2
-
-def test_invalid_input_type():
-    with pytest.raises(TypeError):
-        double_the_difference(123)
-
-def test_non_numeric_values():
-    with pytest.raises(TypeError):
-        double_the_difference(["a", "b", "c"])
+def test_list_with_only_non_integers():
+    assert double_the_difference([1.1, 2.2]) == 0

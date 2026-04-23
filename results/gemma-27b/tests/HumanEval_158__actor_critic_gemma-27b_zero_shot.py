@@ -18,11 +18,18 @@ def find_max(words):
     of unique characters. If multiple strings have maximum number of unique
     characters, return the one which comes first in lexicographical order.
     The function is case-sensitive.
+
+    >>> find_max(["name", "of", "string"])
+    'string'
+    >>> find_max(["name", "enam", "game"])
+    'enam'
+    >>> find_max(["aaaaaaa", "bb" ,"cc"])
+    'aaaaaaa'
     """
     if not words:
         return ""
 
-    max_unique_chars = -1
+    max_unique_chars = 0
     max_word = ""
 
     for word in words:
@@ -47,7 +54,7 @@ def test_multiple_words():
 def test_multiple_words_same_unique_count():
     assert find_max(["name", "enam", "game"]) == "enam"
 
-def test_words_with_all_same_characters():
+def test_same_characters():
     assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
 def test_words_with_special_characters():
@@ -63,10 +70,10 @@ def test_lexicographical_order():
     assert find_max(["zebra", "apple", "banana"]) == "apple"
 
 def test_lexicographical_tiebreaker():
-    assert find_max(["abc", "abd", "aba"]) == "aba"
+    assert find_max(["abc", "abd", "abe"]) == "abc"
 
 def test_long_strings():
-    assert find_max(["abcdefghijklmnopqrstuvwxyz", "abcdef"]) == "abcdefghijklmnopqrstuvwxyz"
+    assert find_max(["abcdefghijklmnopqrstuvwxyz", "abcdefg"]) == "abcdefghijklmnopqrstuvwxyz"
 
 def test_duplicate_words():
     assert find_max(["hello", "hello", "world"]) == "hello"
@@ -74,15 +81,8 @@ def test_duplicate_words():
 def test_mixed_case():
     assert find_max(["Hello", "hello", "World"]) == "Hello"
 
-def test_identical_words():
-    assert find_max(["abc", "abc"]) == "abc"
-
-def test_large_number_of_words():
-    words = ["a" * i for i in range(1, 101)]
-    assert find_max(words) == "a" * 100
-
 def test_all_empty_strings():
     assert find_max(["", "", ""]) == ""
 
 def test_unicode_characters():
-    assert find_max(["你好", "世界", "abc"]) == "世界"
+    assert find_max(["你好", "世界"]) == "世界"

@@ -49,9 +49,8 @@ class TestXorY:
 
     def test_x_and_y_equal(self):
         assert x_or_y(7, 5, 5) == 5
-        assert x_or_y(4, 5, 5) == 5
+        assert x_or_y(10, 5, 5) == 5
 
-    def test_zero_input(self):
-        assert x_or_y(0, 0, 0) == 0
-        assert x_or_y(1, 0, 0) == 0
-        assert x_or_y(2, 0, 0) == 0
+    def test_zero_values(self):
+        assert x_or_y(7, 0, 0) == 0
+        assert x_or_y(10, 0, 0) == 0

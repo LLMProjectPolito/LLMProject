@@ -36,19 +36,19 @@ def test_simplify_true_case_4():
     assert simplify("1/1", "1/1") == True
 
 def test_simplify_false_case_4():
-    assert simplify("1/3", "1/2") == False
+    assert simplify("1/2", "1/3") == False
 
 def test_simplify_true_case_5():
     assert simplify("2/4", "4/2") == True
 
 def test_simplify_false_case_5():
-    assert simplify("3/5", "2/1") == False
+    assert simplify("3/5", "5/3") == False
 
 def test_simplify_large_numbers_true():
     assert simplify("100/20", "20/1") == True
 
 def test_simplify_large_numbers_false():
-    assert simplify("100/21", "20/1") == False
+    assert simplify("100/21", "21/1") == False
 
 def test_simplify_with_same_fraction():
     assert simplify("5/2", "5/2") == True
@@ -61,3 +61,9 @@ def test_simplify_with_whole_numbers():
 
 def test_simplify_with_different_denominators():
     assert simplify("1/2", "1/3") == False
+
+def test_simplify_with_complex_fractions_true():
+    assert simplify("15/6", "6/3") == True
+
+def test_simplify_with_complex_fractions_false():
+    assert simplify("15/7", "7/3") == False

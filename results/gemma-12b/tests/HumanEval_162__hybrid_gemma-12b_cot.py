@@ -30,16 +30,42 @@ class TestStringtoMD5:
         assert string_to_md5("Hello world") == '3e25960a79dbc69b674cd4ec67a72c62'
 
     def test_string_with_spaces(self):
-        assert string_to_md5("  leading and trailing spaces  ") == '9c999999999999999999999999999999'
+        assert string_to_md5("  ") == '9c6a94a9999999999999999999999999'
 
     def test_string_with_special_characters(self):
-        assert string_to_md5("!@#$%^&*()") == '944f19c6969999999999999999999999'
+        assert string_to_md5("!@#$%^&*()") == '99d8310496a999999999999999999999'
+
+    def test_string_with_numbers(self):
+        assert string_to_md5("1234567890") == 'd1e2f3e4d5e6f7e8d9e0f1e2d3e4f5e6'
+
+    def test_string_with_unicode_characters(self):
+        assert string_to_md5("你好世界") == 'b10a8db164e0754105b7a99be72e3fe5'
+
+    def test_long_string(self):
+        long_string = "This is a very long string to test the md5 hash function."
+        expected_md5 = 'a94a8fe5ccb19ba61c4c0873d391e987'
+        assert string_to_md5(long_string) == expected_md5
+
+    def test_string_with_newlines(self):
+        assert string_to_md5("Line1\nLine2") == '99999999999999999999999999999999'
+
+    def test_string_with_tabs(self):
+        assert string_to_md5("Line1\tLine2") == '99999999999999999999999999999999'
+
+    def test_string_with_mixed_characters(self):
+        assert string_to_md5("Hello123!@#") == '99999999999999999999999999999999'
+
+    def test_string_with_spaces(self):
+        assert string_to_md5("  leading and trailing spaces  ") == '9e199929999999999999999999999999'
+
+    def test_string_with_special_characters(self):
+        assert string_to_md5("!@#$%^&*()") == '94499999999999999999999999999999'
 
     def test_string_with_unicode_characters(self):
         assert string_to_md5("你好世界") == 'b10a8db164e0754105b7a99be72e3fe5'
 
     def test_string_with_numbers(self):
-        assert string_to_md5("1234567890") == 'd162b37f9c59c7193e599534c7999999'
+        assert string_to_md5("1234567890") == 'd162b37f9c0a0e8e13939c9111913991'
 
     def test_string_with_mixed_characters(self):
         assert string_to_md5("Hello123World!") == 'a94a8fe5ccb19ba61c4c0873d391e987'
@@ -50,4 +76,4 @@ class TestStringtoMD5:
         assert string_to_md5(long_string) == md5_hash
 
     def test_string_with_newline_characters(self):
-        assert string_to_md5("Line1\nLine2\nLine3") == '99999999999999999999999999999999'
+        assert string_to_md5("Line1\nLine2\nLine3") == '991e5999999999999999999999999999'

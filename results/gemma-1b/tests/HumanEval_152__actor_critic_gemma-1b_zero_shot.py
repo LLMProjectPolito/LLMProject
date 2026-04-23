@@ -39,21 +39,3 @@ def compare(game, guess):
         else:
             result.append(abs(guess - game[i]))
     return result
-
-def test_compare_correct_guess():
-    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
-
-def test_compare_incorrect_guess():
-    assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
-
-def test_compare_empty_arrays():
-    assert compare([], []) == []
-
-def test_compare_single_element_arrays():
-    assert compare([1], [1]) == [0]
-
-def test_compare_all_correct_guesses():
-    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
-
-def test_compare_all_incorrect_guesses():
-    assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]

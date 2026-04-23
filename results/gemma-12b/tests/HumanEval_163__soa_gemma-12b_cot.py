@@ -44,6 +44,18 @@ def test_generate_integers_non_integer_input():
     with pytest.raises(TypeError):
         generate_integers(2.5, 8)
 
-def test_generate_integers_mixed_input():
+def test_generate_integers_string_input():
     with pytest.raises(TypeError):
-        generate_integers(2, 8.5)
+        generate_integers("2", "8")
+
+def test_generate_integers_zero_input():
+    with pytest.raises(ValueError):
+        generate_integers(0, 8)
+
+def test_generate_integers_zero_and_positive():
+    with pytest.raises(ValueError):
+        generate_integers(0, 5)
+
+def test_generate_integers_positive_and_zero():
+    with pytest.raises(ValueError):
+        generate_integers(5, 0)

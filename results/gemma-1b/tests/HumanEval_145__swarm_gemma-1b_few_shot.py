@@ -12,21 +12,23 @@ def order_by_points(nums):
     """
 
 import pytest
-from math import sqrt
+from typing import List
 
-def order_by_points(points):
+def order_by_points(data: List[int]) -> List[int]:
     """
-    Sorts a list of points based on their x-coordinates.
+    Sorts a list of integers in ascending order.
     """
-    if not points:
-        return []
-    return sorted(points)
+    data.sort()
+    return data
 
 def test_order_by_points():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
     assert order_by_points([]) == []
+
+def test_order_by_points():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
     assert order_by_points([]) == []
 
-def test_order_by_points_empty():
+def test_order_by_points():
+    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
     assert order_by_points([]) == []

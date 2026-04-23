@@ -57,16 +57,16 @@ def test_eat_zero_remaining():
     assert eat(10, 20, 0) == [10, 0]
 
 def test_eat_edge_cases():
-    assert eat(0, 0, 1000) == [0, 1000]
+    assert eat(0, 1, 1) == [1, 0]
     assert eat(1000, 1000, 1000) == [2000, 0]
     assert eat(500, 500, 500) == [1000, 0]
     assert eat(999, 1, 1) == [1000, 0]
     assert eat(1, 999, 1) == [2, 0]
 
 def test_eat_large_numbers():
-    assert eat(500, 500, 500) == [1000, 0]
-    assert eat(999, 1, 1) == [1000, 0]
-    assert eat(1, 999, 1) == [2, 0]
+    assert eat(500, 600, 200) == [700, 0]
+    assert eat(100, 200, 300) == [300, 100]
+    assert eat(750, 250, 500) == [1000, 0]
 
 def test_eat_constraints():
     assert eat(1001, 1, 1) == [1001, 0] # number > 1000

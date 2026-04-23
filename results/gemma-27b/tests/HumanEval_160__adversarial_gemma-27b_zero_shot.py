@@ -55,11 +55,11 @@ def do_algebra(operator, operand):
     if not operator or not operand:
         raise ValueError("Operator and operand lists cannot be empty.")
     if len(operator) != len(operand) - 1:
-        raise ValueError("Length of operator list must be one less than the length of operand list.")
+        raise ValueError("Length of operator list must be one less than operand list.")
     if len(operand) < 2:
         raise ValueError("Operand list must have at least two operands.")
     for num in operand:
-        if not isinstance(num, int) or num < 0:
+        if num < 0:
             raise ValueError("Operand list must contain non-negative integers.")
 
     result = operand[0]
@@ -74,7 +74,7 @@ def do_algebra(operator, operand):
             result *= num
         elif op == '//':
             if num == 0:
-                raise ZeroDivisionError("Floor division by zero is not allowed.")
+                raise ZeroDivisionError("Floor division by zero.")
             result //= num
         elif op == '**':
             result **= num
@@ -84,56 +84,46 @@ def do_algebra(operator, operand):
 
 class TestDoAlgebra:
 
-    def test_addition(self):
-        assert do_algebra(['+'], [2, 3]) == 5
-
-    def test_subtraction(self):
-        assert do_algebra(['-'], [5, 2]) == 3
-
-    def test_multiplication(self):
-        assert do_algebra(['*'], [4, 5]) == 20
+    def test_valid_expression(self):
+        assert do_algebra(['+', '*', '-'], [2, 3, 4, 5]) == 9
+        assert do_algebra(['-','+','*'], [10, 5, 2, 3]) == 11
+        assert do_algebra(['*','+','//'], [2, 3, 4, 2]) == 7
+        assert do_algebra(['**','+'], [2, 3]) == 11
+        assert do_algebra(['+'], [1, 2]) == 3
 
     def test_floor_division(self):
         assert do_algebra(['//'], [10, 2]) == 5
         assert do_algebra(['//'], [11, 2]) == 5
+        assert do_algebra(['+', '//'], [10, 2, 3]) == 8
 
     def test_exponentiation(self):
         assert do_algebra(['**'], [2, 3]) == 8
+        assert do_algebra(['+', '**'], [2, 3, 2]) == 11
 
-    def test_complex_expression(self):
-        assert do_algebra(['+', '*', '-'], [2, 3, 4, 5]) == 9
-
-    def test_multiple_operations(self):
-        assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 5]) == 1
-
-    def test_zero_division(self):
-        with pytest.raises(ZeroDivisionError):
-            do_algebra(['//'], [5, 0])
-
-    def test_empty_operator_list(self):
+    def test_empty_lists(self):
         with pytest.raises(ValueError):
             do_algebra([], [1, 2])
-
-    def test_empty_operand_list(self):
         with pytest.raises(ValueError):
             do_algebra(['+'], [])
 
     def test_invalid_operator_length(self):
         with pytest.raises(ValueError):
-            do_algebra(['+', '+'], [1, 2, 3])
-
-    def test_invalid_operand_length(self):
+            do_algebra(['+', '*'], [2, 3, 4])
         with pytest.raises(ValueError):
-            do_algebra(['+'], [1])
+            do_algebra(['+'], [2])
 
     def test_negative_operand(self):
         with pytest.raises(ValueError):
             do_algebra(['+'], [-1, 2])
-
-    def test_non_integer_operand(self):
         with pytest.raises(ValueError):
-            do_algebra(['+'], [1.5, 2])
+            do_algebra(['+', '*'], [2, -3, 4])
 
     def test_invalid_operator(self):
         with pytest.raises(ValueError):
-            do_algebra(['$'], [1, 2])
+            do_algebra(['%'], [2, 3])
+
+    def test_zero_division(self):
+        with pytest.raises(ZeroDivisionError):
+            do_algebra(['//'], [5, 0])
+        with pytest.raises(ZeroDivisionError):
+            do_algebra(['+', '//'], [10, 2, 0])

@@ -52,28 +52,28 @@ class TestFindMax:
         assert find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
 
     def test_mixed_lengths(self):
-        assert find_max(["a", "aa", "aaa", "aaaa"]) == "aaaa"
+        assert find_max(["a", "bb", "ccc", "dddd"]) == "a"
 
     def test_all_same_unique_count(self):
-        assert find_max(["abc", "bca", "cab"]) == "abc"
+        assert find_max(["abc", "def", "ghi"]) == "abc"
 
-    def test_with_empty_string(self):
-        assert find_max(["", "abc", "def"]) == "abc"
-
-    def test_with_duplicate_words(self):
+    def test_duplicate_words(self):
         assert find_max(["abc", "abc", "def"]) == "abc"
 
-    def test_longer_words(self):
-        assert find_max(["abcdefg", "abc", "def"]) == "abcdefg"
+    def test_words_with_spaces(self):
+        assert find_max(["hello world", "good bye"]) == "hello world"
 
-    def test_special_characters(self):
-        assert find_max(["!@#", "$%^", "&*()"]) == "!@#"
+    def test_words_with_special_characters(self):
+        assert find_max(["!@#", "abc"]) == "!@#"
 
-    def test_numbers_and_letters(self):
-        assert find_max(["a1b2", "a1", "b2"]) == "a1b2"
+    def test_words_with_numbers(self):
+        assert find_max(["123", "abc"]) == "123"
 
-    def test_unicode_characters(self):
-        assert find_max(["你好", "世界", "你好世界"]) == "你好世界"
+    def test_single_word(self):
+        assert find_max(["hello"]) == "hello"
 
-    def test_mixed_case(self):
-        assert find_max(["aBc", "AbC", "abc"]) == "AbC"
+    def test_long_words(self):
+        assert find_max(["abcdefghijklmnopqrstuvwxyz", "1234567890"]) == "abcdefghijklmnopqrstuvwxyz"
+
+    def test_words_with_unicode(self):
+        assert find_max(["你好", "世界"]) == "你好"

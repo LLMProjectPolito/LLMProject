@@ -35,7 +35,7 @@ def test_multiple_spaces_in_middle():
     assert fix_spaces("Example   123   4") == "Example-123-4"
 
 def test_consecutive_spaces_exactly_three():
-    assert fix_spaces("Example 123") == "Example_123"
+    assert fix_spaces("Example 1 1 1 2") == "Example_1-2"
 
 def test_empty_string():
     assert fix_spaces("") == ""

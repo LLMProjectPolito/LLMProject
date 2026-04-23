@@ -54,8 +54,10 @@ class TestRightAngleTriangle:
 
     def test_equal_sides(self):
         assert right_angle_triangle(5, 5, 5) == False
-        assert right_angle_triangle(5, 5, 7) == False
+        assert right_angle_triangle(5, 5, 7.071) == True
+        assert right_angle_triangle(5, 5, 6) == False
 
-    def test_large_numbers(self):
-        assert right_angle_triangle(1000, 1000, 1414) == False
-        assert right_angle_triangle(1000, 1000, 1414.2135623730951) == True
+    def test_float_sides(self):
+        assert right_angle_triangle(3.0, 4.0, 5.0) == True
+        assert right_angle_triangle(1.5, 2.0, 2.5) == True
+        assert right_angle_triangle(1.0, 2.0, 3.0) == False

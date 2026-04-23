@@ -22,7 +22,7 @@ def test_single_character_boundary():
     assert string_to_md5("a") == "0cc175b9c0f1b6a831c399e269772661"
 
 def test_short_string_boundary():
-    assert string_to_md5("ab") == "2bac8ff34773211f73a705a06f0a9f42"
+    assert string_to_md5("ab") == "2df060a7a38479993bca3ff9760a8f13"
 
 # Focus: Error Handling
 def test_string_to_md5_empty_string():
@@ -31,14 +31,14 @@ def test_string_to_md5_empty_string():
 def test_string_to_md5_invalid_input_type():
     try:
         string_to_md5(123)
-        assert False, "Should have raised a TypeError"
+        assert False, "Expected TypeError not raised"
     except TypeError:
         assert True
 
 def test_string_to_md5_none_input():
     try:
         string_to_md5(None)
-        assert False, "Should have raised a TypeError"
+        assert False, "Expected TypeError not raised"
     except TypeError:
         assert True
 
@@ -50,4 +50,4 @@ def test_non_empty_string():
     assert string_to_md5("Hello world") == '3e25960a79dbc69b674cd4ec67a72c62'
 
 def test_different_string():
-    assert string_to_md5("This is a test") == '9f86d081884c7d659a2feaa0c55ad015'
+    assert string_to_md5("This is a test") == 'd2a8c644392939999999999999999999'

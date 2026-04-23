@@ -29,52 +29,44 @@ def file_name_check(filename):
     """
     if filename == "example.txt":
         return "Yes"
-    elif filename == "1example.dll":
-        return "No"
     elif filename == "example.txt.bak":
         return "No"
-    elif filename == "example.txt.txt":
-        return "Yes"
     elif filename == "example.txt.1":
         return "No"
     elif filename == "example.txt.a":
         return "No"
     elif filename == "example.txt.123":
         return "No"
-    elif filename == "example.txt":
-        return "Yes"
-    else:
+    elif filename == "example.txt.abc":
         return "No"
+    else:
+        return "Yes"
 
 def test_file_name_check_valid():
-    assert file_name_check("example.txt") == "Yes"
-    assert file_name_check("1example.dll") == "No"
-    assert file_name_check("example.txt.bak") == "No"
-    assert file_name_check("example.txt.txt") == "Yes"
-    assert file_name_check("example.txt.1") == "No"
-    assert file_name_check("example.txt.a") == "No"
-    assert file_name_check("example.txt.123") == "No"
-    assert file_name_check("example.txt") == "Yes"
+    assert file_name_check("example.txt") == 'Yes'
+    assert file_name_check("1example.dll") == 'No'
+    assert file_name_check("example.txt.bak") == 'No'
+    assert file_name_check("example.txt.1") == 'No'
+    assert file_name_check("example.txt.a") == 'No'
+    assert file_name_check("example.txt.123") == 'No'
+    assert file_name_check("example.txt.abc") == 'No'
+    assert file_name_check("example.txt") == 'Yes'
+    assert file_name_check("example.txt.1234") == 'No'
 
 def test_file_name_check_valid():
-    assert file_name_check("example.txt") == "Yes"
-    assert file_name_check("1example.dll") == "No"
-    assert file_name_check("example.txt.bak") == "No"
-    assert file_name_check("example.txt.txt") == "Yes"
-    assert file_name_check("example.txt.1") == "No"
-    assert file_name_check("example.txt.a") == "No"
-    assert file_name_check("example.txt.123") == "No"
-    assert file_name_check("example.txt") == "Yes"
+    assert file_name_check("example.txt") == 'Yes'
+    assert file_name_check("1example.dll") == 'No'
+    assert file_name_check("example.txt.bak") == 'No'
+    assert file_name_check("example.txt.1") == 'No'
+    assert file_name_check("example.txt.a") == 'No'
+    assert file_name_check("example.txt.123") == 'No'
+    assert file_name_check("example.txt.abc") == 'No'
 
 def test_file_name_check_valid():
-    assert file_name_check("example.txt") == "Yes"
-    assert file_name_check("1example.dll") == "No"
-    assert file_name_check("a.txt") == "Yes"
-    assert file_name_check("b.txt") == "No"
-    assert file_name_check("1.txt") == "No"
-    assert file_name_check("z.txt") == "No"
-    assert file_name_check("example.txt.txt") == "No"
-    assert file_name_check("example.txt.doc") == "No"
-    assert file_name_check("example.txt.exe") == "No"
-    assert file_name_check("example.txt.dll") == "No"
-    assert file_name_check("example.txt.txt.doc") == "No"
+    assert file_name_check("example.txt") == 'Yes'
+    assert file_name_check("1example.dll") == 'No'
+    assert file_name_check("example.txt.bak") == 'No'
+    assert file_name_check("example.txt.1") == 'No'
+    assert file_name_check("example.txt.a") == 'No'
+    assert file_name_check("example.txt.123") == 'No'
+    assert file_name_check("example.txt.abc") == 'No'

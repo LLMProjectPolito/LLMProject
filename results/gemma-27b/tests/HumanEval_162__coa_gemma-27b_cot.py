@@ -45,9 +45,9 @@ def test_valid_string_input_with_numbers():
 def test_valid_string_input_with_special_characters():
     assert string_to_md5("!@#$%^") == "b10a8db164e0754105b7a99be72e3fe5"
 
-# Focus: Error Handling/Invalid Input Types
+# Focus: Error/Exception Handling (for potentially very large strings)
 import pytest
-from hashlib import md5
+import hashlib
 
 def string_to_md5(text):
     """
@@ -58,16 +58,17 @@ def string_to_md5(text):
     """
     if not text:
         return None
-    return md5(text.encode()).hexdigest()
+    return hashlib.md5(text.encode()).hexdigest()
 
-def test_string_to_md5_invalid_input_type_int():
-    with pytest.raises(TypeError):
-        string_to_md5(123)
+def test_string_to_md5_empty_string():
+    assert string_to_md5("") is None
 
-def test_string_to_md5_invalid_input_type_list():
-    with pytest.raises(TypeError):
-        string_to_md5(['a', 'b', 'c'])
+def test_string_to_md5_large_string():
+    large_string = "a" * 1000000
+    assert isinstance(string_to_md5(large_string), str)
+    assert len(string_to_md5(large_string)) == 32
 
-def test_string_to_md5_invalid_input_type_none():
-    with pytest.raises(TypeError):
-        string_to_md5(None)
+def test_string_to_md5_unicode_string():
+    unicode_string = "你好世界"
+    assert isinstance(string_to_md5(unicode_string), str)
+    assert len(string_to_md5(unicode_string)) == 32

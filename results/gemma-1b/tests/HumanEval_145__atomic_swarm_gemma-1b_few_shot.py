@@ -16,7 +16,8 @@ import math
 
 def order_by_points(nums):
     """
-    Sort the given list of integers according to the sum of their digits.
+    Write a function which sorts the given list of integers
+    in ascending order according to the sum of their digits.
     Note: if there are several items with similar sum of their digits,
     order them based on their index in original list.
 

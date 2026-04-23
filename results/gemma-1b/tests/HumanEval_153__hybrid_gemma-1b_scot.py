@@ -26,7 +26,7 @@ def Strongest_Extension(class_name: str, extensions: List[str]) -> str:
 
     Args:
         class_name: The name of the class.
-        extensions: A list of extensions.
+        extensions: A list of extension strings.
 
     Returns:
         The name of the strongest extension.
@@ -44,7 +44,6 @@ def Strongest_Extension(class_name: str, extensions: List[str]) -> str:
                 lowercase_count += 1
 
         strength = uppercase_count - lowercase_count
-
         if strength > max_strength:
             max_strength = strength
             strongest_extension = extension

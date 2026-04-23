@@ -55,13 +55,10 @@ def test_order_by_points_negative_large_numbers():
     assert order_by_points([-123, -45, -678, -9, -100]) == [-9, -100, -123, -45, -678]
 
 def test_order_by_points_zero():
-    assert order_by_points([0, 1, 10, -1, -10]) == [-1, -10, 0, 1, 10]
+    assert order_by_points([0, 1, 10, -10]) == [-10, 0, 1, 10]
 
-def test_order_by_points_single_element():
-    assert order_by_points([5]) == [5]
+def test_order_by_points_with_zeros():
+    assert order_by_points([0, 1, 11, 0, 10]) == [0, 0, 1, 10, 11]
 
-def test_order_by_points_all_same_sum():
-    assert order_by_points([1, 10, 100, 1000]) == [1, 10, 100, 1000]
-
-def test_order_by_points_negative_all_same_sum():
-    assert order_by_points([-1, -10, -100, -1000]) == [-1, -10, -100, -1000]
+def test_order_by_points_negative_zeros():
+    assert order_by_points([-0, -1, -11, -0, -10]) == [-0, -1, -10, -11, -0]

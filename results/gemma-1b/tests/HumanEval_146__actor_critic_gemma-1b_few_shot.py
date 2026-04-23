@@ -62,10 +62,11 @@ def test_specialFilter_single_element():
     assert specialFilter([]) == 0
 
 def test_specialFilter_all_same():
-    assert specialFilter([11, 11, 11]) == 3
+    assert specialFilter([11, 11, 11]) == 1
     assert specialFilter([11, 11, 11, 11]) == 4
     assert specialFilter([11, 11, 11, 11, 11]) == 5
     assert specialFilter([11, 11, 11, 11, 11, 11]) == 6
     assert specialFilter([11, 11, 11, 11, 11, 11, 11]) == 7
     assert specialFilter([11, 11, 11, 11, 11, 11, 11, 11]) == 8
     assert specialFilter([11, 11, 11, 11, 11, 11, 11, 11]) == 9
+    assert specialFilter([11, 11, 11, 11, 11, 11, 11, 11]) == 10

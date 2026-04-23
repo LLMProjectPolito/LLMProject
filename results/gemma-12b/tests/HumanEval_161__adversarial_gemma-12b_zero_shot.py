@@ -32,7 +32,7 @@ def test_solve_all_letters_upper():
 def test_solve_mixed_letters_and_symbols():
     assert solve("#a@C") == "#A@c"
     assert solve("1a2B3c") == "1A2b3C"
-    assert solve("!A@b#C$d") == "!a@B#c$D"
+    assert solve("!A#b@C$d") == "!a#B@c$d"
     assert solve("a1B2c3D") == "A1b2C3d"
 
 def test_solve_empty_string():
@@ -43,8 +43,8 @@ def test_solve_string_with_spaces():
     assert solve("  a  b  c  ") == "  A  B  C  "
 
 def test_solve_string_with_numbers_and_symbols():
-    assert solve("123abc456DEF") == "123ABC456def"
-    assert solve("!@#abcDEF$%^") == "!@#ABCDEF$%^"
+    assert solve("123abc456") == "123ABC456"
+    assert solve("!@#abc$") == "!@#ABC$"
 
 def test_solve_long_string():
     long_string = "This is a long string with some letters and numbers 1234567890!@#$"
@@ -53,7 +53,8 @@ def test_solve_long_string():
 
 def test_solve_unicode_string():
     assert solve("你好世界") == "你好世界"
-    assert solve("你好a世界") == "你好A世界"
+    assert solve("你好世界a") == "你好世界A"
+    assert solve("a你好世界") == "A你好世界"
 
 def test_solve_string_with_special_characters():
     assert solve("a\nb") == "A\nB"

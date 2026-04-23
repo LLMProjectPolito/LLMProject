@@ -39,7 +39,7 @@ def test_strongest_extension_negative_strength():
     assert Strongest_Extension("Slices", ["SErviNGSliCes", "Cheese", "StuFfed"]) == "Slices.SErviNGSliCes"
 
 def test_strongest_extension_equal_strength_first_wins():
-    assert Strongest_Extension("BaseClass", ["AB", "aB", "ba"]) == "BaseClass.AB"
+    assert Strongest_Extension("TestClass", ["AB", "aB", "ba"]) == "TestClass.AB"
 
 # Focus: Type Scenarios
 def test_strongest_extension_basic():
@@ -49,4 +49,4 @@ def test_strongest_extension_negative():
     assert Strongest_Extension("Slices", ["SErviNGSliCes", "Cheese", "StuFfed"]) == "Slices.SErviNGSliCes"
 
 def test_strongest_extension_equal_strength():
-    assert Strongest_Extension("BaseClass", ["ExtensionA", "extensionB", "ExtensionC"]) == "BaseClass.ExtensionA"
+    assert Strongest_Extension("BaseClass", ["A", "a", "B"]) == "BaseClass.A"

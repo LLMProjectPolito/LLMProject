@@ -23,11 +23,12 @@ def generate_integers(a, b):
     result = []
     for i in range(a, b + 1):
         s = str(i)
-        even_digits = []
+        even_digits = ""
         for digit in s:
             digit = int(digit)
             if digit % 2 == 0:
-                even_digits.append(digit)
-        even_digits.sort()
-        result = even_digits
+                even_digits += digit
+        if even_digits:
+            result.append(int(even_digits))
+    result.sort()
     return result

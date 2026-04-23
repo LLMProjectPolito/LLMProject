@@ -46,13 +46,13 @@ def test_boundary_single_element_greater_than_10_invalid_first_digit():
 def test_boundary_single_element_greater_than_10_invalid_last_digit():
     assert specialFilter([12]) == 0
 
-def test_boundary_single_element_negative_valid():
+def test_boundary_single_element_negative_greater_than_10_valid():
     assert specialFilter([-11]) == 1
 
-def test_boundary_single_element_negative_invalid_first_digit():
+def test_boundary_single_element_negative_greater_than_10_invalid_first_digit():
     assert specialFilter([-21]) == 0
 
-def test_boundary_single_element_negative_invalid_last_digit():
+def test_boundary_single_element_negative_greater_than_10_invalid_last_digit():
     assert specialFilter([-12]) == 0
 
 # Focus: Logic Branches
@@ -82,11 +82,8 @@ def specialFilter(nums):
     for num in nums:
         if num > 10:
             num_str = str(abs(num))
-            if len(num_str) > 0:
-                first_digit = int(num_str[0])
-                last_digit = int(num_str[-1])
-                if first_digit % 2 != 0 and last_digit % 2 != 0:
-                    count += 1
+            if num_str[0] in '13579' and num_str[-1] in '13579':
+                count += 1
     return count
 
 def test_invalid_input_empty_list():
@@ -94,8 +91,7 @@ def test_invalid_input_empty_list():
 
 def test_invalid_input_list_with_non_numeric_values():
     with pytest.raises(TypeError):
-        specialFilter([15, "abc", 14])
+        specialFilter([15, "abc", 33])
 
-def test_invalid_input_list_with_mixed_types():
-    with pytest.raises(TypeError):
-        specialFilter([15, 14, 15.5])
+def test_invalid_input_list_with_floats():
+    assert specialFilter([15.5, 33.2, 45.7]) == 0

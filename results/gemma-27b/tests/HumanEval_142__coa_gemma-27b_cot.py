@@ -30,10 +30,7 @@ def test_sum_squares_negative_numbers():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
 def test_sum_squares_mixed_indices():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 440
-
-def test_sum_squares_large_list():
-    assert sum_squares(list(range(13))) == 861
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 605
 
 # Focus: Empty List/Null Input
 def test_empty_list():
@@ -58,3 +55,4 @@ def test_sum_squares_negative_integers():
 def test_sum_squares_zero_integers():
     assert sum_squares([0, 0, 0, 0, 0, 0]) == 0
     assert sum_squares([0, 3, 0, 4, 0, 6]) == 0 + 9 + 0 + 64 + 0 + 36
+    assert sum_squares([-3, 0, 4, -6, 0, 12]) == 9 + 0 + 64 + 36 + 0 + 144

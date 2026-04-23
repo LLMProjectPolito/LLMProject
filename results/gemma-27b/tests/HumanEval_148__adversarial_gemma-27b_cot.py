@@ -18,39 +18,46 @@ def bf(planet1, planet2):
 
 import pytest
 
-def test_valid_planets():
+def test_bf_valid_planets():
     planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
     assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
     assert bf("Earth", "Mercury") == ("Venus",)
     assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-    assert bf("Venus", "Earth") == ("Mercury",)
-    assert bf("Mars", "Venus") == ("Earth",)
-    assert bf("Neptune", "Jupiter") == ("Uranus", "Saturn", "Mars", "Earth", "Venus", "Mercury")
+    assert bf("Venus", "Mars") == ("Earth",)
+    assert bf("Mars", "Venus") == ()
+    assert bf("Neptune", "Mercury") == ("Uranus", "Saturn", "Jupiter", "Mars", "Earth", "Venus")
     assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
-    assert bf("Neptune", "Neptune") == ()
-    assert bf("Mercury", "Mercury") == ()
 
-def test_invalid_planet_names():
-    assert bf("Pluto", "Neptune") == ()
-    assert bf("Earth", "X") == ()
-    assert bf("Invalid", "Venus") == ()
-    assert bf("Mars", "Invalid") == ()
-    assert bf("Invalid1", "Invalid2") == ()
+def test_bf_same_planet():
+    assert bf("Earth", "Earth") == ()
 
-def test_case_sensitivity():
+def test_bf_invalid_planet1():
+    assert bf("Pluto", "Earth") == ()
+    assert bf("X", "Venus") == ()
+
+def test_bf_invalid_planet2():
+    assert bf("Earth", "Pluto") == ()
+    assert bf("Venus", "X") == ()
+
+def test_bf_both_invalid_planets():
+    assert bf("Pluto", "X") == ()
+
+def test_bf_case_sensitivity():
     assert bf("jupiter", "Neptune") == ()
-    assert bf("Earth", "neptune") == ()
-    assert bf("mercury", "venus") == ()
+    assert bf("Jupiter", "neptune") == ()
+    assert bf("jupiter", "neptune") == ()
 
-def test_empty_input():
-    assert bf("", "Venus") == ()
+def test_bf_empty_string():
+    assert bf("", "Earth") == ()
     assert bf("Earth", "") == ()
     assert bf("", "") == ()
 
-def test_same_planet():
-    assert bf("Earth", "Earth") == ()
+def test_bf_whitespace_string():
+    assert bf(" ", "Earth") == ()
+    assert bf("Earth", " ") == ()
+    assert bf(" ", " ") == ()
 
-def test_edge_cases():
-    assert bf("Mercury", "Venus") == ()
-    assert bf("Venus", "Mercury") == ()
-    assert bf("Neptune", "Uranus") == ("Saturn", "Jupiter", "Mars", "Earth", "Venus", "Mercury")
+def test_bf_special_characters():
+    assert bf("Earth!", "Mars") == ()
+    assert bf("Earth", "Mars!") == ()
+    assert bf("Earth!", "Mars!") == ()

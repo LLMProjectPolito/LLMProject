@@ -37,10 +37,10 @@ def test_even_odd_count_negative_large_number():
     assert even_odd_count(-1234567890) == (5, 5)
 
 def test_even_odd_count_mixed_positive():
-    assert even_odd_count(21436587) == (4, 4)
+    assert even_odd_count(123456) == (3, 3)
 
 def test_even_odd_count_mixed_negative():
-    assert even_odd_count(-21436587) == (4, 4)
+    assert even_odd_count(-123456) == (3, 3)
 
 def test_even_odd_count_with_leading_zero():
     assert even_odd_count(102) == (2, 1)

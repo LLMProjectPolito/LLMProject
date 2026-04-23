@@ -28,68 +28,53 @@ def specialFilter(nums):
                 count += 1
     return count
 
-def test_empty_list():
+"""
+This test suite tests the specialFilter function, which counts numbers
+greater than 10 with odd first and last digits.
+"""
+
+def test_empty_array():
     assert specialFilter([]) == 0
 
-def test_no_numbers_greater_than_10():
+def test_no_matching_numbers():
     assert specialFilter([1, 2, 3, 4, 5]) == 0
 
-def test_all_numbers_greater_than_10_invalid_digits():
-    assert specialFilter([21, 43, 65, 87, 10]) == 0
-
-def test_single_valid_number():
+def test_single_matching_number():
     assert specialFilter([15]) == 1
 
-def test_multiple_valid_numbers():
-    assert specialFilter([15, 22, 37, 44, 59]) == 2
-
-def test_negative_numbers():
-    assert specialFilter([-15, -37, -59]) == 3
-
-def test_mixed_positive_and_negative():
-    assert specialFilter([15, -22, 37, -44, 59, -71]) == 3
-
-def test_numbers_with_leading_zeros():
-    assert specialFilter([15, 037, 059]) == 2
-
-def test_edge_case_11():
-    assert specialFilter([11]) == 0
-
-def test_edge_case_19():
-    assert specialFilter([19]) == 1
-
-def test_no_valid_numbers():
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 0
-
-def test_even_first_digit():
-    assert specialFilter([25, 47, 61, 83]) == 0
-
-def test_even_last_digit():
-    assert specialFilter([12, 34, 56, 78, 90]) == 0
-
-def test_valid_numbers():
-    assert specialFilter([15, 37, 59, 71, 93]) == 5
+def test_multiple_matching_numbers():
+    assert specialFilter([33, 45, 57, 11]) == 3
 
 def test_mixed_numbers():
-    assert specialFilter([15, -73, 14, -15, 21, 33, 45, 21, 109, 11]) == 4
+    assert specialFilter([15, -73, 14, -15, 22, 37, 51]) == 3
 
-def test_negative_valid_numbers():
-    assert specialFilter([-15, -37, -59, -71, -93]) == 5
+def test_negative_numbers():
+    assert specialFilter([-15, -35, -57, -79]) == 0
+    assert specialFilter([-15, 15, -35, 35]) == 2
+
+def test_zero_and_positive_numbers():
+    assert specialFilter([0, 11, 13, 15, 17, 19, 20]) == 6
+
+def test_large_numbers():
+    assert specialFilter([1235, 3457, 5679, 7891]) == 4
+
+def test_numbers_close_to_10():
+    assert specialFilter([11, 12, 9, 10, 110, 111]) == 2
+
+def test_numbers_with_leading_zeros():
+    assert specialFilter([15, 35, 55, 75, 95]) == 5
+
+def test_numbers_with_zero_as_first_or_last_digit():
+    assert specialFilter([105, 307, 510, 709]) == 0
+
+def test_mixed_positive_and_negative():
+    assert specialFilter([15, -73, 14, -15, 33]) == 2
+
+def test_large_numbers_2():
+    assert specialFilter([13579, -97351]) == 2
 
 def test_single_digit_numbers():
     assert specialFilter([1, 3, 5, 7, 9]) == 0
 
-def test_large_numbers():
-    assert specialFilter([151, 373, 595, 717, 939]) == 5
-
-def test_zero_as_first_digit():
-    assert specialFilter([015, 037]) == 0
-
-def test_numbers_not_greater_than_10():
-    assert specialFilter([1, 3, 5, 7, 9]) == 0
-
-def test_numbers_with_multiple_digits_invalid():
-    assert specialFilter([123, 345, 567, 789]) == 0
-
-def test_numbers_with_multiple_digits_valid():
-    assert specialFilter([111, 333, 555, 777, 999]) == 5
+def test_edge_case_11():
+    assert specialFilter([11]) == 0

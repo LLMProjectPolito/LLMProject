@@ -54,34 +54,22 @@ def test_fix_spaces_empty_string():
     assert fix_spaces("") == ""
 
 def test_fix_spaces_only_spaces():
-    assert fix_spaces("   ") == "--"
+    assert fix_spaces("   ") == "---"
 
 def test_fix_spaces_mixed_spaces():
-    assert fix_spaces("Hello  World") == "Hello__World"
+    assert fix_spaces("Hello  World  !") == "Hello__World!"
 
 def test_fix_spaces_long_consecutive_spaces():
-    assert fix_spaces("This   has    many   spaces") == "This---has----many---spaces"
+    assert fix_spaces("This  has   many   spaces") == "This___has___many___spaces"
+
+def test_fix_spaces_no_consecutive_spaces():
+    assert fix_spaces("NoSpacesHere") == "NoSpacesHere"
+
+def test_fix_spaces_with_special_characters():
+    assert fix_spaces("Special! Characters ") == "Special!_Characters_"
 
 def test_fix_spaces_trailing_spaces():
     assert fix_spaces("Some text   ") == "Some_text--"
 
 def test_fix_spaces_multiple_consecutive_and_trailing():
-    assert fix_spaces("  Multiple   spaces   at   the   end  ") == "_Multiple---spaces---at---the---end"
-
-def test_fix_spaces_all_spaces():
-    assert fix_spaces("   ") == "---"
-
-def test_fix_spaces_empty_string():
-    assert fix_spaces("") == ""
-
-def test_fix_spaces_mixed_spaces():
-    assert fix_spaces("  a  b  c") == "_a_b_c"
-
-def test_fix_spaces_long_consecutive_spaces():
-    assert fix_spaces("This has   many   spaces") == "This has ---many---spaces"
-
-def test_fix_spaces_trailing_spaces():
-    assert fix_spaces("Hello   ") == "Hello---"
-
-def test_fix_spaces_spaces_at_start_and_end():
-    assert fix_spaces("  Test  ") == "_Test--"
+    assert fix_spaces("  Multiple   spaces   trailing  ") == "_Multiple--spaces--trailing"

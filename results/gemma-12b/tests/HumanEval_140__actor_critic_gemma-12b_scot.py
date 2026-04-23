@@ -25,17 +25,17 @@ def fix_spaces(text):
     fix_spaces(" Example   3") == "_Example-3"
     """
     result = ""
-    space_count = 0
+    spaces = 0
     for char in text:
         if char == ' ':
-            space_count += 1
-            if space_count > 2:
+            spaces += 1
+            if spaces > 2:
                 result += '-'
             else:
                 result += '_'
         else:
             result += char
-            space_count = 0
+            spaces = 0
     return result
 
 class TestFixSpaces:
@@ -45,41 +45,41 @@ class TestFixSpaces:
     def test_single_space(self):
         assert fix_spaces("Example 1") == "Example_1"
 
-    def test_leading_space(self):
+    def test_multiple_single_spaces(self):
+        assert fix_spaces("Example 1 2") == "Example_1_2"
+
+    def test_empty_string(self):
+        assert fix_spaces("") == ""
+
+    def test_only_spaces(self):
+        assert fix_spaces("   ") == "-"
+
+    def test_leading_spaces(self):
         assert fix_spaces(" Example 2") == "_Example_2"
 
-    def test_trailing_space(self):
+    def test_trailing_spaces(self):
         assert fix_spaces("Example 2 ") == "Example_2_"
 
     def test_leading_and_trailing_spaces(self):
         assert fix_spaces(" Example 2 ") == "_Example_2_"
 
+    def test_consecutive_spaces_less_than_three(self):
+        assert fix_spaces("Example  1") == "Example__1"
+
     def test_consecutive_spaces_more_than_two(self):
         assert fix_spaces(" Example   3") == "_Example-3"
 
-    def test_consecutive_spaces_at_beginning(self):
-        assert fix_spaces("   Example 4") == "-Example_4"
-
-    def test_consecutive_spaces_at_end(self):
-        assert fix_spaces("Example 5   ") == "Example_5-"
-
-    def test_spaces_in_middle(self):
-        assert fix_spaces("Example  1   2  3") == "Example__1-2_3"
-
-    def test_empty_string(self):
-        assert fix_spaces("") == ""
-
-    def test_string_with_only_spaces(self):
-        assert fix_spaces("   ") == "-"
-
-    def test_logic_error(self):
-        assert fix_spaces(" ...x ...") == "-x-"
-
-    def test_three_leading_spaces(self):
-        assert fix_spaces("   Example 5") == "-Example_5"
+    def test_multiple_consecutive_blocks(self):
+        assert fix_spaces(" Example   3   4") == "_Example-3_4"
 
     def test_mixed_spaces(self):
-        assert fix_spaces("Example  1   2   3") == "Example__1-2-3"
+        assert fix_spaces("Example  1   2  3") == "Example-1_2_3"
 
-    def test_consecutive_more_than_two(self):
-        assert fix_spaces("Example     6") == "Example-6"
+    def test_two_consecutive_spaces(self):
+        assert fix_spaces("Example  1") == "Example__1"
+
+    def test_multiple_hyphens(self):
+        assert fix_spaces("   ") == "-"
+
+    def test_mixed_spaces_2(self):
+        assert fix_spaces("a  b   c") == "a-b_c"

@@ -25,20 +25,18 @@ def cycpattern_check(a, b):
     """
     s1 = a
     s2 = b
-    s3 = s1
-    s4 = s2
-    s5 = s3
+    s3 = s2
+    s4 = s2.replace(s2[0], "")
+    s5 = s2.replace(s2[-1], "")
 
-    if len(s1) >= len(s2):
-        for i in range(len(s2)):
-            rotated_s2 = s2[i:] + s2[:i]
-            if rotated_s2 in s1:
-                return True
-    else:
-        for i in range(len(s1)):
-            rotated_s1 = s1[i:] + s1[:i]
-            if rotated_s1 in s2:
-                return True
+    if s1 in s3:
+        return True
+    if s3 in s1:
+        return True
+    if s4 in s2:
+        return True
+    if s5 in s2:
+        return True
     return False
 
 def cycpattern_check(a, b):
@@ -69,10 +67,6 @@ def cycpattern_check(a, b):
     cycpattern_check("himenss","simen") => True
 
     """
-    if len(b) < len(a):
+    if len(b) < len(a) or len(b) > len(a) or b in a:
         return False
-    for i in range(len(b)):
-        rotated_b = b[i:] + b[:i]
-        if rotated_b in a:
-            return True
-    return False
+    return b in a

@@ -25,15 +25,15 @@ def find_max(words):
     if not words:
         return ""
 
-    max_unique = -1
+    max_unique_chars = -1
     result = ""
 
     for word in words:
-        unique_count = len(set(word))
-        if unique_count > max_unique:
-            max_unique = unique_count
+        unique_chars = len(set(word))
+        if unique_chars > max_unique_chars:
+            max_unique_chars = unique_chars
             result = word
-        elif unique_count == max_unique and word < result:
+        elif unique_chars == max_unique_chars and word < result:
             result = word
 
     return result
@@ -44,26 +44,32 @@ def test_empty_list():
 def test_list_with_empty_strings():
     assert find_max(["", "", ""]) == ""
 
-def test_single_word():
-    assert find_max(["hello"]) == "hello"
-
 def test_basic_case():
     assert find_max(["name", "of", "string"]) == "string"
 
-def test_tie_lexicographical():
+def test_tie_case():
     assert find_max(["name", "enam", "game"]) == "enam"
 
-def test_all_same_characters():
+def test_all_same_unique_chars():
     assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
-def test_multiple_words_same_max_unique():
-    assert find_max(["abc", "bca", "cab"]) == "abc"
+def test_lexicographical_tiebreaker():
+    assert find_max(["abc", "bac", "cab"]) == "abc"
 
 def test_mixed_lengths():
-    assert find_max(["a", "aa", "aaa", "abcde"]) == "abcde"
+    assert find_max(["a", "bb", "ccc", "dddd"]) == "dddd"
+
+def test_single_word():
+    assert find_max(["hello"]) == "hello"
+
+def test_duplicate_words():
+    assert find_max(["hello", "hello", "world"]) == "hello"
 
 def test_case_sensitivity():
-    assert find_max(["Name", "name"]) == "Name"
+    assert find_max(["Hello", "hello"]) == "Hello"
 
-def test_words_with_special_characters():
-    assert find_max(["abc!", "def@", "ghi#"]) == "abc!"
+def test_complex_case():
+    assert find_max(["abcdefg", "abcde", "abcdf", "abcdef"]) == "abcdefg"
+
+def test_empty_string_in_list():
+    assert find_max(["abc", "", "def"]) == "abc"

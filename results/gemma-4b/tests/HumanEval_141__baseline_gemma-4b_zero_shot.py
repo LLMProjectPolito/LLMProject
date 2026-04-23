@@ -76,14 +76,20 @@ def test_valid_extension():
 def test_valid_file_name_with_mixed_case():
     assert file_name_check("Example.TXT") == 'Yes'
 
-def test_file_name_with_many_digits():
-    assert file_name_check("1234example.txt") == 'No'
+def test_file_name_with_leading_and_trailing_spaces():
+    assert file_name_check("  example.txt  ") == 'Yes'
 
 def test_file_name_with_special_characters():
     assert file_name_check("example.txt!") == 'No'
 
-def test_file_name_starts_with_digit():
-    assert file_name_check("1example.txt") == 'No'
+def test_file_name_with_only_digits():
+    assert file_name_check("12345.txt") == 'No'
 
-def test_file_name_ends_with_digit():
-    assert file_name_check("example.txt1") == 'No'
+def test_file_name_with_one_digit():
+    assert file_name_check("a1.txt") == 'Yes'
+
+def test_file_name_with_two_digits():
+    assert file_name_check("a2.txt") == 'Yes'
+
+def test_file_name_with_three_digits():
+    assert file_name_check("a3.txt") == 'Yes'

@@ -42,16 +42,16 @@ def test_some_matching_numbers():
 
 def test_negative_numbers():
     assert specialFilter([-11, -13, -15]) == 0
-    assert specialFilter([-11, 13, -15]) == 0
+    assert specialFilter([-15, -35, -75]) == 3
 
 def test_boundary_cases():
     assert specialFilter([10, 11, 12]) == 0
-    assert specialFilter([11, 13]) == 1
+    assert specialFilter([11, 13, 15]) == 3
 
 def test_mixed_numbers():
-    assert specialFilter([11, 13, 15, 17, 19, 21]) == 5
-    assert specialFilter([11, 13, 14, 16, 18, 19]) == 1
+    assert specialFilter([11, 13, 15, 12, 14]) == 3
+    assert specialFilter([15, 21, 33, 45, 57, 69, 71, 83, 95]) == 9
 
 def test_large_numbers():
-    assert specialFilter([1111111111, 1333333333]) == 2
-    assert specialFilter([9999999999, 1111111111]) == 1
+    assert specialFilter([101, 131, 151, 171, 191]) == 5
+    assert specialFilter([999, 889, 779, 669, 559]) == 5

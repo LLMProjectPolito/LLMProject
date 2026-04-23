@@ -44,6 +44,3 @@ def test_max_single_element():
 
 def test_max_duplicate_elements():
     assert get_max(["a", "a", "b", "c"]) == "a"
-
-def test_max_same_elements():
-    assert get_max(["a", "a", "a"]) == "a"

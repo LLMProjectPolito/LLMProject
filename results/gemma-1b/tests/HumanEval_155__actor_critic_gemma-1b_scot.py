@@ -39,7 +39,7 @@ def test_even_odd_count_single_digit():
     assert even_odd_count(5) == (1, 0)
 
 def test_even_odd_count_large_number():
-    assert even_odd_count(1234567890) == (2, 3)
+    assert even_odd_count(1234567890) == (2, 2)
 
 def test_even_odd_count_with_leading_zeros():
     assert even_odd_count(102) == (2, 2)
@@ -48,4 +48,7 @@ def test_even_odd_count_with_trailing_zeros():
     assert even_odd_count(100) == (2, 2)
 
 def test_even_odd_count_with_repeated_digits():
-    assert even_odd_count(111) == (2, 2)
+    assert even_odd_count(222) == (2, 2)
+
+def test_even_odd_count_with_negative_sign():
+    assert even_odd_count(-123) == (1, 1)

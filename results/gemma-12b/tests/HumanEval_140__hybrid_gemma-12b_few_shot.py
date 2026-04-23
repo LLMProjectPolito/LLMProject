@@ -13,7 +13,16 @@ def fix_spaces(text):
 
 import pytest
 from your_module import fix_spaces  # Replace your_module
-from your_module import is_palindrome, get_max  # Assuming these are in your_module
+def is_palindrome(s: str) -> bool:
+    """ Checks if a string is a palindrome """
+    s = s.lower()
+    return s == s[::-1]
+
+def get_max(arr: list[int]) -> int:
+    """ Returns the maximum element in a list, or None if empty """
+    if not arr:
+        return None
+    return max(arr)
 
 class TestFixSpaces:
     """
@@ -63,12 +72,16 @@ class TestFixSpaces:
     def test_long_string_with_consecutive_spaces(self):
         """Test case: A longer string with multiple consecutive spaces."""
         long_string = "This is a  very   long string with     many spaces."
-        expected_result = "This_is_a-very___long_string_with-----many_spaces."
+        expected_result = "This_is_a-very-long_string_with-many_spaces."
         assert fix_spaces(long_string) == expected_result
 
     def test_string_with_special_characters(self):
         """Test case: String with special characters and spaces."""
-        assert fix_spaces("!@# Example $ %^") == "!@#_Example_$_%^"
+        assert fix_spaces("!@# Example $ %") == "!@#_Example_$%"
+
+    def test_string_with_only_consecutive_spaces(self):
+        """Test case: String containing only consecutive spaces."""
+        assert fix_spaces("     ") == "-"
 
     @pytest.mark.parametrize(
         "input_string, expected_output",
@@ -77,41 +90,37 @@ class TestFixSpaces:
             ("abc   def", "abc-def"),
             ("abc     def", "abc-def"),
             ("abc  def  ghi", "abc__def_ghi"),
-            ("abc  def  ghi jkl", "abc__def_ghi_jkl"),
+            ("abc  def  ghi jkl   mno", "abc__def_ghi_jkl-mno"),
+            ("abc  def  ghi jkl  ", "abc__def_ghi-jkl"), #Added test case
         ],
     )
     def test_parametrized_cases(self, input_string, expected_output):
         """Test cases using pytest.mark.parametrize for various inputs."""
         assert fix_spaces(input_string) == expected_output
 
-
-def test_is_palindrome_basic():
+# Palindrome Tests
+def test_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
 
-def test_is_palindrome_empty():
+def test_palindrome_empty():
     assert is_palindrome('') == True
 
-def test_is_palindrome_single_char():
-    assert is_palindrome('a') == True
+def test_palindrome_case_insensitive():
+    assert is_palindrome('Racecar') == True
 
-def test_is_palindrome_mixed_case():
-    assert is_palindrome('Racecar') == False  # Case sensitive
+def test_palindrome_with_spaces():
+    assert is_palindrome("A man, a plan, a canal: Panama") == False #spaces are not removed
 
-def test_is_palindrome_with_spaces():
-    assert is_palindrome("A man, a plan, a canal: Panama") == False # Spaces are not ignored
-
-def test_get_max_positive():
+# Get Max Tests
+def test_max_positive():
     assert get_max([1, 2, 3]) == 3
 
-def test_get_max_empty():
+def test_max_empty():
     assert get_max([]) == None
 
-def test_get_max_negative():
+def test_max_negative():
     assert get_max([-1, -2, -3]) == -1
 
-def test_get_max_mixed():
+def test_max_mixed():
     assert get_max([-1, 2, -3, 4]) == 4
-
-def test_get_max_duplicates():
-    assert get_max([5, 5, 5]) == 5

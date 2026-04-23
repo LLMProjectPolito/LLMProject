@@ -56,18 +56,15 @@ def test_is_palindrome_basic():
 
 def test_is_palindrome_empty():
     assert is_palindrome('') == True
-    assert is_palindrome(' ') == True
 
 def test_is_palindrome_single_char():
     assert is_palindrome('a') == True
 
+def test_is_palindrome_mixed_case():
+    assert is_palindrome('Madam') == True
+
 def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
-    assert get_max([3, 2, 1]) == 3
-    assert get_max([1, 3, 2]) == 3
-
-def test_get_max_empty():
-    assert get_max([]) == None
 
 def test_get_max_negative():
     assert get_max([-1, -2, -3]) == -1
@@ -75,21 +72,29 @@ def test_get_max_negative():
 def test_get_max_mixed():
     assert get_max([-1, 2, -3, 4]) == 4
 
+def test_get_max_empty():
+    assert get_max([]) == None
+
+def test_get_max_single_element():
+    assert get_max([5]) == 5
+
 def test_sorted_list_sum_basic():
     assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
+
+def test_sorted_list_sum_multiple():
     assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
-    assert sorted_list_sum(["abc", "def", "ghi"]) == ["abc", "def", "ghi"]
-    assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
 def test_sorted_list_sum_duplicates():
-    assert sorted_list_sum(["aa", "aa", "a"]) == ["aa", "aa"]
-    assert sorted_list_sum(["ab", "ab", "cd"]) == ["ab", "ab"]
+    assert sorted_list_sum(["aa", "ab", "aa", "cd"]) == ["aa", "aa", "ab", "cd"]
 
-def test_sorted_list_sum_mixed():
-    assert sorted_list_sum(["aa", "a", "aaa", "cd", "bb"]) == ["aa", "bb", "cd"]
+def test_sorted_list_sum_same_length_alphabetical():
+    assert sorted_list_sum(["abc", "abd", "abe"]) == ["abc", "abd", "abe"]
 
-def test_sorted_list_sum_empty():
+def test_sorted_list_sum_empty_list():
     assert sorted_list_sum([]) == []
 
 def test_sorted_list_sum_all_odd():
-    assert sorted_list_sum(["aa", "a", "aaa", "cd", "bb"]) == []
+    assert sorted_list_sum(["abc", "def", "ghi"]) == []
+
+def test_sorted_list_sum_mixed_odd_even():
+    assert sorted_list_sum(["abc", "ab", "def", "cd"]) == ["ab", "cd", "def"]

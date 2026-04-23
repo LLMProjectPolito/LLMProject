@@ -54,10 +54,10 @@ def test_eat_zero_need():
     assert eat(5, 0, 0) == [5, 0]
 
 def test_eat_zero_remaining():
-    assert eat(5, 6, 0) == [5, 0]
+    assert eat(0, 5, 0) == [0, 0]
 
 def test_eat_large_numbers():
-    assert eat(500, 600, 1000) == [1100, 400]
+    assert eat(500, 500, 1000) == [1000, 500]
 
-def test_eat_max_values():
-    assert eat(1000, 1000, 1000) == [2000, 0]
+def test_eat_large_numbers_not_enough():
+    assert eat(500, 1000, 400) == [900, 0]

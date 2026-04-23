@@ -28,10 +28,8 @@ def simplify(x, n):
     """
     x_num, x_den = map(int, x.split('/'))
     n_num, n_den = map(int, n.split('/'))
-
     result_num = x_num * n_num
     result_den = x_den * n_den
-
     return result_num % result_den == 0
 
 def test_simplify_true_case1():
@@ -50,25 +48,31 @@ def test_simplify_true_case3():
     assert simplify("4/5", "5/4") == True
 
 def test_simplify_false_case3():
-    assert simplify("1/2", "1/3") == False
+    assert simplify("1/2", "3/4") == False
 
 def test_simplify_large_numbers_true():
-    assert simplify("100/20", "2/1") == True
+    assert simplify("100/20", "20/1") == True
 
 def test_simplify_large_numbers_false():
-    assert simplify("100/21", "2/1") == False
+    assert simplify("101/20", "20/1") == False
 
 def test_simplify_same_fraction():
     assert simplify("2/2", "2/2") == True
 
 def test_simplify_one_whole_number():
-    assert simplify("1/1", "2/1") == True
+    assert simplify("1/1", "5/1") == True
 
 def test_simplify_another_whole_number():
-    assert simplify("2/1", "1/1") == True
+    assert simplify("5/1", "1/1") == True
 
-def test_simplify_complex_true():
-    assert simplify("15/4", "4/3") == True
+def test_simplify_mixed_case():
+    assert simplify("3/4", "8/1") == True
 
-def test_simplify_complex_false():
-    assert simplify("15/4", "5/6") == False
+def test_simplify_mixed_case_false():
+    assert simplify("3/4", "7/1") == False
+
+def test_simplify_complex_fractions_true():
+    assert simplify("12/15", "25/10") == True
+
+def test_simplify_complex_fractions_false():
+    assert simplify("12/15", "26/10") == False

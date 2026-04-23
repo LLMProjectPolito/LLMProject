@@ -57,16 +57,22 @@ def test_fix_spaces_only_spaces():
     assert fix_spaces("   ") == "--"
 
 def test_fix_spaces_mixed_spaces():
-    assert fix_spaces("Hello  World  !") == "Hello__World!"
+    assert fix_spaces("  a  b  c") == "_a_b_c"
 
 def test_fix_spaces_long_consecutive_spaces():
-    assert fix_spaces("This  has   many   spaces") == "This___has___many___spaces"
+    assert fix_spaces("This is a very long string with   many   spaces") == "This_is_a_very_long_string_with-many-spaces"
 
 def test_fix_spaces_trailing_spaces():
-    assert fix_spaces("Hello  ") == "Hello-"
+    assert fix_spaces("Hello   ") == "Hello-"
 
-def test_fix_spaces_multiple_consecutive_and_trailing():
-    assert fix_spaces("Hello  World   ") == "Hello__World-"
+def test_fix_spaces_multiple_leading_and_trailing():
+    assert fix_spaces("  Test   ") == "_Test-"
 
 def test_fix_spaces_with_special_characters():
-    assert fix_spaces("Hello!  World?") == "Hello!__World?"
+    assert fix_spaces("!@# $ % ^ & * ( )") == "!@#_-_%^&_(*)"
+
+def test_fix_spaces_unicode_spaces():
+    assert fix_spaces("你好 世界") == "你好_世界"
+
+def test_fix_spaces_mixed_unicode_and_ascii():
+    assert fix_spaces("Hello 你好") == "Hello_你好"

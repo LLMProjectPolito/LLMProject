@@ -60,11 +60,11 @@ def test_is_palindrome():
     assert is_palindrome('12321') == True
     assert is_palindrome('ab') == False
     assert is_palindrome('') == True
-    assert is_palindrome('  ') == True
-    assert is_palindrome(' a ') == True
-    assert is_palindrome('Racecar') == True
-    assert is_palindrome('RaCeCaR') == True
+    assert is_palindrome(' ') == True
+    assert is_palindrome('a') == True
+    assert is_palindrome('Race car') == True
     assert is_palindrome('Madam, I\'m Adam') == True
+    assert is_palindrome('A man, a plan, a canal: Panama!') == True
 
 
 def test_get_max():
@@ -85,4 +85,5 @@ def test_special_factorial():
     assert special_factorial(5) == 34560
     assert special_factorial(0) == 1
     assert special_factorial(-1) == 1
-    assert special_factorial(6) == 7257600
+    assert special_factorial(6) == 412875600
+    assert special_factorial(7) == 5040320000

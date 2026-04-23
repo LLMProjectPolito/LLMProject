@@ -28,54 +28,139 @@ def is_valid_code(code):
     except Exception:
         return False
 
-def is_valid_file(filename):
+def is_valid_file(file_name):
     """
-    Checks if the given filename is valid.
+    Checks if the given file name is valid.
     """
-    if not filename:
+    if not file_name.endswith("."):
         return "No"
-    if not filename.endswith("."):
+    if len(file_name) > 3:
         return "No"
-    if not filename[:1].isalpha():
+    if not file_name[1].isalnum():
         return "No"
-    parts = filename[1:]
-    if not parts:
+    parts = file_name.split(".")
+    if len(parts) != 2:
         return "No"
     if not parts[0].isalpha():
+        return "No"
+    if not parts[1].isalpha():
         return "No"
     if parts[1].lower() not in ['txt', 'exe', 'dll']:
         return "No"
     return "Yes"
 
-def test_is_valid_code():
-    assert is_valid_code("print('Hello, world!')") == True
-    assert is_valid_code("1 + 2") == True
-    assert is_valid_code("2 * 3") == True
-    assert is_valid_code("2 + 3") == False
-    assert is_valid_code("2 + 3 * 4") == False
-    assert is_valid_code("2 + 3 * 4 * 5") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13 * 14") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13 * 14 * 15") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13 * 14 * 15 * 16") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13 * 14 * 15 * 16 * 17") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13 * 14 * 15 * 16 * 17 * 18") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13 * 14 * 15 * 16 * 17 * 18 * 19") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13 * 14 * 15 * 16 * 17 * 18 * 19 * 20") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13 * 14 * 15 * 16 * 17 * 18 * 19 * 20 * 21") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13 * 14 * 15 * 16 * 17 * 18 * 19 * 20 * 21 * 22") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13 * 14 * 15 * 16 * 17 * 18 * 19 * 20 * 21 * 22 * 23") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13 * 14 * 15 * 16 * 17 * 18 * 19 * 20 * 21 * 22 * 23 * 24") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13 * 14 * 15 * 16 * 17 * 18 * 19 * 20 * 21 * 22 * 23 * 24 * 25") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13 * 14 * 15 * 16 * 17 * 18 * 19 * 20 * 21 * 22 * 23 * 24 * 25 * 26") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13 * 14 * 15 * 16 * 17 * 18 * 19 * 20 * 21 * 22 * 23 * 24 * 25 * 26 * 27") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13 * 14 * 15 * 16 * 17 * 18 * 19 * 20 * 21 * 22 * 23 * 24 * 25 * 26 * 27 * 28") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13 * 14 * 15 * 16 * 17 * 18 * 19 * 20 * 21 * 22 * 23 * 24 * 25 * 26 * 27 * 28 * 29") == False
-    assert is_valid_code("2 + 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 * 11 * 12 * 13 * 14 * 15 * 16 * 17 * 18 * 19 * 20 * 21 * 22 * 23 * 24 * 25 * 26
+def test_valid_code():
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("import math")
+    assert is_valid_code("1 + 2")
+    assert is_valid_code("print('Hello')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code("print('Hello, world!')")
+    assert is_valid_code

@@ -19,11 +19,10 @@ import pytest
 def test_valid_file_name():
     assert file_name_check("example.txt") == "Yes"
     assert file_name_check("document.dll") == "Yes"
-    assert file_name_check("image.exe") == "Yes"
+    assert file_name_check("my_program.exe") == "Yes"
     assert file_name_check("a.txt") == "Yes"
     assert file_name_check("A.TXT") == "Yes"
-    assert file_name_check("long_file_name.txt") == "Yes"
-    assert file_name_check("valid_file.exe") == "Yes"
+    assert file_name_check("long_file_name.exe") == "Yes"
 
 def test_invalid_file_name_too_many_digits():
     assert file_name_check("123example.txt") == "No"

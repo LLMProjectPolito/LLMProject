@@ -25,30 +25,21 @@ def solve(s):
     solve("#a@C") = "#A@c"
     """
     result = ""
-    has_letter = False
     for char in s:
-        if 'a' <= char <= 'z' or 'A' <= char <= 'Z':
-            has_letter = True
-            if 'a' <= char <= 'z':
-                result += char.upper()
-            else:
-                result += char.lower()
+        if 'a' <= char <= 'z':
+            result += char.upper()
+        elif 'A' <= char <= 'Z':
+            result += char.lower()
         else:
             result += char
-    if not has_letter:
-        return s[::-1]
-    else:
-        return result
+    return result
 
 class TestSolve:
-    def test_only_numbers(self):
+    def test_string_with_only_numbers(self):
         assert solve("1234") == "4321"
 
     def test_only_lowercase(self):
         assert solve("ab") == "AB"
-
-    def test_only_uppercase(self):
-        assert solve("AB") == "ab"
 
     def test_mixed_letters_and_symbols(self):
         assert solve("#a@C") == "#A@c"
@@ -56,32 +47,24 @@ class TestSolve:
     def test_empty_string(self):
         assert solve("") == ""
 
-    def test_only_special_characters(self):
-        assert solve("!@#$%") == "!@#$%"
+    def test_string_with_only_special_characters_reversed(self):
+        assert solve("!@#$%") == "!@#$%"[::-1]
 
     def test_with_spaces(self):
-        assert solve("a b c") == "A b C"
+        assert solve("hello world") == "hello world"
 
-    def test_numbers_and_letters(self):
-        assert solve("a1b2c") == "A1B2C"
-
-    def test_numbers_letters_and_special_characters(self):
-        assert solve("1a!2B@3c#") == "3c#@2B!1a"
-
-    def test_single_character_letter(self):
-        assert solve("a") == "A"
-
-    def test_single_character_non_letter(self):
-        assert solve("1") == "1"
-
-    def test_single_character_combined(self):
-        assert solve("a") == "A"
-        assert solve("1") == "1"
+    def test_mixed_case_and_spaces(self):
+        assert solve("Hello World") == "hEllo wORLd"
 
     def test_unicode_characters(self):
-        assert solve("éàç") == "ÉÀÇ"
+        assert solve("你好世界") == "界世好你"
 
-    def test_long_string(self):
-        long_string = "a1b2!c3d4@e5f6#g7h8i9j0"
-        expected_result = "A1B2!C3D4@E5F6#G7H8I9J0"
-        assert solve(long_string) == expected_result
+    def test_numbers_and_unicode(self):
+        assert solve("12你好世界") == "界世好你21"
+
+    def test_single_character(self):
+        assert solve("a") == "A"
+        assert solve("1") == "1"
+
+    def test_unicode_non_letter(self):
+        assert solve("！") == "！"

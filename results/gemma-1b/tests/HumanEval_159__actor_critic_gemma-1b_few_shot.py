@@ -77,7 +77,7 @@ def test_eat_large_numbers():
     assert eat(100, 200, 50) == [150, 50]
 
 def test_eat_need_greater_than_available():
-    assert eat(5, 12, 3) == [11, 0]
+    assert eat(1, 10, 5) == [5, 0]
 
 def test_eat_need_equal_to_available():
-    assert eat(5, 6, 6) == [11, 0]
+    assert eat(2, 11, 5) == [7, 0]

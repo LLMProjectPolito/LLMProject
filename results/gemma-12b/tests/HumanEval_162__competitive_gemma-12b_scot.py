@@ -43,8 +43,8 @@ class TestStringtoMD5:
 
     def test_long_string(self):
         long_string = "This is a very long string to test the md5 hash function."
-        expected_md5 = "99a93999999999999999999999999999"
+        expected_md5 = 'a94a8fe5ccb19ba61c4c0873d391e987'
         assert string_to_md5(long_string) == expected_md5
 
     def test_string_with_newlines(self):
-        assert string_to_md5("Line1\nLine2") == "99a93999999999999999999999999999"
+        assert string_to_md5("Line1\nLine2") == "99179219999999999999999999999999"

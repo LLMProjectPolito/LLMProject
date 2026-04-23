@@ -44,20 +44,17 @@ def test_single_word_prime_length():
 def test_single_word_non_prime_length():
     assert words_in_sentence("this") == ""
 
-def test_multiple_words_some_prime():
+def test_multiple_words_with_prime_and_non_prime():
     assert words_in_sentence("This is a test") == "is"
 
 def test_multiple_words_all_prime():
     assert words_in_sentence("lets go for swimming") == "go for"
 
-def test_multiple_words_none_prime():
-    assert words_in_sentence("this is a very long test") == ""
+def test_sentence_with_one_letter_words():
+    assert words_in_sentence("a b c d") == "a b c d"
 
-def test_sentence_with_one_letter_prime():
-    assert words_in_sentence("a test") == "a"
-
-def test_sentence_with_one_letter_non_prime():
-    assert words_in_sentence("bb test") == ""
+def test_sentence_with_long_prime_and_non_prime():
+    assert words_in_sentence("This is a very long test sentence") == "is"
 
 # Focus: Type Scenarios
 def test_empty_sentence():

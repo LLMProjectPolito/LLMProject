@@ -58,7 +58,7 @@ def is_prime(n):
     return True
 
 STEP 1: REASONING -
-The function `words_in_sentence` takes a sentence as input and returns a new string containing only the words from the original sentence whose lengths are prime numbers, preserving the original order.  We need to test various scenarios including empty sentences, sentences with no prime-length words, sentences with multiple prime-length words, and sentences with a mix of prime and non-prime length words. The `is_prime` helper function needs to be tested as well.
+The function `words_in_sentence` takes a sentence as input and returns a new string containing only the words from the original sentence whose lengths are prime numbers, preserving the original order.  We need to test various scenarios including empty sentences, sentences with no prime-length words, sentences with multiple prime-length words, and sentences with a mix of prime and non-prime length words. The `is_prime` helper function needs to be tested independently.
 
 STEP 2: PLAN -
 Test functions:
@@ -69,6 +69,7 @@ Test functions:
 5. `test_mixed_prime_and_non_prime_words`: Checks the behavior with a mix of prime and non-prime length words.
 6. `test_is_prime_small_numbers`: Tests the `is_prime` function with small numbers.
 7. `test_is_prime_large_numbers`: Tests the `is_prime` function with larger numbers.
-8. `test_is_prime_non_prime_numbers`: Tests the `is_prime` function with non-prime numbers.
+8. `test_is_prime_one`: Tests the `is_prime` function with 1.
+9. `test_is_prime_two`: Tests the `is_prime` function with 2.
 
 STEP 3: CODE -

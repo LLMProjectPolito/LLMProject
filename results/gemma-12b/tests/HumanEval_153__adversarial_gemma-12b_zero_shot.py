@@ -90,4 +90,4 @@ class TestStrongestExtension:
         assert Strongest_Extension("TestClass", ['ThisIsALongExtension', 'AnotherLongExtension']) == "TestClass.ThisIsALongExtension"
 
     def test_same_strength_different_lengths(self):
-        assert Strongest_Extension("TestClass", ['A', 'AA', 'AAA']) == "TestClass.A"
+        assert Strongest_Extension("TestClass", ['AA', 'A']) == "TestClass.AA"

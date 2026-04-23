@@ -61,7 +61,7 @@ def test_generate_integers_zero_range():
     assert generate_integers(0, 1) == []
 
 def test_generate_integers_negative_numbers():
-    assert generate_integers(-2, -1) == []
+    assert generate_integers(-2, 2) == []
 
 def test_generate_integers_mixed_numbers():
-    assert generate_integers(-1, 2) == [2]
+    assert generate_integers(-1, 5) == [2, 4]

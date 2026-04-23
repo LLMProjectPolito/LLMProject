@@ -65,22 +65,29 @@ class TestSimplify:
         assert simplify("1/10", "3/1") == False
         assert simplify("1/11", "2/1") == False
         assert simplify("1/12", "3/1") == False
-        assert simplify("1/13", "2/1") == False
-        assert simplify("1/14", "3/1") == False
-        assert simplify("1/15", "2/1") == False
+        assert simplify("2/5", "3/7") == False
+        assert simplify("3/8", "5/6") == False
+        assert simplify("5/7", "2/3") == False
+        assert simplify("7/9", "4/5") == False
 
     def test_simplify_complex(self):
-        assert simplify("2/5", "5/2") == False
-        assert simplify("3/7", "7/3") == True
-        assert simplify("4/9", "9/4") == True
-        assert simplify("5/11", "11/5") == True
-        assert simplify("6/13", "13/6") == False
-        assert simplify("7/15", "15/7") == False
-        assert simplify("8/17", "17/8") == False
-        assert simplify("9/19", "19/9") == False
-        assert simplify("10/21", "21/10") == False
-        assert simplify("11/23", "23/11") == False
-        assert simplify("12/25", "25/12") == False
-        assert simplify("13/27", "27/13") == False
-        assert simplify("14/29", "29/14") == False
-        assert simplify("15/31", "31/15") == False
+        assert simplify("2/3", "3/4") == False
+        assert simplify("4/5", "5/6") == False
+        assert simplify("6/7", "7/8") == False
+        assert simplify("8/9", "9/10") == False
+        assert simplify("10/11", "11/12") == False
+        assert simplify("12/13", "13/14") == False
+        assert simplify("14/15", "15/16") == False
+        assert simplify("16/17", "17/18") == False
+        assert simplify("18/19", "19/20") == False
+        assert simplify("20/21", "21/22") == False
+        assert simplify("1/2", "4/2") == True
+        assert simplify("2/4", "4/2") == True
+        assert simplify("3/6", "6/3") == True
+        assert simplify("4/8", "8/4") == True
+        assert simplify("5/10", "10/5") == True
+        assert simplify("6/12", "12/6") == True
+        assert simplify("7/14", "14/7") == True
+        assert simplify("8/16", "16/8") == True
+        assert simplify("9/18", "18/9") == True
+        assert simplify("10/20", "20/10") == True

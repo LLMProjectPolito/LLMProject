@@ -24,7 +24,7 @@ def test_int_to_mini_roman_boundary_low():
 def test_int_to_mini_roman_boundary_high():
     assert int_to_mini_roman(1000) == 'm'
 
-def test_int_to_mini_roman_boundary_mid():
+def test_int_to_mini_roman_boundary_middle():
     assert int_to_mini_roman(500) == 'd'
 
 # Focus: Type Scenarios

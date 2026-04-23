@@ -26,7 +26,7 @@ def compare(game,guess):
         if game[i] == guess:
             result.append(0)
         else:
-            result.append(abs(game[i] - guess))
+            result.append(abs(guess - game[i]))
     return result
 
 # Focus: Type Scenarios

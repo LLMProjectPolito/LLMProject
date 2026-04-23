@@ -56,5 +56,5 @@ def test_complex_list():
 def test_large_numbers():
     assert double_the_difference([101, 303, 505]) == 10201 + 91809 + 255025
 
-def test_list_with_only_negative_and_non_integer():
-    assert double_the_difference([-1, -2.5, "abc"]) == 0
+def test_list_with_only_negative_and_non_integer_values():
+    assert double_the_difference([-1.5, "abc", -2]) == 0

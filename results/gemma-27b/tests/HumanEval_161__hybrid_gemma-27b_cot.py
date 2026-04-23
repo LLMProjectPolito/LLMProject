@@ -40,32 +40,11 @@ def test_string_with_spaces():
 def test_string_with_only_special_characters():
     assert solve("!@#$%^") == "!@#$%^"
 
-def test_long_string_with_mixed_content():
-    assert solve("ThisIsA123TestString!") == "tHISiSa123tESTsTRING!"
+def test_long_string():
+    assert solve("ThisIsALongString") == "tHISiSaLONGsTRING"
 
 def test_string_with_unicode_characters():
     assert solve("你好世界") == "你好世界"
-
-def test_string_with_numbers_and_unicode():
-    assert solve("123你好") == "123你好"
-
-def test_string_with_letters_and_unicode():
-    assert solve("a你好B") == "A你好b"
-
-def test_string_with_leading_and_trailing_spaces():
-    assert solve("  ab  ") == "  AB  "
-
-def test_string_with_multiple_spaces_between_letters():
-    assert solve("a   b") == "A   b"
-
-def test_string_with_only_numbers_and_spaces():
-    assert solve("1 2 3") == "3 2 1"
-
-def test_string_with_only_special_characters_and_spaces():
-    assert solve("! @ #") == "# @ !"
-
-def test_long_string():
-    assert solve("ThisIsALongString") == "tHISiSaLONGsTRING"
 
 def test_string_with_numbers_and_special_chars():
     assert solve("123!@#") == "123!@#"
@@ -78,3 +57,30 @@ def test_string_with_multiple_letters():
 
 def test_string_with_consecutive_letters():
     assert solve("aaBBcc") == "AAbbCC"
+
+def test_long_string_with_mixed_content():
+    assert solve("ThisIsA123TestString!") == "tHISiSa123tESTsTRING!"
+
+def test_string_with_numbers_and_special_chars_suite2():
+    assert solve("123!@#") == "!@#321"
+
+def test_string_with_leading_and_trailing_spaces():
+    assert solve("  aB  ") == "  Ab  "
+
+def test_string_with_multiple_consecutive_letters():
+    assert solve("abc") == "ABC"
+
+def test_string_with_multiple_consecutive_uppercase_letters():
+    assert solve("ABC") == "abc"
+
+def test_string_with_mixed_consecutive_letters():
+    assert solve("aBcDeF") == "AbCdEf"
+
+def test_string_with_numbers_and_letters_at_start_and_end():
+    assert solve("1a2b3") == "1A2b3"
+
+def test_string_with_only_one_letter():
+    assert solve("a") == "A"
+
+def test_string_with_only_one_uppercase_letter():
+    assert solve("A") == "a"

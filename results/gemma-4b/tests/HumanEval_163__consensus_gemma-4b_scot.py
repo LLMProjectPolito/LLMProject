@@ -60,13 +60,16 @@ def test_generate_integers_no_even_digits():
     assert generate_integers(1, 3) == []
 
 def test_generate_integers_with_duplicate_even_digits():
-    assert generate_integers(2, 4) == [2, 4]
+    assert generate_integers(2, 6) == [2, 4, 6]
 
-def test_generate_integers_a_greater_than_b():
-    assert generate_integers(8, 2) == [2, 4, 6, 8]
+def test_generate_integers_with_multiple_even_digits():
+    assert generate_integers(4, 8) == [4, 6, 8]
 
-def test_generate_integers_complex_range():
-    assert generate_integers(11, 15) == []
+def test_generate_integers_with_large_numbers():
+    assert generate_integers(1234, 1236) == [1234, 1236]
 
-def test_generate_integers_with_leading_zeros():
-    assert generate_integers(200, 208) == [0, 2, 4, 6, 8]
+def test_generate_integers_with_negative_numbers():
+    assert generate_integers(-2, 2) == [2]
+
+def test_generate_integers_with_negative_and_positive():
+    assert generate_integers(-2, 2) == [2]

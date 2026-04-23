@@ -37,6 +37,34 @@ def single_element_list():
 def list_with_zeros():
     return [0, 10, 100, -10]
 
+@pytest.fixture
+def list_with_negative_numbers():
+    return [-1, -2, -3, -4, -5]
+
+@pytest.fixture
+def list_with_large_numbers():
+    return [12345, 67890, 11111, 22222]
+
+@pytest.fixture
+def list_with_mixed_signs():
+    return [1, -1, 10, -10, 100, -100]
+
+@pytest.fixture
+def list_with_duplicate_numbers():
+    return [1, 2, 1, 2, 3]
+
+@pytest.fixture
+def list_with_leading_zeros():
+    return ["001", "010", "100"]
+
+@pytest.fixture
+def list_with_non_numeric():
+    return [1, "a", 2]
+
+@pytest.fixture
+def list_with_large_number():
+    return [9999999999, 10000000000]
+
 def test_order_by_points_sample(sample_list):
     assert order_by_points(sample_list) == [-1, -11, 1, -12, 11]
 
@@ -46,49 +74,45 @@ def test_order_by_points_empty(empty_list):
 def test_order_by_points_single_element(single_element_list):
     assert order_by_points(single_element_list) == single_element_list
 
-def test_order_by_points_with_zeros(list_with_zeros):
+def test_order_by_points_zeros_present(list_with_zeros):
     assert order_by_points(list_with_zeros) == [0, -10, 10, 100]
 
-def test_order_by_points_zero_sums():
-    assert order_by_points([0, 0, 0]) == [0, 0, 0]
-    assert order_by_points([-10, 10]) == [-10, 10]
+def test_order_by_points_negative_numbers(list_with_negative_numbers):
+    assert order_by_points(list_with_negative_numbers) == [-1, -2, -3, -4, -5]
 
-def test_order_by_points_invalid_input():
+def test_order_by_points_large_numbers(list_with_large_numbers):
+    assert order_by_points(list_with_large_numbers) == [11111, 22222, 12345, 67890]
+
+def test_order_by_points_mixed_signs(list_with_mixed_signs):
+    assert order_by_points(list_with_mixed_signs) == [1, -1, 10, -10, 100, -100]
+
+def test_order_by_points_same_digit_sum(list_with_duplicate_numbers):
+    assert order_by_points(list_with_duplicate_numbers) == [1, 2, 1, 2, 3]
+
+def test_order_by_points_all_same_digit_sum():
+    assert order_by_points([1, 10, 100, 1000]) == [1, 10, 100, 1000]
+
+def test_order_by_points_negative_and_positive_same_sum():
+    assert order_by_points([1, -1]) == [1, -1]
+
+def test_order_by_points_zero_and_positive():
+    assert order_by_points([0, 1]) == [0, 1]
+
+def test_order_by_points_zero_and_negative():
+    assert order_by_points([0, -1]) == [0, -1]
+
+def test_order_by_points_large_numbers_same_digit_sum(list_with_large_number):
+    assert order_by_points(list_with_large_number) == [9999999999, 10000000000]
+
+def test_order_by_points_leading_zeros():
+    assert order_by_points(list_with_leading_zeros) == ['001', '010', '100']
+
+def test_order_by_points_non_integer_input(list_with_non_numeric):
     with pytest.raises(TypeError):
-        order_by_points(["a", 1, 2])
+        order_by_points(list_with_non_numeric)
 
-def test_order_by_points_mixed_data_types():
-    assert order_by_points([1, 1.5, 2]) == [1, 1.5, 2]
+def test_order_by_points_negative_zero():
+    assert order_by_points([-0, 0, 1]) == [0, -0, 1]
 
-def test_order_by_points_large_digit_sums():
-    assert order_by_points([999999999, 1, 10]) == [1, 10, 999999999]
-
-def test_order_by_points_with_same_digit_sum(list_with_same_digit_sum):
-    assert order_by_points(list_with_same_digit_sum) == [1, 10, 100, 1000]
-
-def test_order_by_points_large_numbers():
-    assert order_by_points([123, 45, 6, 789]) == [6, 45, 123, 789]
-
-def test_order_by_points_mixed_positive_negative_large():
-    assert order_by_points([-123, 45, -6, 789]) == [-6, -123, 45, 789]
-
-def test_order_by_points_all_negative():
-    assert order_by_points([-1, -10, -100]) == [-1, -10, -100]
-
-def test_order_by_points_all_positive():
+def test_order_by_points_tie_breaking():
     assert order_by_points([1, 10, 100]) == [1, 10, 100]
-
-def test_order_by_points_duplicate_numbers():
-    assert order_by_points([1, 1, 1]) == [1, 1, 1]
-
-def test_order_by_points_duplicate_numbers_with_different_sums():
-    assert order_by_points([1, 10, 1, 100]) == [1, 1, 10, 100]
-
-def test_order_by_points_stability():
-    nums = [1, 11, -1, -11, -12]
-    result1 = order_by_points(nums)
-    result2 = order_by_points(nums)
-    assert result1 == result2
-
-def test_order_by_points_with_leading_zeros():
-    assert order_by_points([1, 2, 10, 20]) == [1, 2, 10, 20]

@@ -12,7 +12,7 @@ def int_to_mini_roman(number):
     """
 
 import pytest
-from math import log2
+import math
 
 def int_to_mini_roman(number):
     """

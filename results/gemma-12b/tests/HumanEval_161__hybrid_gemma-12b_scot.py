@@ -68,14 +68,17 @@ class TestSolve:
     def test_with_unicode(self):
         assert solve("你好世界") == "你好世界"
 
-    def test_only_special_characters(self):
+    def test_no_letters_special(self):
         assert solve("!@#$%^") == "!@#$%^"
 
-    def test_no_letters_special_numbers(self):
-        assert solve("!1@2#3") == "3#2@1!"
+    def test_single_letter(self):
+        assert solve("a") == "A"
+
+    def test_single_number(self):
+        assert solve("1") == "1"
 
     def test_only_special(self):
         assert solve("!@#$%^") == "!@#$%^"
 
     def test_mixed_all(self):
-        assert solve("1a#B@c2") == "2A#b@C1"
+        assert solve("1a!B2c#D") == "1A!b2C#d"

@@ -57,11 +57,17 @@ def words_in_sentence(sentence):
         return True
 
     words = sentence.split()
-    prime_words = [word for word in words if is_prime(len(word))]
-    return " ".join(prime_words)
+    result = []
+    for word in words:
+        if is_prime(len(word)):
+            result.append(word)
+    return " ".join(result)
 
 def test_empty_sentence():
     assert words_in_sentence("") == ""
+
+def test_single_prime_length_word():
+    assert words_in_sentence("a") == "a"
 
 def test_example_1():
     assert words_in_sentence("This is a test") == "is"
@@ -69,37 +75,33 @@ def test_example_1():
 def test_example_2():
     assert words_in_sentence("lets go for swimming") == "go for"
 
-def test_all_prime_words():
-    assert words_in_sentence("is are was") == "is are was"
+def test_all_prime_length_words():
+    assert words_in_sentence("a bb ccc dddd eeeee") == "a bb ccc"
 
-def test_all_non_prime_words():
-    assert words_in_sentence("a an the") == ""
+def test_all_non_prime_length_words():
+    assert words_in_sentence("aa bbb cccc ddddd") == ""
 
-def test_mixed_prime_and_non_prime():
-    assert words_in_sentence("hello is a world") == "is"
+def test_mixed_prime_and_non_prime_lengths():
+    assert words_in_sentence("a aa bbb ccc dddd") == "a ccc"
 
 def test_long_sentence():
-    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "over dog"
+    sentence = "a bb ccc dddd eeeee ffffff ggggggg hhhhhhhh iiiiiiiii"
+    assert words_in_sentence(sentence) == "a bb ccc eeeee"
 
-def test_invalid_input_whitespace():
-    assert words_in_sentence("  is   a    test  ") == ""
+def test_invalid_input_numbers():
+    with pytest.raises(ValueError):
+        words_in_sentence("1 23 456")
 
-def test_invalid_input_non_letters():
-    assert words_in_sentence("hello123 world!") == ""
+def test_invalid_input_special_chars():
+    with pytest.raises(ValueError):
+        words_in_sentence("!@# $")
 
-def test_prime_non_prime_mix():
-    assert words_in_sentence("one two three four five six seven") == "three five seven"
+def test_large_prime_length():
+    assert words_in_sentence("a" + "b" * 97) == "a"
 
-def test_boundary_lengths():
-    assert words_in_sentence("a ab abc abcd abcde") == "ab abc abcde"
+def test_leading_trailing_spaces():
+    assert words_in_sentence("  This is a test  ") == "is"
 
-def test_long_word():
-    long_word = "a" * 53  # A prime number
-    assert words_in_sentence(long_word) == long_word
-
-def test_word_length_two():
-    assert words_in_sentence("is") == "is"
-
-def test_sentence_too_long():
-    long_sentence = "a " * 101
-    assert words_in_sentence(long_sentence) == ""
+def test_sentence_length_constraint():
+    long_sentence = "a " * 100
+    assert words_in_sentence(long_sentence) == "a " * 100

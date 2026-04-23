@@ -40,19 +40,44 @@ def compare(game,guess):
 ### SCoT Steps:
 
 # STEP 1: REASONING
-# The function `compare` takes two lists, `game` and `guess`, as input. It calculates the absolute difference between each corresponding element in the two lists and returns a new list containing these differences. If the guess is correct for a particular match, the difference should be 0.
-# We need to test various scenarios including:
-# 1. Correct guesses: All guesses are correct.
-# 2. Mixed correct and incorrect guesses: Some guesses are correct, some are incorrect.
-# 3. All incorrect guesses: All guesses are incorrect.
-# 4. Empty lists: Handle the case where either or both input lists are empty. (Although the problem description doesn't explicitly state this, it's good practice to consider edge cases).
+# The function `compare` takes two lists, `game` and `guess`, as input. It calculates the absolute difference between each corresponding element in the two lists and returns a new list containing these differences.
+# The goal is to test the function with various inputs, including edge cases like empty lists, lists with different lengths (though the problem description states they should be equal), and lists with both correct and incorrect guesses.
+# Constraints: The input lists are assumed to be of equal length. The function should handle negative and positive differences correctly.
 
 # STEP 2: PLAN
-# Test functions:
-# - test_correct_guesses: Tests the case where all guesses are correct.
-# - test_mixed_guesses: Tests the case where some guesses are correct and some are incorrect.
-# - test_all_incorrect_guesses: Tests the case where all guesses are incorrect.
-# - test_empty_lists: Tests the case where the input lists are empty.
+# Test cases:
+# 1. Basic test case with correct guesses.
+# 2. Test case with some incorrect guesses.
+# 3. Test case with all incorrect guesses.
+# 4. Test case with empty lists (although the problem states they are equal length, it's good to test).
+# 5. Test case with a single element in both lists.
+# 6. Test case with negative numbers in the lists.
+
+# Test function names:
+# test_compare_correct_guesses
+# test_compare_incorrect_guesses
+# test_compare_all_incorrect
+# test_compare_empty_lists
+# test_compare_single_element
+# test_compare_negative_numbers
 
 # STEP 3: CODE
-#
+def test_compare_correct_guesses():
+    assert compare([1,2,3,4,5,1],[1,2,3,4,2,-2]) == [0,0,0,0,3,3]
+
+def test_compare_incorrect_guesses():
+    assert compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) == [4,4,1,0,0,6]
+
+def test_compare_all_incorrect():
+    assert compare([1,2,3,4,5,1],[5,4,3,2,1,0]) == [4,2,0,0,0,6]
+
+def test_compare_empty_lists():
+    assert compare([], []) == []
+
+def test_compare_single_element():
+    assert compare([5], [5]) == [0]
+    assert compare([5], [6]) == [1]
+
+def test_compare_negative_numbers():
+    assert compare([-1, -2, -3], [-1, -2, -3]) == [0, 0, 0]
+    assert compare([-1, -2, -3], [-4, -1, -2]) == [3, 1, 1]

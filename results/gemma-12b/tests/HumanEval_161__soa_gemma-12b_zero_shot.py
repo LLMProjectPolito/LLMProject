@@ -42,9 +42,8 @@ def solve(s):
 class TestSolve:
     def test_no_letters(self):
         assert solve("1234") == "4321"
-        assert solve("!@#$%") == "!@#$%".__reversed__("".join(list("!@#$%")))
+        assert solve("!@#$%^") == "^%$#@!"
         assert solve("") == ""
-        assert solve("123") == "321"
 
     def test_all_letters_lower(self):
         assert solve("ab") == "AB"
@@ -58,9 +57,8 @@ class TestSolve:
 
     def test_mixed_letters_and_symbols(self):
         assert solve("#a@C") == "#A@c"
-        assert solve("a#B@c") == "A#b@C"
         assert solve("1a2B3c") == "1A2b3C"
-        assert solve("!a@B#c$") == "!A@b#C$"
+        assert solve("!a@B#c%") == "!A@b#C%"
 
     def test_empty_string(self):
         assert solve("") == ""
@@ -73,14 +71,16 @@ class TestSolve:
         assert solve("!") == "!"
 
     def test_long_string(self):
-        assert solve("ThisIsALongString") == "tHISisALONGSTRING"
-        assert solve("ThisIsALongString123") == "tHISisALONGSTRING123"
+        assert solve("ThisIsALongString") == "tHISiSALONGSTRING"
+        assert solve("ThisIsALongString123") == "tHISiSALONGSTRING123"
 
     def test_string_with_spaces(self):
-        assert solve("hello world") == "HELLO WORLD"
-        assert solve("  hello  world  ") == "  HELLO  WORLD  "
+        assert solve("Hello World") == "hELLO wORLD"
 
-    def test_unicode_characters(self):
-        assert solve("你好世界") == "你好世界"
-        assert solve("你好世界123") == "你好世界123"
-        assert solve("a你好b世界") == "A你好B世界"
+    def test_string_with_numbers_and_letters(self):
+        assert solve("a1b2c3d") == "A1B2C3D"
+        assert solve("1a2b3c") == "1A2B3C"
+
+    def test_string_with_special_characters(self):
+        assert solve("!@#$%^&*()") == "!@#$%^&*()"
+        assert solve("!a@B#c$") == "!A@b#C$"

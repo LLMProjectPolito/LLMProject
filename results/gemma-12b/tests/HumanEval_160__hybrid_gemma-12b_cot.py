@@ -70,8 +70,8 @@ class TestDoAlgebra:
 
     def test_multiplication(self):
         operator = ['*']
-        operand = [2, 4]
-        assert do_algebra(operator, operand) == 8
+        operand = [2, 3]
+        assert do_algebra(operator, operand) == 6
 
     def test_floor_division(self):
         operator = ['//']
@@ -109,22 +109,26 @@ class TestDoAlgebra:
         assert do_algebra(operator, operand) == 2000000
 
     def test_multiple_operators(self):
-        operator = ['+', '*', '//', '**']
-        operand = [2, 3, 4, 5, 2]
-        assert do_algebra(operator, operand) == 28
+        operator = ['+', '-', '*', '//']
+        operand = [1, 2, 3, 4, 5]
+        assert do_algebra(operator, operand) == -1
+
+    def test_exponentiation_with_zero(self):
+        operator = ['**']
+        operand = [2, 0]
+        assert do_algebra(operator, operand) == 1
+
+    def test_exponentiation_with_one(self):
+        operator = ['**']
+        operand = [5, 1]
+        assert do_algebra(operator, operand) == 5
+
+    def test_single_operator_multiple_operands_addition(self):
+        operator = ['+']
+        operand = [1, 2, 3, 4, 5]
+        assert do_algebra(operator, operand) == 15
 
     def test_negative_result(self):
         operator = ['-']
         operand = [2, 5]
         assert do_algebra(operator, operand) == -3
-
-    def test_exponentiation_with_zero(self):
-        operator = ['**']
-        operand = [5, 0]
-        assert do_algebra(operator, operand) == 1
-
-    def test_floor_division_with_zero(self):
-        operator = ['//']
-        operand = [5, 0]
-        with pytest.raises(ZeroDivisionError):
-            do_algebra(operator, operand)

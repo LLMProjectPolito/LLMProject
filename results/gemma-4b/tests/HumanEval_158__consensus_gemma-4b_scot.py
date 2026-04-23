@@ -56,16 +56,22 @@ def test_multiple_words_same_unique_chars_and_lexicographical_order():
 def test_multiple_words_same_unique_chars_and_lexicographical_order_2():
     assert find_max(["abc", "def", "ghi"]) == "abc"
 
-def test_mixed_case():
-    assert find_max(["Name", "enam", "GAME"]) == "enam"
+def test_multiple_words_same_unique_chars_and_lexicographical_order_3():
+    assert find_max(["xyz", "abc", "def"]) == "abc"
 
-def test_numbers_and_letters():
-    assert find_max(["a123", "b456", "c789"]) == "a123"
+def test_words_with_duplicates():
+    assert find_max(["aabbcc", "abc"]) == "aabbcc"
 
-def test_special_characters():
-    assert find_max(["!@#", "$%^", "&*()"]) == "!@#"
+def test_words_with_mixed_case():
+    assert find_max(["Hello", "hello"]) == "Hello"
 
-def test_empty_string_in_list():
+def test_words_with_special_characters():
+    assert find_max(["!@#", "abc"]) == "!@#"
+
+def test_words_with_numbers():
+    assert find_max(["123", "abc"]) == "123"
+
+def test_words_with_empty_string():
     assert find_max(["", "abc", "def"]) == "abc"
 
 def test_all_empty_strings():

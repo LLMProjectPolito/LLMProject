@@ -112,11 +112,11 @@ def test_eat_basic4():
 def test_eat_not_enough():
     assert eat(5, 10, 3) == [15, 0]
 
-def test_eat_zero_need():
-    assert eat(5, 0, 10) == [5, 5]
-
 def test_eat_zero_remaining():
-    assert eat(5, 6, 0) == [11, 0]
+    assert eat(0, 5, 0) == [5, 0]
+
+def test_eat_zero_need():
+    assert eat(5, 0, 10) == [5, 10]
 
 def test_eat_zero_number():
-    assert eat(0, 6, 10) == [6, 4]
+    assert eat(0, 5, 10) == [5, 10]

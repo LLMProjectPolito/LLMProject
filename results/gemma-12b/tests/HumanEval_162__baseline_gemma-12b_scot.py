@@ -36,7 +36,7 @@ def string_to_md5(text):
 # STEP 2: PLAN
 # Test functions:
 # - test_empty_string: Test with an empty string.
-# - test_valid_string: Test with a valid non-empty string.
+# - test_valid_string: Test with a valid, non-empty string.
 # - test_string_with_special_characters: Test with a string containing special characters.
 # - test_string_with_unicode_characters: Test with a string containing unicode characters.
 # - test_long_string: Test with a long string.
@@ -50,7 +50,7 @@ class TestStringtoMD5:
         assert string_to_md5("Hello world") == '3e25960a79dbc69b674cd4ec67a72c62'
 
     def test_string_with_special_characters(self):
-        assert string_to_md5("!@#$%^&*()") == '94899584999999999999999999999999'
+        assert string_to_md5("!@#$%^&*()") == '94899c99999999999999999999999999'
 
     def test_string_with_unicode_characters(self):
         assert string_to_md5("你好世界") == 'a94a8fe5ccb19ba61c4c0873d391e987'

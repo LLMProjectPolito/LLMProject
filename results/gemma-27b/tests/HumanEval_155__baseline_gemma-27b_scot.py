@@ -16,15 +16,20 @@ def even_odd_count(num):
         even_odd_count(-12) ==> (1, 1)
         even_odd_count(123) ==> (1, 2)
     """
-    num = abs(num)
     even_count = 0
     odd_count = 0
-    for digit in str(num):
-        digit = int(digit)
+    num = abs(num)
+    if num == 0:
+        return (1, 0)
+
+    while num > 0:
+        digit = num % 10
         if digit % 2 == 0:
             even_count += 1
         else:
             odd_count += 1
+        num //= 10
+
     return (even_count, odd_count)
 
 def test_positive_number():
@@ -39,10 +44,10 @@ def test_all_even_digits():
 def test_all_odd_digits():
     assert even_odd_count(13579) == (0, 5)
 
-def test_single_digit_even():
+def test_single_even_digit():
     assert even_odd_count(2) == (1, 0)
 
-def test_single_digit_odd():
+def test_single_odd_digit():
     assert even_odd_count(1) == (0, 1)
 
 def test_zero():
@@ -51,5 +56,8 @@ def test_zero():
 def test_large_number():
     assert even_odd_count(1234567890) == (5, 5)
 
-def test_number_with_zeros():
-    assert even_odd_count(10203) == (2, 3)
+def test_negative_zero():
+    assert even_odd_count(-0) == (1, 0)
+
+def test_number_with_leading_zeros():
+    assert even_odd_count(102) == (2, 1)

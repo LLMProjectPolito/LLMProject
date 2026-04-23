@@ -52,5 +52,5 @@ def test_sum_squares_multiple_3():
 def test_sum_squares_multiple_4():
     assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 1 + 8 + 27 + 64 + 125 + 216 + 343 + 512
 
-def test_sum_squares_mixed_multiples():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 4 + 9 + 64 + 125 + 216 + 343 + 512 + 81 + 1000
+def test_sum_squares_multiple_3_and_4():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 8 + 27 + 64 + 125 + 216 + 343 + 512 + 81 + 1000

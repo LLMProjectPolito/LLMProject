@@ -33,7 +33,7 @@ def file_name_check(file_name):
     if not isinstance(file_name, str):
         return 'No'
 
-    if len(file_name) > 3:
+    if len(file_name) <= 3:
         return 'No'
 
     if not file_name.startswith('.'):
@@ -53,47 +53,34 @@ def file_name_check(file_name):
 
 def test_file_name_check_valid():
     assert file_name_check("example.txt") == "Yes"
-    assert file_name_check("1example.dll") == "Yes"
-    assert file_name_check("test.txt") == "Yes"
-    assert file_name_check("test.txt.exe") == "Yes"
-    assert file_name_check("test.txt.dll") == "Yes"
-    assert file_name_check("test.txt.txt") == "Yes"
-    assert file_name_check("test.txt.exe.dll") == "Yes"
-    assert file_name_check("test.txt.exe.dll.txt") == "Yes"
-    assert file_name_check("test.txt.exe.dll.txt.txt") == "Yes"
-    assert file_name_check("test.txt.exe.dll.txt.txt.txt") == "Yes"
+    assert file_name_check("1example.dll") == "No"
+    assert file_name_check("example.txt.bak") == "No"
+    assert file_name_check("example.txt.txt") == "Yes"
+    assert file_name_check("example.txt.exe") == "Yes"
+    assert file_name_check("example.txt.dll") == "Yes"
+    assert file_name_check("example.txt.txt.exe") == "No"
+    assert file_name_check("example.txt.txt.exe.dll") == "No"
+    assert file_name_check("example.txt.txt.exe.dll.exe") == "No"
+    assert file_name_check("example.txt.txt.exe.dll.dll") == "No"
+    assert file_name_check("example.txt.txt.exe.dll.exe.dll.exe") == "No"
+    assert file_name_check("example.txt.txt.exe.dll.dll.exe.dll.exe") == "No"
 
 def test_file_name_check_invalid():
     assert file_name_check("123.txt") == "No"
-    assert file_name_check("123.dll") == "No"
-    assert file_name_check("test.txt") == "No"
-    assert file_name_check("test.txt.exe") == "No"
-    assert file_name_check("test.txt.dll") == "No"
-    assert file_name_check("test.txt.txt") == "No"
-    assert file_name_check("test.txt.exe.dll") == "No"
-    assert file_name_check("test.txt.exe.dll.txt") == "No"
-    assert file_name_check("test.txt.exe.dll.txt.txt") == "No"
-    assert file_name_check("test.txt.exe.dll.txt.txt.txt") == "No"
-
+    assert file_name_check("example.txt.1") == "No"
+    assert file_name_check("example.txt.txt.exe") == "No"
+    assert file_name_check("example.txt.txt.exe.dll") == "No"
+    assert file_name_check("example.txt.txt.exe.dll.exe") == "No"
+    assert file_name_check("example.txt.txt.exe.dll.dll") == "No"
+    assert file_name_check("example.txt.txt.exe.dll.exe.dll.exe") == "No"
+    assert file_name_check("example.txt.txt.exe.dll.dll.exe.dll.exe") == "No"
+    
 def test_file_name_check_empty():
     assert file_name_check("") == "No"
+    assert file_name_check(" ") == "No"
+    assert file_name_check(" ") == "No"
 
 def test_file_name_check_invalid_length():
-    assert file_name_check("abc") == "No"
-    assert file_name_check("12345") == "No"
-
-def test_file_name_check_invalid_parts():
-    assert file_name_check("123.txt") == "No"
-    assert file_name_check("123.dll") == "No"
-
-def test_file_name_check_invalid_characters_before_dot():
-    assert file_name_check("example.txt1") == "No"
-
-def test_file_name_check_invalid_characters_after_dot():
-    assert file_name_check("example.txt") == "Yes"
-
-def test_file_name_check_invalid_characters_before_dot_2():
-    assert file_name_check("example.txt1") == "No"
-
-def test_file_name_check_invalid_characters_after_dot_2():
-    assert file_name_check("example.txt") == "Yes"
+    assert file_name_check("example.txt") == "No"
+    assert file_name_check("example.txt.txt") == "No"
+    assert file_name_check("example.txt.txt.txt") == "No"

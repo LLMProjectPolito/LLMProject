@@ -41,10 +41,10 @@ def special_factorial(n):
         return 1
     result = 1
     for i in range(1, n + 1):
-        fact = 1
+        factorial = 1
         for j in range(1, i + 1):
-            fact *= j
-        result *= fact
+            factorial *= j
+        result *= factorial
     return result
 
 def test_palindrome_basic():
@@ -66,4 +66,4 @@ def test_special_factorial_positive():
     assert special_factorial(3) == 6
     assert special_factorial(4) == 288
     assert special_factorial(5) == 34560
-    assert special_factorial(6) == 4168466080
+    assert special_factorial(6) == 416846080

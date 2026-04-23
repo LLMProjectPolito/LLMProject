@@ -52,10 +52,10 @@ class TestFindMax:
         assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
 
     def test_mixed_lengths(self):
-        assert find_max(["a", "bb", "ccc", "dddd"]) == "dddd"
+        assert find_max(["a", "aa", "aaa", "aaaa"]) == "a"
 
     def test_all_same_unique_count(self):
-        assert find_max(["abc", "def", "ghi"]) == "abc"
+        assert find_max(["abc", "bca", "cab"]) == "abc"
 
     def test_empty_string(self):
         assert find_max(["", "abc", "def"]) == "abc"
@@ -63,20 +63,19 @@ class TestFindMax:
     def test_list_with_empty_string(self):
         assert find_max(["abc", "", "def"]) == "abc"
 
-    def test_duplicate_words(self):
-        assert find_max(["abc", "abc", "def"]) == "abc"
+    def test_list_with_only_empty_string(self):
+        assert find_max([""]) == ""
 
     def test_special_characters(self):
         assert find_max(["!@#", "$%^", "&*()"]) == "!@#"
 
-    def test_numbers_as_strings(self):
-        assert find_max(["123", "456", "789"]) == "123"
-
-    def test_mixed_characters(self):
-        assert find_max(["a1b2", "c3d4", "e5f6"]) == "a1b2"
-
-    def test_long_strings(self):
-        assert find_max(["abcdefgh", "ijklmnop", "qrstuvwx"]) == "abcdefgh"
+    def test_numbers_in_string(self):
+        assert find_max(["123", "12", "1"]) == "123"
 
     def test_unicode_characters(self):
-        assert find_max(["你好世界", "こんにちは世界", "안녕하세요세계"]) == "你好世界"
+        assert find_max(["你好", "世界", "你好世界"]) == "你好世界"
+
+    def test_long_strings(self):
+        long_string1 = "abcdefghijklmnopqrstuvwxyz"
+        long_string2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        assert find_max([long_string1, long_string2]) == long_string1

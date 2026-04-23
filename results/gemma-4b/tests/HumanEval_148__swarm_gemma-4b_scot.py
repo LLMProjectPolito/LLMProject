@@ -52,7 +52,7 @@ def bf(planet1, planet2):
     return tuple(result)
 
 def test_adjacent_planets():
-    assert bf("Earth", "Mercury") == ()
+    assert bf("Earth", "Mars") == ()
 
 def test_jupiter_neptune():
     assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
@@ -62,9 +62,3 @@ def test_earth_mercury():
 
 def test_mercury_uranus():
     assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-
-def test_invalid_planet():
-    assert bf("Pluto", "Neptune") == ()
-
-def test_same_planet():
-    assert bf("Earth", "Earth") == ()

@@ -39,7 +39,7 @@ def test_list_with_multiple_elements_no_mod():
     actual = sum_squares(lst)
     assert actual == expected, f"Expected {expected}, but got {actual}"
 
-def test_list_with_multiple_elements_mod3():
+def test_list_with_multiple_elements_mod_3():
     """Test case for a list with multiple elements where some indices are multiples of 3."""
     from your_module import sum_squares  # Replace your_module
     lst = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -47,50 +47,42 @@ def test_list_with_multiple_elements_mod3():
     actual = sum_squares(lst)
     assert actual == expected, f"Expected {expected}, but got {actual}"
 
-def test_list_with_multiple_elements_mod4():
+def test_list_with_multiple_elements_mod_4():
     """Test case for a list with multiple elements where some indices are multiples of 4."""
     from your_module import sum_squares  # Replace your_module
     lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-    expected = 1 + 2 + 3 + 64 + 5 + 6 + 7 + 128 + 9 + 10 + 11 + 1728
+    expected = 1 + 2 + 3 + 64 + 5 + 6 + 7 + 512 + 9 + 10 + 11 + 1728
     actual = sum_squares(lst)
     assert actual == expected, f"Expected {expected}, but got {actual}"
 
-def test_list_with_multiple_elements_mod3_and_4():
+def test_list_with_multiple_elements_mod_3_and_4():
     """Test case for a list with multiple elements where some indices are multiples of both 3 and 4."""
     from your_module import sum_squares  # Replace your_module
-    lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-    expected = 1 + 2 + 9 + 64 + 5 + 6 + 7 + 128 + 9 + 10 + 11 + 1728
+    lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    expected = 1 + 2 + 9 + 64 + 5 + 6 + 7 + 512 + 9 + 10 + 11 + 1728 + 13 + 14 + 225 + 4096
     actual = sum_squares(lst)
     assert actual == expected, f"Expected {expected}, but got {actual}"
 
 def test_list_with_negative_numbers():
     """Test case for a list with negative numbers."""
     from your_module import sum_squares  # Replace your_module
-    lst = [-1, -5, 2, -1, -5]
-    expected = -126
+    lst = [-1, -2, -3, -4, -5]
+    expected = -1 + -2 + -27 + -64 + -5
     actual = sum_squares(lst)
     assert actual == expected, f"Expected {expected}, but got {actual}"
 
-def test_list_with_zeros():
-    """Test case for a list with zeros."""
-    from your_module import sum_squares  # Replace your_module
-    lst = [0, 0, 0, 0, 0]
-    expected = 0
-    actual = sum_squares(lst)
-    assert actual == expected, f"Expected {expected}, but got {actual}"
-
-def test_list_with_mixed_positive_and_negative():
+def test_list_with_mixed_positive_and_negative_numbers():
     """Test case for a list with mixed positive and negative numbers."""
     from your_module import sum_squares  # Replace your_module
-    lst = [1, -2, 3, -4, 5]
-    expected = 1 + (-2)**2 + 3 + (-4)**3 + 5
+    lst = [-1, -5, 2, -1, -5]
+    expected = -1 + -125 + 2 + -1 + -125
     actual = sum_squares(lst)
-    assert actual == expected, f"Expected {expected}, but got {actual}"
+    assert actual == -250, f"Expected {expected}, but got {actual}"
 
 def test_large_numbers():
-    """Test case with large numbers to check for potential overflow issues."""
+    """Test case with large numbers in the list."""
     from your_module import sum_squares  # Replace your_module
-    lst = [1000, 2000, 3000]
-    expected = 1000000 + 4000000 + 3000
+    lst = [100, 200, 300]
+    expected = 100 + 40000 + 300
     actual = sum_squares(lst)
     assert actual == expected, f"Expected {expected}, but got {actual}"

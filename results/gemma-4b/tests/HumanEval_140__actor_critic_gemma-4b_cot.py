@@ -44,17 +44,11 @@ def test_fix_spaces_no_spaces():
 def test_fix_spaces_single_space():
     assert fix_spaces("Example 1") == "Example_1"
 
-def test_fix_spaces_multiple_spaces():
+def test_fix_spaces_leading_spaces():
     assert fix_spaces(" Example 2") == "_Example_2"
 
-def test_fix_spaces_many_spaces():
+def test_fix_spaces_multiple_spaces():
     assert fix_spaces(" Example   3") == "_Example-3"
-
-def test_fix_spaces_leading_spaces():
-    assert fix_spaces("  Example") == "_Example"
-
-def test_fix_spaces_trailing_spaces():
-    assert fix_spaces("Example  ") == "Example_"
 
 def test_fix_spaces_all_spaces():
     assert fix_spaces("   ") == "---"
@@ -63,10 +57,13 @@ def test_fix_spaces_empty_string():
     assert fix_spaces("") == ""
 
 def test_fix_spaces_mixed_spaces():
-    assert fix_spaces("Hello   World") == "Hello__World"
+    assert fix_spaces("  a  b  c") == "_a_b_c"
 
 def test_fix_spaces_long_consecutive_spaces():
-    assert fix_spaces("This   has    many    spaces") == "This___has____many__spaces"
+    assert fix_spaces("This has   many   spaces") == "This has ---many---spaces"
 
-def test_fix_spaces_spaces_at_start_and_end():
-    assert fix_spaces("  Spaces at start and end  ") == "_Spaces_at_start_and_end_"
+def test_fix_spaces_trailing_spaces():
+    assert fix_spaces("Hello   ") == "Hello---"
+
+def test_fix_spaces_multiple_leading_and_trailing():
+    assert fix_spaces("  Test   Test  ") == "_Test-Test_"

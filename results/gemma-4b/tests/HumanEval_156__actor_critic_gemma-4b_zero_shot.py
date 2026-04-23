@@ -121,3 +121,27 @@ def test_int_to_mini_roman_26():
 
 def test_int_to_mini_roman_27():
     assert int_to_mini_roman(99) == 'xcxix'
+
+def test_int_to_mini_roman_28():
+    assert int_to_mini_roman(14) == 'xiv'
+
+def test_int_to_mini_roman_29():
+    assert int_to_mini_roman(16) == 'xvi'
+
+def test_int_to_mini_roman_30():
+    assert int_to_mini_roman(24) == 'xxiv'
+
+def test_int_to_mini_roman_31():
+    assert int_to_mini_roman(6) == 'vi'
+
+def test_int_to_mini_roman_32():
+    assert int_to_mini_roman(7) == 'vii'
+
+def test_int_to_mini_roman_33():
+    assert int_to_mini_roman(8) == 'viii'
+
+def test_int_to_mini_roman_34():
+    assert int_to_mini_roman(9) == 'ix'
+
+def test_int_to_mini_roman_0():
+    assert int_to_mini_roman(0) == ''

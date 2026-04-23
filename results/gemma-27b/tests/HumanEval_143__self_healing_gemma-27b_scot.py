@@ -57,7 +57,10 @@ def words_in_sentence(sentence):
         * sentence contains only letters
     """
     words = sentence.split()
-    prime_words = [word for word in words if is_prime(len(word))]
+    prime_words = []
+    for word in words:
+        if is_prime(len(word)):
+            prime_words.append(word)
     return " ".join(prime_words)
 
 def test_empty_sentence():
@@ -78,23 +81,29 @@ def test_multiple_words_all_prime():
 def test_multiple_words_none_prime():
     assert words_in_sentence("this that those") == ""
 
-def test_mixed_case():
-    assert words_in_sentence("Go For") == "Go For"
-
-def test_long_sentence():
-    assert words_in_sentence("lets go for swimming and running") == "go for"
-
 def test_sentence_with_leading_and_trailing_spaces():
     assert words_in_sentence("  This is a test  ") == "is"
 
-def test_sentence_with_multiple_spaces():
-    assert words_in_sentence("This  is   a    test") == "is"
+def test_sentence_with_multiple_spaces_between_words():
+    assert words_in_sentence("This   is  a   test") == "is"
 
-def test_prime_numbers():
-    assert words_in_sentence("two three five seven eleven") == "two three five seven eleven"
+def test_long_sentence():
+    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the over dog"
 
-def test_non_prime_numbers():
-    assert words_in_sentence("one four six eight nine") == ""
+def test_sentence_with_mixed_case():
+    assert words_in_sentence("This Is A Test") == "Is"
 
-def test_combination():
-    assert words_in_sentence("one two three four five six seven") == "two three five seven"
+def test_sentence_with_numbers_and_letters():
+    assert words_in_sentence("a1 b2 c3 d4") == "a1 b2 c3 d4"
+
+def test_sentence_with_special_characters():
+    assert words_in_sentence("hello! world?") == "hello world"
+
+def test_sentence_with_prime_and_non_prime():
+    assert words_in_sentence("two three five seven") == "three five seven"
+
+def test_sentence_with_only_one_word():
+    assert words_in_sentence("two") == ""
+
+def test_sentence_with_long_words():
+    assert words_in_sentence("programming is fun") == "programming"

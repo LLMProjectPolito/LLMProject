@@ -98,7 +98,7 @@ def test_exponentiation_one():
     assert do_algebra(['**'], [5, 1]) == 5
 
 def test_long_expression():
-    assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 5, 2]) == 1
+    assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 5, 2]) == 1 + 2 - 3 * 4 // 5 ** 2
 
 def test_negative_numbers():
     assert do_algebra(['+'], [-2, 3]) == 1

@@ -50,3 +50,6 @@ def test_generate_integers_1_3():
 
 def test_generate_integers_3_1():
     assert generate_integers(3, 1) == [2]
+
+def test_generate_integers_1_4():
+    assert generate_integers(1, 4) == [2]

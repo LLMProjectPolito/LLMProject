@@ -65,7 +65,7 @@ def test_Strongest_Extension_empty_extensions():
     assert Strongest_Extension('Class', []) == 'Class.'
 
 def test_Strongest_Extension_all_uppercase():
-    assert Strongest_Extension('Class', ['AAAA', 'BBBB', 'CCCC']) == 'Class.AAAA'
+    assert Strongest_Extension('Class', ['AAAA', 'BBB', 'CCCC']) == 'Class.AAAA'
 
 def test_Strongest_Extension_all_lowercase():
     assert Strongest_Extension('Class', ['aaaa', 'bbbb', 'cccc']) == 'Class.aaaa'
@@ -84,6 +84,3 @@ def test_Strongest_Extension_longer_extensions():
 
 def test_Strongest_Extension_negative_strength():
     assert Strongest_Extension('Class', ['aaaaA', 'bbbbb', 'ccccc']) == 'Class.bbbbb'
-
-def test_Strongest_Extension_zero_strength():
-    assert Strongest_Extension('Class', ['Aa', 'Bb', 'Cc']) == 'Class.Aa'

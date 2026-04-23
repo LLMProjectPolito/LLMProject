@@ -9,7 +9,7 @@ def specialFilter(nums):
     """
 
 import pytest
-from functools import reduce
+from math import gcd
 
 def specialFilter(nums):
     """Write a function that takes an array of numbers as input and returns 

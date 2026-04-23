@@ -49,15 +49,17 @@ def compare(game,guess):
 # 1. Correct guesses: [1, 2, 3, 4, 5, 1] vs [1, 2, 3, 4, 2, -2]
 # 2. Mixed correct and incorrect guesses: [0, 5, 0, 0, 0, 4] vs [4, 1, 1, 0, 0, -2]
 # 3. All incorrect guesses: [1, 2, 3, 4, 5, 1] vs [5, 6, 7, 8, 9, 10]
-# 4. Empty lists: [] vs []
-# 5. Single element lists: [1] vs [1]
-# 6. Single element correct guess: [1] vs [1]
-# 7. Single element incorrect guess: [1] vs [2]
+# 4. All correct guesses: [1, 2, 3, 4, 5, 1] vs [1, 2, 3, 4, 5, 1]
+# 5. Empty lists: [] vs []
+# 6. Single element lists: [1] vs [1]
+# 7. Single element correct guess: [1] vs [1]
+# 8. Single element incorrect guess: [1] vs [2]
 
 # Test function names:
 # test_correct_guesses
 # test_mixed_guesses
 # test_all_incorrect_guesses
+# test_all_correct_guesses
 # test_empty_lists
 # test_single_element_lists
 # test_single_element_correct_guess
@@ -66,13 +68,16 @@ def compare(game,guess):
 
 # STEP 3: CODE
 def test_correct_guesses():
-    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
+    assert compare([1,2,3,4,5,1],[1,2,3,4,2,-2]) == [0,0,0,0,3,3]
 
 def test_mixed_guesses():
-    assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
+    assert compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) == [4,4,1,0,0,6]
 
 def test_all_incorrect_guesses():
-    assert compare([1, 2, 3, 4, 5, 1], [5, 6, 7, 8, 9, 10]) == [4, 4, 4, 4, 4, 4]
+    assert compare([1,2,3,4,5,1],[5,6,7,8,9,10]) == [4,4,4,4,4,4]
+
+def test_all_correct_guesses():
+    assert compare([1,2,3,4,5,1],[1,2,3,4,5,1]) == [0,0,0,0,0,0]
 
 def test_empty_lists():
     assert compare([], []) == []

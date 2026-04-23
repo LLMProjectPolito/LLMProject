@@ -40,37 +40,32 @@ def simplify(x, n):
 def test_simplify_positive_whole_numbers():
     assert simplify("1/5", "5/1") == True
     assert simplify("2/3", "6/1") == True
-    assert simplify("4/7", "14/1") == True
-    assert simplify("10/11", "11/1") == True
+    assert simplify("4/7", "14/1") == False
 
-def test_simplify_non_whole_numbers():
-    assert simplify("1/6", "2/1") == False
+def test_simplify_with_larger_numbers():
+    assert simplify("10/2", "2/1") == True
+    assert simplify("12/3", "3/1") == True
+    assert simplify("15/4", "4/1") == False
+
+def test_simplify_with_different_denominators():
     assert simplify("7/10", "10/2") == False
-    assert simplify("3/4", "5/1") == False
-    assert simplify("1/2", "3/1") == False
-
-def test_simplify_equal_numbers():
-    assert simplify("1/2", "2/1") == True
-    assert simplify("2/3", "3/1") == True
-    assert simplify("3/4", "4/1") == True
-
-def test_simplify_large_numbers():
-    assert simplify("100/101", "101/1") == True
-    assert simplify("123/456", "456/1") == True
-    assert simplify("1000/1001", "1001/1") == True
+    assert simplify("1/2", "2/3") == False
+    assert simplify("3/4", "4/5") == False
 
 def test_simplify_edge_cases():
     assert simplify("1/1", "1/1") == True
-    assert simplify("1/1", "2/1") == False
-    assert simplify("2/1", "1/1") == True
-    assert simplify("1/2", "1/2") == True
+    assert simplify("1/2", "2/2") == True
+    assert simplify("1/3", "3/2") == False
+    assert simplify("2/3", "3/2") == False
 
-def test_simplify_different_formats():
-    with pytest.raises(ValueError):
-        simplify("1/2", "2/1a")
-    with pytest.raises(ValueError):
-        simplify("2/1b", "1/2")
-    with pytest.raises(ValueError):
-        simplify("1/2", "2/1 ")
-    with pytest.raises(ValueError):
-        simplify("2/1 ", "1/2")
+def test_simplify_complex_fractions():
+    assert simplify("12/16", "16/4") == True
+    assert simplify("15/25", "25/5") == True
+    assert simplify("21/35", "35/7") == True
+    assert simplify("10/15", "15/3") == False
+
+def test_simplify_large_numbers():
+    assert simplify("100/100", "100/1") == True
+    assert simplify("101/100", "100/1") == False
+    assert simplify("1000/1000", "1000/1") == True
+    assert simplify("1001/1000", "1000/1") == False

@@ -19,8 +19,6 @@ import pytest
 def test_basic():
     assert fix_spaces("Example 1") == "Example_1"
 
-import pytest
-
 def test_edge_empty_string():
     assert fix_spaces("") == ""
 

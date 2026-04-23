@@ -27,10 +27,10 @@ def even_odd_count(num):
             odd_count += 1
     return (even_count, odd_count)
 
-def test_even_odd_count_positive():
+def test_even_odd_count_negative():
     assert even_odd_count(-12) == (1, 1)
 
-def test_even_odd_count_123():
+def test_even_odd_count_positive():
     assert even_odd_count(123) == (1, 2)
 
 def test_even_odd_count_zero():

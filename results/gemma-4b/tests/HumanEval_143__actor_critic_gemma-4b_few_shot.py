@@ -20,7 +20,6 @@ def words_in_sentence(sentence):
         * sentence contains only letters
     """
 
-```python
 import pytest
 
 def is_palindrome(s: str) -> bool:
@@ -108,17 +107,20 @@ def test_words_in_sentence_no_prime_words():
     assert words_in_sentence("This is a test") == ""
     assert words_in_sentence("lets go for swimming") == ""
 
-def test_words_in_sentence_all_prime_words():
-    assert words_in_sentence("abc def ghi") == "def"
-
 def test_words_in_sentence_empty_sentence():
     assert words_in_sentence("") == ""
 
-def test_words_in_sentence_single_word():
+def test_words_in_sentence_single_word_prime():
     assert words_in_sentence("hello") == "hello"
+
+def test_words_in_sentence_single_word_non_prime():
+    assert words_in_sentence("world") == ""
 
 def test_words_in_sentence_multiple_prime_words():
     assert words_in_sentence("This is a test sentence") == "is a"
+
+def test_words_in_sentence_all_prime_words():
+    assert words_in_sentence("hello world") == "hello world"
 
 def test_is_prime_small_numbers():
     assert is_prime(2) == True
@@ -136,72 +138,3 @@ def test_is_prime_larger_numbers():
     assert is_prime(23) == True
     assert is_prime(29) == True
     assert is_prime(31) == True
-
-def test_words_in_sentence_multiple_prime_words_2():
-    assert words_in_sentence("The quick brown fox jumps over the lazy dog") == "quick brown fox jumps over"
-
-def test_words_in_sentence_with_leading_and_trailing_spaces():
-    assert words_in_sentence("  This is a test  ") == "is a"
-
-def test_words_in_sentence_with_multiple_spaces():
-    assert words_in_sentence("This  is   a    test") == "is a"
-
-def test_words_in_sentence_with_special_characters():
-    assert words_in_sentence("This is a test!") == "is a"
-
-def test_words_in_sentence_with_numbers():
-    assert words_in_sentence("This is a test 123") == "is a"
-
-def test_words_in_sentence_with_mixed_case():
-    assert words_in_sentence("This Is A Test") == "Is A"
-
-def test_words_in_sentence_with_punctuation():
-    assert words_in_sentence("Hello, world!") == "world"
-
-def test_words_in_sentence_with_unicode():
-    assert words_in_sentence("你好世界") == ""
-
-def test_words_in_sentence_with_empty_words():
-    assert words_in_sentence("This  is   a    test") == "is a"
-
-def test_words_in_sentence_with_whitespace_only():
-    assert words_in_sentence("   ") == ""
-
-def test_words_in_sentence_single_non_prime_word():
-    assert words_in_sentence("hello") == ""
-
-def test_words_in_sentence_single_prime_word():
-    assert words_in_sentence("abc") == "abc"
-
-def test_words_in_sentence_multiple_prime_words_3():
-    assert words_in_sentence("abc def ghi jkl") == "def ghi"
-
-def test_words_in_sentence_multiple_non_prime_words():
-    assert words_in_sentence("abc def ghi jkl mno") == ""
-
-def test_words_in_sentence_mixed_prime_and_non_prime():
-    assert words_in_sentence("abc def ghi jkl mno pqr") == "def ghi"
-
-def test_words_in_sentence_large_number_of_words():
-    long_sentence = "a b c d e f g h i j k l m n o p q r s t u v w x y z"
-    assert words_in_sentence(long_sentence) == "b c d e f g h i j k l m n o p q r s t u v w x y z"
-
-def test_words_in_sentence_large_number_of_prime_words():
-    prime_words = "a b c d e f g h i j k l m n o p q r s t u v w x y z"
-    assert words_in_sentence(prime_words) == prime_words
-
-def test_words_in_sentence_large_number_of_non_prime_words():
-    non_prime_words = "abc def ghi jkl mno pqr s tu v w x y z"
-    assert words_in_sentence(non_prime_words) == ""
-
-def test_words_in_sentence_mixed_large_and_small_prime_words():
-    mixed_words = "a b c d e f g h i j k l m n o p q r s t u v w x y z"
-    assert words_in_sentence(mixed_words) == "b c d e f g h i j k l m n o p q r s t u v w x y z"
-
-def test_words_in_sentence_mixed_large_and_small_non_prime_words():
-    non_prime_words = "abc def ghi jkl mno pqr s tu v w x y z"
-    assert words_in_sentence(non_prime_words) == ""
-
-def test_words_in_sentence_complex_mix():
-    complex_sentence = "a b c d e f g h i j k l m n o p q r s t u v w x y z abc def ghi jkl mno pqr s tu v w x y z"
-    assert words_in_

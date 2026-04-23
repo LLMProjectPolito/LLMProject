@@ -64,18 +64,18 @@ def test_eat_large_numbers():
 def test_eat_large_numbers_2():
     assert eat(500, 600, 700) == [1100, 100]
 
+def test_eat_large_numbers_3():
+    assert eat(900, 100, 10) == [1000, 0]
+
 def test_eat_all_remaining():
-    assert eat(5, 10, 5) == [10, 0]
+    assert eat(5, 10, 3) == [8, 0]
 
 def test_eat_exactly_needed():
     assert eat(5, 5, 5) == [10, 0]
 
 def test_eat_exactly_needed_2():
-    assert eat(10, 10, 10) == [20, 0]
+    assert eat(10, 20, 20) == [30, 0]
 
 def test_eat_boundary_values():
     assert eat(0, 0, 0) == [0, 0]
     assert eat(1000, 1000, 1000) == [2000, 0]
-
-def test_eat_need_more_than_remaining():
-    assert eat(5, 10, 3) == [8, 0]

@@ -43,18 +43,16 @@ def file_name_check(file_name):
         if char.isdigit():
             digits += 1
     
-    dot_count = file_name.count('.')
+    dot_count = prefix.count('.')
     
     if digits > 3 or dot_count != 1:
         return 'No'
     
-    if not prefix:
+    if not prefix or not 'a' <= prefix[0] <= 'z' or not 'A' <= prefix[0] <= 'Z':
         return 'No'
     
-    if not 'a' <= prefix[0] <= 'z' and not 'A' <= prefix[0] <= 'Z':
-        return 'No'
-    
-    if suffix not in ['txt', 'exe', 'dll']:
+    valid_suffixes = ['txt', 'exe', 'dll']
+    if suffix not in valid_suffixes:
         return 'No'
     
     return 'Yes'
@@ -69,40 +67,40 @@ def test_valid_file_name_with_more_than_three_digits():
     assert file_name_check("example1234.txt") == 'No'
 
 def test_no_dot():
-    assert file_name_check("example.txt") == 'No'
+    assert file_name_check("example") == 'No'
 
 def test_multiple_dots():
-    assert file_name_check("example.a.txt") == 'No'
+    assert file_name_check("example..txt") == 'No'
 
 def test_starts_with_digit():
     assert file_name_check("1example.txt") == 'No'
 
-def test_starts_with_symbol():
-    assert file_name_check("!example.txt") == 'No'
-
-def test_suffix_not_allowed():
-    assert file_name_check("example.pdf") == 'No'
-
 def test_empty_prefix():
     assert file_name_check(".txt") == 'No'
 
-def test_empty_suffix():
-    assert file_name_check("example.") == 'No'
-
-def test_long_prefix():
-    assert file_name_check("a" * 10 + ".txt") == 'No'
-
-def test_prefix_with_only_digits():
+def test_prefix_with_numbers():
     assert file_name_check("123.txt") == 'No'
 
-def test_suffix_with_spaces():
-    assert file_name_check("example. txt") == 'No'
+def test_prefix_with_special_characters():
+    assert file_name_check("!example.txt") == 'No'
+
+def test_invalid_suffix():
+    assert file_name_check("example.pdf") == 'No'
+
+def test_valid_suffix():
+    assert file_name_check("example.dll") == 'Yes'
+
+def test_valid_suffix_mixed_case():
+    assert file_name_check("Example.Dll") == 'Yes'
+
+def test_long_file_name():
+    assert file_name_check("a very long file name.txt") == 'No'
 
 def test_file_name_with_leading_and_trailing_spaces():
     assert file_name_check("  example.txt  ") == 'Yes'
 
-def test_file_name_with_only_spaces():
-    assert file_name_check("   ") == 'No'
+def test_file_name_with_multiple_dots_in_prefix():
+    assert file_name_check("a.b.c.txt") == 'Yes'
 
-def test_file_name_with_special_characters():
-    assert file_name_check("example!@#.txt") == 'No'
+def test_file_name_with_dot_in_prefix():
+    assert file_name_check("a.b.txt") == 'No'

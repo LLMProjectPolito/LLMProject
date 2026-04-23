@@ -34,6 +34,7 @@ def test_x_or_y_prime():
     assert x_or_y(13, 10, 5) == 10
     assert x_or_y(17, 1, 2) == 1
     assert x_or_y(19, 4, 6) == 4
+    assert x_or_y(23, 100, 50) == 100 # Larger prime
 
 def test_x_or_y_not_prime():
     assert x_or_y(4, 34, 12) == 12
@@ -41,6 +42,7 @@ def test_x_or_y_not_prime():
     assert x_or_y(8, 34, 12) == 12
     assert x_or_y(9, 7, 2) == 2
     assert x_or_y(10, 1, 3) == 3
+    assert x_or_y(12, 34, 12) == 12 # Composite near prime
 
 def test_x_or_y_edge_cases():
     assert x_or_y(1, 34, 12) == 12
@@ -52,7 +54,9 @@ def test_x_or_y_edge_cases():
     assert x_or_y(0, 34, 12) == 12
     assert x_or_y(-1, 34, 12) == 12
     assert x_or_y(-7, 34, 12) == 12
-    assert x_or_y(4, 34, 12) == 12 # Test a composite number
-    assert x_or_y(9, 7, 2) == 2 # Test a composite number close to prime
-    assert x_or_y(16, 34, 12) == 12 # Test a perfect square
-    assert x_or_y(1000000007, 34, 12) == 34 # Test a large prime
+    assert x_or_y(-10, 34, 12) == 12
+    assert x_or_y(-100, 34, 12) == 12
+    assert x_or_y(1000, 34, 12) == 12
+    assert x_or_y(1001, 34, 12) == 34
+    assert x_or_y(-1000, 34, 12) == 12
+    assert x_or_y(10000, 34, 12) == 12

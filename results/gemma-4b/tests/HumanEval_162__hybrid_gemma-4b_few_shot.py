@@ -90,10 +90,10 @@ def test_string_to_md5_unicode():
     assert string_to_md5('你好世界') == 'b94d27b9934d3e08a52e52d442036896'
 
 def test_string_to_md5_special_characters():
-    assert string_to_md5('!@#$%^') == '68978d93a3a977c79377999999999999'
+    assert string_to_md5('!@#$%^') == '68978d93f33563336963636363636363'
 
 def test_string_to_md5_mixed():
-    assert string_to_md5('Hello World!') == '6e2d1a49989999999999999999999999'
+    assert string_to_md5('Hello World!') == '6e976a99999999999999999999999999'
 
 def test_string_to_md5_long_string():
     long_string = "This is a very long string to test the md5 function."

@@ -32,20 +32,14 @@ def test_solve_single_number():
 def test_solve_single_symbol():
     assert solve("#") == "#"
 
-def test_solve_long_string_mixed():
-    assert solve("aBcDeFgHiJkLmNoPqRsTuVwXyZ") == "AbCdEfGhIjKlMnOpQrStUvWxYz"
+def test_solve_complex_string():
+    assert solve("aBc12#dE") == "AbC12#D"
 
 def test_solve_string_with_spaces():
-    assert solve("hello world") == "Hello World"
-
-def test_solve_string_with_special_characters():
-    assert solve("!@#$%^&*()") == "!@#$%^&*()"
+    assert solve("hello world") == "HELLO WORLD"
 
 def test_solve_string_with_unicode():
     assert solve("你好世界") == "你好世界"
 
-def test_solve_string_with_numbers_and_letters():
-    assert solve("a1b2c3d") == "A1B2C3D"
-
-def test_solve_string_with_mixed_case_and_symbols():
-    assert solve("HeLlO#wOrLd") == "hElLo#WoRlD"
+def test_solve_string_with_mixed_unicode_and_letters():
+    assert solve("你好a世界") == "你好A世界"

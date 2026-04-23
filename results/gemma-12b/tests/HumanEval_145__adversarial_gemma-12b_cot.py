@@ -61,7 +61,7 @@ class TestOrderbyPoints:
         assert order_by_points([1, 1, 1]) == [1, 1, 1]
 
     def test_negative_and_positive_same_digit_sum(self):
-        assert order_by_points([1, -1]) == [1, -1]
+        assert order_by_points([-10, 10]) == [-10, 10]
 
     def test_complex_case(self):
         assert order_by_points([5, 15, 2, 25, 3]) == [2, 3, 5, 15, 25]

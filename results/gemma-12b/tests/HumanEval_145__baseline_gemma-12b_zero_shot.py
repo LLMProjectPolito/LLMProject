@@ -30,13 +30,7 @@ def order_by_points(nums):
     >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
     >>> order_by_points([]) == []
     """
-    if not nums:
-        return []
-
-    decorated = [(sum_digits(num), i, num) for i, num in enumerate(nums)]
-    decorated.sort()
-    return [num for _, _, num in decorated]
-
+    return sorted(nums, key=lambda x: (sum_digits(x), nums.index(x)))
 
 class TestOrderByPoints:
     def test_empty_list(self):
@@ -52,13 +46,13 @@ class TestOrderByPoints:
         assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
 
     def test_numbers_with_same_digit_sum(self):
-        assert order_by_points([12, 21, 3]) == [3, 12, 21]
+        assert order_by_points([1, 10, 100]) == [1, 10, 100]
 
     def test_numbers_with_zero(self):
-        assert order_by_points([0, 1, -1]) == [0, -1, 1]
+        assert order_by_points([0, 1, 10, 100]) == [0, 1, 10, 100]
 
     def test_large_numbers(self):
-        assert order_by_points([123, 321, 45]) == [45, 123, 321]
+        assert order_by_points([12345, 6789, 11111]) == [11111, 12345, 6789]
 
     def test_duplicate_numbers(self):
         assert order_by_points([1, 1, 1]) == [1, 1, 1]
@@ -67,7 +61,10 @@ class TestOrderByPoints:
         assert order_by_points([5]) == [5]
 
     def test_negative_and_positive_same_digit_sum(self):
-        assert order_by_points([-10, 10, 1]) == [-10, 10, 1]
+        assert order_by_points([-1, 1]) == [-1, 1]
 
     def test_complex_case(self):
-        assert order_by_points([101, 2, -10, 1, 11]) == [-10, 1, 2, 101, 11]
+        assert order_by_points([12, 21, 3, 1, 4, 5]) == [1, 3, 4, 5, 12, 21]
+
+    def test_another_complex_case(self):
+        assert order_by_points([101, 1, 1000, 10]) == [1, 10, 101, 1000]

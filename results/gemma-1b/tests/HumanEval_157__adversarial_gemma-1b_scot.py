@@ -41,3 +41,13 @@ def test_right_angle_triangle_invalid():
     assert right_angle_triangle(1, 2, 1) == False
     assert right_angle_triangle(1, 2, 3) == False
     assert right_angle_triangle(1, 2, 10) == False
+
+def test_right_angle_triangle_degenerate():
+    assert right_angle_triangle(1, 1, 1) == True
+    assert right_angle_triangle(1, 1, 2) == False
+    assert right_angle_triangle(1, 1, 0) == False
+
+def test_right_angle_triangle_large_numbers():
+    assert right_angle_triangle(1000, 1000, 1000) == True
+    assert right_angle_triangle(1000, 1001, 1001) == True
+    assert right_angle_triangle(1000, 1002, 1002) == False

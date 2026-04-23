@@ -28,7 +28,7 @@ def double_the_difference(lst):
     '''
     total = 0
     for num in lst:
-        if isinstance(num, int) and num % 2 != 0:
+        if isinstance(num, int) and num > 0 and num % 2 != 0:
             total += num * num
     return total
 
@@ -54,7 +54,7 @@ def test_only_zero():
     assert double_the_difference([0]) == 0
 
 def test_large_numbers():
-    assert double_the_difference([1001, 1003]) == 2006007
+    assert double_the_difference([1001, 1003]) == 2006005
 
 def test_mixed_types():
     assert double_the_difference([1, 2.5, 3, -4, "a"]) == 10
@@ -62,14 +62,8 @@ def test_mixed_types():
 def test_all_negative_odd():
     assert double_the_difference([-1, -3, -5]) == 35
 
-def test_all_negative_even():
-    assert double_the_difference([-2, -4, -6]) == 0
+def test_all_positive_odd():
+    assert double_the_difference([1, 3, 5, 7]) == 84
 
-def test_single_odd_number():
-    assert double_the_difference([5]) == 25
-
-def test_single_negative_odd_number():
-    assert double_the_difference([-1]) == 1
-
-def test_single_negative_even_number():
-    assert double_the_difference([-2]) == 0
+def test_duplicate_odd_numbers():
+    assert double_the_difference([1, 1, 3, 3]) == 19

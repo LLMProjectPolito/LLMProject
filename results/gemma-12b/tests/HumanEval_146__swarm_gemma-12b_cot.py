@@ -59,6 +59,6 @@ class TestSpecialFilter:
         """Test with a number where the first and last digits are odd, but the middle digit is even."""
         assert specialFilter([101]) == 0
 
-    def test_specialFilter_edge_case_10001(self):
+    def test_specialFilter_edge_case_1001(self):
         """Test with a number where the first and last digits are odd, but the middle digits are even."""
-        assert specialFilter([10001]) == 0
+        assert specialFilter([1001]) == 0

@@ -44,7 +44,8 @@ def file_name_check(file_name):
     if parts[0].isdigit():
         return 'No'
 
-    if len(re.findall(r'\d', file_name)) > 3:
+    digit_count = sum(c.isdigit() for c in file_name)
+    if digit_count > 3:
         return 'No'
 
     if parts[1] not in ['txt', 'exe', 'dll']:
@@ -60,30 +61,35 @@ class TestFileNameCheck:
         assert file_name_check("my_program.exe") == "Yes"
         assert file_name_check("a.txt") == "Yes"
         assert file_name_check("A.TXT") == "Yes"
-        assert file_name_check("long_file_name.exe") == "Yes"
-        assert file_name_check("file123.txt") == "Yes"
-        assert file_name_check("file1234.txt") == "No"
+        assert file_name_check("file12.txt") == "Yes"
+        assert file_name_check("file123.exe") == "Yes"
 
     def test_invalid_file_name_no_dot(self):
         assert file_name_check("example") == "No"
-        assert file_name_check("example.txt.pdf") == "No"
+        assert file_name_check("exampletxt") == "No"
+        assert file_name_check("example.txt.extra") == "No"
 
     def test_invalid_file_name_empty_before_dot(self):
         assert file_name_check(".txt") == "No"
+        assert file_name_check(".exe") == "No"
+        assert file_name_check(".dll") == "No"
 
     def test_invalid_file_name_not_letter_before_dot(self):
         assert file_name_check("1example.txt") == "No"
         assert file_name_check("!example.txt") == "No"
-        assert file_name_check(" example.txt") == "No"
+        assert file_name_check("example.txt") == "Yes"
 
     def test_invalid_file_name_invalid_extension(self):
         assert file_name_check("example.pdf") == "No"
         assert file_name_check("example.jpg") == "No"
-        assert file_name_check("example.") == "No"
+        assert file_name_check("example.something") == "No"
 
     def test_invalid_file_name_too_many_digits(self):
         assert file_name_check("1234example.txt") == "No"
-        assert file_name_check("11111.txt") == "No"
+        assert file_name_check("1111.txt") == "No"
+        assert file_name_check("1234567890.txt") == "No"
 
-    def test_invalid_file_name_all_digits(self):
+    def test_invalid_file_name_digit_only_before_dot(self):
         assert file_name_check("123.txt") == "No"
+        assert file_name_check("1.txt") == "No"
+        assert file_name_check("1234.txt") == "No"

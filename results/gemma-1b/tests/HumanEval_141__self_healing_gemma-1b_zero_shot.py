@@ -32,17 +32,18 @@ def file_name_check(file_name):
     if len(parts) > 3:
         return 'No'
     if len(parts) == 1:
-        return 'No'
+        if not parts[0]:
+            return 'No'
+        else:
+            return 'No'
     if len(parts) == 2:
         if not parts[0]:
             return 'No'
-        if not parts[1][0].isalpha():
+        else:
             return 'No'
     if len(parts) == 3:
-        if not parts[0].isalpha() or not parts[1].isalpha() or not parts[2].isalpha():
+        if not parts[0]:
             return 'No'
-        if parts[1] != '.':
+        else:
             return 'No'
-        if parts[2] not in ['txt', 'exe', 'dll']:
-            return 'No'
-    return 'Yes'
+    return 'No'

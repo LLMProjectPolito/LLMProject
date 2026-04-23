@@ -82,27 +82,23 @@ def test_right_angle_triangle_zero_sides():
 # Focus: Invalid Input Handling
 import pytest
 
-def right_angle_triangle(a, b, c):
-    '''
-    Given the lengths of the three sides of a triangle. Return True if the three
-    sides form a right-angled triangle, False otherwise.
-    A right-angled triangle is a triangle in which one angle is right angle or 
-    90 degree.
-    Example:
-    right_angle_triangle(3, 4, 5) == True
-    right_angle_triangle(1, 2, 3) == False
-    '''
-    sides = sorted([a, b, c])
-    return sides[0]**2 + sides[1]**2 == sides[2]**2
-
 def test_invalid_input_negative_sides():
-    with pytest.raises(TypeError):
-        right_angle_triangle(-3, 4, 5)
+    """Test with negative side lengths."""
+    assert not right_angle_triangle(-3, 4, 5)
+    assert not right_angle_triangle(3, -4, 5)
+    assert not right_angle_triangle(3, 4, -5)
 
 def test_invalid_input_zero_sides():
-    with pytest.raises(TypeError):
-        right_angle_triangle(0, 4, 5)
+    """Test with zero side lengths."""
+    assert not right_angle_triangle(0, 4, 5)
+    assert not right_angle_triangle(3, 0, 5)
+    assert not right_angle_triangle(3, 4, 0)
 
 def test_invalid_input_non_numeric():
+    """Test with non-numeric input."""
     with pytest.raises(TypeError):
         right_angle_triangle("3", 4, 5)
+    with pytest.raises(TypeError):
+        right_angle_triangle(3, "4", 5)
+    with pytest.raises(TypeError):
+        right_angle_triangle(3, 4, "5")

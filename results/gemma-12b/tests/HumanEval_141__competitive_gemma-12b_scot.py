@@ -23,7 +23,9 @@ def test_valid_file_name():
     assert file_name_check("a.txt") == "Yes"
     assert file_name_check("A.TXT") == "Yes"
     assert file_name_check("long_file_name.txt") == "Yes"
-    assert file_name_check("valid12.txt") == "Yes"
+    assert file_name_check("valid1.txt") == "Yes"
+    assert file_name_check("valid22.txt") == "Yes"
+    assert file_name_check("valid333.txt") == "Yes"
 
 def test_invalid_file_name_too_many_digits():
     assert file_name_check("1234example.txt") == "No"
@@ -36,11 +38,12 @@ def test_invalid_file_name_no_dot():
 def test_invalid_file_name_multiple_dots():
     assert file_name_check("example.txt.dll") == "No"
     assert file_name_check(".txt") == "No"
+    assert file_name_check("example..txt") == "No"
 
 def test_invalid_file_name_empty_before_dot():
     assert file_name_check(".txt") == "No"
 
-def test_invalid_file_name_non_letter_start():
+def test_invalid_file_name_not_letter_before_dot():
     assert file_name_check("1example.txt") == "No"
     assert file_name_check("_example.txt") == "No"
     assert file_name_check(" example.txt") == "No"
@@ -48,18 +51,15 @@ def test_invalid_file_name_non_letter_start():
 def test_invalid_file_name_invalid_extension():
     assert file_name_check("example.pdf") == "No"
     assert file_name_check("example.jpg") == "No"
-    assert file_name_check("example.") == "No"
     assert file_name_check("example.txt1") == "No"
+    assert file_name_check("example.t") == "No"
+    assert file_name_check("example.") == "No"
 
 def test_invalid_file_name_empty_extension():
     assert file_name_check("example.") == "No"
 
-def test_file_name_with_digits_and_letters():
-    assert file_name_check("12abc.txt") == "Yes"
-    assert file_name_check("abc12.txt") == "Yes"
-    assert file_name_check("1a.txt") == "Yes"
-    assert file_name_check("a1.txt") == "Yes"
-    assert file_name_check("123abc.txt") == "Yes"
-    assert file_name_check("abc123.txt") == "Yes"
-    assert file_name_check("1234abc.txt") == "No"
-    assert file_name_check("abc1234.txt") == "No"
+def test_file_name_with_spaces():
+    assert file_name_check("example .txt") == "No"
+    assert file_name_check("example. txt") == "No"
+    assert file_name_check(" example.txt") == "No"
+    assert file_name_check("example.txt ") == "No"

@@ -42,32 +42,31 @@ def Strongest_Extension(class_name, extensions):
     for extension in extensions:
         cap_count = sum(1 for char in extension if char.isupper())
         sm_count = sum(1 for char in extension if char.islower())
-        
-        if sm_count == 0:
-            strength = float('inf')
-        else:
-            strength = cap_count - sm_count
-        
+        strength = cap_count - sm_count
+
         if strength > max_strength:
             max_strength = strength
             strongest_extension = extension
 
     return f"{class_name}.{strongest_extension}"
 
-def test_basic():
-    assert Strongest_Extension('Slices', ['SErviNGSliCes', 'Cheese', 'StuFfed']) == 'Slices.SErviNGSliCes'
-
-def test_all_uppercase():
-    assert Strongest_Extension('MyClass', ['AA', 'BB', 'CC']) == 'MyClass.AA'
-
-def test_all_lowercase():
-    assert Strongest_Extension('MyClass', ['aa', 'bb', 'cc']) == 'MyClass.aa'
-
-def test_mixed_case():
-    assert Strongest_Extension('MyClass', ['aA', 'Bb', 'cC']) == 'MyClass.aA'
-
-def test_equal_strength():
-    assert Strongest_Extension('MyClass', ['AA', 'Be', 'CC']) == 'MyClass.AA'
-
 def test_empty_extensions():
-    assert Strongest_Extension('MyClass', []) == 'MyClass.None'
+    assert Strongest_Extension("MyClass", []) == "MyClass.None"
+
+def test_single_extension():
+    assert Strongest_Extension("MyClass", ["Extension"]) == "MyClass.Extension"
+
+def test_multiple_extensions_different_strengths():
+    assert Strongest_Extension("Slices", ['SErviNGSliCes', 'Cheese', 'StuFfed']) == 'Slices.SErviNGSliCes'
+
+def test_multiple_extensions_same_strength():
+    assert Strongest_Extension("my_class", ['AA', 'Be', 'CC']) == 'my_class.AA'
+
+def test_all_uppercase_extensions():
+    assert Strongest_Extension("MyClass", ["AAA", "BBB", "CCC"]) == "MyClass.AAA"
+
+def test_all_lowercase_extensions():
+    assert Strongest_Extension("MyClass", ["aaa", "bbb", "ccc"]) == "MyClass.aaa"
+
+def test_mixed_case_extensions():
+    assert Strongest_Extension("MyClass", ["aA", "Bb", "Cc"]) == "MyClass.aA"

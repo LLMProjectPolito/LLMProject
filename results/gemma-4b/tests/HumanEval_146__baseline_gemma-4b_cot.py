@@ -69,4 +69,4 @@ def test_specialFilter_duplicate_numbers():
     assert specialFilter([15, 15, 15]) == 1
 
 def test_specialFilter_mixed_positive_and_negative_numbers():
-    assert specialFilter([-15, 15, -33, 33]) == 2
+    assert specialFilter([-15, 15, -33, 45]) == 2

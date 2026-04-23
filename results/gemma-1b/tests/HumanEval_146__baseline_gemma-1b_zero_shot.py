@@ -37,11 +37,11 @@ def test_specialFilter_example1():
 def test_specialFilter_example2():
     assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
-def test_specialFilter_empty():
+def test_specialFilter_empty_array():
     assert specialFilter([]) == 0
 
 def test_specialFilter_single_element():
-    assert specialFilter([5]) == 1
+    assert specialFilter([12]) == 1
 
-def test_specialFilter_all_same():
-    assert specialFilter([11, 11, 11]) == 1
+def test_specialFilter_all_same_numbers():
+    assert specialFilter([11, 11, 11]) == 0

@@ -23,12 +23,12 @@ def order_by_points(nums):
     >>> order_by_points([]) == []
     """
     def sum_digits(n):
-        s = sum(int(digit) for digit in str(abs(n)))
-        return s
+        return sum(int(digit) for digit in str(abs(n)))
 
-    indexed_nums = list(enumerate(nums))  # Store original indices
-    return [num for _, num in sorted(indexed_nums, key=lambda x: (sum_digits(x[1]), x[0]))]
+    return sorted(enumerate(nums), key=lambda x: (sum_digits(x[1]), x[0]))
 
+
+### Tests (Pytest):
 import pytest
 
 def test_order_by_points_basic():
@@ -40,20 +40,20 @@ def test_order_by_points_empty():
 def test_order_by_points_single_element():
     assert order_by_points([5]) == [5]
 
+def test_order_by_points_duplicates():
+    assert order_by_points([1, 10, 100, 1000]) == [1, 10, 100, 1000]
+
 def test_order_by_points_negative_and_positive():
-    assert order_by_points([-10, 1, 10, -1]) == [-10, -1, 1, 10]
+    assert order_by_points([-1, 1, -10, 10]) == [-1, 1, -10, 10]
 
 def test_order_by_points_large_numbers():
-    assert order_by_points([12345, 123, 12, 1]) == [1, 12, 123, 12345]
+    assert order_by_points([12345, 6789, 100000, 54321]) == [100000, 12345, 54321, 6789]
 
-def test_order_by_points_all_same_digit_sum():
-    assert order_by_points([10, 1, 100, 1000]) == [1, 10, 100, 1000]
+def test_order_by_points_very_large_numbers():
+    assert order_by_points([10**10, 10**11, 10**12]) == [10**10, 10**11, 10**12]
 
-def test_order_by_points_mixed_signs_same_digit_sum_preserves_order():
-    assert order_by_points([-11, 2, -20, 11]) == [-11, 2, 11, -20]
+def test_order_by_points_mixed_signs_same_digit_sum():
+    assert order_by_points([-1, 10, -100, 1000]) == [-1, 10, -100, 1000]
 
-def test_order_by_points_with_zero():
-    assert order_by_points([0, 1, 10]) == [0, 1, 10]
-
-def test_order_by_points_complex_case():
-    assert order_by_points([5, -5, 12, -12, 1, 11, -11, 2, -20, 20]) == [-20, -12, -11, -5, 1, 2, 5, 11, 12, 20]
+def test_order_by_points_diverse_numbers():
+    assert order_by_points([5, 12, -3, 21, 1, -15, 8]) == [-3, 1, 5, 8, 12, 21, -15]

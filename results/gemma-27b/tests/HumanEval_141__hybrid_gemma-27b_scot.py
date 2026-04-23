@@ -59,38 +59,30 @@ def file_name_check(file_name):
 
     return 'Yes'
 
-def test_valid_file_names():
-    assert file_name_check("example.txt") == "Yes"
-    assert file_name_check("MyFile.exe") == "Yes"
-    assert file_name_check("document1.dll") == "Yes"
-    assert file_name_check("a123.txt") == "Yes"
-    assert file_name_check("AnotherExample.exe") == "Yes"
-    assert file_name_check("file.dll") == "Yes"
+def test_valid_file_name():
+    assert file_name_check("example.txt") == 'Yes'
+    assert file_name_check("MyFile.exe") == 'Yes'
+    assert file_name_check("another_file.dll") == 'Yes'
+    assert file_name_check("a123.txt") == 'Yes'
 
-def test_invalid_digit_count():
-    assert file_name_check("1234example.txt") == "No"
-    assert file_name_check("example1234.dll") == "No"
-    assert file_name_check("12345.exe") == "No"
+def test_too_many_digits():
+    assert file_name_check("1234example.txt") == 'No'
+    assert file_name_check("example1234.txt") == 'No'
 
-def test_invalid_dot_count():
-    assert file_name_check("exampletxt") == "No"
-    assert file_name_check("example..txt") == "No"
-    assert file_name_check(".txt") == "No"
+def test_multiple_dots():
+    assert file_name_check("example.txt.backup") == 'No'
+    assert file_name_check("example..txt") == 'No'
 
-def test_invalid_before_dot():
-    assert file_name_check("1example.txt") == "No"
-    assert file_name_check(".txt") == "No"
-    assert file_name_check("example.") == "No"
-    assert file_name_check("example.txt.") == "No"
+def test_empty_before_dot():
+    assert file_name_check(".txt") == 'No'
 
-def test_invalid_after_dot():
-    assert file_name_check("example.pdf") == "No"
-    assert file_name_check("example.jpg") == "No"
-    assert file_name_check("example.py") == "No"
+def test_starts_with_digit():
+    assert file_name_check("1example.dll") == 'No'
+    assert file_name_check("2file.exe") == 'No'
 
-def test_edge_cases():
-    assert file_name_check("a.txt") == "Yes"
-    assert file_name_check("verylongfilename.txt") == "Yes"
-    assert file_name_check("a1.txt") == "Yes"
-    assert file_name_check("a123.txt") == "Yes"
-    assert file_name_check("a1234.txt") == "No"
+def test_invalid_extension():
+    assert file_name_check("example.pdf") == 'No'
+    assert file_name_check("example.jpg") == 'No'
+
+def test_no_dot():
+    assert file_name_check("exampletxt") == 'No'

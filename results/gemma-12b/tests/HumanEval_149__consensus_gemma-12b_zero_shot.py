@@ -21,44 +21,40 @@ from your_module import sorted_list_sum  # Replace your_module
 def test_empty_list():
     assert sorted_list_sum([]) == []
 
-def test_list_with_only_odd_length_strings():
+def test_all_odd_length():
     assert sorted_list_sum(["a", "bc", "def"]) == []
 
-def test_list_with_only_even_length_strings():
+def test_all_even_length():
     assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
-def test_mixed_even_and_odd_length_strings():
-    assert sorted_list_sum(["aa", "a", "aaa", "bb", "c"]) == ["aa", "bb"]
+def test_mixed_lengths():
+    assert sorted_list_sum(["aa", "a", "aaa", "bb", "b", "ccc"]) == ["aa", "bb", "ccc"]
 
-def test_duplicate_strings():
-    assert sorted_list_sum(["aa", "aa", "a", "aaa"]) == ["aa", "aa"]
+def test_mixed_lengths_with_duplicates():
+    assert sorted_list_sum(["aa", "a", "aaa", "bb", "a", "ccc", "aa"]) == ["aa", "aa", "bb", "ccc"]
 
-def test_strings_with_same_length():
+def test_same_length_alphabetical():
     assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
 
-def test_strings_with_same_length_and_different_alphabetical_order():
-    assert sorted_list_sum(["cd", "ab", "ef"]) == ["ab", "cd", "ef"]
+def test_same_length_alphabetical_with_duplicates():
+    assert sorted_list_sum(["ab", "cd", "ef", "ab"]) == ["ab", "ab", "cd", "ef"]
 
-def test_complex_list():
-    assert sorted_list_sum(["aa", "a", "aaa", "bb", "c", "cc", "ddd", "ee"]) == ["aa", "bb", "cc", "ee"]
+def test_mixed_lengths_and_alphabetical():
+    assert sorted_list_sum(["aa", "a", "aaa", "bb", "b", "ccc", "ab"]) == ["a", "aa", "ab", "bb", "ccc"]
 
-def test_list_with_long_strings():
-    assert sorted_list_sum(["abcdef", "abc", "ab", "a"]) == ["ab", "abc", "abcdef"]
+def test_long_list():
+    lst = ["a", "aa", "aaa", "aaaa", "aaaaa", "b", "bb", "bbb", "bbbb", "bbbbb", "c", "cc", "ccc", "cccc", "ccccc"]
+    expected = ["a", "b", "c", "aa", "bb", "cc", "aaa", "bbb", "ccc", "aaaa", "bbbb", "cccc", "aaaaa", "bbbbb", "ccccc"]
+    assert sorted_list_sum(lst) == expected
 
 def test_list_with_special_characters():
-    assert sorted_list_sum(["a!", "ab?", "abc."]) == ["a!", "ab?", "abc."]
+    assert sorted_list_sum(["a!", "aa?", "aaa#"]) == ["a!", "aa?", "aaa#"]
 
 def test_list_with_numbers_as_strings():
-    assert sorted_list_sum(["11", "1", "111"]) == ["11", "111"]
-
-def test_list_with_mixed_characters():
-    assert sorted_list_sum(["a1", "a", "a11"]) == ["a", "a1", "a11"]
-
-def test_list_with_unicode_characters():
-    assert sorted_list_sum(["你好", "你", "你好世界"]) == ["你好"]
+    assert sorted_list_sum(["1", "12", "123"]) == ["1", "12", "123"]
 
 def test_list_with_empty_string():
     assert sorted_list_sum(["", "a", "aa"]) == ["", "aa"]
 
-def test_all_strings_same_length():
-    assert sorted_list_sum(["abc", "def", "ghi"]) == ["abc", "def", "ghi"]
+def test_list_with_unicode_characters():
+    assert sorted_list_sum(["你好", "世界", "你好世界"]) == ["你好", "世界", "你好世界"]

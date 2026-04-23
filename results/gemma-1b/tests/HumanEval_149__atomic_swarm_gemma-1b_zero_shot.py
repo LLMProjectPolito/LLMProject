@@ -33,7 +33,12 @@ def list_sort(lst):
     assert list_sort(["aa", "a", "aaa"]) => ["aa"]
     assert list_sort(["ab", "a", "aaa", "cd"]) => ["ab", "cd"]
     """
-    return sorted(lst, key=lambda x: (len(x), x))
+    new_list = []
+    for word in lst:
+        if len(word) % 2 == 0:
+            new_list.append(word)
+    new_list.sort()
+    return new_list
 
 def list_sort(lst):
     """Write a function that accepts a list of strings as a parameter,

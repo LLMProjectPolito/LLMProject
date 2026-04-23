@@ -46,7 +46,10 @@ def bf(planet1, planet2):
     planet1_orbit = planet1
     planet2_orbit = planet2
 
-    if planet1_orbit < planet2_orbit:
+    planet1_distance = abs(planet1_orbit - planet2_orbit)
+    planet2_distance = abs(planet2_orbit - planet1_orbit)
+
+    if planet1_distance < planet2_distance:
         return (planet1, planet2)
     else:
         return (planet2, planet1)

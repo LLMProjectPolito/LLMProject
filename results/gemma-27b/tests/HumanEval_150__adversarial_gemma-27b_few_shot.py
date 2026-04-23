@@ -45,12 +45,9 @@ def test_x_or_y_not_prime():
     assert x_or_y(12, 14, 15) == 15
 
 def test_x_or_y_edge_cases():
-    assert x_or_y(0, 1, 2) == 2  # 0 is not prime
-    assert x_or_y(1, 3, 4) == 4  # 1 is not prime
+    assert x_or_y(0, 1, 2) == 2
+    assert x_or_y(1, 3, 4) == 4
+    assert x_or_y(-1, 5, 6) == 6
+    assert x_or_y(-7, 7, 8) == 8
     assert x_or_y(2, 0, 0) == 0
     assert x_or_y(4, 0, 0) == 0
-    assert x_or_y(-5, 1, 2) == 2 #Negative numbers are not prime
-    assert x_or_y(-1, 5, 6) == 6
-    assert x_or_y(100, 1000, 1) == 1
-    assert x_or_y(97, 1, 0) == 1 #Large prime
-    assert x_or_y(99, 1, 0) == 0 #Large non-prime

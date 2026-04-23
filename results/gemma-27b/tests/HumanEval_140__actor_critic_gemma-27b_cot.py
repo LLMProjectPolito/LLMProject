@@ -19,14 +19,23 @@ def test_no_spaces():
 def test_single_space():
     assert fix_spaces("Example 1") == "Example_1"
 
-def test_leading_and_trailing_spaces():
-    assert fix_spaces(" Example 2 ") == "_Example_2_"
+def test_leading_space():
+    assert fix_spaces(" Example 2") == "_Example_2"
+
+def test_trailing_space():
+    assert fix_spaces("Example 2 ") == "Example_2_"
 
 def test_multiple_spaces():
     assert fix_spaces("Example   3") == "Example-3"
 
+def test_leading_multiple_spaces():
+    assert fix_spaces("   Example 3") == "-Example_3"
+
+def test_trailing_multiple_spaces():
+    assert fix_spaces("Example 3   ") == "Example_3-"
+
 def test_multiple_spaces_mixed():
-    assert fix_spaces("  Example   4  ") == "_Example-4_"
+    assert fix_spaces("  Example   3  ") == "-Example-3-"
 
 def test_empty_string():
     assert fix_spaces("") == ""
@@ -34,34 +43,18 @@ def test_empty_string():
 def test_only_spaces():
     assert fix_spaces("   ") == "-"
 
-def test_long_string_with_multiple_spaces():
-    assert fix_spaces("This is a long string with   multiple spaces.") == "This_is_a_long_string_with-multiple_spaces."
+def test_long_string():
+    long_string = "This is a very long string with   many   spaces."
+    assert fix_spaces(long_string) == "This_is_a_very_long_string-with-many-spaces."
+
+def test_spaces_within_word():
+    assert fix_spaces("Exam ple") == "Exam_ple"
 
 def test_string_with_tabs():
-    assert fix_spaces("Example\t1") == "Example_1"
+    assert fix_spaces("Example\t1") == "Example\t1"
 
 def test_string_with_newlines():
-    assert fix_spaces("Example\n1") == "Example_1"
+    assert fix_spaces("Example\n1") == "Example\n1"
 
-def test_string_with_mixed_whitespace():
-    assert fix_spaces("Example \t\n 1") == "_Example_-1"
-
-def test_consecutive_whitespace():
-    assert fix_spaces("abc\t\t\n\n def") == "abc---def"
-
-def test_spaces_adjacent_to_punctuation():
-    assert fix_spaces("Example, 1") == "Example,_1"
-    assert fix_spaces("1. Example") == "1._Example"
-
-def test_invalid_input():
-    with pytest.raises(TypeError):
-        fix_spaces(123)
-
-def test_multiple_consecutive_tabs():
-    assert fix_spaces("abc\t\t\tdef") == "abc---def"
-
-def test_multiple_consecutive_newlines():
-    assert fix_spaces("abc\n\n\ndef") == "abc---def"
-
-def test_mixed_consecutive_whitespace():
-    assert fix_spaces("abc \t\n\t\n def") == "abc---def"
+def test_string_with_carriage_returns():
+    assert fix_spaces("Example\r1") == "Example\r1"

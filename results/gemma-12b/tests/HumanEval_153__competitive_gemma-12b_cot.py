@@ -65,7 +65,7 @@ def test_Strongest_Extension_empty_extensions():
     assert Strongest_Extension('Class', []) == 'Class.'
 
 def test_Strongest_Extension_all_uppercase():
-    assert Strongest_Extension('Class', ['AAAA', 'BBB', 'CCCC']) == 'Class.AAAA'
+    assert Strongest_Extension('Class', ['AAAA', 'BBBB', 'CCCC']) == 'Class.AAAA'
 
 def test_Strongest_Extension_all_lowercase():
     assert Strongest_Extension('Class', ['aaaa', 'bbbb', 'cccc']) == 'Class.aaaa'
@@ -73,11 +73,14 @@ def test_Strongest_Extension_all_lowercase():
 def test_Strongest_Extension_mixed_case():
     assert Strongest_Extension('Class', ['aA', 'bB', 'cC']) == 'Class.aA'
 
-def test_Strongest_Extension_numbers_and_symbols():
-    assert Strongest_Extension('Class', ['123', 'abc', '!@#']) == 'Class.123'
+def test_Strongest_Extension_negative_strength():
+    assert Strongest_Extension('Class', ['aaaaa', 'bbbbb', 'ccccc']) == 'Class.ccccc'
 
-def test_Strongest_Extension_complex_extensions():
-    assert Strongest_Extension('Class', ['A1b2C', 'B3c4D', 'C5d6E']) == 'Class.A1b2C'
+def test_Strongest_Extension_complex_example():
+    assert Strongest_Extension('MyClass', ['Extension1', 'eXtension2', 'ExTension3']) == 'MyClass.eXtension2'
 
-def test_Strongest_Extension_with_spaces():
-    assert Strongest_Extension('Class', ['A B', 'C D', 'E F']) == 'Class.A B'
+def test_Strongest_Extension_with_numbers():
+    assert Strongest_Extension('Class', ['A1', 'b2', 'C3']) == 'Class.A1'
+
+def test_Strongest_Extension_with_symbols():
+    assert Strongest_Extension('Class', ['A!', 'b@', 'C#']) == 'Class.A!'

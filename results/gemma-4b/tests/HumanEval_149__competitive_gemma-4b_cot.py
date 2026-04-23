@@ -39,20 +39,20 @@ def sorted_list_sum(lst):
     new_list.sort(key=lambda x: (len(x), x))
     return new_list
 
-def test_sorted_list_sum_empty():
+def test_sorted_list_sum_empty_list():
     assert sorted_list_sum([]) == []
 
-def test_sorted_list_sum_all_odd():
+def test_sorted_list_sum_all_odd_length():
     assert sorted_list_sum(["aa", "a", "aaa"]) == []
 
-def test_sorted_list_sum_all_even():
+def test_sorted_list_sum_all_even_length():
     assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
 
-def test_sorted_list_sum_mixed():
+def test_sorted_list_sum_mixed_lengths():
     assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
-def test_sorted_list_sum_duplicates():
-    assert sorted_list_sum(["aa", "ab", "aa", "cd"]) == ["aa", "aa", "ab", "cd"]
+def test_sorted_list_sum_with_duplicates():
+    assert sorted_list_sum(["aa", "ab", "aa", "cd", "ab"]) == ["aa", "ab", "aa", "cd", "ab"]
 
 def test_sorted_list_sum_same_length_alphabetical():
     assert sorted_list_sum(["ab", "ac", "ba", "bc"]) == ["ab", "ac", "ba", "bc"]
@@ -60,5 +60,8 @@ def test_sorted_list_sum_same_length_alphabetical():
 def test_sorted_list_sum_single_element():
     assert sorted_list_sum(["aa"]) == ["aa"]
 
-def test_sorted_list_sum_single_odd():
+def test_sorted_list_sum_single_odd_element():
     assert sorted_list_sum(["a"]) == []
+
+def test_sorted_list_sum_single_even_element():
+    assert sorted_list_sum(["ab"]) == ["ab"]

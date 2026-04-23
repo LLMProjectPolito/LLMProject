@@ -20,13 +20,13 @@ def find_max(words):
 
     find_max(["name", "of", "string"]) == "string"
     find_max(["name", "enam", "game"]) == "enam"
-    find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
+    find_max(["aaaaaaa", "bb" ,"cc"]) == ""aaaaaaa"
     """
     if not words:
         return ""
 
     max_word = ""
-    max_unique_chars = 0
+    max_unique_chars = -1
 
     for word in words:
         unique_chars = len(set(word))
@@ -44,21 +44,26 @@ def find_max(words):
 # STEP 1: REASONING
 # The function `find_max` aims to find the word with the most unique characters in a list of strings.
 # If multiple words have the same maximum number of unique characters, it should return the lexicographically smallest one.
-# Edge cases: Empty input list, multiple words with the same maximum unique characters.
-# We need to test various scenarios including empty lists, lists with single words, lists with duplicate words,
-# lists with words having different numbers of unique characters, and lists where multiple words have the same maximum.
+# Edge cases to consider:
+#   - Empty input list: Should return an empty string.
+#   - List with only one word: Should return that word.
+#   - Multiple words with the same maximum number of unique characters: Should return the lexicographically smallest.
+#   - Words with no unique characters: Should return an empty string.
 
 # STEP 2: PLAN
 # Test functions:
-# - test_empty_list: Checks the behavior with an empty input list.
-# - test_single_word: Checks the behavior with a list containing only one word.
-# - test_multiple_words_different_unique_chars: Checks the behavior with multiple words having different numbers of unique characters.
-# - test_multiple_words_same_unique_chars_lexicographical_order: Checks the behavior with multiple words having the same maximum number of unique characters, ensuring lexicographical order is maintained.
-# - test_duplicate_words: Checks the behavior with duplicate words in the input list.
-# - test_mixed_case: Checks the behavior with mixed case words.
-# - test_special_characters: Checks the behavior with words containing special characters.
+#   - test_empty_list: Tests the case where the input list is empty.
+#   - test_single_word: Tests the case where the input list contains only one word.
+#   - test_multiple_words_different_unique_chars: Tests the case where multiple words have different numbers of unique characters.
+#   - test_multiple_words_same_unique_chars_lexicographical_order: Tests the case where multiple words have the same number of unique characters and should be sorted lexicographically.
+#   - test_words_with_no_unique_chars: Tests the case where all words have no unique characters.
+#   - test_mixed_case: Tests the case where the input words have mixed case.
+#   - test_duplicate_chars: Tests the case where words have duplicate characters.
 
 # STEP 3: CODE
+#
+
+### Test Cases
 def test_empty_list():
     assert find_max([]) == ""
 
@@ -66,28 +71,16 @@ def test_single_word():
     assert find_max(["hello"]) == "hello"
 
 def test_multiple_words_different_unique_chars():
-    assert find_max(["abc", "ab", "abcd"]) == "abcd"
+    assert find_max(["apple", "banana", "orange"]) == "orange"
 
 def test_multiple_words_same_unique_chars_lexicographical_order():
     assert find_max(["enam", "name", "game"]) == "enam"
 
-def test_duplicate_words():
-    assert find_max(["name", "name", "enam"]) == "enam"
+def test_words_with_no_unique_chars():
+    assert find_max(["aaaa", "bb", "cc"]) == "aaaa"
 
 def test_mixed_case():
-    assert find_max(["Name", "name", "Enam"]) == "Enam"
+    assert find_max(["Name", "enam", "Game"]) == "enam"
 
-def test_special_characters():
-    assert find_max(["!@#", "abc", "!@#$"]) == "!@#"
-
-def test_complex_case():
-    assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
-
-def test_another_complex_case():
-    assert find_max(["abc", "ab", "abcd", "bac"]) == "abcd"
-
-def test_all_same_characters():
-    assert find_max(["aaaa", "bbbb", "cccc"]) == "aaaa"
-
-def test_lexicographical_tie():
-    assert find_max(["apple", "banana", "orange"]) == "apple"
+def test_duplicate_chars():
+    assert find_max(["aabbcc", "abc", ""]) == "abc"

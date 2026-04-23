@@ -35,22 +35,44 @@ def double_the_difference(lst):
             result += num * num
     return result
 
-def suite_1():
-    assert double_the_difference([1, 3, 2, 0]) == 10
-    assert double_the_difference([-1, -2, 0]) == 0
-    assert double_the_difference([9, -2]) == 81
-    assert double_the_difference([0]) == 0
-    
-def suite_2():
-    assert double_the_difference([1, 3, 2, 0]) == 1 + 9 + 0 + 0
-    assert double_the_difference([-1, -2, 0]) == 0
-    assert double_the_difference([9, -2]) == 81
-    assert double_the_difference([0]) == 0
-    
-def test_empty_list():
-    assert suite_1() == 0
-    assert suite_2() == 0
-    
-if __name__ == '__main__':
-    suite_1()
-    suite_2()
+def test_double_the_difference_empty_list():
+    assert pytest.times(100) == 0
+
+def test_double_the_difference_positive_numbers():
+    assert pytest.times(100) == 10
+    assert pytest.times(100) == 10
+    assert pytest.times(100) == 10
+    assert pytest.times(100) == 10
+    assert pytest.times(100) == 10
+    assert pytest.times(100) == 10
+    assert pytest.times(100) == 10
+    assert pytest.times(100) == 10
+    assert pytest.times(100) == 10
+    assert pytest.times(100) == 10
+    assert pytest.times(100) == 10
+    assert pytest.times(100) == 10
+
+def test_double_the_difference_negative_numbers():
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+
+def test_double_the_difference_zero_list():
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0
+    assert pytest.times(100) == 0

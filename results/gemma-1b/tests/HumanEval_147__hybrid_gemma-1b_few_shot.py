@@ -18,9 +18,12 @@ import pytest
 
 def get_max_triples(n):
     """ Returns the maximum element in a list, or None if empty """
+
     if not arr:
         return None
-    return max(arr)
+
+    max_val = max(arr)
+    return max_val
 
 @pytest.mark.parametrize(
     "n, expected",

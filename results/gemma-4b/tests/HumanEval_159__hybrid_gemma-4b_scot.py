@@ -29,6 +29,8 @@ def eat(number, need, remaining):
     Have fun :)
     """
 
+import pytest
+
 def eat(number, need, remaining):
     """
     You're a hungry rabbit, and you already have eaten a certain number of carrots,
@@ -62,27 +64,26 @@ def eat(number, need, remaining):
     left = remaining - eaten
     return [eaten, left]
 
-import pytest
-
-def test_sufficient_carrots():
+def test_eat_sufficient_carrots():
     assert eat(5, 6, 10) == [11, 4]
     assert eat(4, 8, 9) == [12, 1]
     assert eat(1, 10, 10) == [11, 0]
     assert eat(2, 11, 5) == [7, 0]
 
-def test_not_enough_carrots():
-    assert eat(5, 6, 3) == [11, 0]
-    assert eat(10, 5, 2) == [15, 0]
+def test_eat_insufficient_carrots():
+    assert eat(5, 11, 6) == [16, 0]
+    assert eat(10, 5, 3) == [15, 0]
 
-def test_zero_values():
+def test_eat_zero_need():
+    assert eat(5, 0, 10) == [5, 5]
+    assert eat(0, 0, 10) == [0, 10]
+
+def test_eat_zero_remaining():
+    assert eat(5, 6, 0) == [11, 0]
+    assert eat(0, 6, 0) == [6, 0]
+
+def test_eat_edge_cases():
     assert eat(0, 0, 0) == [0, 0]
-    assert eat(0, 1, 10) == [1, 0]
-    assert eat(1, 0, 10) == [1, 10]
-
-def test_max_values():
     assert eat(1000, 1000, 1000) == [2000, 0]
-    assert eat(500, 500, 1000) == [1000, 500]
-
-def test_need_greater_than_remaining():
-    assert eat(5, 10, 3) == [15, 0]
-    assert eat(1, 100, 1) == [101, 0]
+    assert eat(1000, 0, 1000) == [1000, 0]
+    assert eat(0, 1000, 1000) == [1000, 0]

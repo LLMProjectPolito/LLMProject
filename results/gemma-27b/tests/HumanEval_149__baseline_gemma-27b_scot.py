@@ -40,7 +40,7 @@ def test_empty_list():
     assert sorted_list_sum([]) == []
 
 def test_all_odd_lengths():
-    assert sorted_list_sum(["a", "abc", "de"]) == []
+    assert sorted_list_sum(["a", "abc", ""]) == []
 
 def test_all_even_lengths():
     assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
@@ -61,7 +61,7 @@ def test_example_2():
     assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
 def test_long_strings():
-    assert sorted_list_sum(["abcdef", "abc", "def", "ghi"]) == ["def", "ghi"]
+    assert sorted_list_sum(["abcdef", "abc", "ab"]) == ["ab", "abcdef"]
 
 def test_mixed_case():
-    assert sorted_list_sum(["aB", "Ab", "ab"]) == ["aB", "Ab", "ab"]
+    assert sorted_list_sum(["aB", "Ab", "ab"]) == ["Ab", "aB", "ab"]

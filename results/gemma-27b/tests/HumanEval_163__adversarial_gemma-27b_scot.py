@@ -51,11 +51,11 @@ def test_generate_integers_single_even():
 def test_generate_integers_large_range():
     assert generate_integers(1, 10) == [2, 4, 6, 8, 10]
 
-def test_generate_integers_range_with_gap():
-    assert generate_integers(2, 6) == [2, 4, 6]
+def test_generate_integers_consecutive_even():
+    assert generate_integers(4, 6) == [4, 6]
 
 def test_generate_integers_start_odd_end_even():
-    assert generate_integers(1, 4) == [2, 4]
+    assert generate_integers(1, 6) == [2, 4, 6]
 
 def test_generate_integers_start_even_end_odd():
-    assert generate_integers(2, 5) == [2, 4]
+    assert generate_integers(2, 7) == [2, 4, 6]

@@ -44,18 +44,14 @@ def bf(planet1, planet2):
     if start_index > end_index:
         start_index, end_index = end_index, start_index
 
-    result = planets[start_index+1:end_index]
+    result = tuple(planets[start_index + 1:end_index])
+    return result
 
-    return tuple(result)
-
-def test_valid_planets_in_order():
+def test_valid_planets_normal_order():
     assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
 
-def test_valid_planets_reverse_order_earth_mercury():
-    assert bf("Earth", "Mercury") == ("Venus",)
-
-def test_valid_planets_reverse_order_mars_earth():
-    assert bf("Mars", "Earth") == ("Earth",)
+def test_valid_planets_reverse_order():
+    assert bf("Earth", "Mercury") == ("Venus")
 
 def test_valid_planets_wide_range():
     assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
@@ -63,23 +59,30 @@ def test_valid_planets_wide_range():
 def test_same_planet():
     assert bf("Earth", "Earth") == ()
 
-def test_invalid_input():
-    assert bf("Pluto", "Earth") == ()
-    assert bf("Earth", "Pluto") == ()
-    assert bf("Pluto", "X") == ()
-    assert bf("invalid", "Earth") == ()
+def test_adjacent_planets():
+    assert bf("Earth", "Mars") == ()
 
-def test_adjacent_planets_in_order():
-    assert bf("Earth", "Mars") == ("Mars",)
-
-def test_adjacent_planets_reverse_order():
-    assert bf("Mars", "Earth") == ("Earth",)
-
-def test_first_and_last_planets():
+def test_mercury_to_neptune():
     assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
 
-def test_neptune_to_mercury():
-    assert bf("Neptune", "Mercury") == ("Uranus", "Saturn", "Jupiter", "Mars", "Earth", "Venus")
+def test_invalid_planet1_valid_planet2():
+    assert bf("Pluto", "Neptune") == ()
 
-def test_reverse_wide_range():
-    assert bf("Uranus", "Mercury") == ("Saturn", "Jupiter", "Mars", "Earth", "Venus")
+def test_valid_planet1_invalid_planet2():
+    assert bf("Earth", "Pluto") == ()
+
+def test_invalid_planets_both():
+    assert bf("Pluto", "X") == ()
+
+def test_case_sensitivity_reverse():
+    assert bf("bf", "Mercury") == ()
+    assert bf("Mercury", "earth") == ()
+
+def test_empty_input_planet1():
+    assert bf("", "Neptune") == ()
+
+def test_empty_input_planet2():
+    assert bf("Earth", "") == ()
+
+def test_first_and_second_planet():
+    assert bf("Mercury", "Venus") == ()

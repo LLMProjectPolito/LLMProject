@@ -72,29 +72,26 @@ class TestEat:
     def test_not_enough_carrots(self):
         assert eat(4, 8, 9) == [12, 1]
 
-    def test_exact_carrots_needed(self):
+    def test_exact_need(self):
         assert eat(1, 10, 10) == [11, 0]
 
-    def test_less_carrots_remaining(self):
+    def test_less_remaining(self):
         assert eat(2, 11, 5) == [7, 0]
 
-    def test_zero_carrots_eaten(self):
+    def test_zero_initial_eaten(self):
         assert eat(0, 5, 10) == [5, 5]
 
-    def test_zero_carrots_needed(self):
+    def test_zero_need(self):
         assert eat(5, 0, 10) == [5, 10]
 
-    def test_zero_carrots_remaining(self):
+    def test_zero_remaining(self):
         assert eat(5, 6, 0) == [5, 0]
-
-    def test_all_constraints_zero(self):
-        assert eat(0, 0, 0) == [0, 0]
 
     def test_large_numbers(self):
         assert eat(999, 999, 1000) == [1998, 1]
 
-    def test_large_numbers_not_enough(self):
-        assert eat(999, 1000, 999) == [1998, 0]
+    def test_all_zero(self):
+        assert eat(0, 0, 0) == [0, 0]
 
     def test_need_equals_remaining(self):
         assert eat(5, 5, 5) == [10, 0]

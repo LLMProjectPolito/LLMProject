@@ -27,9 +27,6 @@ def solve(s):
     solve("ab") = "AB"
     solve("#a@C") = "#A@c"
     """
-    if not s:
-        return s[::-1]
-
     result = ""
     for char in s:
         if 'a' <= char <= 'z':
@@ -38,7 +35,6 @@ def solve(s):
             result += char.lower()
         else:
             result += char
-
     return result
 
 # Focus: Type Scenarios

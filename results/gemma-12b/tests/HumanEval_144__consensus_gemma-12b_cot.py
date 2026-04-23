@@ -34,31 +34,34 @@ def test_simplify_large_numbers_whole():
     assert simplify("100/2", "2/1") == True
 
 def test_simplify_large_numbers_not_whole():
-    assert simplify("100/3", "3/1") == False
+    assert simplify("100/3", "2/1") == False
 
 def test_simplify_same_fraction():
     assert simplify("1/2", "1/2") == True
 
-def test_simplify_fraction_with_one_as_denominator():
+def test_simplify_different_denominators_whole():
+    assert simplify("3/4", "8/1") == True
+
+def test_simplify_different_denominators_not_whole():
+    assert simplify("3/4", "9/1") == False
+
+def test_simplify_numerator_one():
+    assert simplify("1/7", "14/1") == True
+
+def test_simplify_denominator_one():
     assert simplify("5/1", "1/1") == True
 
-def test_simplify_fraction_with_one_as_numerator():
-    assert simplify("1/7", "7/1") == True
-
-def test_simplify_fraction_with_one_as_both():
-    assert simplify("1/1", "1/1") == True
-
 def test_simplify_complex_fractions_whole():
-    assert simplify("2/4", "4/2") == True
+    assert simplify("2/3", "6/1") == True
 
 def test_simplify_complex_fractions_not_whole():
-    assert simplify("3/5", "5/3") == False
+    assert simplify("2/3", "7/1") == False
 
-def test_simplify_zero_numerator():
-    assert simplify("0/1", "1/1") == True
+def test_simplify_edge_case_1():
+    assert simplify("1/2", "3/2") == False
 
-def test_simplify_decimal_result_false():
-    assert simplify("1/3", "2/1") == False
+def test_simplify_edge_case_2():
+    assert simplify("1/3", "4/3") == False
 
-def test_simplify_decimal_result_false_2():
-    assert simplify("2/3", "1/2") == False
+def test_simplify_edge_case_3():
+    assert simplify("1/4", "5/4") == False

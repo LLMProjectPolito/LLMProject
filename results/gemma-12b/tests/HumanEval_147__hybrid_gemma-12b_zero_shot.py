@@ -64,6 +64,33 @@ def test_get_max_triples_negative_n():
     with pytest.raises(ValueError):
         get_max_triples(-1)
 
-def test_get_max_triples_n_float():
-    with pytest.raises(TypeError):
-        get_max_triples(5.5)
+@pytest.fixture
+def sample_array(n):
+    """Generates the array 'a' based on the input 'n' for testing."""
+    return [i * i - i + 1 for i in range(1, n + 1)]
+
+def check_multiple_of_3(sum_val):
+    """Helper function to check if a number is a multiple of 3."""
+    return sum_val % 3 == 0
+
+def test_get_max_triples_n_large(sample_array):
+    """Test case for a larger n to ensure efficiency."""
+    n = 20
+    a = [i * i - i + 1 for i in range(1, n + 1)]
+    assert get_max_triples(n) == 120
+
+def test_get_max_triples_edge_case_n_0_alt(sample_array):
+    """Test case for n = 0. Should return 0."""
+    assert get_max_triples(0) == 0
+
+def test_get_max_triples_all_same_mod_3(sample_array):
+    """Test case where all elements have the same remainder when divided by 3."""
+    n = 3
+    a = [i * i - i + 1 for i in range(1, n + 1)]
+    assert get_max_triples(n) == 1
+
+def test_get_max_triples_alternating_mods(sample_array):
+    """Test case where elements alternate between different remainders when divided by 3."""
+    n = 6
+    a = [i * i - i + 1 for i in range(1, n + 1)]
+    assert get_max_triples(n) == 2

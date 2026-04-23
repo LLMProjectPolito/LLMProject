@@ -67,12 +67,8 @@ def test_special_factorial_0():
 def test_special_factorial_large():
     assert special_factorial(7) == 185794560000
 
+def test_special_factorial_negative():
+    assert special_factorial(-1) == 1
+
 def test_special_factorial_edge_case():
     assert special_factorial(10) == 1316818944000000000
-
-def test_special_factorial_with_factorial_function():
-    n = 4
-    expected = 1
-    for i in range(1, n + 1):
-        expected *= factorial(i)
-    assert special_factorial(n) == expected

@@ -19,30 +19,33 @@ def string_to_md5(text):
     """
     if not text:
         return None
-    return hashlib.md5(text.encode('utf-8')).hexdigest()
+    md5_hash = hashlib.md5(text.encode('utf-8')).hexdigest()
+    return md5_hash
 
-def test_string_to_md5_hello_world():
-    assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
+class TestStringToMD5:
 
-def test_string_to_md5_empty_string():
-    assert string_to_md5('') is None
+    def test_empty_string(self):
+        assert string_to_md5("") is None
 
-def test_string_to_md5_single_character():
-    assert string_to_md5('a') == '9709d29698944493933296269793693a'
+    def test_hello_world(self):
+        assert string_to_md5("Hello world") == '3e25960a79dbc69b674cd4ec67a72c62'
 
-def test_string_to_md5_unicode():
-    assert string_to_md5('你好世界') == 'b9a8a9c76357c631933939a89669696'
+    def test_single_character(self):
+        assert string_to_md5("a") == '2598cf2497ae7c45a5a844075b3b83d3'
 
-def test_string_to_md5_with_spaces():
-    assert string_to_md5('  test  ') == 'b9a8a9c76357c631933939a89669696'
+    def test_long_string(self):
+        long_string = "This is a very long string to test the function."
+        expected_md5 = 'b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9'
+        assert string_to_md5(long_string) == expected_md5
 
-def test_string_to_md5_numbers():
-    assert string_to_md5('12345') == '6b9340a38081cf731a6764966969696'
+    def test_string_with_spaces(self):
+        assert string_to_md5("  leading and trailing spaces  ") == 'b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9'
 
-def test_string_to_md5_mixed_characters():
-    assert string_to_md5('Hello123!@#') == '69696969696969696969696969696969'
+    def test_string_with_special_characters(self):
+        assert string_to_md5("!@#$%^&*()") == '6741669d93419999999999999999999999999999999999999999999999999999'
 
-def test_string_to_md5_long_string():
-    long_string = "This is a very long string to test the md5 function."
-    expected_md5 = '8967999999999999999999999999999999999999999999999999999999999999'
-    assert string_to_md5(long_string) == expected_md5
+    def test_unicode_string(self):
+        assert string_to_md5("你好世界") == 'b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9'
+
+    def test_mixed_string(self):
+        assert string_to_md5("Hello world 123!") == '3e25960a79dbc69b674cd4ec67a72c626741669d934199999999999999999999999999999999999999999999999999'

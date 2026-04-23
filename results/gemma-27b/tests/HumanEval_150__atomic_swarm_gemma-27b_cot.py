@@ -55,5 +55,5 @@ def x_or_y(n, x, y):
             return y
     return x
 
-def test_x_or_y_negative_n():
+def test_negative_n():
     assert x_or_y(-5, 10, 20) == 20

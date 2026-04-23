@@ -20,14 +20,16 @@ def solve(s):
 
 # STEP 2: PLAN
 # Test functions:
-# - test_no_letters: Tests a string with no letters (e.g., "1234").
-# - test_only_letters_lowercase: Tests a string with only lowercase letters (e.g., "ab").
-# - test_only_letters_uppercase: Tests a string with only uppercase letters (e.g., "AB").
-# - test_mixed_letters_and_numbers: Tests a string with letters and numbers (e.g., "a1B2").
-# - test_mixed_letters_and_special_chars: Tests a string with letters and special characters (e.g., "#a@C").
-# - test_empty_string: Tests an empty string.
-# - test_string_with_spaces: Tests a string with spaces.
-# - test_string_with_mixed_cases: Tests a string with mixed cases and other characters.
+# - test_no_letters: String contains only non-letter characters, should be reversed.
+# - test_only_letters_lower: String contains only lowercase letters, should be converted to uppercase.
+# - test_only_letters_upper: String contains only uppercase letters, should be converted to lowercase.
+# - test_mixed_letters_and_numbers: String contains letters and numbers, letters should be toggled, numbers should remain unchanged.
+# - test_mixed_letters_and_special: String contains letters and special characters, letters should be toggled, special characters should remain unchanged.
+# - test_empty_string: Empty string, should return an empty string.
+# - test_single_letter: String with a single letter, should be converted to its opposite case.
+# - test_single_number: String with a single number, should remain unchanged.
+# - test_single_special: String with a single special character, should remain unchanged.
+# - test_complex_string: A more complex string with a mix of all character types.
 
 # STEP 3: CODE
 import pytest
@@ -65,30 +67,38 @@ def solve(s):
 class TestSolve:
     def test_no_letters(self):
         assert solve("1234") == "4321"
+        assert solve("!@#$%^") == "^%$#@!"
 
-    def test_only_letters_lowercase(self):
+    def test_only_letters_lower(self):
         assert solve("ab") == "AB"
+        assert solve("hello") == "HELLO"
 
-    def test_only_letters_uppercase(self):
+    def test_only_letters_upper(self):
         assert solve("AB") == "ab"
+        assert solve("WORLD") == "world"
 
     def test_mixed_letters_and_numbers(self):
-        assert solve("a1B2") == "A1b2"
+        assert solve("a1b2c") == "A1B2C"
+        assert solve("1a2B3c") == "1A2b3C"
 
-    def test_mixed_letters_and_special_chars(self):
+    def test_mixed_letters_and_special(self):
         assert solve("#a@C") == "#A@c"
+        assert solve("!a@B#c") == "!A@b#C"
 
     def test_empty_string(self):
         assert solve("") == ""
 
-    def test_string_with_spaces(self):
-        assert solve("a b c") == "A B C"
+    def test_single_letter(self):
+        assert solve("a") == "A"
+        assert solve("Z") == "z"
 
-    def test_string_with_mixed_cases(self):
-        assert solve("aBcDeF") == "AbCdEf"
+    def test_single_number(self):
+        assert solve("1") == "1"
 
-    def test_string_with_all_special_chars(self):
-        assert solve("!@#$%^") == "!@#$%^"
+    def test_single_special(self):
+        assert solve("!") == "!"
 
-    def test_string_with_numbers_and_special_chars(self):
-        assert solve("1!2@3#") == "1!2@3#"
+    def test_complex_string(self):
+        assert solve("HeLlO 123!@#") == "hElLo 123!@#"
+        assert solve("aBcDeFgHiJkLmNoPqRsTuVwXyZ") == "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        assert solve("ZYXWVUTSRQPONMLKJIHGFEDCBA") == "zyxwvutsrqponmlkjihgfedcba"

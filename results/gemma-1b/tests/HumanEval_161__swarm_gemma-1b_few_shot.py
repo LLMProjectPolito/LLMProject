@@ -24,15 +24,15 @@ def solve(s):
     solve("ab") = "AB"
     solve("#a@C") = "#A@c"
     """
-    result = ""
+    res = ""
     for char in s:
         if 'a' <= char <= 'z':
-            result += char.upper()
+            res += char.upper()
         elif 'A' <= char <= 'Z':
-            result += char.lower()
+            res += char.lower()
         else:
-            result += char
-    return result
+            res += char
+    return res
 
 def solve(s):
     """You are given a string s.
@@ -45,15 +45,15 @@ def solve(s):
     solve("ab") = "AB"
     solve("#a@C") = "#A@c"
     """
-    result = ""
+    res = ""
     for char in s:
         if 'a' <= char <= 'z':
-            result += char.upper()
+            res += char.upper()
         elif 'A' <= char <= 'Z':
-            result += char.lower()
+            res += char.lower()
         else:
-            result += char
-    return result
+            res += char
+    return res
 
 def test_solve_valid_string():
     assert solve("1234") == "4321"
@@ -70,4 +70,9 @@ def test_solve_all_uppercase():
     assert solve("ABC") == "ABC"
 
 def test_solve_mixed_case():
-    assert solve("aBc") == "aBc"
+    assert solve("aBc") == "AbaC"
+
+def test_solve_numbers():
+    assert solve("123") == "123"
+    assert solve("1234") == "4321"
+    assert solve("#123") == "#123"

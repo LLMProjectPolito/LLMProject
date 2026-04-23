@@ -59,10 +59,7 @@ def test_special_characters():
     assert solve("#a@C") == "#A@c"
 
 def test_mixed_case_and_numbers():
-    assert solve("a1b2c3") == "A1b2c3"
+    assert solve("aB") == "bA"
 
-def test_longer_string():
-    assert solve("abcdefg") == "gfedcba"
-
-def test_string_with_only_numbers():
-    assert solve("12345") == "54321"
+def test_palindrome():
+    assert solve("#a@C") == "#A@c"

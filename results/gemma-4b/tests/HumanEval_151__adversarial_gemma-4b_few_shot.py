@@ -12,6 +12,7 @@ def double_the_difference(lst):
     If the input list is empty, return 0.
     '''
 
+```python
 import pytest
 
 def is_palindrome(s: str) -> bool:
@@ -73,22 +74,36 @@ def test_get_max_negative():
 def test_get_max_mixed():
     assert get_max([-1, 2, -3, 4]) == 4
 
-def test_double_the_difference_positive():
+def test_double_the_difference_basic():
     assert double_the_difference([1, 3, 2, 0]) == 10
-    assert double_the_difference([9, -2]) == 81
-    assert double_the_difference([1, 3, 5]) == 35
-
-def test_double_the_difference_negative():
     assert double_the_difference([-1, -2, 0]) == 0
-    assert double_the_difference([-1, -3]) == 0
-
-def test_double_the_difference_mixed():
-    assert double_the_difference([1, -2, 3, -4]) == 21
+    assert double_the_difference([9, -2]) == 81
     assert double_the_difference([0]) == 0
-
-def test_double_the_difference_empty():
+    assert double_the_difference([1, 3, 5]) == 35
     assert double_the_difference([]) == 0
 
-def test_double_the_difference_non_integers():
-    assert double_the_difference([1.5, 2.7, 3]) == 9
-    assert double_the_difference([1, 'a', 3]) == 10
+def test_double_the_difference_mixed():
+    assert double_the_difference([1, 2, 3, 4, 5]) == 55
+    assert double_the_difference([-1, 2, -3, 4, -5]) == 34
+    assert double_the_difference([1, -2, 3, -4, 5]) == 34
+    assert double_the_difference([1, 2, -3, 4, 5]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7, 8]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7, 8, 9]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7, 8, 9, 10]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7, 8, 9, 10, 11]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7, 8, 9, 10, 11, 12]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7, 8, 9, 10, 11, 12, 13]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7, 8, 9, 10, 11, 12, 13, 14]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7, 8, 9, 10, 11, 12, 13, 14, 15]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]) == 34
+    assert double_the_difference([1, 2, 3, 4, 5, -6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]) == 34
+    assert double_the_difference([

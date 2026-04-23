@@ -22,7 +22,7 @@ def cycpattern_check(a , b):
     cycpattern_check("himenss","simen") => True
 
     """
-    if b in a or b in a[1:] or b in a[:-1]:
+    if b in a or b in a[::-1]:
         return True
     else:
         return False
@@ -30,19 +30,19 @@ def cycpattern_check(a , b):
 ### SCoT Steps:
 
 # STEP 1: REASONING - Analyze functional goals and constraints.
-# The function `cycpattern_check` checks if the string `b` (or any of its rotations) is a substring of the string `a`.
+# The function `cycpattern_check` checks if the string `b` (or any of its rotations) is a substring of string `a`.
 # The function should handle cases where `b` is an empty string, `a` is an empty string, or `b` is longer than `a`.
-# The function should consider all possible rotations of `b`.
-# The function should return `True` if `b` or any of its rotations is a substring of `a`, and `False` otherwise.
+# The function should consider rotations of `b`.
+# The function should return `True` if `b` is found as a substring in `a` or any of its rotations, and `False` otherwise.
 
 # STEP 2: PLAN - List test functions names and scenarios.
 # test_empty_strings
-# test_b_is_substring
-# test_b_is_not_substring
-# test_b_is_rotation
-# test_b_longer_than_a
 # test_b_empty_string
 # test_a_empty_string
+# test_b_is_substring
+# test_b_is_rotation_substring
+# test_b_is_not_substring
+# test_b_longer_than_a
 # test_b_equals_a
 # test_b_is_prefix_of_a
 # test_b_is_suffix_of_a
@@ -51,6 +51,12 @@ def cycpattern_check(a , b):
 def test_empty_strings():
     assert cycpattern_check("", "") == True
 
+def test_b_empty_string():
+    assert cycpattern_check("abcd", "") == True
+
+def test_a_empty_string():
+    assert cycpattern_check("", "abc") == False
+
 def test_b_is_substring():
     assert cycpattern_check("abcd", "abd") == False
     assert cycpattern_check("hello", "ell") == True
@@ -58,38 +64,30 @@ def test_b_is_substring():
     assert cycpattern_check("abab", "baa") == True
     assert cycpattern_check("himenss", "simen") == True
 
-def test_b_is_not_substring():
-    assert cycpattern_check("abcd", "abc") == False
-    assert cycpattern_check("hello", "hel") == False
-    assert cycpattern_check("whassup", "wuss") == False
-    assert cycpattern_check("abab", "aba") == False
-    assert cycpattern_check("efef", "efe") == False
-
-def test_b_is_rotation():
+def test_b_is_rotation_substring():
     assert cycpattern_check("abcd", "bcda") == True
     assert cycpattern_check("abcd", "dabc") == True
     assert cycpattern_check("abcd", "cdab") == True
-    assert cycpattern_check("abcd", "abdc") == False
+    assert cycpattern_check("abcd", "abdc") == True
+
+def test_b_is_not_substring():
+    assert cycpattern_check("abcd", "abcde") == False
+    assert cycpattern_check("hello", "hellp") == False
+    assert cycpattern_check("whassup", "whassupx") == False
+    assert cycpattern_check("abab", "baab") == False
 
 def test_b_longer_than_a():
-    assert cycpattern_check("abc", "abcdef") == False
-    assert cycpattern_check("abc", "abcde") == False
-
-def test_b_empty_string():
-    assert cycpattern_check("abcd", "") == True
-    assert cycpattern_check("", "") == True
-
-def test_a_empty_string():
-    assert cycpattern_check("", "abc") == False
+    assert cycpattern_check("abcd", "abcde") == False
+    assert cycpattern_check("hello", "hellop") == False
 
 def test_b_equals_a():
-    assert cycpattern_check("abc", "abc") == True
+    assert cycpattern_check("hello", "hello") == True
+    assert cycpattern_check("abab", "abab") == True
 
 def test_b_is_prefix_of_a():
     assert cycpattern_check("abcdef", "abc") == True
+    assert cycpattern_check("hello world", "hello") == True
 
 def test_b_is_suffix_of_a():
     assert cycpattern_check("abcdef", "def") == True
-
-def test_b_not_equal_to_a():
-    assert cycpattern_check("abc", "abd") == False
+    assert cycpattern_check("hello world", "world") == True

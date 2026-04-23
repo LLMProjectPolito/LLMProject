@@ -37,3 +37,11 @@ def test_list_with_duplicate_strings_of_different_lengths():
 def test_list_with_mixed_lengths_and_duplicates():
     """Test with a list containing strings of mixed lengths and duplicates."""
     assert sorted_list_sum(["aa", "a", "aaa", "bb", "aa", "c", "bbb"]) == ["aa", "aa", "bb", "bbb"]
+
+def test_list_with_strings_same_length_different_alphabetical_order():
+    """Test with strings of the same length, different alphabetical order."""
+    assert sorted_list_sum(["cd", "ab", "ef"]) == ["ab", "cd", "ef"]
+
+def test_list_with_mixed_lengths_and_duplicates_2():
+    """Test with a mix of string lengths and duplicates."""
+    assert sorted_list_sum(["aa", "a", "aaa", "ab", "cd", "aa"]) == ["aa", "aa", "ab", "cd"]

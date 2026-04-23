@@ -88,21 +88,3 @@ def test_cycpattern_check_19():
 
 def test_cycpattern_check_20():
     assert cycpattern_check("longstring","string") == True
-
-def test_cycpattern_check_18_alt():
-    assert cycpattern_check("waterbottle","erbottlewat") == True
-
-def test_cycpattern_check_19_alt():
-    assert cycpattern_check("waterbottle","rbottlewat") == False
-
-def test_cycpattern_check_11_alt():
-    assert cycpattern_check("aaaa","aa") == True
-
-def test_cycpattern_check_12_alt():
-    assert cycpattern_check("aaaa","aaa") == True
-
-def test_cycpattern_check_13_alt():
-    assert cycpattern_check("aaaa","a") == True
-
-def test_cycpattern_check_14_alt():
-    assert cycpattern_check("a","aaaa") == False

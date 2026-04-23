@@ -60,21 +60,20 @@ def get_max_triples(n):
 # 9. n = 9: Should return 22
 # 10. n = 10: Should return 35
 
-# Test Function Names:
-# test_n_1
-# test_n_2
-# test_n_3
-# test_n_4
-# test_n_5
-# test_n_6
-# test_n_7
-# test_n_8
-# test_n_9
-# test_n_10
+# Test Functions:
+# test_n_1: Tests the case where n is 1.
+# test_n_2: Tests the case where n is 2.
+# test_n_3: Tests the case where n is 3.
+# test_n_4: Tests the case where n is 4.
+# test_n_5: Tests the case where n is 5.
+# test_n_6: Tests the case where n is 6.
+# test_n_7: Tests the case where n is 7.
+# test_n_8: Tests the case where n is 8.
+# test_n_9: Tests the case where n is 9.
+# test_n_10: Tests the case where n is 10.
 
 
 # STEP 3: CODE
-# pytest suite
 def test_n_1():
     assert get_max_triples(1) == 0
 

@@ -47,11 +47,14 @@ def test_even_odd_count_mixed_positive():
 def test_even_odd_count_large_number():
     assert even_odd_count(1234567890) == (5, 5)
 
-def test_even_odd_count_negative_large_number():
-    assert even_odd_count(-1234567890) == (5, 5)
-
 def test_even_odd_count_single_digit_even():
     assert even_odd_count(2) == (1, 0)
 
 def test_even_odd_count_single_digit_odd():
     assert even_odd_count(1) == (0, 1)
+
+def test_even_odd_count_negative_single_digit_even():
+    assert even_odd_count(-2) == (1, 0)
+
+def test_even_odd_count_negative_single_digit_odd():
+    assert even_odd_count(-1) == (0, 1)

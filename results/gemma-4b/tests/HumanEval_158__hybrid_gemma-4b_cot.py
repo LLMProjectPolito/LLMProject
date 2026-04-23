@@ -69,8 +69,14 @@ def test_find_max_words_with_numbers():
 def test_find_max_words_with_empty_string():
     assert find_max(["", "abc", "def"]) == "abc"
 
-def test_find_max_words_with_empty_and_non_empty():
-    assert find_max(["", "abc", ""]) == "abc"
-
-def test_find_max_all_empty_strings():
+def test_find_max_words_with_all_empty_strings():
     assert find_max(["", "", ""]) == ""
+
+def test_find_max_words_with_one_empty_string_and_others():
+    assert find_max(["", "abc", "def"]) == "abc"
+
+def test_find_max_words_with_lexicographical_tie_and_first_word_wins():
+    assert find_max(["abc", "abd"]) == "abc"
+
+def test_find_max_words_with_lexicographical_tie_and_second_word_wins():
+    assert find_max(["abd", "abc"]) == "abd"

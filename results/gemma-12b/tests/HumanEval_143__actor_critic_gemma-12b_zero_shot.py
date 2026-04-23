@@ -32,72 +32,72 @@ def is_prime(n):
     return True
 
 def test_empty_sentence():
-    assert words_in_sentence("") == ""  # Empty sentence should return an empty string.
+    assert words_in_sentence("") == ""
 
-def test_single_word_prime_length():
-    assert words_in_sentence("go") == "go"  # "go" has length 2, which is prime.
-
-def test_single_word_non_prime_length():
-    assert words_in_sentence("this") == ""  # "this" has length 4, which is not prime.
+@pytest.mark.parametrize("word, expected", [
+    ("go", "go"),
+    ("this", "")
+])
+def test_single_word(word, expected):
+    assert words_in_sentence(word) == expected
 
 def test_multiple_words_with_prime_lengths():
-    assert words_in_sentence("This is a test") == "is"  # "This" (4), "is" (2), "a" (1), "test" (4). Only "is" has prime length.
+    assert words_in_sentence("This is a test") == "is"
 
 def test_multiple_words_with_mixed_lengths():
-    assert words_in_sentence("lets go for swimming") == "go for"  # "lets" (4), "go" (2), "for" (3), "swimming" (8). "go" and "for" have prime lengths.
+    assert words_in_sentence("lets go for swimming") == "go for"
 
 def test_all_words_non_prime_lengths():
-    assert words_in_sentence("this is a very long sentence") == ""  # All words have non-prime lengths.
+    assert words_in_sentence("this is a very long sentence") == ""
 
 def test_all_words_prime_lengths():
-    assert words_in_sentence("go for two five") == "go for"  # All words have prime lengths (2, 3, 3, 4). "two" has length 3, which is prime.
+    assert words_in_sentence("go for two five") == "go for two five"
 
 def test_sentence_with_leading_and_trailing_spaces():
-    assert words_in_sentence("  go for  ") == "go for"  # Leading/trailing spaces should be trimmed.
+    assert words_in_sentence("  go for  ") == "go for"
 
 def test_sentence_with_multiple_spaces_between_words():
-    assert words_in_sentence("go   for  two") == "go for two"  # Multiple spaces should be treated as single spaces.
+    assert words_in_sentence("go   for  two") == "go for two"
 
 def test_sentence_with_one_letter_prime_word():
-    assert words_in_sentence("a go") == "go"  # "a" (1) is not prime, "go" (2) is prime.
+    assert words_in_sentence("a go") == "go"
 
 def test_sentence_with_one_letter_non_prime_word():
-    assert words_in_sentence("i go") == "go"  # "i" (1) is not prime, "go" (2) is prime.
+    assert words_in_sentence("i go") == "go"
 
 def test_sentence_with_long_prime_length_word():
-    assert words_in_sentence("This is a verylongword") == ""  # "verylongword" has length 14, which is not prime.
+    assert words_in_sentence("This is a verylongword") == "verylongword"
 
 def test_sentence_with_long_non_prime_length_word():
-    assert words_in_sentence("This is a verylongwordnotprime") == ""  # "verylongwordnotprime" has length 22, which is not prime.
+    assert words_in_sentence("This is a verylongwordnotprime") == ""
 
 def test_sentence_with_numbers_in_words():
-    assert words_in_sentence("This is 2 test") == ""  # Words with numbers are considered invalid.
+    assert words_in_sentence("This is 2 test") == ""
 
 def test_sentence_with_special_characters():
-    assert words_in_sentence("This is a test!") == ""  # Words with special characters are considered invalid.
+    assert words_in_sentence("This is a test!") == ""
 
 def test_sentence_with_prime_and_non_prime_words_at_start_and_end():
-    assert words_in_sentence("go this is a test") == "go"  # "go" (2) is prime, others are not.
+    assert words_in_sentence("go this is a test") == "go"
 
-def test_sentence_with_prime_and_non_prime_words_at_start_and_end2():
-    assert words_in_sentence("this is a test go") == "go"  # "go" (2) is prime, others are not.
+def test_sentence_with_prime_and_non_prime_words_in_middle():
+    assert words_in_sentence("this go is a test") == "go"
 
-def test_whitespace_only_sentence():
-    assert words_in_sentence("   ") == ""  # Sentence with only whitespace.
+def test_sentence_with_only_punctuation():
+    assert words_in_sentence("!@#$%^&*()") == ""
 
-def test_case_sensitivity():
-    assert words_in_sentence("Go For") == "" # Tests case sensitivity. "Go" (2) is prime, "For" (3) is prime, but the function is case sensitive.
+def test_sentence_with_very_long_prime_word():
+    long_prime_word = "a" * 101  # Length 101 is prime
+    assert words_in_sentence(long_prime_word) == long_prime_word
 
-def test_single_word_prime_palindrome():
-    assert words_in_sentence("madam") == "madam" # "madam" has length 5, which is prime and is a palindrome.
+def test_sentence_with_unicode_characters():
+    assert words_in_sentence("你好世界") == "" # Assuming Unicode characters are not considered prime
 
-def test_very_long_word_prime():
-    long_word = "a" * 1001  # Length 1001, which is prime
-    assert words_in_sentence(f"This is a {long_word}") == long_word
+def test_empty_string_after_stripping():
+    assert words_in_sentence("a i o") == ""
 
-def test_very_long_word_non_prime():
-    long_word = "a" * 1000  # Length 1000, which is not prime
-    assert words_in_sentence(f"This is a {long_word}") == ""
+def test_sentence_with_one_word_non_prime():
+    assert words_in_sentence("this") == ""
 
-def test_unicode_characters():
-    assert words_in_sentence("你好世界") == "" # "你好世界" has length 4, which is not prime.
+def test_sentence_with_one_word_prime():
+    assert words_in_sentence("go") == "go"

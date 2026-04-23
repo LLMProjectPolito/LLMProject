@@ -23,41 +23,27 @@ def digit_sum(n):
         n //= 10
     return s
 
-@pytest.mark.parametrize("nums, expected", [
+test_cases = [
     ([], []),
     ([1, 11, -1, -11, -12], [-1, -11, 1, -12, 11]),
     ([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]),
     ([-1, -2, -3, -4, -5], [-1, -2, -3, -4, -5]),
     ([1, -2, 3, -4, 5], [1, -2, 3, -4, 5]),
-    ([11, 2, 1, 22], [1, 2, 11, 22]),
-    ([0], [0]),
-    ([123, 45, 6], [6, 45, 123]),
-    ([1, 1, 1, 1], [1, 1, 1, 1]),
-    ([5, 55, 555], [5, 55, 555]),
-    ([10, 1, 100], [1, 10, 100]),
-    ([101, 11, 1], [1, 11, 101]),
     ([12, 11, 10], [10, 11, 12]),
-    ([1, 10, 100, 1000], [1, 10, 100, 1000]),
-    ([1, 10, 100, 1000, 1], [1, 10, 100, 1000, 1]),
-])
-def test_order_by_points_various_scenarios(nums, expected):
+    ([0], [0]),
+    ([5, 55, 555], [5, 55, 555]),
+    ([123, 45, 6], [6, 45, 123]),
+    ([99, 9, 999], [9, 99, 999]),
+    ([10, 1, 100], [1, 10, 100]),
+    ([11, 2, 3], [2, 3, 11]),
+    ([1, 1, 1], [1, 1, 1]),
+    ([12, 12, 12], [12, 12, 12]),
+    ([12, 1, 12], [1, 12, 12]),
+    ([101, 11, 1], [1, 11, 101]),
+    ([-10, -1, -100], [-1, -10, -100]),
+]
+
+@pytest.mark.parametrize("nums, expected", test_cases)
+def test_order_by_points(nums, expected):
     """Tests the order_by_points function with various scenarios."""
-    assert order_by_points(nums) == expected
-
-def test_same_digit_sum():
-    """Test with numbers having the same digit sum to ensure original order is preserved."""
-    nums = [1, 10, 100]
-    expected = [1, 10, 100]
-    assert order_by_points(nums) == expected
-
-def test_single_element():
-    """Test with a list containing only one element."""
-    nums = [5]
-    expected = [5]
-    assert order_by_points(nums) == expected
-
-def test_all_same_digit_sum():
-    """Test where all numbers have the same digit sum."""
-    nums = [11, 20, 101]
-    expected = [11, 20, 101]
     assert order_by_points(nums) == expected

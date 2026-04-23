@@ -103,7 +103,7 @@ def test_words_in_sentence_basic():
     assert words_in_sentence("lets go for swimming") == "go for"
     assert words_in_sentence("hello world") == ""
     assert words_in_sentence("a b c d") == "b"
-    assert words_in_sentence("one two three") == "two"
+    assert words_in_sentence("one two three") == "two three"
 
 def test_words_in_sentence_no_prime_words():
     assert words_in_sentence("hello world") == ""
@@ -116,22 +116,6 @@ def test_words_in_sentence_single_word():
     assert words_in_sentence("word") == ""
 
 def test_words_in_sentence_prime_length_words():
-    assert words_in_sentence("prime test") == "prime"
-    assert words_in_sentence("test prime") == "prime"
-
-def test_is_prime_small_numbers():
-    assert is_prime(2) == True
-    assert is_prime(3) == True
-    assert is_prime(4) == False
-    assert is_prime(5) == True
-    assert is_prime(6) == False
-
-def test_is_prime_larger_numbers():
-    assert is_prime(7) == True
-    assert is_prime(11) == True
-    assert is_prime(13) == True
-    assert is_prime(17) == True
-    assert is_prime(19) == True
-    assert is_prime(23) == True
-    assert is_prime(29) == True
-    assert is_prime(31) == True
+    assert words_in_sentence("one two three") == "two three"
+    assert words_in_sentence("a b c d") == "b"
+    assert words_in_sentence("one two") == "two"

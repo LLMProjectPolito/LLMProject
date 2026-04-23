@@ -29,6 +29,8 @@ def eat(number, need, remaining):
     Have fun :)
     """
 
+import pytest
+
 def eat(number, need, remaining):
     """
     You're a hungry rabbit, and you already have eaten a certain number of carrots,
@@ -58,6 +60,10 @@ def eat(number, need, remaining):
 
     Have fun :)
     """
+    
+    if not (0 <= number <= 1000 and 0 <= need <= 1000 and 0 <= remaining <= 1000):
+        raise ValueError("Input values must be between 0 and 1000")
+
     total_eaten = number
     left = remaining
     
@@ -71,47 +77,57 @@ def eat(number, need, remaining):
     return [total_eaten, left]
 
 
-def test_eat_remaining_greater_than_need():
+def test_eat_basic():
     assert eat(5, 6, 10) == [11, 4]
 
-def test_eat_remaining_less_than_need():
+def test_eat_need_greater_than_remaining():
     assert eat(4, 8, 9) == [12, 1]
 
-def test_eat_need_is_exact():
+def test_eat_exact_need():
     assert eat(1, 10, 10) == [11, 0]
 
-def test_eat_remaining_insufficient():
+def test_eat_remaining_less_than_need():
     assert eat(2, 11, 5) == [7, 0]
 
 def test_eat_no_remaining():
-    assert eat(3, 5, 0) == [3, 0]
+    assert eat(3, 7, 0) == [3, 0]
 
 def test_eat_no_need():
-    assert eat(7, 0, 12) == [7, 12]
-
-def test_eat_with_zero_initial_eaten():
-    assert eat(0, 5, 10) == [5, 5]
-
-def test_eat_with_zero_need():
     assert eat(5, 0, 10) == [5, 10]
 
-def test_eat_with_zero_remaining():
-    assert eat(5, 6, 0) == [5, 0]
+def test_eat_zero_eaten():
+    assert eat(0, 5, 10) == [5, 5]
+
+def test_eat_zero_need():
+    assert eat(5, 0, 0) == [5, 0]
 
 def test_eat_all_zeros():
     assert eat(0, 0, 0) == [0, 0]
 
 def test_eat_large_numbers():
-    assert eat(999, 999, 1000) == [1998, 1]
+    assert eat(999, 999, 999) == [1998, 0]
 
-def test_eat_large_numbers_2():
-    assert eat(100, 1000, 500) == [1500, 0]
+def test_eat_large_numbers_need_greater():
+    assert eat(100, 1000, 900) == [1900, 0]
 
-def test_eat_number_equals_need_remaining_greater():
-    assert eat(5, 5, 10) == [10, 5]
+def test_eat_large_numbers_remaining_greater():
+    assert eat(1000, 100, 2000) == [1100, 1900]
 
-def test_eat_need_much_larger_than_remaining():
-    assert eat(100, 2000, 500) == [1500, 0]
+def test_eat_number_exceeds_need():
+    assert eat(12, 5, 10) == [12, 5]
 
-def test_eat_number_greater_than_need_and_remaining_sufficient():
-    assert eat(10, 5, 10) == [15, 5]
+def test_eat_number_exceeds_remaining():
+    assert eat(12, 2, 1) == [13, 0]
+
+
+def test_eat_negative_input():
+    with pytest.raises(ValueError):
+        eat(-1, 5, 10)
+
+def test_eat_need_exceeds_limit():
+    with pytest.raises(ValueError):
+        eat(5, 1001, 10)
+
+def test_eat_remaining_exceeds_limit():
+    with pytest.raises(ValueError):
+        eat(5, 6, 1001)

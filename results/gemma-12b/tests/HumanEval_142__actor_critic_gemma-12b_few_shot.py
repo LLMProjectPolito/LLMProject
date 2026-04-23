@@ -13,12 +13,14 @@ def sum_squares(lst):
     For lst = [-1,-5,2,-1,-5]  the output should be -126
     """
 
+import pytest
+
 def sum_squares(lst: list[int]) -> int:
     """
-    This function takes a list of integers. For each entry in the list:
-    - If the index is a multiple of 3, the entry is squared.
-    - If the index is a multiple of 4 but not a multiple of 3, the entry is cubed.
-    - Otherwise, the entry remains unchanged.
+    This function takes a list of integers. For each entry in the list,
+    it squares the integer if its index is a multiple of 3,
+    cubes the integer if its index is a multiple of 4 and not a multiple of 3,
+    and leaves the integer unchanged otherwise.
     The function then returns the sum of all entries.
 
     If the input list is empty, the function returns 0.
@@ -32,14 +34,12 @@ def sum_squares(lst: list[int]) -> int:
     for i, num in enumerate(lst):
         if i % 3 == 0:
             sum_val += num**2
-        elif i % 4 == 0 and i % 3 != 0:
+        elif i % 4 == 0:
             sum_val += num**3
         else:
             sum_val += num
     return sum_val
 
-
-import pytest
 
 def test_sum_squares_basic():
     assert sum_squares([1, 2, 3]) == 6
@@ -51,25 +51,25 @@ def test_sum_squares_negative():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
 def test_sum_squares_mixed():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 222  # Corrected expected value
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 210
 
-def test_sum_squares_multiple_3_and_4():
-    assert sum_squares([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 222 # Corrected expected value
+def test_sum_squares_single_element_multiple_3():
+    assert sum_squares([5]) == 25  # 5 squared because index 0 is a multiple of 3
 
-def test_sum_squares_single_multiple_3():
-    assert sum_squares([5]) == 25
+def test_sum_squares_single_element_multiple_4():
+    assert sum_squares([5]) == 125  # 5 cubed because index 0 is a multiple of 4
 
-def test_sum_squares_single_multiple_4():
-    assert sum_squares([5]) == 125
+def test_sum_squares_single_element_neither():
+    assert sum_squares([5]) == 5  # 5 unchanged because index 0 is not a multiple of 3 or 4
 
-def test_sum_squares_single_neither():
-    assert sum_squares([5]) == 5
+def test_sum_squares_zero():
+    assert sum_squares([0]) == 0
 
 def test_sum_squares_large_list():
-    assert sum_squares(list(range(1, 101))) == 338350
+    assert sum_squares(list(range(100))) == 338350
 
-def test_sum_squares_with_zero():
-    assert sum_squares([0, 1, 2, 3, 4]) == 30
+def test_sum_squares_single_multiple_3_index():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 117
 
-def test_sum_squares_multiple_3_and_4_both():
-    assert sum_squares([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 222
+def test_sum_squares_single_multiple_4_index():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 210

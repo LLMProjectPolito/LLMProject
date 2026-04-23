@@ -66,23 +66,23 @@ def test_single_word():
 def test_multiple_words():
     assert words_in_sentence("this is a test") == "is a test"
 
-def test_sentence_with_spaces():
-    assert words_in_sentence("  this  is  a  test  ") == "is a test"
+def test_example_1():
+    assert words_in_sentence("This is a test") == "is"
+
+def test_example_2():
+    assert words_in_sentence("lets go for swimming") == "go for"
+
+def test_long_sentence():
+    assert words_in_sentence("This is a very long sentence with many words.") == "very long sentence with many words"
 
 def test_sentence_with_repeated_words():
-    assert words_in_sentence("this is a test this is a test") == "is a test this is a test"
+    assert words_in_sentence("hello hello") == "hello"
 
-def test_sentence_with_long_words():
-    assert words_in_sentence("this is a very long word") == "very long word"
-
-def test_sentence_with_prime_length_words():
-    assert words_in_sentence("prime number") == "prime"
-
-def test_sentence_with_non_prime_length_words():
-    assert words_in_sentence("not a prime") == "not a"
-
-def test_sentence_with_mixed_case():
-    assert words_in_sentence("This Is A Test") == "is a test"
+def test_sentence_with_empty_string():
+    assert words_in_sentence("") == ""
 
 def test_sentence_with_numbers():
     assert words_in_sentence("12345") == "12345"
+
+def test_sentence_with_mixed_case():
+    assert words_in_sentence("This is a Test") == "is a Test"

@@ -44,7 +44,7 @@ class TestCycpatternCheck:
         assert cycpattern_check("whassup", "psus") == False
         assert cycpattern_check("efef", "eeff") == False
         assert cycpattern_check("abc", "abcd") == False
-        assert cycpattern_check("xyz", "abc") == False
+        assert cycpattern_check("xyz", "zyxwv") == False
         assert cycpattern_check("aaaa", "bbbb") == False
 
     def test_empty_string_cases(self):
@@ -62,4 +62,7 @@ class TestCycpatternCheck:
         assert cycpattern_check("aa", "a") == True
         assert cycpattern_check("aa", "aa") == True
         assert cycpattern_check("aa", "ab") == False
-        assert cycpattern_check("abcde", "cdeab") == True
+        assert cycpattern_check("abcabcabc", "abc") == True
+        assert cycpattern_check("abcabcabc", "bca") == True
+        assert cycpattern_check("abcabcabc", "cab") == True
+        assert cycpattern_check("abcabcabc", "cba") == True

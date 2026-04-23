@@ -52,22 +52,31 @@ def test_do_algebra_complex_expression_3():
     assert do_algebra(['+', '-', '*'], [1, 2, 3, 4]) == -1
 
 def test_do_algebra_with_zero():
-    assert do_algebra(['+', '*', '-'], [0, 1, 2, 3]) == 1
+    assert do_algebra(['+', '-', '*'], [0, 1, 2, 3]) == 1
 
 def test_do_algebra_with_large_numbers():
-    assert do_algebra(['+', '*', '-'], [100, 200, 300, 400]) == 500
+    assert do_algebra(['+', '*', '-'], [100, 200, 3, 50]) == 650
 
-def test_do_algebra_with_floor_division_and_zero():
-    assert do_algebra(['//', '+'], [10, 2, 5]) == 10
+def test_do_algebra_floor_division_with_remainder():
+    assert do_algebra(['//'], [7, 2]) == 3
 
-def test_do_algebra_with_exponentiation_and_zero():
-    assert do_algebra(['**', '+'], [2, 0, 5]) == 6
+def test_do_algebra_exponentiation_with_zero_exponent():
+    assert do_algebra(['**'], [5, 0]) == 1
 
-def test_do_algebra_multiple_exponentiations():
-    assert do_algebra(['**', '**'], [2, 2, 3]) == 16
+def test_do_algebra_multiple_operations():
+    assert do_algebra(['+', '+', '+'], [1, 2, 3, 4]) == 10
+
+def test_do_algebra_multiple_subtractions():
+    assert do_algebra(['-', '-', '-'], [5, 1, 2, 3]) == -1
+
+def test_do_algebra_mixed_operations():
+    assert do_algebra(['+', '*', '-', '//'], [2, 3, 4, 8]) == 5
+
+def test_do_algebra_exponentiation_and_addition():
+    assert do_algebra(['**', '+'], [2, 3, 1]) == 9
 
 def test_do_algebra_long_expression():
-    assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 5, 2]) == -1
+    assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 5, 2]) == 1
 
-def test_do_algebra_all_operations():
-    assert do_algebra(['+', '-', '*', '//', '**'], [2, 3, 2, 4, 2, 2]) == -1
+def test_do_algebra_all_multiplications():
+    assert do_algebra(['*', '*', '*'], [2, 3, 4, 5]) == 120

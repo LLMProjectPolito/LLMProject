@@ -47,22 +47,19 @@ def test_zero_strength():
     assert Strongest_Extension("Class", ["aA", "Bb", "Cc"]) == "Class.aA"
 
 def test_long_extension_names():
-    assert Strongest_Extension("Class", ["VeryLongExtensionName", "ShortName"]) == "Class.VeryLongExtensionName"
+    assert Strongest_Extension("Class", ["VeryLongExtensionName", "ShortExtension"]) == "Class.VeryLongExtensionName"
 
 def test_extension_names_with_numbers():
-    assert Strongest_Extension("Class", ["Extension123", "AnotherExtension"]) == "Class.Extension123"
+    assert Strongest_Extension("Class", ["Extension123", "Extension456"]) == "Class.Extension123"
 
 def test_extension_names_with_special_characters():
-    assert Strongest_Extension("Class", ["Extension!", "AnotherExtension"]) == "Class.Extension!"
+    assert Strongest_Extension("Class", ["Extension!", "Extension@"]) == "Class.Extension!"
 
 def test_class_name_with_numbers():
-    assert Strongest_Extension("Class123", ["Extension"]) == "Class123.Extension"
+    assert Strongest_Extension("Class123", ["ExtensionA", "ExtensionB"]) == "Class123.ExtensionA"
 
 def test_class_name_with_special_characters():
-    assert Strongest_Extension("Class!", ["Extension"]) == "Class!.Extension"
+    assert Strongest_Extension("Class!", ["ExtensionA", "ExtensionB"]) == "Class!.ExtensionA"
 
 def test_multiple_extensions_with_same_strength():
-    assert Strongest_Extension("Class", ["ab", "cd", "ef"]) == "Class.ab"
-
-def test_multiple_extensions_with_varying_strengths():
-    assert Strongest_Extension("Class", ["aB", "Ab", "bA", "BA"]) == "Class.aB"
+    assert Strongest_Extension("Class", ["aA", "Aa", "bB"]) == "Class.aA"

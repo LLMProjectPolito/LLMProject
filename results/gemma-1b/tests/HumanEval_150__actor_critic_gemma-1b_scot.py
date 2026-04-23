@@ -9,6 +9,7 @@ def x_or_y(n, x, y):
     
     """
 
+```python
 import pytest
 
 def x_or_y(n, x, y):
@@ -66,4 +67,56 @@ def test_x_or_y_prime_number():
     assert x_or_y(1, 32, 1) == 1
     assert x_or_y(1, 33, 1) == 1
     assert x_or_y(1, 34, 1) == 1
-    print("All tests passed!")
+    assert x_or_y(1, 35, 1) == 1
+    assert x_or_y(1, 36, 1) == 1
+    assert x_or_y(1, 37, 1) == 1
+    assert x_or_y(1, 38, 1) == 1
+    assert x_or_y(1, 39, 1) == 1
+    assert x_or_y(1, 40, 1) == 1
+    assert x_or_y(1, 41, 1) == 1
+    assert x_or_y(1, 42, 1) == 1
+    assert x_or_y(1, 43, 1) == 1
+    assert x_or_y(1, 44, 1) == 1
+    assert x_or_y(1, 45, 1) == 1
+    assert x_or_y(1, 46, 1) == 1
+    assert x_or_y(1, 47, 1) == 1
+    assert x_or_y(1, 48, 1) == 1
+    assert x_or_y(1, 49, 1) == 1
+    assert x_or_y(1, 50, 1) == 1
+    assert x_or_y(1, 51, 1) == 1
+    assert x_or_y(1, 52, 1) == 1
+    assert x_or_y(1, 53, 1) == 1
+    assert x_or_y(1, 54, 1) == 1
+    assert x_or_y(1, 55, 1) == 1
+    assert x_or_y(1, 56, 1) == 1
+    assert x_or_y(1, 57, 1) == 1
+    assert x_or_y(1, 58, 1) == 1
+    assert x_or_y(1, 59, 1) == 1
+    assert x_or_y(1, 60, 1) == 1
+    assert x_or_y(1, 61, 1) == 1
+    assert x_or_y(1, 62, 1) == 1
+    assert x_or_y(1, 63, 1) == 1
+    assert x_or_y(1, 64, 1) == 1
+    assert x_or_y(1, 65, 1) == 1
+    assert x_or_y(1, 66, 1) == 1
+    assert x_or_y(1, 67, 1) == 1
+    assert x_or_y(1, 68, 1) == 1
+    assert x_or_y(1, 69, 1) == 1
+    assert x_or_y(1, 70, 1) == 1
+    assert x_or_y(1, 71, 1) == 1
+    assert x_or_y(1, 72, 1) == 1
+    assert x_or_y(1, 73, 1) == 1
+    assert x_or_y(1, 74, 1) == 1
+    assert x_or_y(1, 75, 1) == 1
+    assert x_or_y(1, 76, 1) == 1
+    assert x_or_y(1, 77, 1) == 1
+    assert x_or_y(1, 78, 1) == 1
+    assert x_or_y(1, 79, 1) == 1
+    assert x_or_y(1, 80, 1) == 1
+    assert x_or_y(1, 81, 1) == 1
+    assert x_or_y(1, 82, 1) == 1
+    assert x_or_y(1, 83, 1) == 1
+    assert x_or_y(1, 84, 1) == 1
+    assert x_or_y(1, 85, 1) == 1
+    assert x_or_y(1, 86, 1) == 1
+    assert x_or_y(

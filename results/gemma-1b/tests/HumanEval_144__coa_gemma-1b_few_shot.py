@@ -20,6 +20,19 @@ import math
 import pytest
 
 def simplify(x, n):
+    try:
+        x_int = int(x)
+        n_int = int(n)
+        if n_int == 0:
+            return False
+        return x_int * n_int == int(x_int * n_int)
+    except:
+        return False
+
+# Focus: Type Scenarios
+import pytest
+
+def simplify(x, n):
     """Your task is to implement a function that will simplify the expression
     x * n. The function returns True if x * n evaluates to a whole number and False
     otherwise. Both x and n, are string representation of a fraction, and have the following format,
@@ -34,7 +47,6 @@ def simplify(x, n):
     try:
         x_val = int(x)
         n_val = int(n)
-        
         numerator = x_val
         denominator = n_val
         
@@ -44,24 +56,13 @@ def simplify(x, n):
         common_divisor = gcd(numerator, denominator)
         
         return numerator // common_divisor == denominator // common_divisor
-    except ValueError:
+    except:
         return False
 
 def gcd(a, b):
     if b == 0:
         return a
     return gcd(b, a % b)
-
-# Focus: Type Scenarios
-def simplify(x, n):
-    try:
-        x_int = int(x)
-        n_int = int(n)
-        if n_int == 0:
-            return False
-        return x_int * n_int == int(x_int * n_int)
-    except:
-        return False
 
 # Focus: Logic Branches
 def simplify(x, n):

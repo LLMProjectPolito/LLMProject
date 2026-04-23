@@ -33,7 +33,7 @@ def list_sort(lst):
     assert list_sort(["ab", "a", "aaa", "cd"]) => ["ab", "cd"]
     """
     filtered_list = [word for word in lst if len(word) % 2 == 0]
-    filtered_list.sort(key=lambda x: (len(x), x))
+    filtered_list.sort(key=lambda word: (len(word), word))
     return filtered_list
 
 def test_empty_list():

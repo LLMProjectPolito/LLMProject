@@ -31,9 +31,9 @@ def file_name_check(file_name):
     file_name_check("example.txt") # => 'Yes'
     file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
-    if len(file_name) > 3:
+    if len(file_name) <= 3:
         return 'No'
-    if file_name.count('.') == 0:
+    if '.' not in file_name:
         return 'No'
     if not file_name[:1].isalpha():
         return 'No'

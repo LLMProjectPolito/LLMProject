@@ -33,15 +33,3 @@ def test_special_factorial_large():
 
 def test_special_factorial_edge_case():
     assert special_factorial(0) == 1
-
-def test_special_factorial_type_error():
-    with pytest.raises(TypeError):
-        special_factorial(1.5)
-    with pytest.raises(TypeError):
-        special_factorial("a")
-    with pytest.raises(TypeError):
-        special_factorial([1])
-
-def test_special_factorial_negative_value_error():
-    with pytest.raises(ValueError):
-        special_factorial(-1)

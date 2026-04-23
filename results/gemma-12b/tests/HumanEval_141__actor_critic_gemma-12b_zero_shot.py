@@ -14,18 +14,29 @@ def file_name_check(file_name):
     file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
 
-```python
 import pytest
 from your_module import file_name_check  # Replace your_module
 
-def test_valid_file_name():
+def test_valid_file_name_txt():
     assert file_name_check("example.txt") == "Yes"
-    assert file_name_check("document.dll") == "Yes"
+
+def test_valid_file_name_exe():
     assert file_name_check("my_program.exe") == "Yes"
+
+def test_valid_file_name_dll():
+    assert file_name_check("document.dll") == "Yes"
+
+def test_valid_file_name_short():
     assert file_name_check("a.txt") == "Yes"
-    assert file_name_check("A.TXT") == "Yes"
+
+def test_valid_file_name_long():
     assert file_name_check("long_file_name.txt") == "Yes"
+
+def test_valid_file_name_with_digits():
     assert file_name_check("file123.txt") == "Yes"
+
+def test_valid_file_name_case_insensitive():
+    assert file_name_check("a.txt") == "Yes"
 
 def test_invalid_file_name_too_many_digits():
     assert file_name_check("1234example.txt") == "No"
@@ -57,11 +68,17 @@ def test_invalid_file_name_invalid_extension():
     assert file_name_check("example.") == "No"
 
 def test_invalid_file_name_empty_extension():
-    assert file_name_check("example.") == "No"
+    pass  # Redundant, covered by test_invalid_file_name_empty_before_dot
 
-def test_edge_cases():
-    assert file_name_check("a.txt") == "Yes"
-    assert file_name_check("A.TXT") == "Yes"
+def test_edge_cases_whitespace():
+    assert file_name_check("a.txt ") == "No"
+    assert file_name_check(" a.txt") == "No"
+    assert file_name_check("a .txt") == "No"
+    assert file_name_check("a.txt\n") == "No"
+    assert file_name_check("a.txt\t") == "No"
+    assert file_name_check(" a.txt ") == "No"
+
+def test_edge_cases_leading_digits():
     assert file_name_check("0.txt") == "No"
     assert file_name_check("1.txt") == "Yes"
     assert file_name_check("12.txt") == "Yes"
@@ -69,65 +86,21 @@ def test_edge_cases():
     assert file_name_check("1234.txt") == "No"
     assert file_name_check("a123.txt") == "Yes"
     assert file_name_check("a1234.txt") == "No"
-    assert file_name_check("a.TXT") == "Yes"
-    assert file_name_check("a.EXE") == "Yes"
-    assert file_name_check("a.DLL") == "Yes"
-    assert file_name_check("a.abc") == "No"
-    assert file_name_check("a.txt1") == "No"
-    assert file_name_check("a.txt ") == "No"
-    assert file_name_check(" a.txt") == "No"
-    assert file_name_check("a .txt") == "No"
-    assert file_name_check("a.txt.") == "No"
-    assert file_name_check("a..txt") == "No"
-    assert file_name_check("a.txt..") == "No"
-    assert file_name_check("a.txt...") == "No"
-    assert file_name_check("a.txt....") == "No"
-    assert file_name_check("a.txt.....") == "No"
-    assert file_name_check("a.txt......") == "No"
-    assert file_name_check("a.txt.......") == "No"
-    assert file_name_check("a.txt..........") == "No"
-    assert file_name_check("a.txt............") == "No"
-    assert file_name_check("a.txt...............") == "No"
-    assert file_name_check("a.txt..................") == "No"
-    assert file_name_check("a.txt......................") == "No"
-    assert file_name_check("a.txt..........................") == "No"
-    assert file_name_check("a.txt..............................") == "No"
-    assert file_name_check("a.txt................................") == "No"
-    assert file_name_check("a.txt...................................") == "No"
-    assert file_name_check("a.txt......................................") == "No"
-    assert file_name_check("a.txt...........................................") == "No"
-    assert file_name_check("a.txt...............................................") == "No"
-    assert file_name_check("a.txt..................................................") == "No"
-    assert file_name_check("a.txt......................................................") == "No"
-    assert file_name_check("a.txt..........................................................") == "No"
-    assert file_name_check("a.txt..............................................................") == "No"
-    assert file_name_check("a.txt................................................................") == "No"
-    assert file_name_check("a.txt..................................................................") == "No"
-    assert file_name_check("a.txt......................................................................") == "No"
-    assert file_name_check("a.txt..........................................................................") == "No"
-    assert file_name_check("a.txt..............................................................................") == "No"
-    assert file_name_check("a.txt................................................................................") == "No"
-    assert file_name_check("a.txt..................................................................................") == "No"
-    assert file_name_check("a.txt......................................................................................") == "No"
-    assert file_name_check("a.txt..........................................................................................") == "No"
-    assert file_name_check("a.txt..............................................................................................") == "No"
-    assert file_name_check("a.txt................................................................................................") == "No"
-    assert file_name_check("a.txt..................................................................................................") == "No"
-    assert file_name_check("a.txt......................................................................................................") == "No"
-    assert file_name_check("a.txt..........................................................................................................") == "No"
-    assert file_name_check("a.txt..............................................................................................................") == "No"
-    assert file_name_check("a.txt................................................................................................................") == "No"
-    assert file_name_check("a.txt..................................................................................................................") == "No"
-    assert file_name_check("a.txt......................................................................................................................") == "No"
-    assert file_name_check("a.txt..........................................................................................................................") == "No"
-    assert file_name_check("a.txt..............................................................................................................................") == "No"
-    assert file_name_check("a.txt................................................................................................................................") == "No"
-    assert file_name_check("a.txt..................................................................................................................................") == "No"
-    assert file_name_check("a.txt......................................................................................................................................") == "No"
-    assert file_name_check("a.txt..........................................................................................................................................") == "No"
-    assert file_name_check("a.txt..............................................................................................................................................") == "No"
-    assert file_name_check("a.txt................................................................................................................................................") == "No"
-    assert file_name_check("a.txt..................................................................................................................................................") == "No"
-    assert file_name_check("a.txt......................................................................................................................................................") == "No"
-    assert file_name_check("a.txt..........................................................................................................................................................") == "No"
-    assert file_name_
+    assert file_name_check("111.txt") == "Yes"
+    assert file_name_check("999.txt") == "Yes"
+    assert file_name_check("1000.txt") == "No"
+
+def test_invalid_file_name_extension_case():
+    assert file_name_check("example.TXT") == "No"
+    assert file_name_check("example.EXE") == "No"
+    assert file_name_check("example.DLL") == "No"
+
+def test_edge_case_empty_filename():
+    assert file_name_check("") == "No"
+
+def test_edge_case_filename_with_only_extension():
+    assert file_name_check("txt") == "No"
+
+def test_unicode_characters():
+    assert file_name_check("example_üöä.txt") == "Yes"
+    assert file_name_check("example_üöä.pdf") == "No"

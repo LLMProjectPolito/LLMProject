@@ -56,7 +56,10 @@ def test_right_angle_triangle_edge_cases():
     assert right_angle_triangle(3, 0, 5) == False
     assert right_angle_triangle(3, 4, 0) == False
 
-def test_right_angle_triangle_negative_sides():
+def test_right_angle_triangle_another_valid():
+    assert right_angle_triangle(8, 15, 17) == True
+
+def test_right_angle_triangle_negative_side():
     assert right_angle_triangle(-3, 4, 5) == False
     assert right_angle_triangle(3, -4, 5) == False
     assert right_angle_triangle(3, 4, -5) == False

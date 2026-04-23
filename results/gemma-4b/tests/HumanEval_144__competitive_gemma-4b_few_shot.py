@@ -29,33 +29,27 @@ def simplify(x, n):
     num_x, den_x = map(int, x.split('/'))
     num_n, den_n = map(int, n.split('/'))
 
-    product_num = num_x * num_n
-    product_den = den_x * den_n
+    product = num_x * num_n
+    divisor = den_x * den_n
 
-    if product_num % product_den == 0:
-        return True
-    else:
-        return False
+    return product % divisor == 0
 
-def test_simplify_positive():
+
+def test_simplify_true():
     assert simplify("1/5", "5/1") == True
-    assert simplify("1/2", "2/1") == True
-    assert simplify("2/3", "3/1") == True
+    assert simplify("2/3", "3/2") == True
     assert simplify("10/2", "2/1") == True
     assert simplify("1/1", "1/1") == True
 
-def test_simplify_negative():
+
+def test_simplify_false():
     assert simplify("1/6", "2/1") == False
     assert simplify("7/10", "10/2") == False
-    assert simplify("1/3", "2/1") == False
-    assert simplify("2/5", "3/1") == False
+    assert simplify("3/4", "5/1") == False
     assert simplify("1/2", "3/1") == False
 
 def test_simplify_edge_cases():
     assert simplify("1/1", "1/1") == True
-    assert simplify("1/1", "1/2") == False
-    assert simplify("1/2", "1/1") == True
     assert simplify("1/2", "1/2") == True
     assert simplify("100/1", "1/1") == True
-    assert simplify("1/100", "1/1") == True
-    assert simplify("1/100", "1/2") == False
+    assert simplify("1/100", "1/1") == False

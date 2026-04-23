@@ -30,7 +30,7 @@ def test_mixed_lengths():
     assert sorted_list_sum(["a", "aa", "aaa", "b", "bb"]) == sorted(["aa", "bb"])
 
 def test_duplicates():
-    assert sorted_list_sum(["aa", "aa", "bb", "cc", "bb"]) == sorted(["aa", "aa", "bb", "bb", "cc"])
+    assert sorted_list_sum(["aa", "aa", "bb", "cc", "aa"]) == sorted(["aa", "aa", "bb", "cc", "aa"])
 
 def test_same_length_alphabetical():
     assert sorted_list_sum(["ab", "aa", "ac"]) == sorted(["aa", "ab", "ac"])
@@ -45,13 +45,10 @@ def test_long_strings():
     assert sorted_list_sum(["abcdef", "abc", "defgh", "hi"]) == ["abcdef", "defgh"]
 
 def test_strings_with_spaces():
-    assert sorted_list_sum(["ab cd", "a", "abc def"]) == ["ab cd", "abc def"]
+    assert sorted_list_sum(["hello world", "hi", "good morning"]) == ["hello world", "good morning"]
 
 def test_strings_with_special_characters():
-    assert sorted_list_sum(["a!", "aa@", "abc#"]) == ["aa@"]
+    assert sorted_list_sum(["!@#", "abc", "$%^"]) == ["!@#", "$%^"]
 
 def test_mixed_case():
-    assert sorted_list_sum(["aA", "aa", "AAA"]) == ["aa"]
-
-def test_numbers_as_strings():
-    assert sorted_list_sum(["12", "1", "123"]) == ["12"]
+    assert sorted_list_sum(["Aa", "BB", "aA", "bb"]) == sorted(["Aa", "BB", "aA", "bb"])

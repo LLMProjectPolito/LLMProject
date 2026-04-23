@@ -41,7 +41,13 @@ def test_negative_side():
     assert right_angle_triangle(-3, 4, 5) == False
 
 def test_equal_sides():
-    assert right_angle_triangle(5, 5, 5) == False
+    assert right_angle_triangle(5, 5, 5) == True
 
-def test_sides_not_sorted():
-    assert right_angle_triangle(4, 3, 5) == True
+def test_large_numbers():
+    assert right_angle_triangle(1000, 1000, 1414) == True
+
+def test_small_numbers():
+    assert right_angle_triangle(1, 1, 1) == True
+
+def test_almost_right_triangle():
+    assert right_angle_triangle(1, 1.4, 1.41421356) == True

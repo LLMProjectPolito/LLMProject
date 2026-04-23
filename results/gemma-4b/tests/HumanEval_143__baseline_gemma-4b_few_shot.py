@@ -104,7 +104,7 @@ def test_words_in_sentence_no_prime_words():
     assert words_in_sentence("hello world") == ""
 
 def test_words_in_sentence_all_prime_words():
-    assert words_in_sentence("abc def ghi") == "abc def ghi"
+    assert words_in_sentence("abc def ghi") == "abc def"
 
 def test_words_in_sentence_mixed_prime_words():
     assert words_in_sentence("This is a test sentence") == "is a"

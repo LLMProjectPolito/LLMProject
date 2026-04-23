@@ -62,17 +62,19 @@ def test_simplify_integer_result():
 def test_simplify_non_integer_result():
     assert simplify("1/6", "2/1") == False
     assert simplify("7/10", "10/2") == False
-    assert simplify("3/4", "4/3") == False
+    assert simplify("3/4", "5/2") == False
 
 def test_simplify_fraction_with_denominator_1():
-    assert simplify("5/1", "1/1") == True
     assert simplify("1/1", "1/1") == True
+    assert simplify("5/1", "1/1") == True
+    assert simplify("1/1", "5/1") == True
 
 def test_simplify_equal_numerator_denominator():
-    assert simplify("2/2", "2/2") == True
     assert simplify("1/1", "1/1") == True
+    assert simplify("2/2", "2/2") == True
+    assert simplify("3/3", "3/3") == True
 
 def test_simplify_different_numerators_denominators():
-    assert simplify("10/2", "2/1") == True
-    assert simplify("1/2", "2/1") == True
-    assert simplify("1/3", "3/1") == True
+    assert simplify("1/2", "2/3") == False
+    assert simplify("3/4", "4/5") == False
+    assert simplify("5/6", "6/7") == False

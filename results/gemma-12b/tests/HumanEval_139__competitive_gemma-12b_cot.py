@@ -23,8 +23,8 @@ def test_special_factorial_positive():
     assert special_factorial(6) == 10368000
 
 def test_special_factorial_large():
-    assert special_factorial(7) == 100800000000
-    assert special_factorial(8) == 100000000000000000000
+    assert special_factorial(7) == 86400000000
+    assert special_factorial(8) == 870912000000000
 
 def test_special_factorial_edge_case():
     assert special_factorial(0) == 1 # Should not raise error, return 1

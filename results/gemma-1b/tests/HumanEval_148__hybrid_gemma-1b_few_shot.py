@@ -56,19 +56,14 @@ def test_bf_empty():
     assert bf("", "") == ()
 
 def test_bf_invalid_input():
-    assert bf("Mercury", "Venus") == ()
-
-def test_bf_invalid_input_2():
-    assert bf("Jupiter", "Mars") == ()
-
-def test_bf_invalid_input_3():
     assert bf("Mercury", "Uranus") == ()
 
-def test_bf_invalid_input_4():
-    assert bf("Jupiter", "Saturn") == ()
+def test_bf_invalid_input_2():
+    assert bf("Jupiter", "Venus") == ()
 
-def test_bf_invalid_input_5():
-    assert bf("Venus", "Mercury") == ()
+def test_is_palindrome():
+    assert is_palindrome('radar') == True
+    assert is_palindrome('hello') == False
 
-def test_bf_invalid_input_6():
-    assert bf("Mars", "Jupiter") == ()
+def test_is_palindrome_empty():
+    assert is_palindrome('') == True

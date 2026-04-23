@@ -14,11 +14,14 @@ def simplify(x, n):
 
 def simplify(x, n):
     try:
-        numerator, denominator = map(int, x.split('/'))
+        numerator, denominator = x.split('/')
+        numerator = int(numerator)
+        denominator = int(denominator)
         if denominator == 0:
             return False
-        if numerator == 0:
+        if numerator % denominator == 0:
+            return True
+        else:
             return False
-        return str(numerator / denominator) == str(int(numerator / denominator))
     except:
         return False

@@ -33,8 +33,7 @@ STEP 1: REASONING - The function `x_or_y` checks if a number `n` is prime. If it
 STEP 2: PLAN -
 - Test cases for prime numbers.
 - Test cases for non-prime numbers.
-- Test cases where `n` is 1.
-- Test cases where `n` is 2.
+- Test cases where `n` is 1 or 2.
 - Test cases with different values for `x` and `y`.
 
 STEP 3: CODE -

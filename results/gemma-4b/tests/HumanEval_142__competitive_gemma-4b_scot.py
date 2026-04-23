@@ -43,14 +43,17 @@ def test_simple_list():
 def test_negative_numbers():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
-def test_mixed_numbers():
-    assert sum_squares([1, 4, 9, 16, 25]) == 1 + 64 + 81 + 256 + 625
-
 def test_multiple_of_3():
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 4 + 9 + 16 + 25 + 36
-
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 4 + 36 + 16 + 25 + 36
+    
 def test_multiple_of_4_not_3():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 8 + 27 + 64 + 125 + 216 + 343 + 512 + 729 + 1000
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 1 + 8 + 16 + 25 + 36 + 64
 
-def test_no_multiples():
-    assert sum_squares([1, 2, 4, 5, 7, 8, 10]) == 1 + 2 + 5 + 7 + 10
+def test_mixed_multiples():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 4 + 9 + 64 + 25 + 36 + 49 + 64 + 81 + 100
+
+def test_large_numbers():
+    assert sum_squares([100, 200, 300, 400]) == 10000 + 80000 + 90000 + 640000
+
+def test_zero_values():
+    assert sum_squares([0, 1, 2, 3]) == 0 + 1 + 4 + 9

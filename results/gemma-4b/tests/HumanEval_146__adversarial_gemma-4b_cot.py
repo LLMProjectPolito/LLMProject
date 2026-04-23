@@ -63,7 +63,7 @@ def test_specialFilter_edge_case_single_digit_greater_than_10():
     assert specialFilter([11, 13, 15, 17, 19]) == 0
 
 def test_specialFilter_edge_case_single_digit_less_than_10():
-    assert specialFilter([1, 2, 3, 4, 5]) == 0
+    assert specialFilter([1, 3, 5, 7, 9]) == 0
 
 def test_specialFilter_edge_case_first_digit_odd_last_digit_even():
     assert specialFilter([12, 34, 56, 78, 90]) == 0
@@ -71,14 +71,20 @@ def test_specialFilter_edge_case_first_digit_odd_last_digit_even():
 def test_specialFilter_edge_case_first_digit_even_last_digit_odd():
     assert specialFilter([21, 43, 65, 87, 109]) == 0
 
+def test_specialFilter_edge_case_first_digit_even_last_digit_even():
+    assert specialFilter([22, 44, 66, 88, 100]) == 0
+
 def test_specialFilter_edge_case_first_digit_odd_last_digit_zero():
     assert specialFilter([10, 30, 50, 70, 90]) == 0
 
-def test_specialFilter_edge_case_first_digit_zero_last_digit_odd():
-    assert specialFilter([01, 03, 05, 07, 09]) == 0
+def test_specialFilter_edge_case_negative_first_digit_odd_negative_last_digit_odd():
+    assert specialFilter([-15, -33, -55]) == 0
 
-def test_specialFilter_edge_case_negative_first_digit_odd_positive_last_digit_odd():
-    assert specialFilter([-15, 23]) == 1
+def test_specialFilter_edge_case_negative_first_digit_odd_negative_last_digit_even():
+    assert specialFilter([-12, -34, -56]) == 0
 
-def test_specialFilter_edge_case_positive_first_digit_odd_negative_last_digit_odd():
-    assert specialFilter([13, -25]) == 1
+def test_specialFilter_edge_case_negative_first_digit_even_negative_last_digit_odd():
+    assert specialFilter([-21, -43, -65]) == 0
+
+def test_specialFilter_edge_case_negative_first_digit_even_negative_last_digit_even():
+    assert specialFilter([-22, -44, -66]) == 0

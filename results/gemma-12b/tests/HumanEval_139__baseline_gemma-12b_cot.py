@@ -24,23 +24,20 @@ def test_special_factorial_positive_integer():
 
 def test_special_factorial_large_integer():
     assert special_factorial(7) == 86400 * 720 * 120 * 24 * 6 * 2 == 86400 * 720 * 120 * 24 * 6 * 2
-    assert special_factorial(8) == 40320 * 5040 * 40320 * 5040 * 40320 * 5040 * 40320 * 5040
+    assert special_factorial(8) == 40320 * 86400 * 720 * 120 * 24 * 6 * 2
 
 def test_special_factorial_edge_case_one():
     assert special_factorial(1) == 1
 
+def test_special_factorial_edge_case_two():
+    assert special_factorial(2) == 2
+
 def test_special_factorial_type_error():
     with pytest.raises(TypeError):
         special_factorial("a")
-    with pytest.raises(TypeError):
-        special_factorial(1.5)
-    with pytest.raises(TypeError):
-        special_factorial([1,2,3])
 
 def test_special_factorial_value_error():
     with pytest.raises(ValueError):
         special_factorial(0)
     with pytest.raises(ValueError):
         special_factorial(-1)
-    with pytest.raises(ValueError):
-        special_factorial(-5)

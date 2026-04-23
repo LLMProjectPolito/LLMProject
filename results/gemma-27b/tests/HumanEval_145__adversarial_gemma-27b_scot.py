@@ -49,13 +49,13 @@ def test_mixed_numbers():
     assert order_by_points([1, -11, 2, -22]) == [1, -11, 2, -22]
 
 def test_same_digit_sum():
-    assert order_by_points([10, 1, 19, 100]) == [1, 10, 19, 100]
+    assert order_by_points([10, 1, 19, 28]) == [1, 10, 19, 28]
 
 def test_zeroes():
     assert order_by_points([0, 0, 0]) == [0, 0, 0]
 
 def test_large_numbers():
-    assert order_by_points([12345, 6789, 10, 1]) == [1, 10, 12345, 6789]
+    assert order_by_points([12345, 6789, 1000, 5]) == [5, 1000, 12345, 6789]
 
 def test_example_case():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]

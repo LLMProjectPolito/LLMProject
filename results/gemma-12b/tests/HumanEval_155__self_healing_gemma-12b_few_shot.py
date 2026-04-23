@@ -49,8 +49,8 @@ def test_empty_input():
 
 def test_float_input():
     with pytest.raises(TypeError):
-        even_odd_count(12.34)
+        even_odd_count(1.23)
 
 def test_string_input():
     with pytest.raises(TypeError):
-        even_odd_count("1234")
+        even_odd_count("123")

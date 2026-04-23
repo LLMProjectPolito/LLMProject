@@ -45,15 +45,9 @@ def words_in_sentence(sentence):
     def is_prime(n):
         if n <= 1:
             return False
-        if n <= 3:
-            return True
-        if n % 2 == 0 or n % 3 == 0:
-            return False
-        i = 5
-        while i * i <= n:
-            if n % i == 0 or n % (i + 2) == 0:
+        for i in range(2, int(n**0.5) + 1):
+            if n % i == 0:
                 return False
-            i += 6
         return True
 
     words = sentence.split()
@@ -63,33 +57,37 @@ def words_in_sentence(sentence):
 def is_prime(n):
     if n <= 1:
         return False
-    if n <= 3:
-        return True
-    if n % 2 == 0 or n % 3 == 0:
-        return False
-    i = 5
-    while i * i <= n:
-        if n % i == 0 or n % (i + 2) == 0:
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
             return False
-        i += 6
     return True
 
-@pytest.mark.parametrize(
-    "sentence, expected",
-    [
-        ("", ""),
-        ("hello world", ""),
-        ("is a", "is a"),
-        ("This is a test", "is"),
-        ("lets go for swimming", "go for"),
-        ("  hello world  ", ""),
-        ("hello  world", ""),
-        ("go", "go"),
-        ("test", ""),
-        ("a bb ccc dddd", "a bb ccc"),
-        ("2 3 5 7", "2 3 5 7"),
-        ("!@#$", ""),
-    ],
-)
-def test_words_in_sentence(sentence, expected):
-    assert words_in_sentence(sentence) == expected
+def test_empty_sentence():
+    assert words_in_sentence("") == ""
+
+def test_no_prime_words():
+    assert words_in_sentence("this is a test") == ""
+
+def test_all_prime_words():
+    assert words_in_sentence("go to do") == "go to do"
+
+def test_mixed_words():
+    assert words_in_sentence("This is a test") == "is"
+
+def test_leading_trailing_spaces():
+    assert words_in_sentence("  This is a test  ") == "is"
+
+def test_single_prime_word():
+    assert words_in_sentence("go") == "go"
+
+def test_single_non_prime_word():
+    assert words_in_sentence("test") == ""
+
+def test_longer_words():
+    assert words_in_sentence("programming is fun") == "programming fun"
+
+def test_edge_case_primes():
+    assert words_in_sentence("go to do be") == "go to do"
+    assert words_in_sentence("lets go for swimming") == "go for"
+    assert words_in_sentence("two three five seven eleven") == "two three five seven eleven"
+    assert words_in_sentence("four six eight nine ten") == ""

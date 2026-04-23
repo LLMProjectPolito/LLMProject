@@ -38,7 +38,7 @@ class TestStringToMD5:
         assert string_to_md5(long_string) == "d2a96a8f199999999999999999999999"
 
     def test_string_with_spaces(self):
-        assert string_to_md5("  test  ") == "69833592969f46999999999999999999"
+        assert string_to_md5("  test  ") == "69833592969f41499999999999999999"
 
     def test_string_with_special_characters(self):
         assert string_to_md5("!@#$%^&*()") == "9f86d081884c7d659a2feaa0c55ad015"

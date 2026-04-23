@@ -23,12 +23,12 @@ def test_valid_file_name():
     assert file_name_check("a.txt") == "Yes"
     assert file_name_check("A.exe") == "Yes"
     assert file_name_check("file1.txt") == "Yes"
-    assert file_name_check("file123.dll") == "Yes"
-    assert file_name_check("fileABC.exe") == "Yes"
+    assert file_name_check("file12.dll") == "Yes"
+    assert file_name_check("file123.exe") == "Yes"
 
 def test_invalid_file_name_too_many_digits():
     assert file_name_check("1234example.txt") == "No"
-    assert file_name_check("example1234.dll") == "No"
+    assert file_name_check("file1234.dll") == "No"
     assert file_name_check("1234.exe") == "No"
 
 def test_invalid_file_name_no_dot():
@@ -64,7 +64,7 @@ def test_invalid_file_name_starts_with_special_character():
 def test_invalid_file_name_empty_string():
     assert file_name_check("") == "No"
 
-def test_valid_file_name_with_uppercase():
-    assert file_name_check("EXAMPLE.txt") == "Yes"
-    assert file_name_check("MyFILE.exe") == "Yes"
-    assert file_name_check("AnotherFILE.dll") == "Yes"
+def test_valid_file_name_uppercase():
+    assert file_name_check("EXAMPLE.TXT") == "Yes"
+    assert file_name_check("MYFILE.EXE") == "Yes"
+    assert file_name_check("ANOTHERFILE.DLL") == "Yes"

@@ -65,6 +65,7 @@ def eat(number, need, remaining):
     
     if number < need:
         remaining_after_meals = remaining - need
+        total_eaten = number
     
     return [total_eaten, remaining_after_meals]
 
@@ -80,20 +81,20 @@ def test_eat_example_3():
 def test_eat_example_4():
     assert eat(2, 11, 5) == [7, 0]
 
-def test_eat_empty():
-    assert eat(0, 5, 10) == [0, 0]
+def test_eat_empty_need():
+    assert eat(5, 0, 10) == [11, 0]
+
+def test_eat_empty_remaining():
+    assert eat(5, 6, 0) == [11, 0]
 
 def test_eat_large_number():
     assert eat(1000, 5, 5) == [105, 0]
 
-def test_eat_need_large():
-    assert eat(5, 10, 5) == [11, 0]
+def test_eat_small_number():
+    assert eat(1, 1, 1) == [1, 0]
 
-def test_eat_remaining_large():
-    assert eat(5, 10, 15) == [11, 0]
+def test_eat_need_greater_than_number():
+    assert eat(5, 12, 1) == [11, 0]
 
-def test_eat_zero_need():
-    assert eat(0, 0, 10) == [0, 10]
-
-def test_eat_zero_remaining():
-    assert eat(5, 0, 10) == [11, 0]
+def test_eat_remaining_greater_than_number():
+    assert eat(1, 10, 10) == [11, 0]

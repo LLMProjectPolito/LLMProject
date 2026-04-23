@@ -65,10 +65,5 @@ def test_simplify_one_is_zero():
 def test_simplify_zero_numerator():
     assert simplify("0/5", "5/1") == True
 
-def test_simplify_zero_denominator():
-    assert simplify("1/0", "1/1") == False # Should handle invalid input gracefully, but this test checks for the expected behavior.
-
-def test_simplify_negative_numbers():
-    assert simplify("1/2", "2/1") == True
-    assert simplify("1/2", "2/1") == True
-    assert simplify("1/2", "2/1") == True
+def test_simplify_zero_numerator_false():
+    assert simplify("0/6", "2/1") == False

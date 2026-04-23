@@ -30,8 +30,8 @@ def test_md5_empty():
 
 def test_md5_long_string():
     long_string = "This is a very long string to test the MD5 hash function."
-    expected_hash = '9a999969999999999999999999999999' # Replace with actual hash
-    assert string_to_md5(long_string) == '9a999969999999999999999999999999'
+    expected_hash = '9a999969996999699969996999699969'  # Replace with actual hash
+    assert string_to_md5(long_string) == '9a999969996999699969996999699969'
 
 def test_md5_with_numbers():
     assert string_to_md5('12345') == '5994471abb01112afcc18159f6cc74b4'

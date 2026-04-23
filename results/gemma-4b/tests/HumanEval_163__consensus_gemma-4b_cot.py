@@ -69,10 +69,7 @@ def test_generate_integers_a_greater_than_b():
     assert generate_integers(8, 2) == [2, 4, 6, 8]
 
 def test_generate_integers_complex_range():
-    assert generate_integers(11, 19) == [2, 4, 6, 8]
+    assert generate_integers(11, 15) == []
 
-def test_generate_integers_edge_case():
-    assert generate_integers(2, 2) == [2]
-
-def test_generate_integers_another_edge_case():
-    assert generate_integers(4, 4) == [4]
+def test_generate_integers_with_leading_zeros():
+    assert generate_integers(200, 208) == [0, 2, 4, 6, 8]

@@ -7,8 +7,8 @@ def string_to_md5(text):
     >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
     """
 
-import pytest
 import hashlib
+import pytest
 
 def string_to_md5(text):
     """
@@ -33,20 +33,20 @@ class TestStringtoMD5:
         assert string_to_md5("  ") == '9c6a94a9999999999999999999999999'
 
     def test_string_with_special_characters(self):
-        assert string_to_md5("!@#$%^&*()") == '99d8310496a999999999999999999999'
+        assert string_to_md5("!@#$%^&*()") == '99d83191566469999999999999999999'
 
     def test_string_with_unicode_characters(self):
-        assert string_to_md5("你好世界") == 'b10a8db164e0754105b7a99be72e3fe5'
+        assert string_to_md5("你好世界") == 'a94a8fe5ccb19ba61c4c0873d391e987'
 
     def test_string_with_numbers(self):
-        assert string_to_md5("1234567890") == 'd1e2f3e4d5c6b7a8a9b0c1d2e3f4a5b6'
+        assert string_to_md5("1234567890") == 'd1e2f3e4d5c6b7a8e9f0d1e2f3e4d5c'
 
     def test_string_with_mixed_characters(self):
         assert string_to_md5("Hello123World!") == '9c6a94a9999999999999999999999999'
 
     def test_long_string(self):
         long_string = "This is a very long string to test the md5 hash function."
-        expected_md5 = 'a94a8fe5ccb19ba61c4c0873d391e987'
+        expected_md5 = '99d83191566469999999999999999999'
         assert string_to_md5(long_string) == expected_md5
 
     def test_string_with_newline_characters(self):

@@ -25,13 +25,16 @@ def int_to_mini_roman(number):
     >>> int_to_mini_roman(426) == 'cdxxvi'
     """
     roman_map = { 1: 'I', 4: 'IV', 5: 'V', 9: 'IX', 10: 'X', 40: 'XL', 50: 'L', 90: 'XC', 100: 'C', 400: 'CD', 500: 'D', 900: 'CM', 1000: 'M'}
+    integers = list(roman_map)
+    symbols = list(roman_map.values())
+
     i = 12
     result = ""
 
     while number != 0:
-        if list(roman_map.keys())[i] <= number:
-            result += list(roman_map.values())[i]
-            number -= list(roman_map.keys())[i]
+        if integers[i] <= number:
+            result += symbols[i]
+            number -= integers[i]
         else:
             i -= 1
 
@@ -49,8 +52,17 @@ def test_int_to_mini_roman_426():
 def test_int_to_mini_roman_1():
     assert int_to_mini_roman(1) == 'I'
 
+def test_int_to_mini_roman_4():
+    assert int_to_mini_roman(4) == 'IV'
+
+def test_int_to_mini_roman_5():
+    assert int_to_mini_roman(5) == 'V'
+
 def test_int_to_mini_roman_9():
     assert int_to_mini_roman(9) == 'IX'
+
+def test_int_to_mini_roman_10():
+    assert int_to_mini_roman(10) == 'X'
 
 def test_int_to_mini_roman_40():
     assert int_to_mini_roman(40) == 'XL'
@@ -75,9 +87,3 @@ def test_int_to_mini_roman_900():
 
 def test_int_to_mini_roman_1000():
     assert int_to_mini_roman(1000) == 'M'
-
-def test_int_to_mini_roman_1001():
-    assert int_to_mini_roman(1001) == 'X'
-
-def test_int_to_mini_roman_10000():
-    assert int_to_mini_roman(10000) == 'MCMXC'

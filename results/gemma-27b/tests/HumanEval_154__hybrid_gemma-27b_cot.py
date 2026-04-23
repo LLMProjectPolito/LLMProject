@@ -30,69 +30,6 @@ def cycpattern_check(a , b):
     return False
 
 class TestCycpatternCheck:
-    def test_cycpattern_check_basic_true(self):
-        assert cycpattern_check("hello", "ell") == True
-
-    def test_cycpattern_check_basic_false(self):
-        assert cycpattern_check("abcd", "abd") == False
-
-    def test_cycpattern_check_rotation_true(self):
-        assert cycpattern_check("abab", "baa") == True
-
-    def test_cycpattern_check_no_match(self):
-        assert cycpattern_check("efef", "eeff") == False
-
-    def test_cycpattern_check_longer_substring(self):
-        assert cycpattern_check("himenss", "simen") == True
-
-    def test_cycpattern_check_empty_b(self):
-        assert cycpattern_check("abc", "") == False
-
-    def test_cycpattern_check_empty_a(self):
-        assert cycpattern_check("", "abc") == False
-
-    def test_cycpattern_check_both_empty(self):
-        assert cycpattern_check("", "") == False
-
-    def test_cycpattern_check_a_shorter_than_b(self):
-        assert cycpattern_check("ab", "abc") == False
-
-    def test_cycpattern_check_same_strings(self):
-        assert cycpattern_check("abc", "abc") == True
-
-    def test_cycpattern_check_b_is_a(self):
-        assert cycpattern_check("abc", "abc") == True
-
-    def test_cycpattern_check_b_rotation_of_a(self):
-        assert cycpattern_check("abcabc", "bca") == True
-
-    def test_cycpattern_check_b_rotation_of_a_longer(self):
-        assert cycpattern_check("abcabcabc", "cab") == True
-
-    def test_cycpattern_check_b_rotation_of_a_not_substring(self):
-        assert cycpattern_check("abcabc", "cba") == False
-
-    def test_cycpattern_check_repeated_chars(self):
-        assert cycpattern_check("aaaaa", "aa") == True
-
-    def test_cycpattern_check_repeated_chars_no_match(self):
-        assert cycpattern_check("aaaaa", "aaaab") == False
-
-    def test_cycpattern_check_special_chars(self):
-        assert cycpattern_check("!@#$%^", "$%^") == True
-
-    def test_cycpattern_check_special_chars_no_match(self):
-        assert cycpattern_check("!@#$%^", "%^&") == False
-
-    def test_cycpattern_check_mixed_case(self):
-        assert cycpattern_check("Hello", "ell") == False
-
-    def test_cycpattern_check_long_strings_true(self):
-        assert cycpattern_check("thisisalongstringwithsomepattern", "stringwith") == True
-
-    def test_cycpattern_check_long_strings_false(self):
-        assert cycpattern_check("thisisalongstringwithsomepattern", "notpresent") == False
-
     def test_empty_strings(self):
         assert cycpattern_check("", "") == False
         assert cycpattern_check("abc", "") == False
@@ -137,13 +74,21 @@ class TestCycpatternCheck:
         assert cycpattern_check("abcd", "abc") == True
 
     def test_special_characters(self):
+        assert cycpattern_check("a!b@c#", "b@c#a") == True
+        assert cycpattern_check("a!b@c#", "c#a!b") == True
+        assert cycpattern_check("a!b@c#", "d$e%f^") == False
         assert cycpattern_check("!@#$%^", "$%^!") == True
         assert cycpattern_check("!@#$%^", "!@#") == True
         assert cycpattern_check("!@#$%^", "abc") == False
 
+    def test_case_sensitivity(self):
+        assert cycpattern_check("Hello", "ell") == False
+        assert cycpattern_check("Hello", "Hello") == True
+
     def test_mixed_case(self):
         assert cycpattern_check("Hello", "ell") == False
         assert cycpattern_check("Hello", "llo") == False
+        assert cycpattern_check("Hello", "Hel") == False
 
     def test_numeric_strings(self):
         assert cycpattern_check("123456", "234") == True

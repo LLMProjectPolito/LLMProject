@@ -18,7 +18,9 @@ def sorted_list_sum(lst):
 import pytest
 
 def list_sort(lst):
-    """ Sorts a list of strings by length of each word, and returns the sorted list. """
+    """
+    Sorts a list of strings by length of each word, and returns the sorted list.
+    """
     return sorted(lst, key=lambda x: (len(x), x))
 
 def is_palindrome(s: str) -> bool:
@@ -51,9 +53,10 @@ def test_list_sort_mixed_lengths():
 def test_list_sort_same_length_words():
     assert list_sort(["aa", "a", "aaa"]) == ["aa", "a", "aaa"]
 
-def test_is_palindrome_basic():
+def test_is_palindrome():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
 
-def test_is_palindrome_empty():
-    assert is_palindrome('') == True
+def test_get_max():
+    assert get_max([1, 2, 3]) == 3
+    assert get_max([]) == None

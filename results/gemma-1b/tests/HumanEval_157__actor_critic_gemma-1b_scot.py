@@ -52,6 +52,5 @@ def test_right_angle_triangle_negative_numbers():
     assert right_angle_triangle(-1, -2, -3) == False
 
 def test_right_angle_triangle_same_sides():
-    assert right_angle_triangle(2, 2, 4) == False
-    assert right_angle_triangle(2, 4, 2) == False
-    assert right_angle_triangle(4, 2, 2) == False
+    assert right_angle_triangle(2, 2, 2) == False
+    assert right_angle_triangle(1, 1, 2) == False

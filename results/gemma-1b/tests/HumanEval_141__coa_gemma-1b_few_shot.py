@@ -75,7 +75,10 @@ def file_name_check(file_name):
         if not parts[0].isalnum():
             return 'No'
         if parts[1].isalnum():
-            if parts[2] not in ['txt', 'exe', 'dll']:
+            if parts[1][-1] not in ['a', 'A']:
+                return 'No'
+        if parts[2].isalnum():
+            if parts[2][-1] not in ['a', 'A']:
                 return 'No'
     return 'Yes'
 
@@ -99,10 +102,15 @@ def file_name_check(file_name):
         return 'No'
     if len(parts) == 1:
         return 'No'
-    if not parts[0]:
-        return 'No'
-    if not parts[1][0].isalpha():
-        return 'No'
-    if parts[1][-1] not in ['txt', 'exe', 'dll']:
-        return 'No'
+    if len(parts) == 2:
+        if not parts[0]:
+            return 'No'
+        if not parts[1][0].isalpha():
+            return 'No'
+    if len(parts) == 3:
+        if not parts[0].isalnum():
+            return 'No'
+        if parts[1].isalnum():
+            if parts[2] not in ['txt', 'exe', 'dll']:
+                return 'No'
     return 'Yes'

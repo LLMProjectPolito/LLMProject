@@ -62,3 +62,6 @@ def test_fix_spaces_with_multiple_underscores():
     
 def test_fix_spaces_with_multiple_underscores_and_underscores():
     assert fix_spaces("Example_1_2") == "_Example_1_2"
+    
+def test_fix_spaces_with_multiple_spaces_and_underscores():
+    assert fix_spaces("Example_1234") == "_Example_1234"

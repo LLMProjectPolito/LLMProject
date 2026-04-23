@@ -71,7 +71,7 @@ class TestWordsInSentence:
         assert words_in_sentence("a be do") == "a be do"
 
     def test_mixed_prime_and_non_prime_words(self):
-        assert words_in_sentence("a be do hello") == "a be do"
+        assert words_in_sentence("a be do long") == "a be do"
 
     def test_sentence_with_leading_and_trailing_spaces(self):
         assert words_in_sentence("  a be do  ") == "a be do"
@@ -80,7 +80,7 @@ class TestWordsInSentence:
         assert words_in_sentence("a   be  do") == "a be do"
 
     def test_single_word_prime_length(self):
-        assert words_in_sentence("go") == "go"
+        assert words_in_sentence("two") == "two"
 
     def test_single_word_non_prime_length(self):
         assert words_in_sentence("hello") == ""
@@ -92,6 +92,3 @@ class TestWordsInSentence:
 
     def test_sentence_with_numbers_in_words(self):
         assert words_in_sentence("a1 b2 c3") == ""
-
-    def test_sentence_with_special_characters(self):
-        assert words_in_sentence("a! b@ c#") == ""

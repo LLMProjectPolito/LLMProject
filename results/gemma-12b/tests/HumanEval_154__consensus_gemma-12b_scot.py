@@ -44,23 +44,20 @@ def test_cycpattern_check_longer_pattern():
     assert cycpattern_check("thisisalongstring", "stringlong") == True
     assert cycpattern_check("thisisalongstring", "strlongis") == True
 
-def test_cycpattern_check_no_rotation_match():
-    assert cycpattern_check("abcdefg", "xyz") == False
-    assert cycpattern_check("abcdefg", "bcdefgh") == False
-
 def test_cycpattern_check_overlapping_pattern():
     assert cycpattern_check("ababab", "bababa") == True
     assert cycpattern_check("ababab", "ababa") == True
 
+def test_cycpattern_check_no_rotation_match():
+    assert cycpattern_check("abcdefg", "xyz") == False
+    assert cycpattern_check("abcdefg", "bcdefgh") == False
+
 def test_cycpattern_check_special_characters():
-    assert cycpattern_check("!@#$%^", "$%^!") == True
+    assert cycpattern_check("!@#$%^", "$%#@!") == True
     assert cycpattern_check("!@#$%^", "!@#$") == False
 
 def test_cycpattern_check_unicode_characters():
     assert cycpattern_check("你好世界", "界世你好") == True
-    assert cycpattern_check("你好世界", "你好世") == True
+    assert cycpattern_check("你好世界", "好世界你") == True
     assert cycpattern_check("你好世界", "世界你好") == True
-    assert cycpattern_check("你好世界", "你好") == True
-    assert cycpattern_check("你好世界", "世界") == True
-    assert cycpattern_check("你好世界", "你好世界") == True
-    assert cycpattern_check("你好世界", "世界你好啊") == False
+    assert cycpattern_check("你好世界", "你世界好") == False

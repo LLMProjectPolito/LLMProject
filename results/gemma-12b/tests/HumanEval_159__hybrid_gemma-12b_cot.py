@@ -60,6 +60,11 @@ def eat(number, need, remaining):
 
     Have fun :)
     """
+    if not all(isinstance(arg, int) for arg in [number, need, remaining]):
+        raise TypeError("All arguments must be integers.")
+    if not all(0 <= arg <= 1000 for arg in [number, need, remaining]):
+        raise ValueError("All arguments must be between 0 and 1000.")
+
     if remaining >= need:
         return [number + need, remaining - need]
     else:
@@ -85,16 +90,11 @@ class TestEat:
     def test_edge_cases(self):
         assert eat(1000, 1000, 1000) == [2000, 0]
         assert eat(0, 1000, 0) == [1000, 0]
-        assert eat(1000, 0, 0) == [1000, 0]
-        assert eat(0, 0, 1000) == [0, 1000]
+        assert eat(1000, 0, 1000) == [1000, 1000]
 
     def test_large_values(self):
         assert eat(999, 999, 999) == [1998, 0]
-        assert eat(100, 900, 1000) == [1000, 100]
-
-    def test_number_greater_than_need(self):
-        assert eat(10, 5, 10) == [15, 5]
-        assert eat(20, 10, 5) == [25, 0]
+        assert eat(100, 500, 200) == [600, 0]
 
     def test_type_checking(self):
         with pytest.raises(TypeError):
@@ -109,3 +109,19 @@ class TestEat:
             eat(5, 6.5, 10)
         with pytest.raises(TypeError):
             eat(5, 6, 10.5)
+
+    def test_negative_values(self):
+        with pytest.raises(ValueError):
+            eat(-5, 6, 10)
+        with pytest.raises(ValueError):
+            eat(5, -6, 10)
+        with pytest.raises(ValueError):
+            eat(5, 6, -10)
+
+    def test_constraint_validation(self):
+        with pytest.raises(ValueError):
+            eat(1001, 6, 10)
+        with pytest.raises(ValueError):
+            eat(5, 1001, 10)
+        with pytest.raises(ValueError):
+            eat(5, 6, 1001)

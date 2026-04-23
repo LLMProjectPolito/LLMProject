@@ -24,10 +24,9 @@ def fix_spaces(text):
     fix_spaces(" Example 2") == "_Example_2"
     fix_spaces(" Example   3") == "_Example-3"
     """
-    if "   " in text:
-        return text.replace("   ", "-").replace(" ", "_")
-    else:
-        return text.replace(" ", "_")
+    text = text.replace("   ", "-")
+    text = text.replace(" ", "_")
+    return text
 
 def test_no_spaces():
     assert fix_spaces("Example") == "Example"
@@ -47,7 +46,7 @@ def test_trailing_space():
 def test_leading_trailing():
     assert fix_spaces(" Example 1 ") == "_Example_1_"
 
-def test_multiple_with_leading_trailing():
+def test_multiple_spaces_with_leading_trailing():
     assert fix_spaces("  Example   1  ") == "_Example-1_"
 
 def test_only_spaces():
@@ -62,17 +61,20 @@ def test_string_with_mixed_spaces():
 def test_string_with_many_spaces():
     assert fix_spaces("   Example     1        2   ") == "-Example---------1---------2-"
 
-def test_string_with_four_spaces():
-    assert fix_spaces("Example    3") == "Example-3"
+def test_consecutive_spaces_at_start():
+    assert fix_spaces("   Example") == "-Example"
 
-def test_leading_trailing_multiple_spaces():
-    assert fix_spaces("   Example   ") == "-Example-"
+def test_consecutive_spaces_in_middle():
+    assert fix_spaces("Example   Middle") == "Example-Middle"
 
-def test_string_with_tabs():
-    assert fix_spaces("Example\t1") == "Example\t1"
+def test_four_consecutive_spaces():
+    assert fix_spaces("Example    5") == "Example-5"
 
-def test_string_with_newlines():
-    assert fix_spaces("Example\n1") == "Example\n1"
+def test_five_consecutive_spaces():
+    assert fix_spaces("Example     6") == "Example-6"
 
-def test_leading_trailing_and_multiple():
-    assert fix_spaces("  Example  1   2  ") == "_Example__1-2_"
+def test_leading_and_multiple_spaces():
+    assert fix_spaces("   Example  7") == "-Example__7"
+
+def test_multiple_spaces_and_trailing():
+    assert fix_spaces("Example   8 ") == "Example-8_"

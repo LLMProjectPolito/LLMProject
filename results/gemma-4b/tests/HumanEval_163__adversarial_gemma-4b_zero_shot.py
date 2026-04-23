@@ -42,13 +42,13 @@ def test_generate_integers_ascending():
     assert generate_integers(6, 6) == [6]
 
 def test_generate_integers_empty_range():
-    assert generate_integers(10, 10) == []
+    assert generate_integers(10, 9) == []
     assert generate_integers(11, 11) == []
 
-def test_generate_integers_with_zero():
-    assert generate_integers(0, 2) == [2]
-    assert generate_integers(2, 0) == [2]
-    assert generate_integers(10, 12) == []
+def test_generate_integers_with_zeros():
+    assert generate_integers(20, 28) == [2, 4, 6, 8]
+    assert generate_integers(100, 108) == [0, 2, 4, 6, 8]
+    assert generate_integers(200, 208) == [0, 2, 4, 6, 8]
 
 def test_generate_integers_large_numbers():
     assert generate_integers(123456, 123456) == [2, 4, 6]
@@ -57,9 +57,10 @@ def test_generate_integers_large_numbers():
 def test_generate_integers_no_even_digits():
     assert generate_integers(1, 3) == []
     assert generate_integers(11, 13) == []
+    assert generate_integers(13, 15) == []
 
-def test_generate_integers_negative_input():
-    with pytest.raises(ValueError):
-        generate_integers(-1, 5)
-    with pytest.raises(ValueError):
-        generate_integers(1, -5)
+def test_generate_integers_single_digit():
+    assert generate_integers(2, 2) == [2]
+    assert generate_integers(4, 4) == [4]
+    assert generate_integers(6, 6) == [6]
+    assert generate_integers(8, 8) == [8]

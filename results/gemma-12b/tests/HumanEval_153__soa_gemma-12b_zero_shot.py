@@ -92,5 +92,5 @@ class TestStrongestExtension:
     def test_duplicate_extensions(self):
         assert Strongest_Extension("Class", ['AA', 'AA', 'CC']) == "Class.AA"
 
-    def test_numbers_in_extension(self):
-        assert Strongest_Extension("Class", ['A1A', 'B2e', 'C3C']) == "Class.A1A"
+    def test_class_name_empty(self):
+        assert Strongest_Extension("", ['AA', 'Be', 'CC']) == ".AA"

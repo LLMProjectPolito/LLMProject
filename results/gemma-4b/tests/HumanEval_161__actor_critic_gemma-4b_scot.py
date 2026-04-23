@@ -40,7 +40,7 @@ def solve(s):
 
 ### STEP 1: REASONING - Analyze functional goals and constraints.
 # The function `solve(s)` takes a string `s` as input and modifies it based on the case of each character.
-# If a character is a letter, its case is reversed. If it's not a letter, it's kept as is.
+# If a character is a letter, its case is reversed. If it's not a letter, it remains unchanged.
 # If the string contains no letters, the string is reversed.
 # The function should handle empty strings and strings with only non-letter characters correctly.
 # Edge cases: empty string, string with only numbers, string with only special characters, string with mixed cases, string with lowercase letters, string with uppercase letters.
@@ -54,8 +54,8 @@ def solve(s):
 # test_uppercase_letters
 # test_single_letter_lowercase
 # test_single_letter_uppercase
-# test_string_with_spaces
 # test_string_with_mixed_characters
+# test_string_with_leading_and_trailing_spaces
 
 ### STEP 3: CODE - Write the high-quality pytest suite.
 def test_empty_string():
@@ -82,8 +82,8 @@ def test_single_letter_lowercase():
 def test_single_letter_uppercase():
     assert solve("A") == "a"
 
-def test_string_with_spaces():
-    assert solve("hello world") == "HELLO WORLD"
-
 def test_string_with_mixed_characters():
-    assert solve("1a2B!@#") == "1A2b!@#"
+    assert solve("HeLlO 123") == "hElLo 123"
+
+def test_string_with_leading_and_trailing_spaces():
+    assert solve("  aB c ") == "  Ab C "

@@ -31,33 +31,33 @@ def file_name_check(file_name):
     file_name_check("example.txt") # => 'Yes'
     file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
+    if not file_name.isdigit():
+        return 'No'
     if len(file_name) > 3:
         return 'No'
-    if file_name.count('.') == 0:
+    if not file_name.startswith('.'):
         return 'No'
-    if not file_name[:1].isalpha():
+    parts = file_name.split('.')
+    if len(parts) != 2:
         return 'No'
-    if not file_name[1:].islower():
+    if not parts[0][0].isalpha():
         return 'No'
-    if file_name[1:].startswith('a') and file_name[1:].endswith('z'):
-        return 'Yes'
-    return 'No'
+    if parts[1] not in ['txt', 'exe', 'dll']:
+        return 'No'
+    return 'Yes'
 
 def test_file_name_check():
-    assert file_name_check("example.txt") == "Yes"
-    assert file_name_check("1example.dll") == "No"
-    assert file_name_check("a.txt") == "Yes"
-    assert file_name_check("b.txt") == "No"
-    assert file_name_check("1.txt") == "No"
-    assert file_name_check("example.txt.txt") == "No"
-    assert file_name_check("1.txt.exe") == "No"
-    assert file_name_check("a.txt.exe") == "No"
-    assert file_name_check("a.txt.dll") == "No"
-    assert file_name_check("1.txt") == "No"
-    assert file_name_check("1.txt.exe") == "No"
-    assert file_name_check("1.txt.dll") == "No"
-    assert file_name_check("a.txt") == "No"
-    assert file_name_check("a.txt.txt") == "No"
+    assert file_name_check("example.txt") == 'Yes'
+    assert file_name_check("1example.dll") == 'No'
+    assert file_name_check("a.txt") == 'No'
+    assert file_name_check("1a.txt") == 'No'
+    assert file_name_check("1a.txt.txt") == 'No'
+    assert file_name_check("1a.txt.txt.txt") == 'No'
+    assert file_name_check("1a.txt.txt.txt.txt") == 'No'
+    assert file_name_check("") == 'No'
+    assert file_name_check("1") == 'No'
+    assert file_name_check("a.txt") == 'No'
+    assert file_name_check("A.txt") == 'No'
 
 def file_name_check(file_name):
     """Create a function which takes a string representing a file's name, and returns
@@ -78,10 +78,15 @@ def file_name_check(file_name):
         return 'No'
     if len(parts) == 1:
         return 'No'
-    if not parts[0]:
-        return 'No'
-    if not parts[1][0].isalpha():
-        return 'No'
-    if parts[1][-1] not in ['txt', 'exe', 'dll']:
-        return 'No'
+    if len(parts) == 2:
+        if not parts[0]:
+            return 'No'
+        if not parts[1][0].isalpha():
+            return 'No'
+    if len(parts) == 3:
+        if not parts[0].isalnum():
+            return 'No'
+        if parts[1].isalnum():
+            if parts[2] not in ['txt', 'exe', 'dll']:
+                return 'No'
     return 'Yes'

@@ -42,7 +42,7 @@ def solve(s):
 class TestSolve:
     def test_no_letters(self):
         assert solve("1234") == "4321"
-        assert solve("!@#$%^") == "!@#$%^"
+        assert solve("!@#$%^") == "^%$#@!"
         assert solve("") == ""
 
     def test_all_letters_lower(self):
@@ -77,7 +77,7 @@ class TestSolve:
 
     def test_long_string(self):
         long_string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"
-        expected_result = "ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba0987654321!@#$%^&*()"
+        expected_result = "ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba0987654321()&*^%$#@!"
         assert solve(long_string) == expected_result
 
     def test_string_with_unicode_characters(self):

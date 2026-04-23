@@ -59,25 +59,23 @@ class TestCycpatternCheck:
         assert cycpattern_check("abc", "acb") == False
         assert cycpattern_check("abc", "bca") == False
         assert cycpattern_check("abc", "ac") == False
-        assert cycpattern_check("abc", "ab") == False
-        assert cycpattern_check("abc", "bc") == False
-        assert cycpattern_check("abc", "c") == False
-        assert cycpattern_check("abc", "a") == False
-        assert cycpattern_check("abc", "b") == False
-        assert cycpattern_check("abc", "c") == False
+        assert cycpattern_check("abc", "d") == False
 
     def test_empty_string_cases(self):
         assert cycpattern_check("", "") == True
         assert cycpattern_check("abc", "") == True
         assert cycpattern_check("", "abc") == False
 
-    def test_same_string(self):
+    def test_same_string_cases(self):
         assert cycpattern_check("abc", "abc") == True
-        assert cycpattern_check("aaaa", "aaaa") == True
+        assert cycpattern_check("a", "a") == True
 
-    def test_long_strings(self):
-        long_a = "abcdefghijklmnopqrstuvwxyz" * 10
-        assert cycpattern_check(long_a, "xyz") == True
-        assert cycpattern_check(long_a, "zyx") == False
-        assert cycpattern_check(long_a, long_a[:5]) == True
-        assert cycpattern_check(long_a, long_a[5:]) == True
+    def test_edge_cases(self):
+        assert cycpattern_check("a", "aa") == False
+        assert cycpattern_check("aa", "a") == True
+        assert cycpattern_check("abcabc", "bca") == True
+        assert cycpattern_check("abcabc", "cab") == True
+        assert cycpattern_check("abcabc", "abc") == True
+        assert cycpattern_check("abcabc", "bcab") == True
+        assert cycpattern_check("abcabc", "cabc") == True
+        assert cycpattern_check("abcabc", "abca") == False

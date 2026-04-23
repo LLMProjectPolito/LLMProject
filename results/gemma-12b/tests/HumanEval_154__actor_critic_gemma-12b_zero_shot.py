@@ -49,10 +49,12 @@ def test_pattern_longer_than_text():
 def test_pattern_is_text():
     assert cycpattern_check("abc", "abc") == True
 
-def test_pattern_is_rotation():
-    assert cycpattern_check("abc", "bca") == True
-    assert cycpattern_check("abc", "cab") == True
-    assert cycpattern_check("abc", "cba") == False # Added a negative case
+@pytest.mark.parametrize("pattern, text, expected", [
+    ("abc", "bca", True),
+    ("abc", "cab", True),
+])
+def test_pattern_is_rotation_of_text(pattern, text, expected):
+    assert cycpattern_check(text, pattern) == expected
 
 def test_pattern_with_repeated_chars():
     assert cycpattern_check("aaaa", "aa") == True
@@ -73,7 +75,10 @@ def test_text_with_repeated_chars_false2():
     assert cycpattern_check("ababab", "babab") == False
 
 def test_case_sensitive():
-    assert cycpattern_check("Hello", "ell") == False  # Assuming case-sensitive
+    assert cycpattern_check("Hello", "ell") == False
+
+def test_case_insensitive():
+    assert cycpattern_check("Hello", "ell") == True  # Assuming case-insensitive behavior
 
 def test_unicode_characters():
     assert cycpattern_check("你好世界", "你好") == True
@@ -89,38 +94,19 @@ def test_long_string_no_match():
     long_string = "abcdefghijklmnopqrstuvwxyz" * 10
     assert cycpattern_check(long_string, "zyx") == False
 
-def test_long_string_rotated_pattern():
-    long_string = "abcdefghijklmnopqrstuvwxyz" * 10
-    assert cycpattern_check(long_string, "uvwxyzabcdefghijklm") == True
+def test_long_pattern_short_text():
+    long_pattern = "abcdefghijklmnopqrstuvwxyz" * 10
+    short_text = "abc"
+    assert cycpattern_check(short_text, long_pattern) == False
 
-def test_pattern_with_special_characters():
-    assert cycpattern_check("!@#$%^", "!@#") == True
-    assert cycpattern_check("!@#$%^", "*&^") == True
-    assert cycpattern_check("!@#$%^", "$%^&") == True # Added more special characters
+def test_special_chars():
+    assert cycpattern_check("!@#$%^", "@#$") == True
 
-def test_pattern_with_whitespace():
-    assert cycpattern_check(" hello world", "hello") == True
+def test_special_chars_only():
+    assert cycpattern_check("!@#", "@#!") == True
 
-def test_pattern_with_leading_whitespace():
-    assert cycpattern_check(" hello world", " hello") == True
-
-def test_pattern_with_trailing_whitespace():
-    assert cycpattern_check(" hello world", " world") == True
-
-def test_substring_not_rotation():
-    assert cycpattern_check("abcdef", "abc") == False  # Renamed from substring_not_rotation
+def test_whitespace_pattern():
+    assert cycpattern_check("hello world", "world ") == False # or True, depending on desired behavior
 
 def test_overlapping_patterns():
-    assert cycpattern_check("ababab", "abab") == True
-
-def test_pattern_single_char_longer_text():
-    assert cycpattern_check("abcdef", "a") == False
-
-def test_text_single_char_longer_pattern():
-    assert cycpattern_check("a", "abc") == False
-
-def test_pattern_whitespace_only():
-    assert cycpattern_check("hello", "   ") == False
-
-def test_text_whitespace_only():
-    assert cycpattern_check("   ", "ell") == False
+    assert cycpattern_check("ababab", "abab") == True  # True because "abab" is a substring and a rotation of a portion of "ababab"

@@ -36,6 +36,7 @@ def get_max(arr: list[int]) -> int:
         return None
     return max(arr)
 
+
 def test_special_filter_empty():
     assert specialFilter([]) == 0
 
@@ -69,17 +70,16 @@ def test_special_filter_numbers_close_to_10():
 def test_special_filter_with_zero():
     assert specialFilter([11, 0, 13, 15]) == 2
 
-def test_special_filter_long_numbers():
-    assert specialFilter([12345, 13579, 10001, 98765]) == 2
+def test_special_filter_with_floats():
+    assert specialFilter([11.0, 13.0, 15.0]) == 3
 
-def test_special_filter_edge_case_111():
-    assert specialFilter([111]) == 1
+def test_special_filter_with_strings():
+    with pytest.raises(TypeError):
+        specialFilter(["11", "13", "15"])
 
-def test_special_filter_edge_case_999():
-    assert specialFilter([999]) == 1
-
-def test_special_filter_edge_case_1001():
-    assert specialFilter([1001]) == 0
+def test_special_filter_with_mixed_types():
+    with pytest.raises(TypeError):
+        specialFilter([11, "13", 15])
 
 def test_palindrome_basic():
     assert is_palindrome('radar') == True

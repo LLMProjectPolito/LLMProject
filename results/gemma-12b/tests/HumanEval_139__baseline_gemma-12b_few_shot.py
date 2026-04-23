@@ -20,10 +20,20 @@ def test_special_factorial_positive():
     assert special_factorial(3) == 12
     assert special_factorial(4) == 288
     assert special_factorial(5) == 34560
-    assert special_factorial(6) == 12441600
 
 def test_special_factorial_edge():
     assert special_factorial(0) == 1 #Handles edge case where n = 0.  While not explicitly stated, it's good to handle.
 
 def test_special_factorial_large():
-    assert special_factorial(7) == 125411328000
+    assert special_factorial(6) == 46656000
+    # Add more tests with larger numbers if needed, but be mindful of potential overflow issues.
+
+def test_special_factorial_type():
+    with pytest.raises(TypeError):
+        special_factorial("a")
+    with pytest.raises(TypeError):
+        special_factorial(1.5)
+
+def test_special_factorial_negative():
+    with pytest.raises(ValueError):
+        special_factorial(-1)

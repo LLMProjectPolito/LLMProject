@@ -64,56 +64,32 @@ class TestCycpatternCheck:
         assert cycpattern_check("abcdef", "cde") == True
 
     def test_rotation_needed(self):
-        assert cycpattern_check("abcd", "cdab") == True
-        assert cycpattern_check("abcde", "cdeab") == True
         assert cycpattern_check("waterbottle", "bottlewat") == True
+        assert cycpattern_check("abcd", "cdab") == True
 
     def test_long_strings(self):
-        long_string = "abcdefghijklmnopqrstuvwxyz" * 2
-        assert cycpattern_check(long_string, "uvwxyzabcdef") == True
+        long_string = "abcdefghijklmnopqrstuvwxyz" * 10
+        assert cycpattern_check(long_string, "uvwxyz") == True
+        assert cycpattern_check(long_string, "zyxwvu") == True
+        assert cycpattern_check(long_string, "mnopqrst") == True
+        assert cycpattern_check(long_string, "abcdefgh") == True
         assert cycpattern_check(long_string, "zyxwvutsrqponmlkjihgfedcba") == False
-        long_string = "a" * 1000
-        assert cycpattern_check(long_string, "a" * 500) == True
-        assert cycpattern_check(long_string, "b" * 500) == False
-
-    def test_repeated_characters(self):
-        assert cycpattern_check("aaaaa", "aa") == True
-        assert cycpattern_check("ababab", "bab") == True
-        assert cycpattern_check("ababab", "aba") == True
-        assert cycpattern_check("ababab", "baba") == True
-        assert cycpattern_check("ababab", "ababa") == True
-        assert cycpattern_check("aaaaa", "aa") == True
-        assert cycpattern_check("ababab", "aba") == True
 
     def test_edge_cases(self):
         assert cycpattern_check("a", "a") == True
         assert cycpattern_check("a", "b") == False
-        assert cycpattern_check("ab", "ba") == True
-        assert cycpattern_check("ab", "abc") == False
-        assert cycpattern_check("abc", "ab") == False
-
-    def test_identical_strings(self):
-        assert cycpattern_check("abc", "abc") == True
-
-    def test_case_sensitivity(self):
-        assert cycpattern_check("Hello", "ell") == False
-        assert cycpattern_check("Hello", "Hello") == True
+        assert cycpattern_check("aa", "a") == True
+        assert cycpattern_check("aa", "aa") == True
+        assert cycpattern_check("aa", "aaa") == False
+        assert cycpattern_check("abcde", "cdea") == True
+        assert cycpattern_check("abcde", "eabcd") == True
 
     def test_special_characters(self):
-        assert cycpattern_check("a!b@c#", "!b@c") == True
-        assert cycpattern_check("a!b@c#", "@c#a") == True
-        assert cycpattern_check("a!b@c#", "d$e%") == False
+        assert cycpattern_check("!@#$%^", "$%^!") == True
+        assert cycpattern_check("!@#$%^", "^$#@!") == True
+        assert cycpattern_check("!@#$%^", "abc") == False
 
-    def test_overlapping_patterns(self):
-        assert cycpattern_check("aaaaa", "aa") == True
-        assert cycpattern_check("ababab", "aba") == True
-
-    def test_edge_case_single_char(self):
-        assert cycpattern_check("a", "a") == True
-        assert cycpattern_check("ab", "b") == True
-        assert cycpattern_check("ab", "c") == False
-
-    def test_complex_rotation(self):
-        assert cycpattern_check("abcdefgh", "efghabcd") == True
-        assert cycpattern_check("abcdefgh", "ghabcdef") == True
-        assert cycpattern_check("abcdefgh", "habcdefg") == True
+    def test_mixed_case(self):
+        assert cycpattern_check("Hello", "ell") == False
+        assert cycpattern_check("Hello", "llo") == False
+        assert cycpattern_check("Hello", "Hel") == False

@@ -99,3 +99,15 @@ def test_eat_zero_initial_carrots():
 
 def test_eat_zero_need():
     assert eat(5, 0, 0) == [5, 0]
+
+def test_eat_zero_remaining():
+    assert eat(5, 6, 0) == [5, 0]
+
+def test_eat_large_numbers():
+    assert eat(100, 200, 300) == [300, 0]
+
+def test_eat_large_numbers_2():
+    assert eat(500, 600, 700) == [1100, 0]
+
+def test_eat_large_numbers_3():
+    assert eat(900, 100, 50) == [1000, 0]

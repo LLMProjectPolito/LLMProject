@@ -88,7 +88,7 @@ class TestStrongestExtension:
         assert Strongest_Extension("MyClass", ["aaaa", "bbbb"]) == "MyClass.aaaa"
 
     def test_numbers_and_letters(self):
-        assert Strongest_Extension("MyClass", ["A123", "b456"]) == "MyClass.A123"
+        assert Strongest_Extension("MyClass", ["A12", "b34"]) == "MyClass.A12"
 
     def test_special_characters(self):
         assert Strongest_Extension("MyClass", ["!@#", "$%^"]) == "MyClass.!@#"
@@ -96,8 +96,5 @@ class TestStrongestExtension:
     def test_long_extensions(self):
         assert Strongest_Extension("MyClass", ["ThisIsALongExtension", "AnotherLongExtension"]) == "MyClass.ThisIsALongExtension"
 
-    def test_same_strength_different_lengths(self):
-        assert Strongest_Extension("MyClass", ["A", "AA"]) == "MyClass.A"
-
     def test_class_name_with_special_characters(self):
-        assert Strongest_Extension("My_Class!", ["Extension"]) == "My_Class!.Extension"
+        assert Strongest_Extension("My_Class!", ["Extension1", "Extension2"]) == "My_Class!.Extension1"

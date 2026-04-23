@@ -47,15 +47,14 @@ def even_odd_count(num):
         even_odd_count(-12) ==> (1, 1)
         even_odd_count(123) ==> (1, 2)
     """
-    even_count = 0
-    odd_count = 0
+    even = 0
+    odd = 0
     for digit in str(abs(num)):
-        digit = int(digit)
-        if digit % 2 == 0:
-            even_count += 1
+        if int(digit) % 2 == 0:
+            even += 1
         else:
-            odd_count += 1
-    return (even_count, odd_count)
+            odd += 1
+    return (even, odd)
 
-def test_negative_zero():
+def test_negative_zero_input():
     assert even_odd_count(-0) == (1, 0)

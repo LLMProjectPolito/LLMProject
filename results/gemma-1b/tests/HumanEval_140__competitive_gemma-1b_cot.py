@@ -20,11 +20,12 @@ def fix_spaces(text):
     result = ""
     count = 0
     for char in text:
-        if char == " ":
+        if char == ' ':
             count += 1
         else:
-            result += char
-            if count > 2:
-                result += "-"
-            count = 0
+            if count == 2:
+                result += '-'
+                count = 0
+            else:
+                result += char
     return result

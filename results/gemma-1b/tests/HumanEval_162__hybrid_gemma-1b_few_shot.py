@@ -7,23 +7,22 @@ def string_to_md5(text):
     >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
     """
 
-```python
-import hashlib
+import pytest
 
-def string_to_md5(text):
-    """ Given a string 'text', return its md5 hash equivalent string.
-    If 'text' is an empty string, return None.
-    """
-    if not text:
+def get_max(arr: list[int]) -> int:
+    """ Returns the maximum element in a list, or None if empty """
+
+    if not arr:
         return None
-    md5_hash = hashlib.md5(text.encode('utf-8')).hexdigest()
-    return md5_hash
 
-def test_string_to_md5_positive():
-    assert string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
+    max_val = arr[0]
+    for num in arr:
+        if num > max_val:
+            max_val = num
+    return max_val
 
-def test_string_to_md5_empty():
-    assert string_to_md5('') is None
+def test_get_max_positive():
+    assert get_max([1, 2, 3]) == 3
 
-def test_string_to_md5_single_char():
-    assert string_to_md5('a') == '7f5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f6e5a9b8e5a7d9f3c6e5b7a8d7f
+def test_get_max_empty():
+    assert get_max([]) == None

@@ -45,45 +45,50 @@ def compare(game,guess):
 # The new list contains the absolute difference between the corresponding elements of `game` and `guess` if they are not equal,
 # and 0 if they are equal.
 # We need to test the following scenarios:
-# 1. Empty lists
-# 2. Lists with equal elements
-# 3. Lists with different elements
-# 4. Lists with negative elements
-# 5. Lists with zero elements
+# 1. Both lists are empty.
+# 2. Both lists have one element, and they are equal.
+# 3. Both lists have one element, and they are not equal.
+# 4. Both lists have multiple elements, and some are equal and some are not.
+# 5. Both lists have multiple elements, and all are equal.
+# 6. Both lists have multiple elements, and all are not equal.
+# 7. One of the lists is empty, and the other is not. (Should raise an error)
+# 8. Lists have different lengths. (Should raise an error)
 
 # STEP 2: PLAN
 # Test functions:
-# - test_empty_lists: Test with empty lists as input.
-# - test_equal_lists: Test with lists containing equal elements.
-# - test_different_lists: Test with lists containing different elements.
-# - test_negative_elements: Test with lists containing negative elements.
-# - test_zero_elements: Test with lists containing zero elements.
-# - test_mixed_elements: Test with lists containing a mix of positive, negative, and zero elements.
-# - test_example_1: Test with the first example provided in the problem description.
-# - test_example_2: Test with the second example provided in the problem description.
+# - test_empty_lists: Both lists are empty.
+# - test_single_equal: Both lists have one element, and they are equal.
+# - test_single_not_equal: Both lists have one element, and they are not equal.
+# - test_multiple_mixed: Both lists have multiple elements, and some are equal and some are not.
+# - test_multiple_all_equal: Both lists have multiple elements, and all are equal.
+# - test_multiple_all_not_equal: Both lists have multiple elements, and all are not equal.
+# - test_different_lengths: Lists have different lengths.
+# - test_one_list_empty: One of the lists is empty, and the other is not.
 
 # STEP 3: CODE
 class TestCompare:
     def test_empty_lists(self):
         assert compare([], []) == []
 
-    def test_equal_lists(self):
-        assert compare([1, 2, 3], [1, 2, 3]) == [0, 0, 0]
+    def test_single_equal(self):
+        assert compare([5], [5]) == [0]
 
-    def test_different_lists(self):
-        assert compare([1, 2, 3], [4, 5, 6]) == [3, 3, 3]
+    def test_single_not_equal(self):
+        assert compare([5], [6]) == [1]
 
-    def test_negative_elements(self):
-        assert compare([-1, -2, -3], [-4, -5, -6]) == [3, 3, 3]
-
-    def test_zero_elements(self):
-        assert compare([0, 0, 0], [0, 0, 0]) == [0, 0, 0]
-
-    def test_mixed_elements(self):
-        assert compare([1, -2, 0], [4, -5, 2]) == [3, 3, 2]
-
-    def test_example_1(self):
+    def test_multiple_mixed(self):
         assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
 
-    def test_example_2(self):
-        assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
+    def test_multiple_all_equal(self):
+        assert compare([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]) == [0, 0, 0, 0, 0]
+
+    def test_multiple_all_not_equal(self):
+        assert compare([1, 2, 3, 4, 5], [6, 7, 8, 9, 10]) == [5, 5, 5, 5, 5]
+
+    def test_different_lengths(self):
+        with pytest.raises(IndexError):
+            compare([1, 2, 3], [1, 2])
+
+    def test_one_list_empty(self):
+        with pytest.raises(IndexError):
+            compare([1, 2, 3], [])

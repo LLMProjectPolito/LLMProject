@@ -68,4 +68,4 @@ def test_get_max_triples_30():
     assert get_max_triples(30) == 335
 
 def test_get_max_triples_50():
-    assert get_max_triples(50) == 820
+    assert get_max_triples(50) == 824

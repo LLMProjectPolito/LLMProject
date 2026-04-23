@@ -71,21 +71,19 @@ def simplify(x, n):
     """
     x_val = int(x)
     n_val = int(n)
-
+    
     if x_val == 0 or n_val == 0:
         return False
-
+    
     numerator = x_val
     denominator = n_val
-
+    
     if denominator == 0:
         return False
-
+    
     common_divisor = gcd(numerator, denominator)
-    numerator //= common_divisor
-    denominator //= common_divisor
-
-    return numerator == denominator
+    
+    return numerator // common_divisor == denominator // common_divisor
 def gcd(a, b):
     if b == 0:
         return a

@@ -57,3 +57,7 @@ def test_compare_different_lengths():
 def test_compare_negative_numbers():
     assert compare([-1, -2, -3], [-1, -2, -3]) == [0, 0, 0]
     assert compare([-1, -2, -3], [-4, -5, -6]) == [3, 3, 3]
+
+def test_compare_mixed_numbers():
+    assert compare([1, -2, 3], [1, -2, 3]) == [0, 0, 0]
+    assert compare([1, -2, 3], [4, -5, 6]) == [3, 3, 3]

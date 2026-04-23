@@ -36,59 +36,60 @@ def double_the_difference(lst):
 
 # STEP 1: REASONING
 # The function `double_the_difference` calculates the sum of squares of odd integers in a list.
-# It should handle negative numbers, non-integer numbers, and empty lists gracefully.
-# It should only consider positive odd integers.
+# It should ignore negative numbers and non-integer numbers.
+# It should return 0 if the input list is empty.
+# Edge cases: empty list, list with only negative numbers, list with only non-integers, list with mixed types, list with zero.
 
 # STEP 2: PLAN
-# Test Cases:
-# 1. Empty list: [] - Expected output: 0
-# 2. List with only even numbers: [2, 4, 6] - Expected output: 0
-# 3. List with only negative numbers: [-1, -3, -5] - Expected output: 0
-# 4. List with mixed positive and negative numbers: [1, -2, 3, -4] - Expected output: 1 + 9 = 10
-# 5. List with zero: [0, 1, 2] - Expected output: 1
-# 6. List with a single odd number: [1] - Expected output: 1
-# 7. List with a single even number: [2] - Expected output: 0
-# 8. List with a single zero: [0] - Expected output: 0
-# 9. List with a mix of odd and even integers and negative numbers: [-1, 2, 3, -4, 5] - Expected output: 1 + 9 + 25 = 35
-# 10. List with floats: [1.5, 3.0, 2.5] - Expected output: 0
-
-# Test Function Names:
-# test_empty_list
-# test_even_list
-# test_negative_list
-# test_mixed_list
-# test_single_odd
-# test_single_even
-# test_single_zero
-# test_mixed_odd_even_negative
-# test_float_list
-
+# Test cases:
+# 1. Empty list: []
+# 2. List with positive odd integers: [1, 3, 5]
+# 3. List with positive even integers: [2, 4, 6]
+# 4. List with negative odd integers: [-1, -3, -5]
+# 5. List with negative even integers: [-2, -4, -6]
+# 6. List with mixed positive and negative integers: [1, -2, 3, -4]
+# 7. List with non-integer values: [1.5, 2, 3]
+# 8. List with zero: [0]
+# 9. List with a single odd number: [1]
+# 10. List with a single even number: [2]
+# 11. List with a single negative number: [-1]
 
 # STEP 3: CODE
-# pytest suite
 def test_empty_list():
     assert double_the_difference([]) == 0
 
-def test_even_list():
+def test_positive_odd_integers():
+    assert double_the_difference([1, 3, 5]) == 35
+
+def test_positive_even_integers():
     assert double_the_difference([2, 4, 6]) == 0
 
-def test_negative_list():
-    assert double_the_difference([-1, -2, -3]) == 0
+def test_negative_odd_integers():
+    assert double_the_difference([-1, -3, -5]) == 35
 
-def test_mixed_list():
-    assert double_the_difference([1, -2, 3, -4]) == 10
+def test_negative_even_integers():
+    assert double_the_difference([-2, -4, -6]) == 0
 
-def test_single_odd():
-    assert double_the_difference([1]) == 1
+def test_mixed_positive_negative_integers():
+    assert double_the_difference([1, -2, 3, -4]) == 30
 
-def test_single_even():
-    assert double_the_difference([2]) == 0
+def test_non_integer_values():
+    assert double_the_difference([1.5, 2, 3]) == 0
 
-def test_single_zero():
+def test_zero():
     assert double_the_difference([0]) == 0
 
-def test_mixed_odd_even_negative():
-    assert double_the_difference([-1, 2, 3, -4, 5]) == 35
+def test_single_odd_number():
+    assert double_the_difference([1]) == 1
 
-def test_float_list():
-    assert double_the_difference([1.5, 3.0, 2.5]) == 0
+def test_single_even_number():
+    assert double_the_difference([2]) == 0
+
+def test_single_negative_number():
+    assert double_the_difference([-1]) == 1
+
+def test_mixed_odd_even():
+    assert double_the_difference([1, 2, 3, 4, 5]) == 35
+
+def test_all_negative_and_non_integers():
+    assert double_the_difference([-1.5, -2, -3]) == 0

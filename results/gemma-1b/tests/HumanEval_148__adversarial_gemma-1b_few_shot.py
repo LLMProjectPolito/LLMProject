@@ -18,14 +18,63 @@ def bf(planet1, planet2):
 
 import pytest
 
-def get_max(arr: list[int]) -> int:
-    """ Returns the maximum element in a list, or None if empty """
-    if not arr:
-        return None
-    return max(arr)
+def bf(planet1, planet2):
+    '''
+    There are eight planets in our solar system: the closerst to the Sun 
+    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn, 
+    Uranus, Neptune.
+    Write a function that takes two planet names as strings planet1 and planet2. 
+    The function should return a tuple containing all planets whose orbits are 
+    located between the orbit of planet1 and the orbit of planet2, sorted by 
+    the proximity to the sun. 
+    The function should return an empty tuple if planet1 or planet2
+    are not correct planet names. 
+    Examples
+    bf("Jupiter", "Neptune") ==> ("Saturn", "Uranus")
+    bf("Earth", "Mercury") ==> ("Venus")
+    bf("Mercury", "Uranus") ==> ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+    '''
+    if not isinstance(planet1, str) or not isinstance(planet2, str):
+        return ()
+    if planet1 not in ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]:
+        return ()
+    
+    planet1_orbit = "Mercury"
+    planet2_orbit = "Neptune"
+    
+    if planet1 == planet1_orbit:
+        return (planet2, planet2_orbit)
+    elif planet2 == planet2_orbit:
+        return (planet1, planet1_orbit)
+    else:
+        return ()
 
-def test_max_positive():
-    assert get_max([1, 2, 3]) == 3
+def test_bf_valid_orbit():
+    assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
 
-def test_max_empty():
-    assert get_max([]) == None
+def test_bf_invalid_orbit():
+    assert bf("Earth", "Mercury") == ()
+
+def test_bf_invalid_planet_name():
+    assert bf("Jupiter", "Mars") == ()
+
+def test_bf_invalid_planet_name_2():
+    assert bf("Venus", "Mercury") == ()
+
+def test_bf_invalid_planet_name_3():
+    assert bf("Saturn", "Uranus") == ()
+
+def test_bf_invalid_planet_name_4():
+    assert bf("Uranus", "Neptune") == ()
+
+def test_bf_invalid_planet_name_5():
+    assert bf("Neptune", "Mercury") == ()
+
+def test_bf_invalid_planet_name_6():
+    assert bf("Mercury", "Uranus") == ()
+
+def test_bf_invalid_planet_name_7():
+    assert bf("Venus", "Saturn") == ()
+
+def test_bf_invalid_planet_name_8():
+    assert bf("Mars", "Uranus") == ()

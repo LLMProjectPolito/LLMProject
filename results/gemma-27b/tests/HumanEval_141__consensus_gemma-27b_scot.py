@@ -67,12 +67,11 @@ class TestFileNameCheck:
         assert file_name_check("A.txt") == 'Yes'
         assert file_name_check("file123.txt") == 'Yes'
         assert file_name_check("a.txt") == 'Yes'
-        assert file_name_check("abc.exe") == 'Yes'
-        assert file_name_check("a1.dll") == 'Yes'
-        assert file_name_check("a123.txt") == 'Yes'
-        assert file_name_check("A1.txt") == 'Yes'
-        assert file_name_check("A123.exe") == 'Yes'
-        assert file_name_check("A123.dll") == 'Yes'
+        assert file_name_check("A.exe") == 'Yes'
+        assert file_name_check("abc.dll") == 'Yes'
+        assert file_name_check("abc1.txt") == 'Yes'
+        assert file_name_check("abc12.exe") == 'Yes'
+        assert file_name_check("abc123.dll") == 'Yes'
 
     def test_invalid_file_name_too_many_digits(self):
         assert file_name_check("1234example.txt") == 'No'
@@ -98,13 +97,6 @@ class TestFileNameCheck:
         assert file_name_check("example.jpg") == 'No'
         assert file_name_check("MyFile.pdf") == 'No'
 
-    def test_invalid_file_name_empty_string(self):
-        assert file_name_check("") == 'No'
-
-    def test_valid_file_name_uppercase(self):
-        assert file_name_check("Example.txt") == 'Yes'
-        assert file_name_check("MYFILE.exe") == 'Yes'
-
-    def test_valid_file_name_mixed_case(self):
-        assert file_name_check("ExAmPlE.txt") == 'Yes'
-        assert file_name_check("mYfIlE.exe") == 'Yes'
+    def test_invalid_file_name_special_characters(self):
+        assert file_name_check("example!.txt") == 'Yes'
+        assert file_name_check("example@.exe") == 'Yes'

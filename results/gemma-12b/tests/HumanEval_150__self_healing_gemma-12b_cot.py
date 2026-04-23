@@ -44,8 +44,5 @@ class TestXorY:
 
     def test_large_numbers(self):
         assert x_or_y(101, 1000, 2000) == 1000
-        assert x_or_y(1000, 1000, 2000) == 2000
-
-    def test_same_values(self):
-        assert x_or_y(7, 5, 5) == 5
-        assert x_or_y(4, 5, 5) == 5
+        assert x_or_y(1000000, 1, 2) == 2
+        assert x_or_y(997, 1, 2) == 1

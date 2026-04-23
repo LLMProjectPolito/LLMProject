@@ -163,5 +163,7 @@ def do_algebra(operator, operand):
     return result
 
 def test_invalid_operator_length():
+    operator = ['+']
+    operand = [1, 2]
     with pytest.raises(IndexError):
-        do_algebra(['+', '*'], [1, 2, 3])
+        do_algebra(operator, operand)

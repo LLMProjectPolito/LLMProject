@@ -12,20 +12,48 @@ def cycpattern_check(a , b):
 
 def cycpattern_check(a , b):
     """You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word.
-    An empty string `b` is considered a substring of any string `a`, so the function returns True in that case.
+    The check is case-insensitive.
+
     cycpattern_check("abcd","abd") => False
     cycpattern_check("hello","ell") => True
     cycpattern_check("whassup","psus") => False
     cycpattern_check("abab","baa") => True
     cycpattern_check("efef","eeff") => False
     cycpattern_check("himenss","simen") => True
+    cycpattern_check("abc","") => True
+    cycpattern_check("","abc") => False
+    cycpattern_check("","") => False
+    cycpattern_check("abc","abc") => True
 
-    Raises TypeError if a is empty.
+    >>> cycpattern_check("abcd","abd")
+    False
+    >>> cycpattern_check("hello","ell")
+    True
+    >>> cycpattern_check("whassup","psus")
+    False
+    >>> cycpattern_check("abab","baa")
+    True
+    >>> cycpattern_check("efef","eeff")
+    False
+    >>> cycpattern_check("himenss","simen")
+    True
+    >>> cycpattern_check("abc","")
+    True
+    >>> cycpattern_check("","abc")
+    False
+    >>> cycpattern_check("","")
+    False
+    >>> cycpattern_check("abc","abc")
+    True
     """
-    if not a:
-        raise TypeError("Input string 'a' cannot be empty.")
+    a = a.lower()
+    b = b.lower()
+
     if not b:
         return True
+
+    if not a:
+        return False
 
     for i in range(len(b)):
         rotated_b = b[i:] + b[:i]
@@ -33,24 +61,3 @@ def cycpattern_check(a , b):
             return True
 
     return False
-
-import pytest
-
-@pytest.mark.parametrize("a, b, expected", [
-    ("abcd", "abd", False),
-    ("hello", "ell", True),
-    ("whassup", "psus", False),
-    ("abab", "baa", True),
-    ("efef", "eeff", False),
-    ("himenss", "simen", True),
-    ("abc", "abc", True), # a and b are identical
-    ("aaaaa", "aa", True), # multiple occurrences
-    ("abcde", "cdeab", True), # rotation at the end
-    ("abc", "abcd", False), # b is longer than a
-])
-def test_cycpattern_check(a, b, expected):
-    assert cycpattern_check(a, b) == expected
-
-def test_cycpattern_check_empty_a():
-    with pytest.raises(TypeError):
-        cycpattern_check("", "abc")

@@ -57,3 +57,6 @@ def test_get_max_triples_n_5():
 
 def test_get_max_triples_n_6():
     assert get_max_triples(6) == 1
+
+def test_get_max_triples_n_7():
+    assert get_max_triples(7) == 2

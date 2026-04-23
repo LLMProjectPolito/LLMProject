@@ -22,7 +22,7 @@ def string_to_md5(text):
     md5_hash = hashlib.md5(text.encode('utf-8')).hexdigest()
     return md5_hash
 
-class TestStringtoMD5:
+class TestStringMD5:
     def test_valid_string(self):
         assert string_to_md5("Hello world") == "3e25960a79dbc69b674cd4ec67a72c62"
 
@@ -40,8 +40,10 @@ class TestStringtoMD5:
 
     def test_long_string(self):
         long_string = "This is a very long string to test the MD5 hash function. It should handle long strings without any issues."
-        assert len(string_to_md5(long_string)) == 32
+        assert string_to_md5(long_string) == hashlib.md5(long_string.encode('utf-8')).hexdigest()
 
     def test_invalid_input(self):
         with pytest.raises(TypeError):
             string_to_md5(123)
+        with pytest.raises(TypeError):
+            string_to_md5([1, 2, 3])

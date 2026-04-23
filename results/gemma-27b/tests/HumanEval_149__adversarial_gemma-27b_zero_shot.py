@@ -52,7 +52,7 @@ def test_mixed_lengths_with_duplicates():
     assert sorted_list_sum(["aa", "a", "aaa", "bb", "aa"]) == ["aa", "aa", "bb"]
 
 def test_same_length_alphabetical():
-    assert sorted_list_sum(["ab", "cd", "aa"]) == ["aa", "ab", "cd"]
+    assert sorted_list_sum(["ab", "aa", "ac"]) == ["aa", "ab", "ac"]
 
 def test_example_1():
     assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]

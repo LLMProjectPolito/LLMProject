@@ -59,7 +59,7 @@ def Strongest_Extension(class_name, extensions):
     return f"{class_name}.{strongest_extension}"
 
 def test_edge_empty_extensions():
-    assert Strongest_Extension("Slices", []) == "Slices."
+    assert Strongest_Extension("my_class", []) == "my_class."
 
 import pytest
 

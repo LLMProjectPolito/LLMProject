@@ -83,6 +83,9 @@ def test_complex_list():
 def test_large_numbers():
     assert sum_squares([10, 20, 30, 40]) == 30000
 
+def test_zero_values():
+    assert sum_squares([0, 1, 2, 3]) == 14
+
 def test_list_with_zeros():
     assert sum_squares([0, 0, 0]) == 0
 

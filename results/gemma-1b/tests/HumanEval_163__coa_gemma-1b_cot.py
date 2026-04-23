@@ -47,14 +47,10 @@ def generate_integers(a, b):
     """
     result = []
     for num in range(a, b + 1):
-        s = str(num)
-        even_digits = []
-        for digit in s:
-            digit = int(digit)
-            if digit % 2 == 0:
-                even_digits.append(digit)
-        even_digits.sort()
-        result = even_digits
+        for digit in str(num):
+            if int(digit) % 2 == 0:
+                result.append(num)
+                break
     return result
 
 # Focus: Logic Branches

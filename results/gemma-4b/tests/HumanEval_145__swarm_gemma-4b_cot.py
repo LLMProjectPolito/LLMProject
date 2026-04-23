@@ -43,7 +43,7 @@ def test_negative_numbers():
     assert order_by_points([-1, -11, -12, 1, 11]) == [-1, -11, -12, 1, 11]
 
 def test_mixed_positive_negative():
-    assert order_by_points([1, -1, 11, -11]) == [-1, -11, 1, 11]
+    assert order_by_points([-1, 1, -11, 11]) == [-1, -11, 1, 11]
 
 def test_duplicate_sums():
     assert order_by_points([1, 11, 2, 20]) == [1, 11, 2, 20]

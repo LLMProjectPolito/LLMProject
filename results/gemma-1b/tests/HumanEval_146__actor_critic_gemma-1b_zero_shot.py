@@ -42,42 +42,42 @@ def test_positive_numbers():
     assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 0
     assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 0
     assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 11]) == 0
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12]) == 0
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 13]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 12]) == 1
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 14]) == 1
     assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 15]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 17]) == 1
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 16]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 17]) == 0
     assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 21]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 23]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 25]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 27]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 29]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 31]) == 1
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 23]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 25]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 27]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 29]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 31]) == 0
     assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 33]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 35]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 37]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 39]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 41]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 43]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 45]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 47]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 49]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 51]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 53]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 55]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 57]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 59]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 61]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 63]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 65]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 67]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 69]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 71]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 73]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 75]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 77]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 79]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 81]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 83]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 85]) == 1
-    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 87]) == 1
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 35]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 37]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 39]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 41]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 43]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 45]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 47]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 49]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 51]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 53]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 55]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 57]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 59]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 61]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 63]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 65]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 67]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 69]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 71]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 73]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 75]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 77]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 79]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 81]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 83]) == 0
     assert specialFilter([1, 2, 3, 4, 5, 6, 7

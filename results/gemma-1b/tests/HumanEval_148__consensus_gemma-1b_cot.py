@@ -48,3 +48,27 @@ def bf(planet1, planet2):
         return (planet1, planet2)
     else:
         return (planet2, planet1)
+
+def test_bf_jupiter_neptune():
+    assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
+
+def test_bf_earth_mercury():
+    assert bf("Earth", "Mercury") == ("Venus")
+
+def test_bf_mercury_venus():
+    assert bf("Mercury", "Venus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+
+def test_bf_mars_jupiter():
+    assert bf("Mars", "Jupiter") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+
+def test_bf_saturn_uranus():
+    assert bf("Saturn", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+
+def test_bf_uranus_neptune():
+    assert bf("Uranus", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+
+def test_bf_invalid_input():
+    assert bf("Jupiter", "Moon") == ()
+
+def test_bf_invalid_input_type():
+    assert bf(123, "Neptune") == ()

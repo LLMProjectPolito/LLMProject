@@ -58,23 +58,23 @@ class TestSolve:
     def test_letters_and_numbers(self):
         assert solve("a1B2") == "A1b2"
 
-    def test_all_lowercase_with_symbols(self):
-        assert solve("hello#world") == "HELLO#WORLD"
+    def test_all_lowercase(self):
+        assert solve("hello") == "HELLO"
 
-    def test_all_uppercase_with_symbols(self):
-        assert solve("WORLD#HELLO") == "world#hello"
+    def test_all_uppercase(self):
+        assert solve("WORLD") == "world"
 
-    def test_long_string(self):
-        assert solve("This is a long string with letters and numbers!") == "tHIS iS A LONG STRING WITH LETTERS AND NUMBERS!"
+    def test_complex_string(self):
+        assert solve("HeLlO wOrLd 123!") == "hElLo WoRlD 123!"
 
-    def test_string_with_only_symbols(self):
-        assert solve("!@#$%^") == "!@#$%^"
+    def test_single_letter_lowercase(self):
+        assert solve("a") == "A"
 
-    def test_string_with_spaces(self):
-        assert solve("  a b  ") == "  A B  "
+    def test_single_letter_uppercase(self):
+        assert solve("A") == "a"
 
-    def test_mixed_with_unicode(self):
-        assert solve("你好世界") == "你好世界"
+    def test_single_symbol(self):
+        assert solve("#") == "#"
 
-    def test_mixed_with_special_chars(self):
-        assert solve("!@#$aB%^") == "!@#$Ab%^"
+    def test_multiple_symbols(self):
+        assert solve("!@#$%") == "!@#$%"

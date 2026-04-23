@@ -50,7 +50,7 @@ def test_compare_incorrect_guess():
     assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
 
 def test_compare_mixed():
-    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 1, 2]) == [0, 0, 0, 0, 0, 0]
+    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 1, 2]) == [0, 0, 0, 0, 4, 0]
 
 def test_compare_negative_numbers():
     assert compare([-1, -2, -3], [-1, -2, -3]) == [0, 0, 0]
@@ -64,4 +64,4 @@ def test_compare_different_lengths():
 
 def test_compare_different_lengths_reversed():
     with pytest.raises(IndexError):
-        compare([1, 2], [1, 2, 3])
+        compare([1, 2, 3], [1, 2, 3])

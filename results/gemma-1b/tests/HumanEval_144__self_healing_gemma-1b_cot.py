@@ -27,23 +27,19 @@ def simplify(x, n):
     simplify("7/10", "10/2") = False
     """
     try:
-        x_val = int(x)
-        n_val = int(n)
-        numerator = x_val
-        denominator = n_val
+        numerator, denominator = x.split('/')
+        if denominator == "":
+            denominator = 1
         
-        if denominator == 0:
+        if numerator == "1" and denominator == "1":
+            return True
+        
+        if numerator == "1" and denominator == "0":
             return False
         
-        common_divisor = gcd(numerator, denominator)
-        numerator //= common_divisor
-        denominator //= common_divisor
+        if numerator == "0" and denominator != "0":
+            return False
         
-        return abs(numerator) == abs(denominator)
-    except ValueError:
+        return int(numerator * denominator) == int(numerator * denominator)
+    except:
         return False
-
-def gcd(a, b):
-    if b == 0:
-        return a
-    return gcd(b, a % b)

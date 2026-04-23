@@ -54,22 +54,20 @@ def do_algebra(operator, operand):
     """
     result = operand[0]
     for i in range(len(operator)):
-        op = operator[i]
-        num = operand[i+1]
-        if op == '+':
-            result += num
-        elif op == '-':
-            result -= num
-        elif op == '*':
-            result *= num
-        elif op == '//':
-            if num == 0:
+        if operator[i] == '+':
+            result += operand[i+1]
+        elif operator[i] == '-':
+            result -= operand[i+1]
+        elif operator[i] == '*':
+            result *= operand[i+1]
+        elif operator[i] == '//':
+            if operand[i+1] == 0:
                 raise ZeroDivisionError("Floor division by zero")
-            result //= num
-        elif op == '**':
-            result **= num
+            result //= operand[i+1]
+        elif operator[i] == '**':
+            result **= operand[i+1]
         else:
-            raise ValueError(f"Invalid operator: {op}")
+            raise ValueError("Invalid operator")
     return result
 
 def test_valid_expression():
@@ -97,13 +95,13 @@ def test_mixed_operators():
 
 def test_invalid_operator():
     with pytest.raises(ValueError):
-        do_algebra(['%'], [1, 2])
+        do_algebra(['$'], [1, 2])
 
 def test_invalid_length():
     with pytest.raises(IndexError):
         do_algebra(['+'], [1])
     with pytest.raises(IndexError):
-        do_algebra(['+', '+'], [1, 2, 3])
+        do_algebra(['+', '-'], [1, 2, 3])
 
 def test_negative_operand():
     with pytest.raises(TypeError):
@@ -113,7 +111,7 @@ def test_empty_operator_operand():
     with pytest.raises(IndexError):
         do_algebra([], [1, 2])
     with pytest.raises(IndexError):
-        do_algebra(['+'], [1])
+        do_algebra(['+'], [])
 
 def test_large_numbers():
     assert do_algebra(['*'], [100000, 100000]) == 10000000000

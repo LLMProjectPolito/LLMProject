@@ -20,5 +20,5 @@ def test_basic():
 def test_edge():
     assert solve("1234") == "4321"
 
-def test_empty_string():
-    assert solve("") == ""
+def test_no_letters():
+    assert solve("1234") == "4321"

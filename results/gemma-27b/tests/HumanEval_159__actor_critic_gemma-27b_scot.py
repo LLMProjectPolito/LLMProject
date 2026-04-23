@@ -51,7 +51,7 @@ def eat(number, need, remaining):
     @need : integer
         the number of carrots that you need to eat.
     @remaining : integer
-        the number of remaining carrots thet exist in stock
+        the number of remaining carrots that exist in stock
     
     Constrain:
     * 0 <= number <= 1000
@@ -60,47 +60,37 @@ def eat(number, need, remaining):
 
     Have fun :)
     """
-    # If the rabbit doesn't need to eat any more carrots (need <= number), it won't eat any more.
-    eat_amount = min(need - number, remaining)
-    total_eaten = number + eat_amount
-    remaining_carrots = remaining - eat_amount
+    eaten = min(need, remaining)
+    total_eaten = number + eaten
+    remaining_carrots = remaining - eaten
     return [total_eaten, remaining_carrots]
 
-def test_eat_sufficient_carrots():
+def test_eat_normal_case():
     assert eat(5, 6, 10) == [11, 4]
 
-def test_eat_insufficient_carrots():
+def test_eat_eat_all_remaining():
     assert eat(4, 8, 9) == [12, 1]
 
-def test_eat_exactly_enough_carrots():
-    assert eat(1, 10, 10) == [11, 0]
-
-def test_eat_no_carrots_needed():
-    assert eat(5, 5, 10) == [5, 10]
-
-def test_eat_no_remaining_carrots():
-    assert eat(5, 6, 0) == [5, 0]
-
-def test_eat_zero_initial_carrots():
-    assert eat(0, 5, 10) == [5, 5]
-
-def test_eat_with_maximum_input_values():
-    assert eat(1000, 1000, 1000) == [2000, 0]
-
-def test_eat_zero_need():
+def test_eat_when_need_is_zero():
     assert eat(5, 0, 10) == [5, 10]
 
-def test_eat_large_need_small_remaining():
-    assert eat(2, 11, 5) == [7, 0]
+def test_eat_no_remaining():
+    assert eat(5, 6, 0) == [5, 0]
 
-def test_eat_need_less_than_number():
-    assert eat(7, 5, 10) == [7, 10]
+def test_eat_when_initial_eaten_is_zero():
+    assert eat(0, 5, 10) == [5, 5]
+
+def test_eat_max_initial():
+    assert eat(1000, 5, 10) == [1005, 0]
+
+def test_eat_need_greater_than_remaining():
+    assert eat(2, 11, 5) == [7, 0]
 
 def test_eat_all_zeros():
     assert eat(0, 0, 0) == [0, 0]
 
-def test_eat_negative_need():
-    assert eat(5, -1, 10) == [5, 10]
+def test_eat_large_remaining():
+    assert eat(100, 500, 900) == [600, 400]
 
-def test_eat_still_hungry():
-    assert eat(1, 5, 2) == [3, 0]
+def test_eat_need_equals_remaining():
+    assert eat(10, 5, 5) == [15, 0]

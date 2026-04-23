@@ -25,12 +25,12 @@ def simplify(x, n):
 
     simplify("1/5", "5/1") = True
     simplify("1/6", "2/1") = False
-    simplify("7/10", "10/2") == False
+    simplify("7/10", "10/2") = False
     """
     x_frac = Fraction(x)
     n_frac = Fraction(n)
-    result = x_frac * n_frac
-    return result.denominator == 1
+    product = x_frac * n_frac
+    return product.denominator == 1
 
 class TestSimplify:
     def test_basic_true(self):
@@ -42,35 +42,47 @@ class TestSimplify:
     def test_another_false(self):
         assert simplify("7/10", "10/2") == False
 
+    def test_whole_number_x(self):
+        assert simplify("1/1", "2/1") == True
+
+    def test_whole_number_n(self):
+        assert simplify("2/1", "1/1") == True
+
+    def test_both_whole_numbers(self):
+        assert simplify("1/1", "1/1") == True
+
     def test_large_numbers_true(self):
         assert simplify("100/2", "2/100") == True
 
     def test_large_numbers_false(self):
         assert simplify("100/3", "3/100") == False
 
-    def test_numerator_and_denominator_are_inverses(self):
-        assert simplify("1/1000", "1000/1") == True
-
-    def test_fractions_resulting_in_denominator_not_one(self):
-        assert simplify("2/5", "5/2") == False
-
-    def test_fractions_resulting_in_denominator_one(self):
-        assert simplify("2/10", "10/2") == True
-
-    def test_very_different_magnitudes_true(self):
-        assert simplify("1/1000000", "1000000/1") == True
-
-    def test_very_different_magnitudes_false(self):
-        assert simplify("1/1000000", "2/1") == False
-
-    def test_x_equals_one_over_one(self):
-        assert simplify("1/1", "2/2") == True
-
-    def test_n_equals_one_over_one(self):
-        assert simplify("2/2", "1/1") == True
-
-    def test_identical_fractions_true(self):
+    def test_edge_case_1(self):
         assert simplify("1/2", "1/2") == False
 
-    def test_zero_numerator_false(self):
-        assert simplify("0/1", "1/1") == False
+    def test_edge_case_2(self):
+        assert simplify("1/3", "3/1") == True
+
+    def test_edge_case_3(self):
+        assert simplify("2/3", "3/2") == False
+
+    def test_edge_case_4(self):
+        assert simplify("1/7", "7/1") == True
+
+    def test_edge_case_5(self):
+        assert simplify("1/8", "8/1") == True
+
+    def test_edge_case_6(self):
+        assert simplify("1/9", "9/1") == True
+
+    def test_edge_case_7(self):
+        assert simplify("1/10", "10/1") == True
+
+    def test_edge_case_8(self):
+        assert simplify("1/11", "11/1") == True
+
+    def test_edge_case_9(self):
+        assert simplify("1/12", "12/1") == False
+
+    def test_edge_case_10(self):
+        assert simplify("1/13", "13/1") == True

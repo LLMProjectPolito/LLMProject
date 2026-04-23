@@ -27,7 +27,7 @@ def order_by_points(nums):
 
     def sum_digits(n):
         s = 0
-        for digit in str(n):
+        for digit in str(abs(n)):
             s += int(digit)
         return s
 
@@ -35,14 +35,17 @@ def order_by_points(nums):
     nums_with_index.sort(key=lambda x: (sum_digits(x[1]), x[0]))
     return [num for _, num in nums_with_index]
 
-# Example Usage (for testing)
-if __name__ == '__main__':
-    # Test Suite 1
-    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+def test_empty_list():
     assert order_by_points([]) == []
-    print("Test Suite 1 Passed")
 
-    # Test Suite 2
+def test_single_element():
+    assert order_by_points([1]) == [-1, 1]
+
+def test_example_1():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+
+def test_example_2():
     assert order_by_points([]) == []
-    print("Test Suite 2 Passed")
+
+def test_example_3():
+    assert order_by_points([12, 1, 21]) == [1, 12, 21]

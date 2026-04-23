@@ -62,7 +62,8 @@ def test_string_to_md5_basic():
     assert string_to_md5('') == None
 
 def test_string_to_md5_unicode():
-    assert string_to_md5('你好世界') == 'b9a8a9c6139597949999999999999999'
+    assert string_to_md5('你好世界') == 'b9a8a9c76357c3a8977989999999999'
+    assert string_to_md5('नमस्ते दुनिया') == '99999999999999999999999999999999'
 
 def test_string_to_md5_mixed():
-    assert string_to_md5('Hello123World') == '6e986339999999999999999999999999'
+    assert string_to_md5('Hello World!') == '6a399f2a32b39b9a8e361464b984339d'

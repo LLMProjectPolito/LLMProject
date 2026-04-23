@@ -17,7 +17,7 @@ def test_find_max_positive():
     assert find_max(["name", "of", "string"]) == "string"
 
 def test_empty_input():
-    """Test with an empty list of words."""
+    """Test with an empty list."""
     assert find_max([]) == ""
 
 def test_find_max_empty_list():

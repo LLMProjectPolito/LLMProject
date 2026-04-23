@@ -42,28 +42,34 @@ class TestSpecialFilter:
         assert specialFilter([-15, -33, -57, -79, -91]) == 0
 
     def test_mixed_positive_and_negative(self):
-        assert specialFilter([15, -73, 14, -15]) == 1
+        assert specialFilter([15, -33, 57, -79, 91]) == 0
 
     def test_numbers_greater_than_10(self):
-        assert specialFilter([11, 13, 15, 17, 19, 21, 23]) == 5
+        assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25]) == 5
 
     def test_numbers_less_than_or_equal_to_10(self):
         assert specialFilter([1, 3, 5, 7, 9]) == 0
 
-    def test_zero_and_negative_numbers(self):
-        assert specialFilter([0, -1, -3, -5, -7, -9]) == 0
-
     def test_example_1(self):
+        assert specialFilter([15, -73, 14, -15]) == 1
+
+    def test_example_2(self):
         assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
-    def test_large_numbers(self):
-        assert specialFilter([12345, 34567, 56789, 78912, 91234]) == 3
+    def test_zero_and_large_numbers(self):
+        assert specialFilter([0, 131, 3579, 1000]) == 1
 
-    def test_single_digit_numbers(self):
+    def test_single_digit_odd_numbers(self):
         assert specialFilter([1, 3, 5, 7, 9]) == 0
 
-    def test_numbers_with_leading_zeros(self):
-        assert specialFilter([101, 303, 505, 707, 909]) == 0
+    def test_large_number_with_even_digits(self):
+        assert specialFilter([12345, 55556, 77778]) == 0
 
-    def test_numbers_with_multiple_digits(self):
-        assert specialFilter([111, 333, 555, 777, 999]) == 5
+    def test_numbers_with_leading_zeros(self):
+        assert specialFilter([105, 307, 509]) == 0
+
+    def test_all_numbers_are_same(self):
+        assert specialFilter([33, 33, 33, 33]) == 0
+
+    def test_numbers_with_decimal_part(self):
+        assert specialFilter([15.5, 33.3, 57.7]) == 0

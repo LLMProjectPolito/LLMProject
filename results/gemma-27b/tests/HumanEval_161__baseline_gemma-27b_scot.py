@@ -46,29 +46,29 @@ def solve(s):
 def test_empty_string():
     assert solve("") == ""
 
-def test_only_letters_lowercase():
-    assert solve("abc") == "ABC"
-
-def test_only_letters_uppercase():
-    assert solve("ABC") == "abc"
-
-def test_mixed_case_letters():
-    assert solve("aBc") == "AbC"
-
-def test_only_non_letters():
+def test_no_letters_numbers_only():
     assert solve("1234") == "4321"
 
-def test_mixed_letters_and_non_letters():
+def test_all_lowercase():
+    assert solve("ab") == "AB"
+
+def test_all_uppercase():
+    assert solve("AB") == "ab"
+
+def test_mixed_case():
+    assert solve("aB") == "Ab"
+
+def test_mixed_letters_and_numbers():
+    assert solve("a1B2") == "A1b2"
+
+def test_special_characters():
     assert solve("#a@C") == "#A@c"
+
+def test_no_letters_special_chars_only():
+    assert solve("#@!") == "!@#"
 
 def test_single_letter_lowercase():
     assert solve("a") == "A"
 
 def test_single_letter_uppercase():
     assert solve("A") == "a"
-
-def test_single_non_letter():
-    assert solve("1") == "1"
-
-def test_special_characters_and_letters():
-    assert solve("!@#aB$") == "!@#A b$"

@@ -68,13 +68,13 @@ class TestWordsInSentence:
         assert words_in_sentence("is") == "is"
 
     def test_single_non_prime_word(self):
-        assert words_in_sentence("test") == ""
+        assert words_in_sentence("this") == ""
 
     def test_multiple_words_with_primes(self):
         assert words_in_sentence("This is a test") == "is"
 
     def test_multiple_words_with_no_primes(self):
-        assert words_in_sentence("hello world test") == ""
+        assert words_in_sentence("hello world this") == ""
 
     def test_mixed_words(self):
         assert words_in_sentence("lets go for swimming") == "go for"

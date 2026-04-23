@@ -46,13 +46,13 @@ def test_order_by_points_negative_numbers():
     assert order_by_points([-1, -11, -2, -22]) == [-1, -2, -11, -22]
 
 def test_order_by_points_mixed_numbers():
-    assert order_by_points([1, -1, 11, -11, 2, -2]) == [-1, -2, 1, -11, 2, 11]
+    assert order_by_points([-1, 1, 11, -11, 2, -22]) == [-1, -22, -11, 1, 2, 11]
 
 def test_order_by_points_duplicate_numbers():
     assert order_by_points([1, 1, 11, 11]) == [1, 1, 11, 11]
 
 def test_order_by_points_large_numbers():
-    assert order_by_points([123, 456, 789, 10]) == [10, 123, 456, 789]
+    assert order_by_points([123, 45, 6, 789]) == [6, 45, 123, 789]
 
 def test_order_by_points_zero():
     assert order_by_points([0, 1, 10, 11]) == [0, 1, 10, 11]

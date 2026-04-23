@@ -33,29 +33,35 @@ def simplify(x, n):
     return product.denominator == 1
 
 class TestSimplify:
-    def test_simplify_true_1(self):
+    def test_simplify_true_case_1(self):
         assert simplify("1/5", "5/1") == True
 
-    def test_simplify_false_1(self):
+    def test_simplify_true_case_2(self):
+        assert simplify("2/4", "2/1") == True
+
+    def test_simplify_true_case_3(self):
+        assert simplify("3/6", "2/1") == True
+
+    def test_simplify_true_case_4(self):
+        assert simplify("4/8", "2/1") == True
+
+    def test_simplify_true_case_5(self):
+        assert simplify("1/1", "1/1") == True
+
+    def test_simplify_false_case_1(self):
         assert simplify("1/6", "2/1") == False
 
-    def test_simplify_false_2(self):
+    def test_simplify_false_case_2(self):
         assert simplify("7/10", "10/2") == False
 
-    def test_simplify_true_2(self):
-        assert simplify("1/2", "2/1") == True
+    def test_simplify_false_case_3(self):
+        assert simplify("1/2", "1/3") == False
 
-    def test_simplify_true_3(self):
-        assert simplify("3/4", "4/3") == True
+    def test_simplify_false_case_4(self):
+        assert simplify("2/3", "1/2") == False
 
-    def test_simplify_false_3(self):
-        assert simplify("1/3", "2/5") == False
-
-    def test_simplify_true_4(self):
-        assert simplify("2/7", "7/2") == True
-
-    def test_simplify_false_4(self):
-        assert simplify("1/4", "3/7") == False
+    def test_simplify_false_case_5(self):
+        assert simplify("3/4", "5/6") == False
 
     def test_simplify_large_numbers_true(self):
         assert simplify("100/200", "200/100") == True
@@ -63,23 +69,20 @@ class TestSimplify:
     def test_simplify_large_numbers_false(self):
         assert simplify("100/201", "201/100") == False
 
-    def test_simplify_same_fraction(self):
-        assert simplify("1/1", "1/1") == True
+    def test_simplify_mixed_numbers_true(self):
+        assert simplify("1/2", "2/1") == False
 
-    def test_simplify_one_is_one(self):
-        assert simplify("1/2", "1/1") == False
+    def test_simplify_mixed_numbers_false(self):
+        assert simplify("1/3", "3/2") == False
 
-    def test_simplify_one_is_one_true(self):
-        assert simplify("1/1", "2/1") == True
+    def test_simplify_edge_case_1(self):
+        assert simplify("1/1000", "1000/1") == True
 
-    def test_simplify_zero_numerator(self):
-        assert simplify("0/1", "1/1") == True
+    def test_simplify_edge_case_2(self):
+        assert simplify("1000/1", "1/1000") == True
 
-    def test_simplify_zero_numerator_false(self):
-        assert simplify("0/1", "1/2") == True
+    def test_simplify_edge_case_3(self):
+        assert simplify("1/7", "7/1") == True
 
-    def test_simplify_complex_true(self):
-        assert simplify("2/3", "3/2") == True
-
-    def test_simplify_complex_false(self):
-        assert simplify("2/5", "3/7") == False
+    def test_simplify_edge_case_4(self):
+        assert simplify("2/7", "7/2") == False

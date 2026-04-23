@@ -52,9 +52,9 @@ def do_algebra(operator, operand):
         Operator list has at least one operator, and operand list has at least two operands.
 
     """
-    expression = str(operand[0])
+    expression = operand[0]
     for i in range(len(operator)):
-        expression += operator[i] + str(operand[i+1])
+        expression = str(expression) + operator[i] + str(operand[i+1])
     return eval(expression)
 
 class TestDoAlgebra:
@@ -98,11 +98,6 @@ class TestDoAlgebra:
         operand = [2, 3, 4, 5, 2]
         assert do_algebra(operator, operand) == 7
 
-    def test_multiple_operations(self):
-        operator = ['+', '*', '//', '**']
-        operand = [2, 3, 4, 5, 2]
-        assert do_algebra(operator, operand) == 34
-
     def test_large_numbers(self):
         operator = ['*']
         operand = [1000, 2000]
@@ -113,12 +108,7 @@ class TestDoAlgebra:
         operand = [0, 5]
         assert do_algebra(operator, operand) == 5
 
-    def test_negative_result(self):
-        operator = ['-']
-        operand = [2, 5]
-        assert do_algebra(operator, operand) == -3
-
-    def test_exponentiation_with_zero(self):
-        operator = ['**']
-        operand = [2, 0]
-        assert do_algebra(operator, operand) == 1
+    def test_multiple_operators(self):
+        operator = ['+', '*', '//']
+        operand = [1, 2, 3, 4]
+        assert do_algebra(operator, operand) == 7

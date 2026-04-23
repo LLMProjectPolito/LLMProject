@@ -76,3 +76,9 @@ def test_simplify_one_is_whole_number_true():
 
 def test_simplify_one_is_whole_number_false():
     assert simplify("1/3", "2/1") == False
+
+def test_simplify_with_larger_denominators():
+    assert simplify("1/100", "100/1") == True
+
+def test_simplify_with_larger_denominators_false():
+    assert simplify("1/101", "100/1") == False

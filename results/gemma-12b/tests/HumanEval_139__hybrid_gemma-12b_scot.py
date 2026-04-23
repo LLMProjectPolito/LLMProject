@@ -31,9 +31,14 @@ def test_zero_input():
     with pytest.raises(ValueError):
         special_factorial(0)
 
-def test_invalid_input_type():
+def test_negative_input():
+    with pytest.raises(ValueError):
+        special_factorial(-1)
+
+def test_non_integer_input():
     with pytest.raises(TypeError):
         special_factorial(3.14)
 
+def test_string_input():
     with pytest.raises(TypeError):
         special_factorial("abc")

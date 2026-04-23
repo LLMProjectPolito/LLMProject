@@ -78,5 +78,5 @@ def test_string_with_unicode():
 def test_string_with_numbers_and_special_chars():
     assert solve("123!@#") == "#@!321"
 
-def test_string_with_mixed_cases_and_numbers():
-    assert solve("aBc12") == "AbC12"
+def test_string_with_mixed_unicode_and_ascii():
+    assert solve("a1你好b2") == "A1你好B2"

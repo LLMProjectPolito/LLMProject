@@ -56,8 +56,8 @@ def test_single_negative_odd():
 def test_mixed_types():
     assert double_the_difference([1, 2.5, 3, -4, "a"]) == 10
 
-def test_all_negative_non_ints():
+def test_all_negative_non_integers():
     assert double_the_difference([-1.5, -2.5, -3.5]) == 0
 
 def test_large_numbers():
-    assert double_the_difference([1000000001, 1000000003]) == 2000000002000000001
+    assert double_the_difference([1001, 1003, 1002]) == 1001001 + 1003003 + 1002002

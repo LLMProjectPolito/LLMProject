@@ -38,11 +38,13 @@ def order_by_points(nums):
     if not nums:
         return []
 
-    indexed_nums = list(enumerate(nums))
+    def sum_digits(n):
+        s = 0
+        for digit in str(abs(n)):
+            s += int(digit)
+        return s
 
-    indexed_nums.sort(key=lambda x: sum(int(digit) for digit in str(abs(x[1]))), reverse=True)
-
-    return [num for _, num in indexed_nums]
+    return sorted(nums, key=lambda x: (sum_digits(x), nums.index(x)))
 
 
 def test_is_palindrome_basic():
@@ -52,24 +54,17 @@ def test_is_palindrome_basic():
     assert is_palindrome('Racecar') == True
     assert is_palindrome('Was it a car or a cat I saw?') == True
     assert is_palindrome('Madam') == True
-    assert is_palindrome('level') == True
-    assert is_palindrome('rotor') == True
-    assert is_palindrome('stats') == True
-    assert is_palindrome('noon') == True
-    assert is_palindrome('test') == False
-
-def test_is_palindrome_empty():
-    assert is_palindrome('') == True
     assert is_palindrome(' ') == True
+    assert is_palindrome('') == True
+
+
+def test_is_palindrome_edge_cases():
     assert is_palindrome('a') == True
+    assert is_palindrome('ab') == False
+    assert is_palindrome('aba') == True
+    assert is_palindrome('abcba') == True
+    assert is_palindrome('abc') == False
 
-def test_is_palindrome_mixed_case():
-    assert is_palindrome('Racecar') == True
-    assert is_palindrome('RaCeCaR') == True
-
-def test_is_palindrome_with_punctuation():
-    assert is_palindrome('A man, a plan, a canal: Panama') == True
-    assert is_palindrome('Madam, I\'m Adam') == True
 
 def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
@@ -81,8 +76,8 @@ def test_get_max_negative():
     assert get_max([-3, -2, -1]) == -1
 
 def test_get_max_mixed():
-    assert get_max([-1, 2, -3]) == 2
-    assert get_max([1, -2, 3]) == 3
+    assert get_max([-1, 2, -3, 4]) == 4
+    assert get_max([1, -2, 3, -4]) == 3
 
 def test_get_max_empty():
     assert get_max([]) == None
@@ -90,21 +85,23 @@ def test_get_max_empty():
 def test_order_by_points_empty():
     assert order_by_points([]) == []
 
-def test_order_by_points_single():
-    assert order_by_points([1]) == [1]
-
 def test_order_by_points_basic():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
 
 def test_order_by_points_negative():
-    assert order_by_points([-1, -11, -12, 1, 11]) == [-1, -11, -12, 1, 11]
+    assert order_by_points([-1, -11, 1, -12, 11]) == [-1, -11, 1, -12, 11]
 
 def test_order_by_points_mixed():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
 
-def test_order_by_points_duplicate_sums():
-    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
-    assert order_by_points([1, 1, 11, 11]) == [1, 1, 11, 11]
+def test_order_by_points_duplicates():
+    assert order_by_points([1, 11, -1, -11, 11]) == [-1, -11, 1, 11, 11]
 
 def test_order_by_points_complex():
-    assert order_by_points([12, 21, 3, 1, 11, 121]) == [1, 3, 11, 12, 21, 121]
+    assert order_by_points([12, 21, 3, 1, 11, 121]) == [3, 1, 11, 12, 21, 121]
+
+def test_order_by_points_large_numbers():
+    assert order_by_points([123, 45, 1, 12, 1234]) == [1, 45, 12, 123, 1234]
+
+def test_order_by_points_zero():
+    assert order_by_points([0, 1, 10, 100]) == [0, 1, 10, 100]

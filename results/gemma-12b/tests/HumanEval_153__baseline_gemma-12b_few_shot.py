@@ -42,13 +42,10 @@ def test_strongest_extension_zero_strength():
     assert Strongest_Extension("Class", ['ab', 'CD', 'ef']) == "Class.CD"
 
 def test_strongest_extension_class_with_underscore():
-    assert Strongest_Extension("my_class_name", ['AA', 'Be', 'CC']) == "my_class_name.AA"
+    assert Strongest_Extension("My_Class", ['AA', 'Be', 'CC']) == "My_Class.AA"
 
-def test_strongest_extension_class_with_numbers():
-    assert Strongest_Extension("Class123", ['AA', 'Be', 'CC']) == "Class123.AA"
+def test_strongest_extension_extension_with_underscore():
+    assert Strongest_Extension("Class", ['A_A', 'Be', 'CC']) == "Class.A_A"
 
-def test_strongest_extension_extension_with_numbers():
-    assert Strongest_Extension("Class", ['A1', 'B2', 'C3']) == "Class.A1"
-
-def test_strongest_extension_extension_with_special_chars():
-    assert Strongest_Extension("Class", ['A!', 'B@', 'C#']) == "Class.A!"
+def test_strongest_extension_class_and_extension_with_underscore():
+    assert Strongest_Extension("My_Class", ['A_A', 'Be', 'CC']) == "My_Class.A_A"

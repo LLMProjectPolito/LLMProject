@@ -34,29 +34,26 @@ def solve(s):
             res += char
     return res
 
-def test_solve_empty():
+def test_solve_empty_string():
     assert solve("") == ""
 
 def test_solve_all_letters():
-    assert solve("abcdefg") == "gfedcba"
+    assert solve("abcdefghijklmnopqrstuvwxyz") == "zyxwvutsrqponmlkjihgfedcba"
 
-def test_solve_no_letters():
+def test_solve_all_numbers():
+    assert solve("1234") == "4321"
+
+def test_solve_all_symbols():
     assert solve("#a@C") == "#C@a"
 
 def test_solve_mixed_case():
-    assert solve("aB") == "Ab"
+    assert solve("aBcDeF") == "aBcDeF"
 
-def test_solve_numbers():
-    assert solve("1234") == "4321"
+def test_solve_mixed_case_with_numbers():
+    assert solve("a1b2c3") == "c3b2a1"
 
-def test_solve_symbols():
-    assert solve("!@#") == "!@#"
+def test_solve_with_special_characters():
+    assert solve("!@#$%^") == "!@#$%^"
 
-def test_solve_unicode():
+def test_solve_with_unicode():
     assert solve("你好世界") == "界世好你"
-
-def test_solve_simple_case():
-    assert solve("abc") == "ABC"
-
-def test_solve_complex_case():
-    assert solve("aBc") == "aBc"

@@ -57,51 +57,21 @@ def test_sum_squares_basic2():
     assert sum_squares([1, 2, 3, 4]) == 18
 
 def test_sum_squares_basic3():
-    assert sum_squares([1, 2, 3, 4, 5]) == 39
+    assert sum_squares([1, 2, 3, 4, 5]) == 35
 
 def test_sum_squares_negative():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
 def test_sum_squares_mixed():
-    assert sum_squares([1, -2, 3, -4, 5, -6]) == 68
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 666
 
-def test_sum_squares_long_list():
-    assert sum_squares([i for i in range(10)]) == 285
-
-def test_sum_squares_all_multiples_of_3():
-    assert sum_squares([3, 6, 9, 12]) == 288
-
-def test_sum_squares_all_multiples_of_4():
-    assert sum_squares([4, 8, 12, 16]) == 1008
-
-def test_sum_squares_zeroes():
-    assert sum_squares([0, 0, 0, 0]) == 0
-
-def test_sum_squares_large_numbers():
-    assert sum_squares([100, 200, 300, 400]) == 1000000
-
-def test_sum_squares_complex_case():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1010
-
-def test_sum_squares_basic2_suite2():
-    assert sum_squares([1, 2, 3, 4]) == 1 + 2 + 9 + 64
-
-def test_sum_squares_mixed_suite2():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1 + 2 + 9 + 64 + 5 + 36 + 7 + 512 + 81 + 100 + 11 + 144
-
-def test_sum_squares_zeros_suite2():
+def test_sum_squares_zeros():
     assert sum_squares([0, 0, 0, 0, 0]) == 0
 
-def test_sum_squares_large_numbers_suite2():
-    assert sum_squares([100, 200, 300, 400]) == 10000 + 200 + 90000 + 64000000
+def test_sum_squares_large_numbers():
+    assert sum_squares([100, 200, 300, 400]) == 1000000 + 400 + 90000 + 200
 
-def test_sum_squares_single_element_suite2():
-    assert sum_squares([5]) == 5
-
-def test_sum_squares_multiple_of_3_and_4_suite2():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1 + 2 + 9 + 64 + 5 + 36 + 7 + 512 + 81 + 100 + 11 + 144
-
-def test_sum_squares_long_list_suite2():
+def test_sum_squares_long_list():
     lst = list(range(20))
     expected_sum = 0
     for i, num in enumerate(lst):
@@ -112,6 +82,21 @@ def test_sum_squares_long_list_suite2():
         else:
             expected_sum += num
     assert sum_squares(lst) == expected_sum
+
+def test_sum_squares_multiple_of_12():
+    assert sum_squares([1,2,3,4,5,6,7,8,9,10,11,12]) == 666
+
+def test_sum_squares_all_multiples_of_3():
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 4 + 9 + 16 + 25 + 36
+
+def test_sum_squares_all_multiples_of_4():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 1 + 4 + 9 + 64 + 25 + 36 + 49 + 512
+
+def test_sum_squares_edge_case_1():
+    assert sum_squares([12]) == 144
+
+def test_sum_squares_edge_case_2():
+    assert sum_squares([16]) == 4096
 
 def test_palindrome_basic():
     assert is_palindrome('radar') == True

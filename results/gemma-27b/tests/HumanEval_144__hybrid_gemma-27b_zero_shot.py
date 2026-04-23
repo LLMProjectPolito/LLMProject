@@ -51,37 +51,37 @@ def test_simplify_false_case3():
     assert simplify("1/2", "1/3") == False
 
 def test_simplify_large_numbers_true():
-    assert simplify("100/20", "20/1") == True
+    assert simplify("100/20", "2/1") == True
 
 def test_simplify_large_numbers_false():
-    assert simplify("101/20", "20/1") == False
+    assert simplify("100/21", "2/1") == False
 
 def test_simplify_same_fraction():
     assert simplify("2/2", "2/2") == True
 
 def test_simplify_one_whole_number():
-    assert simplify("1/1", "5/1") == True
+    assert simplify("1/1", "2/1") == True
 
-def test_simplify_other_whole_number():
-    assert simplify("5/1", "1/1") == True
+def test_simplify_another_whole_number():
+    assert simplify("2/1", "1/1") == True
 
 def test_simplify_complex_true():
-    assert simplify("15/4", "8/3") == True
+    assert simplify("11/4", "4/11") == True
 
 def test_simplify_complex_false():
-    assert simplify("15/4", "7/3") == False
+    assert simplify("11/5", "5/12") == False
 
 def test_simplify_with_larger_denominators():
-    assert simplify("1/100", "100/1") == True
+    assert simplify("3/100", "100/3") == True
 
 def test_simplify_with_larger_denominators_false():
-    assert simplify("1/101", "100/1") == False
+    assert simplify("3/101", "100/3") == False
 
-def test_simplify_both_fractions_greater_than_one():
-    assert simplify("3/2", "4/3") == False
+def test_simplify_edge_case_1():
+    assert simplify("1/1", "1/1") == True
 
-def test_simplify_both_fractions_greater_than_one_true():
-    assert simplify("4/2", "3/1") == True
+def test_simplify_edge_case_2():
+    assert simplify("1/2", "2/1") == True
 
 @pytest.mark.parametrize(
     "x, n, expected",
@@ -116,23 +116,21 @@ def test_simplify_both_fractions_greater_than_one_true():
         ("11/12", "1/2", False),
         ("1/1", "2/1", True),
         ("2/1", "1/1", True),
-        ("10/1", "1/10", True),
-        ("1/100", "100/1", True),
-        ("100/1", "1/100", True),
-        ("123/456", "456/123", True),
-        ("1234/5678", "5678/1234", True),
         ("1/2", "1/2", False),
         ("1/3", "1/3", False),
         ("1/4", "1/4", False),
-        ("2/4", "1/2", True),
-        ("4/8", "1/2", True),
-        ("1/5", "2/10", True),
-        ("2/10", "1/5", True),
-        ("1/10", "5/2", False),
-        ("10/1", "1/10", True),
+        ("1/5", "1/5", False),
+        ("2/3", "4/5", False),
+        ("5/6", "7/8", False),
+        ("10/11", "12/13", False),
         ("100/1", "1/100", True),
-        ("1000/1", "1/1000", True),
-        ("1/1000", "1000/1", True),
+        ("1/100", "100/1", True),
+        ("123/456", "456/123", True),
+        ("777/888", "888/777", True),
+        ("1/10", "10/1", True),
+        ("10/1", "1/10", True),
+        ("1/100", "100/1", True),
+        ("100/1", "1/100", True),
     ],
 )
 def test_simplify_parametrized(x, n, expected):

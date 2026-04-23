@@ -19,10 +19,10 @@ import re
 def test_file_name_check_valid_name():
     assert file_name_check("example.txt") == "Yes"
     assert file_name_check("document.pdf") == "Yes"
-    assert file_name_check("myFile.exe") == "Yes"
+    assert file_name_check("my_file.exe") == "Yes"
     assert file_name_check("a.txt") == "Yes"
     assert file_name_check("A.TXT") == "Yes"
-    assert file_name_check("long_file_name.dll") == "Yes"
+    assert file_name_check("longname.dll") == "Yes"
 
 def test_file_name_check_invalid_name_too_many_digits():
     assert file_name_check("123example.txt") == "No"
@@ -36,24 +36,26 @@ def test_file_name_check_invalid_name_empty_before_dot():
     assert file_name_check(".txt") == "No"
     assert file_name_check(".exe") == "No"
 
-def test_file_name_check_invalid_name_not_letter_before_dot():
-    assert file_name_check("1.txt") == "No"
-    assert file_name_check("_.txt") == "No"
-    assert file_name_check("!@#.txt") == "No"
+def test_file_name_check_invalid_name_dot_before_letter():
+    assert file_name_check(".txt") == "No"
 
 def test_file_name_check_invalid_name_invalid_extension():
     assert file_name_check("example.pdf") == "No"
     assert file_name_check("example.jpg") == "No"
     assert file_name_check("example.abc") == "No"
 
-def test_file_name_check_invalid_name_multiple_dots():
-    assert file_name_check("example.1.txt") == "No"
-    assert file_name_check("example..txt") == "No"
+def test_file_name_check_invalid_name_extension_case():
+    assert file_name_check("example.TXT") == "No"
+    assert file_name_check("example.EXE") == "No"
+    assert file_name_check("example.DLL") == "No"
+
+def test_file_name_check_invalid_name_starts_with_digit():
+    assert file_name_check("1.txt") == "No"
+    assert file_name_check("2.exe") == "No"
+    assert file_name_check("3.dll") == "No"
 
 def test_file_name_check_empty_string():
     assert file_name_check("") == "No"
 
-def test_file_name_check_extension_case_sensitive():
-    assert file_name_check("example.TXT") == "No"
-    assert file_name_check("example.Exe") == "No"
-    assert file_name_check("example.Dll") == "No"
+def test_file_name_check_multiple_dots():
+    assert file_name_check("example.1.txt") == "No"

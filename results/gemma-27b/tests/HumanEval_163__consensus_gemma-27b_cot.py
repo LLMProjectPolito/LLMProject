@@ -68,24 +68,3 @@ def test_generate_integers_negative_and_positive():
 
 def test_generate_integers_empty_range():
     assert generate_integers(5, 4) == []
-
-def test_generate_integers_single_digit_range():
-    assert generate_integers(1, 3) == [2]
-
-def test_generate_integers_same_number():
-    assert generate_integers(4, 4) == [4]
-
-def test_generate_integers_start_odd():
-    assert generate_integers(1, 5) == [2, 4]
-
-def test_generate_integers_end_odd():
-    assert generate_integers(3, 7) == [4, 6]
-
-def test_generate_integers_large_range():
-    assert generate_integers(1, 9) == [2, 4, 6, 8]
-
-def test_generate_integers_empty_range():
-    assert generate_integers(15, 16) == []
-
-def test_generate_integers_mixed_numbers():
-    assert generate_integers(-1, 2) == [2]

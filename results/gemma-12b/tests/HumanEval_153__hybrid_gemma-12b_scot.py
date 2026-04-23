@@ -39,14 +39,12 @@ def Strongest_Extension(class_name, extensions):
     if not extensions:
         return f"{class_name}.None"
 
-    strongest_extension = ""
-    max_strength = float('-inf')
-
+    strongest_extension = extensions[0]
+    max_strength = 0
     for extension in extensions:
         cap_count = sum(1 for char in extension if char.isupper())
         low_count = sum(1 for char in extension if char.islower())
         strength = cap_count - low_count
-
         if strength > max_strength:
             max_strength = strength
             strongest_extension = extension
@@ -74,10 +72,13 @@ class TestStrongestExtension:
         assert Strongest_Extension("MyClass", ["aBc", "DeF"]) == "MyClass.DeF"
 
     def test_empty_extension_name(self):
-        assert Strongest_Extension("MyClass", [""]) == "MyClass.None"
+        assert Strongest_Extension("MyClass", ["", "Extension"]) == "MyClass.Extension"
+        assert Strongest_Extension("MyClass", ["", ""]) == "MyClass.None"
 
     def test_class_name_with_special_characters(self):
         assert Strongest_Extension("My_Class!", ["Extension1"]) == "My_Class!.Extension1"
+        assert Strongest_Extension("My-Class?", ["Extension2"]) == "My-Class?.Extension2"
 
     def test_mixed_case_extensions(self):
-        assert Strongest_Extension("MyClass", ["MiXeD1", "mIxEd2"]) == "MyClass.MiXeD1"
+        assert Strongest_Extension("MyClass", ["aA", "bB", "cC"]) == "MyClass.aA"
+        assert Strongest_Extension("MyClass", ["AbC", "aBc", "abc"]) == "MyClass.AbC"

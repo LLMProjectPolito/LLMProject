@@ -113,42 +113,17 @@ def test_do_algebra_with_same_operands():
     operand = [2, 2]
     assert do_algebra(operator, operand) == 4
 
-def test_do_algebra_exponentiation_and_multiplication():
-    operator = ['*', '**']
-    operand = [2, 3, 2]
-    assert do_algebra(operator, operand) == 36
-
-def test_do_algebra_large_numbers_addition():
+def test_do_algebra_with_zero_and_other_numbers():
     operator = ['+']
-    operand = [1000, 2000]
-    assert do_algebra(operator, operand) == 3000
-
-def test_do_algebra_multiple_operators_same_precedence():
-    operator = ['+', '+', '+']
-    operand = [1, 2, 3, 4]
+    operand = [0, 10]
     assert do_algebra(operator, operand) == 10
 
-def test_do_algebra_all_operators():
-    operator = ['+', '-', '*', '//', '**']
-    operand = [2, 3, 4, 5, 2]
-    assert do_algebra(operator, operand) == 13
-
-def test_do_algebra_with_zero_in_expression():
-    operator = ['+', '*']
-    operand = [0, 5, 2]
+def test_do_algebra_with_zero_and_other_numbers_subtraction():
+    operator = ['-']
+    operand = [10, 0]
     assert do_algebra(operator, operand) == 10
 
-def test_do_algebra_with_large_operand_addition():
-    operator = ['+']
-    operand = [1000000, 2000000]
-    assert do_algebra(operator, operand) == 3000000
-
-def test_do_algebra_exponentiation_to_zero():
-    operator = ['**']
-    operand = [5, 0]
-    assert do_algebra(operator, operand) == 1
-
-def test_do_algebra_exponentiation_to_one():
-    operator = ['**']
-    operand = [5, 1]
-    assert do_algebra(operator, operand) == 5
+def test_do_algebra_with_same_numbers():
+    operator = ['*']
+    operand = [5, 5]
+    assert do_algebra(operator, operand) == 25

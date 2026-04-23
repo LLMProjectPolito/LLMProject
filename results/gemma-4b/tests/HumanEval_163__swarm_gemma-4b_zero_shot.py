@@ -42,11 +42,8 @@ def test_generate_integers_reverse_order():
 def test_generate_integers_no_even_digits():
     assert generate_integers(10, 14) == []
 
-def test_generate_integers_single_digit_even():
+def test_generate_integers_single_digit():
     assert generate_integers(2, 2) == [2]
 
-def test_generate_integers_single_digit_odd():
-    assert generate_integers(1, 1) == []
-
 def test_generate_integers_larger_range():
-    assert generate_integers(12, 20) == [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+    assert generate_integers(100, 110) == [0, 2, 4, 6, 8, 10]

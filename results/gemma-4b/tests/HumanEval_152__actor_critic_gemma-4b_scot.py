@@ -49,39 +49,39 @@ def compare(game,guess):
 
 # STEP 2: PLAN - List test functions names and scenarios.
 # test_compare_empty_lists
-# test_compare_equal_lists
 # test_compare_identical_lists
-# test_compare_mixed_lists
-# test_compare_single_element_lists
+# test_compare_correct_guesses
+# test_compare_incorrect_guesses
+# test_compare_mixed_correct_and_incorrect
 # test_compare_large_differences
-# test_compare_zero_differences
 
 # STEP 3: CODE - Write the high-quality pytest suite.
 def test_compare_empty_lists():
     assert compare([], []) == []
 
-def test_compare_equal_lists():
-    assert compare([1, 2, 3], [1, 2, 3]) == [0, 0, 0]
-
 def test_compare_identical_lists():
     assert compare([1, 2, 3], [1, 2, 3]) == [0, 0, 0]
 
-def test_compare_mixed_lists():
+def test_compare_correct_guesses():
     assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]) == [0, 0, 0, 0, 3, 3]
 
-def test_compare_single_element_lists():
-    assert compare([5], [5]) == [0]
-    assert compare([5], [6]) == [1]
+def test_compare_incorrect_guesses():
+    assert compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]) == [4, 4, 1, 0, 0, 6]
+
+def test_compare_mixed_correct_and_incorrect():
+    assert compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 1, 2]) == [0, 0, 0, 0, 4, 0]
 
 def test_compare_large_differences():
-    assert compare([1, 2, 3], [5, 6, 7]) == [4, 4, 4]
+    assert compare([1, 2, 3], [10, 20, 30]) == [9, 18, 27]
 
-def test_compare_zero_differences():
-    assert compare([0, 0, 0], [0, 0, 0]) == [0, 0, 0]
+def test_compare_single_element_correct():
+    assert compare([5], [5]) == [0]
 
-def test_compare_negative_numbers():
+def test_compare_single_element_incorrect():
+    assert compare([5], [6]) == [1]
+
+def test_compare_lists_with_negative_numbers():
     assert compare([-1, -2, -3], [-1, -2, -3]) == [0, 0, 0]
 
-def test_compare_mixed_positive_negative():
+def test_compare_lists_with_mixed_positive_and_negative():
     assert compare([1, -2, 3], [1, 2, 3]) == [0, 0, 0]
-    assert compare([1, -2, 3], [4, 2, 3]) == [3, 0, 0]

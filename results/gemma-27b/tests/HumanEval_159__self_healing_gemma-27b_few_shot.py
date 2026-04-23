@@ -65,5 +65,5 @@ def eat(number, need, remaining):
     else:
         total_eaten = number + remaining
         remaining_carrots = 0
-        
+    
     return [total_eaten, remaining_carrots]

@@ -40,16 +40,19 @@ def words_in_sentence(sentence):
 
     Constraints:
         * 1 <= len(sentence) <= 100
-        * sentence contains only letters
     """
     def is_prime(n):
         if n <= 1:
             return False
-        if n == 2:
+        if n <= 3:
             return True
-        for i in range(2, int(n**0.5) + 1):
-            if n % i == 0:
+        if n % 2 == 0 or n % 3 == 0:
+            return False
+        i = 5
+        while i * i <= n:
+            if n % i == 0 or n % (i + 2) == 0:
                 return False
+            i += 6
         return True
 
     words = sentence.split()
@@ -62,6 +65,9 @@ def test_empty_sentence():
 def test_no_prime_length_words():
     assert words_in_sentence("four five six seven") == ""
 
+def test_all_prime_length_words():
+    assert words_in_sentence("two three five seven") == "two three five seven"
+
 def test_mixed_length_words():
     assert words_in_sentence("This is a test") == "is"
 
@@ -71,28 +77,11 @@ def test_single_word_prime():
 def test_single_word_non_prime():
     assert words_in_sentence("four") == ""
 
-def test_sentence_with_spaces_returns_prime_words():
-    assert words_in_sentence("  two three five  ") == "two three five"
-    assert words_in_sentence("two  three   five") == "two three five"
+def test_sentence_with_spaces():
+    assert words_in_sentence("  two  three   five  ") == "two three five"
 
-def test_sentence_with_long_words_returns_prime_words():
-    assert words_in_sentence("programming is fun") == "programming fun"
+def test_long_word():
+    assert words_in_sentence("a" * 99) == ""
 
-def test_sentence_with_non_letter_characters_raises_error():
-    with pytest.raises(ValueError):
-        words_in_sentence("123 abc")
-    with pytest.raises(ValueError):
-        words_in_sentence("a b c!")
-
-def test_long_sentence_returns_prime_words():
-    long_sentence = "a " * 90 + "two three five"
-    assert words_in_sentence(long_sentence) == "two three five"
-
-def test_is_prime_with_large_prime():
-    assert is_prime(997) == True
-
-def test_sentence_with_one_prime_word():
-    assert words_in_sentence("hello two world") == "two"
-
-def test_sentence_with_all_prime_words():
-    assert words_in_sentence("two three five seven") == "two three five seven"
+def test_case_sensitivity():
+    assert words_in_sentence("Two Three") == ""

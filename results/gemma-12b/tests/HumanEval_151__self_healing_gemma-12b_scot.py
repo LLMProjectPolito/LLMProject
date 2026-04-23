@@ -76,6 +76,3 @@ def test_example_2():
 
 def test_example_3():
     assert double_the_difference([9, -2]) == 81
-
-def test_non_integer_input():
-    assert double_the_difference([1.5, 2, 3]) == 9

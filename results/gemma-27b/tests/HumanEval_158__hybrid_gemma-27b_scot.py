@@ -41,21 +41,22 @@ def test_single_element():
 
 def test_multiple_elements_different_unique_counts():
     assert find_max(["name", "of", "string"]) == "string"
+    assert find_max(["abc", "ab", "a"]) == "abc"
 
 def test_multiple_elements_same_unique_counts_lexicographical_order():
     assert find_max(["name", "enam", "game"]) == "enam"
+    assert find_max(["abc", "bca", "cab"]) == "abc"
 
-def test_all_elements_same_unique_count():
-    assert find_max(["abc", "bac", "cab"]) == "abc"
-
-def test_long_strings():
-    assert find_max(["abcdefg", "abcde", "abcd"]) == "abcdefg"
-
-def test_strings_with_duplicates():
+def test_all_elements_same_character():
     assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
+    assert find_max(["xxx", "yyy", "zzz"]) == "xxx"
 
-def test_mixed_strings():
-    assert find_max(["abc", "ab", "a", "abcd"]) == "abcd"
+def test_mixed_lengths():
+    assert find_max(["a", "bb", "ccc", "dddd"]) == "dddd"
+    assert find_max(["abcde", "ab", "a"]) == "abcde"
 
-def test_same_length_different_unique():
-    assert find_max(["aabbcc", "abcdef"]) == "abcdef"
+def test_duplicate_words():
+    assert find_max(["hello", "hello", "world"]) == "world"
+
+def test_words_with_special_characters():
+    assert find_max(["!@#", "abc", "123"]) == "!@#"

@@ -14,6 +14,12 @@ def simplify(x, n):
 
 import math
 
+def gcd(a, b):
+    """Calculates the greatest common divisor of two integers."""
+    while(b):
+        a, b = b, a % b
+    return a
+
 def simplify(x, n):
     """Your task is to implement a function that will simplify the expression
     x * n. The function returns True if x * n evaluates to a whole number and False
@@ -29,14 +35,24 @@ def simplify(x, n):
     x_num, x_den = map(int, x.split('/'))
     n_num, n_den = map(int, n.split('/'))
 
-    result_num = x_num * n_num
-    result_den = x_den * n_den
+    # Simplify fractions before multiplication
+    x_gcd = gcd(x_num, x_den)
+    x_num //= x_gcd
+    x_den //= x_gcd
 
-    gcd = math.gcd(result_num, result_den)
-    simplified_num = result_num // gcd
-    simplified_den = result_den // gcd
+    n_gcd = gcd(n_num, n_den)
+    n_num //= n_gcd
+    n_den //= n_gcd
 
-    return simplified_num % simplified_den == 0
+    # Simplify during multiplication
+    result_num = (x_num * n_num)
+    result_den = (x_den * n_den)
+
+    result_gcd = gcd(result_num, result_den)
+    result_num //= result_gcd
+    result_den //= result_gcd
+
+    return result_num % result_den == 0
 
 ### Tests (Pytest):
 def test_simplify_basic():
@@ -44,28 +60,37 @@ def test_simplify_basic():
     assert simplify("1/6", "2/1") == False
     assert simplify("7/10", "10/2") == False
 
-def test_simplify_whole_number_result():
-    assert simplify("2/1", "3/1") == True  # Test case where result is a whole number
+def test_simplify_whole_number():
+    assert simplify("2/1", "3/1") == True
+    assert simplify("4/2", "1/1") == True
 
-def test_simplify_gcd_reduction_large():
-    assert simplify("6/12", "2/1") == True  # Test with larger GCD
+def test_simplify_already_simplified():
+    assert simplify("1/2", "1/3") == False
+    assert simplify("1/2", "2/4") == False
 
-def test_simplify_requires_gcd():
-    assert simplify("4/6", "3/1") == True # Requires GCD reduction to determine whole number
-
-def test_simplify_large_numbers():
-    assert simplify("1000/1", "1000/1") == True
-    assert simplify("999/1", "2/1") == False
-
-def test_simplify_gcd_reduction():
-    assert simplify("2/4", "1/1") == True
-    assert simplify("3/6", "1/1") == True
-    assert simplify("4/8", "2/1") == True
-
-def test_simplify_non_trivial():
-    assert simplify("12/5", "5/2") == False
-    assert simplify("12/5", "10/2") == True
+def test_simplify_larger_numbers():
+    assert simplify("12/5", "5/12") == True
+    assert simplify("100/3", "3/100") == False
 
 def test_simplify_edge_case():
-    assert simplify("1/2", "3/1") == False
     assert simplify("1/1", "1/1") == True
+
+def test_simplify_gcd_crucial():
+    assert simplify("2/4", "3/6") == False  # 1/2 * 1/2 = 1/4
+    assert simplify("4/6", "6/4") == True # 2/3 * 3/2 = 1
+
+def test_simplify_non_whole_result():
+    assert simplify("15/8", "4/5") == False
+
+def test_simplify_whole_result():
+    assert simplify("21/10", "5/7") == True
+
+def test_simplify_large_numbers():
+    assert simplify("1000/1", "1/1000") == True
+    assert simplify("1000/2", "1/1000") == False
+
+def test_simplify_zero_numerator():
+    assert simplify("0/5", "5/1") == True
+
+def test_simplify_large_numbers_overflow():
+    assert simplify("999999999/1", "999999999/1") == True

@@ -38,13 +38,13 @@ def test_int_to_mini_roman_intermediate():
     assert int_to_mini_roman(80) == "lxxx"
     assert int_to_mini_roman(89) == "lxxxix"
     assert int_to_mini_roman(90) == "xc"
-    assert int_to_mini_roman(99) == "xciiiix"
+    assert int_to_mini_roman(99) == "xciix"
     assert int_to_mini_roman(100) == "c"
 
 def test_int_to_mini_roman_complex():
     assert int_to_mini_roman(152) == "clii"
     assert int_to_mini_roman(426) == "cdxxvi"
-    assert int_to_mini_roman(999) == "cmxciiiix"
+    assert int_to_mini_roman(999) == "cmxciii"
     assert int_to_mini_roman(1000) == "m"
 
 def test_int_to_mini_roman_edge_cases():
@@ -54,3 +54,4 @@ def test_int_to_mini_roman_edge_cases():
 def test_int_to_mini_roman_restrictions():
     assert int_to_mini_roman(0) == None # Or raise an exception, depending on desired behavior
     assert int_to_mini_roman(1001) == None # Or raise an exception
+    assert int_to_mini_roman(-1) == None # Or raise an exception

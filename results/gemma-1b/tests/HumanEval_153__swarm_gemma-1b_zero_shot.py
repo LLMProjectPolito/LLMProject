@@ -17,6 +17,7 @@ def Strongest_Extension(class_name, extensions):
     for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
     """
 
+```python
 import pytest
 import math
 
@@ -54,5 +55,44 @@ def Strongest_Extension(class_name, extensions):
             strongest_extension = extension
     return class_name + '.' + strongest_extension
 
-def TestStrongestExtension(class_name, extensions):
-    assert Strongest_Extension(class_name, extensions) == Strongest_Extension(class_name, extensions)
+def TestStrongestExtension():
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "B"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "Z"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"
+    assert Strongest_Extension(class_name="StrongestExtension", extensions=["A", "a", "A", "A", "A", "A", "A", "a"]) == "StrongestExtension"

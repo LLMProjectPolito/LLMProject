@@ -31,37 +31,44 @@ def test_cycpattern_check_same_string():
     assert cycpattern_check("abc", "abcabc") == True
     assert cycpattern_check("abcabc", "abc") == True
 
-def test_cycpattern_check_rotation_at_start():
-    assert cycpattern_check("abcdef", "defabc") == True
-    assert cycpattern_check("abcdef", "efabcd") == True
+def test_cycpattern_check_rotation_present():
+    assert cycpattern_check("abcde", "cdeab") == True
+    assert cycpattern_check("abcde", "eabcd") == True
+    assert cycpattern_check("abcde", "bcdea") == True
+    assert cycpattern_check("abcde", "deabc") == True
 
-def test_cycpattern_check_rotation_at_end():
-    assert cycpattern_check("abcdef", "cdefab") == True
-    assert cycpattern_check("abcdef", "fabcde") == True
+def test_cycpattern_check_substring_present():
+    assert cycpattern_check("abcdef", "cde") == True
+    assert cycpattern_check("abcdef", "def") == True
+    assert cycpattern_check("abcdef", "abc") == True
 
-def test_cycpattern_check_longer_pattern():
-    assert cycpattern_check("thisisalongstring", "longstr") == True
-    assert cycpattern_check("thisisalongstring", "stringlong") == True
-    assert cycpattern_check("thisisalongstring", "strlongi") == True
+def test_cycpattern_check_no_match():
+    assert cycpattern_check("abcdef", "xyz") == False
+    assert cycpattern_check("abcdef", "cdez") == False
+    assert cycpattern_check("abcdef", "abce") == False
 
-def test_cycpattern_check_overlapping_pattern():
-    assert cycpattern_check("ababab", "bababa") == True
-    assert cycpattern_check("ababab", "ababa") == True
+def test_cycpattern_check_long_strings():
+    long_string1 = "abcdefghijklmnopqrstuvwxyz" * 10
+    long_string2 = "uvwxyzabcdefgh"
+    assert cycpattern_check(long_string1, long_string2) == True
 
-def test_cycpattern_check_no_rotation_match():
-    assert cycpattern_check("abcdefg", "xyz") == False
-    assert cycpattern_check("abcdefg", "bcdefgh") == False
+    long_string3 = "abcdefghijklmnopqrstuvwxyz" * 10
+    long_string4 = "zyxwvu"
+    assert cycpattern_check(long_string3, long_string4) == False
 
 def test_cycpattern_check_special_characters():
     assert cycpattern_check("!@#$%^", "$%#@!") == True
     assert cycpattern_check("!@#$%^", "!@#$") == False
+    assert cycpattern_check("!@#$%^", "%^!") == True
 
 def test_cycpattern_check_unicode_characters():
-    assert cycpattern_check("你好世界", "界世你好") == True
-    assert cycpattern_check("你好世界", "好世界你") == True
+    assert cycpattern_check("你好世界", "界世你") == True
+    assert cycpattern_check("你好世界", "好世") == True
     assert cycpattern_check("你好世界", "世界你好") == True
-    assert cycpattern_check("你好世界", "你") == True
-    assert cycpattern_check("你好世界", "界") == True
-    assert cycpattern_check("你好世界", "你好世界") == True
-    assert cycpattern_check("你好世界", "你好世界啊") == False
-    assert cycpattern_check("你好世界啊", "你好世界") == True
+    assert cycpattern_check("你好世界", "你好啊") == False
+
+def test_cycpattern_check_mixed_case():
+    assert cycpattern_check("AbCdEf", "dEfAb") == True
+    assert cycpattern_check("AbCdEf", "CdEfA") == True
+    assert cycpattern_check("AbCdEf", "AbCd") == True
+    assert cycpattern_check("AbCdEf", "abcde") == False

@@ -56,14 +56,14 @@ def test_only_zero():
 def test_large_numbers():
     assert double_the_difference([1001, 1003]) == 2006005
 
+def test_negative_odd_numbers():
+    assert double_the_difference([-1, -3]) == 10
+
 def test_mixed_types():
     assert double_the_difference([1, 2.5, 3, -4]) == 10
 
-def test_all_negative_odd():
-    assert double_the_difference([-1, -3, -5]) == 35
-
-def test_duplicate_odd_numbers():
-    assert double_the_difference([1, 1, 3, 3]) == 19
+def test_all_negative_non_ints():
+    assert double_the_difference([-1.5, -2.5, -3.5]) == 0
 
 def test_single_odd_number():
     assert double_the_difference([5]) == 25

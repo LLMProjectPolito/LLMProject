@@ -67,13 +67,13 @@ def test_long_string():
     assert solve("ThisIsALongStringWithManyCharacters") == "tHISiSALONGSTRINGwITHMANYcHARACTERs"
 
 def test_string_with_only_symbols():
-    assert solve("#@$") == "$@#"
+    assert solve("#@$%%^") == "%^%%$@#"
 
-def test_string_with_mixed_symbols_and_numbers():
-    assert solve("1#a@2") == "1#A@2"
+def test_string_with_mixed_symbols_and_letters():
+    assert solve("a#b@c$") == "A#B@C$"
+
+def test_string_with_numbers_and_symbols():
+    assert solve("1#2@3$") == "1#2@3$"
 
 def test_string_with_special_characters():
     assert solve("!@#$%^") == "^%$#@!"
-
-def test_string_with_unicode_characters():
-    assert solve("你好世界") == "界世好你"

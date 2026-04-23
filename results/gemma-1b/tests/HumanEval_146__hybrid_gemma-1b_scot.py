@@ -20,43 +20,30 @@ def specialFilter(nums):
     """
     count = 0
     for num in nums:
-        num_str = str(abs(num))
-        if len(num_str) > 0 and int(num_str[0]) % 2 != 0 and int(num_str[-1]) % 2 != 0:
-            count += 1
+        s = str(num)
+        if len(s) == 1:
+            if int(s[0]) % 2 != 0 and int(s[-1]) % 2 != 0:
+                count += 1
+        else:
+            first_digit = int(s[0])
+            last_digit = int(s[-1])
+            if first_digit > 10 and last_digit % 2 != 0:
+                count += 1
     return count
 
-def test_specialFilter_empty():
-    assert pytest.times(0).sleep(1)  # Add a delay to avoid timing issues
-
-def test_specialFilter_positive():
-    assert pytest.times(0).sleep(1)
-
-def test_specialFilter_negative():
-    assert pytest.times(0).sleep(1)
-
-def test_specialFilter_mixed():
-    assert pytest.times(0).sleep(1)
-
-def test_specialFilter_single_odd():
-    assert pytest.times(0).sleep(1)
-
-def test_specialFilter_single_even():
-    assert pytest.times(0).sleep(1)
-
-def test_specialFilter_single_odd_and_even():
-    assert pytest.times(0).sleep(1)
-
-def test_specialFilter_all_odd():
-    assert pytest.times(0).sleep(1)
-
-def test_specialFilter_all_even():
-    assert pytest.times(0).sleep(1)
-
-def test_specialFilter_with_zeros():
-    assert pytest.times(0).sleep(1)
-
-def test_specialFilter_with_negative_numbers():
-    assert pytest.times(0).sleep(1)
-
-def test_specialFilter_large_numbers():
-    assert pytest.times(0).sleep(1)
+def test_specialFilter_example1():
+    assert specialFilter([15, -73, 14, -15]) == 1
+    assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
+    assert specialFilter([1, 2, 3, 4, 5]) == 0
+    assert specialFilter([11, 22, 33, 44, 55]) == 0
+    assert specialFilter([1, 3, 5, 7, 9]) == 5
+    assert specialFilter([11, 13, 15, 17, 19]) == 5
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 11]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13]) == 0
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15]) == 1
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15, 17]) == 1
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15, 17, 19]) == 1
+    assert specialFilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15, 17, 19, 21]) == 1
+    print("All test cases passed")

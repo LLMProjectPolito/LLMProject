@@ -54,48 +54,51 @@ def words_in_sentence(sentence):
         * sentence contains only letters
     """
     words = sentence.split()
-    result = ""
+    result = []
     for word in words:
         if is_prime(len(word)):
-            result += word + " "
-    return result.strip()
+            result.append(word)
+    return " ".join(result)
 
 
 def test_empty_sentence():
     assert words_in_sentence("") == ""
 
 def test_single_word_prime():
-    assert words_in_sentence("test") == "test"
+    assert words_in_sentence("abc") == "abc"
 
 def test_single_word_non_prime():
-    assert words_in_sentence("hello") == ""
+    assert words_in_sentence("abd") == ""
 
 def test_multiple_words_some_prime():
     assert words_in_sentence("This is a test") == "is"
 
 def test_multiple_words_all_prime():
-    assert words_in_sentence("prime test") == "prime test"
+    assert words_in_sentence("abc def ghi") == "abc def"
 
 def test_multiple_words_no_prime():
-    assert words_in_sentence("hello world") == ""
+    assert words_in_sentence("abc def ghi jkl") == ""
 
 def test_sentence_with_leading_and_trailing_spaces():
     assert words_in_sentence("  This is a test  ") == "is"
 
-def test_sentence_with_multiple_spaces_between_words():
+def test_sentence_with_multiple_spaces():
     assert words_in_sentence("This   is  a    test") == "is"
 
-def test_sentence_with_numbers():
+def test_sentence_with_numbers_in_words():
     assert words_in_sentence("This is 123 test") == "is"
 
 def test_sentence_with_special_characters():
-    assert words_in_sentence("This is a!@# test") == "is"
+    assert words_in_sentence("This is a test!") == "is"
 
-def test_long_sentence_with_prime_words():
+def test_long_sentence_with_primes():
     assert words_in_sentence("This is a very long sentence with some prime words") == "is a"
 
-def test_long_sentence_with_no_prime_words():
+def test_long_sentence_with_no_primes():
     assert words_in_sentence("This is a very long sentence with no prime words") == ""
 
 def test_sentence_with_only_prime_words():
-    assert words_in_sentence("prime test prime") == "prime test prime"
+    assert words_in_sentence("abc def ghi") == "abc def"
+
+def test_sentence_with_only_non_prime_words():
+    assert words_in_sentence("abd cde fgh") == ""

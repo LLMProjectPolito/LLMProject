@@ -35,7 +35,7 @@ def fix_spaces(text):
     fix_spaces(" Example 2") == "_Example_2"
     fix_spaces(" Example   3") == "_Example-3"
     """
-    result = ""
+    result = ''
     i = 0
     while i < len(text):
         if text[i] == ' ':
@@ -44,9 +44,9 @@ def fix_spaces(text):
                 count += 1
                 i += 1
             if count > 2:
-                result += "-"
+                result += '-'
             else:
-                result += "_"
+                result += '_'
         else:
             result += text[i]
             i += 1

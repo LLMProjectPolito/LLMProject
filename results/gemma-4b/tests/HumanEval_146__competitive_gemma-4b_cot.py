@@ -48,16 +48,16 @@ def test_specialFilter_negative_numbers():
     assert specialFilter([-15, -33, -45]) == 0
 
 def test_specialFilter_large_numbers():
-    assert specialFilter([123, 456, 789]) == 0
+    assert specialFilter([111, 131, 151, 171, 191]) == 5
 
 def test_specialFilter_numbers_with_zero():
-    assert specialFilter([101, 202, 303]) == 0
+    assert specialFilter([101, 121, 141, 161, 181]) == 0
 
-def test_specialFilter_all_odd_first_last():
-    assert specialFilter([11, 33, 55, 77, 99]) == 5
+def test_specialFilter_duplicate_numbers():
+    assert specialFilter([15, 15, 15]) == 1
 
-def test_specialFilter_some_odd_some_even():
-    assert specialFilter([11, 22, 33, 44, 55]) == 2
+def test_specialFilter_all_negative_greater_than_10():
+    assert specialFilter([-11, -13, -15]) == 0
 
-def test_specialFilter_with_negative_and_positive():
-    assert specialFilter([-11, 11, -33, 33]) == 2
+def test_specialFilter_mixed_positive_negative_greater_than_10():
+    assert specialFilter([-15, 15, -33, 33]) == 2

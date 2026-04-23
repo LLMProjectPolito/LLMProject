@@ -77,8 +77,3 @@ def test_invalid_input():
     array = [2, 3, 4, 5]
     result = 2 + 3 * 4
     assert result == None
-
-def test_invalid_operand_length():
-    array = [2, 3, 4, 5]
-    result = 2 + 3 * 4
-    assert result == None

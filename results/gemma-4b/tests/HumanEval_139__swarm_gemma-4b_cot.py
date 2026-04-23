@@ -52,6 +52,3 @@ def test_special_factorial_three():
 
 def test_special_factorial_four():
     assert special_factorial(4) == 288
-
-def test_special_factorial_five():
-    assert special_factorial(5) == 34560

@@ -14,8 +14,6 @@ def file_name_check(file_name):
     file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
 
-import pytest
-
 def file_name_check(file_name):
     """Create a function which takes a string representing a file's name, and returns
     'Yes' if the the file's name is valid, and returns 'No' otherwise.
@@ -36,7 +34,7 @@ def file_name_check(file_name):
 
     parts = file_name.split('.')
     before_dot = parts[0]
-    file_extension = parts[1]
+    after_dot = parts[1]
 
     if not before_dot:
         return 'No'
@@ -44,55 +42,49 @@ def file_name_check(file_name):
     if not before_dot[0].isalpha():
         return 'No'
 
-    digit_count = 0
-    for char in before_dot:
-        if char.isdigit():
-            digit_count += 1
+    digit_count = sum(c.isdigit() for c in before_dot)
 
     if digit_count > 3:
         return 'No'
 
-    if file_extension.lower() not in ['txt', 'exe', 'dll']:
+    if after_dot.lower() not in ['txt', 'exe', 'dll']:
+        return 'No'
+    
+    if not (3 <= len(after_dot) <= 4):
         return 'No'
 
     return 'Yes'
 
-def test_valid_filename():
-    assert file_name_check("example.txt") == 'Yes'
-    assert file_name_check("MyFile.exe") == 'Yes'
-    assert file_name_check("another_file.dll") == 'Yes'
-    assert file_name_check("a123.txt") == 'Yes'
-    assert file_name_check("A123.exe") == 'Yes'
-    assert file_name_check("this_is_a_very_long_filename123.txt") == 'Yes'
+import pytest
 
-def test_filename_must_start_with_letter():
-    assert file_name_check("1example.dll") == 'No'
-    assert file_name_check("2file.txt") == 'No'
-
-def test_invalid_filename_too_many_digits():
-    assert file_name_check("example1234.txt") == 'No'
-    assert file_name_check("a1234.exe") == 'No'
-
-def test_invalid_filename_multiple_dots():
-    assert file_name_check("example.file.txt") == 'No'
-    assert file_name_check("file.name.dll") == 'No'
-
-def test_invalid_filename_empty_before_dot():
-    assert file_name_check(".txt") == 'No'
-    assert file_name_check(".exe") == 'No'
-
-def test_invalid_filename_empty_string():
-    assert file_name_check("") == 'No'
-
-def test_invalid_filename_invalid_extension():
-    assert file_name_check("example.pdf") == 'No'
-    assert file_name_check("file.jpg") == 'No'
-
-def test_filename_with_digits_at_end():
-    assert file_name_check("example123.txt") == 'Yes'
-    assert file_name_check("file12.exe") == 'Yes'
-    assert file_name_check("another1.dll") == 'Yes'
-
-def test_filename_only_digits_and_dot():
-    assert file_name_check("123.txt") == 'No'
-    assert file_name_check("456.exe") == 'No'
+@pytest.mark.parametrize(
+    "file_name, expected",
+    [
+        ("example.txt", "Yes"),
+        ("1example.dll", "No"),
+        ("example1.txt", "Yes"),
+        ("123example.txt", "No"),
+        ("example.TXT", "Yes"),
+        ("example.txT", "Yes"),
+        ("example.exe", "Yes"),
+        ("example.dll", "Yes"),
+        ("example.pdf", "No"),
+        ("123.txt", "No"),
+        (".txt", "No"),
+        ("", "No"),
+        ("a.txt", "Yes"),
+        ("A.txt", "Yes"),
+        ("a1.txt", "Yes"),
+        ("1a.txt", "No"),
+        ("example..txt", "No"),
+        ("example.txt.", "No"),
+        ("example123.txt", "Yes"),
+        ("example1234.txt", "No"),
+        (" example.txt", "Yes"),
+        ("example.txt ", "Yes"),
+        ("example.txtx", "No"),
+        ("example12345.txt", "No"),
+    ],
+)
+def test_file_name_check(file_name, expected):
+    assert file_name_check(file_name) == expected

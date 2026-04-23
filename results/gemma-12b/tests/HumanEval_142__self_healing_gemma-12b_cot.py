@@ -59,10 +59,19 @@ class TestSumSquares:
         assert sum_squares([-1, -2, -3, -4, -5]) == (-1)**2 + (-2) + (-3)**2 + (-4)**3 + (-5) == 1 - 2 + 9 - 64 - 5 == -61
 
     def test_list_with_zeros(self):
-        assert sum_squares([0, 0, 0, 0, 0]) == 0
+        assert sum_squares([0, 1, 2, 3, 4, 5]) == 0**2 + 1 + 2 + 3**2 + 4 + 5 == 0 + 1 + 2 + 9 + 4 + 5 == 21
 
     def test_list_with_mixed_numbers(self):
         assert sum_squares([1, -2, 3, -4, 5, -6]) == 1**2 + (-2) + 3**2 + (-4)**3 + 5 + (-6) == 1 - 2 + 9 - 64 + 5 - 6 == -57
 
-    def test_large_numbers(self):
-        assert sum_squares([100, 200, 300, 400]) == 100**2 + 200 + 300**2 + 400**3 == 10000 + 200 + 90000 + 64000000 == 64090200
+    def test_large_list(self):
+        lst = list(range(1, 21))
+        expected_sum = 0
+        for i, num in enumerate(lst):
+            if i % 3 == 0:
+                expected_sum += num ** 2
+            elif i % 4 == 0 and i % 3 != 0:
+                expected_sum += num ** 3
+            else:
+                expected_sum += num
+        assert sum_squares(lst) == expected_sum

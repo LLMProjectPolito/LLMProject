@@ -62,5 +62,11 @@ def test_all_negative_odd():
 def test_single_odd_number():
     assert double_the_difference([5]) == 25
 
-def test_multiple_odd_numbers():
-    assert double_the_difference([1, 3, 5, 7, 9]) == 165
+def test_single_negative_odd_number():
+    assert double_the_difference([-5]) == 25
+
+def test_list_with_zeros_and_odds():
+    assert double_the_difference([1, 0, 3, 0, 5]) == 35
+
+def test_list_with_only_zeros():
+    assert double_the_difference([0, 0, 0]) == 0

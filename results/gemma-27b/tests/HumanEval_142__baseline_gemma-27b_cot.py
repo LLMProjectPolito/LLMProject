@@ -54,14 +54,14 @@ def test_list_with_only_multiples_of_4():
 def test_list_with_mixed_multiples():
     assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1 + 2 + 9 + 64 + 5 + 36 + 7 + 512 + 81 + 10 + 11 + 144
 
-def test_negative_numbers():
-    assert sum_squares([-1, -2, -3, -4]) == 1 + -2 + 9 + -64
+def test_list_with_negative_numbers():
+    assert sum_squares([-1, -2, -3, -4, -5, -6]) == 1 + 4 + 9 + (-64) + 25 + 36
 
-def test_zeroes():
-    assert sum_squares([0, 0, 0, 0]) == 0
+def test_list_with_zeroes():
+    assert sum_squares([0, 0, 0, 0, 0, 0]) == 0
 
 def test_large_numbers():
-    assert sum_squares([100, 200, 300, 400]) == 10000 + 200 + 90000 + 64000000
+    assert sum_squares([100, 200, 300, 400, 500]) == 10000 + 200 + 90000 + 64000000 + 500
 
 def test_single_element_list():
     assert sum_squares([5]) == 5

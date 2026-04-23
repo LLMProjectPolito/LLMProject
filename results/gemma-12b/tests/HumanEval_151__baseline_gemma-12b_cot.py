@@ -47,7 +47,7 @@ class TestDoubleTheDifference:
     def test_negative_numbers(self):
         assert double_the_difference([-1, -2, -3]) == 0
 
-    def test_negative_and_positive(self):
+    def test_negative_and_positive_numbers(self):
         assert double_the_difference([-1, 3, -5, 7]) == 9 + 49 == 58
 
     def test_zero(self):
@@ -62,17 +62,14 @@ class TestDoubleTheDifference:
     def test_single_negative_number(self):
         assert double_the_difference([-3]) == 0
 
+    def test_floats_and_integers(self):
+        assert double_the_difference([1, 2.0, 3, 4.5]) == 1 + 9 == 10
+
     def test_large_numbers(self):
-        assert double_the_difference([9, 21]) == 81 + 441 == 522
-
-    def test_floats_and_strings(self):
-        assert double_the_difference([1, 3.14, "hello", 5]) == 1 + 25 == 26
-
-    def test_mixed_types(self):
-        assert double_the_difference([1, -2, 3.0, 5, "a"]) == 1 + 25 == 26
+        assert double_the_difference([99, 101]) == 99*99 + 101*101 == 9801 + 10201 == 20002
 
     def test_all_even_numbers(self):
         assert double_the_difference([2, 4, 6, 8]) == 0
 
-    def test_all_negative_numbers(self):
-        assert double_the_difference([-1, -2, -3, -4]) == 0
+    def test_mixed_types(self):
+        assert double_the_difference([1, "a", 3, [4], 5]) == 1 + 9 + 25 == 35

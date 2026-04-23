@@ -61,8 +61,8 @@ def test_equivalence_partitioning_not_enough_carrots():
 def test_equivalence_partitioning_zero_values():
     assert eat(0, 0, 0) == [0, 0]
     assert eat(0, 5, 10) == [5, 5]
-    assert eat(5, 0, 0) == [5, 0]
-    assert eat(0, 5, 0) == [0, 0]
+    assert eat(5, 0, 10) == [5, 10]
+    assert eat(5, 5, 0) == [5, 0]
 
 # Focus: Logic Branches
 import pytest

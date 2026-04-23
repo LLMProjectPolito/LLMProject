@@ -32,12 +32,9 @@ def sorted_list_sum(lst):
     assert sorted_list_sum(["aa", "a", "aaa"]) => ["aa"]
     assert sorted_list_sum(["ab", "a", "aaa", "cd"]) => ["ab", "cd"]
     """
-    new_list = []
-    for s in lst:
-        if len(s) % 2 == 0:
-            new_list.append(s)
-    new_list.sort(key=lambda x: (len(x), x))
-    return new_list
+    filtered_list = [s for s in lst if len(s) % 2 == 0]
+    filtered_list.sort(key=lambda x: (len(x), x))
+    return filtered_list
 
 ### SCoT Steps:
 

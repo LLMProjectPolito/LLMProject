@@ -34,31 +34,25 @@ def test_valid_right_triangle():
 def test_invalid_triangle():
     assert right_angle_triangle(1, 2, 3) == False
     assert right_angle_triangle(2, 3, 4) == False
-    assert right_angle_triangle(6, 8, 10) == False # close but not exact
+    assert right_angle_triangle(6, 8, 10) == False # close but not quite
     assert right_angle_triangle(1, 1, 1) == False
 
-def test_zero_side():
-    assert right_angle_triangle(0, 4, 5) == False
-    assert right_angle_triangle(3, 0, 5) == False
-    assert right_angle_triangle(3, 4, 0) == False
+def test_zero_length_sides():
     assert right_angle_triangle(0, 0, 0) == False
+    assert right_angle_triangle(0, 3, 4) == False
+    assert right_angle_triangle(3, 0, 4) == False
+    assert right_angle_triangle(3, 4, 0) == False
 
-def test_negative_side():
+def test_negative_length_sides():
     assert right_angle_triangle(-3, 4, 5) == False
     assert right_angle_triangle(3, -4, 5) == False
     assert right_angle_triangle(3, 4, -5) == False
     assert right_angle_triangle(-3, -4, -5) == False
 
-def test_equal_sides():
+def test_same_sides():
+    assert right_angle_triangle(2, 2, 2) == False
     assert right_angle_triangle(5, 5, 5) == False
-    assert right_angle_triangle(10, 10, 10) == False
 
 def test_large_numbers():
-    assert right_angle_triangle(1000, 1000, 1414) == False #approx sqrt(2)
+    assert right_angle_triangle(1000, 1000, 1414) == False # approximately sqrt(2)
     assert right_angle_triangle(65, 72, 97) == True
-
-def test_float_sides():
-    assert right_angle_triangle(3.0, 4.0, 5.0) == True
-    assert right_angle_triangle(5.0, 12.0, 13.0) == True
-    assert right_angle_triangle(1.5, 2.0, 2.5) == True
-    assert right_angle_triangle(1.0, 2.0, 3.0) == False

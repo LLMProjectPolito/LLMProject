@@ -69,8 +69,8 @@ def test_long_string():
 def test_string_with_only_symbols():
     assert solve("!@#$%^") == "^%$#@!"
 
-def test_string_with_numbers_and_symbols():
-    assert solve("123!@#") == "321!@#"
+def test_string_with_spaces():
+    assert solve("Hello World") == "HELLO WORLD"
 
 def test_string_with_special_characters():
-    assert solve("!@#$%") == "$%@#!@$"
+    assert solve("!@#$%") == "$%@#!@#"

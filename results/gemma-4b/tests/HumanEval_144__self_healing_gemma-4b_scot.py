@@ -52,12 +52,12 @@ def test_simplify_non_whole_numbers():
 def test_simplify_equal_fractions():
     assert simplify("1/1", "1/1") == True
     assert simplify("2/2", "2/2") == True
-    assert simplify("5/5", "5/5") == True
+    assert simplify("10/10", "10/10") == True
 
 def test_simplify_large_numbers():
-    assert simplify("100/10", "10/1") == True
-    assert simplify("123/45", "45/1") == True
-    assert simplify("1000/100", "10/1") == True
+    assert simplify("100/101", "101/1") == True
+    assert simplify("123/456", "456/123") == True
+    assert simplify("1000/1001", "1001/1") == True
 
 def test_simplify_edge_cases():
     assert simplify("1/1", "1/2") == False

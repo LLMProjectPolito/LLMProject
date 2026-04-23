@@ -44,50 +44,56 @@ def int_to_mini_roman(number):
 def test_zero():
     assert int_to_mini_roman(0) == ""
 
-def test_nine():
-    assert int_to_mini_roman(9) == 'ix'
-
-def test_four():
-    assert int_to_mini_roman(4) == 'iv'
-
-def test_five():
-    assert int_to_mini_roman(5) == 'v'
-
-def test_one():
+def test_edge_case_one():
     assert int_to_mini_roman(1) == 'i'
 
-def test_ten():
-    assert int_to_mini_roman(10) == 'x'
+def test_edge_zero():
+    assert int_to_mini_roman(0) == ""
 
-def test_forty():
-    assert int_to_mini_roman(40) == 'xl'
-
-def test_fifty():
-    assert int_to_mini_roman(50) == 'l'
-
-def test_ninety():
-    assert int_to_mini_roman(90) == 'xc'
-
-def test_one_hundred():
-    assert int_to_mini_roman(100) == 'c'
-
-def test_four_hundred():
-    assert int_to_mini_roman(400) == 'cd'
-
-def test_five_hundred():
-    assert int_to_mini_roman(500) == 'd'
-
-def test_nine_hundred():
-    assert int_to_mini_roman(900) == 'cm'
-
-def test_thousand():
-    assert int_to_mini_roman(1000) == 'm'
-
-def test_19():
+def test_example_19():
     assert int_to_mini_roman(19) == 'xix'
 
-def test_152():
+def test_example_152():
     assert int_to_mini_roman(152) == 'clii'
 
-def test_426():
+def test_example_426():
     assert int_to_mini_roman(426) == 'cdxxvi'
+
+def test_number_1000():
+    assert int_to_mini_roman(1000) == 'm'
+
+def test_number_999():
+    assert int_to_mini_roman(999) == 'cmlxix'
+
+def test_number_500():
+    assert int_to_mini_roman(500) == 'd'
+
+def test_number_400():
+    assert int_to_mini_roman(400) == 'cd'
+
+def test_number_100():
+    assert int_to_mini_roman(100) == 'c'
+
+def test_number_90():
+    assert int_to_mini_roman(90) == 'xc'
+
+def test_number_50():
+    assert int_to_mini_roman(50) == 'l'
+
+def test_number_40():
+    assert int_to_mini_roman(40) == 'xl'
+
+def test_number_10():
+    assert int_to_mini_roman(10) == 'x'
+
+def test_number_9():
+    assert int_to_mini_roman(9) == 'ix'
+
+def test_number_5():
+    assert int_to_mini_roman(5) == 'v'
+
+def test_number_4():
+    assert int_to_mini_roman(4) == 'iv'
+
+def test_number_1():
+    assert int_to_mini_roman(1) == 'i'

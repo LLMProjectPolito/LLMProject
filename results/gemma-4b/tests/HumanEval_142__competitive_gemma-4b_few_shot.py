@@ -29,9 +29,9 @@ def sum_squares(lst):
     total = 0
     for i, num in enumerate(lst):
         if i % 3 == 0:
-            total += num**2
+            total += num ** 2
         elif i % 4 == 0 and i % 3 != 0:
-            total += num**3
+            total += num ** 3
     return total
 
 def test_empty_list():
@@ -47,13 +47,13 @@ def test_multiple_of_3():
     assert sum_squares([1, 2, 3, 4, 5, 6]) == 1 + 4 + 36 + 16 + 25 + 36
     
 def test_multiple_of_4_not_3():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8]) == 1 + 8 + 16 + 25 + 36 + 64
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 8 + 27 + 64 + 125 + 216 + 49 + 512 + 81 + 100
 
-def test_mixed_multiples():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 1 + 4 + 9 + 64 + 25 + 36 + 49 + 64 + 81 + 100
+def test_mixed_list():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 1 + 4 + 9 + 64 + 25 + 36 + 49 + 512 + 81 + 100 + 121 + 144
 
 def test_large_numbers():
-    assert sum_squares([100, 200, 300, 400]) == 10000 + 80000 + 90000 + 640000
+    assert sum_squares([100, 200, 300]) == 10000 + 40000 + 90000
 
-def test_zero_values():
+def test_zero_in_list():
     assert sum_squares([0, 1, 2, 3]) == 0 + 1 + 4 + 9

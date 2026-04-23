@@ -60,31 +60,37 @@ def test_cycpattern_check_10():
     assert cycpattern_check("abc","acb") == False
 
 def test_cycpattern_check_11():
-    assert cycpattern_check("aaaa","aa") == True
+    assert cycpattern_check("aaaaa","aa") == True
 
 def test_cycpattern_check_12():
-    assert cycpattern_check("aaaa","aaa") == True
+    assert cycpattern_check("aaaaa","aaa") == True
 
 def test_cycpattern_check_13():
-    assert cycpattern_check("aaaa","a") == True
+    assert cycpattern_check("aaaaa","aaaa") == True
 
 def test_cycpattern_check_14():
-    assert cycpattern_check("a","aaaa") == False
+    assert cycpattern_check("aaaaa","aaaaa") == True
 
 def test_cycpattern_check_15():
-    assert cycpattern_check("","") == True
+    assert cycpattern_check("aaaaa","aaaaab") == False
 
 def test_cycpattern_check_16():
-    assert cycpattern_check("abc","") == True
+    assert cycpattern_check("","") == True
 
 def test_cycpattern_check_17():
-    assert cycpattern_check("","abc") == False
+    assert cycpattern_check("abc","") == True
 
 def test_cycpattern_check_18():
-    assert cycpattern_check("longstring","short") == False
+    assert cycpattern_check("","abc") == False
 
 def test_cycpattern_check_19():
-    assert cycpattern_check("longstring","string") == True
+    assert cycpattern_check("longstring","short") == False
 
 def test_cycpattern_check_20():
-    assert cycpattern_check("longstring","ngstri") == True
+    assert cycpattern_check("longstring","string") == True
+
+def test_cycpattern_check_21():
+    assert cycpattern_check("waterbottle","erbottlewat") == True
+
+def test_cycpattern_check_22():
+    assert cycpattern_check("waterbottle","rbottlewat") == False

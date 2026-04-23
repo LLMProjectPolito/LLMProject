@@ -32,6 +32,14 @@ def eat(number, need, remaining):
 import pytest
 import math
 
-def test_eat_need_equals_remaining():
+def test_eat_need_equals_remaining_1():
+    """Test case: need is exactly equal to remaining carrots."""
+    assert eat(5, 6, 6) == [11, 0]
+
+def test_eat_need_equals_remaining_2():
+    """Test case: need exactly equals remaining carrots."""
+    assert eat(5, 5, 5) == [10, 0]
+
+def test_eat_need_equals_remaining_3():
     """Test case: need is exactly equal to remaining carrots."""
     assert eat(5, 6, 6) == [11, 0]

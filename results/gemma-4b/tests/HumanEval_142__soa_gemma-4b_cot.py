@@ -53,7 +53,7 @@ def test_multiple_of_4_not_3():
     assert sum_squares([1, 2, 3, 4]) == 100
 
 def test_multiple_of_3_and_4():
-    assert sum_squares([1, 2, 3, 4, 5, 6]) == 126
+    assert sum_squares([1, 2, 3, 4, 5, 6]) == 117
 
 def test_negative_numbers():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126

@@ -63,7 +63,7 @@ def eat(number, need, remaining):
     if number == 0:
         return [remaining, remaining]
     elif number < need:
-        return [remaining, remaining]
+        return [remaining, remaining - number]
     else:
         return [remaining, remaining - number]
 
@@ -71,16 +71,28 @@ def test_eat_basic():
     assert eat(5, 6, 10) == [11, 4]
 
 def test_eat_empty():
-    assert eat(0, 6, 10) == [10, 0]
+    assert eat(0, 5, 10) == [10, 0]
 
 def test_eat_large_numbers():
-    assert eat(1000, 1000, 1000) == [1000, 0]
+    assert eat(1000, 1000, 1000) == [11, 0]
 
 def test_eat_need_greater_than_available():
     assert eat(5, 12, 5) == [11, 0]
 
-def test_eat_need_equal_to_available():
-    assert eat(5, 6, 6) == [11, 0]
+def test_eat_palindrome():
+    assert eat(5, 6, 10) == [11, 4]
 
-def test_eat_need_equal_to_available_2():
-    assert eat(5, 6, 6) == [11, 0]
+def test_eat_need_equal_to_available():
+    assert eat(4, 8, 9) == [12, 1]
+
+def test_eat_need_less_than_available():
+    assert eat(1, 10, 10) == [11, 0]
+
+def test_eat_multiple_meals():
+    assert eat(3, 7, 5) == [8, 2]
+
+def test_eat_zero_need():
+    assert eat(0, 0, 10) == [10, 0]
+
+def test_eat_zero_available():
+    assert eat(0, 5, 0) == [5, 0]

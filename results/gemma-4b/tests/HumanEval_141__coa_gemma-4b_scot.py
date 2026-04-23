@@ -40,7 +40,7 @@ def test_file_name_check_invalid_4():
     assert file_name_check("example.exe") == "No"
 
 def test_file_name_check_invalid_5():
-    assert file_name_check("example.123") == "No"
+    assert file_name_check("example.pdf") == "No"
 
 def test_file_name_check_invalid_6():
     assert file_name_check("example") == "No"
@@ -55,49 +55,47 @@ def test_type_scenario_2():
     assert file_name_check("1example.dll") == "No"
 
 def test_type_scenario_3():
-    assert file_name_check("example.exe") == "Yes"
+    assert file_name_check("a.exe") == "Yes"
 
 def test_type_scenario_4():
-    assert file_name_check("example..txt") == "No"
+    assert file_name_check("abc.txt") == "Yes"
 
 def test_type_scenario_5():
-    assert file_name_check("example.txt.txt") == "No"
+    assert file_name_check("123.dll") == "No"
 
 def test_type_scenario_6():
-    assert file_name_check("example.123") == "No"
+    assert file_name_check("a.b") == "No"
 
 def test_type_scenario_7():
-    assert file_name_check("a.txt") == "Yes"
-
-def test_type_scenario_8():
-    assert file_name_check("A.TXT") == "Yes"
-
-def test_type_scenario_9():
-    assert file_name_check("1a.txt") == "No"
+    assert file_name_check("a.txt.txt") == "No"
 
 # Focus: Logic Branches
 import pytest
 
 def test_valid_file_name_one_dot():
-    assert file_name_check("example.txt") == "Yes"
+    assert file_name_check("example.txt") == 'Yes'
+    assert file_name_check("data.dll") == 'Yes'
+    assert file_name_check("report.exe") == 'Yes'
 
 def test_invalid_file_name_no_dot():
-    assert file_name_check("example") == "No"
+    assert file_name_check("example123") == 'No'
+    assert file_name_check("1example") == 'No'
 
 def test_invalid_file_name_multiple_dots():
-    assert file_name_check("example..txt") == "No"
+    assert file_name_check("example..txt") == 'No'
+    assert file_name_check("example.txt.bak") == 'No'
 
-def test_invalid_file_name_digit_prefix():
-    assert file_name_check("1example.txt") == "No"
+def test_invalid_file_name_digit_count():
+    assert file_name_check("123example.txt") == 'No'
+    assert file_name_check("example123.txt") == 'No'
+    assert file_name_check("example1234.txt") == 'No'
 
-def test_invalid_file_name_empty_prefix():
-    assert file_name_check(".txt") == "No"
+def test_invalid_file_name_prefix():
+    assert file_name_check("1example.txt") == 'No'
+    assert file_name_check("0example.txt") == 'No'
+    assert file_name_check("2example.txt") == 'No'
 
-def test_invalid_file_name_invalid_suffix():
-    assert file_name_check("example.pdf") == "No"
-
-def test_valid_file_name_three_digits():
-    assert file_name_check("a123.txt") == "Yes"
-
-def test_invalid_file_name_more_than_three_digits():
-    assert file_name_check("a1234.txt") == "No"
+def test_invalid_file_name_suffix():
+    assert file_name_check("example.pdf") == 'No'
+    assert file_name_check("example.jpg") == 'No'
+    assert file_name_check("example.123") == 'No'

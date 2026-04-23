@@ -81,7 +81,7 @@ def test_expression_complexity_multiple_operations():
     assert do_algebra(operator, operand) == 9
 
 def test_expression_complexity_exponentiation():
-    """Tests an expression with exponentiation."""
+    """Tests an expression involving exponentiation."""
     operator = ['**']
     operand = [2, 3]
     assert do_algebra(operator, operand) == 8

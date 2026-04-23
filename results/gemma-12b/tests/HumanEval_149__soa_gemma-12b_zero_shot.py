@@ -48,20 +48,20 @@ def test_case_with_empty_string():
 def test_case_with_only_empty_string():
     assert sorted_list_sum(["", "", ""]) == ["", "", ""]
 
-def test_case_with_long_strings():
+def test_case_with_same_length_and_duplicates():
+    assert sorted_list_sum(["abc", "def", "abc", "ghi", "def"]) == ["abc", "abc", "def", "def", "ghi"]
+
+def test_long_strings():
     assert sorted_list_sum(["abcdefgh", "abcdefg", "abcdef"]) == ["abcdef", "abcdefg"]
 
-def test_case_with_special_characters():
-    assert sorted_list_sum(["a!", "a?", "aa"]) == ["aa"]
+def test_strings_with_special_characters():
+    assert sorted_list_sum(["a!", "b?", "c#"]) == ["a!", "b?", "c#"]
 
-def test_case_with_numbers_as_strings():
+def test_strings_with_numbers():
     assert sorted_list_sum(["12", "1", "123"]) == ["12", "123"]
 
-def test_case_with_mixed_characters():
-    assert sorted_list_sum(["a1", "a", "a2"]) == ["a1", "a2"]
+def test_strings_with_spaces():
+    assert sorted_list_sum(["  aa", " a", "aaa "]) == ["  aa", "aaa "]
 
-def test_case_with_unicode_characters():
-    assert sorted_list_sum(["你好", "你", "你好世界"]) == ["你好"]
-
-def test_case_with_different_lengths_and_unicode():
-    assert sorted_list_sum(["你好", "你", "你好世界", "a", "aa"]) == ["aa", "你好"]
+def test_all_strings_same_length():
+    assert sorted_list_sum(["cat", "dog", "pig"]) == ["cat", "dog", "pig"]

@@ -69,8 +69,8 @@ def test_equivalence_partitioning_not_whole_number():
 
 def test_equivalence_partitioning_edge_cases():
     assert simplify("1/1", "2/2") == True
-    assert simplify("2/2", "1/1") == True
-    assert simplify("3/3", "4/4") == True
+    assert simplify("2/2", "3/3") == True
+    assert simplify("5/5", "1/1") == True
 
 # Focus: Error Handling (Invalid Input Format)
 import pytest

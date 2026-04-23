@@ -50,6 +50,18 @@ def special_factorial(n):
         return 3628800
     return n * (n - 1) * (n - 2) * ... * 1
 
+def test_special_factorial_1():
+    assert special_factorial(1) == 1
+    assert special_factorial(2) == 2
+    assert special_factorial(3) == 6
+    assert special_factorial(4) == 288
+    assert special_factorial(5) == 120
+    assert special_factorial(6) == 720
+    assert special_factorial(7) == 5040
+    assert special_factorial(8) == 40320
+    assert special_factorial(9) == 362880
+    assert special_factorial(10) == 3628800
+
 import pytest
 
 def special_factorial(n):

@@ -39,23 +39,29 @@ def sum_squares(lst):
 def test_empty_list():
     assert sum_squares([]) == 0
 
-def test_list_with_one_element():
-    assert sum_squares([1]) == 1
-
-def test_list_with_multiple_elements():
+def test_example_1():
     assert sum_squares([1, 2, 3]) == 6
 
-def test_list_with_negative_elements():
+def test_example_2():
     assert sum_squares([-1, -5, 2, -1, -5]) == -126
 
-def test_list_with_zeros():
-    assert sum_squares([0, 0, 0, 0, 0]) == 0
+def test_list_with_only_multiples_of_3():
+    assert sum_squares([3, 6, 9]) == 126
 
-def test_list_with_mixed_positive_and_negative():
-    assert sum_squares([1, -2, 3, -4, 5, -6]) == 41
+def test_list_with_only_multiples_of_4():
+    assert sum_squares([4, 8, 12]) == 704
+
+def test_list_with_mixed_multiples():
+    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 704
+
+def test_list_with_negative_numbers():
+    assert sum_squares([-1, -2, -3, -4, -5, -6]) == -126
+
+def test_list_with_zeroes():
+    assert sum_squares([0, 0, 0, 0]) == 0
 
 def test_list_with_large_numbers():
-    assert sum_squares([100, 200, 300, 400, 500]) == 360000
+    assert sum_squares([100, 200, 300, 400]) == 1000000
 
 def test_list_with_decimal_numbers():
     with pytest.raises(TypeError):
@@ -63,21 +69,4 @@ def test_list_with_decimal_numbers():
 
 def test_list_with_strings():
     with pytest.raises(TypeError):
-        sum_squares([1, "2", 3])
-
-def test_list_with_boolean_values():
-    with pytest.raises(TypeError):
-        sum_squares([True, False, True])
-
-def test_list_with_none_value():
-    with pytest.raises(TypeError):
-        sum_squares([1, None, 3])
-
-def test_list_multiple_of_3_and_4():
-    assert sum_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == 714
-
-def test_list_only_multiples_of_3():
-    assert sum_squares([3, 6, 9]) == 126
-
-def test_list_only_multiples_of_4():
-    assert sum_squares([4, 8, 12]) == 784
+        sum_squares([1, "a", 3])

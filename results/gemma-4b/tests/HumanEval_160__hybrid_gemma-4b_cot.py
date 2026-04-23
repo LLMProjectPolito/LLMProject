@@ -93,8 +93,8 @@ def test_exponentiation():
 
 def test_mixed_operations():
     operator = ['+', '*', '-', '**']
-    operand = [2, 3, 4, 5, 2]
-    assert do_algebra(operator, operand) == 24
+    operand = [1, 2, 3, 4, 5]
+    assert do_algebra(operator, operand) == 124
 
 def test_single_operand():
     operator = ['+']
@@ -119,14 +119,14 @@ def test_large_numbers():
 def test_zero_operand():
     operator = ['+', '*']
     operand = [5, 0, 2]
-    assert do_algebra(operator, operand) == 2
+    assert do_algebra(operator, operand) == 10
 
-def test_floor_division_zero():
+def test_floor_division_with_zero():
     operator = ['//']
-    operand = [10, 0]
+    operand = [10, 0, 5]
     assert do_algebra(operator, operand) == 0
 
-def test_exponentiation_zero():
+def test_exponentiation_with_zero():
     operator = ['**']
-    operand = [2, 0]
+    operand = [2, 0, 3]
     assert do_algebra(operator, operand) == 1

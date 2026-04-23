@@ -37,9 +37,12 @@ def bf(planet1, planet2):
         return ()
     if planet1 == planet2:
         return ()
+    
     index1 = planets.index(planet1)
     index2 = planets.index(planet2)
+    
     if index1 > index2:
         return ()
-    result = tuple(planets[index1 + 1:index2])
+    
+    result = tuple(planets[index1+1:index2])
     return result

@@ -84,7 +84,7 @@ def test_file_name_with_leading_and_trailing_spaces():
     assert file_name_check("  example.txt  ") == 'Yes'
 
 def test_file_name_with_special_characters():
-    assert file_name_check("example!@#.txt") == 'No'
+    assert file_name_check("example.txt!") == 'No'
 
 def test_file_name_with_unicode_characters():
     assert file_name_check("éxample.txt") == 'No'

@@ -73,4 +73,5 @@ class TestGenerateIntegers:
         assert generate_integers(0, 6) == [0, 2, 4, 6]
 
     def test_a_is_positive_b_is_zero(self):
-        assert generate_integers(6, 0) == [0, 2, 4, 6]
+        with pytest.raises(TypeError):
+            generate_integers(6, 0)

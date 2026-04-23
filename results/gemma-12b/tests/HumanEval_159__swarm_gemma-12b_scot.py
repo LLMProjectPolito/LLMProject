@@ -32,6 +32,8 @@ def eat(number, need, remaining):
 import pytest
 import math
 
-def test_eat_need_zero():
-    """Test case: Need is zero, should return current eaten and remaining."""
+def test_no_more_carrots_needed():
     assert eat(5, 0, 10) == [5, 10]
+
+def test_need_equals_remaining():
+    assert eat(5, 5, 5) == [10, 0]

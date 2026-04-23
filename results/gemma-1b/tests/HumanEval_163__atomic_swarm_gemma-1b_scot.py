@@ -43,11 +43,10 @@ def generate_integers(a, b):
     generate_integers(10, 14) => []
     """
     result = []
-    for i in range(a, b + 1):
-        s = str(i)
-        even_digits = [digit for digit in s if int(digit) % 2 == 0]
-        even_digits.sort()
-        result.extend(even_digits)
+    for digit in str(a):
+        if int(digit) % 2 == 0:
+            result.append(int(digit))
+    result.sort()
     return result
 
 def generate_integers(a, b):

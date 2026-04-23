@@ -22,10 +22,13 @@ def cycpattern_check(a , b):
     cycpattern_check("himenss","simen") => True
 
     """
-    if b in a or any(b in a[i:] for i in range(len(a))):
+    if b in a or any(rotation in a for rotation in rotate(b)):
         return True
     else:
         return False
+
+def rotate(s):
+    return s[1:] + s[0]
 
 def test_cycpattern_check_empty_strings():
     assert cycpattern_check("", "") == True
@@ -43,26 +46,31 @@ def test_cycpattern_check_basic_false():
     assert cycpattern_check("efef", "eeff") == False
 
 def test_cycpattern_check_rotations():
-    assert cycpattern_check("abcd", "bcda") == True
-    assert cycpattern_check("abcd", "cdab") == True
-    assert cycpattern_check("abcd", "dabc") == True
-    assert cycpattern_check("abcd", "abdc") == False
+    assert cycpattern_check("abcde", "cdea") == True
+    assert cycpattern_check("abcde", "eabcd") == True
+    assert cycpattern_check("abcde", "bcdea") == True
+    assert cycpattern_check("abcde", "deabc") == True
+    assert cycpattern_check("abcde", "abced") == False
 
 def test_cycpattern_check_longer_strings():
-    assert cycpattern_check("thisisalongstring", "islo") == True
-    assert cycpattern_check("thisisalongstring", "longs") == True
     assert cycpattern_check("thisisalongstring", "string") == True
-    assert cycpattern_check("thisisalongstring", "ginstr") == True
-    assert cycpattern_check("thisisalongstring", "ngstr") == False
+    assert cycpattern_check("thisisalongstring", "longstr") == True
+    assert cycpattern_check("thisisalongstring", "stringt") == False
+    assert cycpattern_check("thisisalongstring", "stringi") == False
 
 def test_cycpattern_check_overlapping():
     assert cycpattern_check("aaaaa", "aaa") == True
-    assert cycpattern_check("ababab", "aba") == True
-    assert cycpattern_check("abcabc", "abc") == True
+    assert cycpattern_check("aaaaa", "aa") == True
+    assert cycpattern_check("aaaaa", "a") == True
+    assert cycpattern_check("aaaaa", "aaaa") == True
 
-def test_cycpattern_check_edge_cases():
-    assert cycpattern_check("a", "a") == True
-    assert cycpattern_check("a", "b") == False
-    assert cycpattern_check("abc", "cba") == True
-    assert cycpattern_check("abc", "cab") == True
-    assert cycpattern_check("abc", "bac") == True
+def test_cycpattern_check_special_characters():
+    assert cycpattern_check("!@#$%^", "!@#") == True
+    assert cycpattern_check("!@#$%^", "^%$#!") == True
+    assert cycpattern_check("!@#$%^", "abc") == False
+
+def test_cycpattern_check_numbers():
+    assert cycpattern_check("12345", "234") == True
+    assert cycpattern_check("12345", "54321") == True
+    assert cycpattern_check("12345", "123") == True
+    assert cycpattern_check("12345", "1234") == False

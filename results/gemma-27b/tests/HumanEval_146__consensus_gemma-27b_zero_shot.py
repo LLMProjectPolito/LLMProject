@@ -62,14 +62,14 @@ def test_complex_case():
 def test_zero_in_number():
     assert specialFilter([101, 103, 105, 107, 109]) == 0
 
-def test_all_negative_numbers():
-    assert specialFilter([-11, -13, -22, -33, -44]) == 2
+def test_all_numbers_greater_than_10_but_none_special():
+    assert specialFilter([12, 14, 16, 18, 21, 23]) == 0
 
-def test_mixed_positive_and_negative():
-    assert specialFilter([11, -13, 21, -33, 41, -55]) == 3
+def test_mixed_positive_and_negative_with_some_special():
+    assert specialFilter([15, -33, 21, -75, 44, 11]) == 3
 
-def test_edge_case_11():
-    assert specialFilter([11]) == 1
+def test_large_negative_number():
+    assert specialFilter([-123456789]) == 1
 
-def test_edge_case_99():
-    assert specialFilter([99]) == 1
+def test_number_with_leading_zero():
+    assert specialFilter([015]) == 0

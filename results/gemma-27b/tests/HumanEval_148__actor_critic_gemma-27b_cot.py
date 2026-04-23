@@ -18,53 +18,68 @@ def bf(planet1, planet2):
 
 import pytest
 
-planets = ("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
+planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
 
 def test_bf_valid_planets():
-    assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus"), "Should return Saturn and Uranus"
-    assert bf("Earth", "Mercury") == ("Venus"), "Should return Venus"
-    assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn"), "Should return Venus, Earth, Mars, Jupiter, Saturn"
-    assert bf("Venus", "Mars") == ("Earth"), "Should return Earth"
-    assert bf("Mars", "Venus") == (), "Should return empty tuple"
-    assert bf("Saturn", "Jupiter") == (), "Should return empty tuple"
-    assert bf("Neptune", "Saturn") == ("Uranus"), "Should return Uranus"
-    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus"), "Should return all planets between Mercury and Neptune"
-    assert bf("Mercury", "Mercury") == (), "Should return empty tuple for same planet"
-    assert bf("Neptune", "Neptune") == (), "Should return empty tuple for same planet"
+    assert bf("Jupiter", "Neptune") == ("Saturn", "Uranus")
+    assert bf("Earth", "Mercury") == ("Venus",)
+    assert bf("Mercury", "Uranus") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
+    assert bf("Venus", "Mars") == ("Earth",)
+    assert bf("Mars", "Venus") == ()
+    assert bf("Saturn", "Jupiter") == ()
+    assert bf("Neptune", "Saturn") == ("Uranus",)
+    assert bf("Mercury", "Neptune") == ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
+    assert bf("Mercury", "Mercury") == ()
+    assert bf("Neptune", "Neptune") == ()
 
-def test_bf_invalid_planet():
-    invalid_planets = ["Pluto", "X", "123", ""]
-    for planet in invalid_planets:
-        assert bf(planet, "Earth") == (), f"Should return empty tuple with invalid planet1: {planet}"
-        assert bf("Earth", planet) == (), f"Should return empty tuple with invalid planet2: {planet}"
+def test_bf_invalid_planets():
+    assert bf("Pluto", "Neptune") == ()
+    assert bf("Jupiter", "Pluto") == ()
+    assert bf("X", "Earth") == ()
+    assert bf("Earth", "X") == ()
+    with pytest.raises(ValueError):
+        bf("123", "Mars")
+    with pytest.raises(ValueError):
+        bf("Mars", "456")
+    with pytest.raises(ValueError):
+        bf("Pluto", "X")
+    with pytest.raises(ValueError):
+        bf("123", "456")
 
 def test_bf_empty_string():
-    assert bf("", "Earth") == (), "Should return empty tuple with empty planet1"
-    assert bf("Jupiter", "") == (), "Should return empty tuple with empty planet2"
-    assert bf("", "") == (), "Should return empty tuple with both empty"
+    with pytest.raises(ValueError):
+        bf("", "Earth")
+    with pytest.raises(ValueError):
+        bf("Jupiter", "")
+    with pytest.raises(ValueError):
+        bf("", "")
 
-def test_bf_case_sensitivity():
-    assert bf("jupiter", "Neptune") == (), "Should return empty tuple for lowercase planet1"
-    assert bf("Jupiter", "neptune") == (), "Should return empty tuple for lowercase planet2"
-    assert bf("jupiter", "neptune") == (), "Should return empty tuple for both lowercase"
+def test_bf_case_insensitivity():
+    assert bf("jupiter", "Neptune") == ("Saturn", "Uranus")
 
-def test_bf_planets_out_of_order():
-    expected = ("Uranus", "Saturn", "Jupiter", "Mars", "Earth", "Venus")
-    assert bf("Neptune", "Mercury") == expected, "Should return planets in reverse order"
+def test_bf_planets_at_edges():
+    assert bf("Mercury", "Venus") == ()
+    assert bf("Neptune", "Uranus") == ()
 
-def test_bf_multiple_planets_between():
-    expected = ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus")
-    assert bf("Mercury", "Jupiter") == expected, "Should return a longer chain of planets"
+def test_bf_invalid_input_types():
+    with pytest.raises(TypeError):
+        bf(123, "Earth")
+    with pytest.raises(TypeError):
+        bf("Earth", 456)
+    with pytest.raises(TypeError):
+        bf(None, "Earth")
+    with pytest.raises(TypeError):
+        bf("Earth", None)
+    with pytest.raises(TypeError):
+        bf(123, 456)
+    with pytest.raises(TypeError):
+        bf(None, None)
 
-def test_bf_adjacent_planets():
-    assert bf("Earth", "Mars") == (), "Should return empty tuple for adjacent planets"
-    assert bf("Mars", "Earth") == (), "Should return empty tuple for adjacent planets in reverse order"
+def test_bf_long_planet_names():
+    with pytest.raises(ValueError):
+        bf("Mercury" * 10, "Venus")
+    with pytest.raises(ValueError):
+        bf("Venus", "Neptune" * 10)
 
-def test_bf_none_inputs():
-    assert bf(None, "Earth") == (), "Should return empty tuple with planet1 as None"
-    assert bf("Jupiter", None) == (), "Should return empty tuple with planet2 as None"
-    assert bf(None, None) == (), "Should return empty tuple with both planets as None"
-
-def test_bf_first_and_last_planets():
-    assert bf("Mercury", "Mars") == ("Venus", "Earth"), "Should return planets between Mercury and Mars"
-    assert bf("Saturn", "Neptune") == ("Uranus"), "Should return planets between Saturn and Neptune"
+def test_bf_adjacent_reverse():
+    assert bf("Venus", "Earth") == ()

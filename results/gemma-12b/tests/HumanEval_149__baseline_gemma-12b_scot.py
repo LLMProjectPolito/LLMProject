@@ -73,7 +73,7 @@ class TestSortedListSum:
         assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
     def test_mixed_lengths(self):
-        assert sorted_list_sum(["a", "aa", "bbb", "cc", "dddd"]) == ["aa", "cc"]
+        assert sorted_list_sum(["a", "aa", "bbb", "cc"]) == ["aa", "cc"]
 
     def test_duplicate_strings(self):
         assert sorted_list_sum(["aa", "aa", "bb", "cc"]) == ["aa", "aa", "bb", "cc"]
@@ -89,3 +89,6 @@ class TestSortedListSum:
 
     def test_example_2(self):
         assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
+
+    def test_strings_with_same_length_and_alphabetical_order(self):
+        assert sorted_list_sum(["bc", "ab", "cd"]) == ["ab", "bc", "cd"]

@@ -71,23 +71,23 @@ def test_eat_enough_carrots():
 def test_eat_not_enough_carrots():
     assert eat(4, 8, 9) == [12, 1]
 
-def test_eat_exactly_enough_carrots():
-    assert eat(1, 10, 10) == [11, 0]
-
 def test_eat_no_carrots_needed():
-    assert eat(2, 0, 5) == [2, 5]
+    assert eat(1, 0, 10) == [1, 10]
 
-def test_eat_no_carrots_remaining():
-    assert eat(2, 11, 0) == [2, 0]
+def test_eat_no_remaining_carrots():
+    assert eat(1, 10, 0) == [1, 0]
 
-def test_eat_zero_initial_eaten():
+def test_eat_zero_initial_carrots():
     assert eat(0, 5, 7) == [5, 2]
 
-def test_eat_large_numbers():
+def test_eat_max_values():
     assert eat(1000, 1000, 1000) == [2000, 0]
 
-def test_eat_large_numbers_not_enough():
-    assert eat(500, 700, 300) == [800, 0]
+def test_eat_example_4():
+    assert eat(2, 11, 5) == [7, 0]
 
 def test_eat_need_more_than_remaining():
-    assert eat(2, 11, 5) == [7, 0]
+    assert eat(3, 7, 2) == [5, 0]
+
+def test_eat_remaining_equals_need():
+    assert eat(5, 3, 3) == [8, 0]

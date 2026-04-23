@@ -33,35 +33,44 @@ class TestSpecialFilter:
     def test_no_matching_numbers(self):
         assert specialFilter([1, 2, 3, 4, 5]) == 0
 
-    def test_example_1(self):
-        assert specialFilter([15, -73, 14, -15]) == 1
+    def test_single_matching_number(self):
+        assert specialFilter([15]) == 1
 
-    def test_example_2(self):
+    def test_multiple_matching_numbers(self):
         assert specialFilter([33, -2, -3, 45, 21, 109]) == 2
 
-    def test_positive_and_negative_numbers(self):
-        assert specialFilter([15, -73, 14, -15, 35, -21]) == 3
-
-    def test_numbers_with_leading_zeros(self):
-        assert specialFilter([15, -73, 14, -15, 35, -21, 101]) == 4
-
-    def test_large_numbers(self):
-        assert specialFilter([151, -739, 14, -15, 35, -21, 101, 13579]) == 5
-
     def test_mixed_numbers(self):
-        assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39]) == 0
+        assert specialFilter([15, -73, 14, -15]) == 1
 
-    def test_all_matching_numbers(self):
-        assert specialFilter([11, 13, 15, 17, 19]) == 0
-
-    def test_single_matching_number(self):
-        assert specialFilter([15]) == 0
-
-    def test_numbers_greater_than_10_only(self):
+    def test_numbers_greater_than_10(self):
         assert specialFilter([11, 13, 15, 17, 19, 21, 23, 25, 27, 29]) == 10
 
-    def test_negative_numbers_only(self):
-        assert specialFilter([-15, -73, -11]) == 0
+    def test_numbers_less_than_10(self):
+        assert specialFilter([1, 3, 5, 7, 9]) == 0
 
-    def test_zero_and_positive_numbers(self):
-        assert specialFilter([0, 15, 73, 11]) == 0
+    def test_negative_numbers(self):
+        assert specialFilter([-11, -13, -15, -17, -19]) == 0
+
+    def test_zero(self):
+        assert specialFilter([0]) == 0
+
+    def test_large_numbers(self):
+        assert specialFilter([13579]) == 1
+
+    def test_large_numbers_and_others(self):
+        assert specialFilter([13579, 123, 456, 789]) == 1
+
+    def test_duplicate_numbers(self):
+        assert specialFilter([15, 15, 15]) == 1
+
+    def test_edge_case_1(self):
+        assert specialFilter([111, 333, 555, 777, 999]) == 0
+
+    def test_edge_case_2(self):
+        assert specialFilter([101, 303, 505, 707, 909]) == 0
+
+    def test_edge_case_3(self):
+        assert specialFilter([11, 33, 55, 77, 99]) == 0
+
+    def test_complex_list(self):
+        assert specialFilter([11, 33, 55, 77, 99, 15, -73, 14, -15, 33, -2, -3, 45, 21, 109, 13579]) == 3

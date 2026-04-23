@@ -55,22 +55,21 @@ def do_algebra(operator, operand):
     try:
         op1 = operator[0]
         op2 = operator[1]
-        operand = operand[0]
+        operand = operand[2:]
         
         if op1 == '+':
-            return op2 + operand
+            return op2 + float(operand[0])
         elif op1 == '-':
-            return op2 - operand
+            return op2 - float(operand[0])
         elif op1 == '*':
-            return op2 * operand
+            return op2 * float(operand[0])
         elif op1 == '/':
-            if operand % op2 == 0:
-                return operand // op2
-            else:
-                return float('inf')
+            if float(operand[0]) == 0:
+                return "Division by zero"
+            return float(op2) / float(operand[0])
         elif op1 == '**':
-            return op2 ** operand
+            return op2 ** float(operand[0])
         else:
-            return 0
-    except:
-        return 0
+            return "Invalid operator"
+    except (IndexError, TypeError):
+        return "Invalid input"

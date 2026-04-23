@@ -45,7 +45,7 @@ def test_x_or_y_not_prime():
     assert x_or_y(20, 1, 9) == 1
     assert x_or_y(21, 10, 20) == 10
     assert x_or_y(22, 15, 25) == 15
-    assert x_or_y(25, 2, 24) == 2
+    assert x_or_y(25, 3, 7) == 3
 
 def test_x_or_y_edge_cases():
     assert x_or_y(1, 34, 12) == 12

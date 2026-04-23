@@ -98,7 +98,7 @@ def test_eat_zero_remaining():
     assert eat(5, 6, 0) == [11, 0]
 
 def test_eat_large_numbers():
-    assert eat(999, 500, 500) == [1499, 0]
+    assert eat(999, 500, 1000) == [1499, 501]
 
 def test_eat_number_equals_need():
     assert eat(5, 5, 10) == [10, 5]

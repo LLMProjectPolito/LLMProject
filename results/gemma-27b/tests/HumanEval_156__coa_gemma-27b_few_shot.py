@@ -124,6 +124,7 @@ def test_equivalence_partitions_boundary(number, expected):
     (11, "xi"),
     (14, "xiv"),
     (15, "xv"),
+    (16, "xvi"),
     (18, "xviii"),
     (20, "xx"),
     (39, "xxxix"),
@@ -140,6 +141,25 @@ def test_equivalence_partitions_boundary(number, expected):
     (94, "xciv"),
     (95, "xcv"),
     (99, "xcix"),
+    (101, "ci"),
+    (149, "cxlix"),
+    (150, "cl"),
+    (199, "cxcix"),
+    (200, "cc"),
+    (300, "ccc"),
+    (401, "cdi"),
+    (444, "cdxliv"),
+    (450, "cdl"),
+    (499, "cdxcix"),
+    (501, "di"),
+    (555, "dlv"),
+    (600, "dc"),
+    (700, "dcc"),
+    (800, "dccc"),
+    (901, "cmi"),
+    (949, "cmxlix"),
+    (950, "cml"),
+    (999, "cmxcix"),
 ])
 def test_equivalence_partitions_typical(number, expected):
     assert int_to_mini_roman(number) == expected
@@ -155,14 +175,12 @@ def test_int_to_mini_roman_single_digit():
 
 def test_int_to_mini_roman_multiple_digits():
     assert int_to_mini_roman(19) == 'xix'
-    assert int_to_mini_roman(49) == 'xlix'
+    assert int_to_mini_roman(44) == 'xliv'
     assert int_to_mini_roman(99) == 'xcix'
-    assert int_to_mini_roman(152) == 'clii'
-    assert int_to_mini_roman(426) == 'cdxxvi'
-    assert int_to_mini_roman(888) == 'dccclxxxviii'
+    assert int_to_mini_roman(149) == 'cxlix'
 
-def test_int_to_mini_roman_edge_cases():
-    assert int_to_mini_roman(1) == 'i'
-    assert int_to_mini_roman(10) == 'x'
+def test_int_to_mini_roman_hundreds():
     assert int_to_mini_roman(100) == 'c'
-    assert int_to_mini_roman(1000) == 'm'
+    assert int_to_mini_roman(400) == 'cd'
+    assert int_to_mini_roman(900) == 'cm'
+    assert int_to_mini_roman(500) == 'd'

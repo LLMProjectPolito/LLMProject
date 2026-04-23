@@ -38,7 +38,6 @@ def find_max(words):
 
     return result
 
-
 class TestFindMax:
     def test_empty_list(self):
         assert find_max([]) == ""

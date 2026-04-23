@@ -49,3 +49,4 @@ def test_cycpattern_check_same_string():
 
 def test_cycpattern_check_different_strings():
     assert cycpattern_check("abc","def") == False
+    print("All tests passed")

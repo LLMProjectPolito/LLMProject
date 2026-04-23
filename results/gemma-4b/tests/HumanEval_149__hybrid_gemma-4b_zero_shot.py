@@ -29,8 +29,8 @@ def sorted_list_sum(lst):
     The function should return a list of strings in sorted order.
     You may assume that all words will have the same length.
     For example:
-    assert sorted_list_sum(["aa", "a", "aaa"]) => ["aa"]
-    assert sorted_list_sum(["ab", "a", "aaa", "cd"]) => ["ab", "cd"]
+    assert list_sort(["aa", "a", "aaa"]) => ["aa"]
+    assert list_sort(["ab", "a", "aaa", "cd"]) => ["ab", "cd"]
     """
     new_list = []
     for s in lst:
@@ -52,7 +52,7 @@ def test_mixed_odd_even():
     assert sorted_list_sum(["aa", "a", "aaa", "cd"]) == ["aa", "cd"]
 
 def test_duplicates():
-    assert sorted_list_sum(["aa", "aa", "a"]) == ["aa", "aa"]
+    assert sorted_list_sum(["aa", "aa", "a", "aaa"]) == ["aa", "aa"]
 
 def test_same_length_different_chars():
     assert sorted_list_sum(["ab", "ac", "ba", "bc"]) == ["ab", "ac", "ba", "bc"]
@@ -60,17 +60,17 @@ def test_same_length_different_chars():
 def test_same_length_same_chars():
     assert sorted_list_sum(["aa", "bb", "cc", "dd"]) == ["aa", "bb", "cc", "dd"]
 
+def test_single_element_even():
+    assert sorted_list_sum(["aa"]) == ["aa"]
+
+def test_single_element_odd():
+    assert sorted_list_sum(["a"]) == []
+
 def test_complex_case():
     assert sorted_list_sum(["apple", "banana", "kiwi", "orange", "grape"]) == ["banana", "orange"]
 
-def test_single_element():
-    assert sorted_list_sum(["abc"]) == []
+def test_another_complex_case():
+    assert sorted_list_sum(["abc", "def", "ghi", "jkl", "mno"]) == ["abc", "def", "ghi", "jkl", "mno"]
 
-def test_single_even_element():
-    assert sorted_list_sum(["abcd"]) == ["abcd"]
-
-def test_long_list():
-    assert sorted_list_sum(["aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh"]) == ["aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh"]
-
-def test_list_with_empty_string():
-    assert sorted_list_sum(["", "aa", ""]) == ["","aa"]
+def test_mixed_with_duplicates_and_same_length():
+    assert sorted_list_sum(["aa", "bb", "aa", "cc", "bb"]) == ["aa", "aa", "bb", "bb", "cc"]

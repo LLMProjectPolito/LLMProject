@@ -53,7 +53,7 @@ def test_file_name_check_valid():
     assert file_name_check("example.txt.dll") == "No"
     assert file_name_check("123.txt") == "No"
     assert file_name_check("123.txt.txt") == "No"
-    assert file_name_check("a.txt.txt") == "No"
+    assert file_name_check("a.txt.txt") == "Yes"
     assert file_name_check("a.txt.exe") == "No"
     assert file_name_check("a.txt.dll") == "No"
     assert file_name_check("1234.txt") == "No"
@@ -62,5 +62,13 @@ def test_file_name_check_valid():
     assert file_name_check("a.txt.dll.txt") == "No"
     assert file_name_check("12345.txt") == "No"
     assert file_name_check("12345.txt.txt") == "No"
-    assert file_name_check("a.txt.exe.txt.txt") == "No"
+    print("All test cases passed")
+
+def test_file_name_check_empty():
+    assert file_name_check("") == "No"
+    print("All test cases passed")
+
+def test_file_name_check_invalid_length():
+    assert file_name_check("abc") == "No"
+    assert file_name_check("12345") == "No"
     print("All test cases passed")

@@ -37,13 +37,7 @@ def int_to_mini_roman(number):
 
     return result
 
-def test_int_to_mini_roman_boundary_1():
-    assert int_to_mini_roman(1) == 'i'
-
-def test_int_to_mini_roman_boundary_1000():
-    assert int_to_mini_roman(1000) == 'm'
-
-def test_int_to_mini_roman_small_numbers():
+def test_single_digits():
     assert int_to_mini_roman(1) == 'i'
     assert int_to_mini_roman(2) == 'ii'
     assert int_to_mini_roman(3) == 'iii'
@@ -53,9 +47,41 @@ def test_int_to_mini_roman_small_numbers():
     assert int_to_mini_roman(7) == 'vii'
     assert int_to_mini_roman(8) == 'viii'
     assert int_to_mini_roman(9) == 'ix'
-    assert int_to_mini_roman(10) == 'x'
 
-def test_int_to_mini_roman_subtractive_notation():
+def test_tens():
+    assert int_to_mini_roman(10) == 'x'
+    assert int_to_mini_roman(20) == 'xx'
+    assert int_to_mini_roman(30) == 'xxx'
+    assert int_to_mini_roman(40) == 'xl'
+    assert int_to_mini_roman(50) == 'l'
+    assert int_to_mini_roman(60) == 'lx'
+    assert int_to_mini_roman(70) == 'lxx'
+    assert int_to_mini_roman(80) == 'lxxx'
+    assert int_to_mini_roman(90) == 'xc'
+
+def test_hundreds():
+    assert int_to_mini_roman(100) == 'c'
+    assert int_to_mini_roman(200) == 'cc'
+    assert int_to_mini_roman(300) == 'ccc'
+    assert int_to_mini_roman(400) == 'cd'
+    assert int_to_mini_roman(500) == 'd'
+    assert int_to_mini_roman(600) == 'dc'
+    assert int_to_mini_roman(700) == 'dcc'
+    assert int_to_mini_roman(800) == 'dccc'
+    assert int_to_mini_roman(900) == 'cm'
+
+def test_thousands():
+    assert int_to_mini_roman(1000) == 'm'
+
+def test_combinations():
+    assert int_to_mini_roman(19) == 'xix'
+    assert int_to_mini_roman(42) == 'xlii'
+    assert int_to_mini_roman(152) == 'clii'
+    assert int_to_mini_roman(389) == 'cccLxxxix'
+    assert int_to_mini_roman(765) == ' DCCLXV'
+    assert int_to_mini_roman(944) == 'CMXLIV'
+
+def test_subtractive_notation():
     assert int_to_mini_roman(4) == 'iv'
     assert int_to_mini_roman(9) == 'ix'
     assert int_to_mini_roman(40) == 'xl'
@@ -63,22 +89,15 @@ def test_int_to_mini_roman_subtractive_notation():
     assert int_to_mini_roman(400) == 'cd'
     assert int_to_mini_roman(900) == 'cm'
 
-def test_int_to_mini_roman_combinations():
-    assert int_to_mini_roman(19) == 'xix'
-    assert int_to_mini_roman(42) == 'xlii'
-    assert int_to_mini_roman(99) == 'xcix'
-    assert int_to_mini_roman(152) == 'clii'
-    assert int_to_mini_roman(426) == 'cdxxvi'
+def test_edge_cases():
+    assert int_to_mini_roman(1) == 'i'
+    assert int_to_mini_roman(9) == 'ix'
+    assert int_to_mini_roman(10) == 'x'
+    assert int_to_mini_roman(90) == 'xc'
+    assert int_to_mini_roman(100) == 'c'
+    assert int_to_mini_roman(900) == 'cm'
+    assert int_to_mini_roman(1000) == 'm'
 
-def test_int_to_mini_roman_edge_cases():
-    assert int_to_mini_roman(399) == 'cccxcix'
-    assert int_to_mini_roman(501) == 'di'
-    assert int_to_mini_roman(888) == 'dccclxxxviii'
-
-def test_int_to_mini_roman_invalid_input_less_than_1():
-    with pytest.raises(IndexError):
-        int_to_mini_roman(0)
-
-def test_int_to_mini_roman_invalid_input_greater_than_1000():
-    with pytest.raises(IndexError):
-        int_to_mini_roman(1001)
+def test_invalid_input():
+    assert int_to_mini_roman(0) == ''
+    assert int_to_mini_roman(1001) == 'm'

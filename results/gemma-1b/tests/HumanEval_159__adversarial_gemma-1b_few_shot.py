@@ -69,14 +69,17 @@ def eat(number, need, remaining):
     else:
         return [remaining, 0]
 
-def test_eat_basic():
+def test_eat_example1():
     assert eat(5, 6, 10) == [11, 4]
 
+def test_eat_example2():
+    assert eat(4, 8, 9) == [12, 1]
+
+def test_eat_example3():
+    assert eat(1, 10, 10) == [11, 0]
+
+def test_eat_example4():
+    assert eat(2, 11, 5) == [7, 0]
+
 def test_eat_empty():
-    assert eat(0, 6, 10) == [0, 0]
-
-def test_eat_large_number():
-    assert eat(1000, 1000, 0) == [1000, 0]
-
-def test_eat_need_greater_than_available():
-    assert eat(5, 12, 2) == [11, 0]
+    assert eat([]) == [0, 0]

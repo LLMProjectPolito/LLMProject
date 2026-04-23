@@ -74,24 +74,25 @@ class TestWordsInSentence:
     def test_single_non_prime_length_word(self):
         assert words_in_sentence("this") == ""
 
-    def test_sentence_with_leading_and_trailing_spaces(self):
-        assert words_in_sentence("  This is a test  ") == "is"
-
-    def test_sentence_with_multiple_spaces_between_words(self):
-        assert words_in_sentence("This  is   a    test") == "is"
+    def test_multiple_spaces(self):
+        assert words_in_sentence("This  is   a    test") == "is a"
 
     def test_sentence_with_only_spaces(self):
         assert words_in_sentence("   ") == ""
 
     def test_long_sentence(self):
         sentence = "This is a very very very long sentence with some prime and non-prime words"
-        assert words_in_sentence(sentence) == "is a very very"
+        expected = "is a very"
+        assert words_in_sentence(sentence) == expected
 
     def test_prime_length_words_at_beginning_and_end(self):
         assert words_in_sentence("go This is a test for swimming") == "go is a for"
 
-    def test_sentence_with_numbers_in_words(self):
-        assert words_in_sentence("This is word123 a test") == "is a"
+    def test_prime_length_words_interspersed(self):
+        assert words_in_sentence("a This is a very long test") == "a is a"
 
-    def test_sentence_with_special_characters(self):
-        assert words_in_sentence("This is a test!") == "is"
+    def test_sentence_with_one_letter_prime_words(self):
+        assert words_in_sentence("a b c d e") == "a b c d e"
+
+    def test_sentence_with_one_letter_non_prime_words(self):
+        assert words_in_sentence("aa bb cc dd ee") == ""

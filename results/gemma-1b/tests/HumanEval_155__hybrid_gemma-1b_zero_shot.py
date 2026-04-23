@@ -25,6 +25,7 @@ def even_odd_count(num):
             even_count += 1
         else:
             odd_count += 1
+
     return (even_count, odd_count)
 
 def test_even_odd_count_positive():
@@ -47,9 +48,3 @@ def test_even_odd_count_large_number():
 
 def test_even_odd_count_with_leading_zeros():
     assert even_odd_count(102) == (2, 1)
-
-def test_even_odd_count_negative_one():
-    assert even_odd_count(-1) == (1, 1)
-
-def test_even_odd_count_negative_two():
-    assert even_odd_count(-2) == (1, 1)

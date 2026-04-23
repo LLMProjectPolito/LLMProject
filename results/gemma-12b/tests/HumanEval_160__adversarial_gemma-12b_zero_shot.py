@@ -86,7 +86,7 @@ def test_do_algebra_long_expression():
 def test_do_algebra_all_operators():
     operator = ['+', '-', '*', '//', '**']
     operand = [2, 3, 4, 5, 6]
-    assert do_algebra(operator, operand) == 27
+    assert do_algebra(operator, operand) == 17
 
 def test_do_algebra_division_by_zero_raises_error():
     operator = ['//']

@@ -62,13 +62,14 @@ def file_name_check(file_name):
     if not 'a' <= before_dot[0] <= 'z' and not 'A' <= before_dot[0] <= 'Z':
         return 'No'
 
-    if after_dot not in ['txt', 'exe', 'dll']:
+    allowed_extensions = ['txt', 'exe', 'dll']
+    if after_dot not in allowed_extensions:
         return 'No'
 
     return 'Yes'
 
 
-### Tests (Pytest):
+# Pytest Suite for is_palindrome
 def test_is_palindrome_basic():
     assert is_palindrome('radar') == True
     assert is_palindrome('hello') == False
@@ -82,33 +83,39 @@ def test_is_palindrome_basic():
 
 def test_is_palindrome_empty():
     assert is_palindrome('') == True
+    assert is_palindrome(' ') == True
+    assert is_palindrome('a') == True
 
 def test_is_palindrome_mixed_case():
     assert is_palindrome('Racecar') == True
+    assert is_palindrome('RaCeCaR') == True
 
 def test_is_palindrome_with_spaces():
     assert is_palindrome('A man, a plan, a canal: Panama') == True
+    assert is_palindrome('  Race car  ') == True
 
+# Pytest Suite for get_max
 def test_get_max_positive():
     assert get_max([1, 2, 3]) == 3
     assert get_max([3, 2, 1]) == 3
     assert get_max([1, 3, 2]) == 3
-    assert get_max([-1, -2, -3]) == -1
+    assert get_max([1, 1, 1]) == 1
 
 def test_get_max_empty():
     assert get_max([]) == None
 
-def test_get_max_single_element():
-    assert get_max([5]) == 5
+def test_get_max_negative():
+    assert get_max([-1, -2, -3]) == -1
+    assert get_max([-1, -2, 3]) == 3
 
-def test_get_max_duplicate_elements():
-    assert get_max([1, 1, 1, 1]) == 1
+def test_get_max_mixed():
+    assert get_max([-1, 2, -3, 4]) == 4
+    assert get_max([0, -1, 1]) == 1
 
-# Pytest suite for file_name_check
+# Pytest Suite for file_name_check
 def test_file_name_check_valid():
     assert file_name_check("example.txt") == 'Yes'
     assert file_name_check("document.dll") == 'Yes'
-    assert file_name_check("image.jpg") == 'No'
     assert file_name_check("my_file.exe") == 'Yes'
     assert file_name_check("test.txt") == 'Yes'
     assert file_name_check("a.txt") == 'Yes'
@@ -122,7 +129,7 @@ def test_file_name_check_invalid_digits():
 
 def test_file_name_check_invalid_dot():
     assert file_name_check("example.") == 'No'
-    assert file_name_check("example..") == 'No'
+    assert file_name_check("example..txt") == 'No'
     assert file_name_check("example.txt.") == 'No'
 
 def test_file_name_check_invalid_prefix():
@@ -133,14 +140,12 @@ def test_file_name_check_invalid_prefix():
 def test_file_name_check_invalid_suffix():
     assert file_name_check("example.pdf") == 'No'
     assert file_name_check("example.jpg") == 'No'
-    assert file_name_check("example.png") == 'No'
-
-def test_file_name_check_no_dot():
-    assert file_name_check("example") == 'No'
+    assert file_name_check("example.doc") == 'No'
 
 def test_file_name_check_empty_prefix():
     assert file_name_check(".txt") == 'No'
     assert file_name_check("..txt") == 'No'
 
-def test_file_name_check_empty_suffix():
-    assert file_name_check("example.") == 'No'
+def test_file_name_check_multiple_dots():
+    assert file_name_check("example..txt") == 'No'
+    assert file_name_check("example.txt.txt") == 'No'

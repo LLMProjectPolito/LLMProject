@@ -34,16 +34,16 @@ def test_bf_same_planet():
 def test_bf_invalid_planet1():
     assert bf("Pluto", "Earth") == ()
     assert bf("X", "Mars") == ()
-    assert bf("Moon", "Venus") == ()
+    assert bf("Sun", "Venus") == ()
 
 def test_bf_invalid_planet2():
     assert bf("Earth", "Pluto") == ()
     assert bf("Mars", "X") == ()
-    assert bf("Venus", "Moon") == ()
+    assert bf("Venus", "Sun") == ()
 
 def test_bf_both_invalid():
     assert bf("Pluto", "X") == ()
-    assert bf("Moon", "Moon") == ()
+    assert bf("Sun", "Moon") == ()
 
 def test_bf_case_sensitivity():
     assert bf("jupiter", "Neptune") == ()

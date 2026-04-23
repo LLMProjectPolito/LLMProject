@@ -42,12 +42,3 @@ def int_to_mini_roman(number):
 
 def test_int_to_mini_roman_999():
     assert int_to_mini_roman(999) == 'cmxcix'
-
-def test_int_to_mini_roman_19():
-    assert int_to_mini_roman(19) == 'xix'
-
-def test_int_to_mini_roman_152():
-    assert int_to_mini_roman(152) == 'clii'
-
-def test_int_to_mini_roman_426():
-    assert int_to_mini_roman(426) == 'cdxxvi'

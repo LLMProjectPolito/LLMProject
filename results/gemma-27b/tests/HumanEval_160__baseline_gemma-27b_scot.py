@@ -85,10 +85,7 @@ def test_mixed_operations():
     assert do_algebra(['+', '*', '-'], [2, 3, 4, 5]) == 9
 
 def test_mixed_operations_with_exponentiation():
-    assert do_algebra(['+', '**', '-'], [2, 3, 2, 1]) == 7
-
-def test_long_expression():
-    assert do_algebra(['+', '-', '*', '//', '**'], [1, 2, 3, 4, 2, 3]) == 1
+    assert do_algebra(['+', '**', '-'], [2, 3, 2, 1]) == 5
 
 def test_zero_operand():
     assert do_algebra(['+'], [5, 0]) == 5
@@ -102,3 +99,6 @@ def test_edge_case_division():
 def test_edge_case_exponentiation():
     assert do_algebra(['**'], [0, 2]) == 0
     assert do_algebra(['**'], [1, 5]) == 1
+
+def test_minimum_length():
+    assert do_algebra(['+'], [1, 2]) == 3

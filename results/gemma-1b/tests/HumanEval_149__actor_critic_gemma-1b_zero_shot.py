@@ -32,12 +32,12 @@ def list_sort(lst):
     assert list_sort(["aa", "a", "aaa"]) => ["aa"]
     assert list_sort(["ab", "a", "aaa", "cd"]) => ["ab", "cd"]
     """
-    new_list = []
+    filtered_list = []
     for s in lst:
         if len(s) % 2 == 0:
-            new_list.append(s)
-    new_list.sort(key=lambda x: (len(x), x))
-    return new_list
+            filtered_list.append(s)
+    filtered_list.sort(key=lambda x: (len(x), x))
+    return filtered_list
 
 def test_empty_list():
     assert list_sort([]) == []
@@ -60,5 +60,5 @@ def test_mixed_length_list():
 def test_long_list():
     assert list_sort(["a", "bb", "ccc", "dd", "e"]) == ["a", "bb", "ccc", "dd"]
 
-def test_list_with_numbers():
-    assert list_sort(["1", "11", "111"]) == ["1", "11", "111"]
+def test_list_with_empty_string():
+    assert list_sort(["", "a", "bb"]) == ["", "a", "bb"]

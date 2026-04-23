@@ -55,8 +55,8 @@ def test_is_palindrome_basic():
     assert is_palindrome('Was it a car or a cat I saw?') == True
     assert is_palindrome('Madam') == True
     assert is_palindrome('No lemon, no melon') == True
-    assert is_palindrome('12321') == True
-    assert is_palindrome('12345') == False
+    assert is_palindrome('121') == True
+    assert is_palindrome('123') == False
 
 def test_is_palindrome_empty():
     assert is_palindrome('') == True
@@ -87,26 +87,26 @@ def test_get_max_mixed():
 def test_get_max_empty():
     assert get_max([]) == None
 
-def test_get_max_single_element():
-    assert get_max([5]) == 5
-
 def test_order_by_points_empty():
     assert order_by_points([]) == []
+
+def test_order_by_points_single():
+    assert order_by_points([5]) == [5]
 
 def test_order_by_points_basic():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
 
 def test_order_by_points_negative():
-    assert order_by_points([-1, -11, -12]) == [-1, -11, -12]
+    assert order_by_points([-1, -11, 1, -12, 11]) == [-1, -11, 1, -12, 11]
 
 def test_order_by_points_mixed():
     assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
 
 def test_order_by_points_duplicate_sums():
-    assert order_by_points([1, 11, 2, 21]) == [1, 2, 11, 21]
+    assert order_by_points([1, 11, -1, -11, 12]) == [-1, -11, 1, -12, 11, 12]
 
 def test_order_by_points_large_numbers():
-    assert order_by_points([12, 21, 1, 11]) == [1, 11, 12, 21]
+    assert order_by_points([10, 100, 1, 1000]) == [1, 10, 100, 1000]
 
 def test_order_by_points_zero():
     assert order_by_points([0, 1, 10]) == [0, 1, 10]

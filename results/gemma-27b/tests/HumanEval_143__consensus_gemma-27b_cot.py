@@ -78,32 +78,23 @@ def test_multiple_words_all_prime():
 def test_multiple_words_none_prime():
     assert words_in_sentence("the quick brown fox") == ""
 
-def test_sentence_with_leading_and_trailing_spaces():
-    assert words_in_sentence("  This is a test  ") == "is"
-
-def test_sentence_with_multiple_spaces_between_words():
-    assert words_in_sentence("This   is  a   test") == "is"
-
-def test_long_sentence_with_mixed_prime_and_non_prime_words():
+def test_long_sentence():
     assert words_in_sentence("lets go for swimming and running") == "go for"
 
-def test_sentence_with_only_prime_length_words():
-    assert words_in_sentence("go no so") == "go no so"
+def test_sentence_with_leading_and_trailing_spaces():
+    assert words_in_sentence("  is a test  ") == "is"
 
-def test_words_in_sentence_long_sentence():
-    assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the quick fox over the dog"
+def test_sentence_with_multiple_spaces():
+    assert words_in_sentence("is   a    test") == "is test"
 
-def test_words_in_sentence_sentence_with_multiple_spaces():
-    assert words_in_sentence("  hello   world  ") == "hello world"
+def test_sentence_with_prime_and_non_prime():
+    assert words_in_sentence("hello world is a test") == "is"
 
-def test_words_in_sentence_sentence_with_leading_and_trailing_spaces():
-    assert words_in_sentence("  test  ") == ""
+def test_sentence_with_only_non_prime_words():
+    assert words_in_sentence("the quick brown fox jumps over lazy dog") == ""
 
-def test_words_in_sentence_sentence_with_only_spaces():
-    assert words_in_sentence("   ") == ""
+def test_sentence_with_prime_words_at_start_and_end():
+    assert words_in_sentence("is the a test go") == "is go"
 
-def test_words_in_sentence_example_1():
-    assert words_in_sentence("This is a test") == "is"
-
-def test_words_in_sentence_example_2():
-    assert words_in_sentence("lets go for swimming") == "go for"
+def test_sentence_with_mixed_case():
+    assert words_in_sentence("Is a Test") == "Is Test"

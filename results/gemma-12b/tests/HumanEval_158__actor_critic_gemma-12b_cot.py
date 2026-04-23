@@ -13,7 +13,16 @@ def find_max(words):
 import pytest
 
 def find_max(words):
-    """Return the word with the maximum number of unique characters. If there are ties, return the lexicographically smallest word."""
+    """Write a function that accepts a list of strings.
+    The list contains different words. Return the word with most unique characters.
+    If multiple strings have the most unique characters, return the one which comes first in lexicographical order.
+    Spaces, special characters, and numbers are treated as unique characters.
+    The function is case-sensitive.
+
+    find_max(["name", "of", "string"]) == "string"
+    find_max(["name", "enam", "game"]) == "enam"
+    find_max(["aaaaaaa", "bb" ,"cc"]) == "aaaaaaa"
+    """
     if not words:
         return ""
 
@@ -40,6 +49,9 @@ class TestFindMax:
     def test_lexicographical_tie(self):
         assert find_max(["name", "enam", "game"]) == "enam"
 
+    def test_all_same_characters(self):
+        assert find_max(["aaaaaaa", "bb", "cc"]) == "aaaaaaa"
+
     def test_mixed_lengths(self):
         assert find_max(["a", "bb", "ccc", "dddd"]) == "ccc"
 
@@ -47,7 +59,6 @@ class TestFindMax:
         assert find_max(["abc", "abc", "def"]) == "abc"
 
     def test_words_with_spaces(self):
-        # Spaces are considered unique characters.
         assert find_max(["hello world", "good bye"]) == "hello world"
 
     def test_words_with_special_characters(self):
@@ -59,6 +70,9 @@ class TestFindMax:
     def test_single_word(self):
         assert find_max(["single"]) == "single"
 
+    def test_all_words_same_unique_count(self):
+        pass  # Redundant test
+
     def test_long_words(self):
         assert find_max(["abcdefghijklmnopqrstuvwxyz", "1234567890"]) == "abcdefghijklmnopqrstuvwxyz"
 
@@ -68,9 +82,6 @@ class TestFindMax:
     def test_case_sensitivity(self):
         assert find_max(["Hello", "hello"]) == "Hello"
 
-    def test_mixed_case_and_same_unique_chars(self):
-        assert find_max(["abc", "ABC"]) == "abc"
-
     def test_empty_strings(self):
         assert find_max(["", "abc"]) == "abc"
 
@@ -78,4 +89,8 @@ class TestFindMax:
         assert find_max(["", ""]) == ""
 
     def test_mixed_empty_and_non_empty(self):
-        assert find_max(["", "abc", "def"]) == "abc"
+        assert find_max(["", "abc", ""]) == "abc"
+
+    def test_extremely_long_strings(self):
+        long_string = "a" * 10000
+        assert find_max([long_string, "b"]) == long_string

@@ -30,52 +30,67 @@ def cycpattern_check(a , b):
 ### SCoT Steps:
 
 ### STEP 1: REASONING
-# The function `cycpattern_check` checks if a given string `b` (or any of its rotations) is a substring of another string `a`.
-# The function should handle cases where `b` is an exact match, a rotation of `b` is an exact match, or `b` is a substring of `a` but not a rotation.
-# The function should also handle edge cases like empty strings or when `b` is longer than `a`.
-# The function should return `True` if `b` or any of its rotations is a substring of `a`, and `False` otherwise.
+# The function `cycpattern_check` checks if the string `b` (or any of its rotations) is a substring of the string `a`.
+# We need to test various scenarios including:
+# 1. `b` is a direct substring of `a`.
+# 2. `b` is a rotation of a substring of `a`.
+# 3. `b` is not a substring of `a` at all.
+# 4. Edge cases: empty strings, `b` longer than `a`, `a` longer than `b`.
+# 5. Cases where the substring is at the beginning, middle, or end of `a`.
 
 ### STEP 2: PLAN
-# Test cases:
-# 1. Exact match: "abcd", "abd" - Expected: False
-# 2. Rotation match: "hello", "ell" - Expected: True
-# 3. No match: "whassup", "psus" - Expected: False
-# 4. Rotation match: "abab", "baa" - Expected: True
-# 5. No match: "efef", "eeff" - Expected: False
-# 6. Rotation match: "himenss", "simen" - Expected: True
-# 7. Empty string b - Expected: False
-# 8. Empty string a - Expected: False
-# 9. b longer than a - Expected: False
-# 10. b is a substring of a but not a rotation - "abcd", "bcda" - Expected: False
+# Test functions:
+# - test_direct_substring: Checks if `b` is a direct substring of `a`.
+# - test_rotation_substring: Checks if any rotation of `b` is a substring of `a`.
+# - test_not_substring: Checks if `b` is not a substring of `a`.
+# - test_empty_strings: Handles cases with empty strings.
+# - test_b_longer_than_a: Handles cases where `b` is longer than `a`.
+# - test_a_longer_than_b: Handles cases where `a` is longer than `b`.
+# - test_edge_cases: Additional edge cases to cover various scenarios.
 
 ### STEP 3: CODE
-### pytest suite
-def test_exact_match():
+# test_direct_substring.py
+def test_direct_substring():
     assert cycpattern_check("abcd", "abd") == False
-
-def test_rotation_match():
     assert cycpattern_check("hello", "ell") == True
-
-def test_no_match():
     assert cycpattern_check("whassup", "psus") == False
-
-def test_rotation_match2():
     assert cycpattern_check("abab", "baa") == True
-
-def test_no_match2():
     assert cycpattern_check("efef", "eeff") == False
-
-def test_rotation_match3():
     assert cycpattern_check("himenss", "simen") == True
 
-def test_empty_string_b():
-    assert cycpattern_check("abcd", "") == False
-
-def test_empty_string_a():
-    assert cycpattern_check("", "abd") == False
-
-def test_b_longer_than_a():
-    assert cycpattern_check("abcd", "abcde") == False
-
-def test_substring_not_rotation():
+# test_rotation_substring.py
+def test_rotation_substring():
     assert cycpattern_check("abcd", "bcda") == False
+    assert cycpattern_check("abcd", "cdab") == False
+    assert cycpattern_check("abcd", "dabc") == False
+    assert cycpattern_check("abcd", "abdc") == False
+    assert cycpattern_check("abcd", "bcda") == False
+
+# test_not_substring.py
+def test_not_substring():
+    assert cycpattern_check("abcd", "xyz") == False
+    assert cycpattern_check("hello", "world") == False
+    assert cycpattern_check("whassup", "hello") == False
+
+# test_empty_strings.py
+def test_empty_strings():
+    assert cycpattern_check("", "") == True
+    assert cycpattern_check("abc", "") == True
+    assert cycpattern_check("", "abc") == False
+
+# test_b_longer_than_a.py
+def test_b_longer_than_a():
+    assert cycpattern_check("abc", "abcdef") == False
+    assert cycpattern_check("abc", "abcd") == True
+
+# test_a_longer_than_b.py
+def test_a_longer_than_b():
+    assert cycpattern_check("abcdef", "abc") == True
+    assert cycpattern_check("abcdef", "ab") == True
+
+# test_edge_cases.py
+def test_edge_cases():
+    assert cycpattern_check("a", "a") == True
+    assert cycpattern_check("aa", "a") == True
+    assert cycpattern_check("aba", "ba") == True
+    assert cycpattern_check("abcabc", "abc") == True

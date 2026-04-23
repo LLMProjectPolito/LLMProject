@@ -57,8 +57,11 @@ def words_in_sentence(sentence):
         * sentence contains only letters
     """
     words = sentence.split()
-    prime_words = [word for word in words if is_prime(len(word))]
-    return " ".join(prime_words)
+    result = []
+    for word in words:
+        if is_prime(len(word)):
+            result.append(word)
+    return " ".join(result)
 
 def test_words_in_sentence_basic1():
     assert words_in_sentence("This is a test") == "is"
@@ -78,8 +81,11 @@ def test_words_in_sentence_all_primes():
 def test_words_in_sentence_mixed():
     assert words_in_sentence("the quick brown fox jumps over the lazy dog") == "the fox the dog"
 
-def test_words_in_sentence_single_prime():
+def test_words_in_sentence_long_sentence():
+    assert words_in_sentence("This is a very long sentence with some words of different lengths") == "is a very"
+
+def test_words_in_sentence_single_word_prime():
     assert words_in_sentence("two") == "two"
 
-def test_words_in_sentence_long_sentence():
-    assert words_in_sentence("This is a very long sentence with some words of prime length") == "is very long sentence"
+def test_words_in_sentence_single_word_not_prime():
+    assert words_in_sentence("one") == ""

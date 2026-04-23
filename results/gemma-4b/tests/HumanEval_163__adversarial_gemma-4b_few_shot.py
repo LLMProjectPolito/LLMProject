@@ -74,16 +74,17 @@ def test_generate_integers_basic():
     assert generate_integers(2, 8) == [2, 4, 6, 8]
     assert generate_integers(8, 2) == [2, 4, 6, 8]
     assert generate_integers(10, 14) == []
-    assert generate_integers(2, 2) == [2]
-    assert generate_integers(4, 4) == [4]
-    assert generate_integers(1, 3) == []
+    assert generate_integers(2, 2) == []
+    assert generate_integers(4, 4) == []
     assert generate_integers(2, 4) == [2, 4]
 
-def test_generate_integers_edge_cases():
-    assert generate_integers(0, 2) == [2]
-    assert generate_integers(2, 0) == [2]
-    assert generate_integers(1, 1) == []
-    assert generate_integers(2, 3) == [2]
-    assert generate_integers(3, 2) == [2]
-    assert generate_integers(1, 5) == [2, 4]
-    assert generate_integers(5, 1) == [2, 4]
+def test_generate_integers_with_zeros():
+    assert generate_integers(20, 28) == [20, 22, 24, 26, 28]
+    assert generate_integers(28, 20) == [20, 22, 24, 26, 28]
+
+def test_generate_integers_no_even():
+    assert generate_integers(1, 3) == []
+    assert generate_integers(11, 13) == []
+
+def test_generate_integers_large_range():
+    assert generate_integers(100, 108) == [100, 102, 104, 106, 108]

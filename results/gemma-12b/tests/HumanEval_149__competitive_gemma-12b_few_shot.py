@@ -47,22 +47,22 @@ class TestSortedListSum:
         assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
     def test_mixed_lengths(self):
-        assert sorted_list_sum(["aa", "a", "aaa", "cd"]) == ["aa", "cd"]
+        assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
     def test_mixed_lengths_with_duplicates(self):
-        assert sorted_list_sum(["aa", "a", "aaa", "cd", "aa"]) == ["aa", "aa", "cd"]
+        assert sorted_list_sum(["ab", "a", "aaa", "cd", "ab"]) == ["ab", "ab", "cd"]
 
     def test_same_length_different_alphabetical(self):
-        assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]
+        assert sorted_list_sum(["bc", "ab", "cd"]) == ["ab", "bc", "cd"]
 
     def test_same_length_same_alphabetical(self):
         assert sorted_list_sum(["ab", "ab", "cd"]) == ["ab", "ab", "cd"]
 
     def test_complex_case(self):
-        assert sorted_list_sum(["aa", "a", "aaa", "bb", "ccc", "dd", "e"]) == ["aa", "bb", "dd"]
+        assert sorted_list_sum(["aa", "a", "aaa", "bb", "b", "ccc", "dd", "d"]) == ["aa", "bb", "dd"]
 
     def test_long_strings(self):
         assert sorted_list_sum(["abcdef", "abcde", "abcdefg"]) == ["abcdef"]
 
     def test_strings_with_spaces(self):
-        assert sorted_list_sum(["aa", " a ", "aaa", "bb "]) == ["aa", "bb "]
+        assert sorted_list_sum(["a b", "ab", "abc"]) == ["ab"]

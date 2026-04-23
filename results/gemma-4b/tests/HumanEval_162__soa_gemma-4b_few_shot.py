@@ -34,21 +34,21 @@ def test_string_with_spaces():
     assert string_to_md5("  test  ") == "2c1f4349999999999999999999999999"
 
 def test_string_with_numbers():
-    assert string_to_md5("12345") == "6b93423695f0866267334d141949696"
+    assert string_to_md5("12345") == "6b934d088596e69c546964616b6c65"
 
 def test_string_with_special_characters():
     assert string_to_md5("!@#$%^") == "8966939f999999999999999999999999"
 
 def test_unicode_string():
-    assert string_to_md5("你好世界") == "99999999999999999999999999999999"
+    assert string_to_md5("你好世界") == "b9a7d999999999999999999999999999"
 
 def test_long_string():
     long_string = "This is a very long string to test the function with a longer input."
-    expected_md5 = "8966939f999999999999999999999999"
+    expected_md5 = "8999999999999999999999999999999999999999"
     assert string_to_md5(long_string) == expected_md5
 
 def test_string_with_mixed_characters():
-    assert string_to_md5("Hello123!@#") == "b94d27b9934d02a76496ac37c69d1afa"
+    assert string_to_md5("Hello123!@#") == "b85a67e9999999999999999999999999"
 
 def test_string_with_newlines():
     assert string_to_md5("Hello\nworld") == "3e25960a79dbc69b674cd4ec67a72c62"

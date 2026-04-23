@@ -47,10 +47,10 @@ class TestSortedListSum:
         assert sorted_list_sum(["aa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
     def test_mixed_odd_even(self):
-        assert sorted_list_sum(["aa", "a", "aaa", "bb", "c"]) == ["aa", "bb"]
+        assert sorted_list_sum(["aa", "a", "aaa", "bb", "cc"]) == ["aa", "bb", "cc"]
 
     def test_duplicates(self):
-        assert sorted_list_sum(["aa", "a", "aaa", "bb", "c", "aa"]) == ["aa", "aa", "bb"]
+        assert sorted_list_sum(["aa", "a", "aaa", "aa", "bb", "cc", "bb"]) == ["aa", "aa", "bb", "bb", "cc"]
 
     def test_same_length(self):
         assert sorted_list_sum(["ab", "cd", "ef"]) == ["ab", "cd", "ef"]

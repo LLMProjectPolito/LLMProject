@@ -26,10 +26,9 @@ def test_simplify_basic():
     assert simplify("10/2", "2/2") == True
     assert simplify("10/2", "2/3") == False
 
-def test_simplify_large_numbers():
-    assert simplify("100/10", "10/1") == True
-    assert simplify("100/10", "10/2") == True
-    assert simplify("100/10", "10/3") == False
-    assert simplify("1000/100", "10/1") == True
-    assert simplify("1000/100", "10/2") == True
-    assert simplify("1000/100", "10/3") == False
+def test_simplify_edge_cases():
+    assert simplify("1/1", "1/1") == True
+    assert simplify("1/1", "0/1") == False
+    assert simplify("0/1", "1/1") == False
+    assert simplify("0/1", "0/1") == False
+    assert simplify("1/0", "1/1") == False

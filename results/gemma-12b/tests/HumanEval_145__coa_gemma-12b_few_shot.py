@@ -23,7 +23,7 @@ def test_boundary_single_element():
     assert order_by_points([5]) == [5]
 
 def test_boundary_negative_and_positive_zero():
-    assert order_by_points([-1, 0, 1]) == [-1, 0, 1]
+    assert order_by_points([0, -0]) == [0, -0]
 
 # Focus: Type Scenarios
 def test_type_scenario_empty_list():

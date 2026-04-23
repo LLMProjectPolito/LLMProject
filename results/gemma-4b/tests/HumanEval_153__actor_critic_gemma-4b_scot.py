@@ -54,44 +54,51 @@ def Strongest_Extension(class_name, extensions):
 ### SCoT Steps:
 
 # STEP 1: REASONING
-# The function takes a class name and a list of extensions. It calculates the strength of each extension based on the difference between uppercase and lowercase letters. It returns the name of the strongest extension in the format "ClassName.StrongestExtensionName". If multiple extensions have the same strength, it returns the first one encountered.
+# The function takes a class name and a list of extensions. It calculates the strength of each extension based on the difference between uppercase and lowercase letters. It returns the strongest extension in the format "ClassName.StrongestExtensionName".
 # Edge cases to consider:
-# 1. Empty extensions list: Should return the class name.
-# 2. Extensions with only uppercase letters: Should return the first extension.
-# 3. Extensions with only lowercase letters: Should return the first extension.
-# 4. Extensions with mixed case letters: Should return the extension with the highest strength.
-# 5. Multiple extensions with the same strength: Should return the first one.
-# 6. Class name is empty string: Should return an empty string.
+# 1. Empty extensions list: Should return the class name itself.
+# 2. Extensions with equal strength: Should return the first one encountered.
+# 3. Extensions with no uppercase or lowercase letters: Should return the first one encountered.
+# 4. Class name is empty string: Should return an empty string.
+# 5. Extensions with only uppercase or only lowercase letters.
 
 # STEP 2: PLAN
 # Test functions:
-# - test_empty_extensions: Tests the case where the extensions list is empty.
-# - test_all_uppercase: Tests the case where all extensions are uppercase.
-# - test_all_lowercase: Tests the case where all extensions are lowercase.
-# - test_mixed_case: Tests the case where extensions have mixed case.
-# - test_multiple_strongest: Tests the case where multiple extensions have the same strength.
-# - test_empty_class_name: Tests the case where the class name is empty.
-# - test_basic_case: Tests the basic functionality with a simple example.
+# 1. test_empty_extensions: Tests the case where the extensions list is empty.
+# 2. test_single_extension: Tests the case where there is only one extension.
+# 3. test_multiple_extensions_different_strengths: Tests the case where there are multiple extensions with different strengths.
+# 4. test_multiple_extensions_equal_strengths: Tests the case where there are multiple extensions with the same strength.
+# 5. test_extension_with_no_uppercase: Tests the case where an extension has no uppercase letters.
+# 6. test_extension_with_no_lowercase: Tests the case where an extension has no lowercase letters.
+# 7. test_extension_with_only_uppercase: Tests the case where an extension has only uppercase letters.
+# 8. test_extension_with_only_lowercase: Tests the case where an extension has only lowercase letters.
+# 9. test_empty_class_name: Tests the case where the class name is empty.
 
 # STEP 3: CODE
 ###
 def test_empty_extensions():
     assert Strongest_Extension("my_class", []) == "my_class."
 
-def test_all_uppercase():
-    assert Strongest_Extension("Slices", ["AA", "BB", "CC"]) == "Slices.AA"
+def test_single_extension():
+    assert Strongest_Extension("Slices", ["SErviNGSliCes"]) == "Slices.SErviNGSliCes"
 
-def test_all_lowercase():
-    assert Strongest_Extension("Slices", ["aa", "bb", "cc"]) == "Slices.aa"
+def test_multiple_extensions_different_strengths():
+    assert Strongest_Extension("my_class", ["AA", "Be", "CC"]) == "my_class.AA"
 
-def test_mixed_case():
-    assert Strongest_Extension("Slices", ["SErviNGSliCes", "Cheese", "StuFfed"]) == "Slices.SErviNGSliCes"
+def test_multiple_extensions_equal_strengths():
+    assert Strongest_Extension("my_class", ["AA", "BB", "CC"]) == "my_class.AA"
 
-def test_multiple_strongest():
-    assert Strongest_Extension("Slices", ["SErviNGSliCes", "Cheese", "StuFfed"]) == "Slices.SErviNGSliCes"
+def test_extension_with_no_uppercase():
+    assert Strongest_Extension("my_class", ["bee", "zzz"]) == "my_class.bee"
+
+def test_extension_with_no_lowercase():
+    assert Strongest_Extension("my_class", ["AAA", "BBB"]) == "my_class.AAA"
+
+def test_extension_with_only_uppercase():
+    assert Strongest_Extension("my_class", ["ABC", "DEF"]) == "my_class.ABC"
+
+def test_extension_with_only_lowercase():
+    assert Strongest_Extension("my_class", ["abc", "def"]) == "my_class.abc"
 
 def test_empty_class_name():
     assert Strongest_Extension("", ["AA", "BB"]) == ""
-
-def test_basic_case():
-    assert Strongest_Extension("my_class", ["AA", "Be", "CC"]) == "my_class.AA"

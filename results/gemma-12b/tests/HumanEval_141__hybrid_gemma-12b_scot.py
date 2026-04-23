@@ -37,20 +37,16 @@ def file_name_check(file_name):
         return 'No'
 
     parts = file_name.split('.')
-    if len(parts[0]) == 0:
+    if not parts[0]:
         return 'No'
 
     if not parts[0][0].isalpha():
         return 'No'
 
-    if len(parts) != 2:
+    if len(filter(str.isdigit, file_name)) > 3:
         return 'No'
 
     if parts[1] not in ['txt', 'exe', 'dll']:
-        return 'No'
-
-    digit_count = sum(c.isdigit() for c in file_name)
-    if digit_count > 3:
         return 'No'
 
     return 'Yes'
@@ -93,5 +89,20 @@ class TestFileNameCheck:
     def test_valid_file_name_max_digits(self):
         assert file_name_check("ex123ample.txt") == 'Yes'
 
-    def test_invalid_extension_case(self):
-        assert file_name_check("example.TXT") == 'No'
+    def test_invalid_too_many_digits_in_name(self):
+        assert file_name_check("12345example.txt") == 'No'
+
+    def test_digit_only(self):
+        assert file_name_check("12345") == 'No'
+
+    def test_letter_only(self):
+        assert file_name_check("abcdefg") == 'No'
+
+    def test_dot_only(self):
+        assert file_name_check(".") == 'No'
+
+    def test_valid_exe(self):
+        assert file_name_check("example.exe") == 'Yes'
+
+    def test_valid_dll(self):
+        assert file_name_check("example.dll") == 'Yes'

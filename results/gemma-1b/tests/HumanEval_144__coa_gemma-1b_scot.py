@@ -30,6 +30,8 @@ def simplify(x, n):
         return False
 
 # Focus: Type Scenarios
+import pytest
+
 def simplify(x, n):
     try:
         x_int = int(x)
@@ -61,6 +63,6 @@ def simplify(x, n):
         return False
 
 def gcd(a, b):
-    while(b):
+    while b:
         a, b = b, a % b
     return a

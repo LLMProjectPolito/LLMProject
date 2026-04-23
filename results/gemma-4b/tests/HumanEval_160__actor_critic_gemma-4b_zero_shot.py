@@ -101,30 +101,25 @@ def test_edge_case_single_operand():
     operand = [1, 2]
     assert do_algebra(operator, operand) == 1
 
-def test_edge_case_single_operator():
-    operator = ['*']
-    operand = [1, 2, 3]
-    assert do_algebra(operator, operand) == 1
-
 def test_edge_case_empty_operator():
     operator = []
     operand = [1, 2, 3]
     assert do_algebra(operator, operand) == 1
 
 def test_edge_case_empty_operand():
-    operator = ['+']
+    operator = ['+', '*']
     operand = []
     assert do_algebra(operator, operand) == 0
 
 def test_large_numbers():
     operator = ['*', '**']
     operand = [2, 10, 3]
-    assert do_algebra(operator, operand) == 8192
+    assert do_algebra(operator, operand) == 1024
 
 def test_zero_operand():
     operator = ['+', '*']
     operand = [5, 0, 2]
-    assert do_algebra(operator, operand) == 10
+    assert do_algebra(operator, operand) == 5
 
 def test_floor_division_with_zero():
     operator = ['//']
@@ -135,3 +130,13 @@ def test_exponentiation_with_zero():
     operator = ['**']
     operand = [2, 0, 3]
     assert do_algebra(operator, operand) == 1
+
+def test_division():
+    operator = ['/']
+    operand = [10, 2, 5]
+    assert do_algebra(operator, operand) == 2
+
+def test_precedence():
+    operator = ['*', '+']
+    operand = [2, 3, 4]
+    assert do_algebra(operator, operand) == 10  # (2 * 3) + 4 = 10
