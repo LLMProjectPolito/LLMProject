@@ -38,7 +38,6 @@ def safe_invoke(agent_fn, prompt, overrides, timeout=300, max_retries=5):
                 "prompt_tokens": usage["prompt_tokens"],
                 "completion_tokens": usage["completion_tokens"],
                 "total_tokens": usage["total_tokens"],
-                "execution_time": round(time.time() - start_t, 2),
                 "generation_status": "ok",
                 "generation_error_type": "",
                 "generation_error_message": "",
@@ -54,7 +53,6 @@ def safe_invoke(agent_fn, prompt, overrides, timeout=300, max_retries=5):
                 "prompt_tokens": usage["prompt_tokens"],
                 "completion_tokens": usage["completion_tokens"],
                 "total_tokens": usage["total_tokens"],
-                "execution_time": round(time.time() - start_t, 2),
                 "generation_status": "error",
                 "generation_error_type": error_info["type"],
                 "generation_error_message": error_info["message"],
@@ -64,7 +62,6 @@ def safe_invoke(agent_fn, prompt, overrides, timeout=300, max_retries=5):
         "prompt_tokens": 0,
         "completion_tokens": 0,
         "total_tokens": 0,
-        "execution_time": round(time.time() - start_t, 2),
         "generation_status": "error",
         "generation_error_type": "unknown_error",
         "generation_error_message": "Generation failed without a captured exception.",
@@ -160,9 +157,6 @@ def run_experiment(agents, n, overrides={}, start=0, workers=50, results_dir: Pa
             "test_type_count": m["test_type_count"], "duplication_ratio": m["duplication_ratio"],
             "diversity_score": m["diversity_score"],
             "prompt_tokens": usage["prompt_tokens"], "completion_tokens": usage["completion_tokens"], "total_tokens": usage["total_tokens"],
-            "execution_time": usage["execution_time"], "generation_status": usage["generation_status"],
-            "generation_error_type": usage["generation_error_type"], "generation_error_message": usage["generation_error_message"],
-            "generation_attempts": usage["generation_attempts"],
         }
         with _csv_lock:
             import pandas as pd
