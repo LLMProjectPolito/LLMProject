@@ -6,7 +6,6 @@ AVAILABLE_MODELS = {
     "gemma-4b":      {"provider": "google", "id": "gemma-3-4b-it"},
     "gemma-12b":     {"provider": "google", "id": "gemma-3-12b-it"},
     "gemma-27b":     {"provider": "google", "id": "gemma-3-27b-it"},
-    "gemma-31b":     {"provider": "google", "id": "gemma-4-31b-it"},
     "gemma-4-31b":   {"provider": "google", "id": "gemma-4-31b-it"},
     "gemma-4-26b":   {"provider": "google", "id": "gemma-4-26b-a4b-it"},
     "gemma-4-4b":    {"provider": "google", "id": "gemma-3n-e4b-it"},

@@ -82,25 +82,25 @@
 ### 🏆 Top 10 Combinazioni
 | model_family   | agent        | config_label        |   functional_correctness |   line_coverage |   branch_coverage |   mutation_score |   complexity_cc |   maintainability_mi |   total_tokens |   tasks_evaluated |
 |:---------------|:-------------|:--------------------|-------------------------:|----------------:|------------------:|-----------------:|----------------:|---------------------:|---------------:|------------------:|
-| gemma-31b      | hybrid       | gemma-31b:zero_shot |                     0.98 |           81.09 |             61.62 |             0.33 |            2.49 |                77.51 |        8447.92 |                25 |
-| gemma-31b      | hybrid       | gemma-31b:cot       |                     0.96 |           99.04 |             98.65 |             0.57 |            2.69 |                83.10 |       10841.08 |                25 |
-| gemma-31b      | adversarial  | gemma-31b:scot      |                     0.96 |           98.18 |             99.01 |             0.62 |            2.38 |                83.14 |        6934.76 |                25 |
-| gemma-31b      | swarm        | gemma-31b:cot       |                     0.96 |           95.23 |             91.07 |             0.40 |            2.00 |                93.02 |        5575.96 |                25 |
-| gemma-31b      | baseline     | gemma-31b:few_shot  |                     0.96 |           99.57 |             99.33 |             0.56 |            2.79 |                75.54 |        6044.84 |                25 |
-| gemma-31b      | hybrid       | gemma-31b:scot      |                     0.95 |           99.53 |             99.33 |             0.69 |            2.49 |                79.67 |       10545.80 |                25 |
-| gemma-31b      | actor_critic | gemma-31b:zero_shot |                     0.95 |           75.71 |             59.81 |             0.21 |            2.49 |                84.96 |        8348.04 |                25 |
-| gemma-31b      | coa          | gemma-31b:cot       |                     0.94 |           98.33 |             96.65 |             0.57 |            2.59 |                76.85 |        7618.40 |                25 |
-| gemma-31b      | swarm        | gemma-31b:scot      |                     0.93 |           94.07 |             87.33 |             0.40 |            2.00 |                85.58 |        6534.04 |                25 |
-| gemma-31b      | consensus    | gemma-31b:few_shot  |                     0.93 |           99.07 |             98.26 |             0.60 |            2.59 |                79.82 |        8128.48 |                25 |
+| gemma-4-31b      | hybrid       | gemma-4-31b:zero_shot |                     0.98 |           81.09 |             61.62 |             0.33 |            2.49 |                77.51 |        8447.92 |                25 |
+| gemma-4-31b      | hybrid       | gemma-4-31b:cot       |                     0.96 |           99.04 |             98.65 |             0.57 |            2.69 |                83.10 |       10841.08 |                25 |
+| gemma-4-31b      | adversarial  | gemma-4-31b:scot      |                     0.96 |           98.18 |             99.01 |             0.62 |            2.38 |                83.14 |        6934.76 |                25 |
+| gemma-4-31b      | swarm        | gemma-4-31b:cot       |                     0.96 |           95.23 |             91.07 |             0.40 |            2.00 |                93.02 |        5575.96 |                25 |
+| gemma-4-31b      | baseline     | gemma-4-31b:few_shot  |                     0.96 |           99.57 |             99.33 |             0.56 |            2.79 |                75.54 |        6044.84 |                25 |
+| gemma-4-31b      | hybrid       | gemma-4-31b:scot      |                     0.95 |           99.53 |             99.33 |             0.69 |            2.49 |                79.67 |       10545.80 |                25 |
+| gemma-4-31b      | actor_critic | gemma-4-31b:zero_shot |                     0.95 |           75.71 |             59.81 |             0.21 |            2.49 |                84.96 |        8348.04 |                25 |
+| gemma-4-31b      | coa          | gemma-4-31b:cot       |                     0.94 |           98.33 |             96.65 |             0.57 |            2.59 |                76.85 |        7618.40 |                25 |
+| gemma-4-31b      | swarm        | gemma-4-31b:scot      |                     0.93 |           94.07 |             87.33 |             0.40 |            2.00 |                85.58 |        6534.04 |                25 |
+| gemma-4-31b      | consensus    | gemma-4-31b:few_shot  |                     0.93 |           99.07 |             98.26 |             0.60 |            2.59 |                79.82 |        8128.48 |                25 |
 
 ### 💔 Bottom 5 Combinazioni
 | model_family   | agent        | config_label        |   functional_correctness |   line_coverage |   branch_coverage |   mutation_score |   complexity_cc |   maintainability_mi |   total_tokens |   tasks_evaluated |
 |:---------------|:-------------|:--------------------|-------------------------:|----------------:|------------------:|-----------------:|----------------:|---------------------:|---------------:|------------------:|
-| gemma-31b      | self_healing | gemma-31b:zero_shot |                     0.20 |           30.66 |             14.08 |             0.80 |            3.04 |                80.86 |        7783.20 |                25 |
-| gemma-31b      | self_healing | gemma-31b:cot       |                     0.20 |           32.61 |             15.20 |             0.81 |            2.97 |                78.28 |        6887.68 |                25 |
-| gemma-31b      | self_healing | gemma-31b:few_shot  |                     0.24 |           34.77 |             17.24 |             0.77 |            2.93 |                81.68 |        8431.96 |                25 |
-| gemma-31b      | self_healing | gemma-31b:scot      |                     0.28 |           36.73 |             24.31 |             0.73 |            3.06 |                80.86 |        7823.60 |                25 |
-| gemma-31b      | hybrid       | gemma-31b:few_shot  |                     0.54 |           64.87 |             48.73 |             0.71 |            1.97 |                91.63 |        9119.96 |                25 |
+| gemma-4-31b      | self_healing | gemma-4-31b:zero_shot |                     0.20 |           30.66 |             14.08 |             0.80 |            3.04 |                80.86 |        7783.20 |                25 |
+| gemma-4-31b      | self_healing | gemma-4-31b:cot       |                     0.20 |           32.61 |             15.20 |             0.81 |            2.97 |                78.28 |        6887.68 |                25 |
+| gemma-4-31b      | self_healing | gemma-4-31b:few_shot  |                     0.24 |           34.77 |             17.24 |             0.77 |            2.93 |                81.68 |        8431.96 |                25 |
+| gemma-4-31b      | self_healing | gemma-4-31b:scot      |                     0.28 |           36.73 |             24.31 |             0.73 |            3.06 |                80.86 |        7823.60 |                25 |
+| gemma-4-31b      | hybrid       | gemma-4-31b:few_shot  |                     0.54 |           64.87 |             48.73 |             0.71 |            1.97 |                91.63 |        9119.96 |                25 |
 
 ---
 

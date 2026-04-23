@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 
-MODEL_ORDER = ["gemma-31b", "gemma-27b", "gemma-12b", "gemma-4b", "gemma-1b"]
+MODEL_ORDER = ["gemma-4-31b", "gemma-27b", "gemma-12b", "gemma-4b", "gemma-1b"]
 PROMPT_ORDER = ["zero_shot", "cot", "scot", "few_shot"]
 PROMPT_LABELS = ["Zero-shot", "CoT", "SCoT", "Few-shot"]
 

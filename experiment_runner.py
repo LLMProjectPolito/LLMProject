@@ -187,10 +187,15 @@ def main():
         p = ['zero_shot', 'cot', 'scot', 'few_shot']
         a = ['baseline', 'actor_critic', 'adversarial', 'competitive', 'hybrid', 'coa', 'soa', 'swarm', 'consensus', 'self_healing', 'atomic_swarm']
         requested = [f"{ag}:{mo}:{pr}" for mo in m for pr in p for ag in a]
-    elif "gemma_31b_test" in args.agents:
-        m = ['gemma-31b']
+    elif "gemma_4_31b" in args.agents:
+        m = ['gemma-4-31b']
         p = ['zero_shot', 'cot', 'scot', 'few_shot']
         a = ['baseline', 'actor_critic', 'adversarial', 'competitive', 'hybrid', 'coa', 'soa', 'swarm', 'consensus', 'self_healing', 'atomic_swarm']
+        requested = [f"{ag}:{mo}:{pr}" for mo in m for pr in p for ag in a]
+    elif "gemma_4_models" in args.agents:
+        m = ['gemma-4-2b', 'gemma-4-4b', 'gemma-4-26b']
+        p = ['zero_shot', 'scot', 'few_shot']
+        a = ['baseline', 'actor_critic', 'adversarial', 'hybrid', 'consensus']
         requested = [f"{ag}:{mo}:{pr}" for mo in m for pr in p for ag in a]
     else: requested = args.agents
 
