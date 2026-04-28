@@ -39,11 +39,11 @@ if not efficiency_data:
 eff_df = pd.DataFrame(efficiency_data)
 
 # Plotting
-plt.style.use('ggplot')
+plt.style.use('seaborn-v0_8-whitegrid')
 fig, ax1 = plt.subplots(figsize=(12, 7))
 
 # Bar chart for Total Tokens (Primary Y-axis)
-color_tokens = 'tab:blue'
+color_tokens = '#1B3A5C'
 ax1.set_xlabel('Model')
 ax1.set_ylabel('Avg Total Tokens', color=color_tokens)
 bars = ax1.bar(eff_df['Model'], eff_df['Avg Total Tokens'], color=color_tokens, alpha=0.6, label='Avg Total Tokens')
@@ -51,7 +51,7 @@ ax1.tick_params(axis='y', labelcolor=color_tokens)
 
 # Line chart for Efficiency Score (Secondary Y-axis)
 ax2 = ax1.twinx()
-color_eff = 'tab:red'
+color_eff = '#D4731A'
 ax2.set_ylabel('Efficiency (Score per 1k Tokens)', color=color_eff)
 ax2.plot(eff_df['Model'], eff_df['Efficiency (Score/1k Tokens)'], color=color_eff, marker='o', linewidth=2, label='Efficiency Score')
 ax2.tick_params(axis='y', labelcolor=color_eff)
@@ -65,7 +65,7 @@ for bar in bars:
     ax1.text(bar.get_x() + bar.get_width()/2., height + 10,
             f'{int(height)}', ha='center', va='bottom', fontsize=10)
 
-plt.savefig('scratch/token_efficiency.png')
+plt.savefig('scratch/token_efficiency.png', dpi=150, facecolor='white')
 print("\n" + "="*60)
 print("TOKEN EFFICIENCY ANALYSIS (Correctness per 1k Tokens)")
 print("="*60)

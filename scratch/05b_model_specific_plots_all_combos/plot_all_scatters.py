@@ -18,12 +18,14 @@ def plot_all_combos_scatter(results_dir, output_dir):
                 }).reset_index()
                 
                 plt.figure(figsize=(12, 8))
+                custom_palette = ['#1B3A5C', '#2A7F7F', '#D4731A', '#8B1A1A', '#4A7C59', '#6B4C9A', '#C4A35A', '#3B7DD8', '#7A3E3E', '#2E4057', '#8C6D31']
                 scatter = sns.scatterplot(
                     data=group, 
                     x='total_tokens', 
                     y='functional_correctness', 
                     hue='agent', 
                     style='agent',
+                    palette=custom_palette[:len(group['agent'].unique())],
                     s=100,
                     alpha=0.7
                 )
@@ -36,7 +38,7 @@ def plot_all_combos_scatter(results_dir, output_dir):
                 plt.tight_layout()
                 
                 plot_path = os.path.join(output_dir, f"{model}_all_combos_scatter.png")
-                plt.savefig(plot_path)
+                plt.savefig(plot_path, dpi=150, facecolor='white')
                 plt.close()
                 print(f"Scatter plot (all combos) created for {model}")
 

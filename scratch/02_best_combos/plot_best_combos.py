@@ -1,6 +1,13 @@
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib
+
+# Use the Polito-style palette (dark blue for top, dark red for bottom, royal blue for baseline)
+POLITO_BLUE = '#1B3A5C'      # dark navy blue (top performers)
+POLITO_RED = '#8B1A1A'       # dark red (bottom performers)
+BASELINE_BLUE = '#2E75B6'    # bright blue (baseline highlight)
+BEST_GREEN = '#2E8B57'       # sea green (absolute best)
 
 def plot_best_worst_combinations(results_dir, output_dir):
     all_data = []
@@ -8,8 +15,9 @@ def plot_best_worst_combinations(results_dir, output_dir):
         print(f"Directory {results_dir} non trovata.")
         return
 
-    # Models to include (Gen 3 + gemma-31b)
-    target_models = ["gemma-1b", "gemma-4b", "gemma-12b", "gemma-27b", "gemma-31b"]
+    # ALL 8 MODELS
+    target_models = ["gemma-1b", "gemma-4b", "gemma-12b", "gemma-27b", "gemma-31b",
+                     "gemma-4-2b", "gemma-4-4b", "gemma-4-26b"]
     
     for model in target_models:
         model_path = os.path.join(results_dir, model)
@@ -76,40 +84,56 @@ def plot_best_worst_combinations(results_dir, output_dir):
         
         plot_data = pd.concat([top_10, bottom_5, baseline_row]).drop_duplicates().sort_values('functional_correctness', ascending=True)
 
+        # --- POLITO-STYLE CHART ---
         fig, ax = plt.subplots(figsize=(14, 10))
-        labels = plot_data['agent'] + " - " + plot_data['config_label']
+        
+        # Format labels: agent · prompt_style
+        plot_data['style'] = plot_data['config_label'].apply(lambda x: x.split(':')[-1])
+        labels = plot_data['agent'] + ' · ' + plot_data['style']
         values = plot_data['functional_correctness']
         changes = plot_data['perc_change']
+        
+        # Determine top/bottom boundary
+        top_10_threshold = top_10['functional_correctness'].min()
         
         colors = []
         for _, row in plot_data.iterrows():
             if row['agent'] == 'baseline' and 'zero_shot' in str(row['config_label']):
-                colors.append('royalblue') 
-            elif row['functional_correctness'] == sorted_group['functional_correctness'].max():
-                colors.append('forestgreen')
-            elif row['functional_correctness'] == sorted_group['functional_correctness'].min():
-                colors.append('crimson')
+                colors.append(BASELINE_BLUE) 
+            elif row['functional_correctness'] >= top_10_threshold:
+                colors.append(POLITO_BLUE)
             else:
-                colors.append('gray')
+                colors.append(POLITO_RED)
         
-        bars = ax.barh(labels, values, color=colors)
-        ax.set_xlabel('Functional Correctness')
-        ax.set_title(f'Functional Correctness: Top/Bottom vs Baseline (Blue) - {model.upper()}')
-        ax.set_xlim(0, max(values) * 1.25)
+        bars = ax.barh(labels, values, color=colors, edgecolor='white', linewidth=0.5)
         
+        # Styling
+        ax.set_xlabel('Functional Correctness (mean over 25 problems)', fontsize=12, fontweight='bold')
+        ax.set_title(f'{model.upper()} — 10 best (blue) and 5 worst (red) configurations', fontsize=14, fontweight='bold')
+        ax.set_xlim(0, max(values) * 1.2)
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        ax.tick_params(axis='y', labelsize=10)
+        ax.tick_params(axis='x', labelsize=10)
+        
+        # Add value annotations
         for i, bar in enumerate(bars):
             width = bar.get_width()
             change = changes.iloc[i]
-            label_text = f'{width:.3f}'
-            if base_val is not None and not (plot_data.iloc[i]['agent'] == 'baseline' and 'zero_shot' in str(plot_data.iloc[i]['config_label'])):
+            is_baseline = (plot_data.iloc[i]['agent'] == 'baseline' and 'zero_shot' in str(plot_data.iloc[i]['config_label']))
+            
+            label_text = f'{width:.2f}'
+            if base_val is not None and not is_baseline:
                 label_text += f' ({change:+.1f}%)'
             
-            ax.text(width + 0.01, bar.get_y() + bar.get_height()/2, label_text, ha='left', va='center', fontsize=9, fontweight='bold')
+            ax.text(width + 0.005, bar.get_y() + bar.get_height()/2, label_text,
+                    ha='left', va='center', fontsize=9, fontweight='bold',
+                    color='#333333')
 
         plt.tight_layout()
         if not os.path.exists(output_dir): os.makedirs(output_dir)
         plot_path = os.path.join(output_dir, f"{model}_chart.png")
-        plt.savefig(plot_path)
+        plt.savefig(plot_path, dpi=150, bbox_inches='tight', facecolor='white')
         plt.close()
         print(f"Chart saved to {plot_path}")
 
