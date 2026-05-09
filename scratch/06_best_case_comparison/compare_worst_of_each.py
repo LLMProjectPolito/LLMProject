@@ -19,8 +19,8 @@ metric_map = {
     "Maintainability": "maintainability_mi",
 }
 
-# ─── Collect per-model, per-metric best combo AND baseline-zeroshot ───
-# Structure: per_metric_data[metric][model] = {"best_value", "best_combo", "bl_value"}
+# ─── Collect per-model, per-metric WORST combo AND baseline-zeroshot ───
+# Structure: per_metric_data[metric][model] = {"worst_value", "worst_combo", "bl_value"}
 per_metric_data = {m: {} for m in metric_map}
 
 for model in models:
@@ -52,7 +52,7 @@ for model in models:
     bl_row = combos.loc[bl_mask].iloc[0] if bl_mask.any() else None
 
     for metric_name in metric_map:
-        # Determine which column to maximise
+        # Determine which column to minimise
         if metric_name == "Correctness":
             col = "functional_correctness"
         elif metric_name == "Coverage":
@@ -62,28 +62,28 @@ for model in models:
         elif metric_name == "Maintainability":
             col = "maintainability_mi"
 
-        # Best combo for THIS metric
-        best_idx = combos[col].idxmax()
-        best_row = combos.loc[best_idx]
-        best_val = best_row[col]
-        best_combo = f"{best_row['agent']} + {best_row['style']}"
+        # WORST combo for THIS metric (minimum value)
+        worst_idx = combos[col].idxmin()
+        worst_row = combos.loc[worst_idx]
+        worst_val = worst_row[col]
+        worst_combo = f"{worst_row['agent']} + {worst_row['style']}"
 
         # Baseline zero-shot value for this metric
         bl_val = float('nan')
         if bl_row is not None:
             bl_val = bl_row[col]
 
-        # Percentage change
+        # Percentage change (negative = worse than baseline)
         if pd.notna(bl_val) and bl_val != 0:
-            pct = ((best_val - bl_val) / bl_val) * 100
+            pct = ((worst_val - bl_val) / bl_val) * 100
         else:
             pct = float('nan')
 
         per_metric_data[metric_name][model] = {
-            "best_value": best_val,
-            "best_combo": best_combo,
-            "bl_value":   bl_val,
-            "pct_change": pct,
+            "worst_value": worst_val,
+            "worst_combo": worst_combo,
+            "bl_value":    bl_val,
+            "pct_change":  pct,
         }
 
 # ─── Build one DataFrame per metric for plotting ───
@@ -94,11 +94,11 @@ for metric_name in metric_map:
         if model in per_metric_data[metric_name]:
             d = per_metric_data[metric_name][model]
             rows.append({
-                "Model":      model,
-                "Value":      d["best_value"],
-                "Best Combo": d["best_combo"],
-                "BL Value":   d["bl_value"],
-                "pct":        d["pct_change"],
+                "Model":       model,
+                "Value":       d["worst_value"],
+                "Worst Combo": d["worst_combo"],
+                "BL Value":    d["bl_value"],
+                "pct":         d["pct_change"],
             })
     plot_frames[metric_name] = pd.DataFrame(rows)
 
@@ -106,15 +106,16 @@ for metric_name in metric_map:
 plt.style.use('ggplot')
 fig, axes = plt.subplots(2, 2, figsize=(20, 15))
 fig.suptitle(
-    "Best-Case Performance per Model  vs  Baseline Zero-Shot\n",
+    "Worst-Case Performance per Model  vs  Baseline Zero-Shot\n"
+    "(each subplot picks the worst agent+style for THAT specific metric)",
     fontsize=16, fontweight='bold', y=0.99
 )
 
 subplot_cfg = [
-    ("Correctness",     axes[0, 0], "Best Case: Functional Correctness",           "viridis",   (0, 1.20)),
-    ("Coverage",        axes[0, 1], "Best Case: Line Coverage",                    "magma",     (0, 120)),
-    ("Efficiency (1k)", axes[1, 0], "Best Case: Token Efficiency (Score/1k tok.)",  "rocket",    None),
-    ("Maintainability", axes[1, 1], "Best Case: Maintainability Index",            "cubehelix", None),
+    ("Correctness",     axes[0, 0], "Worst Case: Functional Correctness",           "YlOrRd",    (0, 1.20)),
+    ("Coverage",        axes[0, 1], "Worst Case: Line Coverage",                    "OrRd",      (0, 120)),
+    ("Efficiency (1k)", axes[1, 0], "Worst Case: Token Efficiency (Score/1k tok.)",  "Reds",      None),
+    ("Maintainability", axes[1, 1], "Worst Case: Maintainability Index",            "RdPu",      None),
 ]
 
 for metric_name, ax, title, palette, ylim in subplot_cfg:
@@ -129,7 +130,11 @@ for metric_name, ax, title, palette, ylim in subplot_cfg:
     if ylim:
         ax.set_ylim(*ylim)
     else:
-        ymax = pdf['Value'].max()
+        # Use BL values to set a sensible ceiling (worst bars are small,
+        # but BL-ZS lines may be much higher)
+        bl_max = pdf['BL Value'].max()
+        val_max = pdf['Value'].max()
+        ymax = max(bl_max, val_max) if pd.notna(bl_max) else val_max
         ax.set_ylim(0, ymax * 1.50)
 
     # Annotate each bar + draw BL-ZS reference line
@@ -144,7 +149,7 @@ for metric_name, ax, title, palette, ylim in subplot_cfg:
         y = bar.get_height()
         bl_val = row["BL Value"]
 
-        combo_label = row["Best Combo"]
+        combo_label = row["Worst Combo"]
         pct = row["pct"]
 
         # ── Baseline Zero-Shot reference line on the bar ──
@@ -154,7 +159,7 @@ for metric_name, ax, title, palette, ylim in subplot_cfg:
                 y=bl_val,
                 xmin=x_left - bar.get_width() * 0.12,
                 xmax=x_right + bar.get_width() * 0.12,
-                colors='#d32f2f', linewidths=2.2, linestyles='--',
+                colors='#1565c0', linewidths=2.2, linestyles='--',
                 label=lbl, zorder=5
             )
             bl_line_drawn = True
@@ -167,6 +172,7 @@ for metric_name, ax, title, palette, ylim in subplot_cfg:
             else:
                 sign = "+" if pct >= 0 else ""
                 pct_text = f"{sign}{pct:.1f}%"
+                # For worst-case: negative = degradation (red), positive = still above BL (green)
                 pct_color = "#2e7d32" if pct >= 0 else "#c62828"
         else:
             pct_text = "N/A"
@@ -186,7 +192,7 @@ for metric_name, ax, title, palette, ylim in subplot_cfg:
                 bbox=dict(boxstyle='round,pad=0.15', facecolor='white',
                           edgecolor=pct_color, alpha=0.85, linewidth=0.6))
 
-    ax.legend(loc='lower right', fontsize=8, framealpha=0.9)
+    ax.legend(loc='upper right', fontsize=8, framealpha=0.9)
     ax.tick_params(axis='x', rotation=45, labelsize=9)
     ax.set_xlabel("")
     ax.set_ylabel(metric_name)
@@ -194,13 +200,13 @@ for metric_name, ax, title, palette, ylim in subplot_cfg:
 plt.tight_layout(rect=[0, 0, 1, 0.95])
 
 # ─── Save ───
-out1 = 'scratch/06_best_case_comparison/best_case_comparison.png'
+out1 = 'scratch/06_best_case_comparison/worst_case_comparison.png'
 plt.savefig(out1, dpi=180, bbox_inches='tight')
 print(f"Saved -> {out1}")
 
 # ─── Console summary ───
 print("\n" + "=" * 95)
-print("Per-Metric Best Combination for each Model:")
+print("Per-Metric WORST Combination for each Model:")
 print("=" * 95)
 for metric_name in metric_map:
     print(f"\n  --- {metric_name} ---")
@@ -211,5 +217,5 @@ for metric_name in metric_map:
             pct_s = f"{'+' if pct >= 0 else ''}{pct:.1f}%"
         else:
             pct_s = "N/A"
-        print(f"    {r['Model']:15s}  best={r['Value']:.4f}  bl_zs={r['BL Value']:.4f}"
-              f"  delta={pct_s:>8s}  combo=[{r['Best Combo']}]")
+        print(f"    {r['Model']:15s}  worst={r['Value']:.4f}  bl_zs={r['BL Value']:.4f}"
+              f"  delta={pct_s:>8s}  combo=[{r['Worst Combo']}]")
