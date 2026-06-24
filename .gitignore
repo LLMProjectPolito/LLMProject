@@ -57,3 +57,5 @@ FAST_UNZIP.py
 FINAL_ORGANIZER.py
 
 scratch/overleaf/
+report/rev*
+.DS_Store
