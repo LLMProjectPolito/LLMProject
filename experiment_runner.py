@@ -1,5 +1,4 @@
-import argparse, re, csv, json, time, concurrent.futures, threading, os
-from datetime import datetime
+import argparse, re, csv, json, time, concurrent.futures, threading
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -28,7 +27,6 @@ DEFAULT_RESULTS_DIR = Path("results")
 _csv_lock = threading.Lock()
 
 def safe_invoke(agent_fn, prompt, overrides, timeout=300, max_retries=5):
-    start_t = time.time()
     for attempt in range(1, max_retries + 1):
         try:
             reset_token_usage()

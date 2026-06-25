@@ -80,6 +80,3 @@ def apply_reasoning_style(problem: str, base_instruction: str, style: str = "zer
         "Output ONLY the code block."
     )
 
-# Static templates for quick referencing
-COT_PROMPT = apply_reasoning_style("{problem}", "Expert Test Engineer.", "cot")
-SCOT_PROMPT = apply_reasoning_style("{problem}", "Expert Test Engineer.", "scot")
